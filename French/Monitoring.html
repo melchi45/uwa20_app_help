@@ -400,11 +400,11 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             </ul>
 
         </div>
-        <div class="wn5-setup-section-article-content">
+    <!--     <div class="wn5-setup-section-article-content">
             <h3>Comment s&eacute;lectionner un &eacute;cran divis&eacute;</h3>
             <p>S&eacute;lectionnez un num&eacute;ro pour une vid&eacute;o individuelle dans l&apos;affichage en mosa&iuml;que par 4. 1 correspond &agrave; la partie sup&eacute;rieure gauche de l&apos;affichage en mosa&iuml;que par 4, 2 correspond &agrave; la partie sup&eacute;rieure droite, 3 &agrave; la partie inf&eacute;rieure gauche et 4 &agrave; la partie inf&eacute;rieure droite.</p>
             <p><span class="tui tui-wn5-ptz-handle"></span> Cliquez sur le bouton et faites le glisser afin d&rsquo;ajuster la vue de la cam&eacute;ra. Cliquez sur le bouton <strong class="UI">[+]</strong> de la barre de zoom pour faire un zoom avant sur l&apos;&eacute;cran, et sur le bouton <strong class="UI">[-]</strong> pour faire un zoom arri&egrave;re.</p>
-        </div>
+        </div>  -->
         <div class="wn5-setup-section-article-content">
             <h3>Pr&eacute;r&eacute;glage</h3>
             <p>S&eacute;lectionnez un num&eacute;ro pr&eacute;d&eacute;fini et cliquez sur le bouton <strong class="UI">[Aller]</strong> pour d&eacute;placer la vue de la cam&eacute;ra sur la position PTZ pr&eacute;d&eacute;finie.</p>
@@ -419,8 +419,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 
 
 
-<hr class="wn5-setup-hr" ng-if="DPTZSetupPage">
-<div class="wn5-setup-section" ng-if="DPTZSetupPage">
+<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens">
+<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -433,7 +433,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <ul>
                 <li>La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>
                 <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
-                <li>Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
+                <li>Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
             </ul>
 
         </div>

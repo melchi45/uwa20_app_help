@@ -430,8 +430,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DPTZSetupPage">
-<div class="wn5-setup-section" ng-if="DPTZSetupPage">
+<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens">
+<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -476,11 +476,11 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             </ul>
 
         </div>
-        <div class="wn5-setup-section-article-content">
+    <!--     <div class="wn5-setup-section-article-content">
             <h3>How to select a split screen</h3>
             <p>Select a number for an individual video in the 4-split view. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</p>
             <p>Click and drag the <span class="tui tui-wn5-ptz-handle"></span> icon to adjust the camera view. Click the <span class="tui tui-wn5-ptz-plus"></span> icon on the zoom bar to zoom in the screen, and the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom out.</p>
-        </div>
+        </div>  --> 
         <div class="wn5-setup-section-article-content">
             <h3>Preset</h3>
             <p> Select a preset number and click the <strong class="UI">[Go]</strong> button to move the camera view to the PTZ preset position. Click he <strong class="UI">[Home]</strong> button to move the camera view to the Home position. </p>

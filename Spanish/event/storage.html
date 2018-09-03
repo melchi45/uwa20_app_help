@@ -70,9 +70,14 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul><li>Cuando &apos;Error&apos; se muestra en <strong class="UI">[Estado]</strong> de la lista de dispositivos, compruebe si el dispositivo de grabaci&oacute;n est&aacute; correctamente conectado, si el sistema de archivos del dispositivo de grabaci&oacute;n est&aacute; da&ntilde;ado o no, y si el dispositivo de grabaci&oacute;n est&aacute; da&ntilde;ado f&iacute;sicamente. Si el mensaje &apos;Error&apos; persiste despu&eacute;s de comprobar el dispositivo de grabaci&oacute;n, formatee o reemplace el dispositivo.</li>
+            <ul>
+                <li>Cuando &apos;Error&apos; se muestra en <strong class="UI">[Estado]</strong> de la lista de dispositivos, compruebe si el dispositivo de grabaci&oacute;n est&aacute; correctamente conectado, si el sistema de archivos del dispositivo de grabaci&oacute;n est&aacute; da&ntilde;ado o no, y si el dispositivo de grabaci&oacute;n est&aacute; da&ntilde;ado f&iacute;sicamente. Si el mensaje &apos;Error&apos; persiste despu&eacute;s de comprobar el dispositivo de grabaci&oacute;n, formatee o reemplace el dispositivo.</li>
                 <li ng-if="NAS">La grabaci&oacute;n puede no ser posible debido a la desconexi&oacute;n temporal de la red cuando se utiliza NAS, por lo que se recomienda utilizar una tarjeta SD tambi&eacute;n.</li>
                 <li>Cuando la resoluci&oacute;n, tasa de bits y velocidad de fotogramas se fijan a alta, la cantidad de bit de datos de imagen tambi&eacute;n se incrementa. Si la cantidad de bit de datos aumenta, un salto de fotogramas puede ocurrir incluso si se pone en pantalla completa. Cuando se produce un salto de fotograma, una imagen se graba a una velocidad m&iacute;nima de una imagen por segundo. </li>
+                <li>Antes de extraer la tarjeta micro SD, primero cambie a <strong class="UI">[Deshabilitar]</strong>. Si la quita por su cuenta o enciende la c&aacute;mara con una fuente de electricidad inestable sin cambiar a <strong class="UI">[Deshabilitar]</strong>, puede da&ntilde;ar la tarjeta micro SD.</li>
+                <li>Si utiliza una tarjeta de memoria micro SD por debajo de la velocidad recomendada, puede causar saltos de cuadros.  &nbsp;Si utiliza la tarjeta de memoria micro SD con una capacidad demasiado grande, puede ralentizar la velocidad de formato.</li>
+                <li>Si utiliza NAS, la eliminaci&oacute;n autom&aacute;tica solo se admite cuando la capacidad de NAS est&aacute; por encima de las especificaciones recomendadas.</li>
+                <li>Los datos eliminados no se pueden restaurar.</li>
             </ul>
         </div>
     </div>
@@ -96,6 +101,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Se recomienda utilizar tarjetas SD de alta resistencia. Para obtener informaci&oacute;n detallada, consulte la p&aacute;gina web de Hanwha Techwin.</li>
+                <li>Puede tomar hasta 10 minutos formatear la tarjeta micro SD con el sistema de archivos EXT4. </li>
             </ul>
         </div>
     </div>
@@ -142,6 +148,8 @@
                 <li>Si se inserta una tarjeta SD que se utiliza en otra c&aacute;mara mientras se est&aacute;n grabando bit de datos en el NAS, las im&aacute;genes podr&iacute;an no ser grabadas.</li>
                 <li>Si se cambia la configuraci&oacute;n de NAS mientras que los bit de datos se est&aacute;n grabando en NAS, el cambio no se aplicar&aacute; inmediatamente.</li>
                 <li>Si se retira el equipo NAS o la conexi&oacute;n de red se interrumpe mientras que los bit de datos se est&aacute;n grabando en el NAS, la acci&oacute;n de grabaci&oacute;n en el NAS podr&iacute;a interrumpirse.</li>
+                <li>Cuando la resoluci&oacute;n, tasa de bits y velocidad de fotogramas se fijan en alta, la cantidad de bit de datos de imagen tambi&eacute;n se incrementa. Si la cantidad de bit de datos aumenta, un salto de fotogramas puede ocurrir incluso si se pone en pantalla completa. Cuando se produce un salto de fotograma, una imagen se graba a una velocidad m&iacute;nima de una imagen por segundo. </li>
+                <li>Compruebe si est&aacute; intentando acceder como otro usuario sin formatear la carpeta predeterminada que ya est&aacute; guardada o utilizada. </li>
             </ul>
         </div>
     </div>

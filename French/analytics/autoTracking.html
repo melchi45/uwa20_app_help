@@ -1,34 +1,35 @@
 ﻿<h1 class="wn5-setup-main-title">Suivi automatique</h1>
 <div class="wn5-setup-section">
-    <p>La fonction Suivi automatique est utilis&eacute;e pour reconna&icirc;tre et suivre un objet gr&acirc;ce &agrave; l&rsquo;analyse vid&eacute;o. Vous pouvez d&eacute;finir les d&eacute;tails de la fonction de suivi automatique.</p>
-    <p>Une fois les r&eacute;glages termin&eacute;s, cliquez sur la touche <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+    <p>La fonction Suivi automatique est utilis&eacute;e pour reconna&icirc;tre et suivre un objet gr&acirc;ce &agrave; l&rsquo;analyse vid&eacute;o. Vous pouvez d&eacute;finir les d&eacute;tails d&rsquo;utilisation du suivi automatique. </p>
+    <p>Une fois les r&eacute;glages termin&eacute;s, cliquez sur la touche <strong class="UI">[Appliquer]</strong> en bas de la page. </p>
 </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-        <p>La m&eacute;thode d&rsquo;utilisation du suivi automatique de la cam&eacute;ra est la suivante.</p>
+        <p>La m&eacute;thode d&rsquo;utilisation du suivi automatique de la cam&eacute;ra est la suivante.  </p>
         <ul>
-            <li>Cliquez sur l&rsquo;ic&ocirc;ne de Suivi automatique<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>. Analysez, s&eacute;lectionnez et suivez un objet dans l&rsquo;ensemble de la zone.</li>
-            <li>Lorsque vous cliquez avec le bouton droit de la souris sur l&rsquo;&eacute;cran vid&eacute;o de la page Direct, le mouvement est analys&eacute; en fonction de la zone s&eacute;lectionn&eacute;e et le suivi automatique commence.</li>
-            <li>Si vous avez s&eacute;lectionn&eacute; [PTZ] &gt; [Configuration PTZ] &gt; <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptzSetup_ptzInfoSetup#preset">[Pr&eacute;r&eacute;glage]</a> &gt; [Configuration pr&eacute;r&eacute;gl&eacute;e] &gt; [Action de suivi] puis «&nbsp;Suivi automatique&nbsp;», la cam&eacute;ra adopte le pr&eacute;r&eacute;glage et ex&eacute;cute automatiquement la fonction de suivi automatique.</li>
+            <li>Cliquez sur l&rsquo;ic&ocirc;ne de Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>. Analysez, s&eacute;lectionnez et suivez un objet dans la zone enti&egrave;re.  </li>
+            <li>Lorsque vous cliquez avec le bouton droit de la souris sur l&rsquo;&eacute;cran vid&eacute;o de la page Direct, le mouvement est analys&eacute; en fonction de la zone s&eacute;lectionn&eacute;e et le suivi automatique commence.  </li>
+            <li>Si vous acc&eacute;dez &agrave; [PTZ] &gt; [Configuration PTZ] &gt; <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptzSetup_ptzInfoSetup?#preset">[Pr&eacute;r&eacute;glage]</a> &gt; [Configuration pr&eacute;r&eacute;gl&eacute;e] &gt; [Action de suivi] et s&eacute;lectionnez Suivi automatique, la cam&eacute;ra adopte le pr&eacute;r&eacute;glage et ex&eacute;cute automatiquement la fonction de suivi automatique. </li>
         </ul>
     </div>
-<hr class="wn5-setup-hr">		                              <div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="SimpleFocusAfterDayNight">		                              
+<div class="wn5-setup-section" ng-if="SimpleFocusAfterDayNight">
 <div class="wn5-setup-section-heading">
      <h2>R&eacute;glage du PTZ</h2>
  </div>
        <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-           <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
+           <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra. </p>
         </div>
 			
         <div class="wn5-online-help-action">
             <h4>R&eacute;glage du PTZ</h4>
                 <ul>
-                    <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
-                    <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span>pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span>pour le r&eacute;duire.</li>
-                    <li>Rapprochez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-ptz-far"></span>.</li>
-                    <li>Pour lancer le suivi automatique, cliquez sur l&rsquo;ic&ocirc;ne<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>. Cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>pour arr&ecirc;ter le suivi automatique.</li>
-                    <li>Pour ajuster la mise au point de la cam&eacute;ra pour une prise AF, cliquez sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-simple-focus"></span>.</li>
+                    <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
+                    <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, s&eacute;lectionnez un agrandissement de l&rsquo;image en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span> pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span> pour le r&eacute;duire.</li>
+                    <li>Rapprochez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
+                    <li>Pour lancer le suivi automatique, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>. Cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> pour arr&ecirc;ter le suivi automatique.</li>
+                    <li>Pour ajuster la mise au point de la cam&eacute;ra pour une prise, cliquez <span class="tui tui-wn5-simple-focus"></span> sur l&rsquo;ic&ocirc;ne.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -42,27 +43,27 @@
 
 
         <div class="wn5-setup-section-article-content">
-            <p>Une liste des zones exclues du suivi s&rsquo;affiche. Il est possible de d&eacute;finir jusqu&rsquo;&agrave; 8 zones.</p>
+            <p>Une liste des zones exclues de la d&eacute;tection d&rsquo;un objet de suivi s&rsquo;affiche. Il est possible de d&eacute;finir jusqu&rsquo;&agrave; 8 zones. </p>
 			</div>
         <div class="wn5-online-help-action">
             <h4><a name="exclude"></a>D&eacute;finition d&rsquo;une zone exclue</h4>
             <ol>
-                <li>D&eacute;finissez une zone exclue en faisant glisser la souris sur l&rsquo;&eacute;cran de l&rsquo;image de la cam&eacute;ra.</li>
+                <li>D&eacute;finissez une zone exclue en faisant glisser la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</li>
                 <li>Saisissez le nom de la zone exclue dans la bo&icirc;te de dialogue <strong class="UI">[Suivi auto]</strong> et cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
             </ol>
         </div>
             <div class="wn5-online-help-action">
                 <h4>Suppression d&rsquo;une zone exclue</h4>
                 <ol>
-                    <li>S&eacute;lectionnez un nombre &agrave; supprimer de la liste des zones exclues.</li>
-                    <li>Cliquez sur le bouton <strong class="UI">[Suppr]</strong>.</li>
+                    <li>S&eacute;lectionnez un num&eacute;ro &agrave; supprimer de la liste des zones exclues.</li>
+                    <li>Cliquez sur le bouton <strong class="UI">[Suppr]</strong>.  </li>
                 </ol>
             </div>
             <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>L&rsquo;exclusion du suivi automatique fonctionne uniquement lorsque l&rsquo;option <strong class="UI">[Suivi automatique configuration]</strong> &gt; <strong class="UI">[Activation secteur]</strong> est s&eacute;lectionn&eacute;e.</li>
-                <li>Le suivi automatique de la zone exclue signifie qu&rsquo;elle est exclue des zones de d&eacute;tection initiale de l&rsquo;objet. Si un objet sous suivi entre dans la zone exclue, il continuera d&rsquo;&ecirc;tre suivi.<font color="blue">C&rsquo;est-&agrave;-dire que les zones d&eacute;finies n&rsquo;arr&ecirc;tent pas l&rsquo;action de suivi lorsque la cible de suivi p&eacute;n&egrave;tre dans ces zones.</font>  </li>
+                <li>La fonction d&rsquo;exclusion du suivi automatique fonctionne uniquement lorsque l&rsquo;option <strong class="UI">[Suivi automatique configuration]</strong> &gt; <strong class="UI">[Activation secteur]</strong> est s&eacute;lectionn&eacute;e. </li>
+                <li>Une zone exclue du suivi automatique signifie qu&rsquo;elle est exclue des zones de d&eacute;tection initiale de l&rsquo;objet. Si un objet suivi entre dans la zone exclue, il continuera d&rsquo;&ecirc;tre suivi. C&rsquo;est-&agrave;-dire que les zones d&eacute;finies n&rsquo;arr&ecirc;tent pas l&rsquo;action de suivi lorsque la cible de suivi p&eacute;n&egrave;tre dans ces zones.  </li>
             </ul>
             </div>
         </div>
@@ -70,70 +71,74 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>R&eacute;glage</h2>
+        <h2>Configuration</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             
             <h3>Hauteur de la cam&eacute;ra</h3>
-            <p>R&eacute;glez la hauteur de la cam&eacute;ra. La fonction de suivi automatique fonctionne plus pr&eacute;cis&eacute;ment si une hauteur proche de la hauteur d&rsquo;installation r&eacute;elle de la cam&eacute;ra est saisie.</p>
+            <p>D&eacute;finit la hauteur de la cam&eacute;ra. La fonction de suivi automatique fonctionne plus pr&eacute;cis&eacute;ment si une hauteur proche de la hauteur d&rsquo;installation r&eacute;elle de la cam&eacute;ra est saisie. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Zoom</h3>
+            <h3>Zoom    </h3>
             <p>Permet de choisir d&rsquo;utiliser ou non l&rsquo;op&eacute;ration de zoom pour le suivi automatique. &nbsp;</p>
         </div>
 		
         <div class="wn5-setup-section-article-content">
             <h3>Maintenir la taille de l&rsquo;objet</h3>
-            <p>Si le zoom est activ&eacute;<font color="blue">D&eacute;finissez la taille d&eacute;sir&eacute;e de la cible de suivi &agrave; maintenir &agrave; l&rsquo;&eacute;cran.</font>La taille de l&rsquo;objet de suivi automatique est ajust&eacute;e par rapport &agrave; la taille de l&rsquo;&eacute;cran de l&rsquo;image globale, et le suivi automatique est effectu&eacute; tout en maintenant la taille de l&rsquo;objet de suivi.</p>
+            <p>Si le zoom est activ&eacute; d&eacute;finissez la taille d&eacute;sir&eacute;e de la cible de suivi &agrave; maintenir &agrave; l&rsquo;&eacute;cran. La taille de l&rsquo;objet de suivi automatique est ajust&eacute;e par rapport &agrave; la taille de l&rsquo;&eacute;cran de l&rsquo;image globale, et le suivi automatique est effectu&eacute; tout en maintenant la taille de l&rsquo;objet de suivi. </p>
             <p>Cela fonctionne uniquement lorsque <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute; sous <strong class="UI">[Zoom]</strong>.</p>
         </div>
 		
         <div class="wn5-setup-section-article-content">
-            <h3>Indicateur d&rsquo;affichage</h3>
-            <p>Permet de choisir d&rsquo;utiliser ou non un indicateur qui indique un objet de suivi sur l&rsquo;&eacute;cran de l&rsquo;image.</p>
-            <p>Lorsque l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;e pour l&rsquo;indicateur d&rsquo;affichage, l&rsquo;indicateur est &eacute;galement affich&eacute; sur l&rsquo;image enregistr&eacute;e.</p>
+            <h3>Indicateur d&rsquo;affichage    </h3>
+            <p>Permet de choisir d&rsquo;utiliser ou non un indicateur qui indique un objet de suivi sur l&rsquo;&eacute;cran de l&rsquo;image. </p>
+            <p>Lorsque l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;e pour l&rsquo;indicateur d&rsquo;affichage, l&rsquo;indicateur est &eacute;galement affich&eacute; sur l&rsquo;image enregistr&eacute;e. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Exclure la zone</h3>
-            <p>Tout objet d&eacute;tect&eacute; dans cette zone sera exclu du suivi automatique. Pour plus d&rsquo;informations sur la mani&egrave;re de d&eacute;finir les zones exclues, voir «&nbsp;<a class="wn5-online-help-link" href="autoTrackEvent#exclude" ng-href="#/help/analytics_autoTrackEvent?#exclude">D&eacute;finition d&rsquo;une zone exclue lors du suivi automatique</a>.&nbsp;»</p>
-            <p>Si l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;e, toutes les zones exclues d&eacute;finies sont utilis&eacute;es.</p>
-            <p><font color="blue">Dans ces zones, la d&eacute;tection d&rsquo;un mouvement ne d&eacute;clenchera pas le suivi automatique.</font></p>
+            <h3>Exclure la zone </h3>
+            <p>Un objet d&eacute;tect&eacute; dans la zone d&eacute;finie est exclu du suivi automatique. Pour savoir comment d&eacute;finir une zone exclue, reportez-vous &agrave; la rubrique «&nbsp;<a class="wn5-online-help-link" href="autoTrackEvent#exclude" ng-href="#/help/analytics_autoTrackEvent?#exclude">D&eacute;finition d&rsquo;une zone exclue du suivi automatique</a>&nbsp;».</p>
+            <p>Si l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;e, toutes les zones exclues d&eacute;finies seront utilis&eacute;es.</p>
+            <p>Dans ces zones, la d&eacute;tection d&rsquo;un mouvement ne d&eacute;clenchera pas le suivi automatique.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>D&eacute;clenchement automatique</h3>
-            <p>D&eacute;finit s&rsquo;il faut utiliser la fonction de d&eacute;clenchement automatique de la fonction de suivi automatique ou non. Apr&egrave;s avoir s&eacute;lectionn&eacute; <strong class="UI">[Activer]</strong>, si aucun objet de suivi n&rsquo;est d&eacute;tect&eacute; pendant une dur&eacute;e de 60 sec, la fonction de suivi automatique s&rsquo;arr&ecirc;te. Si vous ne s&eacute;lectionnez pas <strong class="UI">[Activer]</strong>, le suivi automatique continue de chercher la cible de suivi.</p>
-        </div><!-- <div class="wn5-setup-section-article-content">
+            <h3>D&eacute;clenchement automatique </h3>
+            <p>D&eacute;finit si la fonction de suivi automatique doit &ecirc;tre arr&ecirc;t&eacute;e automatiquement. Lorsque l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;, la fonction de suivi automatique sera automatiquement interrompue, ce qui signifie que l&rsquo;op&eacute;ration de suivi ne sera plus maintenue lorsqu&rsquo;un objet de suivi n&rsquo;est pas d&eacute;tect&eacute; pendant une certaine p&eacute;riode de temps (60 secondes). Si l&rsquo;option <strong class="UI">[Activer]</strong>&nbsp;n&rsquo;est pas s&eacute;lectionn&eacute;e, l&rsquo;op&eacute;ration de suivi automatique peut &ecirc;tre maintenue tout au long de la recherche d&rsquo;un objet de suivi.</p>
+        </div>
+
+       <!-- <div class="wn5-setup-section-article-content">
             <h3>영역</h3>
-            <p>제외 영역이 추가되면 순서대로 <strong class="UI">[영역]</strong> 숫자 버튼의 색상이 변경됩니다. 숫자 버튼을 클릭하면 해당 제외 영역이 미리보기 화면에서 보이지 않습니다. 숫자 버튼을 한 번 더 클릭하면 제외 영역이 다시 보입니다.</p> --><div class="wn5-online-help-info">
-                <h4><span class="tui tui-wn5-help-warning"></span><font color="blue">Remarque</font></h4>
+            <p>제외 영역이 추가되면 순서대로 <strong class="UI">[영역]</strong> 숫자 버튼의 색상이 변경됩니다. 숫자 버튼을 클릭하면 해당 제외 영역이 미리보기 화면에서 보이지 않습니다. 숫자 버튼을 한 번 더 클릭하면 제외 영역이 다시 보입니다.</p> -->
+			
+        <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li><font color="blue">Les conditions suivantes sont requises pour que la fonction de suivi automatique fonctionne.</font></li>
+                <li>Les conditions suivantes sont requises pour que la fonction de suivi automatique fonctionne.</li>
                 <ul>
-                    <li><font color="blue">Hauteur d&rsquo;installation&nbsp;: minimum 2,5&nbsp;m et maximum 30&nbsp;m.</font></li>
-                    <li><font color="blue">Type d&rsquo;installation&nbsp;: Type installation au plafond &agrave; l&rsquo;int&eacute;rieur ou &agrave; l&rsquo;ext&eacute;rieur, avec niveau plane sans inclinaison</font></li>
-                    <li><font color="blue">Cible de suivi&nbsp;: Une personne (mesurant environ 170&nbsp;cm) marchant sur un sol plat</font></li>
+                    <li>Hauteur d&rsquo;installation&nbsp;: minimum 2,5&nbsp;m et maximum 30&nbsp;m.</li>
+                    <li>Type d&rsquo;installation&nbsp;: type installation au plafond &agrave; l&rsquo;int&eacute;rieur ou &agrave; l&rsquo;ext&eacute;rieur, avec niveau plane sans inclinaison</li>
+                    <li>Cible de suivi&nbsp;: une personne (mesurant environ 170&nbsp;cm) marchant sur un sol plat</li>
                 </ul>
                 <li style="list-style-image:url('');"><img src="../../base/images/setup/autoTracking_fr.png"></li>
             </ul>
             <ul>
-                <li><font color="blue">Dans les cas suivants, il n&rsquo;est pas possible de suivre une cible ou un dysfonctionnement peut se produire&nbsp;:</font></li>
+                <li>Dans les cas suivants, il n&rsquo;est pas possible de suivre une cible ou un dysfonctionnement peut se produire&nbsp;:</li>
                 <ul>
-                    <li><font color="blue">S&rsquo;il y a plusieurs objets en mouvement dans les zones d&rsquo;enregistrement,</font></li>
-                    <li><font color="blue">Si elle est bloqu&eacute;e par d&rsquo;autres objets en mouvement ou installations,</font></li>
-                    <li><font color="blue">Si le contraste entre l&rsquo;objet en mouvement et l&rsquo;arri&egrave;re-plan est n&eacute;gligeable</font></li>
-                    <li><font color="blue">Si l&rsquo;objet est trop petit ou trop grand</font></li>
-                    <li><font color="blue">Si la vitesse de d&eacute;placement est trop rapide ou trop lente</font></li>
-                    <li><font color="blue">Si l&rsquo;objet en mouvement passe juste sous la cam&eacute;ra install&eacute;e</font></li>
-                    <li><font color="blue">Si la trajectoire de l&rsquo;objet en mouvement n&rsquo;est pas un sol plat &agrave; la hauteur d&rsquo;installation</font></li>
-                    <li><font color="blue">Conditions m&eacute;t&eacute;orologiques extr&ecirc;mes, telles que temp&ecirc;te, neige, pluie, etc.</font></li>
-                    <li><font color="blue">Si la zone d&rsquo;enregistrement est sombre</font></li>
-                    <li><font color="blue">S&rsquo;il y a un changement soudain de lumi&egrave;re</font></li>
-                    <li><font color="blue">Si la lumi&egrave;re clignote vers la cam&eacute;ra ou dans la zone d&rsquo;enregistrement</font></li>
-                    <li><font color="blue">S&rsquo;il y a une forte quantit&eacute; de lumi&egrave;re dirig&eacute;e vers la cam&eacute;ra, comme des lumi&egrave;res r&eacute;fl&eacute;chies ou des lampes de poche</font></li>
-                    <li><font color="blue">Si la vid&eacute;o est instable en raison du tremblement de la cam&eacute;ra</font></li>
-                    <li><font color="blue">Si le couvercle de la lentille ou du rh&eacute;ostat est contamin&eacute; ou mouill&eacute;</font></li>
-                    <li><font color="blue">Si l&rsquo;axe de l&rsquo;objectif de la cam&eacute;ra a chang&eacute;</font></li>
+                    <li>S&rsquo;il y a plusieurs objets en mouvement dans les zones d&rsquo;enregistrement,</li>
+                    <li>Si elle est bloqu&eacute;e par d&rsquo;autres objets en mouvement ou installations,</li>
+                    <li>Si le contraste entre l&rsquo;objet en mouvement et l&rsquo;arri&egrave;re-plan est n&eacute;gligeable</li>
+                    <li>Si l&rsquo;objet est trop petit ou trop grand</li>
+                    <li>Si la vitesse de d&eacute;placement est trop rapide ou trop lente</li>
+                    <li>Si l&rsquo;objet en mouvement passe juste sous la cam&eacute;ra install&eacute;e</li>
+                    <li>Si la trajectoire de l&rsquo;objet en mouvement n&rsquo;est pas un sol plat &agrave; la hauteur d&rsquo;installation</li>
+                    <li>Si les conditions m&eacute;t&eacute;orologiques sont extr&ecirc;mes (par exemple, temp&ecirc;te, neige et pluie)</li>
+                    <li>Si la zone d&rsquo;enregistrement est sombre</li>
+                    <li>S&rsquo;il y a un changement soudain de lumi&egrave;re</li>
+                    <li>Si la lumi&egrave;re clignote vers la cam&eacute;ra ou dans la zone d&rsquo;enregistrement</li>
+                    <li>Si la cam&eacute;ra est directement expos&eacute;e &agrave; une lumi&egrave;re directe, comme des lumi&egrave;res r&eacute;fl&eacute;chies ou des lampes de poche</li>
+                    <li>Si la vid&eacute;o est instable en raison du tremblement de la cam&eacute;ra</li>
+                    <li>Si le couvercle de la lentille ou du rh&eacute;ostat est contamin&eacute; ou mouill&eacute;</li>
+                    <li>Si l&rsquo;axe de l&rsquo;objectif de la cam&eacute;ra a chang&eacute;</li>
                 </ul>
             </ul>
         </div>
@@ -148,25 +153,24 @@
     <div class="wn5-setup-section-article">
         
         <div class="wn5-setup-section-article-content">
-            <h3>Courriel</h3>
-            <p>Pour envoyer un courriel avec une vid&eacute;o/image en cas d&rsquo;&eacute;v&eacute;nement de suivi, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Acc&eacute;dez &agrave; <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a> pour plus de d&eacute;tails sur les param&egrave;tres de courriel.</p>
+            <h3>E-mail</h3>
+            <p>Pour envoyer une image par e-mail lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Des r&eacute;glages d&eacute;taill&eacute;s de l&rsquo;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>Enregistrer</h3>
-            <p ng-if="NAS">Pour enregistrer une image sur une carte micro SD ou NAS lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique se produit, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Acc&eacute;dez &agrave; <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Enregistrer]</strong></a> pour plus de d&eacute;tails sur les param&egrave;tres d&rsquo;enregistrement.</p>
-            <p ng-if="!NAS">Pour enregistrer une image sur une carte micro SD lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique se produit, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Acc&eacute;dez &agrave; <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Enregistrer]</strong></a> pour plus de d&eacute;tails sur les param&egrave;tres d&rsquo;enregistrement.</p>
+            <p ng-if="NAS">Pour enregistrer une image dans une carte SD ou NAS, lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Des r&eacute;glages d&eacute;taill&eacute;s de stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="!NAS">Pour enregistrer une image dans une carte SD, lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Des r&eacute;glages d&eacute;taill&eacute;s de stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
             <h3>&Eacute;mission d&rsquo;alerte</h3>
-            <p>Vous pouvez le configurer pour g&eacute;n&eacute;rer une alarme &agrave; l&rsquo;aide d&rsquo;un num&eacute;ro d&rsquo;alarme sp&eacute;cifique lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique se produit. Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte, si vous ne souhaitez pas g&eacute;n&eacute;rer une alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiver]</strong>. Sinon, si vous souhaitez la g&eacute;n&eacute;rer, s&eacute;lectionnez l&rsquo;heure d&rsquo;&eacute;mission. S&eacute;lectionnez <strong class="UI">[Toujours]</strong> pour continuer &agrave; &eacute;mettre l&rsquo;alerte jusqu&rsquo;&agrave; ce qu&rsquo;elle s&rsquo;arr&ecirc;te ou pendant 5/10/15 sec. Pour plus de d&eacute;tails sur les param&egrave;tres d&rsquo;alerte, acc&eacute;dez &agrave; <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html"
-ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&rsquo;alerte]</strong></a>.</p>
+            <p>Il est possible de r&eacute;gler le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte pour une alarme sp&eacute;cifique lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;.&nbsp;Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&rsquo;alarme, ou s&eacute;lectionnez l&rsquo;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre une alerte. Vous pouvez r&eacute;gler une alarme continue jusqu&rsquo;&agrave; ce qu&rsquo;elle soit d&eacute;sactiv&eacute;e par l&rsquo;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong> ou r&eacute;gler l&rsquo;alarme sur 5, 10 ou 15 secondes. Les r&eacute;glages d&eacute;taill&eacute;s de l&rsquo;&eacute;mission d&rsquo;alarme peuvent &ecirc;tre effectu&eacute;s &agrave; partir de <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Emission d&rsquo;alerte]</strong></a>.</p>
         </div>
 		
         
 		
 		<div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>Mise au point simple</h3>
-            <p>La mise au point simple est utilis&eacute;e pour ajuster la mise au point automatiquement lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;. Pour un &eacute;v&eacute;nement, la mise au point simple ne sera ex&eacute;cut&eacute;e qu&rsquo;une seule fois.</p>
+            <p>La mise au point simple est utilis&eacute;e pour ajuster la mise au point automatiquement lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;. La mise au point simple n&rsquo;est ex&eacute;cut&eacute;e qu&rsquo;une seule fois lors de la cr&eacute;ation d&rsquo;un &eacute;v&eacute;nement.</p>
         </div>
     </div>
 </div>
@@ -178,7 +182,7 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&rsquo;a
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Cette fonction d&eacute;clenche une action d&rsquo;&eacute;v&eacute;nement sp&eacute;cifi&eacute;e dans la <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_defocusDetection?#action">Config. action &eacute;v&eacute;n.</a>]</strong>, qui est soit Toujours ou Heure programm&eacute;e uniquement, lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;.</p>
+            <p>Ceci d&eacute;finit les param&egrave;tres d&rsquo;action de l&rsquo;&eacute;v&eacute;nement dans <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_defocusDetection?#action">Config. action &eacute;v&eacute;n.</a>]</strong> pour fonctionner &agrave; tout moment ou &agrave; l&rsquo;heure d&eacute;finie lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <ul>
@@ -189,8 +193,8 @@ ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&rsquo;a
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Heure programm&eacute;e uniquement</h3>
-            <p>Lorsqu&rsquo;un &eacute;v&eacute;nement automatique se produit &agrave; l&rsquo;heure sp&eacute;cifi&eacute;e, la configuration d&rsquo;action d&rsquo;&eacute;v&eacute;nement est ex&eacute;cut&eacute;e. Le calendrier affich&eacute; apr&egrave;s la s&eacute;lection de l&rsquo;option <strong class="UI">[Heure programm&eacute;e uniquement]</strong> affiche un jour du dimanche au samedi, en fonction de l&rsquo;heure courante de la cam&eacute;ra. Cliquez ou faites glisser la souris sur le calendrier, pour d&eacute;finir l&rsquo;heure d&rsquo;action de l&rsquo;&eacute;v&eacute;nement. L&rsquo;heure d&rsquo;activation d&rsquo;&eacute;v&eacute;nement sera ex&eacute;cut&eacute;e de mani&egrave;re r&eacute;p&eacute;t&eacute;e &agrave; l&rsquo;heure et le jour sp&eacute;cifique de la semaine.</p>
-			<p>Cliquez sur le bouton <strong class="UI">[1 minute]</strong>, <strong class="UI">[30 minutes]</strong>, ou <strong class="UI">[1 heure]</strong> pour modifier l&rsquo;affichage de l&rsquo;unit&eacute; de temps. Cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong> pour supprimer les heures d&rsquo;activation d&rsquo;&eacute;v&egrave;nement d&eacute;finies. Pour v&eacute;rifier l&rsquo;heure ou la modifier, voir <strong class="UI">[Infos de base]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
+            <p>Les param&egrave;tres d&rsquo;action d&rsquo;&eacute;v&eacute;nement sont utilis&eacute;s lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute; pendant la dur&eacute;e d&eacute;finie. La date du dimanche au samedi, bas&eacute;e sur l&rsquo;heure actuelle de la cam&eacute;ra, est affich&eacute;e sur l&rsquo;horaire affich&eacute; lorsque l&rsquo;option <strong class="UI">[Hre prog. uniquement]</strong> est s&eacute;lectionn&eacute;. Vous pouvez r&eacute;gler l&rsquo;heure des param&egrave;tres d&rsquo;action de l&rsquo;&eacute;v&eacute;nement en cliquant ou en faisant glisser l&rsquo;horaire &agrave; l&rsquo;aide de la souris. L&rsquo;heure d&rsquo;activation de l&rsquo;&eacute;v&eacute;nement r&eacute;gl&eacute; est ex&eacute;cut&eacute;e de mani&egrave;re r&eacute;p&eacute;t&eacute;e le jour de la semaine et l&rsquo;heure correspondants.</p>
+			<p>Vous pouvez modifier l&rsquo;unit&eacute; d&rsquo;affichage de l&rsquo;heure en cliquant sur le bouton <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> ou <strong class="UI">[1 h]</strong>. Lorsque vous clique sur le bouton <strong class="UI">[R&eacute;init.]</strong>, toutes les heures d&rsquo;activation d&rsquo;&eacute;v&egrave;nement d&eacute;finies sont supprim&eacute;es. Pour confirmer ou changer l&rsquo;heure de la cam&eacute;ra, se reporter &agrave; <strong class="UI">[Infos de base]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
         </div>
     </div>
 </div>

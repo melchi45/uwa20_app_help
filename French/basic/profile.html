@@ -63,9 +63,7 @@
                 <tr>
                     <td>MJPEG</td>
                     <td>MJPEG</td>
-                    <td>
-                        <p>Utilis&eacute; comme profil appropri&eacute; pour le codec MJPEG, le profil d&apos;&eacute;v&eacute;nement et le profil d&apos;enregistrement</p>
-                    </td>
+                    <td>Utilis&eacute; comme profil appropri&eacute; pour le codec MJPEG, le profil d&apos;&eacute;v&eacute;nement et le profil d&apos;enregistrement</td>
                 </tr>
                 <tr>
                     <td>H.264</td>
@@ -76,6 +74,11 @@
                     <td>H.265</td>
                     <td>H.265</td>
                     <td>Profil appropri&eacute; pour le codec H.265</td>
+                </tr>
+                <tr>
+                    <td>WISENET</td>
+                    <td>H.265</td>
+                    <td>Profil par défaut prêt à l'emploi pour le client ONVIF. Ce profil peut être modifié mais ne peut pas être supprimé.</td>
                 </tr>
                 <tr>
                     <td>MOBILE</td>
@@ -200,7 +203,7 @@
                 <li><strong class="UI">Profile de vitesse d&rsquo;enregistrement d&rsquo;images fixe&nbsp;:</strong>Il s&rsquo;agit d&rsquo;un profil appliqu&eacute; pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265].</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Entr&eacute;e audio</h3>
             <p>Lorsque l&apos;appareil photo dispose d&apos;un microphone interne ou externe connect&eacute;, vous pouvez d&eacute;finir des sons externes &agrave; entrer dans l&apos;image.</p>
             <p>Pour utiliser les fonctions Microphone et Haut-parleur sur la page de surveillance, <strong class="UI">[Activer]</strong> doit &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Entr&eacute;e audio]</strong>.</p>
@@ -213,7 +216,7 @@
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: Une quantit&eacute; fixe de donn&eacute;es envoy&eacute;es est maintenue m&ecirc;me si la bande passante du r&eacute;seau change.</li>
                 <li><strong class="UI">Activer - Contr&ocirc;le de fr&eacute;quence d&rsquo;image</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant la vitesse d&apos;enregistrement.</li>
                 <li><strong class="UI">Activer - Contr&ocirc;ler la compression</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant le taux de compression des donn&eacute;es. Une modification du taux de compression peut d&eacute;grader la qualit&eacute; de l&rsquo;image.</li>
-                <li><strong class="UI">Activer - &Eacute;v&eacute;nement (MD)</strong>&nbsp;: Ce mode peut &ecirc;tre utilis&eacute; lorsqu&rsquo;un <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?#top">&eacute;v&eacute;nement de d&eacute;tection de mouvement</a> est d&eacute;fini. Lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; et que la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es en modifiant la vitesse d&apos;enregistrement. Si aucun mouvement n&apos;est d&eacute;tect&eacute;, r&eacute;duisez l&apos;utilisation de la bande passante en produisant les images minimales.</li>
+                <li><strong class="UI">Activer - &Eacute;v&eacute;nement (MD)</strong>&nbsp;: Ce mode peut &ecirc;tre utilis&eacute; lorsqu&rsquo;un <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">&eacute;v&eacute;nement de d&eacute;tection de mouvement</a> est d&eacute;fini. Lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; et que la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es en modifiant la vitesse d&apos;enregistrement. Si aucun mouvement n&apos;est d&eacute;tect&eacute;, r&eacute;duisez l&apos;utilisation de la bande passante en produisant les images minimales.</li>
             </ul>
         </div>
 
@@ -254,7 +257,6 @@
 
         <div class="wn5-online-help-action">
             <h4>D&eacute;finir une zone de recadrage</h4>
-            <div>
                 <ol>
                     <li>D&eacute;finissez <strong class="UI">[Activer]</strong> pour l&apos;encodage recadr&eacute; et cliquez sur le bouton <strong class="UI">[D&eacute;finir zone]</strong>.</li>
                     <li>D&eacute;finissez la zone en faisant glisser la souris sur l&apos;&eacute;cran d&apos;aper&ccedil;u <strong class="UI">[D&eacute;finir la zone de recadrage]</strong>. Pour r&eacute;gler la zone sur un rapport 16:9 ou 4:3, s&eacute;lectionnez <strong class="UI">[16:9]</strong> ou <strong class="UI">[4:3]</strong>. Pour d&eacute;finir une zone souhait&eacute;e ind&eacute;pendamment du rapport, s&eacute;lectionnez <strong class="UI">[Manuel]</strong>.</li>
@@ -267,8 +269,7 @@
                         <li>Si <strong class="UI">[Param&egrave;tres de zone d&rsquo;encodage]</strong>est r&eacute;gl&eacute; sur la plage d&eacute;sir&eacute;e, la r&eacute;solution la plus proche de la r&eacute;solution de sortie dans la plage que vous avez d&eacute;finie sera affich&eacute;e.</li>
                         <li>Si vous modifiez le param&egrave;tre sous <strong class="UI">[Video &amp; Audio]</strong>&gt; <strong class="UI">[Sp&eacute;cial]</strong> &gt; <strong class="UI">[DIS]</strong>, la zone de recadrage peut changer. Si vous avez modifi&eacute; le r&eacute;glage du DIS, r&eacute;glez &agrave; nouveau la zone d&rsquo;encodage recadr&eacute;.</li>
                     </ul>
-                    </div>
-        </div>
+            </div>     
     </div>
 </div>
 

@@ -79,9 +79,7 @@
                 <tr>
                     <td>MJPEG</td>
                     <td>MJPEG</td>
-                    <td>
-                        <p>Usado como el perfil adecuado para el c&oacute;dec MJPEG, perfil de eventos, y perfil de grabaci&oacute;n</p>
-                    </td>
+                    <td>Usado como el perfil adecuado para el c&oacute;dec MJPEG, perfil de eventos, y perfil de grabaci&oacute;n</td>
                 </tr>
                 <tr>
                     <td>H.264</td>
@@ -92,6 +90,11 @@
                     <td>H.265</td>
                     <td>H.265</td>
                     <td>Perfil adecuado para el c&oacute;dec H.265</td>
+                </tr>
+                <tr>
+                    <td>WISENET</td>
+                    <td>H.265</td>
+                    <td>Perfil predeterminado listo para el cliente ONVIF. Este perfil se puede modificar pero no se puede eliminar.</td>
                 </tr>
                 <tr>
                     <td>M&Oacute;VIL</td>
@@ -218,7 +221,7 @@
                 <li><strong class="UI">perfil de la velocidad de cuadro fijo</strong>: Este es un perfil aplicado para garantizar un determinado nivel de velocidad de cuadro del video. Esta opci&oacute;n de 'perfil de velocidad de cuadro fijo' solo aparece cuando se configura <strong class="UI">[Codec]</strong> a [H.264] o [H.265].</li>
             </ul>        
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Entrada de audio </h3>
             <p>Cuando la c&aacute;mara tiene un micr&oacute;fono interno o un micr&oacute;fono externo est&aacute; conectado, puede configurar los sonidos externos para ser introducidos en la imagen.</p>
             <p>Para utilizar las funciones de Micr&oacute;fono y Altavoz en la p&aacute;gina de monitoreo, <strong class="UI">[Activar]</strong> debe estar seleccionado para <strong class="UI">[Entrada de audio]</strong>.</p>
@@ -231,7 +234,7 @@
                 <li><strong class="UI">Desactivar</strong>: Una cantidad fija de bit de datos enviados se mantiene incluso si hay cambios de ancho de banda de red. </li>
                 <li><strong class="UI">Act. - Controlar velocidad de cuadro</strong>: Si el ancho de banda de red cambia, puede ajustar la cantidad de bit de datos que deben enviarse cambiando la velocidad de fotogramas. </li>
                 <li><strong class="UI">Act. - Controlar compresi&oacute;n</strong>: Si el ancho de banda de red cambia, puede ajustar la cantidad de bit de datos que deben enviarse cambiando la tasa de compresi&oacute;n de bit de datos. El cambio en la relaci&oacute;n de compresi&oacute;n puede degradar la calidad de la imagen.</li>
-                <li><strong class="UI">Act - Evento (MD)</strong>: Este modo se puede utilizar cuando se configura <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?#top">Evento de detecci&oacute;n de movimiento</a>. Cuando se crea un evento de detecci&oacute;n de movimiento y el ancho de banda de red cambia, puede ajustar la cantidad de bit de datos cambiando la velocidad de fotogramas. Cuando no se detecta movimiento, reduzca el consumo de ancho de banda mediante la producci&oacute;n de un n&uacute;mero m&iacute;nimo de fotogramas.</li>
+                <li><strong class="UI">Act - Evento (MD)</strong>: Este modo se puede utilizar cuando se configura <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">Evento de detecci&oacute;n de movimiento</a>. Cuando se crea un evento de detecci&oacute;n de movimiento y el ancho de banda de red cambia, puede ajustar la cantidad de bit de datos cambiando la velocidad de fotogramas. Cuando no se detecta movimiento, reduzca el consumo de ancho de banda mediante la producci&oacute;n de un n&uacute;mero m&iacute;nimo de fotogramas.</li>
             </ul>
         </div>
 
@@ -273,7 +276,6 @@
 
         <div class="wn5-online-help-action">
             <h4>Ajuste de un &aacute;rea de recorte</h4>
-            <div>
                 <ol>
                     <li>Establezca <strong class="UI">[Activar]</strong> para la codificaci&oacute;n de recorte y haga clic en el bot&oacute;n <strong class="UI">[Definir &aacute;rea]</strong>.</li>
                     <li>Ajuste el &aacute;rea arrastrando el rat&oacute;n sobre la pantalla de vista previa de <strong class="UI">[Recortar &aacute;rea definida]</strong>. Para establecer el &aacute;rea ya sea a un 16:9 o 4:3, seleccione <strong class="UI">[16:9]</strong> o <strong class="UI">[4:3]</strong>; para establecer una zona deseada independientemente del ratio, seleccione <strong class="UI">[Manual]</strong>.</li>
@@ -286,8 +288,7 @@
                         <li>Si se configura la <strong class="UI">[Configuraci&oacute;n del &aacute;rea de recorte]</strong> a un rango deseado, la resoluci&oacute;n que se parece m&aacute;s a la resoluci&oacute;n de salida dentro del rango configurado por usted se mostrar&aacute;. </li>
                         <li>Si cambia la configuraci&oacute;n en <strong class="UI">[Video y audio]</strong> &gt; <strong class="UI">[Especial]</strong> &gt; <strong class="UI">[DIS]</strong>, la configuraci&oacute;n del &aacute;rea recortada puede cambiar. Si ha cambiado la configuraci&oacute;n DIS, configure nuevamente el &aacute;rea de codificaci&oacute;n de recorte.</li>
                     </ul>
-                    </div>
-        </div>
+            </div>
     </div>
 </div>
 

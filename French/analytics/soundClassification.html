@@ -54,11 +54,11 @@
 		<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>Si <strong class="UI">[Ligne]</strong> est r&eacute;gl&eacute; sur <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[Source]</a></strong> dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration audio]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>, la fonction de classification sonore ne fonctionne pas.</li>
+                <li>Si <strong class="UI">[Ligne]</strong> est r&eacute;gl&eacute; sur <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/help/videoAudio_audioSetup?#source">[Source]</a></strong> dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration audio]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>, la fonction de classification sonore ne fonctionne pas.</li>
 
 				<li>Il est recommand&eacute; de d&eacute;finir un nombre compris entre 4 et 6 pour <strong class="UI">[Gain]</strong> dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration audio]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</li>
 
-				<li>Si le <strong class="UI">[Microphone externe]</strong> est r&eacute;gl&eacute; sur <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/video&audio/audio.html#sourcce">[Source]</a></strong> dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration audio]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>, les sp&eacute;cifications recommand&eacute;es du microphone sont les suivantes.</li>
+				<li>Si le <strong class="UI">[Microphone externe]</strong> est r&eacute;gl&eacute; sur <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html#source" ng-href="#/help/videoAudio_audioSetup?#source">[Source]</a></strong> dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration audio]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>, les sp&eacute;cifications recommand&eacute;es du microphone sont les suivantes. Si le microphone n’est pas conforme aux spécifications, la fonction de classification du son peut ne pas fonctionner correctement.</li>
 				<ul>
 					<li>Gamme de fr&eacute;quences&nbsp;: 40 ~ 16&nbsp;000&nbsp;Hz</li>
 					<li>Imp&eacute;dance&nbsp;: 1&nbsp;500&nbsp;Ω</li>
@@ -70,7 +70,10 @@
 					<li>Lorsque des coups de feu r&eacute;p&eacute;t&eacute;s se produisent, comme un bruit de mitrailleuse, un seul coup de feu est inclus dans la cat&eacute;gorie pour le coup de feu</li>
 					<li>Lorsque le son est trop long, de sorte que le bruit et le son de la cible ne peuvent &ecirc;tre distingu&eacute;s</li>
 					<li>Lorsque deux ou plusieurs sons diff&eacute;rents sont entr&eacute;s en m&ecirc;me temps</li>
-					<li>Lorsque l&apos;objet de la mise au point a chang&eacute; en raison du changement de position de la cam&eacute;ra</li>
+                    <li>Lorsque l&apos;objet de la mise au point a chang&eacute; en raison du changement de position de la cam&eacute;ra</li>
+                    <li>Si la fonction d’élimination du bruit est utilisée dans un endroit calme et que la classification sonore est appliquée</li>
+                    <li>Si la source de sons de claquement de mains ou de cris est proche de la caméra (à moins de 1 mètre)</li>
+                    <li>Si un son qui n’appartient pas aux catégories de classification des sons, comme un son d’avion ou de sirène, retentit fort soudainement</li>
 					</ul>
             </ul>
         </div>

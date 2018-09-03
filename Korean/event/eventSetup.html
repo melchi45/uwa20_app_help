@@ -22,12 +22,12 @@
 							이메일에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.            </li>
                         <li ng-if="Recording"><strong class="UI">저장</strong>: 영상을 저장하려면 <strong class="UI">[저장]</strong> 컬럼의 체크 박스를 선택합니다.
 							저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.            </li>
-                        <li ng-if="MaxAlarmOutput"><strong class="UI">알람 출력</strong>: 이벤트가 발생했을 때 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
+                        <li ng-if="MaxAlarmOutput>0"><strong class="UI">알람 출력</strong>: 이벤트가 발생했을 때 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
                         <li ng-if="PresetAction"> <strong class="UI">프리셋 이동</strong>: 카메라가 지정한 PTZ 프리셋 위치로 이동합니다.</li>
                     </ul>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
             

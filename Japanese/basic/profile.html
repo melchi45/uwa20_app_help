@@ -67,9 +67,7 @@
                 <tr>
                     <td>MJPEG</td>
                     <td>MJPEG</td>
-                    <td>
-                        <p>MJPEG Codecに適するProfile、イベントProfileと録画Profileに使用される</p>
-                    </td>
+                    <td>MJPEG Codecに適するProfile、イベントProfileと録画Profileに使用される </td>
                 </tr>
                 <tr>
                     <td>H.264</td>
@@ -80,6 +78,11 @@
                     <td>H.265</td>
                     <td>H.265</td>
                     <td>H.265 Codecに適するProfile</td>
+                </tr>
+                <tr>
+                    <td>WISENET</td>
+                    <td>H.265</td>
+                    <td>ONVIFは、デフォルトの基本設定を変更します</td>
                 </tr>
                 <tr>
                     <td>MOBILE</td>
@@ -199,7 +202,7 @@
             </ul>
 
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput==0">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>音声入力</h3>
             <p>カメラが内蔵マイクを持っているか外部マイクを接続した場合、カメラの外部音が映像に入力されるように設定することができます。</p>
             <p><strong class="UI">[ライブ]</strong>画面のマイクとスピーカー機能を有効にするには、<strong class="UI">[音声入力]</strong>を<strong class="UI">[有効]</strong>に選択する必要があります。</p>
@@ -212,7 +215,7 @@
                 <li><strong class="UI">無効</strong>：ネットワーク帯域幅が変化してもビデオ伝送量を一定維持します。</li>
                 <li><strong class="UI">有効－フレームレート制御</strong>：ネットワーク帯域幅が変化される場合、フレームレートを変更して伝送するデータ量を調整します。</li>
                 <li><strong class="UI">有効 - 圧縮制御</strong>：ネットワーク帯域幅が変化される場合、伝送するデータの圧縮率を変更して伝送するデータ量を調整します。圧縮調整する場合、画質が低くなることがあります。 </li>
-                <li><strong class="UI">有効 - イベント(MD)</strong>：<a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?#top">モーション検知イベント</a>が設定されている場合、使用できるモードです。モーション検知イベントが発生してネットワーク帯域幅が変化する場合、フレームレートを変更してデータ量を調整します。モーションが検知されない場合、最小限のフレームだけを出力して帯域幅使用を節約します。</li>
+                <li><strong class="UI">有効 - イベント(MD)</strong>：<a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">モーション検知イベント</a>が設定されている場合、使用できるモードです。モーション検知イベントが発生してネットワーク帯域幅が変化する場合、フレームレートを変更してデータ量を調整します。モーションが検知されない場合、最小限のフレームだけを出力して帯域幅使用を節約します。</li>
             </ul>
         </div>
             
