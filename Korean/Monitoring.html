@@ -1,7 +1,7 @@
 ﻿
 <h1 class="wn5-setup-main-title">라이브 화면 </h1>
 <div class="wn5-setup-section">
-    <!--     <p ng-if="MaxAudioInput==0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력, 마이크 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
+    <!--     <p ng-if="MaxAudioInput>0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력, 마이크 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
 	<p ng-if="MaxAudioInput!=0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처, 알람 출력 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
     <p ng-if="MaxAudioInput==0 && MaxAlarmOutput==0">카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p> --> 
     <p>카메라가 촬영 중인 라이브 영상을 확인하고, 화면 캡처 등의 여러 가지 기능을 제어할 수 있습니다. 화면 상단의 <span class="tui tui-wn5-top-live"></span> 버튼을 클릭하면 라이브 화면이 나타납니다. </p>
@@ -188,7 +188,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput==0">
+                    <tr ng-if="MaxAudioInput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>마이크</p>
@@ -199,7 +199,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAlarmOutput">
+                    <tr ng-if="MaxAlarmOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                         <p>알람 출력</p>
@@ -209,7 +209,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>스피커</p>
@@ -256,7 +256,7 @@
                     <li>전체 화면 모드를 종료하려면 전체 화면 아이콘(<span class="tui tui-wn5-toolbar-fullscreen"></span>)을 한 번 더 클릭하거나 키보드의 [Esc] 키를 클릭합니다. </li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
             <h4>오디오를 사용하려면</h4>
                 <ul>
                     <li>오디오 아이콘(<span class="tui tui-wn5-toolbar-mic"></span>)을 클릭합니다.</li>
@@ -265,7 +265,7 @@
                 <p>오디오 동작 중 PC의 오디오 잭을 연결하거나 분리할 때 소리가 나오지 않는 경우, 오디오 아이콘(<span class="tui tui-wn5-toolbar-mic"></span>)을 클릭하여 활성화하십시오.</p>
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
                 <h4>스피커를 사용하려면</h4>
                 <ul>
                     <li>스피커 아이콘(<span class="tui tui-wn5-toolbar-sound"></span>)을 클릭합니다.</li>

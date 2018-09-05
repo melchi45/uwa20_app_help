@@ -30,7 +30,7 @@
             <p  ng-if="NAS">네트워크 끊어짐 이벤트가 발생했을 때 (micro)SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
             <p  ng-if="!NAS">네트워크 끊어짐 이벤트가 발생했을 때 (micro)SD 카드에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>알람 출력</h3>
             <p>네트워크 끊어짐 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다. 알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>
 			을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>

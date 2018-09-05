@@ -162,7 +162,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAlarmOutput">
+                    <tr ng-if="MaxAlarmOutput>0">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>&Eacute;mission d&apos;alerte</p>
@@ -173,7 +173,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Haut-parleur</p>
@@ -220,7 +220,7 @@
                     <li>Pour quitter le mode Plein &eacute;cran, cliquez &agrave; nouveau sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-toolbar-fullscreen"></span> Plein &eacute;cran ou appuyez sur le touche [Esc] du clavier.</li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
             <h4>Pour utiliser l&rsquo;audio</h4>
                 <ul>
                     <li>Cliquez sur l&rsquo;ic&ocirc;ne Audio <span class="tui tui-wn5-toolbar-mic"></span> .</li>
@@ -229,7 +229,7 @@
                 <p>Si aucun son n&rsquo;est &eacute;mis lors de la connexion ou de la d&eacute;connexion de la prise audio du PC pendant la lecture audio, cliquez sur l&rsquo;ic&ocirc;ne Audio <span class="tui tui-wn5-toolbar-mic"></span> et activez-le.</p>
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
                 <h4>Pour utiliser le haut-parleur</h4>
                 <ul>
                     <li>Cliquez sur l&rsquo;ic&ocirc;ne Haut-parleur <span class="tui tui-wn5-toolbar-sound"></span> .</li>

@@ -185,7 +185,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput==0">
+                    <tr ng-if="MaxAudioInput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>Microphone</p>
@@ -196,7 +196,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAlarmOutput">
+                    <tr ng-if="MaxAlarmOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>Alarm output</p>
@@ -207,7 +207,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Speaker</p>
@@ -254,7 +254,7 @@
                     <li>To exit the full screen mode, click the Full screen icon(<span class="tui tui-wn5-toolbar-fullscreen"></span>) again or the [Esc] key on the keyboard. </li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
             <h4>To use audio</h4>
                 <ul>
                     <li>Click the Audio icon(<span class="tui tui-wn5-toolbar-mic"></span>).</li>
@@ -263,7 +263,7 @@
                 <p>If no sound is heard when connecting or disconnecting the audio jack from the PC while playing the audio, click the Audio icon(<span class="tui tui-wn5-toolbar-mic"></span>) and enable it.</p>
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
                 <h4>To use speaker</h4>
                 <ul>
                     <li> Click the Speaker icon(<span class="tui tui-wn5-toolbar-sound"></span>).</li>

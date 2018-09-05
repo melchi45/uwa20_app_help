@@ -105,11 +105,11 @@
 			<h3>Audio in</h3>
 			<p>Set the permission for accessing the inputted audio. If audio in is selected, a user who connects to the relevant account can watch the screen and listen to audio at the same time; if audio in is not selected, the user can watch only the image screen.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput>0">
 			<h3>Audio out</h3>
 			<p>Set audio out permissions. When audio out is selected, a user who connects to a relevant account can send audio through the microphone.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
 			<h3>Alarm output</h3>
 			<p>Set alarm output permissions. When an alarm has been set, a user who connects to a relevant account can output the alarm.</p>
 		</div>

@@ -1,7 +1,7 @@
 ﻿
 <h1 class="wn5-setup-main-title">ライブ画面</h1>
 <div class="wn5-setup-section">
-    <!-- <p ng-if="MaxAudioInput==0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力、マイク等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p>
+    <!-- <p ng-if="MaxAudioInput>0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力、マイク等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p>
         <p ng-if="MaxAudioInput!=0">カメラで撮影しているライブ映像を確認したり、画面キャプチャー、アラーム出力等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p> --> 
     <p>カメラで撮影しているライブ映像を確認したり、画面キャプチャー等の様々な機能を制御することができます。画面上の<span class="tui tui-wn5-top-live"></span>ボタンをクリックすると、ライブ画面が表示されます。</p> 
 </div>
@@ -161,7 +161,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput==0">
+                    <tr ng-if="MaxAudioInput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>マイク</p>
@@ -172,7 +172,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAlarmOutput">
+                    <tr ng-if="MaxAlarmOutput>0">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>アラーム出力</p>
@@ -183,7 +183,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>スピーカー</p>
@@ -230,7 +230,7 @@
                     <li>全画面モードを終了するには、もう一度全画面アイコン(<span class="tui tui-wn5-toolbar-fullscreen"></span>)をクリックするかキーボードの[Esc]キーをクリックします。</li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput==0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
             <h4>オーディオを使用するには、</h4>
                 <ul>
                     <li>オーディオアイコン(<span class="tui tui-wn5-toolbar-mic"></span>)をクリックします。</li>
@@ -239,7 +239,7 @@
                 <p>オーディオ動作中、PCのオーディオジャックを接続・分離するときに音が出ない場合、オーディオアイコン(<span class="tui tui-wn5-toolbar-mic"></span>)をクリックして有効にしてください。</p>
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
                 <h4>スピーカーを使用するには、</h4>
                 <ul>
                     <li>スピーカーアイコン(<span class="tui tui-wn5-toolbar-sound"></span>)をクリックします。</li>

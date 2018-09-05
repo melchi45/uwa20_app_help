@@ -198,11 +198,11 @@
 			<h3>音声入力</h3>
 			<p>入力されたオーディオにアクセスできる権限を設定します。音声入力を選択すると、該当アカウントにアクセスしたユーザーは映像で画面と音声を同時に聞くことができ、音声入力を選択しないと映像の画面のみ確認できます。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput>0">
 			<h3>音声出力</h3>
 			<p>音声出力の権限を設定します。音声出力を選択すると、該当アカウントにアクセスしたユーザーはマイクなどで音声を出すことができます。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput">
+		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
 			<h3>アラーム出力</h3>
 			<p>アラーム出力の権限を設定します。アラームが設定された場合、該当アカウントでアクセスしたユーザーはアラームを出すことができます。</p>
 		</div>
