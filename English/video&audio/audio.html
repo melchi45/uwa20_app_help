@@ -20,8 +20,8 @@
 			<p>Select an alarm input type.</p>
 			<ul>
 				<li ng-if="InternalMic"><strong class="UI">Internal microphone</strong>: This is the internal microphone included with the camera.</li>
-				<li><strong class="UI">External microphone</strong>: An external microphone can be connected to the camera and used instead of the internal microphone. When you select <strong class="UI">[Apply power to Ext. Mic.]</strong>, the camera supplies power to an external microphone.</li>
-				<li><strong class="UI">Line</strong>: Connect to sound equipment through a cable. For example, connect sound equipment such as an MP3 player and a camera through a cable, and select the MP3 player when you input recorded audio from it into the camera.</li>
+				<li ng-if="ExternalMIC"><strong class="UI">External microphone</strong>: An external microphone can be connected to the camera and used instead of the internal microphone. When you select <strong class="UI">[Apply power to Ext. Mic.]</strong>, the camera supplies power to an external microphone.</li>
+				<li ng-if="LineIn"><strong class="UI">Line</strong>: Connect to sound equipment through a cable. For example, connect sound equipment such as an MP3 player and a camera through a cable, and select the MP3 player when you input recorded audio from it into the camera.</li>
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -56,8 +56,10 @@
 		<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
 			<h3>Noise reduction</h3>
             <p>Select Noise Reduction if the surrounding noise is too strong to hear the sound of interest.</p>
-            <p>You can set the noise reduction sensitivity based on the level of ambient noise.</p>
-            <p>Noise reduction may not work properly if noise is indistinguishable from the surrounding voice sound, or if the sound pressure is high.</p>
+			<p>Noise reduction may not work properly if noise is indistinguishable from the surrounding voice sound, or if the sound pressure is high.</p>
+			<ul>
+                <li><strong class="UI">Sensitivity</strong>: You can set the noise reduction sensitivity based on the level of ambient noise.</li>
+            </ul>
 		</div>
 	</div>
 </div>

@@ -20,8 +20,8 @@
 			<p>Seleccione un tipo de entrada de alarma.</p>
 			<ul>
 				<li ng-if="InternalMic"><strong class="UI">Micr&oacute;fono interno</strong>: Este es el micr&oacute;fono interno incluido con la c&aacute;mara.</li>
-				<li><strong class="UI">Micr&oacute;fono externo</strong>: Un micr&oacute;fono externo puede ser conectado a la c&aacute;mara y ser utilizado en lugar del micr&oacute;fono interno. Cuando se selecciona <strong class="UI">[Aplicar alimentaci&oacute;n al micr&oacute;fono externo]</strong>, la c&aacute;mara suministra energ&iacute;a al micr&oacute;fono externo.</li>
-				<li><strong class="UI">L&iacute;nea</strong>: Conectar con el equipo de sonido a trav&eacute;s de un cable. Por ejemplo, conecte un equipo de sonido, como un reproductor de MP3 y una c&aacute;mara a trav&eacute;s de un cable, y seleccione el reproductor de MP3 cuando introduce el audio grabado desde &eacute;l a la c&aacute;mara.</li>
+				<li ng-if="ExternalMIC"><strong class="UI">Micr&oacute;fono externo</strong>: Un micr&oacute;fono externo puede ser conectado a la c&aacute;mara y ser utilizado en lugar del micr&oacute;fono interno. Cuando se selecciona <strong class="UI">[Aplicar alimentaci&oacute;n al micr&oacute;fono externo]</strong>, la c&aacute;mara suministra energ&iacute;a al micr&oacute;fono externo.</li>
+				<li ng-if="LineIn"><strong class="UI">L&iacute;nea</strong>: Conectar con el equipo de sonido a trav&eacute;s de un cable. Por ejemplo, conecte un equipo de sonido, como un reproductor de MP3 y una c&aacute;mara a trav&eacute;s de un cable, y seleccione el reproductor de MP3 cuando introduce el audio grabado desde &eacute;l a la c&aacute;mara.</li>
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -54,8 +54,10 @@
      	<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
 			<h3>Reducción de ruido</h3>
             <p>Seleccione Reducción de ruido si el ruido alrededor es demasiado fuerte para escuchar el sonido de interés.</p>
-            <p>Puede establecer la sensibilidad de reducción basada en el nivel de ruido según el grado de ruido ambiental.</p>
-            <p>La reducción de ruido puede no funcionar correctamente si el ruido no se puede distinguir del sonido de la voz circundante o si la presión del sonido es alta.</p>
+			<p>La reducción de ruido puede no funcionar correctamente si el ruido no se puede distinguir del sonido de la voz circundante o si la presión del sonido es alta.</p>
+			<ul>
+                <li><strong class="UI">Sensibilidad</strong>: Puede establecer la sensibilidad de reducción basada en el nivel de ruido según el grado de ruido ambiental.</li>
+            </ul>
 		</div>  
 
 	</div>

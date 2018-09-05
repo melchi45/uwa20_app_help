@@ -96,7 +96,7 @@
                     </td>
                     </tr>
 
-        <tr ng-if="FisheyeLens">
+     <!--   <tr ng-if="FisheyeLens">
                     <td width="235">
                         <p><span class="tui tui-wn5-toolbar-fisheye"></span></p>
                         <p><a class="wn5-online-help-link" href="#FisheyeView" ng-href="#/help/monitoring?#FisheyeView">Fisheye view</a></p>
@@ -104,7 +104,8 @@
                   <td width="235">
                       <p>You can check the video of the Fisheye camera in various view modes.</p>
                       <p>It can be viewed only after you install the plugin in Internet Explorer and select the 'FisheyeView' profile on the [Viedo Setup] tab. </p>
-  <p>&nbsp;</p>
+  <p>&nbsp;</p>    </td>
+             </tr>  -->
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
@@ -115,7 +116,7 @@
                             <p>Check the connection information for each profile and for connected users at the same time.</p>
                             <p>&nbsp;</p>
                         </td>
-                    </tr>
+                    </tr>  
 					<tr ng-if="LensModelViewOptions">
                     <td width="235">lens model</td>
                     <td width="235">The name of len model used in each camera is displayed. </td>
@@ -442,7 +443,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li>
+              <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> 
                 <li>Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen and then you can adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon. </li>
                 <li>When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically. When you click the icon again, auto tracking will stop.</li>
             </ul>
@@ -471,16 +472,17 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li>
-                <li>The Pan function can be used only when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
+            <!--     <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> --> 
+                <li>The Pan function can be used only when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
             </ul>
 
         </div>
-    <!--     <div class="wn5-setup-section-article-content">
-            <h3>How to select a split screen</h3>
+      <div class="wn5-setup-section-article-content">
+            <h3>Quadrant</h3>
             <p>Select a number for an individual video in the 4-split view. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</p>
             <p>Click and drag the <span class="tui tui-wn5-ptz-handle"></span> icon to adjust the camera view. Click the <span class="tui tui-wn5-ptz-plus"></span> icon on the zoom bar to zoom in the screen, and the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom out.</p>
-        </div>  --> 
+            <p>The 'Quadrant' option is enabled when <strong class="UI">[Quad view]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Fisheye view type]</strong>.</p>
+        </div>  
         <div class="wn5-setup-section-article-content">
             <h3>Preset</h3>
             <p> Select a preset number and click the <strong class="UI">[Go]</strong> button to move the camera view to the PTZ preset position. Click he <strong class="UI">[Home]</strong> button to move the camera view to the Home position. </p>

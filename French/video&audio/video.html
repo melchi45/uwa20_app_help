@@ -230,16 +230,15 @@
                 <h3>USB</h3>
                 <p>Pour afficher une image de cam&eacute;ra &agrave; l&rsquo;aide de l&rsquo;USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
             </div>
-			            <div class="wn5-setup-section-article-content">
+			            <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
                 <h3>CVBS</h3>
                 <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
             </div>
 	
-	<div class="wn5-setup-section-article-content">
+	<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
 		<h3>Type de CVBS</h3>
 	    	<p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>
-	    </div>
-		<div class="wn5-setup-section-article-content">
+
 			<ul>
                 <li><strong class="UI">NTSC</strong>&nbsp;: NTSC (Comit&eacute; du syst&egrave;me national de t&eacute;l&eacute;vision) est la norme am&eacute;ricaine pour les t&eacute;l&eacute;viseurs couleur. Le nombre d&rsquo;images par seconde est de 30 et le nombre de faisceaux de projection horizontale est de 525. Comme le nombre d&rsquo;images par seconde est &eacute;lev&eacute;, l&rsquo;&eacute;cran semble tr&egrave;s naturel. Il est surtout utilis&eacute; aux &Eacute;tats-Unis, au Japon et au Canada.</li>
 				<li><strong class="UI">PAL</strong>&nbsp;: La m&eacute;thode PAL (Ligne d&rsquo;alternance de phase) a &eacute;t&eacute; propos&eacute;e par l&rsquo;Allemagne et elle est similaire &agrave; NTSC mais diff&egrave;re par la fa&ccedil;on dont elle traite les signaux de couleur. Il est surtout utilis&eacute; en Europe. Par rapport au NTSC, le nombre d&rsquo;images par seconde est plus faible, mais le nombre de faisceaux horizontaux est plus &eacute;lev&eacute; (625). Ainsi, la r&eacute;solution est plus &eacute;lev&eacute;e, la d&eacute;formation des couleurs est moindre et l&rsquo;installation de diffusion n&rsquo;exige pas de sp&eacute;cifications &eacute;lev&eacute;es.</li>

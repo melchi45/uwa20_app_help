@@ -19,8 +19,8 @@
 			<p>S&eacute;lectionnez un type d&apos;entr&eacute;e d&apos;alerte.</p>
 			<ul>
 				<li ng-if="InternalMic"><strong class="UI">Microphone interne</strong>&nbsp;: Il s&rsquo;agit du microphone interne inclus avec la cam&eacute;ra.</li>
-				<li><strong class="UI">Microphone externe</strong>&nbsp;: Un microphone externe peut &ecirc;tre connect&eacute; &agrave; la cam&eacute;ra et utilis&eacute; &agrave; la place du microphone interne. Lorsque vous s&eacute;lectionnez <strong class="UI">[Appliquer l&apos;alimentation au microphone externe]</strong>, la cam&eacute;ra alimente un microphone externe.</li>
-				<li><strong class="UI">Ligne</strong>&nbsp;: Connectez-vous &agrave; l&apos;&eacute;quipement de son gr&acirc;ce &agrave; un c&acirc;ble. Par exemple, connectez un &eacute;quipement audio tel qu&apos;un lecteur MP3 et une cam&eacute;ra &agrave; l&apos;aide d&apos;un c&acirc;ble, puis s&eacute;lectionnez le lecteur MP3 lorsque vous ins&eacute;rez du son enregistr&eacute; dans la cam&eacute;ra.</li>
+				<li ng-if="ExternalMIC"><strong class="UI">Microphone externe</strong>&nbsp;: Un microphone externe peut &ecirc;tre connect&eacute; &agrave; la cam&eacute;ra et utilis&eacute; &agrave; la place du microphone interne. Lorsque vous s&eacute;lectionnez <strong class="UI">[Appliquer l&apos;alimentation au microphone externe]</strong>, la cam&eacute;ra alimente un microphone externe.</li>
+				<li ng-if="LineIn"><strong class="UI">Ligne</strong>&nbsp;: Connectez-vous &agrave; l&apos;&eacute;quipement de son gr&acirc;ce &agrave; un c&acirc;ble. Par exemple, connectez un &eacute;quipement audio tel qu&apos;un lecteur MP3 et une cam&eacute;ra &agrave; l&apos;aide d&apos;un c&acirc;ble, puis s&eacute;lectionnez le lecteur MP3 lorsque vous ins&eacute;rez du son enregistr&eacute; dans la cam&eacute;ra.</li>
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -55,8 +55,10 @@
 		<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
 			<h3>R&eacute;duction de bruit</h3>
             <p>S&eacute;lectionnez R&eacute;duction de bruit si le bruit environnant est trop fort pour entendre le son pr&eacute;sentant un int&eacute;r&ecirc;t.</p>
-            <p>Vous pouvez d&eacute;finir la sensibilit&eacute; de r&eacute;duction de bruit en fonction du niveau de bruit ambiant.</p>
-            <p>Il est possible que la r&eacute;duction de bruit ne fonctionne pas correctement si le bruit est impossible &agrave; distinguer des voix p&eacute;riph&eacute;riques, ou si la pression acoustique est &eacute;lev&eacute;e.</p>
+			<p>Il est possible que la r&eacute;duction de bruit ne fonctionne pas correctement si le bruit est impossible &agrave; distinguer des voix p&eacute;riph&eacute;riques, ou si la pression acoustique est &eacute;lev&eacute;e.</p>
+			<ul>
+                <li><strong class="UI">Sensibilit&eacute;</strong>: Vous pouvez d&eacute;finir la sensibilit&eacute; de r&eacute;duction de bruit en fonction du niveau de bruit ambiant.</li>
+            </ul>
 		</div>
 	</div>
 </div>

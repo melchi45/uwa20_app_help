@@ -415,7 +415,7 @@
                 <li><strong class="UI">Couleur</strong>&nbsp;: Affiche une image en couleur.</li>
                 <li><strong class="UI">Noir et blanc</strong>&nbsp;: Affiche toujours une image en noir et blanc.</li>
                 <li><strong class="UI">Auto</strong>&nbsp;: Il passe en mode couleur le jour et en noir et blanc la nuit ou &agrave; l&rsquo;heure avec une faible luminosit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est r&eacute;gl&eacute; pour <strong class="UI">[AGC]</strong> de l&rsquo;<strong class="UI">[Exposition]</strong>, il est impossible de r&eacute;gler Jour/Nuit automatiquement.</li>
-                <li ng-if="!PTZModel"><strong class="UI">Entr&eacute;e externe</strong>&nbsp;: Lorsqu&rsquo;une borne d&rsquo;entr&eacute;e d&rsquo;alarme est reli&eacute;e &agrave; un &eacute;quipement externe, la couleur et le noir et blanc de la vid&eacute;o peuvent &ecirc;tre contr&ocirc;l&eacute;s.</li>
+                <li ng-if="DayNightMode_ExternalBW"><strong class="UI">Entr&eacute;e externe</strong>&nbsp;: Lorsqu&rsquo;une borne d&rsquo;entr&eacute;e d&rsquo;alarme est reli&eacute;e &agrave; un &eacute;quipement externe, la couleur et le noir et blanc de la vid&eacute;o peuvent &ecirc;tre contr&ocirc;l&eacute;s.</li>
                 <li ng-if="!PTZModel"><strong class="UI">Calendrier</strong>&nbsp;: Jour/Nuit est modifi&eacute; pour passer au calendrier d&eacute;fini &agrave; partir de <strong class="UI">[Heure d&rsquo;activation (couleur)]</strong>.</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  --></ul>
         </div>
@@ -427,7 +427,7 @@
             <h3>Dur&eacute;e</h3>
             <p>R&egrave;gle l&rsquo;intervalle de temps lors du passage &agrave; la couleur ou N/B.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
             <h3>Entr&eacute;e d&rsquo;alerte</h3>
             <p>R&egrave;gle la vid&eacute;o en couleur ou N/B en fonction de l&rsquo;ouverture ou de la fermeture du capteur d&rsquo;alarme. Lorsque <strong class="UI">[Externe]</strong> est d&eacute;fini pour <strong class="UI">[Mode]</strong> de <strong class="UI">[Jour/Nuit]</strong>, la fonction <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[Entr&eacute;e d&rsquo;alerte]</strong> est alors d&eacute;sactiv&eacute;e et la page de configuration ne s&rsquo;affiche pas.</p>
         </div>
@@ -623,8 +623,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FocusModeOptions">
-<div class="wn5-setup-section" ng-if="FocusModeOptions">
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions && PTZModel">
+<div class="wn5-setup-section" ng-if="FocusModeOptions && PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>Focus</h2>
     </div>

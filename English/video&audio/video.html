@@ -204,16 +204,14 @@
                 <h3>USB</h3>
                 <p>To display a camera image by using the USB, click <strong class="UI">[Enable]</strong>.</p>
             </div>
-			<div class="wn5-setup-section-article-content">
+		    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
                 <h3>CVBS</h3>
                 <p>To display a video by connecting a cable to the CVBS terminal, click <strong class="UI">[Enable]</strong>.</p>
             </div>
 	
-	        <div class="wn5-setup-section-article-content">
+	        <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
 		        <h3>CVBS type</h3>
 	    	        <p>To use CVBS, select the CVBS video output type.</p>
-	        </div>
-		    <div class="wn5-setup-section-article-content">
 			<ul>
 				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) is the US standard for color TVs. The number of frames per sec is 30 and the number of horizontal projection beam is 525, Since the number of frames per sec is high, the screen looks very natural. It is mostly used in USA, Japan, and Canada.</li>
 				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) method was proposed by Germany and it is similar to NTSC but differs in the way it handles the color signals. It is mostly used in Europe. Compared to NTSC, the number of frames per sec is lower but the number of horizontal beams is higher (625). Thus, the resolution is higher, the color deformation is less, and the broadcasting facility does not require high specifications. </li>
@@ -222,7 +220,7 @@
 		    <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                 <ul>
-                    <li>To prevent degradation of the camera performance, turn off the analog video function after installing a camera.</li>
+                    <li>To prevent degradation of the camera performance, turn off the video output function after installing a camera.</li>
                 </ul>
         </div>
 	</div>

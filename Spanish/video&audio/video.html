@@ -231,16 +231,14 @@
                 <h3>USB</h3>
                 <p>Para mostrar una imagen de la c&aacute;mara al usar el USB, haga clic en <strong class="UI">[Activar]</strong>.</p>
             </div>
-			<div class="wn5-setup-section-article-content">
+			<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
                 <h3>CVBS</h3>
                 <p>Para mostrar un video al conectar un cable a la terminal CVBS, haga clic en <strong class="UI">[Activar]</strong>.</p>
             </div>
 	
-	<div class="wn5-setup-section-article-content">
+	<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
 		<h3>Tipo de CVBS</h3>
 	    	<p>Para usar CVBS, seleccione el tipo de salida de video CVBS.</p>
-	    </div>
-		<div class="wn5-setup-section-article-content">
             <ul>
                 <li><strong class="UI">NTSC</strong>: NTSC (Comit&eacute; Nacional de Sistema de Televisi&oacute;n) es el est&aacute;ndar para la televisi&oacute;n en color en los EE. UU. El n&uacute;mero de fotogramas por segundo es 30 y el n&uacute;mero de rayo de proyecci&oacute;n horizontal es 525. Dado que el n&uacute;mero de fotogramas por segundo es alto, la pantalla parece muy natural. En su mayor&iacute;a, se usa en los EE. UU., Jap&oacute;n y Canad&aacute;.</li>
 				<li><strong class="UI">PAL</strong>: Al m&eacute;todo PAL (L&iacute;nea de alternancia de fase) lo propuso Alemania y es similar al NTSC pero difiere en la manera en que trata las se&ntilde;ales de color. En su mayor&iacute;a, se usa en Europa. Comparado con el NTSC, el n&uacute;mero de fotogramas por segundo es m&aacute;s bajo pero el n&uacute;mero de rayos horizontales es m&aacute;s alto (625). Por consiguiente, la resoluci&oacute;n es m&aacute;s alta, la deformaci&oacute;n de color es menor, y el centro de radiodifusi&oacute;n no requiere altas especificaciones.</li>

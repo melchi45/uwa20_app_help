@@ -398,7 +398,7 @@
                 <li><strong class="UI">カラー</strong>：映像を常時カラーに出力します。</li>
                 <li><strong class="UI">B/W</strong>：映像を常時B/Wに出力します。</li>
                 <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">[露出補正]</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[無効]</strong>に設定すると、デイ/ナイトを自動に設定することができません。</li>
-                <li ng-if="!PTZModel"><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li>
+                <li ng-if="DayNightMode_ExternalBW"><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li>
                 <li ng-if="!PTZModel"><strong class="UI">スケジュール</strong>：<strong class="UI">[動作時間(カラー)]</strong>で設定したスケジュールにデイ/ナイトが変更されます。</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  --></ul>
         </div>
@@ -410,7 +410,7 @@
             <h3>継続時間</h3>
             <p>カラーやB/Wに切り替え動作が起きる時間の間隔を設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
             <h3>アラーム入力</h3>
             <p>アラームセンサーの開/閉状況によって映像をカラーやB/Wに設定することができます。<strong class="UI">[デイ/ナイト]</strong>の<strong class="UI">[モード]</strong>を<strong class="UI">[外部]</strong>に設定すると、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入力]</strong>機能が無効になり設定ページが表示されません。</p>
         </div>
@@ -607,8 +607,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FocusModeOptions">
-<div class="wn5-setup-section" ng-if="FocusModeOptions">
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions && PTZModel">
+<div class="wn5-setup-section" ng-if="FocusModeOptions && PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>フォーカス</h2>
     </div>
