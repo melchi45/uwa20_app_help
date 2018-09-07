@@ -67,8 +67,8 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.
-                        </p> 
+                            <p>You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. </p>
+                            <p ng-if="!FisheyeLens">To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.</p> 
                         </td>                    
                     </tr>
 
@@ -474,6 +474,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <ul>
             <!--     <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> --> 
                 <li>The Pan function can be used only when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
+                <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when  <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> and 'Guad view', 'Q1', 'Q2', 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> is enabled when 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. </li>
             </ul>
 
         </div>
@@ -481,7 +482,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <h3>Quadrant</h3>
             <p>Select a number for an individual video in the 4-split view. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</p>
             <p>Click and drag the <span class="tui tui-wn5-ptz-handle"></span> icon to adjust the camera view. Click the <span class="tui tui-wn5-ptz-plus"></span> icon on the zoom bar to zoom in the screen, and the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom out.</p>
-            <p>The 'Quadrant' option is enabled when <strong class="UI">[Quad view]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Fisheye view type]</strong>.</p>
+            <p>The 'Quadrant' option is enabled when <strong class="UI">[Fisheye view type] </strong>is set&nbsp;to 'Dewarp view'  in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Fisheye view type]</strong> and <strong class="UI">[View] </strong>is set&nbsp;to'Quad view'.</p>
         </div>  
         <div class="wn5-setup-section-article-content">
             <h3>Preset</h3>
@@ -492,6 +493,10 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
                         <h3>Group</h3>
             <p>Select a desired group number from the group list and click the <strong class="UI">[Start]</strong> button to activate the group operation. To stop the group operation, click the <strong class="UI">[Stop]</strong> button. The group list can be added or modified in the <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Group]</strong> tab.</p>
         </div>
+        <div class="wn5-setup-section-article-content">
+                <h3>Pan/Home</h3>
+                <p>Adjust the camera view in <strong class="UI">[Pan]</strong> and click <strong class="UI">[Set home poisition]</strong>&nbsp;to set the current camera view as a home position. Click <strong class="UI">[Go home position]</strong> to move the camera view to the home position.</p>
+            </div>
 	</div>
 </div>
 
