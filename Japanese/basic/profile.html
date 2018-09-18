@@ -53,7 +53,7 @@
             <h3>Profileリスト</h3>
             <p>初期値に提供されるProfileのリストとユーザーが追加したProfileのリスト両方とも表示されます。</p>
 
-            <p ng-if="!FixedProfileCodecChange">カメラを設置すると、初期値に提供されるProfileは下記のどおりです。初期値に提供するProfile名とCodecは変更することができません。その他の設定はユーザーが変更することができます。</p>
+        <!--    <p ng-if="!FixedProfileCodecChange">カメラを設置すると、初期値に提供されるProfileは下記のどおりです。初期値に提供するProfile名とCodecは変更することができません。その他の設定はユーザーが変更することができます。</p>
             <p ng-if="FixedProfileCodecChange">カメラを設置すると、初期値に提供されるProfileは下記のどおりです。</p>
             <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens">
                 <thead>
@@ -79,18 +79,21 @@
                     <td>H.265</td>
                     <td>H.265 Codecに適するProfile</td>
                 </tr>
-        <!--        <tr>
+               <tr>
                     <td>WISENET</td>
                     <td>H.265</td>
                     <td>ONVIFは、デフォルトの基本設定を変更します</td>
-                </tr>  -->
+                </tr>  
                 <tr>
                     <td>MOBILE</td>
                     <td>H.264</td>
                     <td>モバイルに適するProfile</td>
                 </tr>
                 </tbody>
-            </table><!-- <p ng-if="FisheyeLens">피쉬아이 카메라의 경우 기본 프로파일은 다음과 같습니다.</p> --><table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
+            </table>  --> 
+            
+            <!-- <p ng-if="FisheyeLens">피쉬아이 카메라의 경우 기본 프로파일은 다음과 같습니다.</p> -->
+        <!--    <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
                 <thead>
                 <tr>
                     <td>Profile名</td>
@@ -110,17 +113,20 @@
                     <td>Fisheyeview</td>
                     <td>H.264</td>
                     <td>歪み補正をしない魚眼カメラの映像をそのまま見せるProfile基本Profileに使用される</td>
-                </tr><!--  <tr>
+                </tr>  --> 
+                <!--  <tr>
                     <td>Dewarp1</td>
                     <td>H.264</td>
                     <td>피쉬아이 카메라의 왜곡을 보정하여 왜곡 보정 영상을 보여주는 프로파일</td>
-                </tr> --><tr>
+                </tr> -->
+                
+                <!--     <tr>
                     <td>MOBILE</td>
                     <td>H.264</td>
                     <td>モバイルに適するProfile</td>
                 </tr>
                 </tbody>
-            </table>
+            </table>  --> 
         </div>
 
         <div class="wn5-online-help-action">

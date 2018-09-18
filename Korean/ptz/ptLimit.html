@@ -23,8 +23,8 @@
     	   <h4><a name="ptzcontrol"></a>PTZ 조정하기</h4>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
-                <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
-                <li><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
+                <li ng-if="PanTiltOnlyModel">줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                <li ng-if="PanTiltOnlyModel && ContinousFocus"><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
             </ul>
     	</div>
@@ -44,7 +44,7 @@
             <h3>모드</h3>
             <p>제한 범위를 설정할 동작을 선택합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="TiltRangeOptions">
             <h3>틸트 각도</h3>
             <p><strong class="UI">[모드]</strong>에서 <strong class="UI">[틸트 제한]</strong>을 선택한 경우 나타납니다. 틸트 움직임 각도를 설정합니다.</p>
         </div>
@@ -65,8 +65,8 @@
         </div>
     </div>		
 			 
-<hr class="wn5-setup-hr">
-    <div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
+    <div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
         <div class="wn5-setup-section-heading">
         <h2>팬/틸트 속도 기울기</h2>
        </div>
@@ -80,9 +80,9 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="ProportionalPTSpeedModes">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="ProportionalPTSpeedModes">
     <div class="wn5-setup-section-heading">
         <h2>줌 연동 설정</h2>
     </div>

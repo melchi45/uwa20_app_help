@@ -5,12 +5,13 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
             <div class="wn5-setup-section-heading">
-                <h2>채널 선택</h2>
+                <h2><a name="channel"></a>채널 선택</h2>
             </div>
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선택한 후 채널별로 비디오 프로파일 세부 항목을 설정할 수 있습니다. </p>
             <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
+            <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
             <p>라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. <strong class="UI">[상세정보]</strong> 버튼을 클릭하면 채널 전체 상태를 채널별로 요약하여 보여줍니다. </p>
             <p>프로파일 설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
@@ -57,7 +58,7 @@
             <h3>프로파일 목록</h3>
             <p>기본으로 제공되는 프로파일의 목록과 사용자가 추가한 프로파일의 목록이 같이 표시됩니다.</p>
 
-            <p ng-if="!FixedProfileCodecChange">카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. 기본으로 제공하는 프로파일 이름과 코덱은 변경할 수 없으며 그 외 설정은 사용자가 원하는 대로 변경할 수 있습니다.</p>
+       <!--      <p ng-if="!FixedProfileCodecChange">카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. 기본으로 제공하는 프로파일 이름과 코덱은 변경할 수 없으며 그 외 설정은 사용자가 원하는 대로 변경할 수 있습니다.</p>
             <p ng-if="FixedProfileCodecChange">카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. </p>
             <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens">
                 <thead>
@@ -85,7 +86,7 @@
                 </tr>
                 <tr>
                     <td>WISENET</td>
-                    <td>H.265</td>
+                    <td>H.264</td>
                     <td>ONVIF 클라이언트용으로 제공되는 기본 프로파일, 설정 값은 수정할 수 있으나 프로파일을 삭제할 수 없음.</td>
                 </tr>
                 <tr>
@@ -94,9 +95,9 @@
                     <td>모바일에 적합한 프로파일</td>
                 </tr>
                 </tbody>
-            </table>
+            </table>  --> 
             <!-- <p ng-if="FisheyeLens">피쉬아이 카메라의 경우 기본 프로파일은 다음과 같습니다.</p> -->
-			            <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
+			<!--             <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
                 <thead>
                 <tr>
                     <td>프로파일 이름</td>
@@ -116,15 +117,15 @@
                     <td>Fisheyeview</td>
                     <td>H.264</td>
                     <td>왜곡 보정을 하지 않은 피쉬아이 카마라 영상을 그대로 보여주는 프로파일. 기본 프로파일로 사용됨</td>
-                </tr>
+                </tr>  --> 
               <!--  <tr>
                     <td>Dewarp1</td>
                     <td>H.264</td>
                     <td>피쉬아이 카메라의 왜곡을 보정하여 왜곡 보정 영상을 보여주는 프로파일</td>
                 </tr> -->
-                <tr>
+           <!--      <tr>
                         <td>WISENET</td>
-                        <td>H.265</td>
+                        <td>H.264</td>
                         <td>ONVIF 클라이언트용으로 제공되는 기본 프로파일, 설정 값은 수정할 수 있으나 프로파일을 삭제할 수 없음.</td>
                 </tr>
                 <tr>
@@ -133,7 +134,7 @@
                     <td>모바일에 적합한 프로파일</td>
                 </tr>
                 </tbody>
-            </table>
+            </table>  -->
         </div>
 
         <div class="wn5-online-help-action">
@@ -182,6 +183,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>코덱</h3>
             <p>프로파일에 적용할 코덱을 선택합니다. 선택한 코덱 타입에 따라 프로파일 속성 세부 항목이 달라집니다.</p>
+            <p ng-if="SupportAutoImageAlignment">기본 프로파일의 코덱은 수정할 수 없고, 사용자가 새로 추가한 프로파일의 코덱은 수정할 수 있습니다. </p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
@@ -210,7 +212,7 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>프로파일 타입</h3>
             <p>적용할 프로파일 타입을 선택합니다. 선택한 프로파일 타입은 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 표시됩니다. 선택한 코덱 타입에 따라 표시되는 설정 항목이 다를 수 있습니다.</p>
-
+            <p ng-if="SupportAutoImageAlignment">또한 <a href="#channel">채널 선택</a>에서 선택한 채널에 따라 설정할 수 있는 프로파일 타입이 다를 수 있습니다. 예를 들어 '저장 프로파일'은 채널 1을 선택한 경우에만 설정할 수 있습니다.</p>
             <ul>
                 <li><strong class="UI">기본 프로파일</strong>: 카메라의 영상을 라이브로 스트림할 때 적용되는 기본 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 ‘Default’로 표시됩니다.</li>
                 <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. <strong class="UI">[코덱]</strong>을 [MJPEG]으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다. </li>
@@ -322,12 +324,14 @@
             <h3>프레임 레이트 </h3>
             <p>1초당 프레임 수를 설정합니다. <strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[카메라 설정]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[센서]</strong></a>에서 선택한 프레임 레이트의 값에 따라 설정할 수 있는 프레임 레이트 범위가 다르게 나타납니다.</p>
         </div>
-        
-		<div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+            <h3>압축</h3>
+            <p>압축 정도를 설정합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
             <h3>최대 비트 레이트 </h3>
             <p><strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때, 영상의 최대 비트 레이트를 설정합니다.</p>
         </div>
-
         <div class="wn5-setup-section-article-content">
             <h3>목표 비트 레이트 </h3>
             <p><strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[CBR]</strong>일 때, 전송하는 영상 데이터의 양을 설정한 목표 비트 레이트에 고정하여 영상을 전송합니다.</p>
@@ -367,7 +371,8 @@
         </div>
         <div class="wn5-setup-section-article-content">    
             <h3><a class="wn5-online-help-link" name="GOV"></a>GOV 길이  </h3>
-          <!--    <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가 짧을수록 I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p> -->
+          <!--    <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가
+짧을수록 I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p> -->
             <p>GOV(Group of Video)는 H.264/H.265 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임 전까지의 프레임들의 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이라는 2종류의 프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키 프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있는 독립적인 프레임입니다. P-프레임은 이전 프레임들을 기준으로 변경된 부분의 정보만 가지고 있어서 영상 데이터의 양이 적습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상 데이터의 양이 적고, GOV 길이가 짧을수록 I-프레임이 많아지므로 영상 데이터의 양은 많아집니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</p>
             <p>H.264 코덱이나 H.265 코덱으로 녹화파일을 설정한 경우 GOV 길이는 framerate/2가 됩니다.</p>
         </div>
