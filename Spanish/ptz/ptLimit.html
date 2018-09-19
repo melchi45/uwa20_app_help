@@ -24,8 +24,8 @@
     	   <h4><a name="ptzcontrol"></a>Ajuste del PTZ</h4>
             <ul>
                 <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el rat&oacute;n, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
-                <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
-                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li ng-if="PanTiltOnlyModel">Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                <li ng-if="PanTiltOnlyModel && ContinousFocus">Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
                 <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono <span class="tui tui-wn5-simple-focus"></span>.</li>
             </ul>
     	</div>
@@ -45,7 +45,7 @@
             <h3>Modo</h3>
             <p>Seleccione una acci&oacute;n para establecer el l&iacute;mite de rango.</p>
         </div>
- <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="TiltRangeOptions">
             <h3>Rango de inclinaci&oacute;n</h3>
             <p>El rango de inclinaci&oacute;n aparecer&aacute; cuando se selecciona <strong class="UI">[L&iacute;mite inclinaci&oacute;n]</strong> en <strong class="UI">[Modo]</strong>. Define el &aacute;ngulo de inclinaci&oacute;n en movimiento.</p>
         </div>
@@ -66,24 +66,23 @@
             </div>
              </div>		
 		</div>
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
     <div class="wn5-setup-section-heading">
         <h2>Curva de velocidad panor&aacute;mica/inclinaci&oacute;n</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Usted puede seleccionar la opci&oacute;n de velocidad para controlar el comportamiento de la vista panor&aacute;mica/inclinaci&oacute;n de las c&aacute;maras.</p>
-            <p>Al controlar el comportamiento de la vista panor&aacute;mica/inclinaci&oacute;n, cuanto m&aacute;s alejado se encuentre el punto central, m&aacute;s r&aacute;pida ser&aacute; la velocidad de comportamiento. Seleccione <!-- <strong class="UI">[??]</strong> ? ???? ???? ??? ???? ???, ??? ????? ??? ??? ?????. <strong class="UI">[??]</strong> ? ???? ???? ??? ???? ???, ??? ??? ?????.</font></p>
-            <p>&nbsp;</p> --> <strong class="UI">[Exponencial]</strong> para ver el incremento de la velocidad en forma de curva (es decir, inicialmente lento, y cada vez m&aacute;s r&aacute;pido con cierta aceleraci&oacute;n). Seleccione <strong class="UI">[Lineal]</strong> para ver el incremento constante de la velocidad en l&iacute;nea recta.
+            <p>Al controlar el comportamiento de la vista panor&aacute;mica/inclinaci&oacute;n, cuanto m&aacute;s alejado se encuentre el punto central, m&aacute;s r&aacute;pida ser&aacute; la velocidad de comportamiento. Seleccione <strong class="UI">[Exponencial]</strong> para ver el incremento de la velocidad en forma de curva (es decir, inicialmente lento, y cada vez m&aacute;s r&aacute;pido con cierta aceleraci&oacute;n). Seleccione <strong class="UI">[Lineal]</strong> para ver el incremento constante de la velocidad en l&iacute;nea recta.
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section"  ng-if="ProportionalPTSpeedModes">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link"></a>PT posicional</h2>
     </div>

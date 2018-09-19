@@ -66,6 +66,13 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+                    <tr ng-if="PanTiltOnlyModel">
+                        <td width="235">
+                                <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
+                        </td>
+                        <td width="235">カメラのパン/チルト動作をデジタルに制御することができます。</td>
+                        </tr>
 					<tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -292,6 +299,28 @@
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section-heading">
+    <h2><a name="PT"></a>PT</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>カメラのパン/チルト動作を制御したり、すでに設定したPTプリセット位置に移動することができ、グループ動作を制御することができます。</p>
+    </div>
+    
+    <div class="wn5-setup-section-article-content">
+        <h3>プリセット</h3>
+        <p>プリセットリストでプリセットを選択した後、<strong class="UI">[進む]</strong>ボタンをクリックすると、お望みのプリセット位置に移動します。</p>
+        <p>プリセットを追加するには、<strong class="UI">[設定]</strong>ボタンをクリックした後、プリセット名を入力して番号を設定してから<strong class="UI">[適用]</strong>ボタンをクリックします。また<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT設定]</strong>&gt;<strong class="UI">[プリセット]</strong>タブでプリセットを追加したり変更することができます。</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>グループ</h3>
+            <p>グループリストでグループNo.を選択した後、<strong class="UI">[開始]</strong>ボタンをクリックすると、設定したグループ動作を行います。グループ動作を中止するには、<strong class="UI">[中止]</strong>ボタンをクリックします。グループリストは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT設定]</strong>&gt;<strong class="UI">[グループ]</strong>タブで追加したり変更することができます。</p>
+    </div>
+</div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="Zoom">
 <div class="wn5-setup-section" ng-if="Zoom">
     <div class="wn5-setup-section-heading">
@@ -402,8 +431,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 
 
 
-<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens">
-<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens">
+<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
 <div class="wn5-setup-section-heading">
     <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
 </div>

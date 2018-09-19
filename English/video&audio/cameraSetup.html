@@ -45,10 +45,19 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each
-preset, then
-you may not set some of the items in the detailed camera settings.</p>
+            <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each preset, then you may not set some of the items in the detailed camera settings.</p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the 'Type' function can be set.</p>
+        </div>
+</div>
+</div>
+<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+    <div class="wn5-setup-section-heading">
+        <h2>Type</h2>
+	</div>	
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each PT preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each preset, then you may not set some of the items in the detailed camera settings.</p>
         </div>
 </div>
 </div>
@@ -56,115 +65,115 @@ you may not set some of the items in the detailed camera settings.</p>
 <hr class="wn5-setup-hr" ng-if="ImagePresetMode">
 <div class="wn5-setup-section" ng-if="ImagePresetMode">
     <div class="wn5-setup-section-heading">
-        <h2><font color="red">이미지 프리셋 모드</font></h2>
+        <h2>이미지 프리셋 모드</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p><font color="red">이미지 프리셋이 목적 별로 다양하게 제공됩니다. 카메라를 사용하는 환경에 맞춰 이미지 프리셋을 선택합니다. </font></p>
+            <p>이미지 프리셋이 목적 별로 다양하게 제공됩니다. 카메라를 사용하는 환경에 맞춰 이미지 프리셋을 선택합니다. </p>
             <ul>
-                <li><strong class="UI"><font color="red">화질</font></strong><font color="red">: 카메라 출하 시 기본 모드입니다. </font></li>
-                <li><strong class="UI"><font color="red">움직임</font></strong><font color="red">: 움직이는 피사체를 선명하게 촬영하고자 할 때 주로 사용합니다. 도로, 박물관과 같이 움직이는 피사체가 많을 경우에 선택합니다. 저조도 환경일 때는 노이즈가 증가할 수 있고, 감도가 낮아질 수 있습니다.</font></li>
-                <li><strong class="UI"><font color="red">노이즈 감쇄</font></strong><font color="red">: 저조도 환경에서도 노이즈가 적도록 촬영하고자 할 때 주로 사용합니다. </font></li>
-                <li><strong class="UI"><font color="red">밝은 영상</font></strong><font color="red">: 영상에서 어두운 영역이 잘 보이도록 영상 전체를 밝게 보이도록 촬영할때 사용합니다. 대신 영상의 대비 효과가 낮아질 수 있습니다.</font></li>
-                <li><strong class="UI"><font color="red">움직임 및 노이즈 감쇄</font></strong><font color="red">: 도로, 박물관과 같이 움직이는 피사체가 많고, 저조도 환경에서도 노이즈가 적은 영상이 필요할 때 사용합니다.</font></li>
-                <li><strong class="UI"><font color="red">움직임 및 밝은 영상</font></strong><font color="red">: 도로, 박물관과 같이 움직이는 피사체가 많고, 전체 영상에서 어두운 영역을 밝게 보이게 할 때 사용합니다.</font>    </li>
-                <li><strong class="UI"><font color="red">선명한 색상</font></strong><font color="red">: 전체 영상을 밝고 선명하게 보이도록 할 때 사용합니다. 영상의 대비 효과가 낮아지고 색 재현성이 낮아질 수 있습니다.</font></li>
-                <li><strong class="UI"><font color="red">사용자 프리셋</font></strong><font color="red">: 사용자가 설정한 대로 영상이 보이도록 할 때 사용합니다.</font></li>
+                <li><strong class="UI">화질</strong>: 카메라 출하 시 기본 모드입니다. </li>
+                <li><strong class="UI">움직임</strong>: 움직이는 피사체를 선명하게 촬영하고자 할 때 주로 사용합니다. 도로, 박물관과 같이 움직이는 피사체가 많을 경우에 선택합니다. 저조도 환경일 때는 노이즈가 증가할 수 있고, 감도가 낮아질 수 있습니다.</li>
+                <li><strong class="UI">노이즈 감쇄</strong>: 저조도 환경에서도 노이즈가 적도록 촬영하고자 할 때 주로 사용합니다. </li>
+                <li><strong class="UI">밝은 영상</strong>: 영상에서 어두운 영역이 잘 보이도록 영상 전체를 밝게 보이도록 촬영할때 사용합니다. 대신 영상의 대비 효과가 낮아질 수 있습니다.</li>
+                <li><strong class="UI">움직임 및 노이즈 감쇄</strong>: 도로, 박물관과 같이 움직이는 피사체가 많고, 저조도 환경에서도 노이즈가 적은 영상이 필요할 때 사용합니다.</li>
+                <li><strong class="UI">움직임 및 밝은 영상</strong>: 도로, 박물관과 같이 움직이는 피사체가 많고, 전체 영상에서 어두운 영역을 밝게 보이게 할 때 사용합니다.    </li>
+                <li><strong class="UI">선명한 색상</strong>: 전체 영상을 밝고 선명하게 보이도록 할 때 사용합니다. 영상의 대비 효과가 낮아지고 색 재현성이 낮아질 수 있습니다.</li>
+                <li><strong class="UI">사용자 프리셋</strong>: 사용자가 설정한 대로 영상이 보이도록 할 때 사용합니다.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3><font color="red">이미지 프리셋별 기본값</font></h3>
-            <p><font color="red">제공되는 이미지 프리셋을 선택하면 해당 이미지 프리셋의 초깃값으로 변경됩니다, 초깃값은 다음과 같으며 이 초깃값은 수정할 수 없습니다. 이미지 프리셋 별 상세 항목들 중 수정할 수 있는 항목들은 상황에 맞게 변경할 수 있습니다. </font></p>
+            <h3>이미지 프리셋별 기본값</h3>
+            <p>제공되는 이미지 프리셋을 선택하면 해당 이미지 프리셋의 초깃값으로 변경됩니다, 초깃값은 다음과 같으며 이 초깃값은 수정할 수 없습니다. 이미지 프리셋 별 상세 항목들 중 수정할 수 있는 항목들은 상황에 맞게 변경할 수 있습니다. </p>
             <table class="table table-bordered wn5-setup-table">
                 <thead>
                 
                 <tr>
-                    <td><font color="red">이미지 프리셋</font></td>
-                    <td><font color="red">셔터 최소</font></td>
-                    <td><font color="red">셔터 최대</font></td>
-                    <td><font color="red">AGC</font></td>
-                    <td><font color="red">SSDR</font></td>
-                    <td><font color="red">SSNR</font></td>
-                    <td><font color="red">COLOR</font></td>
+                    <td>이미지 프리셋</td>
+                    <td>셔터 최소</td>
+                    <td>셔터 최대</td>
+                    <td>AGC</td>
+                    <td>SSDR</td>
+                    <td>SSNR</td>
+                    <td>COLOR</td>
                 </tr>
                 </thead>
                 <tbody>
                
                 <tr>
-                    <font color="red">            
-                    </font>                        
-                    <td><font color="red">화질</font></td>
-                    <td><font color="red">1/5</font></td>
-                    <td><font color="red">1/12000</font></td>
-                    <td><font color="red">높음</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">50</font></td>
+                                
+                                            
+                    <td>화질</td>
+                    <td>1/5</td>
+                    <td>1/12000</td>
+                    <td>높음</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>50</td>
                 </tr>
                 <tr>
-                    <td><font color="red">움직임</font></td>
-                    <td><font color="red">1/30</font></td>
-                    <td><font color="red">1/12000</font></td>
-                    <td><font color="red">높음</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">4</font></td>
-                    <td><font color="red">50</font></td>
+                    <td>움직임</td>
+                    <td>1/30</td>
+                    <td>1/12000</td>
+                    <td>높음</td>
+                    <td>12</td>
+                    <td>4</td>
+                    <td>50</td>
                 </tr>
                 <tr>
-                    <td><font color="red">노이즈 감쇄</font></td>
-                    <td><font color="red">1/15</font></td>
-                    <td><font color="red">1/12000</font></td>
-                    <td><font color="red">중간</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">50</font></td>
-                </tr>
-                    
-                <tr>
-                    <td><font color="red">밝은 영상</font></td>
-                    <td><font color="red">1/5</font></td>
-                    <td><font color="red">1/12000</font></td>
-                    <td><font color="red">높음</font></td>
-                    <td><font color="red">18</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">50</font></td>
+                    <td>노이즈 감쇄</td>
+                    <td>1/15</td>
+                    <td>1/12000</td>
+                    <td>중간</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>50</td>
                 </tr>
                     
                 <tr>
-                    <td><font color="red">움직임 및 노이즈 감쇄</font></td>
-                    <td><font color="red">1/30</font></td>
-                    <td><font color="red">1/12000</font></td>
-                    <td><font color="red">중간</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">4</font></td>
-                    <td><font color="red">50</font></td>
+                    <td>밝은 영상</td>
+                    <td>1/5</td>
+                    <td>1/12000</td>
+                    <td>높음</td>
+                    <td>18</td>
+                    <td>12</td>
+                    <td>50</td>
+                </tr>
+                    
+                <tr>
+                    <td>움직임 및 노이즈 감쇄</td>
+                    <td>1/30</td>
+                    <td>1/12000</td>
+                    <td>중간</td>
+                    <td>12</td>
+                    <td>4</td>
+                    <td>50</td>
                 </tr>
                 <tr>
-                    <td><font color="red">움직임 및 밝은 영상</font></td>
-                    <td><font color="red">1/30</font></td>
-                    <td><font color="red">1/12000</font></td>
-                    <td><font color="red">높음</font></td>
-                    <td><font color="red">18</font></td>
-                    <td><font color="red">4</font></td>
-                    <td><font color="red">50</font></td>
+                    <td>움직임 및 밝은 영상</td>
+                    <td>1/30</td>
+                    <td>1/12000</td>
+                    <td>높음</td>
+                    <td>18</td>
+                    <td>4</td>
+                    <td>50</td>
                 </tr>
                 <tr>
-                    <td><font color="red">선명한 색상</font></td>
-                    <td><font color="red">1/5</font></td>
-                    <td><font color="red">1/12000</font></td>
-                    <td><font color="red">높음</font></td>
-                    <td><font color="red">18</font></td>
-                    <td><font color="red">12</font></td>
-                    <td><font color="red">90</font></td>
+                    <td>선명한 색상</td>
+                    <td>1/5</td>
+                    <td>1/12000</td>
+                    <td>높음</td>
+                    <td>18</td>
+                    <td>12</td>
+                    <td>90</td>
                 </tr>
                 <tr>
-                    <td><font color="red">사용자 프리셋</font></td>
-                    <td><font color="red">수동</font></td>
-                    <td><font color="red">수동</font></td>
-                    <td><font color="red">수동</font></td>
-                    <td><font color="red">수동</font></td>
-                    <td><font color="red">수동</font></td>
-                    <td><font color="red">수동</font></td>
+                    <td>사용자 프리셋</td>
+                    <td>수동</td>
+                    <td>수동</td>
+                    <td>수동</td>
+                    <td>수동</td>
+                    <td>수동</td>
+                    <td>수동</td>
                 </tr>
                 </tbody>
             </table>

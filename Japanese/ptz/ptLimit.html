@@ -23,15 +23,15 @@
     	   <h4><a name="ptzcontrol"></a>PTZ調整</h4>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
-                <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
-                <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                <li ng-if="PanTiltOnlyModel">ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                <li ng-if="PanTiltOnlyModel && ContinousFocus"><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
                 <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
             </ul>
     	</div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
+<div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
     <div class="wn5-setup-section-heading">
         <h2>パン/チルトリミット</h2>
     </div>
@@ -44,7 +44,7 @@
             <h3>モード</h3>
             <p>制限範囲を設定する動作を選択します。</p>
         </div>
- <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="TiltRangeOptions">
             <h3>チルト角度</h3>
             <p><strong class="UI">[モード]</strong>で<strong class="UI">[チルトリミット]</strong>を選択した場合、表示されます。チルトモーションの角度を設定します。</p>
         </div>
@@ -71,9 +71,12 @@
             <p><strong class="UI">[キャンセル]</strong>ボタンをクリックすると、現在設定中の値をすべて削除します。<strong class="UI">[開始]</strong>ボタンをクリックして動作制限範囲を再設定することができます。</p>
             </div>
             </div>
-             </div>		<hr class="wn5-setup-hr">
+             </div>	
+             
+             
+<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section"  ng-if="ProportionalPTSpeedModes">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="group"></a>均等パン/チルト</h2>
     </div>

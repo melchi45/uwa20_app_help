@@ -1,4 +1,4 @@
-﻿<h1 class="wn5-setup-main-title">Live screen</h1>
+<h1 class="wn5-setup-main-title">Live screen</h1>
 <div class="wn5-setup-section">
 	<p>You can check the live screen to view what is being captured by the camera and control screen capture, and other features. When you click the <span class="tui tui-wn5-top-live"></span> button on the screen, the live screen will appear. </p>
 </div>
@@ -60,6 +60,13 @@
                         </td>
                     </tr>
 
+                    <tr ng-if="PanTiltOnlyModel">
+                            <td width="235">
+                                    <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                    <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
+                            </td>
+                            <td width="235">You can control the Pan/Tilt motions of the camera.</td>
+                            </tr>
 					<tr ng-if="DPTZSetupPage">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -79,7 +86,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera’s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
+                            <p>You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera��s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
                         </td>
                     </tr>
 
@@ -170,7 +177,7 @@
                             <p>Record</p>
                         </td>
                         <td width="235">
-                            <p>You can record and save the live screen to a PC. Click the Record icon to start recording; click the icon again to stop recording. Recorded files are saved in .avi format and can be saved in the default path of the browser or a file path can be set in the ‘Save as’ window.</p>
+                            <p>You can record and save the live screen to a PC. Click the Record icon to start recording; click the icon again to stop recording. Recorded files are saved in .avi format and can be saved in the default path of the browser or a file path can be set in the ��Save as�� window.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -356,6 +363,28 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 -->
 
+<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section-heading">
+    <h2><a name="PT"></a>PT</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>You can control Pan/Tilt operation of the camera or move to a preset PT position and control group motion.</p>
+    </div>
+    
+    <div class="wn5-setup-section-article-content">
+        <h3>Preset</h3>
+            <p>When you select a desired preset from the preset list and click the <strong class="UI">[Go]</strong> button, it will move to the desired preset location. </p>
+            <p>To add a preset, click the <strong class="UI">[Setup] </strong>button, enter the preset name, set a number, and click the <strong class="UI">[Apply]</strong>&nbsp;button. A preset can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT setup]</strong>&gt;<strong class="UI">[Preset]</strong>tab.</p>
+    </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Group</h3>
+            <p>Select a desired group number from the group list and click the <strong class="UI">[Start]</strong> button to activate the group operation. To stop the group operation, click the <strong class="UI">[Stop]</strong> button. The group list can be added or modified in the <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PT setup]</strong> &gt; <strong class="UI">[Group]</strong> tab.
+        </div>
+</div>
+</div>
+
 
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
@@ -431,8 +460,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens">
-<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens">
+<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -474,7 +503,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <ul>
             <!--     <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> --> 
                 <li>The Pan function can be used only when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
-                <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when  <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> and 'Guad view', 'Q1', 'Q2', 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> is enabled when 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. </li>
+                <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when  <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> and 'Guad view', 'Q1', 'Q2', 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong>
+is enabled when 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. </li>
             </ul>
 
         </div>

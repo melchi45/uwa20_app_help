@@ -59,7 +59,13 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-
+                    <tr ng-if="PanTiltOnlyModel">
+                        <td width="235">
+                                <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
+                        </td>
+                        <td width="235">Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison de la cam&eacute;ra.</td>
+                        </tr>
 					<tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -279,7 +285,8 @@
             <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; et le niveau des couleurs de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct.</p>
         </div>
     </div>
-</div><!-- <hr class="wn5-setup-hr" ng-if="PTZModel">
+</div>
+<!-- <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
@@ -314,7 +321,31 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         </div>
     </div>
 </div>
---><hr class="wn5-setup-hr" ng-if="PTZModel">
+-->
+
+<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section-heading">
+    <h2><a name="PT"></a>PT</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>Vous pouvez contr&ocirc;ler les fonctions panoramique/inclinaison de la cam&eacute;ra, ou passer &agrave; une position PT pr&eacute;r&eacute;gl&eacute;e et contr&ocirc;ler le mouvement collectif.</p>
+    </div>
+    
+    <div class="wn5-setup-section-article-content">
+        <h3>Pr&eacute;r&eacute;glage</h3>
+        <p>Lorsque vous s&eacute;lectionnez un pr&eacute;r&eacute;glage souhait&eacute; dans la liste des pr&eacute;r&eacute;glages et cliquez sur le bouton <strong class="UI">[Aller]</strong>, il se d&eacute;place vers l&apos;emplacement pr&eacute;d&eacute;fini souhait&eacute;.</p>
+        <p>Pour ajouter un pr&eacute;r&eacute;glage, cliquez sur le bouton <strong class="UI">[Configuration]</strong>, entrez le nom du pr&eacute;r&eacute;glage, choisissez un num&eacute;ro et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>. Un pr&eacute;r&eacute;glage peut &ecirc;tre ajout&eacute; ou modifi&eacute; &agrave; partir de l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT設定]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;gl&eacute;e]</strong>.</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>Groupe</h3>
+        <p>S&eacute;lectionnez le num&eacute;ro de groupe souhait&eacute; dans la liste des groupes et cliquez sur le bouton <strong class="UI">[D&eacute;marrer]</strong> pour activer l&apos;op&eacute;ration de groupe. Pour arr&ecirc;ter l&apos;op&eacute;ration de groupe, cliquez sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. La liste des groupes peut &ecirc;tre ajout&eacute;e ou modifi&eacute;e dans l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT設定]</strong>&gt;<strong class="UI">[Groupe]</strong>.</p>
+    </div>
+</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
@@ -421,8 +452,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 
 
 
-<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens">
-<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens">
+<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -445,8 +476,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <p>S&eacute;lectionnez un num&eacute;ro pr&eacute;d&eacute;fini et cliquez sur le bouton <strong class="UI">[Aller]</strong> pour d&eacute;placer la vue de la cam&eacute;ra sur la position PTZ pr&eacute;d&eacute;finie.</p>
             <p>S&eacute;lectionnez le num&eacute;ro pr&eacute;d&eacute;fini voulu dans la liste des pr&eacute;r&eacute;glages et cliquez sur le bouton <strong class="UI">[Aller]</strong> pour passer &agrave; la position pr&eacute;d&eacute;finie souhait&eacute;e. Vous pouvez ajouter ou modifier la liste des pr&eacute;r&eacute;glages dans l&rsquo;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
         </div>
-		          <div class="wn5-setup-section-article-content">
-                        <h3>Groupe</h3>
+		<div class="wn5-setup-section-article-content">
+            <h3>Groupe</h3>
             <p>S&eacute;lectionnez le num&eacute;ro de groupe souhait&eacute; dans la liste des groupes et cliquez sur le bouton <strong class="UI">[D&eacute;marrer]</strong> pour activer l&apos;op&eacute;ration de groupe. Pour arr&ecirc;ter l&apos;op&eacute;ration de groupe, cliquez sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. La liste des groupes peut &ecirc;tre ajout&eacute;e ou modifi&eacute;e dans l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Groupe]</strong>.</p>
         </div>
     </div>

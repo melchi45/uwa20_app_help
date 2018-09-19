@@ -23,8 +23,8 @@
     	   <h4><a name="ptzcontrol"></a>Adjusting the PTZ</h4>
             <ul>
                 <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon  with the mouse, the camera moves to the pan and tilt.</li>
-                <li>Select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
-                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li ng-if="PanTiltOnlyModel">Select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                <li ng-if="PanTiltOnlyModel && ContinousFocus">Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
             </ul>
     	</div>
@@ -44,7 +44,7 @@
             <h3>Mode</h3>
             <p>Select an action to set the limited range.</p>
         </div>
- <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="TiltRangeOptions">
             <h3>Tilt range</h3>
             <p>The tilt range will appear when <strong class="UI">[Tilt limit]</strong> is selected from <strong class="UI">[Mode]</strong>. Sets the moving angle of tilt.</p>
         </div>
@@ -65,9 +65,9 @@
             </div>
              </div>		
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
 <div class="wn5-setup-section-heading">
     <h2>Pan/Tilt speed curve</h2>
 </div>
@@ -79,9 +79,9 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section"  ng-if="ProportionalPTSpeedModes">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link"></a>Proportional Pan/Tilt</h2>
     </div>

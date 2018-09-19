@@ -30,7 +30,11 @@
 			<div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>Tipo</h3>
             <p>Para definir la misma detecci&oacute;n de movimiento para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir la misma detecci&oacute;n de movimiento para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuraci&oacute;n de preajustes</a>.</p>
-        </div>
+            </div>
+			<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+                <h3>Tipo</h3>
+                <p>Para definir la misma detecci&oacute;n de movimiento para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir la misma detecci&oacute;n de movimiento para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">Configuraci&oacute;n de PT</a>.</p>
+                </div>
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
@@ -255,11 +259,14 @@
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de movimiento. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
         </div>
 
+        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+            <h3>Ir a predefinido.</h3>
+                <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de movimiento. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[Configuraci&oacute;n PT]</strong></a>.</p>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de movimiento. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
         </div>
-
     </div>
 </div>
 

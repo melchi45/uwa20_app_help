@@ -23,8 +23,8 @@
     	   <h4><a name="ptzcontrol"></a>Ajuster le PTZ</h4>
             <ul>
                 <li>Lorsque vous faites glisser l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span>avec la souris, la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison.</li>
-                <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <strong class="UI">[+]</strong> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <strong class="UI">[-]</strong> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
-                <li>D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li ng-if="PanTiltOnlyModel">S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <strong class="UI">[+]</strong> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <strong class="UI">[-]</strong> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
+                <li ng-if="PanTiltOnlyModel && ContinousFocus">D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
                 <li>Pour ajuster automatiquement la mise au point de la cam&eacute;ra pour prendre un clich&eacute;, cliquez sur le bouton <span class="tui tui-wn5-simple-focus"></span>.</li>
             </ul>
     	</div>
@@ -44,7 +44,7 @@
             <h3>Mode</h3>
             <p>S&eacute;lectionnez une action pour d&eacute;finir la plage limit&eacute;e.</p>
         </div>
- <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="TiltRangeOptions">
             <h3>Intervalle d&apos;inclinaison</h3>
             <p>L&apos;intervalle d&apos;inclinaison appara&icirc;t lorsque <strong class="UI">[Limite d&apos;inclinaison]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Mode]</strong>. D&eacute;finit l&apos;angle d&apos;inclinaison mobile.</p>
         </div>
@@ -65,9 +65,9 @@
             </div>
              </div>		
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section"  ng-if="ProportionalPTSpeedModes">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="group"></a>Panorama / inclinaison proportionnels</h2>
     </div>

@@ -58,7 +58,13 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-
+                    <tr ng-if="PanTiltOnlyModel">
+                        <td width="235">
+                                <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
+                        </td>
+                        <td width="235">Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n de la c&aacute;mara.</td>
+                    </tr>
                     <tr ng-if="DPTZSetupPage">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -350,6 +356,28 @@
     </div>
 -->
 
+<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section-heading">
+    <h2><a name="PT"></a>PT</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>Puede controlar el funcionamiento de panor&aacute;mica/inclinaci&oacute;n de la c&aacute;mara o desplazarse a una posici&oacute;n PTZ preajustada y al movimiento del grupo de control.</p>
+    </div>
+    
+    <div class="wn5-setup-section-article-content">
+        <h3>Preajuste</h3>
+        <p>Cuando selecciona un preajuste que desee desde la lista de preajustes y hace clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, se mover&aacute; hasta la ubicaci&oacute;n de preajuste deseada.</p>
+        <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n] </strong>, introduzca el nombre de preajuste, defina un n&uacute;mero, y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Un preajuste puede ser a&ntilde;adido o cambiado desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de PT]</strong>&gt;<strong class="UI">[Preajuste]</strong>.</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>Grupo</h3>
+        <p>Seleccione un n&uacute;mero de grupo deseado en la lista de grupos y haga clic en el bot&oacute;n <strong class="UI">[Iniciar]</strong> para activar la operaci&oacute;n de grupo. Para detener la operaci&oacute;n de grupo, haga clic en el bot&oacute;n <strong class="UI">[Detener]</strong>. La lista de grupos se puede agregar o modificar en la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuración PT]</strong>&gt;<strong class="UI">[Grupo]</strong>.</p>
+    </div>
+</div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
@@ -422,8 +450,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens">
-<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens">
+<hr class="wn5-setup-hr" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
