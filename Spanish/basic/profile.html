@@ -176,6 +176,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>C&oacute;dec</h3>
             <p>Seleccione el c&oacute;dec que desea aplicar al perfil. Las propiedades del perfil podr&iacute;an variar de acuerdo con el tipo de c&oacute;dec seleccionado.</p>
+            <p ng-if="SupportAutoImageAlignment">No se puede modificar el códec para el perfil predeterminado. Solo se puede modificar el códec para un perfil añadido recientemente por el usuario.</p>
           </div>
 
 
@@ -209,7 +210,7 @@
           <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Tipo de perfil</h3>
             <p>Seleccione un tipo de perfil para aplicar. El tipo de perfil seleccionado se muestra en la columna <strong class="UI">[Tipo]</strong> de la lista de perfiles. Los elementos de ajuste pueden variar seg&uacute;n el tipo de c&oacute;dec seleccionado.</p>
-
+            <p ng-if="SupportAutoImageAlignment">Además, dependiendo del canal que haya seleccionado en <a href="#channel">Seleccionar canal</a>, el tipo de perfil a configurar puede variar. Por ejemplo, el “Perfil de grabación” solo se puede configurar si ha seleccionado Canal1.</p>
             <ul>
                 <li><strong class="UI">Perfil predet.</strong>: Este es el perfil predeterminado que se aplica para la transmisi&oacute;n de una imagen de la c&aacute;mara en vivo. &apos;Predeterminado&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
                 <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de v&iacute;deo se utiliza para el env&iacute;o de la pantalla capturada de una imagen cuando se crea un evento. &apos;Evento&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil E-mail/FTP aparecer&aacute; s&oacute;lo cuando MJPEG se establezca para el c&oacute;dec.</li>
@@ -321,7 +322,10 @@
             <h3>Velocidad de cuadro </h3>
             <p>Ajuste el n&uacute;mero de fotogramas por segundo. El rango de velocidades de fotogramas disponibles var&iacute;a seg&uacute;n el valor de velocidad de fotograma seleccionado de <strong class="UI">[V&iacute;deo &amp; Audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de c&aacute;mara]</strong> &gt; <a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
-
+        <div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+            <h3>Compresión </h3>
+            <p>Puede configurar el radio de compresión.</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
             <h3>Vel. bits m&aacute;xima </h3>
             <p>Ajuste la velocidad de bits m&aacute;xima de la imagen cuando <strong class="UI">[Control de vel. bits]</strong> sea <strong class="UI">[VBR]</strong>. </p>

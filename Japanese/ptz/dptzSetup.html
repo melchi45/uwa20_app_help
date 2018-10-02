@@ -11,8 +11,22 @@
 		<li>플러그인 설치 후, 웹 브라우저의 해상도가 1024 이상이어야 디지털 PTZ 기능을 정상적으로 사용할 수 있습니다.</li>  --></ul>
 </div>
 </div>
-<hr class="wn5-setup-hr">
 
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>チャンネル選択</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p ng-if="SupportAutoImageAlignment">カメラチャンネルを選択した後、チャンネル別にPTZ関連の詳細を設定することができます。 </p>
+            <p ng-if="SupportAutoImageAlignment">「デジタルPTZ設定」はチャンネル6と7でしか設定できません。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>プリセット</h2>
@@ -24,7 +38,8 @@
         <div class="wn5-online-help-action">
     	   <h4>プリセット設定</h4>
     		<ol>
-    			<li>PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
+                <li ng-if="!SupportAutoImageAlignment">PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
+                <li ng-if="SupportAutoImageAlignment">PTZ制御画面で、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
     			<li><strong class="UI">[No.]</strong>で設定したいプリセットNo.を選択します。</li>
     			<li><strong class="UI">[名前]</strong>に該当プリセット名を入力します。</li>
                 <li><strong class="UI">[追加]</strong>ボタンをクリックします。</li>

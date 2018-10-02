@@ -12,6 +12,8 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Después de seleccionar su canal de cámara, puede configurar los detalles de Detección de movimiento para cada canal. </p>
+            <p ng-if="SupportAutoImageAlignment">La “Detección de movimiento” solo se puede configurar en Canal1.</p>
+            <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
     </div>
 </div>	
@@ -29,11 +31,11 @@
 			</div>
 			<div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>Tipo</h3>
-            <p>Para definir la misma detecci&oacute;n de movimiento para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir la misma detecci&oacute;n de movimiento para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuraci&oacute;n de preajustes</a>.</p>
+            <p>Para definir la misma detecci&oacute;n de movimiento para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir la misma detecci&oacute;n de movimiento para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuraci&oacute;n de preajustes</a>. Si selecciona <strong class="UI">[Preajuste]</strong> y configura una detección de movimiento para cada preajuste, quizá no pueda ver alguna de las características en los ajustes detallados.</p>
             </div>
 			<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
                 <h3>Tipo</h3>
-                <p>Para definir la misma detecci&oacute;n de movimiento para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir la misma detecci&oacute;n de movimiento para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">Configuraci&oacute;n de PT</a>.</p>
+                <p>Para configurar la misma detección de movimiento para cada preajuste, seleccione <strong class="UI">[Global]</strong>. PPara configurar la detección de movimiento para cada preajuste de panorámica/inclinación, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong>se activará únicamente cuando se configure el preajuste desde la página <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">Configuraci&oacute;n de PT</a>. Si selecciona <strong class="UI">[Preajuste]</strong> y configura una detección de movimiento para cada preajuste, quizá no pueda ver alguna de las características en los ajustes detallados.</p>
                 </div>
 
         <div class="wn5-online-help-info">

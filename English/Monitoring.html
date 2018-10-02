@@ -65,7 +65,7 @@
                                     <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
                                     <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
                             </td>
-                            <td width="235">You can control the Pan/Tilt motions of the camera.</td>
+                            <td width="235">You can digitally control the pan/tilt actions of the camera.</td>
                             </tr>
 					<tr ng-if="DPTZSetupPage">
                         <td width="235">
@@ -86,7 +86,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera��s RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
+                            <p>You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera's RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
                         </td>
                     </tr>
 
@@ -132,9 +132,9 @@
                         <td width="235">
                             <p><a href="#channel">Select channel</a></p>
                         </td>
-                        <td width="235">
-                            
-                            <p>After selecting your channel number, the video of the channel will be displayed on the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed in one screen. To return to the full single screen, click the channel number.</p>
+                        <td width="235">                      
+                            <p ng-if="!HandoverCalibration">After selecting your channel number, the video of the channel will be displayed on the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed in one screen. To return to the full single screen, click the channel number.</p>
+                            <p ng-if="SupportAutoImageAlignment">The camera screen of each channel is shown when you select a camera channel from CH2 to CH5. If you select CH1, the camera screens of CH2 to CH5 will be aligned in a straight line to show a panoramic view. If you select CH6 and CH7, you can check the CH1 video while <a href="#PTZ">adjusting the camera PTZ.</a></p>
                         </td>
                     </tr>
                     <tr>
@@ -177,7 +177,7 @@
                             <p>Record</p>
                         </td>
                         <td width="235">
-                            <p>You can record and save the live screen to a PC. Click the Record icon to start recording; click the icon again to stop recording. Recorded files are saved in .avi format and can be saved in the default path of the browser or a file path can be set in the ��Save as�� window.</p>
+                            <p>You can record and save the live screen to a PC. Click the Record icon to start recording; click the icon again to stop recording. Recorded files are saved in .avi format and can be saved in the default path of the browser or a file path can be set in the 'Save as' window.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -200,6 +200,7 @@
                         </td>
                         <td width="235">
                             <p>Use the microphone function. To use the microphone function, the <strong class="UI">[Audio in]</strong> function should be activated for the relevant profile. To activate the video input function, select <strong class="UI">[Enable]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Audio in]</strong>.</p>
+                            <p ng-if="SupportAutoImageAlignment">The microphone feature is available only if you’ve selected CH1. </p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -222,6 +223,7 @@
                         </td>
                         <td width="235">
                             <p>Adjust the audio volume of the live screen. <span class="tui tui-wn5-toolbar-sound"></span> Click the icon to activate the audio and adjust the volume.</p>
+                            <p ng-if="SupportAutoImageAlignment">The speaker feature is available only if you’ve selected CH1.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -376,7 +378,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article-content">
         <h3>Preset</h3>
             <p>When you select a desired preset from the preset list and click the <strong class="UI">[Go]</strong> button, it will move to the desired preset location. </p>
-            <p>To add a preset, click the <strong class="UI">[Setup] </strong>button, enter the preset name, set a number, and click the <strong class="UI">[Apply]</strong>&nbsp;button. A preset can be added to or changed from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT setup]</strong>&gt;<strong class="UI">[Preset]</strong>tab.</p>
+            <p>To set a preset position, click the <span class="tui tui-wn5-ptz-handle"></span> icon on the PT control screen, adjust the camera view position, and then click the <strong class="UI">[Setup]</strong> button. Set the preset name and number in the <strong class="UI">[Name]</strong> and <strong class="UI">[Number]</strong> fields and click the <strong class="UI">[Apply]</strong> button.</p>
+            <p>Clicking the <strong class="UI">[Home]</strong> button moves the camera view to the home position. The home position can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT setup]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p>
     </div>
         <div class="wn5-setup-section-article-content">
             <h3>Group</h3>
@@ -482,13 +485,39 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <p> Select a preset number and click the <strong class="UI">[Go]</strong> button to move the camera view to the PTZ preset position.</p>
             <p>Select a desired preset number from the preset list and click the <strong class="UI">[Go]</strong> button to move to the desired preset position. You can add or modify the preset list from <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt;<strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Preset]</strong> tab.</p>
         </div>
-		          <div class="wn5-setup-section-article-content">
-                        <h3>Group</h3>
+		    <div class="wn5-setup-section-article-content">
+            <h3>Group</h3>
             <p>Select a desired group number from the group list and click the <strong class="UI">[Start]</strong> button to activate the group operation. To stop the group operation, click the <strong class="UI">[Stop]</strong> button. The group list can be added or modified in the <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Group]</strong> tab.</p>
         </div>
 	</div>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section-heading">
+    <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>You can control Pan/Tilt/Zoom operation of the camera or move to a preset PTZ position and control group motion.</p>
+    </div>
+    <div class="wn5-online-help-info">
+        <h4>Note</h4>
+            <ul>
+                <li>The PTZ feature is available only if you’ve selected CH6 and CH7 in <a href="#channel">Select channel</a>.</li>
+            </ul>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>Preset</h3>
+        <p>After selecting a preset number in the Preset list, click the <strong class="UI">[Go]</strong> button to move to the PTZ preset position. </p>
+        <p>To add a preset, click the <strong class="UI">[Setup]</strong> button, enter a preset name, set its number, and then click the <strong class="UI">[Apply]</strong> button. Also, in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab, you can add or change presets.</p>
+        <p>Clicking the <strong class="UI">[Home]</strong> button moves the camera view to the home position. The home position can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>Group</h3>
+        <p>Select a desired group number from the group list and click the <strong class="UI">[Start]</strong> button to activate the group operation. To stop the group operation, click the <strong class="UI">[Stop]</strong> button. The group list can be added or modified in the <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Group]</strong> tab.</p>
+    </div>
+</div>
+</div>
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
@@ -503,8 +532,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <ul>
             <!--     <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> --> 
                 <li>The Pan function can be used only when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
-                <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when  <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> and 'Guad view', 'Q1', 'Q2', 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong>
-is enabled when 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. </li>
+                <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when  <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> and 'Guad view', 'Q1', 'Q2', 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> is enabled when 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. </li>
             </ul>
 
         </div>

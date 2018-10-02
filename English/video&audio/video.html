@@ -13,6 +13,7 @@
         <div class="wn5-setup-section-article-content">
             <p>After selecting a camera channel, you can set a privacy area for each channel, or set the detailed video settings, such as video rotation, analog output, etc. </p> 
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as 'PTZ'.</p>
+            <p ng-if="SupportAutoImageAlignment">Since a privacy area is individually set for each channel, a privacy area set on CH1 will only apply to CH1 even if the same privacy area exists on CH2.</p>
             <p> Click the <strong class="UI">[Detailed Information]</strong> button to view a summary of the channel. </p>
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
         </div>

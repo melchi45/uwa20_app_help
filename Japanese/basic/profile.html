@@ -169,6 +169,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>Codec</h3>
             <p>Profileに適用するCodecを選択します。選択したCodecタイプによって、Profile設定の詳細が異なります。</p>
+            <p ng-if="SupportAutoImageAlignment">基本プロファイルのコーデックは修正不可でユーザーが新しく追加したプロファイルのコーデックは修正できます。</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
@@ -197,7 +198,7 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Profileタイプ</h3>
             <p>適用するProfileタイプを選択します。選択したProfileタイプは、Profileリストの<strong class="UI">[タイプ]</strong>カラムに表示されます。選択したCodecタイプによって表示される設定項目が異なります。</p>
-
+            <p ng-if="SupportAutoImageAlignment">また<a href="#channel"></a>チャンネル選択</a>で選択したチャンネルによって設定できるプロファイルタイプが異なることがあります。例えば、「録画プロファイル」はチャンネル1を選択した場合のみ設定することができます。</p>
             <ul>
                 <li><strong class="UI">基本Profile</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。Profileリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。 <strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP profileオプションが表示されます。</li>
@@ -303,7 +304,10 @@
             <h3>フレームレート</h3>
             <p>1秒当たりのフレーム数を設定します。<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[カメラ設定]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[センサー]</strong></a>で選択したフレームレート値によって、設定できるフレームレートの範囲が異なります。</p>
         </div>
-        
+        <div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+            <h3>圧縮 </h3>
+            <p>圧縮レベルを設定します。</p>
+        </div>        
 		<div class="wn5-setup-section-article-content">
             <h3>最大ビットレート</h3>
             <p><strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の場合、映像の最大ビットレートを設定します。</p>

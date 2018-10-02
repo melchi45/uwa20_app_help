@@ -12,6 +12,19 @@
     </ul>
 </div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Select channel</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p ng-if="SupportAutoImageAlignment">After selecting your camera channel, you can set the details of PTZ for each channel. </p>
+            <p ng-if="SupportAutoImageAlignment">'Digital PTZ setup' can only be set on CH6 and CH7.</p>
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -25,7 +38,8 @@
         <div class="wn5-online-help-action">
     	   <h4>Setting a preset</h4>
             <ol>
-                <li>Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen, and then</li>
+                <li ng-if="!SupportAutoImageAlignment">Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen, and then</li>
+                <li ng-if="SupportAutoImageAlignment">On the PTZ control screen,</li>
                 <ul>
                     <li>adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon.  </li>
                     <li>select an image magnification by adjusting the zoom bar, or click the<span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or click the<span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>

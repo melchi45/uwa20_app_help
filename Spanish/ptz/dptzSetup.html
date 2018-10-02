@@ -14,8 +14,22 @@
 	
 </div>
 </div>
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Seleccionar canal</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p ng-if="SupportAutoImageAlignment">Después de seleccionar su canal de cámara, puede configurar los detalles de PTZ para cada canal. </p>
+            <p ng-if="SupportAutoImageAlignment">La “Configuración DPTZ” solo se puede configurar en Canal6 y Canal7.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+\
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>Preajuste</h2>
@@ -27,7 +41,8 @@
         <div class="wn5-online-help-action">
     	   <h4>Configuraci&oacute;n de un preajuste</h4>
     		<ol>
-    			<li>Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ, y ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="!SupportAutoImageAlignment">Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ, y ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="SupportAutoImageAlignment">En la pantalla de control PTZ, ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
     			<li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
     			<li>Introduzca el nombre preajuste relevante en <strong class="UI">[Nombre]</strong>.</li>
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>.</li>

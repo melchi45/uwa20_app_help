@@ -12,6 +12,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         <div class="wn5-setup-section-article-content">
             <p>After selecting a camera channel, you can set the details of each channel. The channel number last selected on the live or play page is automatically selected. </p>
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as ‘PTZ’.</p>
+            <p ng-if="SupportAutoImageAlignment">'Camera setup' can only be set on CH1.</p>
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
         </div>
 	</div>
@@ -57,7 +58,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each PT preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each preset, then you may not set some of the items in the detailed camera settings.</p>
+            <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each pan/tilt preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each preset, then you may not set some of the items in the detailed camera settings.</p>
         </div>
 </div>
 </div>

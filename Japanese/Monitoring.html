@@ -113,6 +113,17 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+                    <tr ng-if="MaxChannel > 1">
+                        <td width="235">
+                            <p><a href="#channel">チャンネル選択</a></p>
+                        </td>
+                        <td width="235">
+                         <!--   <p>카메라 채널 번호가 표시됩니다.</p>
+                            <p ng-if="!HandoverCalibration">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p>
+                            <p ng-if="HandoverCalibration">고정형 카메라의 채널 번호를 선택하면 해당 영상이 뷰어에 나타납니다. [PTZ]를 선택하면 PTZ 단일 채널 영상이 뷰어에 나타납니다. 멀티 채널 아이콘을 선택하면 고정형 카메라와 PTZ 카메라이 영상이 한 번에 나타납니다. 단일 화면으로 돌아오려면 채널 번호나 [PTZ]를  클릭합니다.</p> --> 
+                            <p ng-if="SupportAutoImageAlignment">カメラチャンネル2～5を選択すると、各チャンネル別のカメラ映像を表示します。チャンネル1を選択すると、チャンネル2～5のカメラ映像を一つに接続させてパノラマタイプに表示します。チャンネル6と7を選択すると、チャンネル1の映像をカメラ<a href="#PTZ">PTZ調整</a>しながら確認することができます。</p>
+                        </td>
+                    </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -176,6 +187,7 @@
                         </td>
                         <td width="235">
                             <p>マイク機能を使用することができます。マイク機能を使用するためには、該当のProfileに<strong class="UI">[音声入力]</strong>機能を有効にする必要があります。ビデオ入力機能を有効にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[音声入力]</strong>で<strong class="UI">[On]</strong>を選択します。</p>
+                            <p ng-if="SupportAutoImageAlignment">チャンネル1を選択した場合のみ、マイク機能を使用することができます。</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -199,6 +211,7 @@
                         <td width="235">
                             <p>ライブ画面のオーディオ音量を調整することができます。 <span class="tui tui-wn5-toolbar-sound"></span> ボタンをクリックしてオーディオを有効に設定してから、音量を調整することができます。</p>
                             <p>&nbsp;</p>
+                            <p ng-if="SupportAutoImageAlignment">チャンネル1を選択した場合のみ、スピーカー機能を使用することができます。</p>
                         </td>
                     </tr>
                 </tbody>
@@ -312,7 +325,8 @@
     <div class="wn5-setup-section-article-content">
         <h3>プリセット</h3>
         <p>プリセットリストでプリセットを選択した後、<strong class="UI">[進む]</strong>ボタンをクリックすると、お望みのプリセット位置に移動します。</p>
-        <p>プリセットを追加するには、<strong class="UI">[設定]</strong>ボタンをクリックした後、プリセット名を入力して番号を設定してから<strong class="UI">[適用]</strong>ボタンをクリックします。また<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT設定]</strong>&gt;<strong class="UI">[プリセット]</strong>タブでプリセットを追加したり変更することができます。</p>
+        <p>プリセット位置を設定するには、PT制御画面で<span class="tui tui-wn5-ptz-handle"></span>アイコンをクリックしてカメラビュー位置を調整した後、<strong class="UI">[設定]</strong>ボタンをクリックします。<strong class="UI">[名前]</strong>と<strong class="UI">[番号]</strong>フィールドにプリセット名と番号をそれぞれ設定した後、<strong class="UI">[適用]</strong>ボタンをクリックします。</p>
+        <p><strong class="UI">[ホーム]</strong>ボタンをクリックすると、カメラビューがホーム位置に移動します。ホーム位置は<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT設定]</strong>&gt;<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
     </div>
     <div class="wn5-setup-section-article-content">
         <h3>グループ</h3>
@@ -459,7 +473,33 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
 </div>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section-heading">
+    <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>カメラのパン/チルト/ズーム動作を制御したり、すでに設定したPTZプリセット位置に移動することができ、グループ動作を制御することができます。</p>
+    </div>
+    <div class="wn5-online-help-info">
+        <h4>参考事項</h4>
+            <ul>
+                <li><a href="#channel">チャンネル選択</a>でチャンネル6と7を選択した場合のみ、PTZ機能を使用することができます。</li>
+            </ul>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>プリセット</h3>
+        <p>プリセットリストでプリセット番号を選択した後、<strong class="UI">[移動]</strong>ボタンをクリックすると、該当のPTZプリセット位置に移動します。 </p>
+        <p>プリセットを追加するには、<strong class="UI">[設定]</strong>ボタンをクリックした後、プリセット名を入力して番号を設定してから<strong class="UI">[適用]</strong>ボタンをクリックします。また<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[プリセット]</strong>タブでプリセットを追加したり変更することができます。</p>
+        <p><strong class="UI">[ホーム]</strong>ボタンをクリックすると、カメラビューがホーム位置に移動します。ホーム位置は<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>グループ</h3>
+        <p>グループリストでグループNo.を選択した後、<strong class="UI">[開始]</strong>ボタンをクリックすると、設定したグループ動作を行います。グループ動作を中止するには、<strong class="UI">[中止]</strong>ボタンをクリックします。グループリストは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[グループ]</strong>タブで追加したり変更することができます。</p>
+    </div>
+</div>
+</div>
 <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">

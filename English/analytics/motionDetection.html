@@ -12,6 +12,8 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After selecting your camera channel, you can set the details of Motion detection for each channel.</p>
+            <p ng-if="SupportAutoImageAlignment">'Motion detection' can only be set on CH1.</p>
+            <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
         </div>
     </div>
 </div>	
@@ -30,11 +32,11 @@
 			</div>
 			<div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>Type</h3>
-            <p>To set the same motion detection for all presets, select <strong class="UI">[Global]</strong>. To set a different motion detection for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page.</p>
+            <p>To set the same motion detection for all presets, select <strong class="UI">[Global]</strong>. To set a different motion detection for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page. If you select <strong class="UI">[Preset]</strong> and set motion detection for each preset, you may not be able to set some of the features in the detailed settings.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
             <h3>Type</h3>
-            <p>To set the same motion detection for all presets, select <strong class="UI">[Global]</strong>. To set a different motion detection for each PT preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT setup</a> page.</p>
+            <p>To set the same motion detection for every preset, select <strong class="UI">[Global]</strong>. To set motion detection for each pan/tilt preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT setup</a> page. If you select <strong class="UI">[Preset]</strong> and set motion detection for each preset, you may not be able to set some of the features in the detailed settings.</p>
         </div>
 
         <div class="wn5-online-help-info">

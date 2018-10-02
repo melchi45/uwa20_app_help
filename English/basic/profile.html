@@ -178,6 +178,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>Codec</h3>
             <p>Select the codec which you wish to apply to the profile. The profile properties may vary according to the selected codec type.</p>
+            <p ng-if="SupportAutoImageAlignment">The codec for default profile cannot be modified. Only the codec for a profile newly added by user can be modified. </p>
         </div>
 
 
@@ -211,7 +212,7 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Profile type</h3>
             <p>Select a profile type to apply. The selected profile type will be displayed in the <strong class="UI">[Type]</strong> column of the profile list. The setup items may vary according to the selected codec type.</p>
-
+            <p ng-if="SupportAutoImageAlignment">Also, depending on the channel you selected in <a href="#channel">Select channel</a>, the profile type that can be set may differ. For example, 'Record profile' can be set only if you’ve selected CH1.</p>
             <ul>
                 <li><strong class="UI">Default profile</strong>: This is the default profile applied for streaming a live camera image. ‘Default’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. ‘Event’ is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
@@ -318,7 +319,10 @@
             <h3>Frame rate </h3>
             <p>Set the number of frames per second. The range of frame rates available varies according to the frame rate value selected from <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
-
+        <div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+            <h3>Compression</h3>
+            <p>You can set the compression ratio.</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
             <h3>Maximum bitrate </h3>
             <p>Set the maximum bitrate of the image when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>.</p>

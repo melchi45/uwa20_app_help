@@ -162,6 +162,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>Codec</h3>
             <p>S&eacute;lectionnez le codec que vous souhaitez appliquer au profil. Le r&eacute;glage profil peut varier en fonction du type de codec s&eacute;lectionn&eacute;.</p>
+            <p ng-if="SupportAutoImageAlignment">Le codec pour le profil par défaut ne peut pas être modifié. Seulement le codec pour un profil nouvellement ajouté par l’utilisateur peut être modifié. </p>
         </div>
 
 
@@ -193,7 +194,7 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Type de profil</h3>
             <p>S&eacute;lectionnez un type de profil &agrave; appliquer. Le type de profil s&eacute;lectionn&eacute; sera affich&eacute; dans la colonne <strong class="UI">[Type]</strong> de la liste des profils. Les &eacute;l&eacute;ments de configuration peuvent varier en fonction du type de codec s&eacute;lectionn&eacute;.</p>
-
+            <p ng-if="SupportAutoImageAlignment">Aussi, selon le canal sélectionné dans <a href="#channel">Sélectionner un canal</a>, le type de profil pouvant être configuré peut différer. Par exemple, « Enregistrer un profil » peut être configuré seulement si vous avez sélectionné CAN 1.</p>
             <ul>
                 <li><strong class="UI">Profil par d&eacute;faut</strong>&nbsp;: C&apos;est le profil par d&eacute;faut appliqu&eacute; pour diffuser une image de cam&eacute;ra en direct. «&nbsp;Default&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
                 <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. «&nbsp;&Eacute;v&eacute;nement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
@@ -300,7 +301,10 @@
             <h3>Vitesse d&apos;enregistrement</h3>
             <p>D&eacute;finissez le nombre d&apos;images par seconde. La plage des vitesses d&apos;enregistrement disponibles varie en fonction de la valeur de la vitesse d&apos;enregistrement s&eacute;lectionn&eacute;e dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Capteur]</strong></a>.</p>
         </div>
-
+        <div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+            <h3>Compression</h3>
+            <p>Vous pouvez configurer le taux de compression.</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
             <h3>D&eacute;bit binaire maximal</h3>
             <p>R&eacute;glez le d&eacute;bit binaire maximal de l&apos;image lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est <strong class="UI">[VBR]</strong>.</p>

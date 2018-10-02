@@ -64,7 +64,7 @@
                                 <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
                                 <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
                         </td>
-                        <td width="235">Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison de la cam&eacute;ra.</td>
+                        <td width="235">Vous pouvez contrôler numériquement les actions de panoramique/inclinaison de la caméra.</td>
                         </tr>
 					<tr>
                         <td width="235">
@@ -100,6 +100,17 @@
                         <td width="235">
                             <p>V&eacute;rifiez les informations de connexion pour chaque profil et pour les utilisateurs connect&eacute;s en m&ecirc;me temps.</p>
                             <p>&nbsp;</p>
+                        </td>
+                    </tr>
+                    <tr ng-if="MaxChannel > 1">
+                        <td width="235">
+                            <p><a href="#channel">Sélectionner un canal</a></p>
+                        </td>
+                        <td width="235">
+                        <!--     <p>카메라 채널 번호가 표시됩니다.</p>
+                            <p ng-if="!HandoverCalibration">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p>
+                            <p ng-if="HandoverCalibration">고정형 카메라의 채널 번호를 선택하면 해당 영상이 뷰어에 나타납니다. [PTZ]를 선택하면 PTZ 단일 채널 영상이 뷰어에 나타납니다. 멀티 채널 아이콘을 선택하면 고정형 카메라와 PTZ 카메라이 영상이 한 번에 나타납니다. 단일 화면으로 돌아오려면 채널 번호나 [PTZ]를  클릭합니다.</p>  -->
+                            <p ng-if="SupportAutoImageAlignment">L’écran de la caméra de chaque canal s’affiche lorsque vous sélectionnez un canal de caméra CAN 2 à CAN 5. Si vous sélectionnez CAN 1, les écrans de caméra CAN 2 à CAN 5 seront alignés en ligne droite pour montrer une vue panoramique. Si vous sélectionnez CAN 6 et CAN 7, vous pouvez vérifier la vidéo du CAN 1 tout en <a href="#PTZ">ajustant PTZ de la caméra</a>.</p>
                         </td>
                     </tr>
                     <tr>
@@ -165,6 +176,7 @@
                         </td>
                         <td width="235">
                             <p>Utilisez la fonction microphone. Pour utiliser la fonction microphone, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p>
+                            <p ng-if="SupportAutoImageAlignment">La fonction de microphone est disponible seulement si vous avez sélectionné CAN 1. </p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -188,6 +200,7 @@
                         <td width="235">
                             <p>R&eacute;glez le volume audio de l&apos;&eacute;cran de direct. <span class="tui tui-wn5-toolbar-sound"></span> Cliquez sur le bouton pour activer l&apos;audio et ajuster le volume.</p>
                             <p>&nbsp;</p>
+                            <p ng-if="SupportAutoImageAlignment">La fonction haut-parleur est disponible seulement si vous avez sélectionné CAN 1.</p>
                         </td>
                     </tr>
                 </tbody>
@@ -336,7 +349,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article-content">
         <h3>Pr&eacute;r&eacute;glage</h3>
         <p>Lorsque vous s&eacute;lectionnez un pr&eacute;r&eacute;glage souhait&eacute; dans la liste des pr&eacute;r&eacute;glages et cliquez sur le bouton <strong class="UI">[Aller]</strong>, il se d&eacute;place vers l&apos;emplacement pr&eacute;d&eacute;fini souhait&eacute;.</p>
-        <p>Pour ajouter un pr&eacute;r&eacute;glage, cliquez sur le bouton <strong class="UI">[Configuration]</strong>, entrez le nom du pr&eacute;r&eacute;glage, choisissez un num&eacute;ro et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>. Un pr&eacute;r&eacute;glage peut &ecirc;tre ajout&eacute; ou modifi&eacute; &agrave; partir de l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT設定]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;gl&eacute;e]</strong>.</p>
+        <p>Pour d&eacute;finir une position pr&eacute;r&eacute;gl&eacute;e, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> sur l&rsquo;&eacute;cran de contr&ocirc;le PT, ajustez la position de la vue cam&eacute;ra puis cliquez sur le bouton <strong class="UI">[Configurer]</strong>. D&eacute;finissez le nom pr&eacute;r&eacute;gl&eacute; et le num&eacute;ro dans les champs <strong class="UI">[Nom]</strong> et <strong class="UI">[Num&eacute;ro]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
+        <p>En cliquant sur le bouton <strong class="UI">[Home]</strong> la vue de la cam&eacute;ra passe en position initiale. La position initiale peut &ecirc;tre d&eacute;finie dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[configurer PT]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
     </div>
     <div class="wn5-setup-section-article-content">
         <h3>Groupe</h3>
@@ -482,6 +496,36 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         </div>
     </div>
 </div>
+
+
+<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section-heading">
+    <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
+</div>
+<div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article-content">
+        <p>Vous pouvez contr&ocirc;ler les fonctions panoramique/inclinaison/zoom de la cam&eacute;ra, ou passer &agrave; une position PTZ pr&eacute;r&eacute;gl&eacute;e et contr&ocirc;ler le mouvement collectif.</p>
+    </div>
+    <div class="wn5-online-help-info">
+        <h4>Remarque</h4>
+            <ul>
+                <li>La fonction PTZ est seulement disponible si vous avez sélectionné CAN 6 et CAN 7 dans <a href="#channel">Sélectionner un canal</a>.</li>
+            </ul>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>Pr&eacute;r&eacute;glage</h3>
+        <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro pr&eacute;r&eacute;gl&eacute; dans la liste Pr&eacute;r&eacute;glages, cliquez sur le bouton <strong class="UI">[Aller]</strong> pour acc&eacute;der &agrave; la position de pr&eacute;r&eacute;glage PTZ. </p>
+        <p>Pour ajouter un pr&eacute;r&eacute;glage, cliquez sur le bouton <strong class="UI">[Configuration]</strong>, entrez un nom pr&eacute;r&eacute;gl&eacute;, d&eacute;finissez son num&eacute;ro puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong>. Aussi, dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>, vous pouvez ajouter ou changer les pr&eacute;r&eacute;glages.</p>
+        <p>En cliquant sur le bouton <strong class="UI">[Home]</strong> la vue de la cam&eacute;ra passe en position initiale. La position initiale Home peut &ecirc;tre d&eacute;finie dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
+    </div>
+    <div class="wn5-setup-section-article-content">
+        <h3>Groupe</h3>
+        <p>S&eacute;lectionnez le num&eacute;ro de groupe souhait&eacute; dans la liste des groupes et cliquez sur le bouton <strong class="UI">[D&eacute;marrer]</strong> pour activer l&apos;op&eacute;ration de groupe. Pour arr&ecirc;ter l&apos;op&eacute;ration de groupe, cliquez sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. La liste des groupes peut &ecirc;tre ajout&eacute;e ou modifi&eacute;e dans l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Groupe]</strong>.</p>
+    </div>
+</div>
+</div>
+
 
 <!-- <hr class="wn5-setup-hr" ng-if="FisheyeLens">
 <div class="wn5-setup-section" ng-if="FisheyeLens">

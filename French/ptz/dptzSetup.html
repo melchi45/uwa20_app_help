@@ -10,9 +10,21 @@
 		<li ng-if="FixedProfileCodecChange">After installing the plugin, you can use the digital PTZ function without restriction only when the resolution of the web browser is 1024 or higher.</li> --></ul>
 </div>
 </div>
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Sélectionner un canal</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p ng-if="SupportAutoImageAlignment">Après avoir sélectionné le canal de la caméra, vous pouvez définir les détails PTZ pour chaque canal. </p>
+            <p ng-if="SupportAutoImageAlignment">« Configuration PTZ numérique » peut seulement être configuré sur CAN 6 à CAN 7.</p>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>Pr&eacute;r&eacute;glage</h2>
@@ -24,7 +36,8 @@
         <div class="wn5-online-help-action">
     	   <h4>D&eacute;finir un pr&eacute;r&eacute;glage</h4>
     		<ol>
-    			<li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="!SupportAutoImageAlignment">Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="SupportAutoImageAlignment">Sur l&apos;&eacute;cran de contr&ocirc;le PTZ, ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
     			<li>S&eacute;lectionnez un nombre pr&eacute;d&eacute;fini dans <strong class="UI">[Nombre]</strong>.</li>
     			<li>Entrez le nom de pr&eacute;r&eacute;glage appropri&eacute; dans <strong class="UI">[Nom]</strong>.</li>
                 <li>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong>.</li>
