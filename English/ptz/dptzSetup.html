@@ -2,7 +2,7 @@
 
 <div class="wn5-setup-section">
 	<p>You can set the camera views to move after digital zoom is executed, rather than having the camera view change by physically moving the camera up and down (tilt) or left and right (pan). You can set a preset or change the camera views by setting a group of presets. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.  </p>
-    <div class="wn5-online-help-info">
+    <div class="wn5-online-help-info" ng-if="!SupportAutoImageAlignment">
         <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
     <ul>
         
@@ -49,7 +49,7 @@
                 <li>Click the <strong class="UI">[Add]</strong> button.</li>
             </ol>
             <p></p>
-            <p ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically, and the icon turns into <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. When you click the button again, auto tracking will stop.</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment">When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically, and the icon turns into <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. When you click the button again, auto tracking will stop.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Moving to a preset</h4>

@@ -2,7 +2,7 @@
 
 <div class="wn5-setup-section">
 	<p>Puede configurar las vistas de c&aacute;mara para moverse despu&eacute;s de que se ejecute el zoom digital, en lugar de hacer que cambie la vista de la c&aacute;mara f&iacute;sicamente moviendo la c&aacute;mara hacia arriba y hacia abajo (inclinaci&oacute;n) o hacia la izquierda y la derecha (panor&aacute;mica). Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.  </p>
-    <div class="wn5-online-help-info"></div>
+    <div class="wn5-online-help-info" ng-if="!SupportAutoImageAlignment">
     <h4><span class="tui tui-wn5-help-warning"></span>>Nota</h4>
     <ul>
         
@@ -47,7 +47,7 @@
     			<li>Introduzca el nombre preajuste relevante en <strong class="UI">[Nombre]</strong>.</li>
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>.</li>
             </ol>
-            <p ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">Al hacer clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo, el seguimiento autom&aacute;tico se detendr&aacute;.</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment">Al hacer clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo, el seguimiento autom&aacute;tico se detendr&aacute;.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Ir a un predefinido</h4>

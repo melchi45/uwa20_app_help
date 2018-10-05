@@ -2,7 +2,7 @@
 
 <div class="wn5-setup-section">
 	<p>Vous pouvez r&eacute;gler les angles de la cam&eacute;ra afin qu&apos;ils bougent apr&egrave;s l&apos;ex&eacute;cution du zoom num&eacute;rique plut&ocirc;t que de modifier l&rsquo;angle de la cam&eacute;ra en d&eacute;pla&ccedil;ant physiquement la cam&eacute;ra de haut en bas (inclinaison) ou gauche et droite (panoramique). Vous pouvez &eacute;tablir un pr&eacute;r&eacute;glage ou modifier les vues cam&eacute;ra en d&eacute;finissant un groupe de pr&eacute;r&eacute;glages. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
-    <div class="wn5-online-help-info">
+    <div class="wn5-online-help-info"  ng-if="!SupportAutoImageAlignment">
     <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
     <ul>
         
@@ -42,7 +42,7 @@
     			<li>Entrez le nom de pr&eacute;r&eacute;glage appropri&eacute; dans <strong class="UI">[Nom]</strong>.</li>
                 <li>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong>.</li>
             </ol>
-            <p ng-if="DPTZSetupPage && !FisheyeLens && !SupportAutoImageAlignment">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-on"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Passer &agrave; un pr&eacute;r&eacute;glage</h4>

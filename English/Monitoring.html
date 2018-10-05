@@ -133,7 +133,7 @@
                             <p><a href="#channel">Select channel</a></p>
                         </td>
                         <td width="235">                      
-                            <p ng-if="!HandoverCalibration">After selecting your channel number, the video of the channel will be displayed on the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed in one screen. To return to the full single screen, click the channel number.</p>
+                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">After selecting your channel number, the video of the channel will be displayed on the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed in one screen. To return to the full single screen, click the channel number.</p>
                             <p ng-if="SupportAutoImageAlignment">The camera screen of each channel is shown when you select a camera channel from CH2 to CH5. If you select CH1, the camera screens of CH2 to CH5 will be aligned in a straight line to show a panoramic view. If you select CH6 and CH7, you can check the CH1 video while <a href="#PTZ">adjusting the camera PTZ.</a></p>
                         </td>
                     </tr>
