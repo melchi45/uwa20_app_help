@@ -17,27 +17,27 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>Software  </h3>
 			<p>Se muestra la versi&oacute;n de software del producto que se est&aacute; utilizando. No se pueden hacer cambios en la versi&oacute;n del software. </p>
-			<p>Puede ver los detalles del software, incluyendo la versi&oacute;n de ISP aplicada a la versi&oacute;n de SUNAPI y software, al hacer clic en el bot&oacute;n <strong class="UI">[Detalles]</strong>.</p>
+			<p ng-if="!SupportAutoImageAlignment">Puede ver los detalles del software, incluyendo la versi&oacute;n de ISP aplicada a la versi&oacute;n de SUNAPI y software, al hacer clic en el bot&oacute;n <strong class="UI">[Detalles]</strong>.</p>
 <p>&nbsp;</p>
 		</div>
-	<!--  	<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration">
+	  	<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
 		    <h3>Versi&oacute;n de ISP actual  </h3>
 		    <p>Se muestra la versi&oacute;n de ISP actual del producto que est&aacute; utilizando. No se pueden hacer cambios en la versi&oacute;n de ISP actual.</p>
-		</div> --> 
+		</div>  
 
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>Versi&oacute;n de ISP del canal fijo</h3>
 		    <p>La versi&oacute;n de ISP de la c&aacute;mara fija montada. La versi&oacute;n de ISP solo es de lectura, no se permite ninguna modificaci&oacute;n.</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>Versi&oacute;n de ISP del canal PTZ</h3>
 		    <p>La versi&oacute;n de ISP de la c&aacute;mara PTZ montada. La versi&oacute;n de ISP solo es de lectura, no se permite ninguna modificaci&oacute;n.</p>
 	   	</div>
 
-	 <!--   	<div class="wn5-setup-section-article-content">
+	   	<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
 			<h3>Versión UWA </h3>
 	 	 <p>Versión del visor web de la cámara en uso.</p>
-	   </div>  --> 
+	   </div>   
 	  
 	   	<div class="wn5-setup-section-article-content">
 		    <h3>Software Actualizar</h3>

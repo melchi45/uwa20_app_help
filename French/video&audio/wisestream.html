@@ -26,7 +26,8 @@
 <div class="wn5-online-help-info">
      <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
      <ul>
-             <li>Pour optimiser les performances de WiseStream, r&eacute;glez <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong> sur <strong class="UI">[Activer]</strong> dans le menu <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>. Avec les fonctions <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong>, vous pouvez obtenir &agrave; la fois la qualit&eacute; vid&eacute;o et le nombre d&apos;images par seconde.</li>
+             <li ng-if="DynamicGOVSupport">Pour optimiser les performances de WiseStream, r&eacute;glez <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong> sur <strong class="UI">[Activer]</strong> dans le menu <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>. Avec les fonctions <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong>, vous pouvez obtenir &agrave; la fois la qualit&eacute; vid&eacute;o et le nombre d&apos;images par seconde.</li>
+             <li ng-if="!DynamicGOVSupport">Pour optimiser les performances de WiseStream, r&eacute;glez <strong class="UI">[FPS dynamique]</strong> sur <strong class="UI">[Activer]</strong> dans le menu <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>. </li>
             </ul>
         </div>
     </div>

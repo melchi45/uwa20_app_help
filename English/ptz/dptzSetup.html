@@ -2,11 +2,12 @@
 
 <div class="wn5-setup-section">
 	<p>You can set the camera views to move after digital zoom is executed, rather than having the camera view change by physically moving the camera up and down (tilt) or left and right (pan). You can set a preset or change the camera views by setting a group of presets. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.  </p>
-    <div class="wn5-online-help-info" ng-if="!SupportAutoImageAlignment">
+    <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
     <ul>
         
-		<li><strong class="UI">[Digital PTZ profile]</strong> should be selected from <strong class="UI">[Video profile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Profile type]</strong></a> in order to set digital PTZ.</li>
+        <li ng-if="!SupportAutoImageAlignment"><strong class="UI">[Digital PTZ profile]</strong> should be selected from <strong class="UI">[Video profile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Profile type]</strong></a> in order to set digital PTZ.</li>
+        <li>The angular field of view of 3M Live view is wider than that modified on the preview screen.</li>
 		<!-- <li ng-if="FixedProfileCodecChange">If connected to the web viewer through Internet Explorer, digital PTZ function can only be used after installing a plugin. To install the plugin, click the plugin <span class="tui tui-wn5-download"></span> button at the top right on the <strong class="UI">[Live]</strong> screen or the <strong class="UI">[Playback]</strong> screen.</li>
 		<li ng-if="FixedProfileCodecChange">After installing the plugin, you can use the digital PTZ function without restriction only when the resolution of the web browser is 1024 or higher.</li> -->
     </ul>
@@ -21,6 +22,8 @@
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="SupportAutoImageAlignment">After selecting your camera channel, you can set the details of PTZ for each channel. </p>
+            <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
+            <p ng-if="SupportAutoImageAlignment">The presets set in the Digital PTZ menu can be seen on the Live screen.</p>
             <p ng-if="SupportAutoImageAlignment">'Digital PTZ setup' can only be set on CH6 and CH7.</p>
         </div>
     </div>

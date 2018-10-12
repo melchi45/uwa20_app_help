@@ -4,18 +4,21 @@
     <p>モーション検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[モーション検知]</strong>に同じく適用されます。</p>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>チャンネル選択</h2>
+        <h2><a name="channel">チャンネル選択</a></h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>カメラチャンネルを選択した後、チャンネル別にモーション検知の詳細を設定することができます。</p>
+            <p>カメラチャンネルを選択した後、チャンネル別にモーション検知の詳細を設定することができます。ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
+            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
+            <p ng-if="SupportAutoImageAlignment">「モーション検知」はチャンネル1でしか設定できません。</p>
+            <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
         </div>
-
     </div>
-</div>	
+</div>		
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -99,7 +102,7 @@
             <h3>感度</h3>
             <p>エリア別にモーション検知感度を設定します。背景と対象物の区分が明確な環境では感度を低く設定し、暗くて背景と対象物の区分が明確ではない環境では感度を高く設定します。</p>
         </div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">
             <h3>最短時間</h3>
             <p>最短時間(秒)：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます</p>
         </div>
@@ -174,7 +177,7 @@
     </div>
 </div>  
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
     <h2>一般</h2>
     </div>
@@ -219,8 +222,8 @@
 					
     </div>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>オーバーレイ</h2>
     </div>

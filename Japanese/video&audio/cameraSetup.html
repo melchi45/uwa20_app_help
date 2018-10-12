@@ -3,14 +3,18 @@
 <div class="wn5-setup-section">
     <p>カメラが設置された環境で最適の映像を撮影するようにカメラの設定を変更することができます。様々な環境に適合した画像プリセットを基本的に提供し、ユーザーが直接にカメラの設定値を指定することもできます。カメラのプレビュー画面で設定した値によって、カメラの映像がどう表示されるか確認することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。設定を変更した後、<strong class="UI">[適用]</strong>ボタンをクリックせずにTime out時間(240秒)が経過すると、設定値が変更前に戻ります。</p>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>チャンネル選択</h2>
+        <h2><a name="channel"></a>チャンネル選択</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>カメラチャンネルを選択した後、チャンネル別に詳細を設定することができます。</p>
+            <p>カメラチャンネルを選択した後、チャンネル別に詳細を設定することができます。ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
+            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
+            <p ng-if="SupportAutoImageAlignment">「カメラ設定」はチャンネル1でしか設定できません。</p>
+            <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
         </div>
 	</div>
 </div> 
@@ -168,7 +172,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>逆光で撮影された映像を補正することができます。<strong class="UI">[モード]</strong>で無効、BLC、HLC、WDRの中から選択することができます。選択したバックライトモードによって詳細設定を変更することができます。</p>
+            <p ng-if="HLC">逆光で撮影された映像を補正することができます。<strong class="UI">[モード]</strong>で無効、BLC、HLC、WDRの中から選択することができます。選択したバックライトモードによって詳細設定を変更することができます。</p>
+            <p ng-if="!HLC">逆光で撮影された映像を補正することができます。<strong class="UI">[モード]</strong>で無効、BLC、WDRの中から選択することができます。選択したバックライトモードによって詳細設定を変更することができます。</p>
 
         </div>
         <div class="wn5-setup-section-article-content">
@@ -195,16 +200,16 @@
                 <li>BLC設定時、誤動作を防ぐためにBLCエリアの上下間隔は最大60/最小40、左右間隔は最大60/最小30に制限されます。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation)モードは街灯や車のヘッドライトのように強い照明を効果的に遮断して強い照明の飽和によって車のナンバープレートなどの周囲にある物事が識別できないことを防止します。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="HLC">
             <h5>HLCレベル</h5>
             <p>露出レベルを設定してハイライトエリアを調整します。</p>
             <p>低、中、高の中から選択することができます。レベルが高いほど、補正に優れていてハイライトエリアを遮断するエリアに差があります。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>マスク</h5>
             <p>マスクの適用有無を選択します。</p>
             <ul>
@@ -214,19 +219,19 @@
                 <li><strong class="UI">夜間</strong>：とても暗くなる前まで遮断エリアが生成されます。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>マスクカラー</h5>
             <p>遮断エリアカラーを設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>マスクトーン</h5>
             <p>遮断エリアトーンを設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>調光</h5>
             <p>画面の強い光エリアを検知して明るさを調整しながら、飽和エリアを減少させます。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>エリア設定</h5>
             <p>遮断エリアのサイズ&amp;位置を設定します。</p>
             <ul>
@@ -236,7 +241,7 @@
                 <li><strong class="UI">右</strong>：画面の左側から右面がどれだけ離れているかを設定します。</li>
             </ul>
         </div>
-				        <div class="wn5-online-help-info">
+				        <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>HLCを初期に設定する時、遮断エリアを表示する緑ボックスが15秒ぐらい表示されてから消えます。</li>
@@ -256,15 +261,15 @@
             <h5>WDRレベル</h5>
             <p>バックライトのレベルを調整します。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
             <h5>自動</h5>
             <p><strong class="UI">[有効]</strong>を選択すると、映像を分析してバックライトが必要な場合、自動にWDRモードを有効にします。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRLowLightOptions">
             <h5>ローライトオフ</h5>
             <p><strong class="UI">[有効]</strong>を選択すると、低照度環境でWDRモードを自動にオフします。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRIRLEDEnableOptions">
             <h5>B/Wオフ</h5>
             <p><strong class="UI">[有効]</strong>を選択すると、B/Wモードが動作した時にWDRモードを自動にオフします。</p>
         </div>
@@ -461,13 +466,13 @@
             <h3>DIS</h3>
             <p>DIS (Digital Image Stabilization)は風のような外部的な要因でカメラに振動が発生する場合、映像を自動に補正して安定的に画面を出力します。</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="Statistics">
+		<div class="wn5-online-help-info" ng-if="DIS && Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                     <ul>
                         <li>DIS設定を変更すると、映像画面がズームアウトされたりズームインされることがあります。変更された映像に合わせて映像を分析したり、統計データを蓄積するように分析と統計設定を変更してください。該当設定は<strong class="UI">[分析]</strong>メニューと<strong class="UI">[統計]</strong>メニューで変更することができます。</li>
                     </ul>
         </div>
-						<div class="wn5-online-help-info">
+						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>DIS設定を変更すると、映像画面がズームアウトされたりズームインされることがあります。変更された映像に合わせて映像を分析できるように<strong class="UI">[分析]</strong>メニューで分析設定を変更してください。</li>

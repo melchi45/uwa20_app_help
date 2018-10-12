@@ -116,7 +116,8 @@
             <h3>민감도</h3>
             <p>영역 별로 움직임 감지 민감도를 설정합니다. 배경과 물체의 구분이 명확한 환경에서는 민감도를 낮게 설정하고, 어두워서 배경과 물체의 구분이 명확하지 않은 환경에서는 민감도를 높게 설정합니다.</p>
         </div>
-		<div class="wn5-setup-section-article-content">
+        <!-- 멀티 센서 변경점 이 후 최소 관찰 시간 분기 코드 삭제할 것 --> 
+		<div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">
             <h3>최소 관찰 시간</h3>
             <p>최소 관찰 시간(초): 감지 후 이벤트를 발생하기 위한 최소시간을 설정합니다. 설정한 시간보다 더 오래 움직임이 지속될 때 이벤트를 발생시킵니다.</p>
         </div>
@@ -206,8 +207,8 @@
 	
     </div>
 </div>  
-
-<div class="wn5-setup-section">
+<!-- 멀티 센서 변경점 진행 시 이 파일 전체에서 !SupportAutoImageAlignment 분기 코드 삭제할 것. 다국어도 같이 삭제할 것 --> 
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
             <h2>공통 설정</h2>
     </div>
@@ -252,8 +253,9 @@
 					
     </div>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<!-- 멀티 센터 변경점 이 후 오버레이 분기 코드 삭제할 것 -->
+<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>오버레이</h2>
     </div>

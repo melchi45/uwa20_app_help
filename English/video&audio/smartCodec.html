@@ -3,6 +3,7 @@
 <div class="wn5-setup-section">
 	<p>Smart codec is a technology that reduces the size of image data by setting an area desired by the user as an area of specific quality, while managing other areas at normal quality. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
@@ -10,15 +11,16 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting your camera channel, you can set the details of Smart codec for each channel. </p>
+			<p>After selecting your camera channel, you can set the details of Smart codec for each channel. The channel number last selected on the Live or Playback page is automatically selected.</p>
+            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
+            <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
+            <p ng-if="SupportAutoImageAlignment">&apos;Smart codec&apos; can only be set on CH1 to CH5.</p>
+            <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
         </div>
 	</div>
 </div>
 
-
 <hr class="wn5-setup-hr">
-
-
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Manual ROI area</h2>

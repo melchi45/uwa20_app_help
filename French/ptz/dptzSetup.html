@@ -2,11 +2,13 @@
 
 <div class="wn5-setup-section">
 	<p>Vous pouvez r&eacute;gler les angles de la cam&eacute;ra afin qu&apos;ils bougent apr&egrave;s l&apos;ex&eacute;cution du zoom num&eacute;rique plut&ocirc;t que de modifier l&rsquo;angle de la cam&eacute;ra en d&eacute;pla&ccedil;ant physiquement la cam&eacute;ra de haut en bas (inclinaison) ou gauche et droite (panoramique). Vous pouvez &eacute;tablir un pr&eacute;r&eacute;glage ou modifier les vues cam&eacute;ra en d&eacute;finissant un groupe de pr&eacute;r&eacute;glages. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
-    <div class="wn5-online-help-info"  ng-if="!SupportAutoImageAlignment">
+    <div class="wn5-online-help-info">
     <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
     <ul>
         
-		<li>L&rsquo;option <strong class="UI">[Profil PTZ num&eacute;rique]</strong> doit &ecirc;tre s&eacute;lectionn&eacute;e dans <strong class="UI">[Profil vid&eacute;o]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Type de profil]</strong></a> afin de r&eacute;gler le PTZ num&eacute;rique.</li><!-- <li ng-if="FixedProfileCodecChange">If connected to the web viewer through Internet Explorer, digital PTZ function can only be used after installing a plugin. To install the plugin, click the plugin <span class="tui tui-wn5-download"></span> button at the top right on the <strong class="UI">[Live]</strong> screen or the <strong class="UI">[Playback]</strong> screen.</li>
+        <li ng-if="!SupportAutoImageAlignment">L&rsquo;option <strong class="UI">[Profil PTZ num&eacute;rique]</strong> doit &ecirc;tre s&eacute;lectionn&eacute;e dans <strong class="UI">[Profil vid&eacute;o]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Type de profil]</strong></a> afin de r&eacute;gler le PTZ num&eacute;rique.</li>
+        <li>Le champ angulaire de vision de la vue 3M Direct est plus grand que celui modifi&eacute; sur l&rsquo;&eacute;cran de pr&eacute;visualisation.</li>
+        <!-- <li ng-if="FixedProfileCodecChange">If connected to the web viewer through Internet Explorer, digital PTZ function can only be used after installing a plugin. To install the plugin, click the plugin <span class="tui tui-wn5-download"></span> button at the top right on the <strong class="UI">[Live]</strong> screen or the <strong class="UI">[Playback]</strong> screen.</li>
 		<li ng-if="FixedProfileCodecChange">After installing the plugin, you can use the digital PTZ function without restriction only when the resolution of the web browser is 1024 or higher.</li> --></ul>
 </div>
 </div>
@@ -18,6 +20,8 @@
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="SupportAutoImageAlignment">Après avoir sélectionné le canal de la caméra, vous pouvez définir les détails PTZ pour chaque canal. </p>
+            <p ng-if="SupportAutoImageAlignment">L&rsquo;ensemble de pr&eacute;s&eacute;lections dans le menu de PTZ num&eacute;rique peut &ecirc;tre vu sur l&rsquo;&eacute;cran de direct.</p>
+            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">« Configuration PTZ numérique » peut seulement être configuré sur CAN 6 à CAN 7.</p>
         </div>
     </div>

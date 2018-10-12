@@ -3,6 +3,23 @@
     <p>Un &eacute;v&eacute;nement IVA peut &ecirc;tre cr&eacute;&eacute; lorsque la r&egrave;gle de l&rsquo;analytique de vid&eacute;o est d&eacute;finie et qu&apos;un mouvement qui remplit les conditions d&apos;&eacute;v&eacute;nement est d&eacute;tect&eacute;. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page. La configuration de l&apos;&eacute;v&eacute;nement IVA s&apos;applique &agrave; <strong class="UI">[IVA]</strong> aux pages <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuration de l&apos;&eacute;v&eacute;nement]</strong></a> de la m&ecirc;me mani&egrave;re.</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails IVA pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
+            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
+            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+            <p ng-if="SupportAutoImageAlignment">“&nbsp;IVA&nbsp;” peut seulement &ecirc;tre configur&eacute; sur CAN1.</p>
+            <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
+        </div>
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -206,8 +223,8 @@
                     </div>
                     
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
     <h2>Transparence</h2>
     </div>

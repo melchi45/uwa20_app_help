@@ -34,7 +34,8 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                <li>ワイズストリームの性能を最適化するには、<strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[ビデオprofile]</strong>メニューで<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>を<strong class="UI">[有効]</strong>に設定してください。<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>機能を有効にすると、映像画質と1秒当たりのフレーム数を両方とも確保することができます。</li>
+                <li ng-if="DynamicGOVSupport">ワイズストリームの性能を最適化するには、<strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[ビデオprofile]</strong>メニューで<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>を<strong class="UI">[有効]</strong>に設定してください。<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>機能を有効にすると、映像画質と1秒当たりのフレーム数を両方とも確保することができます。</li>
+                <li ng-if="!DynamicGOVSupport">ワイズストリームの性能を最適化するには、<strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[ビデオprofile]</strong>メニューで<strong class="UI">[ダイナミックFPS]</strong>を<strong class="UI">[有効]</strong>に設定してください。</li>
                 <li>下記の場合には、ワイズストリーム機能が正しく動作しないことがあります。</li>
                 <ul>
                     <li>急激に画面を切り替えると画面割れの恐れがあります。</li>

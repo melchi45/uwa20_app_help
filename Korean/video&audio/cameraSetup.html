@@ -200,7 +200,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, HLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
+            <p ng-if="HLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, HLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
+            <p ng-if="!HLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
 
         </div>
         <div class="wn5-setup-section-article-content">
@@ -227,16 +228,16 @@
                 <li>BLC 설정 시 오작동 방지를 위해 BLC 영역의 상하간격은 최대 60, 최소 40으로, 좌우간격은 최대 60, 최소 30으로 제한됩니다.  </li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation) 모드는 가로등이나 자동차 헤드라이트와 같은 강한 조명을 효과적으로 차단하여,<strike> </strike>강한 조명의 포화로 인해 차량 번호판 등의 주변 사물이 식별이 안 되는 것을 방지합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLC 레벨 </h5>
             <p>노출 정도를 설정하여 하이라이트 영역을 조정합니다. </p>
             <p>낮음, 중간, 높음 중에 선택할 수 있습니다. 레벨이 높을수록 보정이 뛰어나고 하이라이트 영역을 차단하는 영역에 차이가 납니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>마스크</h5>
             <p>마스크를 적용할 지 여부를 선택합니다.</p>
             <ul>
@@ -246,19 +247,19 @@
                 <li> <strong class="UI">야간</strong>: 매우 어두워지기 전까지 차단 영역이 생깁니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>마스크 컬러    </h5>
             <p>차단 영역 색상을 설정합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>마스크 톤 </h5>
             <p>차단 영역 톤을 설정합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>디밍 </h5>
             <p>화면의 강한 빛 영역을 감지하여 밝기를 조절하면서 포화 영역을 감소시켜줍니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>영역 설정</h5>
             <p>차단 영역의 크기 및 위치를 설정합니다. </p>
             <ul>
@@ -268,7 +269,7 @@
                 <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다.  </li>
             </ul>
         </div>
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>야간 작동시에는 어두운 환경에서 일정 면적 이상 하이라이트가 입사될 경우에만 작동합니다.</li>
@@ -288,15 +289,15 @@
             <h5>WDR 레벨</h5>
             <p>역광 보정의 세기를 조절합니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
             <h5>자동</h5>
             <p><strong class="UI">[사용]</strong>을 선택하면 영상을 분석하여 역광 보정이 필요한 경우 WDR 모드를 자동으로 활성화합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRLowLightOptions">
             <h5>저조도 제외 </h5>
             <p><strong class="UI">[사용]</strong>을 선택하면 저조도 환경에서 WDR 모드를 자동으로 끕니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRIRLEDEnableOptions">
             <h5>B/W 제외</h5>
             <p><strong class="UI">[사용]</strong>을 선택하면 B/W 모드가 작동했을 때 WDR 모드를 자동으로 끕니다. </p>
         </div>
@@ -500,13 +501,13 @@
             <h3>DIS </h3>
             <p>DIS (Digital Image Stabilization)는 바람과 같은 외부적인 요인으로 카메라에 진동이 발생하는 경우 영상을 자동으로 보정하여 안정적으로 화면을 출력합니다. </p>
         </div>
-		<div class="wn5-online-help-info" ng-if="Statistics">
+		<div class="wn5-online-help-info" ng-if="DIS && Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                     <ul>
                         <li>DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석하거나 통계 데이터를 축척할 수 있도록 분석과 통계 설정을 변경해 주십시오. 해당 설정은 <strong class="UI">[분석]</strong> 메뉴와 <strong class="UI">[통계]</strong> 메뉴에서 변경할 수 있습니다.  </li>
                     </ul>
         </div>
-						<div class="wn5-online-help-info">
+						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석할 수 있도록 <strong class="UI">[분석]</strong> 메뉴에서 분석 설정을 변경해 주십시오.   </li>

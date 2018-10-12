@@ -377,7 +377,7 @@
             <p>Smart codecのROI領域は、<strong class="UI">[映像&amp;音声]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Smart codec]</strong></a>で設定することができます。</p>
         </div>
             
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DynamicGOVSupport">
             <h3>ダイナミックGOV</h3>
             <p>ダイナミックGOV機能を現在設定中のProfileに適用するには、<strong class="UI">[有効]</strong>を選択します。</p>
             <p>ダイナミックGOVは、映像状況によってGOV長が 最小GOV長の設定値から最大ダイナミックGOVの設定値まで自動に変更される機能です。ほとんどモーションがない映像では GOVが <strong class="UI">[ダイナミックGOV]</strong>でユーザーが設定した値に動作して全体映像のビットレートが短縮されます。モーションを検知すると、 その直後にIフレームが出力され、この後モーションがなくなるまでGOVがGOV長の設定値に動作することになります。</p>
@@ -388,7 +388,7 @@
             </ul>
         </div>
 
-<div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 
             <ul>
@@ -407,14 +407,20 @@
             <h3>最小FPS</h3>
             <p>ダイナミックFPSが動作する時、適用する最小FPS値を入力します。</p>
         </div>
-<div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 
             <ul>
                 <li>ワイズストリーム機能を使用する場合、ダイナミックGOVとダイナミックFPS機能を使用するとワイズストリームの性能が最適化されます。ワイズストリームは<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ワイズストリーム]</strong>メニューで設定することができます。</li>
             </ul>
 		</div>
+        <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 
+            <ul>
+                <li>ワイズストリーム機能を使用する場合、ダイナミックFPS機能を使用するとワイズストリームの性能が最適化されます。ワイズストリームは<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ワイズストリーム]</strong>メニューで設定することができます。</li>
+            </ul>
+		</div>
 	
 	</div>
 </div>

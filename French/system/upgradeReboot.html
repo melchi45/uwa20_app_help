@@ -17,20 +17,20 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>Logiciel</h3>
 			<p>La version du logiciel que vous utilisez est affich&eacute;e. Les modifications ne peuvent pas &ecirc;tre apport&eacute;es &agrave; la version du logiciel.</p>
-			<p>Pour afficher les détails relatifs au logiciel, y compris la version ISP et la version SUNAPI, cliquez sur le bouton <strong class="UI">[D&eacute;tails]</strong>.</p>
+			<p ng-if="!SupportAutoImageAlignment">Pour afficher les détails relatifs au logiciel, y compris la version ISP et la version SUNAPI, cliquez sur le bouton <strong class="UI">[D&eacute;tails]</strong>.</p>
 		</div>
-	<!-- 	<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
 		    <h3>Version ISP</h3>
 		    <p>La version ISP du produit que vous utilisez est affich&eacute;e. Les modifications ne peuvent pas &ecirc;tre apport&eacute;es &agrave; la version du fournisseur de services Internet.</p>
 	   	</div>
-	   			<div class="wn5-setup-section-article-content">
+	   			<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
 		    <h3>Version SUNAPI</h3>
 		    <p>La version de SUNAPI prise en charge par le produit est affich&eacute;e. SUNAPI est la propre API de Hanwha Techwin.</p>
 	   	</div>
-	   			<div class="wn5-setup-section-article-content">
+	   			<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
 			<h3>Version UWA</h3>
 	 	 <p>La version de l&rsquo;&eacute;cran Web de la cam&eacute;ra utilis&eacute;e.</p>
-	  </div> -->
+	  </div> 
 	   	<div class="wn5-setup-section-article-content">
 		    <h3>Mise &agrave; niveau du logiciel</h3>
 		    <p>Vous pouvez mettre &agrave; niveau le logiciel du produit que vous utilisez. Pour mettre &agrave; jour le logiciel, cliquez sur le bouton <strong class="UI">[...]</strong>. S&eacute;lectionnez un fichier de mise &agrave; niveau et cliquez sur le bouton <strong class="UI">[Ouvrir]</strong>. Lorsque vous cliquez sur le bouton <strong class="UI">[Mise &agrave; niveau]</strong>, la mise &agrave; niveau commence. Vous pouvez voir la progression de la mise &agrave; niveau en %. Lorsque la mise &agrave; niveau est termin&eacute;e, la cam&eacute;ra red&eacute;marre et la connexion s&apos;arr&ecirc;te automatiquement. Vous devrez vous reconnecter &agrave; l&rsquo;&eacute;cran Web.</p>

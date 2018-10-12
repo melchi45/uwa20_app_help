@@ -125,15 +125,18 @@
                         </td>
                     </tr>  
 					<tr ng-if="LensModelViewOptions">
-                    <td width="235">lens model</td>
-                    <td width="235">The name of len model used in each camera is displayed. </td>
+                        <td width="235">Lens model name</td>
+                        <td width="235">The name of the lens model installed in the camera is displayed. If you select a channel in <a href="#channel">Select channel</a>, you can see the name of the lens installed for each channel. </td>
+                        <p> </p>
                     </tr>
                     <tr ng-if="MaxChannel > 1">
                         <td width="235">
                             <p><a href="#channel">Select channel</a></p>
                         </td>
-                        <td width="235">                      
-                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">After selecting your channel number, the video of the channel will be displayed on the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed in one screen. To return to the full single screen, click the channel number.</p>
+                        <td width="235">
+                            <p>Camera channel numbers are displayed.</p>
+                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">If you select a channel number, the video of the channel will appear in the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed on one screen. To return to the single view, click the channel number.</p>
+                            <p ng-if="HandoverCalibration">If you select the channel number of your fixed camera, the video will appear in the viewer. If you select [PTZ], the PTZ single channel video will appear in the viewer. If you select the multi-channel icon, the videos from the fixed camera and PTZ camera will appear on one screen. To return to the single view, click the channel number or [PTZ].</p>
                             <p ng-if="SupportAutoImageAlignment">The camera screen of each channel is shown when you select a camera channel from CH2 to CH5. If you select CH1, the camera screens of CH2 to CH5 will be aligned in a straight line to show a panoramic view. If you select CH6 and CH7, you can check the CH1 video while <a href="#PTZ">adjusting the camera PTZ.</a></p>
                         </td>
                     </tr>
@@ -234,7 +237,7 @@
             <h4>To change channel</h4>
                 <ul>
                     <li>Select the channel number you want. The video of the channel will appear in the viewer.</li>
-                    <li>For the quad view, click the Quad View icon.</li>
+                    <li ng-if="!SupportAutoImageAlignment">For the quad view, click the Quad View icon.</li>
                     <li>To return to the single view, click the channel number. </li>
                 </ul>
             </div>
@@ -510,7 +513,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <h3>Preset</h3>
         <p>After selecting a preset number in the Preset list, click the <strong class="UI">[Go]</strong> button to move to the PTZ preset position. </p>
         <p>To add a preset, click the <strong class="UI">[Setup]</strong> button, enter a preset name, set its number, and then click the <strong class="UI">[Apply]</strong> button. Also, in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab, you can add or change presets.</p>
-        <p>Clicking the <strong class="UI">[Home]</strong> button moves the camera view to the home position. The home position can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p>
+    <!--     <p>Clicking the <strong class="UI">[Home]</strong> button moves the camera view to the home position. The home position can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p> --> 
     </div>
     <div class="wn5-setup-section-article-content">
         <h3>Group</h3>

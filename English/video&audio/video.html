@@ -4,6 +4,7 @@
 <div class="wn5-setup-section">
 	<p>You can set a privacy area in the camera's image or flip it in reverse directions (vertically or horizontally). In addition, you can display an analog image or change the video output type, Once you have completed the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
@@ -11,11 +12,13 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting a camera channel, you can set a privacy area for each channel, or set the detailed video settings, such as video rotation, analog output, etc. </p> 
-            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as 'PTZ'.</p>
+            <p>After selecting a camera channel, you can set a privacy area for each channel, or set the detailed video settings, such as video rotation, analog output, etc.</p> 
+            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
+            <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">Since a privacy area is individually set for each channel, a privacy area set on CH1 will only apply to CH1 even if the same privacy area exists on CH2.</p>
-            <p> Click the <strong class="UI">[Detailed Information]</strong> button to view a summary of the channel. </p>
-            <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
+            <p>Click the <strong class="UI">[Detailed Information]</strong> button to see the overall summary of each channel.</p>
+            <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
+
         </div>
 	</div>
 </div> 
@@ -192,8 +195,34 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<!-- 멀티 센터 카메라 변경점 진행할 때 [아날로그 비디오]는 삭제하고 [비디오 출력] 분기 코드는 삭제해야 함  -->
+<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+    <div class="wn5-setup-section-heading">
+        <h2>Analog video</h2>
+    </div>
+	<div class="wn5-setup-section-article">	
+	<div class="wn5-setup-section-article-content">
+			
+			<h3>Video output</h3>
+			<p>You can set whether or not to output analog video. Analog video output is useful since you can set it while checking the lens location or focus when installing the camera.</p>
+		</div>
+	
+	<div class="wn5-setup-section-article-content">
+		<h3>Video output type</h3>
+		
+	    	<p>Select the analog video output type. You can select either <strong class="UI">[NTSC]</strong> or <strong class="UI">[PAL]</strong> as the video output type.</p>
+			<ul>			
+				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) is the standard for color television in the U.S. It operates at 30 frames per second with 525 horizontal scanning lines. The number of frames per second is large so that the screen can display naturally. This type is mainly used in the U.S., Japan and Canada.</li>
+				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) originated in Germany, and while it is similar to NTSC, there is a difference in the method it uses to handle color signals. This type is used mainly in Europe. Although this type has a smaller number of frames per second in comparison to NTSC, it has a larger number of horizontal scanning lines (625) and less color deformation; it does not require advanced specifications for broadcasting equipment. </li>
+			</ul>
+		</div>
+	</div>
+</div> 
+
+<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
 	<div class="wn5-setup-section-heading">
 		<h2>Video output</h2>
     </div>

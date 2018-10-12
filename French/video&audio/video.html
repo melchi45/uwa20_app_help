@@ -4,17 +4,19 @@
 <div class="wn5-setup-section">
 	<p>Vous pouvez d&eacute;finir une zone de confidentialit&eacute; dans l&rsquo;image de la cam&eacute;ra ou la retourner dans le sens inverse (verticalement ou horizontalement). De plus, vous pouvez afficher une image analogique ou changer le type de sortie vid&eacute;o. Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="channel"></a>S&eacute;lection d&rsquo;un canal</h2>
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s, tels que la rotation vid&eacute;o, la sortie analogique, etc.</p> 
-            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme «&nbsp;PTZ&nbsp;».</p>
-            <p ng-if="SupportAutoImageAlignment">Du fait qu’une zone confidentielle est définie individuellement pour chaque canal, une zone confidentielle définie sur CAN 1 sera seulement appliquée à CAN 1 même si la même zone confidentielle existe sur CAN 2.</p>
-            <p>Cliquez sur le bouton <strong class="UI">[Informations d&eacute;taill&eacute;es]</strong> pour afficher un r&eacute;sum&eacute; du canal.</p>
+            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
+            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+            <p ng-if="SupportAutoImageAlignment">Du fait qu&rsquo;une zone de confidentialit&eacute; est d&eacute;finie individuellement pour chaque canal, une zone de confidentialit&eacute; d&eacute;finie sur CAN1 sera seulement appliqu&eacute;e &agrave; CAN1 m&ecirc;me si la m&ecirc;me zone de confidentialit&eacute; existe sur CAN2.</p>
+            <p>Cliquez sur le bouton <strong class="UI">[Informations d&eacute;taill&eacute;es]</strong> pour afficher le r&eacute;sum&eacute; global de chaque canal.</p>
             <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
         </div>
 	</div>
@@ -188,37 +190,35 @@
             </ul>
         </div>
 	</div>
-</div><!--
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
-        <h2>아날로그 비디오</h2>
-    </div>
-	<div class="wn5-setup-section-article">	
-		<div class="wn5-setup-section-article-content">	
-        <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 고정 카메라 채널을 선택한 경우에만 '아날로그 비디오' 기능을 설정할 수 있습니다.</p>
-        </div>
+</div>
 
-	<div class="wn5-setup-section-article-content">
-			
-			<h3>비디오 출력</h3>
-			<p>아날로그 비디오 출력 여부를 설정할 수 있습니다. 아날로그 비디오 출력은 카메라 설치 시 렌즈 위치나 포커스 등을 확인하면서 설정할 수 있어 유용합니다.</p>
+<!-- 변경점 이 후 분기 코드 수정 --> 
+<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+	<div class="wn5-setup-section-heading">
+		<h2>Vid&eacute;o analogique</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<h3>Sortie vid&eacute;o</h3>
+			<p>Vous pouvez choisir ou non la sortie vid&eacute;o analogique. La sortie vid&eacute;o analogique est utile car vous pouvez la r&eacute;gler en v&eacute;rifiant l&apos;emplacement de l&apos;objectif ou la mise au point lors de l&apos;installation de la cam&eacute;ra.</p>
 		</div>
-	
-	<div class="wn5-setup-section-article-content">
-		<h3>비디오 출력 타입</h3>
-		
-	    	<p>아날로그 비디오 출력 타입을 선택합니다. 비디오 출력 타입은 <strong class="UI">[NTSC]</strong>와 <strong class="UI">[PAL]</strong> 중에 선택할 수 있습니다.</p>
+
+		<div class="wn5-setup-section-article-content">
+			<h3>Type de sortie vid&eacute;o</h3>
+			<p>S&eacute;lectionnez le type de sortie vid&eacute;o analogique. Vous pouvez s&eacute;lectionner <strong class="UI">[NTSC]</strong> ou <strong class="UI">[PAL]</strong> comme type de sortie vid&eacute;o.</p>
+		</div>			
+		<div class="wn5-setup-section-article-content">
 			<ul>
-				
-				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) 방식은 미국에서 제정한 컬러 텔레비전의 표준입니다. 초당 프레임 수는 30 프레임이고, 수평 주사선은 525입니다. 초당 프레임 수가 높아 화면이 자연스럽게 표현됩니다. 주로 미국, 일본, 캐나다 등에서 사용하는 방식입니다.</li>
-				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) 방식은 독일에서 제안되었고 NTSC 방식과 비슷하지만 색 신호를 취급하는 방법에 차이가 있습니다. 주로 유럽에서 사용하는 방식입니다. NTSC에 비해 초당 프레임 수는 적지만 수평 주사선이 625로 더 많아 해상도가 높고, 색 변형이 적으며 방송 설비에 고도의 규격이 필요하지 않습니다. </li>
+				<li><strong class="UI">NTSC</strong>: NTSC (Comit&eacute; national des syst&egrave;mes de t&eacute;l&eacute;vision) est la norme pour la t&eacute;l&eacute;vision couleur aux &Eacute;tats-Unis. Elle fonctionne &agrave; 30 images par seconde avec 525 lignes de balayage horizontal. Le nombre d&apos;images par seconde est important afin que l&apos;&eacute;cran puisse s&apos;afficher naturellement. Ce type est principalement utilis&eacute; aux &Eacute;tats-Unis, au Japon et au Canada.</li>
+				<li><strong class="UI">PAL</strong>: PAL (ligne d&apos;alternance de phase) est originaire d&apos;Allemagne et bien qu&apos;il soit similaire au NTSC, il existe une diff&eacute;rence dans la m&eacute;thode utilis&eacute;e pour g&eacute;rer les signaux de couleur. Ce type est principalement utilis&eacute; en Europe. Bien que ce type ait un plus petit nombre de trames par seconde compar&eacute; au NTSC, il a un plus grand nombre de lignes de balayage horizontales (625) et moins de d&eacute;formation de couleur. Il ne n&eacute;cessite pas de sp&eacute;cifications avanc&eacute;es pour les &eacute;quipements de diffusion.</li>
 			</ul>
 		</div>
 	</div>
-</div>   -->
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+</div>
+
+<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
     </div>

@@ -396,7 +396,7 @@
             <p>스마트 코덱 관심 영역은 <strong class="UI">[비디오 및 오디오]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[스마트 코덱]</strong></a>에서 설정할 수 있습니다. </p>
         </div>
             
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DynamicGOVSupport">
             <h3>다이내믹 GOV</h3>
             <p>다이내믹 GOV 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
             <p>다이내믹 GOV는 영상 상황에 따라 GOV 길이가 최소 GOV 길이의 설정값에서부터 최대 다이내믹 GOV 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 GOV가 <strong class="UI">[다이내믹 GOV]</strong>에서 사용자가 설정한 값으로 동작하여 전체 영상의 비트레이트가 줄어듭니다. 움직임을 감지하면 그 직후 I프레임이 출력되며 이 후 움직임이 사라질 때까지 GOV가 GOV 길이의 설정값으로 동작하게 됩니다.</p>
@@ -405,7 +405,7 @@
             </ul>
         </div>
 
-<div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
@@ -417,15 +417,16 @@
         <div class="wn5-setup-section-article-content">
             <h3>다이내믹 FPS</h3>
             <p>다이내믹 FPS 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
-            <p>다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 최소 FPS 설정값부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 FPS가 최소 FPS의 설정값으로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
+            <p ng-if="!SupportAutoImageAlignment">다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 최소 FPS 설정값부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 FPS가 최소 FPS의 설정값으로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
+            <p ng-if="SupportAutoImageAlignment">다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 1 FPS부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 1 FPS로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
         </div>
-			         
         <div class="wn5-setup-section-article-content">
             <h3>최소 FPS</h3>
             <p>다이내믹 FPS가 작동할 때 적용할 최소 FPS 값을 입력합니다. </p>
+            <p>최소 FPS 값이 1일 때는 <strong class="UI">[최소 FPS]</strong> 옵션이 보이지 않습니다. </p>
         </div>
 
-<div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
@@ -433,7 +434,14 @@
                 <li>다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. 또한 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
             </ul>
 		</div>
+        <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
+            <ul>
+                <li>와이즈 스트림 기능을 사용하는 경우, 다이내믹 FPS 기능을 사용하면 와이즈 스트림 성능이 최적화됩니다. 와이즈 스트림은 <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[와이즈 스트림]</strong> 메뉴에서 설정할 수 있습니다.</li>
+                <li>다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다.</li>
+            </ul>
+		</div>
 	
 	</div>
 </div>

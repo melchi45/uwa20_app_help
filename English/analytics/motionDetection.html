@@ -7,16 +7,20 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="channel"></a>Select channel</h2>
+        <h2><a name="channel">Select channel</a></h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting your camera channel, you can set the details of Motion detection for each channel.</p>
-            <p ng-if="SupportAutoImageAlignment">'Motion detection' can only be set on CH1.</p>
-            <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
+            <p>After selecting your camera channel, you can set the details of Motion detection for each channel. The channel number last selected on the Live or Playback page is automatically selected.</p>
+            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
+            <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
+            <p ng-if="SupportAutoImageAlignment">&apos;Motion detection&apos; can only be set on CH1.</p>
+            <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
         </div>
     </div>
 </div>	
+
+
 
 <hr class="wn5-setup-hr">
 
@@ -107,7 +111,7 @@
             <h3>Sensitivity</h3>
             <p>This sets the motion detection sensitivity for each area. Set a lower sensitivity for an environment where the background and an object are clearly distinguishable and a higher sensitivity for an environment where the background and an object are not clearly distinguishable.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">
             <h3>Minimum duration</h3>
             <p>Minimum duration (s): Sets the minimum amount of time to trigger an event after detection. When the movement lasts longer than the set period of time, the event is triggered.</p>
         </div>
@@ -193,7 +197,7 @@
     </div>
 </div>
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
         <div class="wn5-setup-section-heading">
                 <h2>Common</h2>
         </div>
@@ -238,8 +242,8 @@
         </div>
     </div> 
 
-    <hr class="wn5-setup-hr">
-    <div class="wn5-setup-section">
+    <hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
+    <div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
         <div class="wn5-setup-section-heading">
             <h2>Overlay</h2>
         </div>

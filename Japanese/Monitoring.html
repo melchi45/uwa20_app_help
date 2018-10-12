@@ -113,14 +113,21 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+                    <tr ng-if="LensModelViewOptions">
+                        <td width="235">レンズモデル名</td>
+                        <td width="235">
+                            <p>カメラに搭載されたレンズのモデル名が表示されます。<a href="#channel">チャンネル選択</a>でチャンネルを選択すると、チャンネル別に搭載されたレンズ名を確認することができます。</p>
+                            <p> </p>
+                        </td>
+                    </tr>
                     <tr ng-if="MaxChannel > 1">
                         <td width="235">
                             <p><a href="#channel">チャンネル選択</a></p>
                         </td>
                         <td width="235">
-                         <!--   <p>카메라 채널 번호가 표시됩니다.</p>
-                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p>
-                            <p ng-if="HandoverCalibration">고정형 카메라의 채널 번호를 선택하면 해당 영상이 뷰어에 나타납니다. [PTZ]를 선택하면 PTZ 단일 채널 영상이 뷰어에 나타납니다. 멀티 채널 아이콘을 선택하면 고정형 카메라와 PTZ 카메라이 영상이 한 번에 나타납니다. 단일 화면으로 돌아오려면 채널 번호나 [PTZ]를  클릭합니다.</p> --> 
+                            <p>カメラのチャンネル番号が表示されます。</p>
+                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">チャンネル番号を選択すると、該当チャンネルの映像がビューアに表示されます。4分割画面のアイコンを選択すると、4つのチャンネル映像を一気に表示します。シングル画面に戻すには、チャンネル番号をクリックします。</p>
+                            <p ng-if="HandoverCalibration">固定型カメラのチャンネル番号を選択すると、該当の映像がビューアに表示されます。[PTZ]を選択すると、PTZシングルチャンネル映像がビューアに表示されます。マルチチャンネルのアイコンを選択すると、固定型カメラとPTZカメラの映像がすべて表示されます。シングル画面に戻すには、チャンネル番号や[PTZ]をクリックします。</p> 
                             <p ng-if="SupportAutoImageAlignment">カメラチャンネル2～5を選択すると、各チャンネル別のカメラ映像を表示します。チャンネル1を選択すると、チャンネル2～5のカメラ映像を一つに接続させてパノラマタイプに表示します。チャンネル6と7を選択すると、チャンネル1の映像をカメラ<a href="#PTZ">PTZ調整</a>しながら確認することができます。</p>
                         </td>
                     </tr>
@@ -221,7 +228,7 @@
             <h4>チャンネルを変更するには、</h4>
                 <ul>
                     <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
-                    <li>クワドビュー画面に表示するには、クワドビューのアイコンをクリックします。</li>
+                    <li ng-if="!SupportAutoImageAlignment">クワドビュー画面に表示するには、クワドビューのアイコンをクリックします。</li>
                     <li>シングル画面に戻すには、チャンネルNo.をクリックします。</li>
                 </ul>
             </div>
@@ -492,7 +499,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <h3>プリセット</h3>
         <p>プリセットリストでプリセット番号を選択した後、<strong class="UI">[移動]</strong>ボタンをクリックすると、該当のPTZプリセット位置に移動します。 </p>
         <p>プリセットを追加するには、<strong class="UI">[設定]</strong>ボタンをクリックした後、プリセット名を入力して番号を設定してから<strong class="UI">[適用]</strong>ボタンをクリックします。また<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[プリセット]</strong>タブでプリセットを追加したり変更することができます。</p>
-        <p><strong class="UI">[ホーム]</strong>ボタンをクリックすると、カメラビューがホーム位置に移動します。ホーム位置は<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+    <!--     <p><strong class="UI">[ホーム]</strong>ボタンをクリックすると、カメラビューがホーム位置に移動します。ホーム位置は<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[プリセット]</strong>タブで設定することができます。</p> -->
     </div>
     <div class="wn5-setup-section-article-content">
         <h3>グループ</h3>

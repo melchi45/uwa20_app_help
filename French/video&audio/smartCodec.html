@@ -4,8 +4,24 @@
 	<p>Le Codec Smart est une technologie qui r&eacute;duit la taille des donn&eacute;es d&apos;image en d&eacute;finissant une zone souhait&eacute;e par l&apos;utilisateur comme zone de qualit&eacute; sp&eacute;cifique, tout en g&eacute;rant d&apos;autres zones &agrave; une qualit&eacute; normale. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails de Smart codec pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
+            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
+            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+            <p ng-if="SupportAutoImageAlignment">“&nbsp;Smart codec&nbsp;” peut seulement &ecirc;tre d&eacute;fini sur CAN1 &agrave; CAN5.</p>
+            <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
+        </div>
+	</div>
+</div>	
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Zone d&apos;int&eacute;r&ecirc;t manuelle</h2>

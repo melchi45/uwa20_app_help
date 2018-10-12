@@ -2,20 +2,24 @@
 <div class="wn5-setup-section">
     <p>En el entorno en el que est&eacute; instalada una c&aacute;mara, puede modificar la configuraci&oacute;n de la c&aacute;mara para una calidad de grabaci&oacute;n &oacute;ptima. De forma predeterminada, se incluyen preajustes de imagen adecuados para varios entornos, y los usuarios pueden configurar sus c&aacute;maras por s&iacute; mismos. En la pantalla de vista previa de la c&aacute;mara, puede comprobar c&oacute;mo se ver&aacute; la imagen. Una vez completada la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. Si se produce un tiempo de espera (240 seg.) sin hacer clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> despu&eacute;s de cambiar la configuraci&oacute;n, &eacute;sta volver&aacute; a la configuraci&oacute;n anterior.</p>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="channel"></a>Selecci&oacute;n de canal</h2>
+        <h2><a name="channel"></a>Seleccionar canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Una vez que haya seleccionado un canal de la c&aacute;mara, podr&aacute; ajustar los detalles de cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
-            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se visualiza como un n&uacute;mero y el canal PTZ se muestra como «PTZ».</p>
-            <p ng-if="SupportAutoImageAlignment">La “Configuración de cámara” solo se puede configurar en Canal1.</p>
+            <p>Despu&eacute;s de seleccionar un canal de c&aacute;mara, puede definir los detalles de cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
+            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
+            <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
+            <p ng-if="SupportAutoImageAlignment">La “Configuraci&oacute;n de c&aacute;mara” solo se puede configurar en Canal1.</p>
             <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
 	</div>
-</div> <hr class="wn5-setup-hr" ng-if="PTZModel">
+</div> 
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>Ajuste del PTZ</h2>
@@ -185,7 +189,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Puede corregir una imagen expuesta a la luz de fondo. Seleccione entre Off, BLC, HLC, o WDR en <strong class="UI">[Modo]</strong> y cambie la configuraci&oacute;n seg&uacute;n el modo de luz de fondo seleccionado.</p>
+            <p ng-if="HLC">Puede corregir una imagen expuesta a la luz de fondo. Seleccione entre Off, BLC, HLC, o WDR en <strong class="UI">[Modo]</strong> y cambie la configuraci&oacute;n seg&uacute;n el modo de luz de fondo seleccionado.</p>
+            <p ng-if="!HLC">Puede corregir una imagen expuesta a la luz de fondo. Seleccione entre Off, BLC, o WDR en <strong class="UI">[Modo]</strong> y cambie la configuraci&oacute;n seg&uacute;n el modo de luz de fondo seleccionado.</p>
 
         </div>
         <div class="wn5-setup-section-article-content">
@@ -212,16 +217,16 @@
                 <li>Para prevenir mal funcionamientos durante el ajuste del BLC, el intervalo vertical del BLC se limita a un m&aacute;ximo de 60/min 40 y el intervalo horizontal se limita a un m&aacute;ximo de 60/min 30.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>El modo HLC (Compensaci&oacute;n de luz alta) bloquea iluminaci&oacute;n potente, como una farola o los faros de un veh&iacute;culo, para evitar que un objeto sea irreconocible.<strike> </strike>De este modo se evitan los fallos en la detecci&oacute;n de un objeto cercano, como la matr&iacute;cula del carro, debido a la saturaci&oacute;n de las luces fuertes.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Nivel HLC</h5>
             <p>Ajuste el nivel de exposici&oacute;n y las &aacute;reas de luminosidad.</p>
             <p>Es posible seleccionar bajo, medio y alto. Mientras mayor sea el nivel, mayor ser&aacute; la correcci&oacute;n y mayor ser&aacute; la diferencia para el &aacute;rea bloqueada por resaltados.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>M&aacute;scara</h5>
             <p>Seleccionar si desea o no aplicar la m&aacute;scara.</p>
             <ul>
@@ -231,19 +236,19 @@
                 <li><strong class="UI">Solo noches</strong>: Bloquea las &aacute;reas que existen hasta que oscurece mucho.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Color de m&aacute;scara</h5>
             <p>Ajusta el color del &aacute;rea bloqueada.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Tono de m&aacute;scara</h5>
             <p>Ajuste el tono del &aacute;rea bloqueada.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Atenuaci&oacute;n</h5>
             <p>Detecta el &aacute;rea intensamente iluminada de la pantalla y ajusta el brillo a fin de reducir el tama&ntilde;o de las &aacute;reas saturadas.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Configuraci&oacute;n del &aacute;rea</h5>
             <p>Ajuste el tama&ntilde;o y la ubicaci&oacute;n del &aacute;rea bloqueada.</p>
             <ul>
@@ -253,7 +258,7 @@
                 <li><strong class="UI">Derecha</strong>: Ajuste la distancia de la superficie derecha a la parte izquierda de la pantalla.</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>De noche, s&oacute;lo funciona cuando se produce un resalte que brilla en un &aacute;rea de cierto tama&ntilde;o o m&aacute;s grande en un entorno oscuro.</li>
@@ -273,15 +278,15 @@
             <h5>Nivel de WDR</h5>
             <p>Ajusta la intensidad de la correcci&oacute;n de la luz de fondo.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
             <h5>Transici&oacute;n sin problemas</h5>
             <p>Si se selecciona <strong class="UI">[Activar]</strong>, se analiza la imagen y el modo WDR se activa autom&aacute;ticamente cuando es necesaria la correcci&oacute;n de retroiluminaci&oacute;n.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRLowLightOptions">
             <h5>Apagado en luz baja</h5>
             <p>Si se selecciona <strong class="UI">[Activar]</strong>, el modo WDR se apaga autom&aacute;ticamente en un ambiente con poca luz.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="WDRIRLEDEnableOptions">
             <h5>IR desactivado</h5>
             <p>Si se selecciona <strong class="UI">[Activar]</strong>, el modo WDR se apaga autom&aacute;ticamente cuando el modo B/N est&aacute; en funcionamiento.</p>
         </div>
@@ -476,13 +481,13 @@
             <h3>DIS</h3>
             <p>DIS (Estabilizaci&oacute;n digital de imagen) sirve para visualizar la pantalla de forma fiable corrigiendo autom&aacute;ticamente las im&aacute;genes cuando la c&aacute;mara tiembla debido a impactos externos, como el viento.</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="Statistics">
+		<div class="wn5-online-help-info" ng-if="DIS && Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                     <ul>
                         <li>Al cambiar el ajuste DIS, el v&iacute;deo se acercar&aacute; o alejar&aacute;. Para ayudarle a analizar el v&iacute;deo modificado y acumular las estad&iacute;sticas, cambie la configuraci&oacute;n de an&aacute;lisis y estad&iacute;sticas. Es posible cambiar los ajustes en los men&uacute;s <strong class="UI">[An&aacute;lisis]</strong> y <strong class="UI">[Estad&iacute;sticas]</strong>.</li>
                     </ul>
         </div>
-						<div class="wn5-online-help-info">
+						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>En caso de que cambie la configuraci&oacute;n de DIS, la pantalla de v&iacute;deo ampliar&aacute; o reducir&aacute; el zoom. Para ayudarle a analizar el v&iacute;deo modificado, cambie los ajustes de an&aacute;lisis en el men&uacute; <strong class="UI">[An&aacute;lisis]</strong>.</li>

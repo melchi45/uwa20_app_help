@@ -34,7 +34,8 @@
 <div class="wn5-online-help-info">
      <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>To optimize the performance of the WiseStream, set <strong class="UI">[Dynamic GOV]</strong> and <strong class="UI">[Dynamic FPS]</strong> to <strong class="UI">[Enable]</strong> in the <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video Profile]</strong> menu. With <strong class="UI">[Dynamic GOV]</strong> and <strong class="UI">[Dynamic FPS]</strong> functions, you can achieve both the video quality and the number of frames per second.  </li>
+                <li ng-if="DynamicGOVSupport">To optimize the performance of the WiseStream, set <strong class="UI">[Dynamic GOV]</strong> and <strong class="UI">[Dynamic FPS]</strong> to <strong class="UI">[Enable]</strong> in the <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video Profile]</strong> menu. With <strong class="UI">[Dynamic GOV]</strong> and <strong class="UI">[Dynamic FPS]</strong> functions, you can achieve both the video quality and the number of frames per second.  </li>
+                <li ng-if="!DynamicGOVSupport">To optimize the performance of the WiseStream, set <strong class="UI">[Dynamic FPS]</strong> to <strong class="UI">[Enable]</strong> in the <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video Profile]</strong> menu. </li>
                 <li>In any of the following cases, the WiseStream function may not operate properly:</li>
                 <ul>
                     <li>If you switch the screen all of sudden, the screen display might not function properly.</li>

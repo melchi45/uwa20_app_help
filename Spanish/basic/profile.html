@@ -394,7 +394,7 @@
             <p>El &aacute;rea de smart codec se puede establecer desde <strong class="UI">[V&iacute;deo &amp; Audio]</strong> &gt; <a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Smart codec]</strong></a>. </p>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DynamicGOVSupport">
             <h3>GOV Din&aacute;mica</h3>
                 <p>Para aplicar la funci&oacute;n GOV Din&aacute;mica al perfil actual, seleccione <strong class="UI">[Activar]</strong>. GOV Din&aacute;mica es la funci&oacute;n por la que la longitud GOV cambia autom&aacute;ticamente de acuerdo con la situaci&oacute;n de la imagen. En otras palabras, en una imagen casi sin movimiento, la longitud GOV establecida por el usuario en <strong class="UI">[GOV Din&aacute;mico]</strong> aumenta al m&aacute;ximo, y cuando se detecta movimiento, se reduce a la longitud establecida en <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[Longitud de GOV]</strong></a> para generar la imagen. GOV Din&aacute;mica se activa s&oacute;lo cuando <strong class="UI">[Control de vel. bits]</strong> es <strong class="UI">[VBR]</strong>.</p>
 
@@ -403,7 +403,7 @@
               </ul>
               </div>
 
-              <div class="wn5-online-help-info">
+              <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
               			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 
                           <ul>
@@ -419,14 +419,21 @@
                 <h3>Mínimo FPS</h3>               
                     <p>Introduzca el valor FPS mínimo que se aplicará cuando FPS dinámico esté habilitado.  </p>
             </div>
-    <div class="wn5-online-help-info">
+    <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
     			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 
                 <ul>
                     <li>Cuando se utiliza la función WiseStream, si se utilizan las funciones dinámicas GOV y FPS dinámicas, se optimiza el rendimiento de WiseStream. El WiseStream se puede configurar en el menú <strong class="UI">[Vídeo y Audio]</strong> > <strong class="UI">[WiseStream]</strong>.</li>
                 </ul>
     		        </div>
-        </div>
+    <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">
+    			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+
+                <ul>
+                    <li>Cuando se utiliza la función WiseStream, si se utilizan las funciones FPS dinámicas, se optimiza el rendimiento de WiseStream. El WiseStream se puede configurar en el menú <strong class="UI">[Vídeo y Audio]</strong> > <strong class="UI">[WiseStream]</strong>.</li>
+                </ul>
+    		        </div>
+                </div>
     </div>
 
     <hr class="wn5-setup-hr">

@@ -9,7 +9,7 @@
 	<div class="wn5-setup-section-heading">
 		<h2>업그레이드</h2>
 	</div>
-
+<!-- 멀티 센서 변경점 진행 후 !SupportAutoImageAlignment 이 파일에서 모두 삭제할 것. && !SupportAutoImageAlignment도 있음. 다국어 파일도 동일 --> 
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p>새 버전의 펌웨어가 배포되면 지금 사용하고 있는 제품의 소프트웨어를 업그레이드할 수 있습니다.</p>
@@ -17,28 +17,28 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>소프트웨어</h3>
             <p>사용하고 있는 제품의 소프트웨어 버전입니다. 소프트웨어 버전은 확인만 가능하고 변경할 수 없습니다. </p>
-            <p><strong class="UI">[상세정보]</strong> 버튼을 클릭하면 소프트웨어에 적용된 ISP 버전이나 SUNAPI 버전 등을 포함하여 소프트웨어 상세 정보를 확인할 수 있습니다.</p>
+            <p ng-if="!SupportAutoImageAlignment"><strong class="UI">[상세정보]</strong> 버튼을 클릭하면 소프트웨어에 적용된 ISP 버전이나 SUNAPI 버전 등을 포함하여 소프트웨어 상세 정보를 확인할 수 있습니다.</p>
 		</div>
-<!-- 		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration">
+ 		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
 		    <h3>ISP 버전  </h3>
 		    <p>사용하고 있는 제품의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
-	   	</div> --> 
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+	   	</div>  
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>고정 채널 ISP 버전  </h3>
 		    <p>장착된 고정 카메라의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>PTZ 채널 ISP 버전  </h3>
 		    <p>장착된 PTZ 카메라의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
 	   	</div>
-	<!-- 	<div class="wn5-setup-section-article-content">
+	 	<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
 		    <h3>SUNAPI 버전  </h3>
 		    <p>사용하고 있는 제품에서 지원하는 SUNAPI 버전입니다. SUNAPI는 한화테크윈 자체 API입니다.</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
 		    <h3>UWA 버전  </h3>
 		    <p>사용하고 있는 카메라의 웹뷰어 버전입니다. </p>
-	   	</div> --> 
+	   	</div> 
 				<div class="wn5-setup-section-article-content" ng-if="OpenSSLVersion">
 		    <h3>OpenSSL 버전  </h3>
             <p>보안이 강화된 통신을 위해 사용하고 있는 OpenSSL 버전입니다.</p>

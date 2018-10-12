@@ -3,14 +3,19 @@
 <div class="wn5-setup-section">
     <p>Un evento de detecci&oacute;n de manipulaci&oacute;n puede ser creado cuando la pantalla est&aacute; bloqueada o se cambia la posici&oacute;n de la c&aacute;mara. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste del evento de detecci&oacute;n de manipulaci&oacute;n se aplica a <strong class="UI">[Detecci&oacute;n de manipulaci&oacute;n]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2>Seleccionar canal</h2>
+        <h2><a name="channel"></a>Seleccionar canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Después de seleccionar su canal de cámara, puede establecer los detalles de Detección de manipulación para cada canal.</p>
+            <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede establecer los detalles de Detecci&oacute;n de manipulaci&oacute;n para cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
+            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
+            <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
+            <p ng-if="SupportAutoImageAlignment">La “Detecci&oacute;n de manipulaci&oacute;n” solo se puede configurar en Canal1.</p>
+            <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
     </div>
 </div>
