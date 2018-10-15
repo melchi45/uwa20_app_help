@@ -356,6 +356,11 @@
                 <li><strong class="UI">Wise NR</strong>: Cuando un objeto en movimiento est&aacute; en la imagen, el nivel de ruido reducido se ajusta autom&aacute;ticamente para mejorar la precisi&oacute;n de la identificaci&oacute;n del objeto.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+            <h3>Nivel SSNR</h3>
+            <p>Ajuste el nivel SSNR. El ajuste puede utilizarse si ajusta <strong class="UI">[SSNR]</strong> a <strong class="UI">[Activar]</strong>.</p>
+            <p>Mientras más alto sea el nivel, menor será el ruido, pero es posible que el vídeo quede rezagado y se vuelva borroso.</p>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>Nivel SSNR 2D</h3>
             <p>SSNR 2D utiliza p&iacute;xeles adyacentes en un solo cuadro para reducir el nivel de ruidos en una imagen. Ajuste el nivel SSNR 2D. El ajuste puede utilizarse si ajusta <strong class="UI">[SSNR]</strong> a <strong class="UI">[Activar]</strong> o <strong class="UI">[Wise NR]</strong>.</p>
@@ -406,10 +411,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Se puede saturar la exposici&oacute;n de la pantalla dependiendo del rango m&aacute;ximo/minuto de los ajustes del obturador.</li>
-                <li>Es posible que transcurra un tiempo hasta que el efecto se aplique o se cancele despu&eacute;s de ajustar el modo Wise NR (SSNR 2D y SSNR 3D).</li>
-                <li>Puede que el nivel de ruido aumente a pesar de la capacidad mejorada de detecci&oacute;n de v&iacute;deo despu&eacute;s de configurar el modo Wise NR (SSNR 2D y SSNR 3D).</li>
-                <li>En un entorno luminoso con menos ruidos, el efecto de Wise NR (SSNR 2D y SSNR 3D) puede ser peque&ntilde;o.</li>
-                <li>Ya que la funci&oacute;n de detecci&oacute;n de movimiento se utiliza internamente cuando el Wise NR (SSNR 2D y SSNR 3D) est&aacute; habilitado para detectar movimiento en v&iacute;deo, se detecta de acuerdo con la condici&oacute;n operativa del evento de detecci&oacute;n de movimiento. Para obtener informaci&oacute;n detallada sobre la configuraci&oacute;n de la detecci&oacute;n de movimiento, vaya a <strong class="UI">[An&aacute;lisis]</strong> &gt; <strong class="UI">[Detecci&oacute;n de movimiento]</strong>.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Es posible que transcurra un tiempo hasta que el efecto se aplique o se cancele despu&eacute;s de ajustar el modo Wise NR (SSNR 2D y SSNR 3D).</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Puede que el nivel de ruido aumente a pesar de la capacidad mejorada de detecci&oacute;n de v&iacute;deo despu&eacute;s de configurar el modo Wise NR (SSNR 2D y SSNR 3D).</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">En un entorno luminoso con menos ruidos, el efecto de Wise NR (SSNR 2D y SSNR 3D) puede ser peque&ntilde;o.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Ya que la funci&oacute;n de detecci&oacute;n de movimiento se utiliza internamente cuando el Wise NR (SSNR 2D y SSNR 3D) est&aacute; habilitado para detectar movimiento en v&iacute;deo, se detecta de acuerdo con la condici&oacute;n operativa del evento de detecci&oacute;n de movimiento. Para obtener informaci&oacute;n detallada sobre la configuraci&oacute;n de la detecci&oacute;n de movimiento, vaya a <strong class="UI">[An&aacute;lisis]</strong> &gt; <strong class="UI">[Detecci&oacute;n de movimiento]</strong>.</li>
             </ul>
 			</div> 
     </div>

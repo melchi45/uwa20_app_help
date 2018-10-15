@@ -339,6 +339,10 @@
                 <li><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+            <h3>SSNR レベル</h3>
+            <p>SSNR レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[有効]に選択した場合、設定することができます。</p>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>SSNR 2D レベル</h3>
             <p>SSNR 2Dは、一つのフレームで隣接したピクセルを使用して映像のノイズを低下させます。SSNR 2D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[有効]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
@@ -389,10 +393,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>最小シャッター、最大シャッターの設定範囲によって画面の露出を飽和することができます。</li>
-                <li>WISE NRモード設定後、適用/解除されるまでは一定時間がかかります。</li>
-                <li>WISE NRモード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
-                <li>明るくてノイズが少ない環境では、あまりWISE NRの効果がないです。</li>
-                <li>WISE NR設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">WISE NRモード設定後、適用/解除されるまでは一定時間がかかります。</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">WISE NRモード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">明るくてノイズが少ない環境では、あまりWISE NRの効果がないです。</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">WISE NR設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
             </ul>
 			</div> 
     </div>

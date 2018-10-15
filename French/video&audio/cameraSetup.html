@@ -357,9 +357,14 @@
                 <li><strong class="UI">Wise NR</strong>&nbsp;: Lorsqu&rsquo;un objet en mouvement se trouve dans l&rsquo;image, le niveau de r&eacute;duction du bruit est ajust&eacute; automatiquement pour am&eacute;liorer la pr&eacute;cision de l&rsquo;identification de l&rsquo;objet.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+            <h3>Niveau SSNR</h3>
+            <p>R&eacute;glez le niveau SSNR. Le r&eacute;glage peut &ecirc;tre utilis&eacute; en r&eacute;glant <strong class="UI">[SSNR]</strong> sur <strong class="UI">[Activer]</strong>.</p>
+            <p>Plus le niveau est élevé, moins il y a de bruit, mais la vidéo risque de prendre du retard et de devenir floue.</p>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>Niveau 2D SSNR</h3>
-            <p>SSNR 2D utilise des pixels adjacents dans une seule image pour r&eacute;duire le niveau de bruit dans une image. R&eacute;glez le niveau 2D SSNR. Le r&eacute;glage peut &ecirc;tre utilis&eacute; en r&eacute;glant <strong class="UI">[SSNR]</strong> sur <strong class="UI">[Activer]</strong> ou <strong class="UI">[Wise NR]</strong>.</p>
+            <p>R&eacute;glez le niveau SSNR. Le r&eacute;glage peut &ecirc;tre utilis&eacute; en r&eacute;glant <strong class="UI">[SSNR]</strong> sur <strong class="UI">[Activer]</strong> ou <strong class="UI">[Wise NR]</strong>.</p>
             <p>Plus le niveau est &eacute;lev&eacute;, moins il y a de bruits, mais la vid&eacute;o peut devenir floue.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
@@ -407,10 +412,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>L&rsquo;exposition de l&rsquo;&eacute;cran peut &ecirc;tre satur&eacute;e en fonction de la plage max/min des r&eacute;glages de l&rsquo;obturateur.</li>
-                <li>Il peut s&rsquo;&eacute;couler un certain temps avant que l&rsquo;effet soit appliqu&eacute; ou annul&eacute; apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
-                <li>Le niveau de bruit peut augmenter malgr&eacute; l&rsquo;am&eacute;lioration de la capacit&eacute; de d&eacute;tection vid&eacute;o apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
-                <li>Dans un environnement clair et moins bruyant, l&rsquo;effet de Wise NR (SSNR 2D et SSNR 3D) peut &ecirc;tre faible.</li>
-                <li>Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Il peut s&rsquo;&eacute;couler un certain temps avant que l&rsquo;effet soit appliqu&eacute; ou annul&eacute; apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Le niveau de bruit peut augmenter malgr&eacute; l&rsquo;am&eacute;lioration de la capacit&eacute; de d&eacute;tection vid&eacute;o apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Dans un environnement clair et moins bruyant, l&rsquo;effet de Wise NR (SSNR 2D et SSNR 3D) peut &ecirc;tre faible.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
             </ul>
 			</div> 
     </div>

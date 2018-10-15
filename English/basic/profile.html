@@ -413,7 +413,8 @@
             <p ng-if="SupportAutoImageAlignment">Dynamic FPS is a function that automatically changes FPS settings, from the minimum FPS setting(1 FPS) to frame rate setting depending on the screen situation. In a nearly motionless video, FPS will function using the minimum FPS setting, which in turn reduces the overall screen bitrate. When a motion is detected, FPS will use an increased FPS value.</p>
        <!--      <p>Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>.</p> -->
         </div>
-        <div class="wn5-setup-section-article-content">           
+                <!-- PNM-9030V 모델에서만 최소 FPS 항목이 웹에서 보이지 않음. 웹팀에서 분기 코드를 생성하기 어려워 9030용 분기 코드를 적용해 둠. 참고할 것 --> 
+        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">           
             <h3>Minimum FPS</h3>
                 <p>Enter the minimum FPS value to be applied when Dynamic FPS is enabled.  </p>
                 <p>The [Minimum FPS] option is not displayed if the Minimum FPS value is set as 1.</p>

@@ -368,10 +368,15 @@
                 <li><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+            <h3>SSNR 레벨 </h3>
+            <p>SSNR 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>으로 선택한 경우 설정할 수 있습니다.</p>
+            <p>레벨을 높일수록 노이즈가 저감되나 영상에 끌림이 발생되고 흐려질 수 있습니다.</p>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>SSNR 2D 레벨 </h3>
             <p>SSNR 2D는 한 프레임에서 인접한 픽셀을 사용하여 영상의 노이즈를 줄입니다. SSNR 2D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
-            <p>레벨을 높일수록 노이즈가 저감되나 영상이 흐려질 수 있습니다.</p>
+            <p>레벨을 높일수록 노이즈가 저감되나 영상에 끌림이 발생되고 흐려질 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
             <h3>SSNR 3D 레벨 </h3>
@@ -418,10 +423,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
-                <li>지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
-                <li>지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
-                <li>노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
-                <li>지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다. </li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다. </li>
             </ul>
 			</div> 
     </div>

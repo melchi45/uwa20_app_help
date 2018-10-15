@@ -487,6 +487,11 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <li><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.  </li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+            <h3>SSNR Level </h3>
+            <p>Set the SSNR level. The level can be set when <strong class="UI">[On]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
+            <p>The higher the level, the less the noises, but then the video might lag and become fuzzy.</p>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>SSNR 2D Level </h3>
             <p>SSNR 2D reduces noise on the image using adjacent pixels in one frame. Set the SSNR 2D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
@@ -537,10 +542,10 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>The screen exposure can be saturated depending on the max/min range of shutter settings.</li>
-                <li>It may take a while until the effect is applied or canceled after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li>The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li>In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
-                <li>Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>. </li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">It may take a while until the effect is applied or canceled after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>. </li>
             </ul>
 			</div> 
     </div>
