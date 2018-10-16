@@ -365,7 +365,7 @@
             <ul>
                 <li><strong class="UI">사용함/사용 안 함</strong>: SSNR 기능의 사용 여부를 설정합니다. <strong class="UI">[사용함]</strong>을 선택하면 SSNR 레벨을 조절할 수 있습니다. 
                 </li>
-                <li><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">

@@ -353,7 +353,7 @@
             <p>Elimina el ruido de la imagen.</p>
             <ul>
                 <li><strong class="UI">Activar/Desactivar</strong>: Es posible activar o desactivar la funci&oacute;n SSNR. Si selecciona <strong class="UI">[Activar]</strong>, podr&aacute; ajustar el nivel de SSNR.</li>
-                <li><strong class="UI">Wise NR</strong>: Cuando un objeto en movimiento est&aacute; en la imagen, el nivel de ruido reducido se ajusta autom&aacute;ticamente para mejorar la precisi&oacute;n de la identificaci&oacute;n del objeto.</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">Wise NR</strong>: Cuando un objeto en movimiento est&aacute; en la imagen, el nivel de ruido reducido se ajusta autom&aacute;ticamente para mejorar la precisi&oacute;n de la identificaci&oacute;n del objeto.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">

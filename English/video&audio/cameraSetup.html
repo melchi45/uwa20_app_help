@@ -484,7 +484,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <ul>
                 <li><strong class="UI">On/Off</strong>: Sets whether or not to use the SSNR function. When <strong class="UI">[On]</strong> is selected, the SSNR level can be adjusted. 
                 </li>
-                <li><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.  </li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.  </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">

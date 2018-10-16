@@ -336,7 +336,7 @@
             <p>映像のノイズを除去します。</p>
             <ul>
                 <li><strong class="UI">有効/無効</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[有効]</strong>を選択すると、SSNRレベルを調整することができます。</li>
-                <li><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
+                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
