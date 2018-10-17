@@ -484,7 +484,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <ul>
                 <li><strong class="UI">On/Off</strong>: Sets whether or not to use the SSNR function. When <strong class="UI">[On]</strong> is selected, the SSNR level can be adjusted. 
                 </li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.  </li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.  </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -542,10 +542,10 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>The screen exposure can be saturated depending on the max/min range of shutter settings.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">It may take a while until the effect is applied or canceled after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>. </li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">It may take a while until the effect is applied or canceled after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>. </li>
             </ul>
 			</div> 
     </div>
@@ -784,8 +784,8 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <ul>
                 <li><strong class="UI">White hot</strong>: At high temperature, low temperatures are expressed in white to black.</li>
                 <li><strong class="UI">Black hot</strong>: At high temperature, low temperatures are expressed in black to white.</li>
-                <li><strong class="UI">Rainbow</strong>: At high temperature, low temperatures are expressed in red, orange, yellow, green, blue, indigo, and violet.</li>
-                <li><strong class="UI">Wisenet</strong>: At high temperature, low temperatures are expressed in orange to black.</li>
+                <li><strong class="UI">Rainbow</strong>: At high temperature, low temperatures are expressed in red, orange, yellow, green, blue, and indigo.</li>
+                <li><strong class="UI">Custom</strong>: At high temperature, low temperatures are expressed in orange to black.</li>
                 <li><strong class="UI">Sepia</strong>: At high temperature, low temperatures are expressed in yellow to black.</li>
                 <li><strong class="UI">Red</strong>: At high temperature, low temperatures are expressed in black to red.</li>
                 <li><strong class="UI">Iron</strong>: At high temperature, low temperatures are expressed in yellow to purple.  </li>

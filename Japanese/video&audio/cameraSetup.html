@@ -336,7 +336,7 @@
             <p>映像のノイズを除去します。</p>
             <ul>
                 <li><strong class="UI">有効/無効</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[有効]</strong>を選択すると、SSNRレベルを調整することができます。</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -393,10 +393,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>最小シャッター、最大シャッターの設定範囲によって画面の露出を飽和することができます。</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">WISE NRモード設定後、適用/解除されるまでは一定時間がかかります。</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">WISE NRモード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">明るくてノイズが少ない環境では、あまりWISE NRの効果がないです。</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">WISE NR設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">WISE NRモード設定後、適用/解除されるまでは一定時間がかかります。</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">WISE NRモード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">明るくてノイズが少ない環境では、あまりWISE NRの効果がないです。</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">WISE NR設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
             </ul>
 			</div> 
     </div>
@@ -618,8 +618,8 @@
             <ul>
                 <li><strong class="UI">White hot</strong>：高温から低温を白から黒に表現します。</li>
                 <li><strong class="UI">Black hot</strong>：高温から低温を黒から白に表現します。</li>
-                <li><strong class="UI">Rainbow</strong>：高温から低温を赤、オレンジ、黄、緑、青、藍、紫に表現します。</li>
-                <li><strong class="UI">Wisenet</strong>：高温から低温をオレンジから黒に表現します。</li>
+                <li><strong class="UI">Rainbow</strong>：高温から低温を赤、オレンジ、黄、緑、青、藍に表現します。</li>
+                <li><strong class="UI">Custom</strong>：高温から低温をオレンジから黒に表現します。</li>
                 <li><strong class="UI">Sepia</strong>：高温から低温を黄から黒に表現します。</li>
                 <li><strong class="UI">Red</strong>：高温から低温を黒から赤に表現します。</li>
                 <li><strong class="UI">Iron</strong>：高温から低温を黄から紫に表現します。</li>

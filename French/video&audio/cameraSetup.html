@@ -354,7 +354,7 @@
             <p>Supprime le bruit de l&rsquo;image.</p>
             <ul>
                 <li><strong class="UI">Activer/D&eacute;sactiver</strong>&nbsp;: la fonction SSNR peut &ecirc;tre activ&eacute;e ou d&eacute;sactiv&eacute;e. Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, il est alors possible d&rsquo;ajuster le niveau du SSNR.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">Wise NR</strong>&nbsp;: Lorsqu&rsquo;un objet en mouvement se trouve dans l&rsquo;image, le niveau de r&eacute;duction du bruit est ajust&eacute; automatiquement pour am&eacute;liorer la pr&eacute;cision de l&rsquo;identification de l&rsquo;objet.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">Wise NR</strong>&nbsp;: Lorsqu&rsquo;un objet en mouvement se trouve dans l&rsquo;image, le niveau de r&eacute;duction du bruit est ajust&eacute; automatiquement pour am&eacute;liorer la pr&eacute;cision de l&rsquo;identification de l&rsquo;objet.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -412,10 +412,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>L&rsquo;exposition de l&rsquo;&eacute;cran peut &ecirc;tre satur&eacute;e en fonction de la plage max/min des r&eacute;glages de l&rsquo;obturateur.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Il peut s&rsquo;&eacute;couler un certain temps avant que l&rsquo;effet soit appliqu&eacute; ou annul&eacute; apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Le niveau de bruit peut augmenter malgr&eacute; l&rsquo;am&eacute;lioration de la capacit&eacute; de d&eacute;tection vid&eacute;o apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Dans un environnement clair et moins bruyant, l&rsquo;effet de Wise NR (SSNR 2D et SSNR 3D) peut &ecirc;tre faible.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">Il peut s&rsquo;&eacute;couler un certain temps avant que l&rsquo;effet soit appliqu&eacute; ou annul&eacute; apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">Le niveau de bruit peut augmenter malgr&eacute; l&rsquo;am&eacute;lioration de la capacit&eacute; de d&eacute;tection vid&eacute;o apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">Dans un environnement clair et moins bruyant, l&rsquo;effet de Wise NR (SSNR 2D et SSNR 3D) peut &ecirc;tre faible.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
             </ul>
 			</div> 
     </div>
@@ -635,8 +635,8 @@
             <ul>
                 <li><strong class="UI">Blanc chaud</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du blanc au noir.</li>
                 <li><strong class="UI">Noir chaud</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du noir au blanc.</li>
-                <li><strong class="UI">Arc en ciel</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du rouge, orange, jaune, vert, bleu, indigo, au violet.</li>
-                <li><strong class="UI">Wisenet</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du orange au noir.</li>
+                <li><strong class="UI">Arc en ciel</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du rouge, orange, jaune, vert, bleu, au indigo.</li>
+                <li><strong class="UI">Custom</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du orange au noir.</li>
                 <li><strong class="UI">Sepia</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du jaune au noir.</li>
                 <li><strong class="UI">Rouge</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du noir au rouge.</li>
                 <li><strong class="UI">Fer</strong>&nbsp;: Le changement de temp&eacute;rature de haut en bas s&rsquo;exprime par le changement de couleur du jaune au violet.</li>

@@ -365,7 +365,7 @@
             <ul>
                 <li><strong class="UI">사용함/사용 안 함</strong>: SSNR 기능의 사용 여부를 설정합니다. <strong class="UI">[사용함]</strong>을 선택하면 SSNR 레벨을 조절할 수 있습니다. 
                 </li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel"><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -423,10 +423,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
-                <li ng-if="!SSNR2DLevel && !SSNR3DLevel">지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다. </li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다. </li>
             </ul>
 			</div> 
     </div>
@@ -663,8 +663,8 @@
             <ul>
                 <li><strong class="UI">White hot</strong>: 고온에서 저온을 흰색에서에서 검은색으로 표현합니다.</li>
                 <li><strong class="UI">Black hot</strong>: 고온에서 저온을 검은색에서 흰색으로 표현합니다.</li>
-                <li><strong class="UI">Rainbow</strong>: 고온에서 저온을 빨강, 주황, 노랑, 초록, 파랑, 남색, 보라로 표현합니다.</li>
-                <li><strong class="UI">Wisenet</strong>: 고온에서 저온을 주황색에서 검정색으로 표현합니다.</li>
+                <li><strong class="UI">Rainbow</strong>: 고온에서 저온을 빨강, 주황, 노랑, 초록, 파랑, 남색으로 표현합니다.</li>
+                <li><strong class="UI">Custom</strong>: 고온에서 저온을 주황색에서 검정색으로 표현합니다.</li>
                 <li><strong class="UI">Sepia</strong>: 고온에서 저온을 노란색에서 검정색으로 표현합니다.</li>
                 <li><strong class="UI">Red</strong>: 고온에서 저온을 검정색에서 빨간색으로 표현합니다.</li>
                 <li><strong class="UI">Iron</strong>: 고온에서 저온을 노란색에서 보라색으로 표현합니다.  </li>
