@@ -123,9 +123,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="FlipMirrorSupport">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="FlipMirrorSupport">
 	<div class="wn5-setup-section-heading">
 		<h2>Video rotation</h2>
 	</div>
@@ -230,7 +230,7 @@
         <div class="wn5-setup-section-article-content">
             <p>This determines the output type of the video for an analog video output. Analog video output is useful since you can set it while checking the lens location and camera focus when installing the camera.</p>
         </div>
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
                 <h3>USB</h3>
                 <p>To display a camera image by using the USB, click <strong class="UI">[Enable]</strong>.</p>
             </div>

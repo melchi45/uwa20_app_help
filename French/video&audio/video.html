@@ -120,9 +120,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="FlipMirrorSupport">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="FlipMirrorSupport">
 	<div class="wn5-setup-section-heading">
 		<h2>Rotation de la vid&eacute;o</h2>
 	</div>
@@ -227,7 +227,7 @@
             <p>Ceci d&eacute;termine le type de sortie vid&eacute;o pour une sortie vid&eacute;o analogique. La sortie vid&eacute;o analogique est utile car vous pouvez la r&eacute;gler tout en v&eacute;rifiant l&rsquo;emplacement de l&rsquo;objectif et la mise au point de la cam&eacute;ra lors de l&rsquo;installation de la cam&eacute;ra.</p>
         </div>
 
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
                 <h3>USB</h3>
                 <p>Pour afficher une image de cam&eacute;ra &agrave; l&rsquo;aide de l&rsquo;USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
             </div>

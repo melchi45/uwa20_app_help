@@ -590,7 +590,7 @@
             <h3>Transparence du texte d&rsquo;OSD</h3>
             <p>D&eacute;finit la transparence de l&rsquo;OSD.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel">
             <h3>Transparence</h3>
             <p>L&rsquo;utilisateur peut afficher la position PTZ de la cam&eacute;ra ou des noms pr&eacute;d&eacute;finis &agrave; l&rsquo;&eacute;cran.</p>
             <ul>
@@ -610,7 +610,7 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Dans le cas d&rsquo;un &eacute;l&eacute;ment dont l&rsquo;emplacement peut &ecirc;tre ajust&eacute; (titre de la cam&eacute;ra, date et heure), s&rsquo;il chevauche d&rsquo;autres &eacute;l&eacute;ments OSD fixes, l&rsquo;&eacute;cran risque de ne pas s&rsquo;afficher correctement.</li>
-                <li ng-if="PTZModel">L&rsquo;ID de la cam&eacute;ra dans «&nbsp;Transparence&nbsp;» est affich&eacute; en haut &agrave; gauche de l&rsquo;&eacute;cran tandis que la position «&nbsp;PTZ&nbsp;» est affich&eacute;e en bas &agrave; gauche de l&rsquo;&eacute;cran, mais les emplacements ne peuvent pas &ecirc;tre chang&eacute;s.</li>
+                <li ng-if="PTZModel || PanTiltOnlyModel">L&rsquo;ID de la cam&eacute;ra dans «&nbsp;Transparence&nbsp;» est affich&eacute; en haut &agrave; gauche de l&rsquo;&eacute;cran tandis que la position «&nbsp;PTZ&nbsp;» est affich&eacute;e en bas &agrave; gauche de l&rsquo;&eacute;cran, mais les emplacements ne peuvent pas &ecirc;tre chang&eacute;s.</li>
                 <li>Seuls le cor&eacute;en, l&rsquo;anglais, les chiffres et les symboles sont autoris&eacute;s.</li>
             </ul>
         </div>

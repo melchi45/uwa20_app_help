@@ -64,9 +64,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="FlipMirrorSupport">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="FlipMirrorSupport">
 	<div class="wn5-setup-section-heading">
 		<h2>ビデオ回転</h2>
 	</div>
@@ -171,7 +171,7 @@
 			<div class="wn5-setup-section-article-content">	
         <p>カメラ映像をアナログ方式で出力するとき、出力方式を設定することができます。アナログビデオ出力はカメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができて有用です。</p>
 	</div>
-	    <div class="wn5-setup-section-article-content">			
+	    <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">			
 			<h3>USB</h3>
 			<p>USBを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
 		</div>
