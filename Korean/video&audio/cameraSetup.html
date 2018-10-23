@@ -615,7 +615,7 @@
             <ul>
                 <li><strong class="UI">PTZ 좌표</strong>: 화면에 PTZ 위치 표시 여부를 설정합니다.</li>
                 <li><strong class="UI">프리셋 이름</strong>: 화면에 프리셋 이름 표시 여부를 설정합니다.</li>
-                <li><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
+                <li ng-if="RS485Support"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
                 <li><strong class="UI">방위각</strong>: 현재 화면 상으로 보고있는 영역의 방위각을 표시하는 기능입니다. 기능 설정 시 E(동)/W(서)/S(남)/N(북)/NE(북동)/NW(북서)/SE(남동)/SW(남서)의 8방향으로 표시하며, 화면 우측 하단에 나타나게 됩니다.</li>
             </ul>
         </div>
