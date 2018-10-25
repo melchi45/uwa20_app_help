@@ -48,19 +48,22 @@
             <ul>
                 <li>The motion detection area and the exclude area are set and used according to the size range of the motion.</li>
                 <li>In any of the following cases, the performance of the motion detection event may deteriorate and a malfunction may occur:
-				<br>- If an object is similar in brightness or color to the background on the screen
-				<br>- If a small motion occurs near the edge of the screen
-				<br>- If an overall change on the screen occurs continuously at random due to factors such as scene changes and sudden illumination changes
-				<br>- If a moving object comes too close to the camera
-				<br>- When one object hides another object
-				<br>- When the motion of an object is too fast
-				<br>- When reflection, blurring or shading occur due to strong light such as direct sunlight, high illumination or headlights from a vehicle
-				<br>- In cases of severe snow, rain or wind, or sunset or sunrise.</li>
+                <ul>
+                <li ng-if="SupportAutoImageAlignment">If a motion occurs in the area where the camera images overlap</li>
+				<li>If an object is similar in brightness or color to the background on the screen</li>
+				<li>If a small motion occurs near the edge of the screen</li>
+				<li>If an overall change on the screen occurs continuously at random due to factors such as scene changes and sudden illumination changes</li>
+				<li>If a moving object comes too close to the camera</li>
+				<li>When one object hides another object</li>
+				<li>When the motion of an object is too fast</li>
+				<li>When reflection, blurring or shading occur due to strong light such as direct sunlight, high illumination or headlights from a vehicle</li>
+				<li>In cases of severe snow, rain or wind, or sunset or sunrise.</li>
             </ul>
+        </ul>
         </div>
+</div>
+</div>
 
-</div>
-</div>
 <div class="wn5-setup-section">
 
     <div class="wn5-setup-section-heading">
