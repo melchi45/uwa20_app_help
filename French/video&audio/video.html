@@ -2,7 +2,9 @@
 <h1 class="wn5-setup-main-title">Configuration de la vid&eacute;o</h1>
 
 <div class="wn5-setup-section">
-	<p>Vous pouvez d&eacute;finir une zone de confidentialit&eacute; dans l&rsquo;image de la cam&eacute;ra ou la retourner dans le sens inverse (verticalement ou horizontalement). De plus, vous pouvez afficher une image analogique ou changer le type de sortie vid&eacute;o. Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+    <p ng-if="PrivacyMaskSupport && FlipMirrorSupport">Vous pouvez d&eacute;finir une zone de confidentialit&eacute; dans l&rsquo;image de la cam&eacute;ra ou la retourner dans le sens inverse (verticalement ou horizontalement). De plus, vous pouvez afficher une image analogique ou changer le type de sortie vid&eacute;o. Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+    <p ng-if="!PrivacyMaskSupport && !FlipMirrorSupport">Vous pouvez déterminer le type de sortie vid&eacute;o pour une sortie vid&eacute;o analogique.</p>
+    <p>Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">

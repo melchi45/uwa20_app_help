@@ -2,7 +2,9 @@
 <h1 class="wn5-setup-main-title">ビデオ設定</h1>
 
 <div class="wn5-setup-section">
-	<p>カメラ映像にプライバシー領域を設定したり、映像画面を上下左右に反転させることができます。また映像をアナログに出力するように設定したり、ビデオ出力タイプを変更することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+	<p ng-if="PrivacyMaskSupport && FlipMirrorSupport">カメラ映像にプライバシー領域を設定したり、映像画面を上下左右に反転させることができます。また映像をアナログに出力するように設定したり、ビデオ出力タイプを変更することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+	<p ng-if="!PrivacyMaskSupport && !FlipMirrorSupport">カメラ映像をアナログ方式で出力するとき、出力方式を設定することができます。</p>
+	<p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">

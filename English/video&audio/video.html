@@ -2,7 +2,9 @@
 <h1 class="wn5-setup-main-title">Video setup</h1>
 
 <div class="wn5-setup-section">
-	<p>You can set a privacy area in the camera's image or flip it in reverse directions (vertically or horizontally). In addition, you can display an analog image or change the video output type, Once you have completed the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+    <p ng-if="PrivacyMaskSupport && FlipMirrorSupport"></p>>You can set a privacy area in the camera's image or flip it in reverse directions (vertically or horizontally). In addition, you can display an analog image or change the video output type.</p>
+    <p ng-if="!PrivacyMaskSupport && !FlipMirrorSupport">You can determine the output type of the video for an analog video output.</p>
+    <p>Once you have completed the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">

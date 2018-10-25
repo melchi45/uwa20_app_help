@@ -2,7 +2,9 @@
 <h1 class="wn5-setup-main-title">Configuraci&oacute;n del v&iacute;deo</h1>
 
 <div class="wn5-setup-section">
-	<p>Puede configurar un &aacute;rea privada en la imagen de la c&aacute;mara o voltearla en las direcciones inversas (verticalmente u horizontalmente). Adem&aacute;s, puede mostrar una imagen anal&oacute;gica o cambiar el tipo de salida del video. Una vez que haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
+    <p ng-if="PrivacyMaskSupport && FlipMirrorSupport">Puede configurar un &aacute;rea privada en la imagen de la c&aacute;mara o voltearla en las direcciones inversas (verticalmente u horizontalmente). Adem&aacute;s, puede mostrar una imagen anal&oacute;gica o cambiar el tipo de salida del video. Una vez que haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
+    <p ng-if="!PrivacyMaskSupport && !FlipMirrorSupport">Puede determinar el tipo de salida del video para una salida de video anal&oacute;gica.</p>
+    <p>Una vez que haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
 </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
