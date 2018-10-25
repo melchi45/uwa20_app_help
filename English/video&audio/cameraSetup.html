@@ -39,7 +39,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                 <li>By using the zoom bar, you can adjust the video zooming ratio. Or select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom in or the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom out.</li>
                 <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span>  icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically once, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
-                <li>Place the screen center toward the north, and click the <span class="tui tui-wn5-north"></span> (Set North) button to change the location to the north.</li>
+                <li>Place the screen center toward the north, and click the <span class="tui tui-wn5-north"></span> (Set North) button to change the location to the north. (The Set North button displays when you click the <strong class="UI">[OSD]</strong> tab.)</li>
             </ul>
     	</div>
     </div>
@@ -377,7 +377,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
             <h5>Dimming </h5>
             <p>Detects the strongly illuminated area on the screen and adjusts brightness to reduce the size of the saturated areas.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
             <h5>Area setting</h5>
             <p>Set the blocked area’s size and location. </p>
             <ul>
