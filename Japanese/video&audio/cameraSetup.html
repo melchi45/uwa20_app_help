@@ -61,8 +61,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
-<div class="wn5-setup-section" ng-if="ImagePresetMode">
+<hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>画像プリセットモード</h2>
     </div>
@@ -200,11 +200,11 @@
                 <li>BLC設定時、誤動作を防ぐためにBLCエリアの上下間隔は最大60/最小40、左右間隔は最大60/最小30に制限されます。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content"  ng-if="HLC">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation)モードは街灯や車のヘッドライトのように強い照明を効果的に遮断して強い照明の飽和によって車のナンバープレートなどの周囲にある物事が識別できないことを防止します。</p>
         </div>
-        <div class="wn5-setup-section-article-content"  ng-if="HLC">
+        <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLCレベル</h5>
             <p>露出レベルを設定してハイライトエリアを調整します。</p>
             <p>低、中、高の中から選択することができます。レベルが高いほど、補正に優れていてハイライトエリアを遮断するエリアに差があります。</p>
@@ -405,7 +405,7 @@
 <hr class="wn5-setup-hr" ng-if="DayNight">
 <div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
-        <h2>デイ/ナイト</h2>
+        <h2><a name="daynight"></a>デイ/ナイト</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -520,6 +520,10 @@
                 <li>曇りレベルが低くて手動曇りレベルが高い場合、画面が真っ暗に表示されることがあります。</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
+            <h3>光学曇り除去フィルター</h3>
+            <p>カメラ映像に光学式曇り補正の使用有無を選択します。<strong class="UI">[曇り除去]</strong>を<strong class="UI">[手動]</strong>に設定した場合のみ、光学曇り除去フィルターを使用するように設定することができます。</p>
+        </div>	
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p>LDC (Lens Distortion Correction)は広角レンズの角部分の映像歪み現象を補正します。</p>
@@ -646,6 +650,12 @@
                 <li>ワンショットAF：ユーザーイベント(オートフォーカスもしくはズーム動作)が発生する時、自動にフォーカスが一回調整されます。</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>範囲</h3>
+            <p>カメラフォーカスを自動に調整するときに適用する範囲を設定します。</p>
+            <p>カメラで対応する全体範囲を考えてフォーカスを自動に調整するには、<strong class="UI">[広い]</strong>を選択します。現在位置で一部範囲だけを考えてフォーカスを調整するには、<strong class="UI">[狭い]</strong>を選択します。</p>
+            <p><strong class="UI">[広い]</strong>を選択すると、自動フォーカス動作中に揺れる場合があります。<strong class="UI">[狭い]</strong>を選択すると、ほぼ揺れはないが、極度に他の距離に被写体がある場合にはフォーカス調整に失敗する場合があります。</p>
+        </div>
 		<div class="wn5-setup-section-article-content">
             <h3>デジタルズーム</h3>
             <p>デジタルズームを有効にするためには、<strong class="UI">[有効]</strong>を選択します。</p>
@@ -734,8 +744,8 @@
 </div>  
 
 
-<hr class="wn5-setup-hr" ng-if="IR">
-<div class="wn5-setup-section" ng-if="IR">
+<hr class="wn5-setup-hr" ng-if="IR && !PTZModel">
+<div class="wn5-setup-section" ng-if="IR && !PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>
     </div>
@@ -758,7 +768,59 @@
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>IR</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>IR LEDがOnになるときに物事がとても明るく映される現象を防いで近くでも物事を職別できるように設定することができます。</p>
+        </div>	
+        <div class="wn5-setup-section-article-content">
+            <h3>モード</h3>
+            <p>照度センサーによって制御され赤外線LED</p>
+            <p>IR LEDがOnになる場合、IRモード機能設定で物事がとても明るく映される現象を防いで近くでも物事の職別ができます。</p>
+            <p>&nbsp;</p>
+            <p>B/Wの時、IR LEDがオンになると画面中央の飽和を防止して近くでも被写体を識別することができます。</p>
+            <ul>
+                <li><strong class="UI">Off</strong>：IR LEDをOffにします。</li>
+                <li><strong class="UI">On</strong>：IR LEDをOnにします。このモードを選択すると、<strong class="UI"><a href="#daynight">[デイ/ナイト]</a></strong>が機能解除となります。 &nbsp;</li>
+                <li><strong class="UI">デイ/ナイト</strong>：デイ/ナイトによってIRをOn・Offします。つまり、デイ/ナイトに同期されて映像がカラーの場合にはLEDがOffとなり、B/Wの場合にはLEDがOnとなります。このモードを選択すると、<strong class="UI"><a href="#daynight">[デイ/ナイト]</a></strong>は[自動]に選択され、変更できません。</li>
+                <li><strong class="UI">センサー</strong>：光センサーの光量検知によってIR&amp;デイ/ナイトを変更します。このモードを選択すると、<strong class="UI"><a href="#daynight">[デイ/ナイト]</a></strong>が機能解除となります。</li>
+                <li><strong class="UI">時限</strong>：IR使用時間を設定します。このモードを選択すると、<strong class="UI"><a href="#daynight">[デイ/ナイト]</a></strong>が機能解除となります。 &nbsp;</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LEDオンのレベル</h3>
+            <p>設定したLEDレベルより光量値が低い場合には、LEDが自動にOnとなります。「IRオンのレベル」は<strong class="UI">[モード]</strong>で<strong class="UI">[センサー]</strong>を選択した場合、有効となります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LEDオフのレベル</h3>
+            <p>設定したLEDレベルより光量値が高い場合には、LEDが自動にOffとなります。「IRオフのレベル」は<strong class="UI">[モード]</strong>で<strong class="UI">[センサー]</strong>を選択した場合、有効となります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LEDオン時間</h3>
+            <p>IRがOnになっている時間を設定します。「LEDオン時間」は<strong class="UI">[モード]</strong>で<strong class="UI">[時限]</strong>を選択した場合、有効となります。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED最大パワー</h3>
+            <p>IRの最大明るさを設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED電源制御</h3>
+            <p>近くにある対象物による画面飽和状況を制御するためには、<strong class="UI">[自動]</strong>を選択します。<strong class="UI">[Off]</strong>を選択した場合、画面が飽和されても制御しません。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>IRモードを<strong class="UI">[On]</strong>に設定してLEDがOnとなる場合、B/Wに設定されます。<strong class="UI">[Off]</strong>に設定してLEDがOffとなる場合、<strong class="UI"><a href="#daynight">[デイ/ナイト]</a></strong>機能が有効になります。</li>
+                <li>赤外線調光器を使用するときにズーム倍率を変更すると、赤外線調光器がズーム倍率と同期されます。</li>
+                <li>周りの温度が高くなりすぎると、製品を保護するためにIR LEDが強制にOffとなる場合があります。</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="ActivationTime">
 <div class="wn5-setup-section" ng-if="ActivationTime">

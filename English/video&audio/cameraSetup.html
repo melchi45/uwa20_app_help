@@ -205,8 +205,8 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
-<div class="wn5-setup-section" ng-if="ImagePresetMode">
+<hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Image preset mode</h2>
     </div>
@@ -554,7 +554,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
 <hr class="wn5-setup-hr" ng-if="DayNight">
 <div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
-        <h2>Day/Night</h2>
+        <h2><a name="daynight"></a>Day/Night</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -675,6 +675,10 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <li>If the fog level is low and a manual high defog level is high, the screen may look darker.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
+            <h3>Optical defog filter</h3>
+            <p>Selects whether or not to use the optical defog correction to camera video. Only after <strong class="UI">[Defog]</strong> is set to <strong class="UI">[Manual]</strong>, the optical defog filter can be enabled.</p>
+        </div>	
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p> LDC (Lens Distortion Correction) corrects image distortion at the edge of a wide angle lens. </p>
@@ -812,6 +816,12 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <li>One shot AF: In case of a user event (Auto Focus or Zoom Action), the focus will be automatically adjusted one time.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Range</h3>
+            <p>Sets the applicable range when automatically adjusting the camera focus.</p>
+            <p>To automatically adjust the focus in consideration of the whole supported range for the camera, select <strong class="UI">[Wide]</strong>. To automatically adjust the focus in consideration of only partial range from the current location, select <strong class="UI">[Narrow]</strong>.</p>
+            <p>If you select <strong class="UI">[Wide]</strong>, the camera motion might be mildly shaky during the process of automatic focusing. If you select <strong class="UI">[Narrow]</strong>, there will be no such shaky motion, but the focusing might fail if the subject is located exceptionally close or far.</p>
+        </div>	
 		<div class="wn5-setup-section-article-content">
             <h3>Digital zoom</h3>
             <p>To use digital zoom, select <strong class="UI">[On]</strong>.</p>
@@ -900,8 +910,8 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
 </div>  
 
 
-<hr class="wn5-setup-hr" ng-if="IR">
-<div class="wn5-setup-section" ng-if="IR">
+<hr class="wn5-setup-hr" ng-if="IR && !PTZModel">
+<div class="wn5-setup-section" ng-if="IR && !PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>
     </div>
@@ -924,7 +934,59 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>IR</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Enables the identification of objects at a close distance by preventing overt brightness of proximate objects on screen when IR LED is turned on.</p>
+        </div>	
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>The infrared LED is controlled by brightness sensor.</p>
+            <p>The IR mode allows the identification of objects at a close distance by preventing overt brightness of proximate objects on screen when IR LED is turned on.</p>
+            <p>&nbsp;</p>
+            <p>In the B/W mode when the IR LED is turned on, the saturation at the center of screen is prevented, so it is possible to identify a nearby object.</p>
+            <ul>
+                <li><strong class="UI">Disable</strong>: Turns off IR LED.</li>
+                <li><strong class="UI">Enable</strong>: Turns on IR LED. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>. &nbsp;</li>
+                <li><strong class="UI">Day/Night</strong>: Turns on/off IR according to Day/Night. It means that, after the activation of Day/Night, LED is turned off when the video is in color mode and turned on when video is in B/W mode. If this mode is selected, <strong class="UI"><a href="#daynight">[Day/Night]</a></strong> is automatically set to [Auto] and the setting cannot be changed.</li>
+                <li><strong class="UI">Sensor</strong>: IR and Day/Night changes depending on the amount of light detected by the optical sensor. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>.</li>
+                <li><strong class="UI">Timed</strong>: Sets the IR On time. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>. &nbsp;</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED On level</h3>
+            <p>If the amount of light is below the set LED level, LED is automatically turned on. &quot;IR On level&quot; is enabled if you select <strong class="UI">[Sensor]</strong> in <strong class="UI">[Mode]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED Off level</h3>
+            <p>If the amount of light is above the set LED level, LED is automatically turned off. &quot;IR Off level&quot; is enabled if you select <strong class="UI">[Sensor]</strong> in <strong class="UI">[Mode]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED On time</h3>
+            <p>Sets the time during which IR is turned on. &quot;LED On time&quot; is enabled if you select <strong class="UI">[Timed]</strong> in <strong class="UI">[Mode]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED max. power</h3>
+            <p>Set the maximum brightness of IR.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED power control</h3>
+            <p>Select <strong class="UI">[Auto]</strong> to control the state of screen saturation due to the presence of proximate objects. If <strong class="UI">[Off]</strong> is selected, the screen saturation won&apos;t be controlled even if it is saturated.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>If LED is turned on by setting the IR mode to <strong class="UI">[On]</strong>, the screen goes into B/W mode. If LED is turned off by setting it to <strong class="UI">[Off]</strong>, <strong class="UI"><a href="#daynight">[Day/Night]</a></strong> is activated.</li>
+                <li>If you change zoom magnification while using your infrared rheostat, the rheostat will be linked with the zoom magnification.</li>
+                <li>If the ambient temperature goes up too high, IR LED might be forced to terminate in order to protect the product.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="ActivationTime">
 <div class="wn5-setup-section" ng-if="ActivationTime">

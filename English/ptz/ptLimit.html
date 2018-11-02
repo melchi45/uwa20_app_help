@@ -96,4 +96,32 @@
 
 	</div>
 </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Pan/Tilt init</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Specifies whether or not to initialize the pan/tilt of camera as well as setting the initialization cycle and time.</p>
+            <p>For example, after selecting <strong class="UI">[Enable]</strong>, if you set <strong class="UI">[Duration]</strong> to &quot;2 days&quot; and <strong class="UI">[Init time]</strong> to &quot;9&quot;, pan/tilt position will be initialized every two days at 9 a.m. If the time is set to Jan 1, 2000, the initialization process begins at 9 a.m. on Jan 3, 2000, and then the pan/tilt position will be initialized every two days at 9 a.m. (i.e. Jan 5, Jan 7, and so on)</p>
+        </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>Duration</h3>
+                <p>Set the initialization cycle. For example, if you set it to &quot;2 days&quot;, the initialization recurs every two days.</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>Init time</h3>
+                <p>Sets the initialization time. You can select the hourly time from 0 to 23.</p>
+            </div>
+			<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+    <ul>
+        <li>A deviation of &plusmn;10 min may be expected.</li>
+        <li>After the action of pan/tilt initialization, the previous PTZ action state is maintained. For example, if initialization action occurs in the middle of a preset action, the preset action will resume after the completion of the initialization.</li>
+    </ul>
+</div>
+	</div>
+</div>
 <hr class="wn5-setup-hr">

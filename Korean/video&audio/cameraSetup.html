@@ -87,8 +87,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
-<div class="wn5-setup-section" ng-if="ImagePresetMode">
+<hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>이미지 프리셋 모드</h2>
     </div>
@@ -435,7 +435,7 @@
 <hr class="wn5-setup-hr" ng-if="DayNight">
 <div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
-        <h2>주야간 모드</h2>
+        <h2><a name="daynight"></a>주야간 모드</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -524,7 +524,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>윤곽 레벨</h3>
-            <p>영상의 전반적인 윤곽을 조절합니다. <strong class="UI">[윤곽 조정]</strong>을 <strong class="UI">[사용함]</strong>으로 설정하면 윤곽 레벨을 설정할 수 있습니다. </p>
+            <p>영상의 전반적인 윤곽을 조절합니다. <strong class="UI">[윤곽 조정]</strong>을<strong class="UI">[사용함]</strong>으로 설정하면 윤곽 레벨을 설정할 수 있습니다.</p>
             <p>윤곽레벨이 높을수록 영상의 윤곽이 강하고 뚜렷해집니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Gamma">
@@ -556,6 +556,10 @@
                 <li>안개 낀 정도가 약하면서 수동 안개 레벨이 높은 경우 화면이 컴컴해 보일 수 있습니다.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
+            <h3>광학 안개 제거 필터</h3>
+            <p> 카메라 영상에 광학식 안개 보정을 사용할지 여부를 선택합니다. <strong class="UI">[안개 제거]</strong>를 <strong class="UI">[수동]</strong>으로 설정한 경우에만 광학 안개 제거 필터를 사용하도록 설정할 수 있습니다.</p>
+        </div>		
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p> LDC (Lens Distortion Correction)는 광각 렌즈의 모서리 부분의 영상 왜곡 현상을 보정해줍니다. </p>
@@ -692,6 +696,12 @@
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content">
+            <h3>범위</h3>
+            <p>카메라 초점을 자동으로 조정할 때 적용할 범위를 설정합니다.</p>
+            <p>카메라에서 지원하는 전체 범위를 고려하여 초점을 자동으로&nbsp;조정하려면 <strong class="UI">[넓음]</strong>을 선택합니다. 현재 위치에서 일부 범위만 고려하여 초점을 조정하려면 <strong class="UI">[좁음]</strong>을 선택합니다. </p>
+            <p><strong class="UI">[넓음]</strong>을 선택하면 자동 초점 동작 중 울렁거림이 발생할 수 있습니다. <strong class="UI">[좁음]</strong>을 선택하면 울렁거림이 거의 없지만, 극도로 다른 거리에 피사체가 있는 경우 초점 조정에 실패할 수 있습니다.</p>
+        </div>		
+		<div class="wn5-setup-section-article-content">
             <h3>디지털 줌</h3>
             <p>디지털 줌을 사용하려면  <strong class="UI">[사용함]</strong>을 선택합니다.</p>
         </div>
@@ -779,10 +789,10 @@
 </div>  
 
 
-<hr class="wn5-setup-hr" ng-if="IR">
-<div class="wn5-setup-section" ng-if="IR">
+<hr class="wn5-setup-hr" ng-if="IR && !PTZModel">
+<div class="wn5-setup-section" ng-if="IR && !PTZModel">
     <div class="wn5-setup-section-heading">
-        <h2>IR</h2>
+        <h2>IR  </h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -803,7 +813,58 @@
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>IR</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>IR LED가 켜질 때 사물이 너무 밝게 비치는 현상을 막아 근거리에서도 사물의 식별이 가능하도록 설정할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>모드</h3>
+            <p>조도 센서에 의해 제어되어 적외선 LED </p>
+            <p>IR LED가 켜질 경우 IR 모드 기능 설정으로 사물이 너무 밝게 비치는 현상을 막아 근거리에서도 사물의 식별이가능하게 합니다.</p>
+            <p>흑백 시 IR LED가 켜지면 화면 중앙의 포화를 방지하여 근거리에서도 피사체의 식별이 가능합니다.</p>
+            <ul>
+                <li><strong class="UI">사용 안 함</strong>: IR LED를 끕니다. </li>
+                <li><strong class="UI">사용함</strong>: IR LED를 켭니다. 이 모드를 선택하면 <strong class="UI"><a href="#daynight">[주야간 모드]</a></strong> 기능이 비활성화됩니다. &nbsp;</li>
+                <li><strong class="UI">주야간 모드</strong>: 주야간 모드에 따라 IR을 켜거나 끕니다. 즉 주야간 모드에 연동 되어서 영상이 컬러일 때는 LED 가 꺼지고, 흑백일 때는 LED가 켜집니다. 이 모드를 선택하면 <strong class="UI"><a href="#daynight">[주야간 모드]</a></strong>는 [자동]으로 선택되며 변경할 수 없습니다.</li>
+                <li><strong class="UI">센서</strong>: 광센서의 광량 감지에 따라 IR 및 주야간모드를 변경합니다. 이 모드를 선택하면 <strong class="UI"><a href="#daynight">[주야간 모드]</a></strong> 기능이 비활성화됩니다. </li>
+                <li><strong class="UI">시간 모드</strong>: IR 사용 시간을 설정합니다. 이 모드를 선택하면 <strong class="UI"><a href="#daynight">[주야간 모드]</a></strong> 기능이 비활성화됩니다. &nbsp;</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED 사용 레벨</h3>
+            <p>설정한 LED 레벨보다 광량 값이 낮으면 LED가 자동으로 켜집니다. 'IR 사용 레벨'은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[센서]</strong>을 선택한 경우&nbsp;활성화됩니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED 미사용 레벨</h3>
+            <p>설정한 LED 레벨보다 광량 값이 높으면 LED가 자동으로 꺼집니다. 'IR 미사용 레벨'은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[센서]</strong>을 선택한 경우&nbsp;활성화됩니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED 사용 시간</h3>
+            <p>IR이 켜져 있는 시간을 설정합니다. 'LED 사용 시간'은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[시간 모드]</strong>를 선택한 경우&nbsp;활성화됩니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED 최대 출력</h3>
+            <p>IR의 최대 밝기를 설정합니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED 출력 제어</h3>
+            <p>근거리에 있는 물체로 인한 화면 포화 상태를 제어하려면 <strong class="UI">[자동]</strong>을 선택합니다. <strong class="UI">[사용 안 함]</strong>을 선택한 경우 화면이 포화되어도 제어하지 않습니다. </p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>IR 모드를 <strong class="UI">[사용함]</strong>으로 설정하여 LED가 켜지면 화면은 흑백으로 설정되며,&nbsp;<strong class="UI">[사용 안 함]</strong>으로 설정하여 LED가 꺼지면 <strong class="UI"><a href="#daynight">[주야간 모드]</a></strong> 기능이 활성화됩니다.</li>
+                <li>적외선 조광기를 사용하는 상태에서 줌 배율을 바꾸면 적외선 조광기가 줌 배율과 연동됩니다.</li>
+                <li>주위 온도가 너무 높아지면 제품의 보호를 위해서 IR LED가 강제로 꺼질 수 있습니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="ActivationTime">
 <div class="wn5-setup-section" ng-if="ActivationTime">

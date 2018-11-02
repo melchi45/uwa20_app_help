@@ -83,8 +83,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
-<div class="wn5-setup-section" ng-if="ImagePresetMode">
+<hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Mode de pr&eacute;r&eacute;glage d&rsquo;image</h2>
     </div>
@@ -424,7 +424,7 @@
 <hr class="wn5-setup-hr" ng-if="DayNight">
 <div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
-        <h2>Jour/Nuit</h2>
+        <h2><a name="daynight"></a>Jour/Nuit</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -537,6 +537,10 @@
                 <li>Si le niveau de brouillard est bas et qu&rsquo;un niveau de d&eacute;sembuage manuel est &eacute;lev&eacute;, l&rsquo;&eacute;cran peut para&icirc;tre plus sombre.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
+            <h3>Filtre optique de d&eacute;sembuage</h3>
+            <p>S&eacute;lectionnez si vous souhaitez utiliser ou non la correction de d&eacute;sembuage optique pour la cam&eacute;ra vid&eacute;o. Seulement apr&egrave;s que <strong class="UI">[D&eacute;sembuage]</strong> est configur&eacute; sur <strong class="UI">[Manuel]</strong>, le filtre optique de d&eacute;sembuage peut &ecirc;tre activ&eacute;.</p>
+        </div>	
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p>LDC (Correction de la distorsion de l&rsquo;objectif) corrige la distorsion de l&rsquo;image au bord d&rsquo;un objectif grand angle.</p>
@@ -663,6 +667,12 @@
                 <li>Prise AF&nbsp;: Dans le cas d&rsquo;un &eacute;v&eacute;nement utilisateur (mise au point automatique ou action de zoom), la mise au point sera automatiquement ajust&eacute;e une fois.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Plage</h3>
+            <p>D&eacute;finit la plage applicable lors du r&eacute;glage automatique de la mise au point de la cam&eacute;ra.</p>
+            <p>Afin d&rsquo;ajuster la mise au point en tenant compte de l&rsquo;ensemble de la plage prise en charge pour la cam&eacute;ra, s&eacute;lectionnez <strong class="UI">[Large]</strong>. Pour ajuster automatiquement la mise au point en consid&eacute;rant seulement la plage partielle de l&rsquo;emplacement actuel, s&eacute;lectionnez <strong class="UI">[&Eacute;troit]</strong>.</p>
+            <p>Si vous s&eacute;lectionnez <strong class="UI">[Large]</strong>, le mouvement de la cam&eacute;ra peut &ecirc;tre l&eacute;g&egrave;rement instable pendant le processus de mise au point automatique. Si vous s&eacute;lectionnez <strong class="UI">[&Eacute;troit]</strong>, il n&rsquo;y aura pas de mouvement de cam&eacute;ra tremblant, mais la mise au point pourra &eacute;chouer si l&apos;objet est situ&eacute; exceptionnellement pr&egrave;s ou loin.</p>
+        </div>	
 		<div class="wn5-setup-section-article-content">
             <h3>Zoom num&eacute;rique</h3>
             <p>Pour utiliser le zoom num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
@@ -751,8 +761,8 @@
 </div>  
 
 
-<hr class="wn5-setup-hr" ng-if="IR">
-<div class="wn5-setup-section" ng-if="IR">
+<hr class="wn5-setup-hr" ng-if="IR && !PTZModel">
+<div class="wn5-setup-section" ng-if="IR && !PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>
     </div>
@@ -775,7 +785,59 @@
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>IR</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Permet l&rsquo;identification d&rsquo;objets &agrave; faible distance en emp&ecirc;chant une luminosit&eacute; trop importante des objets proches &agrave; l&rsquo;&eacute;cran lorsque la LED IR est allum&eacute;e.</p>
+        </div>	
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>La LED infrarouge est contr&ocirc;l&eacute;e par un capteur de luminosit&eacute;.</p>
+            <p>Le mode IR permet l&rsquo;identification d&rsquo;objets &agrave; faible distance en emp&ecirc;chant une luminosit&eacute; trop importante des objets proches &agrave; l&rsquo;&eacute;cran lorsque la LED IR est allum&eacute;e.</p>
+            <p>&nbsp;</p>
+            <p>En mode N/B lorsque la LED IR est allum&eacute;e, la saturation au centre de l&rsquo;&eacute;cran est emp&ecirc;ch&eacute;e, de sorte qu&rsquo;il est possible d&rsquo;identifier un objet proche.</p>
+            <ul>
+                <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: D&eacute;sactive la LED IR.</li>
+                <li><strong class="UI">Activer</strong>&nbsp;: Active la LED IR. Ce mode d&eacute;sactive <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong>. &nbsp;</li>
+                <li><strong class="UI">Diurne/Nocturne</strong>&nbsp;: Met l&rsquo;IR sur Marche/Arr&ecirc;t en fonction de Diurne/Nocturne. Cela signifie qu&rsquo;apr&egrave;s l&rsquo;activation de Diurne/Nocturne, la LED est d&eacute;sactiv&eacute;e lorsque la vid&eacute;o est en mode couleur et activ&eacute; lorsque la vid&eacute;o est en mode N/B. Si ce mode est s&eacute;lectionn&eacute;, <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong> est automatiquement d&eacute;fini sur [Auto] et le param&egrave;tre ne peut pas &ecirc;tre modifi&eacute;.</li>
+                <li><strong class="UI">Capteur</strong>&nbsp;: IR et Diurne/Nocturne varie en fonction de la quantit&eacute; de lumi&egrave;re d&eacute;tect&eacute;e par le capteur optique. Ce mode d&eacute;sactive <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong>.</li>
+                <li><strong class="UI">Chronom&eacute;tr&eacute;.</strong>&nbsp;: D&eacute;finit l&rsquo;IR sur heure. Ce mode d&eacute;sactive <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong>. &nbsp;</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED de niveau sur Marche</h3>
+            <p>Si la quantit&eacute; de lumi&egrave;re est inf&eacute;rieure au niveau de la LED d&eacute;fini, la LED est automatiquement activ&eacute;e. «&nbsp;Niveau IR activ&eacute;&nbsp;» est activ&eacute; si vous s&eacute;lectionnez <strong class="UI">[Capteur]</strong> dans <strong class="UI">[Mode]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED de niveau sur Arr&ecirc;t</h3>
+            <p>Si la quantit&eacute; de lumi&egrave;re est sup&eacute;rieure au niveau de la LED d&eacute;fini, la LED est automatiquement d&eacute;sactiv&eacute;e. «&nbsp;Niveau IR d&eacute;sactiv&eacute;&nbsp;» est activ&eacute; si vous s&eacute;lectionnez <strong class="UI">[Capteur]</strong> dans <strong class="UI">[Mode]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED Heure sur Marche</h3>
+            <p>D&eacute;finit l&rsquo;heure &agrave; laquelle l&rsquo;IR est activ&eacute;e. «&nbsp;LED heure sur Marche&nbsp;» est activ&eacute; si vous s&eacute;lectionnez <strong class="UI">[Chronom&eacute;tr&eacute;.]</strong> dans <strong class="UI">[Mode]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED d&rsquo;alimentation max.</h3>
+            <p>D&eacute;finissez la luminosit&eacute; maximum de l&rsquo;IR.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>LED de commande de l&rsquo;alim.</h3>
+            <p>S&eacute;lectionnez <strong class="UI">[Auto]</strong> pour contr&ocirc;ler l&rsquo;&eacute;tat de la saturation de l&rsquo;&eacute;cran en raison de la pr&eacute;sence d&rsquo;objets &agrave; proximit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est s&eacute;lectionn&eacute;, la saturation de l&rsquo;&eacute;cran ne sera pas contr&ocirc;l&eacute;e, m&ecirc;me s&rsquo;il est satur&eacute;.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Si la LED est activ&eacute;e en configurant le mode IR sur <strong class="UI">[Activ&eacute;]</strong>, l&rsquo;&eacute;cran passe en mode N/B. Si la LED est activ&eacute;e en la configurant sur <strong class="UI">[D&eacute;sactiv&eacute;e]</strong>, <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong> est activ&eacute;.</li>
+                <li>Si vous modifiez le zoom grossissant lors de l&rsquo;utilisation du rh&eacute;ostat infrarouge, le rh&eacute;ostat sera li&eacute; au zoom grossissant.</li>
+                <li>Si la temp&eacute;rature ambiante augmente trop, la LED IR sera oblig&eacute;e de s&rsquo;arr&ecirc;ter afin de prot&eacute;ger le produit.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="ActivationTime">
 <div class="wn5-setup-section" ng-if="ActivationTime">

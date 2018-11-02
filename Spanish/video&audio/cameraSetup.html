@@ -82,8 +82,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
-<div class="wn5-setup-section" ng-if="ImagePresetMode">
+<hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Modo preestablecido de imagen</h2>
     </div>
@@ -423,7 +423,7 @@
 <hr class="wn5-setup-hr" ng-if="DayNight">
 <div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
-        <h2>D&iacute;a/Noche</h2>
+        <h2><a name="daynight"></a>D&iacute;a/Noche</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -536,6 +536,10 @@
                 <li>Si el nivel de neblina es bajo la y se establece de forma manual un alto nivel de filtro contra neblina, la pantalla puede parecer m&aacute;s oscura.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
+            <h3>Filtro antineblina/Desem</h3>
+            <p>Selecciona usar o no la correcci&oacute;n de neblina en la c&aacute;mara de video. Solo se puede habilitar el filtro antineblina/desem luego de configurar <strong class="UI">[Antineblina]</strong> en <strong class="UI">[Manual]</strong>.</p>
+        </div>	
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p>LDC (Distorsi&oacute;n de lente de correcci&oacute;n) corrige la distorsi&oacute;n de imagen en el borde de una lente gran angular.</p>
@@ -663,6 +667,12 @@
                 <li>EA de disparo: En caso de que haya un evento de usuario (Enfoque autom&aacute;tico o Acci&oacute;n de zoom) el enfoque se ajustar&aacute; autom&aacute;ticamente una vez.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Rango</h3>
+            <p>Configura el rango aplicable cuando se ajusta autom&aacute;ticamente el enfoque de la c&aacute;mara.</p>
+            <p>Para ajustar autom&aacute;ticamente el enfoque de acuerdo con todo el rango posible de la c&aacute;mara, seleccione <strong class="UI">[Ancho]</strong>. Para ajustar autom&aacute;ticamente el enfoque de acuerdo solo con el rango parcial de la ubicaci&oacute;n actual, seleccione <strong class="UI">[Estrecho]</strong>.</p>
+            <p>Si selecciona <strong class="UI">[Ancho]</strong>, el movimiento de la c&aacute;mara puede ser un poco tembloroso durante el proceso de enfoque autom&aacute;tico. Si selecciona <strong class="UI">[Estrecho]</strong>, no habr&aacute; ese movimiento tembloroso, pero el enfoque puede fallar si el sujeto se encuentra excepcionalmente cerca o lejos.</p>
+        </div>	
 		<div class="wn5-setup-section-article-content">
             <h3>Zoom digital</h3>
             <p>Para usar el zoom digital, seleccione <strong class="UI">[Activar]</strong>.</p>
@@ -751,8 +761,8 @@
 </div>  
 
 
-<hr class="wn5-setup-hr" ng-if="IR">
-<div class="wn5-setup-section" ng-if="IR">
+<hr class="wn5-setup-hr" ng-if="IR && !PTZModel">
+<div class="wn5-setup-section" ng-if="IR && !PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>
     </div>
@@ -775,7 +785,59 @@
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>IR</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Habilita la identificaci&oacute;n de objetos a corta distancia, evitando el brillo excesivo de los objetos cercanos en la pantalla cuando el LED IR est&aacute; encendido.</p>
+        </div>	
+        <div class="wn5-setup-section-article-content">
+            <h3>Modo</h3>
+            <p>El LED infrarrojo es controlado por el sensor de brillo.</p>
+            <p>El modo IR permite la identificaci&oacute;n de objetos a corta distancia, evitando el brillo excesivo de los objetos cercanos en la pantalla cuando el LED IR est&aacute; encendido.</p>
+            <p>&nbsp;</p>
+            <p>En el modo B/N, cuando el LED IR est&aacute; encendido, la saturaci&oacute;n en el centro de la pantalla se previene, de modo que es posible identificar un objeto cercano.</p>
+            <ul>
+                <li><strong class="UI">Deshabilitar</strong>: Apaga el LED IR.</li>
+                <li><strong class="UI">Activar</strong>: Enciende el LED IR. Este modo deshabilita <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong>. &nbsp;</li>
+                <li><strong class="UI">D&iacute;a/Noche</strong>: Enciende/apaga el IR seg&uacute;n sea d&iacute;a/noche. Esto significa que, luego de activar d&iacute;a/noche, el LED se apaga cuando el v&iacute;deo est&aacute; en modo color y se enciende cuando el v&iacute;deo est&aacute; en modo B/N. Si se selecciona este modo, <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong> se configura autom&aacute;ticamente en [Auto] y no es posible cambiar la configuraci&oacute;n.</li>
+                <li><strong class="UI">Sensor</strong>: IR y D&iacute;a/Noche cambia seg&uacute;n la cantidad de luz que detecta el sensor &oacute;ptico. Este modo deshabilita <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong>.</li>
+                <li><strong class="UI">Temporizado</strong>: Configura la hora en que se enciende el IR. Este modo deshabilita <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong>. &nbsp;</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Nivel encendido del LED</h3>
+            <p>Si la cantidad de luz est&aacute; por debajo del nivel de encendido del LED, el LED se enciende autom&aacute;ticamente. El «Nivel de encendido del IR» se habilita si selecciona <strong class="UI">[Sensor]</strong> en <strong class="UI">[Modo]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Nivel apagado del LED</h3>
+            <p>Si la cantidad de luz est&aacute; por encima del nivel de encendido del LED, el LED se apaga autom&aacute;ticamente. El «Nivel de apagado del IR» se habilita si selecciona <strong class="UI">[Sensor]</strong> en <strong class="UI">[Modo]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Hora de encendido del LED</h3>
+            <p>Configura el horario en el que se enciende el LED. El «Horario de encendido del IR» se habilita si selecciona <strong class="UI">[Hora]</strong> en <strong class="UI">[Modo]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Potencia m&aacute;xima del LED</h3>
+            <p>Configura el brillo m&aacute;ximo del IR.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Control de potencia del LED</h3>
+            <p>Seleccione <strong class="UI">[Auto]</strong> para controlar el estado de saturaci&oacute;n de la pantalla ante la presencia de objetos cercanos. Si selecciona <strong class="UI">[Apagado]</strong>, no se controlar&aacute; la saturaci&oacute;n de la pantalla, a&uacute;n si est&aacute; saturada.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>Si se enciende el LED configurando el modo IR en <strong class="UI">[Encendido]</strong>, la pantalla pasa al modo B/N. Si se apaga el LED configur&aacute;ndolo en <strong class="UI">[Apagado]</strong>, se activa <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong>.</li>
+                <li>Si cambia el grado del zoom mientras se usa el infrarrojo re&oacute;stato, se vincular&aacute; el re&oacute;stato al grado del zoom.</li>
+                <li>Si la temperatura ambiente sube mucho, es posible que el LED IR deba apagarse para proteger el producto.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="ActivationTime">
 <div class="wn5-setup-section" ng-if="ActivationTime">
