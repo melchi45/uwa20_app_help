@@ -1,42 +1,111 @@
 ﻿
-<h1 class="wn5-setup-main-title">Temperature Detection</h1>
+<h1 class="wn5-setup-main-title">Temperature detection</h1>
 
 <div class="wn5-setup-section">
-    <p>If a sudden temperature change occurs in the user-specified area of interest, a temperature detection event can be triggered. When you have completed the settings, click the [Apply] button at the bottom of the page. The settings for temperature detection events are the same for <strong class="UI">[Temperature Detection]</strong> on the <strong class="UI">[Event]</strong>&gt; [Event Setup] page.<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></strong></a> </p>
+    <p>If a sudden temperature change occurs in the user-specified area of interest, a temperature detection event can be triggered. When you have completed the settings, click the [Apply] button at the bottom of the page. The settings for temperature detection events are the same for <strong class="UI">[Temperature detection]</strong> on the <strong class="UI">[Event]</strong>&gt; [Event Setup] page.<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></strong></a> </p>
 </div>
 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Temperature Detection</h2>
+        <h2>Temperature detection</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <h3>Enable Temperature Change Detection</h3>
-            <p>To enable temperature change detection events, select <strong class="UI">[Enable Temperature Change Detection]</strong>.</p>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+            <h3>Enable Temperature change detection</h3>
+            <p>To enable Temperature change detection events, select <strong class="UI">[Enable Temperature change detection]</strong>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>Enable temperature detection</h3>
+            <p>To enable Temperature change detection events, select <strong class="UI">[Enable temperature detection]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>Area</h3>
             <p>Set the area to detect the temperature change. You can change the size of the area of interest by moving the lower right corner of the area you set. To move the area, click and drag the area with your mouse. To delete an area, right-click the area on the screen and click the <strong class="UI">[OK]</strong> button in the Delete confirmation window.</p>
-            <p>Up to three areas can be set, and temperature change detection rules can be set for each area.</p>
+            <p>Up to three areas can be set, and Temperature change detection rules can be set for each area.</p>
         </div>
-
-        <div class="wn5-setup-section-article-content">
-            <h3>Temperature Change Detection</h3>
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>Area</h3>
+                <p>Set the area to detect the temperature change. You can change the size of the area of interest by moving the lower right corner of the area you set. To move the area, click and drag the area with your mouse. To delete an area, right-click the area on the screen and click the <strong class="UI">[OK]</strong> button in the Delete confirmation window.</p>
+                <p>Up to three areas can be set, and temperature detection rules can be set for each area.</p>
+            </div>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+            <h3>Temperature change detection</h3>
             <p>In <strong class="UI">[Area]</strong>, select the area to detect the temperature change and set the following options.</p>
             <ul>
                 <li><strong class="UI">Temperature difference:</strong>When a temperature change of some degree or more occurs, select the threshold temperature change. The threshold value or higher is detected as a temperature change.&nbsp;You can select the temperature type between Celsius and Fahrenheit, including both temperature decrease and increase.&nbsp;For example, if you select &quot;20 degrees Celsius&quot;, if the temperature change occurs more than 20 degrees Celsius, the camera detects the temperature change.<br> <!-- 해당 영역에서 최근 1분 동안의 통계적 데이터로부터 온도차이를 판단합니다. 즉 1분 동안 수집된 평균 온도를 기준으로 온도가 급격히 상승하거나 감소하면 카메라가 온도 변화로 감지합니다. --></li>
                 <li><strong class="UI">Temperature type</strong>: A range of temperatures may exist in the area set in <strong class="UI">[Area]</strong>. Select the temperature that will be the standard when you observe the temperature change among 'lowest', 'average', and 'highest'. For example, if you select '3' in <strong class="UI">[Area]</strong>, select '20°C' in <strong class="UI">[</strong><strong class="UI">Temperature difference</strong><strong class="UI">]</strong>, and 'Lowest' in <strong class="UI">[Temperature type]</strong>, when a temperature change of more than 20°C is detected based on the lowest temperature observed in Area 3, the camera will detect it as a temperature change.
                  </div>
 
-        <div class="wn5-setup-section-article-content">
-            <h3>Minimum duration (s) </h3>
-            <p>Sets the minimum time to detect a temperature change and generate it as an event Only if the temperature change should last for the minimum observation time, a temperature detection event occurs. You can enter a value between 1 and 60 seconds.</p>
+                 <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                    <h3>Temperature type</h3>
+                    <p>Select a temperature type to observe.</p>
+                    <p>The three types of temperature are provided in the area set in <strong class="UI">[Area]</strong>. Select a temperature type among &apos;minimum&apos;,&apos;average&apos;, and &apos;maximum&apos; temperature that will be the analytic basis for temperature change in the selected area.</p>
+                </div>
+                <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                    <h3>Detection condition</h3>
+                    <p>Select a temperature condition to observe.</p>
+                    <p>To detect if the temperature under observation changes above or below a certain degree, select [Above] or [Below]. To detect if the temperature under observation increases or decreases by a certain degree (the amount of temperature change), select [Increase] or [Decrease].</p>
+                </div>
+                <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                    <h3>Detection</h3>
+                    <p>Enter a temperature value. &nbsp;</p>
+                    <p>If [Above] or [Below] is selected in <strong class="UI">[Detection condition]</strong>, enter a temperature to detect. Also, if [Increase] or [Decrease] is selected in <strong class="UI">[Detection condition]</strong>, enter the amount of temperature change (increased or decreased amount) to detect.</p>
+                </div>
+                <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+                    <h3>Minimum duration (s)</h3>
+                    <p>Sets the minimum duration it will takes for an event to occur since the detection of temperature change. The temperature change needs to be observed for the minimum duration for a temperature detection event to occur. You can set a value of 1 to 60 sec. You can directly enter the value in the entry field or adjust the slide bar to change the value.</p>
+                </div>
+                        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                    <h3>Minimum duration (s)</h3>
+                    <p>Sets the minimum duration it will takes for an event to occur since the detection of temperature. For temperature detection event to occur, depending on the [Detection condition] setup, a certain temperature degree above or below the minimum duration should be persisted, or increased/decreased temperature change should be persisted for the minimum duration. You can set a value of 1 to 60 sec. You can directly enter the value in the entry field or adjust the slide bar to change the value.</p>
+                </div>
+                        <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+                    <h4>Temperature detection event setup example (1)</h4>
+                        <p>To generate an event notification when the maximum temperature value is equal to or above Celsius 100 degrees for at least 3 sec in Area 1, set as follows:</p>
+                        <ul>
+                            <li><strong class="UI">Area</strong>: Select Area 1.</li>
+                            <li><strong class="UI">Temperature type</strong>: Select &apos;Maximum&apos;.</li>
+                            <li><strong class="UI">Detection condition</strong>: Select &apos;Above&apos;.</li>
+                            <li><strong class="UI">Detection</strong>: Enter &apos;100&apos;.</li>
+                            <li><strong class="UI">Minimum duration</strong>: Enter &apos;3&apos;.</li>
+                        </ul>
+                        <p>Event notification action and schedule can be set in the <a href="#action">[Event action settings]</a> and <a href="#schedule">[Event activation time]</a> menus.</p>
+                    </div>
+                    <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+                    <h4>Temperature detection event setup example (2)</h4>
+                        <p>To generate an event notification when the minimum temperature value increases above the reference temperature by Celsius 30 degrees or more for at least 5 sec in Area 3, set as follows:</p>
+                        <ul>
+                            <li><strong class="UI">Area</strong>: Select Area 3.</li>
+                                <li><strong class="UI">Temperature type</strong>: Select &apos;Minimum&apos;.</li>
+                                <li><strong class="UI">Detection condition</strong>: Select &apos;Increase&apos;.</li>
+                                <li><strong class="UI">Detection</strong>: Enter &apos;30&apos;.</li>
+                            <li><strong class="UI">Minimum duration</strong>: Enter &apos;5&apos;.</li>
+                        </ul>
+                        <p>Event notification action and schedule can be set in the <a href="#action">[Event action settings]</a> and <a href="#schedule">[Event activation time]</a> menus.</p>
+                    </div>
+                <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                    <h3>Temperature area overlay</h3>
+                    <p>Select the options to display on the camera video screen. After selecting an area in <strong class="UI">[Area]</strong>, you can select what to display in each area.</p>
+                    <ul>
+                        <li><strong class="UI">Area</strong>: Selects whether or not to display area number.</li>
+                        <li><strong class="UI">Average</strong>: Selects whether or not to display average temperature of the set area on screen.</li>
+                        <li><strong class="UI">Minimum</strong>: Selects whether or not to display minimum temperature of the set area on screen.</li>
+                        <li><strong class="UI">Maximum</strong>: Selects whether or not to display maximum temperature of the set area on screen.</li>
+                    </ul>
+                    <p>Selected options are overlaid on top of the <strong class="UI">[Live]</strong> video screen.</p>
+                </div>
+                <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                    <h3>Area emissivity</h3>
+                    <p>You can set an emissivity value for each area. Appropriate emissivity values are needed for more accurate temperature measurement of the areas.</p>
+                </div>  
+                <div class="wn5-online-help-info" ng-if="BoxTemperatureDetection">
+                    <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                    <p>For emissivity, see the table in <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Video setup]</strong>&gt;<strong class="UI">[Spot emissivity]</strong>. Since emissivity varies depending on various variables, including surface processing, color, temperature at the time of measurement, and air temperature, you need to experiment with different values to acquire the most appropriate value. Entering an accurate emissivity value assures more accurate temperature measurement.</p>
+                </div>
+            </div>
         </div>
-
-    </div>
-</div>
 
 
 <hr class="wn5-setup-hr">
@@ -91,7 +160,7 @@
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Event activation time</h2>
+        <h2><a name="schedule"></a>Event activation time</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">

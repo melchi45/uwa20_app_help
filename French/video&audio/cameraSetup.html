@@ -112,6 +112,28 @@
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="ImagePresetIndoor">
+<div class="wn5-setup-section" ng-if="ImagePresetIndoor">
+    <div class="wn5-setup-section-heading">
+        <h2>Mode de pr&eacute;r&eacute;glage d&rsquo;image</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>S&eacute;lectionnez un pr&eacute;r&eacute;glage d&rsquo;image qui convient le mieux &agrave; l&rsquo;environnement de votre cam&eacute;ra. La s&eacute;lection d&rsquo;un pr&eacute;r&eacute;glage d&rsquo;image changera la valeur du pr&eacute;r&eacute;glage d&rsquo;image sur la valeur par d&eacute;faut.</p>
+            <ul>
+                <li><strong class="UI">Int&eacute;rieur</strong>&nbsp;: Utilis&eacute; &agrave; l&rsquo;int&eacute;rieur avec une plage de temp&eacute;rature &eacute;troite.</li>
+                <li><strong class="UI">Ext&eacute;rieur</strong>&nbsp;: Utilis&eacute; &agrave; l&rsquo;ext&eacute;rieur avec une vaste plage de temp&eacute;rature.</li>
+            </ul>
+        </div>
+        
+        <div class="wn5-online-help-info">
+            <h4>Remarque</h4>
+            <ul>
+                <li>Apr&egrave;s avoir s&eacute;lectionn&eacute; un mode de pr&eacute;r&eacute;glage d&rsquo;image, changez les param&egrave;tres d&eacute;taill&eacute;s, tels que SSDR et Exposition et cliquez sur <strong class="UI">[Appliquer]</strong> pour enregistrer la valeur chang&eacute;e en tant que valeur de pr&eacute;r&eacute;glage d&rsquo;image. Pour r&eacute;initialiser la valeur par d&eacute;faut, cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -133,6 +155,24 @@
         <div class="wn5-setup-section-article-content">
             <h3>Plage D</h3>
             <p>S&eacute;lectionnez la zone d&rsquo;amplitude de la plage dynamique.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>LCE (am&eacute;lioration du contraste local)</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Affiche l&rsquo;&eacute;cran avec un contraste &eacute;lev&eacute; bas&eacute; sur la zone de r&eacute;glage.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>S&eacute;lectionnez le mode LCE que vous souhaitez.</p>
+            <p>Si vous s&eacute;lectionnez une option de mode, la zone d&rsquo;inclusionindiquant le contraste &eacute;lev&eacute; appara&icirc;t dans un encadr&eacute; vert. Par exemple, en mode <strong class="UI">[Ciel]</strong>, l&rsquo;encadr&eacute; vert appara&icirc;t en haut de l&rsquo;&eacute;cran vid&eacute;o, le ciel est montr&eacute; dans la partie sup&eacute;rieure de l&rsquo;&eacute;cran et la vid&eacute;o est corrig&eacute;e pour mieux repr&eacute;senter les objets dans la zone d&rsquo;inclusion. Dans ce cas, le taux de reconnaissance de l&rsquo;objet peut relativement &ecirc;tre diminu&eacute; en bas de l&rsquo;&eacute;cran.</p>
+            <p>Si vous s&eacute;lectionnez <strong class="UI">[Customiser]</strong>, vous pouvez customiser la zone d&rsquo;inclusion pour mieux repr&eacute;senter le rapport de contraste.</p>
         </div>
     </div>
 </div>
@@ -621,8 +661,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Palette de couleurs</h2>
     </div>

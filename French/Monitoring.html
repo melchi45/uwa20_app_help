@@ -59,6 +59,18 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="spotTemperatureSupport">
+                        <td width="235">Temp&eacute;rature</td>
+                        <td width="235">
+                            <p>Affiche les temp&eacute;ratures moyenne, minimum et maximum de chaque zone d&rsquo;int&eacute;r&ecirc;t d&rsquo;analyse de temp&eacute;rature.</p>
+                            <p>Les zones ROI d&rsquo;analyse de temp&eacute;rature peuvent &ecirc;tre configur&eacute;es dans le menu <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Analyse]</strong>&gt;<strong class="UI">[D&eacute;tection de temp&eacute;rature]</strong>.</p>
+                            <p>Si vous choisissez une unit&eacute; de temp&eacute;rature entre Fahrenheit et Celsius dans <strong class="UI">[Unit&eacute; de temp&eacute;rature]</strong>, la temp&eacute;rature appropri&eacute;e pour l&rsquo;unit&eacute; sera affich&eacute;e.</p>
+                            <p>Les informations d&rsquo;&eacute;missivit&eacute; peuvent &ecirc;tre entr&eacute;es dans <strong class="UI">[&Eacute;missivit&eacute; de tache]</strong>. L&rsquo;&eacute;missivit&eacute; que vous avez entr&eacute;e dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Vid&eacute;o &amp; Audio]</strong>&gt;<strong class="UI">[R&eacute;glage de temp&eacute;rature]</strong>&gt;<strong class="UI">[&Eacute;missivit&eacute; de tache]</strong> s&rsquo;affiche dans <strong class="UI">[&Eacute;missivit&eacute; de tache]</strong> par d&eacute;faut.</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+
                     <tr ng-if="PanTiltOnlyModel">
                         <td width="235">
                                 <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -277,8 +289,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Palette de couleurs</h2>
     </div>
@@ -290,7 +302,30 @@
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
+<div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
+    <div class=" wn5-setup-section-heading">
+        <h2>V&eacute;rifiez la temp&eacute;rature sur l&rsquo;&eacute;cran vid&eacute;o</h2>
+</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Les informations de votre s&eacute;lection (zone d&rsquo;inclusion, temp&eacute;rature moyenne, minimum, maximum) dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Analyse]</strong>&gt;<strong class="UI">[D&eacute;tection de temp&eacute;rature]</strong>&gt;<strong class="UI">[Transparence zone temp&eacute;rature]</strong> apparaissent en superposition en haut de la vid&eacute;o.</p>
+            <p>Cliquez sur la vid&eacute;o de la cam&eacute;ra pour afficher la temp&eacute;rature de la tache s&eacute;lectionn&eacute;e. La temp&eacute;rature est analys&eacute;e sur la base des informations d&rsquo;&eacute;missivit&eacute; entr&eacute;es dans <strong class="UI">[&Eacute;missivit&eacute; de tache]</strong>. Vous pouvez changer les informations d&rsquo;&eacute;missivit&eacute; si n&eacute;cessaire pour pr&eacute;ciser l&rsquo;analyse de temp&eacute;rature. Pour des informations d&rsquo;&eacute;missivit&eacute; selon le mat&eacute;riel, voir le tableau d&rsquo;&eacute;missivit&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Vid&eacute;o &amp; Audio]</strong>&gt;<strong class="UI">[R&eacute;glage de temp&eacute;rature]</strong>.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>Palette de couleurs</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Pour faciliter l&rsquo;analyse des vid&eacute;os de la cam&eacute;ra, des palettes de couleurs sont fournies. S&eacute;lectionnez la palette de couleurs que vous voulez appliquer &agrave; l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</p>
+            <p>Pour les caract&eacute;ristiques de chaque palette de couleurs, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Vid&eacute;o &amp; Audio]</strong>&gt;<strong class="UI">[R&eacute;glage de temp&eacute;rature]</strong>&gt;<strong class="UI">[Palette de couleurs]</strong>.</p>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

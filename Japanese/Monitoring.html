@@ -66,6 +66,17 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="spotTemperatureSupport">
+                        <td width="235">温度</td>
+                        <td width="235">
+                            <p>温度分析ROI領域別に(A/B/C)各エリアの平均(Average)、最小(Maximum)、最大(Maximum)温度を表示します。</p>
+                            <p>温度分析ROI領域は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[分析]</strong>&gt;<strong class="UI">[温度検知]</strong>メニューで設定することができます。</p>
+                            <p><strong class="UI">[温度単位]</strong>で°Fと°Cの中で温度表示単位を選択すると、選択した単位で温度が表示されます。</p>
+                            <p><strong class="UI">[スポット放射率(Spot emissivity)]</strong>で放射率の情報を入力することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[温度設定]</strong>&gt;<strong class="UI">[スポット放射率(Spot emissivity)]</strong>で入力した放射率が<strong class="UI">[スポット放射率(Spot emissivity)]</strong>に初期値として表示されます。</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>                   
                     <tr ng-if="PanTiltOnlyModel">
                         <td width="235">
                                 <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -287,8 +298,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>カラーパレット</h2>
     </div>
@@ -296,6 +307,30 @@
         <div class="wn5-setup-section-article-content">
             <p>カメラ映像を視覚的に分析しやすいようにカラーパレットを提供します。カラーパレットを選択すると、カメラ映像画面に選択したカラーパレットが適用されます。</p>
             <p>各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong> &gt; <strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[カラーパレット]</strong>を参照してください。</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
+<div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
+    <div class=" wn5-setup-section-heading">
+        <h2>映像画面で温度確認</h2>
+</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[設定]</strong>&gt;<strong class="UI">[分析]</strong>&gt;<strong class="UI">[温度検知]</strong>&gt;<strong class="UI">[温度オーバーレイ(Temperature area overlay)]</strong>で選択した項目(エリア、平均、最小、最高温度)の情報がカメラ映像の上にオーバーレイで表示されます。</p>
+            <p>カメラ映像をクリックすると、現在選択したポイントの温度を表示します。<strong class="UI">[スポット放射率(Spot emissivity)]</strong>で入力された放射率の情報を基準として温度を分析します。正確な温度分析のために必要に応じて放射率の情報を変更することができます。物質別放射率の情報は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[温度設定]</strong>で放射率表を参照してください。</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>カラーパレット</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラ映像を視覚的に分析しやすいようにカラーパレットを提供します。カラーパレットを選択すると、カメラ映像画面に選択したカラーパレットが適用されます。</p>
+            <p>各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[温度設定]</strong>&gt;<strong class="UI">[カラーパレット]</strong>を参照してください。</p>
         </div>
     </div>
 </div>

@@ -389,7 +389,7 @@
                 <li><strong class="UI">CAVLC</strong>: <!-- 데이터 처리과정이 CABAC에 비해 단순하여 시스템 리소스를 적게 사용하지만 압축률이 상대적으로 낮습니다. -->CABAC에 비해 압축률이 낮지만, 데이터 처리과정이 단순하여 시스템 리소스를 적게 사용합니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>스마트 코덱 </h3>
             <p>스마트 코덱 사용 여부를 설정합니다. 스마트 코덱은 영상에서 사용자가 관심 있는 영역은 압축율을 낮춰 고화질로 출력하고 그 외 부분은 압축율을 높여 일반 화질로 출력하여, 전체 영상 데이터 크기를 줄이는 한화테크윈의 고유 기술입니다. 스마트 코덱은 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[CBR]</strong>일 때만 활성화됩니다.</p>
           

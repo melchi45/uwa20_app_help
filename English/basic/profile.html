@@ -383,7 +383,7 @@
                 <li><strong class="UI">CAVLC</strong>: The data processing procedure for CAVLC is simpler than CABAC, so that it uses fewer system resources, but the compression rate is relatively low.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>Smart codec </h3>
             <p>Set whether or not to use smart codec. Smart codec is a unique technology of Hanwha Techwin that reduces the compression rate for an area of interest to the user (to output in high quality), while it increases the compression rate for other areas, (to output in normal quality), thereby reducing the data size of the image as a whole. Smart codec is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[CBR]</strong>.</p>
 

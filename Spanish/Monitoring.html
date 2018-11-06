@@ -58,6 +58,18 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="spotTemperatureSupport">
+                        <td width="235">Temperatura</td>
+                        <td width="235">
+                            <p>Muestra las temperaturas promedio, m&iacute;nimas y m&aacute;ximas de cada &aacute;rea ROI de la an&aacute;lisis de temperatura.</p>
+                            <p>Las &aacute;reas ROI de la an&aacute;lisis de temperatura se pueden definir en el men&uacute; de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Anal&iacute;tica]</strong>&gt;<strong class="UI">[Detecci&oacute;n de temperatura]</strong>.</p>
+                            <p>Si selecciona una unidad de pantalla de temperatura entre Fahrenheit y Celsius en <strong class="UI">[Unidad de temperatura]</strong>, se mostrar&aacute; la temperatura apropiada para la unidad.</p>
+                            <p>La informaci&oacute;n de emisividad se puede introducir en <strong class="UI">[Emisividad del lugar]</strong>. La emisividad que introdujo en <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de temperatura]</strong>&gt;<strong class="UI">[Emisividad del lugar]</strong> se muestra en <strong class="UI">[Emisividad del lugar]</strong> por defecto.</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+
                     <tr ng-if="PanTiltOnlyModel">
                         <td width="235">
                                 <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -295,8 +307,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Paleta de colores</h2>
     </div>
@@ -308,6 +320,30 @@
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
+<div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
+    <div class=" wn5-setup-section-heading">
+        <h2>Compruebe la temperatura en la pantalla del v&iacute;deo</h2>
+</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>La informaci&oacute;n de su selecci&oacute;n (temperatura promedio, m&iacute;nima, m&aacute;xima o de &aacute;rea) en <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[An&aacute;lisis]</strong>&gt;<strong class="UI">[Detecci&oacute;n de temperatura]</strong>&gt;<strong class="UI">[Superposici&oacute;n de &aacute;rea de temperatura]</strong> se superpone en la parte superior del v&iacute;deo de su c&aacute;mara.</p>
+            <p>Haga clic en el v&iacute;deo de la c&aacute;mara para mostrar la temperatura del lugar seleccionado actualmente. La temperatura se analiza seg&uacute;n la informaci&oacute;n de emisividad introducida en <strong class="UI">[Emisividad del lugar]</strong>. Puede cambiar la informaci&oacute;n de emisividad cuando sea necesario para obtener una an&aacute;lisis de temperatura precisa. Para obtener informaci&oacute;n de emisividad por material, consulte la tabla de emisividad en <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de temperatura]</strong>.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>Paleta de colores</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Para obtener un an&aacute;lisis visual sencillo del v&iacute;deo de la c&aacute;mara, se proporcionan las paletas de colores. Seleccione una paleta de colores que desea ver aplicada en la pantalla del v&iacute;deo de la c&aacute;mara.</p>
+            <p>Para conocer las caracter&iacute;sticas de cada paleta de colores, consulte <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de temperatura]</strong>&gt;<strong class="UI">[Paleta de colores]</strong>.</p>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

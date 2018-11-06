@@ -91,7 +91,28 @@
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="ImagePresetIndoor">
+<div class="wn5-setup-section" ng-if="ImagePresetIndoor">
+    <div class="wn5-setup-section-heading">
+        <h2>画像プリセットモード</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラを使用する環境に合わせて画像プリセットを選択します。提供される画像プリセットを選択すると、該当画像プリセットの初期値に変更されます。</p>
+            <ul>
+                <li><strong class="UI">屋内</strong>：比較的に温度分布範囲が狭い屋内環境で使用します。</li>
+                <li><strong class="UI">屋外</strong>：比較的に温度分布範囲が広い屋外環境で使用します。</li>
+            </ul>
+        </div>
+        
+        <div class="wn5-online-help-info">
+            <h4>参考事項</h4>
+            <ul>
+                <li>画像プリセットモードを選択してからSSDR、露出補正などのようにカメラ画像の詳細設定を変更して<strong class="UI">[適用]</strong>をクリックすると、変更した値が該当の画像プリセット値で保存されます。初期値に戻すためには、<strong class="UI">[初期化]</strong>ボタンをクリックします。</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -114,6 +135,24 @@
         <div class="wn5-setup-section-article-content">
             <h3>D-レンジ</h3>
             <p>ダイナミックレンジの振幅エリアを選択します。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>LCE (Local Contrast Enhancement)</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>設定されたエリアを中心としてコントラスト差が表示されるように画面を表現します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>モード</h3>
+            <p>LCEモードを選択します。</p>
+            <p>モードオプションを選択すると、コントラスト差が表示されるように表現するエリアが緑ボックスに表示されます。例えば、<strong class="UI">[Sky]</strong>モードは空が画面の上に表示される仮定の下に映像画面の上のエリアに緑ボックスが表示され、このエリアの中の対象物がはっきり表現されるように映像を補正します。このとき、画面の下には比較的に被写体の認識率が多少低下されることがあります。</p>
+            <p><strong class="UI">[Custom]</strong>を選択すると、コントラスト差が表示されるように表現するエリアをユーザーが指定することができます。</p>
         </div>
     </div>
 </div>
@@ -604,8 +643,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>カラーパレット</h2>
     </div>

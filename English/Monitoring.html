@@ -59,7 +59,16 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-
+                    <tr ng-if="spotTemperatureSupport">
+                        <td width="235">Temperature</td>
+                        <td width="235">
+                            <p>Shows the Average, Minimum, and Maximum temperatures of each temperature analytics ROI area.</p>
+                            <p>The temperature analytics ROI areas can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Analytics]</strong>&gt;<strong class="UI">[Temperature detection]</strong> menu.</p>
+                            <p>If you select a temperature display unit between Fahrenheit and Celsius in <strong class="UI">[Temperature unit]</strong>, the temperature appropriate for the unit will be displayed.</p>
+                            <p>Emissivity information can be entered in <strong class="UI">[Spot emissivity]</strong>. The emissivity you entered in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Temperature setup]</strong>&gt;<strong class="UI">[Spot emissivity]</strong> is displayed in <strong class="UI">[Spot emissivity]</strong> by default.</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
                     <tr ng-if="PanTiltOnlyModel">
                             <td width="235">
                                     <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -296,8 +305,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Color Palette</h2>
     </div>
@@ -309,7 +318,30 @@
     </div>
 </div>
 
-
+<hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
+<div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
+    <div class=" wn5-setup-section-heading">
+        <h2>Check temperature on the video screen</h2>
+</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>The information of your selection (area, average, minimum, maximum temperature) in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Analytics]</strong>&gt;<strong class="UI">[Temperature detection]</strong>&gt;<strong class="UI">[Temperature area overlay]</strong> is overlaid at the top of your camera video.</p>
+            <p>Click the camera video to display temperature of the currently selected spot. Temperature is analyzed based on the emissivity information entered in <strong class="UI">[Spot emissivity]</strong>. You may change the emissivity information as necessary for precise temperature analytics. For emissivity information per material, see emissivity table in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Temperature setup]</strong>.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>Color palette</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>For easy visual analysis of camera video, color palettes are provided. Select a color palette you want to see the color palette applied on the camera video screen.</p>
+            <p>For the characteristics of each color palette, go to <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Temperature setup]</strong>&gt;<strong class="UI">[Color palette]</strong>.</p>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

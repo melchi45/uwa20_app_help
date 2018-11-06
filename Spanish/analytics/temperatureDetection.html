@@ -12,17 +12,25 @@
         <h2>Detecci&oacute;n de temperatura</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <h3>Activar detecci&oacute;n de cambio de temperatura</h3>
-            <p>Para activar los eventos de detecci&oacute;n de cambio de temperatura, seleccione [Activar detecci&oacute;n de cambio de temperatura].</p>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+            <h3>Habilite detecci&oacute;n de cambio de temperatura</h3>
+            <p>Para habilitar el evento de detecci&oacute;n de cambio de temperatura, seleccione <strong class="UI">[Habilitar detecci&oacute;n de cambio de temperatura]</strong>.</p>
+        </div>        
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>Habilite la detecci&oacute;n de temperatura</h3>
+            <p>Para activar los eventos de detecci&oacute;n de temperatura, seleccione [Habilitar la detecci&oacute;n de temperatura].</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>&Aacute;rea</h3>
             <p>Establezca el &aacute;rea para detectar el cambio de temperatura. Puede cambiar el tama&ntilde;o del &aacute;rea de inter&eacute;s moviendo la esquina inferior derecha del &aacute;rea que configur&oacute;. Para mover el &aacute;rea, haga clic y arrastre el &aacute;rea con su rat&oacute;n. Para eliminar un &aacute;rea, haga clic con el bot&oacute;n derecho en el &aacute;rea de la pantalla y haga clic en el bot&oacute;n [Aceptar] en la ventana de confirmaci&oacute;n Eliminar.</p>
             <p>Se pueden configurar hasta tres &aacute;reas, y las reglas de detecci&oacute;n de cambio de temperatura se pueden establecer para cada &aacute;rea.</p>
         </div>
-
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>&Aacute;rea</h3>
+                <p>Establezca el &aacute;rea para detectar el cambio de temperatura. Puede cambiar el tama&ntilde;o del &aacute;rea de inter&eacute;s moviendo la esquina inferior derecha del &aacute;rea que configur&oacute;. Para mover el &aacute;rea, haga clic y arrastre el &aacute;rea con su rat&oacute;n. Para eliminar un &aacute;rea, haga clic con el bot&oacute;n derecho en el &aacute;rea de la pantalla y haga clic en el bot&oacute;n [Aceptar] en la ventana de confirmaci&oacute;n Eliminar.</p>
+                <p>Se pueden configurar hasta tres &aacute;reas, y las reglas de detecci&oacute;n de temperatura se pueden establecer para cada &aacute;rea.</p>
+            </div>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>Detecci&oacute;n de cambio de temperatura</h3>
             <p>En <strong class="UI">[&Aacute;rea]</strong>, seleccione el &aacute;rea para detectar el cambio de temperatura y configure las siguientes opciones.</p>
             <ul>
@@ -30,13 +38,75 @@
                 <li><strong class="UI">Tipo de temperatura</strong>: Puede existir un rango de temperaturas en el &aacute;rea configurada en <strong class="UI">[&Aacute;rea]</strong>. Seleccione la temperatura que ser&aacute; el est&aacute;ndar cuando observe el cambio de temperatura entre el &apos;m&aacute;s bajo&apos;, &apos;promedio&apos; y &apos;m&aacute;s alto&apos;. Por ejemplo, si selecciona &apos;3&apos; en <strong class="UI">[&Aacute;rea ]</strong>, selecciona &apos;20°C<strong class="UI">&apos;</strong> en<B> [Diferencia de temperatura]</B> y &apos;m&aacute;s bajo<strong class="UI">&apos;</strong> en <B>[Tipo de temperatura]</B>, cuando se detecte un cambio de temperatura de m&aacute;s de 20°C en funci&oacute;n de la temperatura m&aacute;s baja observada en el &Aacute;rea 3, la c&aacute;mara lo detectar&aacute; como un cambio de temperatura.  </li>
         </div>
 
-        <div class="wn5-setup-section-article-content">
-            <h3>Duraci&oacute;n m&iacute;nima (s)    </h3>
-            <p>Establece el tiempo m&iacute;nimo para detectar un cambio de temperatura y generarlo como un evento. Solo si el cambio de temperatura dura el tiempo m&iacute;nimo de observaci&oacute;n, se produce un evento de detecci&oacute;n de temperatura. Puede ingresar un valor entre 1 y 60 segundos.</p>
+        <div class="wn5-setup-section-article-content" g-if="BoxTemperatureDetection">
+                <h3>Tipo de temperatura</h3>
+                <p>Seleccione un tipo de temperatura para observar.</p>
+                <p>Se proporcionan tres tipos de temperatura en el &aacute;rea definida en <strong class="UI">[&Aacute;rea]</strong>. Seleccione un tipo de temperatura entre la temperatura «m&iacute;nima», «promedio» y «m&aacute;xima» que ser&aacute; la base anal&iacute;tica para el cambio de temperatura en el &aacute;rea seleccionada.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>Condici&oacute;n de detecci&oacute;n</h3>
+                <p>Seleccione una condici&oacute;n de temperatura para observar.</p>
+                <p>Para detectar si la temperatura en observaci&oacute;n cambia por encima o por debajo de determinado grado, seleccione [Igual o superior] o [Igual o inferior]. Para detectar si la temperatura en observaci&oacute;n aumenta o disminuye en un determinado grado (la cantidad de cambio de temperatura), seleccione [Aumenta] o [Disminuye].</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>Detecci&oacute;n</h3>
+                <p>Introduzca un valor de temperatura. &nbsp;</p>
+                <p>Si se selecciona [Igual o superior] o [Igual o inferior] en <strong class="UI">[Condici&oacute;n de detecci&oacute;n]</strong>, introduzca una temperatura para detectar. Adem&aacute;s, si se selecciona [Aumenta] o [Disminuye] en <strong class="UI">[Condici&oacute;n de detecci&oacute;n]</strong>, introduzca la cantidad de cambio de temperatura (cantidad aumentada o disminuida) para detectar.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+                <h3>Duraciones m&iacute;nimas</h3>
+                <p>Se necesitar&aacute; definir la duraci&oacute;n m&iacute;nima para que ocurra un evento de detecci&oacute;n de cambio de temperatura. Se necesita observar el cambio de temperatura durante la duraci&oacute;n m&iacute;nima para que ocurra un evento de detecci&oacute;n de temperatura. Puede definir un valor de 1 a 60 segundos. Puede introducir directamente el valor en el campo de entrada o ajustar la barra desplazable para cambiar el valor.</p>
+            </div>
+                    <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>Duraciones m&iacute;nimas</h3>
+                <p>Se necesitar&aacute; definir la duraci&oacute;n m&iacute;nima para que ocurra un evento de detecci&oacute;n de temperatura. Para que ocurra el evento de detecci&oacute;n de temperatura, seg&uacute;n la configuraci&oacute;n [Condici&oacute;n de detecci&oacute;n], un determinado grado de temperatura por encima o por debajo de la duraci&oacute;n m&iacute;nima se debe mantener o se debe mantener el cambio de temperatura aumentado/disminuido para la duraci&oacute;n m&iacute;nima. Puede definir un valor de 1 a 60 segundos. Puede introducir directamente el valor en el campo de entrada o ajustar la barra desplazable para cambiar el valor.</p>
+            </div>
+                    <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+                <h4>Ejemplo de configuraci&oacute;n de eventos de la detecci&oacute;n de temperatura (1)</h4>
+                    <p>Para generar una notificaci&oacute;n de eventos cuando el valor de temperatura m&aacute;ximo es igual o superior a 100 grados Celsius durante al menos 3 segundos en el &Aacute;rea 1, como se establece a continuaci&oacute;n:</p>
+                    <ul>
+                        <li><strong class="UI">&Aacute;rea</strong>: Seleccione el &Aacute;rea 1.</li>
+                        <li><strong class="UI">Tipo de temperatura</strong>: Seleccione «M&aacute;xima».</li>
+                        <li><strong class="UI">Condici&oacute;n de detecci&oacute;n</strong>: Seleccione «Superior».</li>
+                        <li><strong class="UI">Detecci&oacute;n</strong>: Introduzca «100».</li>
+                        <li><strong class="UI">Duraci&oacute;n m&iacute;nima</strong>: Introduzca «3».</li>
+                    </ul>
+                    <p>La acci&oacute;n de la notificaci&oacute;n de eventos y la programaci&oacute;n se pueden definir en los men&uacute;s <a href="#action">[Configuraci&oacute;n de acciones de evento]</a> y <a href="#schedule">[Tiempo de activaci&oacute;n de evento]</a>.</p>
+                </div>
+                    <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+                <h4>Ejemplo de configuraci&oacute;n de eventos de la detecci&oacute;n de temperatura (2)</h4>
+                    <p>Para generar una notificaci&oacute;n de eventos cuando el valor de temperatura m&iacute;nimo aumenta por encima de la temperatura de referencia en 30 grados Celsius o m&aacute;s durante al menos 5 segundos en el &Aacute;rea 3, como se establece a continuaci&oacute;n:</p>
+                    <ul>
+                        <li><strong class="UI">&Aacute;rea</strong>: Seleccione &Aacute;rea 3.</li>
+                            <li><strong class="UI">Tipo de temperatura</strong>: Seleccione «M&iacute;nima».</li>
+                            <li><strong class="UI">Condici&oacute;n de detecci&oacute;n</strong>: Seleccione «Aumenta».</li>
+                            <li><strong class="UI">Detecci&oacute;n</strong>: Introduzca «30».</li>
+                        <li><strong class="UI">Duraci&oacute;n m&iacute;nima</strong>: Introduzca «5».</li>
+                    </ul>
+                    <p>La acci&oacute;n de la notificaci&oacute;n de eventos y la programaci&oacute;n se pueden definir en los men&uacute;s <a href="#action">[Configuraci&oacute;n de acciones de evento]</a> y <a href="#schedule">[Tiempo de activaci&oacute;n de evento]</a>.</p>
+                </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>Superposici&oacute;n de &aacute;rea de temperatura</h3>
+                <p>Seleccione las opciones para mostrar en la pantalla del v&iacute;deo de la c&aacute;mara. Despu&eacute;s de seleccionar un &aacute;rea en <strong class="UI">[&Aacute;rea]</strong>, puede seleccionar qu&eacute; mostrar en cada &aacute;rea.</p>
+                <ul>
+                    <li><strong class="UI">&Aacute;rea</strong>: Selecciona si mostrar o no el n&uacute;mero de &aacute;rea.</li>
+                    <li><strong class="UI">Promedio</strong>: Selecciona si mostrar o no la temperatura promedio del &aacute;rea definida en la pantalla.</li>
+                    <li><strong class="UI">M&iacute;nima</strong>: Selecciona si mostrar o no la temperatura m&iacute;nima del &aacute;rea definida en la pantalla.</li>
+                    <li><strong class="UI">M&aacute;xima</strong>: Selecciona si mostrar o no la temperatura m&aacute;xima del &aacute;rea definida en la pantalla.</li>
+                </ul>
+                <p>Las opciones seleccionadas se superponen en la parte superior de la pantalla del v&iacute;deo <strong class="UI">[En vivo]</strong>.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>Emisividad del &aacute;rea</h3>
+                <p>Puede definir un valor de emisividad para cada &aacute;rea. Los valores apropiados de emisividad se necesitan para tener una medici&oacute;n de temperatura m&aacute;s precisa de las &aacute;reas.</p>
+            </div>  
+            <div class="wn5-online-help-info" ng-if="BoxTemperatureDetection">
+                <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <p>Para la emisividad, consulte la tabla en <strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de v&iacute;deo]</strong>&gt;<strong class="UI">[Emisividad del lugar]</strong>. Ya que la emisividad var&iacute;a seg&uacute;n distintas variables, que incluyen el procesamiento de la superficie, el color, la temperatura en el momento de medici&oacute;n y la temperatura del aire, necesita experimentar con diferentes valores para adquirir el valor m&aacute;s apropiado. Introducir un valor de emisividad preciso garantiza una medici&oacute;n de temperatura m&aacute;s exacta.</p>
+            </div>
         </div>
-
     </div>
-</div>
+    
 
   <hr class="wn5-setup-hr">
 
@@ -87,7 +157,7 @@
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Tiempo de activaci&oacute;n de evento</h2>
+        <h2><a name="schedule"></a>Tiempo de activaci&oacute;n de evento</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">

@@ -1,0 +1,216 @@
+﻿
+<h1 class="wn5-setup-main-title">Configuraci&oacute;n de temperatura</h1>
+<div class="wn5-setup-section">
+    <p>Puede definir si usar o no la emisividad para su c&aacute;mara para referirse a la detecci&oacute;n de temperatura, tipo de paleta de colores para aplicar al v&iacute;deo de la c&aacute;mara, la unidad de pantalla de temperatura, barra de color de la temperatura, etc.</p>
+    <p>Haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> a continuaci&oacute;n cuando se complete la configuraci&oacute;n.</p>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Configuraci&oacute;n de temperatura</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Unidad de temperatura</h3>
+            <p>La unidad de pantalla de temperatura se puede definir.&nbsp;Elija entre Celsius y Fahrenheit.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Paleta de colores</h3>
+            <p>La paleta de colores presenta al v&iacute;deo de la c&aacute;mara en una manera conveniente para el an&aacute;lisis visual.</p>
+            <p>Si selecciona una opci&oacute;n de la paleta de colores, el color de la pantalla del v&iacute;deo de la c&aacute;mara cambia seg&uacute;n la opci&oacute;n seleccionada. La opci&oacute;n seleccionada tambi&eacute;n se aplica a la p&aacute;gina <strong class="UI">[En vivo]</strong>.</p>
+            <p>El esquema de representaci&oacute;n de color de cada opci&oacute;n de paleta de colores es el siguiente.</p>
+            <ul>
+                <li><strong class="UI">Blanco caliente</strong>: La temperatura que va de alta a baja se representa desde el blanco hasta el negro.</li>
+                <li><strong class="UI">Negro caliente</strong>: La temperatura que va de alta a baja se representa desde el negro hasta el blanco.</li>
+                <li><strong class="UI">Arco iris</strong>: La temperatura que va de alta a baja se representa con rojo, naranja, amarillo, verde, azul e &iacute;ndigo</li>
+                <li><strong class="UI">Personalizado</strong>: La temperatura que va de alta a baja se representa desde el naranja hasta el negro</li>
+                <li><strong class="UI">Sepia</strong>: La temperatura que va de alta a baja se representa desde el amarillo hasta el negro.</li>
+                <li><strong class="UI">Rojo</strong>: La temperatura que va de alta a baja se representa desde el negro hasta el rojo.</li>
+                <li><strong class="UI">Hierro</strong>: La temperatura que va de alta a baja se representa desde el amarillo hasta el violeta.</li>
+                <li><strong class="UI">Rojo-WH</strong>: La secci&oacute;n de la temperatura definida se representa con rojo. Para todos los dem&aacute;s, la temperatura que va de alta a baja se representa desde el blanco hasta el negro. La secci&oacute;n de la temperatura se puede definir en <strong class="UI">[Niveles]</strong>.</li>
+                <li><strong class="UI">Hierro-WH</strong>: La secci&oacute;n de la temperatura definida se representa desde el amarillo hasta el violeta. Para todos los dem&aacute;s, la temperatura que va de alta a baja se representa desde el blanco hasta el negro. La secci&oacute;n de la temperatura se puede definir en <strong class="UI">[Niveles]</strong>.</li>
+                <li><strong class="UI">Medio-WH</strong>: La secci&oacute;n de la temperatura definida se representa desde el amarillo hasta el naranja. Para todos los dem&aacute;s, la temperatura que va de alta a baja se representa desde el blanco hasta el negro. La secci&oacute;n de la temperatura se puede definir en <strong class="UI">[Niveles]</strong>.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Niveles</h3>
+            <p>Puede definir las temperaturas de inicio y final en la secci&oacute;n de temperatura para que solo la secci&oacute;n de temperatura seleccionada se muestre en colores.&nbsp;Puede usarla solo despu&eacute;s de seleccionar el modo <strong class="UI">Rojo-WH</strong>, <strong class="UI">Hierro-WH</strong> o <strong class="UI">Medio-WH</strong> en la <strong class="UI">[Paleta de colores]</strong>.</p>
+            <p>Por ejemplo, si selecciona «Medio-WH» en la <strong class="UI">[Paleta de colores]</strong> e introduce «20» y «60» para [Inicio] y [Final] respectivamente en la <strong class="UI">[Secci&oacute;n de temperatura de la pantalla de color]</strong>, solo los objetos cuya temperatura se encuentra dentro del rango de 20 grados a 60 grados (Celsius) en el v&iacute;deo de la c&aacute;mara se muestran en colores. Los objetos cerca de los 20 grados se muestran en amarillo mientras que aquellos cerca de los 60 grados se muestran en naranja.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Emisividad del lugar</h3>
+            <p>Introduzca la informaci&oacute;n de emisividad para la c&aacute;mara para referirse cuando se analiza la temperatura.</p>
+            <p>El valor que introdujo se aplicar&aacute; al valor predeterminado cuando mida la temperatura al hacer clic con el rat&oacute;n en la pantalla [En vivo]. Puede obtener un valor de temperatura apropiado que considere la condici&oacute;n de la superficie, la textura, etc. del objeto al cambiar el valor de emisividad.</p>
+            <p>Para obtener informaci&oacute;n sobre la emisividad, consulte la siguiente tabla. La siguiente tabla enumera los valores predeterminados usados como valores de referencia. Ya que la emisividad var&iacute;a seg&uacute;n distintas variables, que incluyen el procesamiento de la superficie, el color, la temperatura en el momento de medici&oacute;n y la temperatura del aire, necesita experimentar con diferentes valores para adquirir el valor m&aacute;s apropiado. Introducir un valor de emisividad preciso garantiza una medici&oacute;n de temperatura m&aacute;s exacta.</p>
+			 <table class="table table-bordered wn5-setup-table" width="372">
+                <thead>
+                <tr>
+                    <td width="86">Material</td>
+                    <td width="106">
+                        <p>Emisividad (ε)</p>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td width="86">
+                        <p>Papel de aluminio</p>
+                    </td>
+                    <td width="106">
+                        <p>0,03 &nbsp;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Aluminio, anodizado</p>
+                    </td>
+                    <td width="106">
+                        <p>0,9</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Asfalto</p>
+                    </td>
+                    <td width="106">
+                        <p>0,88</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Ladrillo</p>
+                    </td>
+                    <td width="106">
+                        <p>0,90</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Concreto, &aacute;spero</p>
+                    </td>
+                    <td width="106">
+                        <p>0,91</p>
+                    </td>
+                </tr>
+                </tbody>
+                <tr>
+                    <td width="86">
+                        <p>Cobre, pulido</p>
+                    </td>
+                    <td width="106">
+                        <p>0,04</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Cobre, oxidado</p>
+                    </td>
+                    <td width="106">
+                        <p>0,87</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Vidrio, liso (sin revestir)</p>
+                    </td>
+                    <td width="106">
+                        <p>0,95</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Hielo</p>
+                    </td>
+                    <td width="106">
+                        <p>0,97</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Caliza</p>
+                    </td>
+                    <td width="106">
+                        <p>0,92</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>M&aacute;rmol (pulido)</p>
+                    </td>
+                    <td width="106">
+                        <p>De 0,89 a 0,92</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Pintura (incluido el blanco)</p>
+                    </td>
+                    <td width="106">
+                        <p>0,9</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Papel, techo o blanco</p>
+                    </td>
+                    <td width="106">
+                        <p>De 0,88 a 0,86</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Yeso, &aacute;spero</p>
+                    </td>
+                    <td width="106">
+                        <p>0,89</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Plata, pulida</p>
+                    </td>
+                    <td width="106">
+                        <p>0,02</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Plata, oxidada</p>
+                    </td>
+                    <td width="106">
+                        <p>0,04</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Nieve</p>
+                    </td>
+                    <td width="106">
+                        <p>De 0,8 a 0,9</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>Agua, pura</p>
+                    </td>
+                    <td width="106">
+                        <p>0,96</p>
+                    </td>
+                </tr>
+            </table>
+            <p>(Fuente: http://en.wikipedia.org/wiki/Emissivity)</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Barra de color de la temperatura</h3>
+            <p>La barra de color de la temperatura muestra los colores que actualmente aparecen en la pantalla en la forma de una barra. El color desde la parte inferior a la superior representa la temperatura que va de alta a baja.</p>
+            <p>Si selecciona <strong class="UI">[Habilitar]</strong>, la barra de color de la temperatura aparecer&aacute; en el lado derecho de la pantalla del v&iacute;deo de la c&aacute;mara.</p>
+        </div>
+       
+    </div>
+</div>
+
+           
+
+
+

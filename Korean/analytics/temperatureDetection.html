@@ -12,17 +12,25 @@
         <h2>온도 감지</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>온도 변화 감지 사용</h3>
-            <p>온도 변화 감지 이벤트를 사용하려면 <strong class="UI">[온도 감지 사용]</strong>을 선택합니다. </p>
+            <p>온도 변화 감지 이벤트를 사용하려면 <strong class="UI">[온도 변화 감지 사용]</strong>을 선택합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>온도 감지 사용</h3>
+            <p>온도 감지 이벤트를 사용하려면 <strong class="UI">[온도 감지 사용]</strong>을 선택합니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>영역 </h3>
             <p>온도 변화량을 감지할 영역을 설정합니다. 설정한 영역의 오른쪽 아래 꼭지점을 움직여 관심 영역의 크기를 변경할 수 있으며, 영역을 이동하려면 마우스로 해당 영역을 클릭하여 드래그합니다. 영역을 삭제하려면 화면에서 해당 영역에 마우스 오른쪽 버튼을 클릭한 후 삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</p>
             <p>영역은 3개까지 설정할 수 있으며, 영역별로 온도 변화 감지 규칙을 설정할 수 있습니다. </p>
         </div>
-		
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>영역 </h3>
+                <p>온도를 감지할 영역을 설정합니다. 설정한 영역의 오른쪽 아래 꼭지점을 움직여 관심 영역의 크기를 변경할 수 있으며, 영역을 이동하려면 마우스로 해당 영역을 클릭하여 드래그합니다. 영역을 삭제하려면 화면에서 해당 영역에 마우스 오른쪽 버튼을 클릭한 후 삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</p>
+                <p>영역은 3개까지 설정할 수 있으며, 영역별로 온도 감지 규칙을 설정할 수 있습니다. </p>
+            </div>		
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>온도 변화 감지</h3>
             <p><strong class="UI">[영역]</strong>에서 온도 변화를 감지할 영역을 선택한 후 아래 옵션을 설정합니다.</p>
             <ul>
@@ -33,14 +41,74 @@
             </ul>
         </div>
 		
-        <div class="wn5-setup-section-article-content">
-            <h3>최소 관찰 시간 (초)    </h3>
-            <p>온도 변화를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. 온도 변화가 최소 관찰 시간 동안 지속되어야 온도 감지 이벤트가 발생합니다. 1~60초 사이의 값을 입력할 수 있습니다.</p>
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>온도 유형</h3>
+            <p>관찰할 온도 유형을 선택합니다.</p>
+            <p><strong class="UI">[영역]</strong>에서 설정한 영역에서는 3가지 유형의 온도가 제공됩니다. 선택한 영역에서 '최저' '평균' '최고' 온도 중&nbsp;온도 변화를 분석할 때 기준이 될 온도 유형을 선택합니다.</p>
         </div>
-        		
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>감지 조건</h3>
+            <p>관찰할 온도 조건을 선택합니다.</p>
+            <p>관찰 온도가 특정 온도 이상이나 이하로 변하는 것을 감지하려면 [이상] 이나 [이하]를 각각 선택합니다. 관찰 온도가 일정값 이상으로 증가하거나 감소하는 것(온도 변화량)을 감지하려면 [증가]나 [감소]를 각각 선택합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>감지</h3>
+            <p>온도 값을 입력합니다. &nbsp;</p>
+            <p><strong class="UI">[감지 조건]</strong>에서 [이상]이나 [이하]를 선택한 경우, 감지하려는 온도를 입력합니다. 또한 <strong class="UI">[감지 조건]</strong>에서 [증가]나 [감소]를 선택한 경우, 감지하려는 온도변화량(증가량 또는 감소량)을 입력합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+            <h3>최소 관찰 시간 (초)        </h3>
+            <p>온도 변화를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. 온도 변화가 최소 관찰 시간 동안 지속되어야 온도 감지 이벤트가 발생합니다. 1~60초 사이의 값을 설정할 수 있습니다. 입력 필드에&nbsp;직접 입력하거나 슬라이드 막대를 움직여 값을 변경할 수 있습니다.</p>
+        </div>
+		        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>최소 관찰 시간 (초)        </h3>
+            <p>온도를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. [감지 타입] 설정에 따라, 최소 관찰 시간 동안 이상이나 이하의 특정 온도가 지속되거나, 증가하거나 감소한 온도 변화가 최소 관찰 시간 동안&nbsp;지속되어야 온도 감지 이벤트가 발생합니다. 1~60초 사이의 값을 설정할 수 있습니다. 입력 필드에&nbsp;직접 입력하거나 슬라이드 막대를 움직여 값을 변경할 수 있습니다.</p>
+        </div>
+		        <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+            <h4>온도 감지 이벤트 설정 예(1)</h4>
+                <p>영역 1에서 최대 온도 값이 섭씨 100도 이상되는 경우가 3초 이상 지속될 경우 이벤트 알림을 발생하려면 다음과 같이 설정합니다.</p>
+                <ul>
+                    <li><strong class="UI">영역</strong>: 영역 1을 선택합니다.</li>
+                    <li><strong class="UI">Temperature type</strong>: 'Maximum'을 선택합니다.</li>
+                    <li><strong class="UI">Detection condition</strong>: 'Above'를 선택합니다.</li>
+                    <li><strong class="UI">Detection</strong>: '100'을 입력합니다.  </li>
+                    <li><strong class="UI">최소 관찰 시간</strong>: '3'을 입력합니다.</li>
+                </ul>
+                <p>이벤트 알림 동작과 일정은<a href="#action">[이벤트 동작]</a> 메뉴와<a href="#schedule">[이벤트 동작 스케줄]</a> 메뉴에서 각각 설정할 수 있습니다.</p>
+            </div>
+		        <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+            <h4>온도 감지 이벤트 설정 예(2)</h4>
+                <p>영역 3내에서 최소 온도 값이 기준 온도 대비 섭씨 30도 이상 증가하고 이 상태가 5초 이상 지속될 경우에 이벤트 알림을 발생하려면 다음과 같이&nbsp;설정합니다.</p>
+                <ul>
+                    <li><strong class="UI">영역</strong>: 영역 3을 선택합니다.</li>
+                    <li><strong class="UI">Temperature type</strong>: 'Minimum'을 선택합니다.</li>
+                    <li><strong class="UI">Detection condition</strong>: 'Increase'를 선택합니다.</li>
+                    <li><strong class="UI">Detection</strong>: '30'을 입력합니다.  </li>
+                    <li><strong class="UI">최소 관찰 시간</strong>: '5'을 입력합니다.</li>
+                </ul>
+                <p>이벤트 알림 동작과 일정은<a href="#action">[이벤트 동작]</a> 메뉴와<a href="#schedule">[이벤트 동작 스케줄]</a> 메뉴에서 각각 설정할 수 있습니다.</p>
+            </div>
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>온도 오버레이</h3>
+            <p>카메라 영상 화면에 표시할 항목을 선택합니다. <strong class="UI">[영역]</strong>에서&nbsp;영역을 선택한 뒤 영역별로 표시 항목을 선택할 수 있습니다.</p>
+            <ul>
+                <li><strong class="UI">영역</strong>: 영역 번호를 화면에 표시할지 여부를 선택합니다.</li>
+                <li><strong class="UI">평균</strong>: 설정된&nbsp;영역의 평균 온도를 화면에 표시할지 여부를 선택합니다.</li>
+                <li><strong class="UI">최저</strong>: 설정된&nbsp;영역의 최저&nbsp;온도를 화면에 표시할지 여부를 선택합니다.  </li>
+                <li><strong class="UI">최고</strong>: 설정된 영역의 최고&nbsp;온도를 화면에 표시할지 여부를 선택합니다.  </li>
+            </ul>
+            <p>선택한 항목은 <strong class="UI">[라이브]</strong> 영상 화면 상단에도 오버레이되어 나타납니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+            <h3>영역 방사율   </h3>
+            <p>각 영역의 방사율 값을 설정할 수 있습니다. 알맞은 방사율 값을 설정해야 측정 영역의 온도를 보다 정확하게 얻을 수 있습니다.</p>
+        </div>  
+        <div class="wn5-online-help-info" ng-if="BoxTemperatureDetection">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <p>방사율은 <strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[비디오 설정]</strong>&gt;<strong class="UI">[스폿 방사율]</strong>의 표를 참고하십시오. 방사율은 표면 처리, 색상, 측정 당시의 온도, 대기 온도 등 다양한 변수에 따라 달라지므로 반복된 실험을 통해 적절한 값을 찾아야 합니다. 정확한 방사율 값을 입력하면 보다 정확한 온도 측정값을 얻을 수 있습니다.</p>
+        </div>
     </div>
 </div>
-
            
 
 
@@ -94,7 +162,7 @@
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>이벤트 동작 스케줄</h2>
+        <h2><a name="schedule"></a>이벤트 동작 스케줄</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">

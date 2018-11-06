@@ -1,0 +1,216 @@
+﻿
+<h1 class="wn5-setup-main-title">온도 설정</h1>
+<div class="wn5-setup-section">
+    <p>카메라가 온도를 감지할 때 참조할 방사율이나, 카메라 영상에 적용할 컬러 팔레트 타입이나 온도 표시 단위, 온도 컬러 막대 사용 여부 등을 설정할 수 있습니다.</p>
+    <p>설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>온도 설정</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>온도 단위</h3>
+            <p>온도 표시 단위를 설정할 수 있습니다. 섭씨나 화씨 중 하나를 선택합니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>컬러 팔레트</h3>
+            <p>컬러 팔레트는 카메라 영상을 시각적으로 분석하기 쉽도록 표현해 줍니다. </p>
+            <p>원하는 컬러 팔레트 옵션을 선택하면, 선택한 옵션에 따라 카메라 영상 화면의 색상이 변경됩니다. 선택한 옵션은 <strong class="UI">[라이브]</strong> 페이지에도 동일하게 적용됩니다. </p>
+            <p>각 컬러 팔레트 옵션별 색상 표현 방식은 다음과 같습니다. </p>
+            <ul>
+                <li><strong class="UI">White hot</strong>: 고온에서 저온을 흰색에서에서 검은색으로 표현합니다.</li>
+                <li><strong class="UI">Black hot</strong>: 고온에서 저온을 검은색에서 흰색으로 표현합니다.</li>
+                <li><strong class="UI">Rainbow</strong>: 고온에서 저온을 빨강, 주황, 노랑, 초록, 파랑, 남색으로 표현합니다.</li>
+                <li><strong class="UI">Custom</strong>: 고온에서 저온을 주황색에서 검정색으로 표현합니다.</li>
+                <li><strong class="UI">Sepia</strong>: 고온에서 저온을 노란색에서 검정색으로 표현합니다.</li>
+                <li><strong class="UI">Red</strong>: 고온에서 저온을 검정색에서 빨간색으로 표현합니다.</li>
+                <li><strong class="UI">Iron</strong>: 고온에서 저온을 노란색에서 보라색으로 표현합니다.</li>
+                <li><strong class="UI">Red-WH</strong>: 설정된 온도 구간은 빨간색으로 표현하고, 그 외의 부분은 고온에서 저온을 흰색에서 검은색으로 표현합니다. 온도 구간은 <strong class="UI">[색상 표시 온도 구간]</strong>에서 설정할 수 있습니다.</li>
+                <li><strong class="UI">Iron-WH</strong>: 설정된 온도 구간은 노란색에서 보라색으로 표현하고, 그 외의 부분은 고온에서 저온을 흰색에서 검은색으로 표현합니다. 온도 구간은 <strong class="UI">[색상 표시 온도 구간]</strong>에서 설정할 수 있습니다.</li>
+                <li><strong class="UI">Midrange-WH</strong>: 설정된 온도 구간은 노란색에서 주황색으로 표현하고, 그 외의 부분은 고온에서 저온을 흰색에서 검은색으로 표현합니다. 온도 구간은 <strong class="UI">[색상 표시 온도 구간]</strong>에서 설정할 수 있습니다. </li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>색상 표시 온도 구간</h3>
+            <p>사용자가 원하는 온도 구간에만 색상으로 표시할 수 있도록 구간의 시작 온도와 종료 온도를 설정할 수 있습니다. <strong class="UI">[컬러 팔레트]</strong>에서 <strong class="UI">Red-WH</strong>, <strong class="UI">Iron-WH</strong>, <strong class="UI">Midrange-WH</strong> 모드를 선택한 경우에만 사용할 수 있습니다. </p>
+            <p>예를 들어 <strong class="UI">[컬러 팔레트]</strong>에서 'Midrange-WH'를 선택하고, <strong class="UI">[색상 표시 온도 구간]</strong>에서 [시작]과 [끝]에 '20'과 '60'을 각각 입력한 경우, 카메라 영상에서 섭씨 20도에서 60도 온도를 가지는 물체만 색상으로 표현합니다. 20도에 가까운 물체는 노란색으로 60도에 가까운 물체일수록 주황색으로 표현합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>스폿 방사율</h3>
+            <p>카메라가 온도를 분석할 때 참조할 방사율 정보를 입력합니다. </p>
+            <p>여기서 입력한 값은 <strong class="UI">[라이브]</strong> 화면에서 마우스를 클릭하여 온도를 측정할 때 기본값으로 적용됩니다. 방사율 값을 변경하여 물체의 표면 상태, 질감 등의 따른 적절한 온도 값을 얻을 수 있습니다. </p>
+            <p>방사율 정보는 아래 표를 참고하십시오. 아래 표는 참고용으로 제공되는 기본값입니다. 방사율은 표면 처리, 색상, 측정 당시의 온도, 대기 온도 등 다양한 변수에 따라 달라지므로 반복된 실험을 통해 적절한 값을 찾아야 합니다. 정확한 방사율 값을 입력하면 보다 정확한 온도 측정값을 얻을 수 있습니다.</p>
+            <table class="table table-bordered wn5-setup-table" width="372" height="455">
+                <thead>
+                <tr>
+                    <td width="86">물질</td>
+                    <td width="106">
+                        <p>방사율(ε)</p>
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td width="86">
+                        <p>알루미늄 박</p>
+                    </td>
+                    <td width="106">
+                        <p>0.03  </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>알루미늄(산화한 면)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.9</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86" height="19">
+                        <p>아스팔트</p>
+                    </td>
+                    <td width="106" height="19">
+                        <p>0.88 </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>벽돌</p>
+                    </td>
+                    <td width="106">
+                        <p>0.90 </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>콘크리트</p>
+                    </td>
+                    <td width="106">
+                        <p>0.91</p>
+                    </td>
+                </tr>
+                </tbody>
+                <tr>
+                    <td width="86">
+                        <p>구리(윤내기한 면)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.04</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>구리(산화한 면)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.87</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>유리(코팅되지 않은 매끈한 면)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.95</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>얼름</p>
+                    </td>
+                    <td width="106">
+                        <p>0.97</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>석회석</p>
+                    </td>
+                    <td width="106">
+                        <p>0.92</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>대리석(윤내기한 면)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.89 to 0.92</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>페인트(흰색 포함)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.9</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>종이</p>
+                    </td>
+                    <td width="106">
+                        <p>0.88 to 0.86</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>석고</p>
+                    </td>
+                    <td width="106">
+                        <p>0.89</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>은(윤한내기한 면)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.02</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>은(산화한 면)</p>
+                    </td>
+                    <td width="106">
+                        <p>0.04</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>눈</p>
+                    </td>
+                    <td width="106">
+                        <p>0.8 to 0.9</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="86">
+                        <p>물</p>
+                    </td>
+                    <td width="106">
+                        <p>0.96</p>
+                    </td>
+                </tr>
+            </table>
+            <p>(출처: http://en.wikipedia.org/wiki/Emissivity)</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>온도 컬러바</h3>
+            <p>온도 색상 막대는 현재 화면 상에 표현되는 색상을 막대 형태로 표시해 줍니다. 막대의 위쪽부터 아래쪽까지 고온에서 저온의 색상을 나타냅니다. </p>
+            <p><strong class="UI">[사용]</strong>을 선택하면 온도 색상 막대가 카메라 영상 화면 오른쪽에 나타납니다. </p>
+        </div>
+       
+    </div>
+</div>
+
+           
+
+
+

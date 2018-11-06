@@ -233,7 +233,28 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         </div>
     </div>
 </div>
-
+<hr class="wn5-setup-hr" ng-if="ImagePresetIndoor">
+<div class="wn5-setup-section" ng-if="ImagePresetIndoor">
+    <div class="wn5-setup-section-heading">
+        <h2>Image preset mode</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Select an image preset that best suits your camera environment. Selecting an image preset will change the value to default of the image preset.</p>
+            <ul>
+                <li><strong class="UI">Indoor</strong>: Used in an indoor environment with a narrow range of temperature.</li>
+                <li><strong class="UI">Outdoor</strong>: Used in an outdoor environment with a wide range of temperature.</li>
+            </ul>
+        </div>
+        
+        <div class="wn5-online-help-info">
+            <h4>Note</h4>
+            <ul>
+                <li>After selecting an image preset mode, change the detailed settings of camera image, such as SSDR and Exposure, and click <strong class="UI">[Apply]</strong> to save the changed value as the image preset value. To reset it to default, click the <strong class="UI">[Reset]</strong> button.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -255,6 +276,23 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         <div class="wn5-setup-section-article-content">
             <h3>D-Range </h3>
             <p>Select the amplitude area of the dynamic range. </p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>LCE (Local Contrast Enhancement)</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Displays the screen with a high contrast based on the set area.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>Select an LCE mode you want.</p>
+            <p>If you select a mode option, the area to show the high contrast is displayed as a green box. For example, in the <strong class="UI">[Sky]</strong> mode, the green box appears on top of the video screen provide that the sky is shown in upper part of the screen, and correct the video to best represents the objects within the area. In the case, the recognition rate of subject may relatively be lowered on the bottom of the screen.</p>
+            <p>If you select <strong class="UI">[Custom]</strong>, you can customize the area to best represents the contrast ratio.</p>
         </div>
     </div>
 </div>
@@ -770,8 +808,8 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>Color Palette</h2>
     </div>

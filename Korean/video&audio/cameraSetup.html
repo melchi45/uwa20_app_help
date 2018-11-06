@@ -116,6 +116,28 @@
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="ImagePresetIndoor">
+<div class="wn5-setup-section" ng-if="ImagePresetIndoor">
+    <div class="wn5-setup-section-heading">
+        <h2>이미지 프리셋 모드</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라를 사용하는 환경에 맞춰 이미지 프리셋을 선택합니다. 제공되는 이미지 프리셋을 선택하면 해당 이미지 프리셋의 초깃값으로 변경됩니다.</p>
+            <ul>
+                <li><strong class="UI">실내</strong>: 상대적으로 온도 분포 범위가 좁은&nbsp;실내 환경에서 사용합니다.</li>
+                <li><strong class="UI">실외</strong>: 상대적으로 온도 분포 범위가 넓은&nbsp;실외 환경에서 사용합니다.</li>
+            </ul>
+        </div>
+        
+        <div class="wn5-online-help-info">
+            <h4>알아두기</h4>
+            <ul>
+                <li>이미지 프리셋 모드를 선택한 후 SSDR, 노출 보정 등과 같은 카메라 이미지 세부 설정을 변경하고 <strong class="UI">[적용]</strong>을 클릭하면, 변경한 값이 해당 이미지 프리셋 값으로 저장됩니다. 초깃값으로 되돌리려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -137,6 +159,24 @@
         <div class="wn5-setup-section-article-content">
             <h3>D-Range </h3>
             <p>다이나믹 레인지의 진폭 영역을 선택합니다. </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="BoxTemperatureDetection">
+    <div class="wn5-setup-section-heading">
+        <h2>LCE (Local Contrast Enhancement)</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>설정된 영역을 중심으로 대비차가 잘 나타나도록 화면을 표현합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>모드</h3>
+            <p>원하는 LCE 모드를 선택합니다.</p>
+            <p>모드 옵션을 선택하면 대비차가 잘 나타나도록 표현할 영역이 초록색 박스로 표시됩니다. 예를 들어 <strong class="UI">[Sky]</strong> 모드는 하늘이 화면 상단에 나타난다는 가정 하에 영상 화면의 상단 영역에 초록색 박스가 표시되며, 이 영역 안의 물체들이 잘 표현되도록 영상을 보정합니다. 이 때 화면 하단에서는 상대적으로 피사체의 인식율이 다소 낮아질 수 있습니다.</p>
+            <p><strong class="UI">[Custom]</strong>을 선택하면 대비차가 잘 나타도록 표현할 영역을 사용자가 지정할 수 있습니다.</p>
         </div>
     </div>
 </div>
@@ -649,8 +689,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette">
-<div class="wn5-setup-section" ng-if="ColorPalette">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
         <h2>컬러 팔레트</h2>
     </div>

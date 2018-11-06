@@ -12,17 +12,25 @@
         <h2>温度検知</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <h3>温度変化検知を有効にする</h3>
-            <p>温度変化検知イベントを有効にするためには、<strong class="UI">[温度検知を有効にする]</strong>を選択します。</p>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+            <h3>温度変化検出を有効にする</h3>
+            <p>温度変化検知イベントを有効にするためには、<strong class="UI">[温度変化検出を有効にする]</strong>を選択します。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>温度検知を有効化</h3>
+                <p>温度変化検知イベントを有効にするためには、<strong class="UI">[温度検知を有効化]</strong>を選択します。</p>
+            </div>
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>エリア</h3>
             <p>温度変化量を検知するエリアを設定します。設定したエリアの右下にある頂点を動かしてROI領域のサイズを変更することができます。エリアを移動させるためには、マウスで該当エリアをクリックしてドラッグします。エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
             <p>エリアは3つまで設定することができ、エリア別に温度変化検知の規則を設定することができます。</p>
         </div>
-		
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>エリア</h3>
+                <p>温度変化量を検知するエリアを設定します。設定したエリアの右下にある頂点を動かしてROI領域のサイズを変更することができます。エリアを移動させるためには、マウスで該当エリアをクリックしてドラッグします。エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+                <p>エリアは3つまで設定することができ、エリア別に温度検知の規則を設定することができます。</p>
+            </div>		
+        <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>温度変化検知</h3>
             <p><strong class="UI">[エリア]</strong>で温度変化を検知するエリアを選択した後、下記のオプションを設定します。</p>
             <ul>
@@ -30,13 +38,74 @@
                 <li><strong class="UI">温度の種類</strong>：<strong class="UI">[エリア]</strong>で設定したエリアには、様々な範囲の温度が存在することがあります。様々な温度から温度変化量を観察する時に基準となる温度を「最小値」「平均」「最大値」から選択します。例えば、<strong class="UI">[エリア]</strong>で「3」を選択して<strong class="UI">[</strong><strong class="UI">温度差</strong><strong class="UI">]</strong>では「20°C」を選択した後、<strong class="UI">[</strong><strong class="UI">温度の種類</strong><strong class="UI">]</strong>で「最小値」を選択した場合、エリア3で観察される最低温度を基準として「20°C」以上の温度変化が発生すると、カメラが温度変化状況に検知します。</li><!--  <li><strong class="UI">기준 기간</strong>: 기준 온도를 산정하기 위한 시간을 선택합니다. 단위는 초입니다. '10'을 선택하는 경우 해당 영역에서 최근 10초 동안의 통계적 데이터로부터 온도차이를 판단합니다. 즉 10초 동안 수집된 평균 온도를 기준으로 온도가 급격히 상승하거나 감소하면 카메라가 온도 변화 상태로 감지합니다. <strong class="UI">[기준 기간]</strong>의 수치가 높을수록 온도가 점진적으로 상승하거나 감소하는 온도변화도 감지할 수 있습니다.  </li>  --></ul>
         </div>
 		
-        <div class="wn5-setup-section-article-content">
-            <h3>最短時間(秒)</h3>
-            <p>温度変化を検知してイベントに発生させるまでの最短時間を設定します。温度変化が最短時間の間に持続する場合のみ、温度検知イベントが発生します。1から60秒までの値を入力することができます。</p>
+        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>温度の種類</h3>
+                <p>観察する温度の種類を選択します。</p>
+                <p><strong class="UI">[エリア]</strong>で設定したエリアは、3種類の温度が提供されます。選択したエリアで「最小値」「平均」「最大値」温度中、温度変化を分析するときに基準となる温度の種類を選択します。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>検知条件</h3>
+                <p>観察する温度の条件を選択します。</p>
+                <p>観察温度が特定温度以上や以下に変化することを検知するには、[以上]や[以下]をそれぞれ選択します。観察温度が一定値以上に増加したり減少すること(温度変化量)を検知するには、[増加]や[減少]をそれぞれ選択します。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>検知温度</h3>
+                <p>温度値を入力します。 &nbsp;</p>
+                <p><strong class="UI">[検知条件]</strong>で[以上]や[以下]を選択した場合、検知する温度を入力します。また<strong class="UI">[検知条件]</strong>で[増加]や[減少]を選択した場合、検知する温度変化量(増加量または減少量)を入力します。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
+                <h3>最短時間(秒)</h3>
+                <p>温度変化を検知してイベントに発生させるまでの最短時間を設定します。温度変化が最短時間の間に持続する場合のみ、温度検知イベントが発生します。1から60秒までの値を設定することができます。入力フィールドに直接入力したり、スライドバーで調整して値を変更することができます。</p>
+            </div>
+                    <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>最短時間(秒)</h3>
+                <p>温度を検知してイベントに発生させるまでの最短時間を設定します。[検知タイプ]設定によって、最短期間の間に以上や以下の特定温度が継続される場合や増加したり減少した温度変化が最短期間の間に継続されなければ温度検知イベントは発生しません。1から60秒までの値を設定することができます。入力フィールドに直接入力したり、スライドバーで調整して値を変更することができます。</p>
+            </div>
+                    <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+                <h4>温度検知イベント設定の例(1)</h4>
+                    <p>エリア1で最大温度値が100℃以上になる場合が3秒以上継続される場合、イベント通知を発生するためには下記のように設定します。</p>
+                    <ul>
+                        <li><strong class="UI">エリア</strong>：エリア1を選択します。</li>
+                        <li><strong class="UI">温度の種類</strong>：「最大値」を選択します。</li>
+                        <li><strong class="UI">検知条件</strong>：「以上」を選択します。</li>
+                        <li><strong class="UI">検知温度</strong>：「100」を入力します。</li>
+                        <li><strong class="UI">最短期間</strong>：「3」を入力します。</li>
+                    </ul>
+                    <p>イベント通知動作とスケジュールは、<a href="#action">[イベント動作]</a>メニューと<a href="#schedule">[イベント動作時間]</a>メニューでそれぞれ設定することができます。</p>
+                </div>
+                    <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
+                <h4>温度検知イベント設定の例(2)</h4>
+                    <p>エリア3内で最小温度値が基準温度比30℃以上増加し、この状況が5秒以上継続される場合、イベント通知を発生するためには下記のように設定します。</p>
+                    <ul>
+                        <li><strong class="UI">エリア</strong>：エリア3を選択します。</li>
+                            <li><strong class="UI">温度の種類</strong>：「最小値」を選択します。</li>
+                            <li><strong class="UI">検知条件</strong>：「増加」を選択します。</li>
+                            <li><strong class="UI">検知温度</strong>：「30」を入力します。</li>
+                        <li><strong class="UI">最短期間</strong>：「5」を入力します。</li>
+                    </ul>
+                    <p>イベント通知動作とスケジュールは、<a href="#action">[イベント動作]</a>メニューと<a href="#schedule">[イベント動作時間]</a>メニューでそれぞれ設定することができます。</p>
+                </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>温度オーバーレイ</h3>
+                <p>カメラの映像画面に表示する項目を選択します。<strong class="UI">[エリア]</strong>でエリアを選択した後、エリア別に表示項目を選択することができます。</p>
+                <ul>
+                    <li><strong class="UI">エリア</strong>：画面にエリア番号の表示有無を選択します。</li>
+                    <li><strong class="UI">平均</strong>：画面に設定されたエリアの平均温度の表示有無を選択します。</li>
+                    <li><strong class="UI">最小値</strong>：画面に設定されたエリアの最小温度の表示有無を選択します。</li>
+                    <li><strong class="UI">最大値</strong>：画面に設定されたエリアの最大温度の表示有無を選択します。</li>
+                </ul>
+                <p>選択した項目は、<strong class="UI">[ライブ]</strong>映像画面の上にもオーバーレイで表示されます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
+                <h3>エリア放射率</h3>
+                <p>各エリアの放射率値を設定することができます。正しい放射率値を設定すると、より正確な測定エリアの温度が表示されます。</p>
+            </div>  
+            <div class="wn5-online-help-info" ng-if="BoxTemperatureDetection">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <p>放射率は、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[ビデオ設定]</strong>&gt;<strong class="UI">[スポット放射率]</strong>の表を参照してください。放射率は表面処理、カラー、測定当時の温度、大気温度などの様々な状況によって異なるため、実験を繰り返して最適値を見つける必要があります。正確な放射率値を入力すると、より正確な温度測定値が表示されます。</p>
+            </div>
         </div>
-        		
     </div>
-</div>
 
            
 
@@ -90,7 +159,7 @@
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>イベントアクションスケジュール</h2>
+        <h2><a name="schedule"></a>イベントアクションスケジュール</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
