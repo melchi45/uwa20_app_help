@@ -34,7 +34,7 @@
             <h3>온도 변화 감지</h3>
             <p><strong class="UI">[영역]</strong>에서 온도 변화를 감지할 영역을 선택한 후 아래 옵션을 설정합니다.</p>
             <ul>
-                <li><strong class="UI">온도 차이</strong>: 어느 정도 이상의 온도 변화가 발생할 때 이를 온도 변화로 감지할 지, 감지를 위한 온도 변화량을 선택합니다. 섭씨와 화씨 중 온도 유형을 선택할 수 있으며, 온도 감소와 증가 모두를 포함합니다. 예를 들어 '섭씨 20도'를 선택한 경우, 섭씨 20도 이상의 온도 변화가 발생하면, 카메라가 온도 변화 상태로 감지합니다.<br>
+                <li><strong class="UI">온도 차이</strong>: 어느 정도 이상의 온도 변화가 발생할 때 이를 온도 변화로 감지할 지, 감지를 위한 온도 변화량을 선택합니다. 섭씨와 화씨 중 온도 타입을 선택할 수 있으며, 온도 감소와 증가 모두를 포함합니다. 예를 들어 '섭씨 20도'를 선택한 경우, 섭씨 20도 이상의 온도 변화가 발생하면, 카메라가 온도 변화 상태로 감지합니다.<br>
 <!-- 해당 영역에서 최근 1분 동안의 통계적 데이터로부터 온도차이를 판단합니다. 즉 1분 동안 수집된 평균 온도를 기준으로 온도가 급격히 상승하거나 감소하면 카메라가 온도 변화로 감지합니다. -->               </li>
                 <li><strong class="UI">온도 타입</strong>:<strong class="UI">[영역]</strong>에서 설정한 영역에는 다양한 범위의 온도가 존재할 수 있습니다. 다양한 온도 중 온도 변화량을 관찰할 때 기준이 될 온도를 '최저' '평균' '최고' 중에서 선택합니다. 예를 들어 <strong class="UI">[영역]</strong>에서'3'을선택하고 <strong class="UI">[</strong><strong class="UI">온도 차이</strong><strong class="UI">]</strong>에서는 '섭씨 20도'를 선택한 후, <strong class="UI">[</strong><strong class="UI">온도 타입</strong><strong class="UI">]</strong>에서 '최저'를 선택한 경우, 영역 3에서 관찰되는 최저 온도를 기준으로 '섭씨 20도' 이상의 온도 변화가 발생하면 카메라가 온도 변화 상태로 감지합니다.  </li>
                <!--  <li><strong class="UI">기준 기간</strong>: 기준 온도를 산정하기 위한 시간을 선택합니다. 단위는 초입니다. '10'을 선택하는 경우 해당 영역에서 최근 10초 동안의 통계적 데이터로부터 온도차이를 판단합니다. 즉 10초 동안 수집된 평균 온도를 기준으로 온도가 급격히 상승하거나 감소하면 카메라가 온도 변화 상태로 감지합니다. <strong class="UI">[기준 기간]</strong>의 수치가 높을수록 온도가 점진적으로 상승하거나 감소하는 온도변화도 감지할 수 있습니다.  </li>  -->
@@ -42,9 +42,9 @@
         </div>
 		
         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
-            <h3>온도 유형</h3>
-            <p>관찰할 온도 유형을 선택합니다.</p>
-            <p><strong class="UI">[영역]</strong>에서 설정한 영역에서는 3가지 유형의 온도가 제공됩니다. 선택한 영역에서 '최저' '평균' '최고' 온도 중&nbsp;온도 변화를 분석할 때 기준이 될 온도 유형을 선택합니다.</p>
+            <h3>온도 타입</h3>
+            <p>관찰할 온도 타입을 선택합니다.</p>
+            <p><strong class="UI">[영역]</strong>에서 설정한 영역에서는 3가지 유형의 온도가 제공됩니다. 선택한 영역에서 '최저' '평균' '최고' 온도 중 온도 변화를 분석할 때 기준이 될 온도 타입을 선택합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
             <h3>감지 조건</h3>
@@ -52,50 +52,50 @@
             <p>관찰 온도가 특정 온도 이상이나 이하로 변하는 것을 감지하려면 [이상] 이나 [이하]를 각각 선택합니다. 관찰 온도가 일정값 이상으로 증가하거나 감소하는 것(온도 변화량)을 감지하려면 [증가]나 [감소]를 각각 선택합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
-            <h3>감지</h3>
-            <p>온도 값을 입력합니다. &nbsp;</p>
+            <h3>감지 온도</h3>
+            <p>온도 값을 입력합니다.  </p>
             <p><strong class="UI">[감지 조건]</strong>에서 [이상]이나 [이하]를 선택한 경우, 감지하려는 온도를 입력합니다. 또한 <strong class="UI">[감지 조건]</strong>에서 [증가]나 [감소]를 선택한 경우, 감지하려는 온도변화량(증가량 또는 감소량)을 입력합니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>최소 관찰 시간 (초)        </h3>
-            <p>온도 변화를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. 온도 변화가 최소 관찰 시간 동안 지속되어야 온도 감지 이벤트가 발생합니다. 1~60초 사이의 값을 설정할 수 있습니다. 입력 필드에&nbsp;직접 입력하거나 슬라이드 막대를 움직여 값을 변경할 수 있습니다.</p>
+            <p>온도 변화를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. 온도 변화가 최소 관찰 시간 동안 지속되어야 온도 감지 이벤트가 발생합니다. 1~60초 사이의 값을 설정할 수 있습니다. 입력 필드에 직접 입력하거나 슬라이드 막대를 움직여 값을 변경할 수 있습니다.</p>
         </div>
 		        <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
             <h3>최소 관찰 시간 (초)        </h3>
-            <p>온도를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. [감지 타입] 설정에 따라, 최소 관찰 시간 동안 이상이나 이하의 특정 온도가 지속되거나, 증가하거나 감소한 온도 변화가 최소 관찰 시간 동안&nbsp;지속되어야 온도 감지 이벤트가 발생합니다. 1~60초 사이의 값을 설정할 수 있습니다. 입력 필드에&nbsp;직접 입력하거나 슬라이드 막대를 움직여 값을 변경할 수 있습니다.</p>
+            <p>온도를 감지하고 이를 이벤트로 발생시키기까지 최소한의 시간을 설정합니다. [감지 타입] 설정에 따라, 최소 관찰 시간 동안 이상이나 이하의 특정 온도가 지속되거나, 증가하거나 감소한 온도 변화가 최소 관찰 시간 동안 지속되어야 온도 감지 이벤트가 발생합니다. 1~60초 사이의 값을 설정할 수 있습니다. 입력 필드에 직접 입력하거나 슬라이드 막대를 움직여 값을 변경할 수 있습니다.</p>
         </div>
 		        <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
             <h4>온도 감지 이벤트 설정 예(1)</h4>
                 <p>영역 1에서 최대 온도 값이 섭씨 100도 이상되는 경우가 3초 이상 지속될 경우 이벤트 알림을 발생하려면 다음과 같이 설정합니다.</p>
                 <ul>
                     <li><strong class="UI">영역</strong>: 영역 1을 선택합니다.</li>
-                    <li><strong class="UI">Temperature type</strong>: 'Maximum'을 선택합니다.</li>
-                    <li><strong class="UI">Detection condition</strong>: 'Above'를 선택합니다.</li>
-                    <li><strong class="UI">Detection</strong>: '100'을 입력합니다.  </li>
+                    <li><strong class="UI">온도 타입</strong>: '최저'를 선택합니다.</li>
+                    <li><strong class="UI">감지 조건</strong>: '이상'을 선택합니다.</li>
+                    <li><strong class="UI">감지 온도</strong>: '100'을 입력합니다.  </li>
                     <li><strong class="UI">최소 관찰 시간</strong>: '3'을 입력합니다.</li>
                 </ul>
-                <p>이벤트 알림 동작과 일정은<a href="#action">[이벤트 동작]</a> 메뉴와<a href="#schedule">[이벤트 동작 스케줄]</a> 메뉴에서 각각 설정할 수 있습니다.</p>
+                <p>이벤트 알림 동작과 일정은 <a href="#action">[이벤트 동작]</a> 메뉴와 <a href="#schedule">[이벤트 동작 스케줄]</a> 메뉴에서 각각 설정할 수 있습니다.</p>
             </div>
 		        <div class="wn5-online-help-action" ng-if="BoxTemperatureDetection">
             <h4>온도 감지 이벤트 설정 예(2)</h4>
-                <p>영역 3내에서 최소 온도 값이 기준 온도 대비 섭씨 30도 이상 증가하고 이 상태가 5초 이상 지속될 경우에 이벤트 알림을 발생하려면 다음과 같이&nbsp;설정합니다.</p>
+                <p>영역 3내에서 최소 온도 값이 기준 온도 대비 섭씨 30도 이상 증가하고 이 상태가 5초 이상 지속될 경우에 이벤트 알림을 발생하려면 다음과 같이 설정합니다.</p>
                 <ul>
                     <li><strong class="UI">영역</strong>: 영역 3을 선택합니다.</li>
-                    <li><strong class="UI">Temperature type</strong>: 'Minimum'을 선택합니다.</li>
-                    <li><strong class="UI">Detection condition</strong>: 'Increase'를 선택합니다.</li>
-                    <li><strong class="UI">Detection</strong>: '30'을 입력합니다.  </li>
+                    <li><strong class="UI">온도 타입</strong>: '최저'를 선택합니다.</li>
+                    <li><strong class="UI">감지 조건</strong>: '증가'를 선택합니다.</li>
+                    <li><strong class="UI">감지 온도</strong>: '30'을 입력합니다.  </li>
                     <li><strong class="UI">최소 관찰 시간</strong>: '5'을 입력합니다.</li>
                 </ul>
-                <p>이벤트 알림 동작과 일정은<a href="#action">[이벤트 동작]</a> 메뉴와<a href="#schedule">[이벤트 동작 스케줄]</a> 메뉴에서 각각 설정할 수 있습니다.</p>
+                <p>이벤트 알림 동작과 일정은 <a href="#action">[이벤트 동작]</a> 메뉴와 <a href="#schedule">[이벤트 동작 스케줄]</a> 메뉴에서 각각 설정할 수 있습니다.</p>
             </div>
         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
             <h3>온도 오버레이</h3>
-            <p>카메라 영상 화면에 표시할 항목을 선택합니다. <strong class="UI">[영역]</strong>에서&nbsp;영역을 선택한 뒤 영역별로 표시 항목을 선택할 수 있습니다.</p>
+            <p>카메라 영상 화면에 표시할 항목을 선택합니다. <strong class="UI">[영역]</strong>에서 영역을 선택한 뒤 영역별로 표시 항목을 선택할 수 있습니다.</p>
             <ul>
                 <li><strong class="UI">영역</strong>: 영역 번호를 화면에 표시할지 여부를 선택합니다.</li>
-                <li><strong class="UI">평균</strong>: 설정된&nbsp;영역의 평균 온도를 화면에 표시할지 여부를 선택합니다.</li>
-                <li><strong class="UI">최저</strong>: 설정된&nbsp;영역의 최저&nbsp;온도를 화면에 표시할지 여부를 선택합니다.  </li>
-                <li><strong class="UI">최고</strong>: 설정된 영역의 최고&nbsp;온도를 화면에 표시할지 여부를 선택합니다.  </li>
+                <li><strong class="UI">평균</strong>: 설정된 영역의 평균 온도를 화면에 표시할지 여부를 선택합니다.</li>
+                <li><strong class="UI">최저</strong>: 설정된 영역의 최저 온도를 화면에 표시할지 여부를 선택합니다.  </li>
+                <li><strong class="UI">최고</strong>: 설정된 영역의 최고 온도를 화면에 표시할지 여부를 선택합니다.  </li>
             </ul>
             <p>선택한 항목은 <strong class="UI">[라이브]</strong> 영상 화면 상단에도 오버레이되어 나타납니다.</p>
         </div>
@@ -135,6 +135,7 @@
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>알람 출력</h3>
             <p>온도 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다. 알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. 알람 출력에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[알람 출력]</strong></a>에서 할 수 있습니다.</p>
+            <p>카메라가 지원하는 알람 개수에 따라 알람 출력 옵션이 다르게 표시됩니다. 예를 들어 출력되는 알람이 2개라면 ‘알람 출력 1’, ‘알람 출력 2’ 항목이 표시됩니다. </p>
         </div>
           <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
             <h3>프리셋 이동</h3>

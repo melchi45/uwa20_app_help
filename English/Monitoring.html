@@ -359,9 +359,13 @@
           <!--   <p ng-if="FisheyeLens">If you access the web viewer with Internet Explorer, the videos of profiles other than the MJPEG codec can be viewed only after installing the plugin. To install the plugin, click the plugin in the upper right corner.</p>  -->
 
                           </div>
-        <div class="wn5-setup-section-article-content" ng-if="IsAdmin">
+        <div class="wn5-setup-section-article-content" ng-if="IsAdmin && !spotTemperatureSupport">
             <h3>Display </h3>
             <p>Set the contrast, brightness, sharpness and color level of the live screen; when you enter the setting, it will be applied to the live screen immediately. Click the <span class="tui tui-wn5-return"></span> button if you want to reset all the display settnigs.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="spotTemperatureSupport">
+            <h3>Display </h3>
+            <p>Set the contrast, brightness, and sharpness of the live screen; when you enter the setting, it will be applied to the live screen immediately. Click the <span class="tui tui-wn5-return"></span> button if you want to reset all the display settnigs.</p>
         </div>
     </div>
 </div>

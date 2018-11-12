@@ -740,7 +740,8 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Display the camera title or the date and time, and set the location, size, color and transparency of the characters.</p> 
+            <p ng-if="!spotTemperatureSupport">Display the camera title or the date and time, and set the location, size, color and transparency of the characters.</p> 
+            <p ng-if="spotTemperatureSupport">Display the camera title or the date and time, and set the location, color and transparency of the characters.</p> 
         </div>
 
         <div class="wn5-setup-section-article-content">
