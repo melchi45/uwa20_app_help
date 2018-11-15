@@ -94,5 +94,83 @@
 		</div>
 	</div>
 </div>
-`
+
+<hr class="wn5-setup-hr" ng-if="AudioClipCountRange !== undefined">
+
+<div class="wn5-setup-section" ng-if="AudioClipCountRange !== undefined">
+	<div class="wn5-setup-section-heading">
+		<h2>오디오 클립</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>오디오 클립 파일을 등록하거나 삭제할 수 있습니다. 또한 오디오 클립이 설정한 시간에만 재생되도록 스케줄을 설정할 수 있습니다. </p>
+            <p>파일을 등록한 후 <strong class="UI">[적용]</strong> 버튼을 클릭해야 오디오 파일이 <strong class="UI">[라이브]</strong>나 <strong class="UI">[이벤트 설정]</strong> 페이지의&nbsp;오디오 클립 목록에 나타납니다. 오디오 클립은 최대 5개 파일까지 등록할 수 있으며, 총 용량 3메가 이내로 등록할 수 있습니다. </p>
+            <p>오디오 클립을 등록한 후 이벤트 발생 시 원하는 오디오가 출력되도록 설정하거나, <strong class="UI">[라이브]</strong> 화면에서 카메라 영상 모니터링 중 원하는 오디오를 선택하여 출력하도록 설정할 수 있습니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>업로드</h3>
+            <p>오디오 파일을 등록합니다. 파일 형식은 .WAV만 지원합니다. </p>
+            <p><strong class="UI">[업로드]</strong> 버튼을 클릭한 후 원하는 파일을 선택합니다. </p>
+        </div>
+		<div class="wn5-setup-section-article-content">
+			<h3>녹음</h3>
+            <p>소리를 녹음한 후 오디오 클립으로 등록할 수 있습니다. </p>
+		</div>
+        <div class="wn5-online-help-action">
+            <h4>녹음하기</h4>
+                <ol>
+                    <li><strong class="UI">[녹음]</strong> 버튼을 클릭합니다.  </li>
+                    <li><strong class="UI">[녹음]</strong> 대화 상자에서 다음을 설정합니다.</li>
+                    <ul>
+                        <li><strong class="UI">[이름]</strong> 필드에 오디오 클립 파일명을 입력합니다. 영문과 숫자만 입력할 수 있습니다.</li>
+                        <li><strong class="UI">[시작]</strong> 버튼을 클릭하고 녹음을 시작합니다. </li>
+                        <li>녹음을 마치려면 <strong class="UI">[중지]</strong> 버튼을 클릭합니다. 녹음할 수 있는 시간과 현재 녹음한 시간이 표시됩니다.</li>
+                        <li><strong class="UI">[재생]</strong> 버튼을 클릭하면 녹음한 소리를 확인할 수 있습니다.</li>
+                    </ul>
+                    <li><strong class="UI">[녹음]</strong>대화 상자에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</li>
+                </ol>
+            </div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+                <ul>
+                    <li>오디오 녹음 기능을 지원하는 브라우저에서만 녹음 기능을 사용할 수 있습니다.</li>
+                    <li>&quot;HTTP 모드에서는 오디오 녹음 기능을 지원하지 않습니다. HTTPS 보안 접속 모드로 변경하십시오.&quot;라는 메시지가 나오는 경우, 카메라 웹뷰어를 HTTPS 보안&nbsp;모드로 접속해야 합니다. 보안 모드로 접속하려면 <strong class="UI">[네트워크]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>이나 <strong class="UI">[HTTPS(공인 인증서 사용)]</strong>을 선택한 후 웹뷰어에 다시 접속하십시오. </li>
+                </ul>
+		</div>
+        <div class="wn5-setup-section-article-content">
+			<h3>삭제</h3>
+            <p>오디오 클립 목록에서 삭제할 클립의 라디오 버튼을 선택한 후 <strong class="UI">[삭제]</strong> 버튼을 클릭하면 선택한 오디오 클립이 제거됩니다. &nbsp;</p>
+        </div>
+            <div class="wn5-setup-section-article-content">
+			<h3>오디오 클립 목록</h3>
+                <p>등록된 오디오 클립 목록이 표시됩니다. </p>
+                <p>라디오 버튼을 클릭하면 해당 클립이 선택됩니다.</p>
+                <ul>
+                    <li><strong class="UI">이름</strong>: 오디오 클립 이름이 표시됩니다.</li>
+                    <li><strong class="UI">재생</strong>: 재생 버튼(<span class="tui tui-wn5-toolbar-play"></span>)을 클릭하면 해당 오디오 파일을 재생하여 미리듣기할 수 있습니다.</li>
+                    <li><strong class="UI">게인</strong>: 오디오 출력 증폭값을 설정할 수 있습니다. 출력하는 소리가 작을 경우 게인값을 높여 출력하는 오디오 신호를 증폭시킬 수 있습니다. 값이 클수록 오디오 출력이 커집니다.</li>
+                    <li><strong class="UI">다운로드</strong>: 오디오 파일을 다운로드할 수 있습니다. &nbsp;</li>
+                </ul>
+            </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>스케줄</h3>
+            <p>등록한 오디오 클립이 자동으로 재생될 일정을 설정할 수 있습니다. 오디오 클립별로 각각 재생 줄을 설정할 수 있습니다. </p>
+            <p>오디오 클립을 먼저 등록해야 스케줄 옵션이 활성화됩니다. &nbsp;</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>오디오 클립 재생 일정 설정하기</h4>
+                <ol>
+                    <li>오디오 클립 목록에서 해당 시간에 재생할&nbsp;오디오 클립을 선택합니다.</li>
+                    <li><strong class="UI">[스케줄]</strong>에서 <strong class="UI">[사용] </strong>체크 박스를 클릭합니다.</li>
+                    <li> 재생 시간을 설정합니다. </li>
+                    <ul>
+                        <li>매일 동일한 시간에 오디오 클립을 재생하려면 [매일]을 선택한 후 재생 시간을 선택합니다. </li>
+                        <li>매주 동일한 요일과 시간에 오디오 클립을 재생하려면 [매주]를 선택한 후 요일과 재생 시간을 선택합니다.</li>
+                    </ul>
+                </ol>
+        </div>
+	</div>
+</div>
+
+
 <hr class="wn5-setup-hr">
