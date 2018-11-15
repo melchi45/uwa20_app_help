@@ -51,7 +51,7 @@
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
-                            <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Video settings</a></p>
+                            <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Video setup</a></p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
@@ -242,6 +242,16 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+                    <tr ng-if="AudioClipCountRange !== undefined">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-wn5-toolbar-pause"></span></p>
+                            <p>Play/Stop</p>
+                        </td>
+                        <td width="235">
+                            <p>You can play or stop an audio clip of your choice after selecting it from the audio clip list. You can play audio of your choice while monitoring the live video.</p>
+                            <p>Go to <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Audio setup]</strong>&gt;<strong class="UI">[Audio clip]</strong> to register an audio clip.</p>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -303,7 +313,14 @@
                    
                 </ul>
             </div>	
-    </div>
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+                <h4>To play an audio clip</h4>
+                    <ul>
+                        <li>Click the Play icon (<span class="tui tui-wn5-toolbar-play"></span>) after selecting an audio clip of your choice from the audio clip list.</li>
+                        <li>To stop playing it, click the Stop icon (<span class="tui tui-wn5-toolbar-pause"></span>).</li>
+                    </ul>
+            </div>
+        </div>
 </div>
 
 
