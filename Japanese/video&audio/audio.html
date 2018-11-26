@@ -88,4 +88,84 @@
 			</ul>
 		</div>
 	</div>
-</div>`<hr class="wn5-setup-hr">
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="AudioClipCountRange !== undefined">
+
+    <div class="wn5-setup-section" ng-if="AudioClipCountRange !== undefined">
+        <div class="wn5-setup-section-heading">
+            <h2>オーディオクリップ</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>オーディオクリップのファイルを登録したり削除することができます。また、オーディオクリップが設定時間だけ再生されるようにスケジュールを設定することができます。</p>
+                <p>ファイルを登録した後、<strong class="UI">[適用]</strong>ボタンをクリックすると、オーディオファイルが<strong class="UI">[ライブ]</strong>や<strong class="UI">[イベント設定]</strong>ページのオーディオクリップリストに表示されます。オーディオクリップは、最大ファイル5つまで登録することができます。総容量3メガ以内に登録することができます。</p>
+                <p>オーディオクリップを登録した後、イベント発生時にオーディオが出力されるように設定したり、<strong class="UI">[ライブ]</strong>画面でカメラ映像モニタリングからオーディオを選択して出力するように設定することができます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>アップロード</h3>
+                <p>オーディオファイルを登録します。ファイルタイプは、.WAVのみ対応します。</p>
+                <p><strong class="UI">[アップロード]</strong>ボタンをクリックした後、お望みのファイルを選択します。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>録音</h3>
+                <p>音を録音した後、オーディオクリップに登録することができます。</p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>録音する</h4>
+                    <ol>
+                        <li><strong class="UI">[録音]</strong>ボタンをクリックします。</li>
+                        <li><strong class="UI">[録音]</strong>のダイアログボックスで下記を設定します。</li>
+                        <ul>
+                            <li><strong class="UI">[名前]</strong>フィールドにオーディオクリップのファイル名を入力します。ローマ字と数字のみ入力することができます。</li>
+                            <li><strong class="UI">[開始]</strong>ボタンをクリックして録音を開始します。</li>
+                            <li>録音を終了するためには、<strong class="UI">[中止]</strong>ボタンをクリックします。録音可能時間と現在録音した時間が表示されます。</li>
+                            <li><strong class="UI">[再生]</strong>ボタンをクリックすると、録音した音を確認することができます。</li>
+                        </ul>
+                        <li><strong class="UI">[録音]</strong>のダイアログボックスで<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
+                    </ol>
+                </div>
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                    <ul>
+                        <li>オーディオ録音機能に対応するブラウザでしか録音機能を使用することができません。</li>
+                        <li>「HTTPモードは、オーディオ録音機能に対応しません。HTTPS保安接続モードに変更してください。」というメッセージが表示される場合、カメラ・ウェブビューアーをHTTPS保安モードに接続する必要があります。保安モードに接続するためには、<strong class="UI">[ネットワーク]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[保安接続方式]</strong>で<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>や<strong class="UI">[HTTPS(公認保安接続モード)]</strong>を選択した後、ウェブビューアーに再接続してください。</li>
+                    </ul>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>削除</h3>
+                <p>オーディオクリップリストで削除するクリップのラジオボタンを選択した後、<strong class="UI">[削除]</strong>ボタンをクリックすると、選択したオーディオクリップが削除されます。 &nbsp;</p>
+            </div>
+                <div class="wn5-setup-section-article-content">
+                <h3>オーディオクリップリスト</h3>
+                    <p>登録されているオーディオクリップのリストが表示されます。</p>
+                    <p>ラジオボタンをクリックすると、該当クリップが選択されます。</p>
+                    <ul>
+                        <li><strong class="UI">名前</strong>：オーディオクリップ名が表示されます。</li>
+                        <li><strong class="UI">再生</strong>：再生ボタン(<span class="tui tui-wn5-toolbar-play"></span>)をクリックすると、該当オーディオファイルを再生してプレビューを聞くことができます。</li>
+                        <li><strong class="UI">Gain</strong>：音声出力の増幅値を設定することができます。出力する音が小さい場合、Gain値を上げて出力する音声信号を増幅させることができます。値が大きいほど、音声出力が大きくなります。</li>
+                        <li><strong class="UI">ダウンロード</strong>：オーディオファイルをダウンロードすることができます。 &nbsp;</li>
+                    </ul>
+                </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>スケジュール</h3>
+                <p>登録したオーディオクリップが自動に再生されるスケジュールを設定することができます。オーディオクリップ別にそれぞれ再生ラインを設定することができます。</p>
+                <p>オーディオクリップを先に登録してから、スケジュールオプションが有効になります。 &nbsp;</p>
+            </div>
+                <div class="wn5-online-help-action">
+                    <h4>オーディオクリップの再生スケジュール設定</h4>
+                        <ol>
+                            <li>オーディオクリップリストで該当時間に再生するオーディオクリップを選択します。</li>
+                            <li><strong class="UI">[スケジュール]</strong>で<strong class="UI">[有効]</strong>チェックボックスをクリックします。</li>
+                            <li>再生時間を設定します。</li>
+                            <ul>
+                                <li>毎日同じ時間にオーディオクリップを再生するには、[毎日]を選択してから再生時間を選択します。</li>
+                                <li>毎週同じ曜日と時間にオーディオクリップを再生するには、[毎週]を選択してから曜日と再生時間を選択します。</li>
+                            </ul>
+                        </ol>
+                    </div>
+                </div>
+    </div>
+
+<hr class="wn5-setup-hr">

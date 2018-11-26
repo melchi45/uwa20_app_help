@@ -87,4 +87,80 @@
 			</ul>
 		</div>
 	</div>
-</div>`<hr class="wn5-setup-hr">
+</div>
+<hr class="wn5-setup-hr" ng-if="AudioClipCountRange !== undefined">
+<div class="wn5-setup-section" ng-if="AudioClipCountRange !== undefined">
+	<div class="wn5-setup-section-heading">
+		<h2>Clip de audio</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>Puede registrar o eliminar un archivo de clip de audio. Tambi&eacute;n puede ajustar la programaci&oacute;n para reproducir el clip de ajuste solo a una hora espec&iacute;fica.</p>
+			<p>Necesita pulsar el bot&oacute;n <strong class="UI">[Aplicar]</strong> despu&eacute;s del registro de archivo para mostrar el archivo de audio en la lista de clips de audios en la p&aacute;gina <strong class="UI">[En vivo]</strong> o <strong class="UI">[Configuraci&oacute;n de eventos]</strong>. Se pueden registrar hasta 5 clips de audio dentro de un l&iacute;mite de capacidad total de 3 MB.</p>
+			<p>Despu&eacute;s de registrar sus clips de audio, puede definir el clip que elija para que se emita cuando ocurra un evento o reproducir el clip seleccion&aacute;ndolo mientras monitorea el v&iacute;deo de c&aacute;mara en la pantalla <strong class="UI">[En vivo]</strong>.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Cargar</h3>
+			<p>Registra un archivo de audio. Solo se permite el formato .WAV.</p>
+			<p>Pulse el bot&oacute;n <strong class="UI">[Cargar]</strong> y luego seleccione un archivo.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Grabar</h3>
+			<p>El audio grabado puede registrarse como clip de audio.</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Grabaci&oacute;n de audio</h4>
+				<ol>
+					<li>Pulse el bot&oacute;n <strong class="UI">[<font color="blue">Grabar</font>]</strong>.</li>
+					<li>Defina el cuadro de di&aacute;logo <strong class="UI">[<font color="blue">Grabar</font>]</strong> de la siguiente manera:</li>
+					<ul>
+						<li>Ingrese un nombre para el archivo de clip de audio en el campo <strong class="UI">[Nombre]</strong>. Solo se permiten caracteres alfanum&eacute;ricos.</li>
+						<li>Pulse el bot&oacute;n <strong class="UI">[Inicio]</strong> para comenzar a grabar un audio.</li>
+						<li>Para detener la grabaci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Detener]</strong>. Luego se muestran el tiempo disponible para grabar y la duraci&oacute;n del audio grabado.</li>
+						<li>Pulse el bot&oacute;n <strong class="UI">[Reproducir]</strong> para escuchar la grabaci&oacute;n.</li>
+					</ul>
+				<li>En el cuadro de di&aacute;logo <strong class="UI">[<font color="blue">Grabar</font>]</strong>, pulse el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
+				</ol>
+			</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+				<ul>
+					<li>Esta funci&oacute;n de grabaci&oacute;n de audio solo est&aacute; disponible para buscadores que cuenten con grabaci&oacute;n de audio.</li>
+					<li>Si ve el mensaje «El modo HTTP no soporta la grabaci&oacute;n de audio. Cambie al modo de acceso seguro HTTPS.», tendr&aacute; que acceder al Web Viewer de la c&aacute;mara utilizando el modo seguro HTTPS. Para acceder en el modo seguro, seleccione <strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado &uacute;nico)]</strong> o <strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado p&uacute;blico)]</strong> en <strong class="UI">[Red]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Sistema de conexi&oacute;n segura]</strong>, y luego reintente acceder al Web Viewer.</li>
+				</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Eliminar</h3>
+			<p>Despu&eacute;s de seleccionar el bot&oacute;n de radio de un clip para eliminar de la lista de clips de audio, presione el bot&oacute;n <strong class="UI">[Eliminar]</strong> para eliminar el clip de audio seleccionado. &nbsp;</p>
+		</div>
+			<div class="wn5-setup-section-article-content">
+			<h3>Lista de clips de audio</h3>
+				<p>Se mostrar&aacute; la lista de clips de audio registrados.</p>
+				<p>Para seleccionar un clip, presione su bot&oacute;n de radio.</p>
+				<ul>
+					<li><strong class="UI">Nombre</strong>: Se mostrar&aacute; el nombre del clip de audio.</li>
+					<li><strong class="UI">Reproducir</strong>: Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</li>
+					<li><strong class="UI">Ganancia</strong>: Puede ajustar el valor de amplificaci&oacute;n de salida de audio. Si su salida de audio no es lo suficientemente alta, puede aumentar el valor de ganancia para amplificar la salida de se&ntilde;al de audio. Cuanto m&aacute;s alto sea el valor, m&aacute;s alta ser&aacute; la salida de audio.</li>
+					<li><strong class="UI">Descargar</strong>: Puede descargar un archivo de clip de audio. &nbsp;</li>
+				</ul>
+			</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Programaci&oacute;n</h3>
+			<p>Puede definir la programaci&oacute;n para que sus clips de audio se reproduzcan autom&aacute;ticamente. Puede definir una programaci&oacute;n distinta para cada clip de audio.</p>
+			<p>Primero necesita registrar un clip de audio para activar la opci&oacute;n de Programaci&oacute;n. &nbsp;</p>
+		</div>
+			<div class="wn5-online-help-action">
+				<h4>Ajustar la programaci&oacute;n para reproducci&oacute;n de clip de audio</h4>
+					<ol>
+						<li>Seleccione un clip de audio de la lista de clips de audios para reproducirlo a una hora espec&iacute;fica.</li>
+						<li>Marque el cuadro <strong class="UI">[<font color="blue">Activar</font>]</strong> debajo de <strong class="UI">[Programaci&oacute;n]</strong>.</li>
+						<li>Especifique la hora de reproducci&oacute;n.</li>
+					<ul>
+						<li>Si prefiere reproducirlo diariamente a una hora espec&iacute;fica, seleccione <strong class="UI">[<font color="blue">Diariamente</font>]</strong> y la hora espec&iacute;fica que desee. </li>
+						<li>Si prefiere reproducirlo un d&iacute;a de la semana a una hora espec&iacute;fica, seleccione <strong class="UI">[<font color="blue">Semanal</font>]</strong> y el d&iacute;a de la semana espec&iacute;fico, junto con la hora que desee. </li>
+					</ul>
+					</ol>
+				</div>
+			</div>
+</div>
+<hr class="wn5-setup-hr">

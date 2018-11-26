@@ -246,6 +246,16 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+                    <tr ng-if="AudioClipCountRange !== undefined">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-wn5-toolbar-pause"></span></p>
+                            <p>Reproducir/Detener</p>
+                        </td>
+                        <td width="235">
+                            <p>Puede reproducir o detener un clip de audio que elija despu&eacute;s de seleccionarlo de la lista de clips de audio. Puede reproducir el audio que elija mientras monitorea el v&iacute;deo en vivo.</p>
+                            <p>Vaya a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de audio]</strong>&gt;<strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -307,7 +317,16 @@
                    
                 </ul>
             </div>		
-    </div>
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+                <h4>Para reproducir un clip de audio</h4>
+                    <ul>
+                    <li>Haga clic en el icono Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) despu&eacute;s de seleccionar un clip de audio que elija de la lista de clips de audios.</li>
+                    <li>Para detener la reproducci&oacute;n, presione el icono Detener (<span class="tui tui-wn5-toolbar-pause"></span>).</li>
+                       
+                    </ul>
+                </div>	
+
+        </div>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">

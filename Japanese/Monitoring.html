@@ -235,6 +235,16 @@
                             <p ng-if="SupportAutoImageAlignment">チャンネル1を選択した場合のみ、スピーカー機能を使用することができます。</p>
                         </td>
                     </tr>
+                    <tr ng-if="AudioClipCountRange !== undefined">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-wn5-toolbar-pause"></span></p>
+                            <p>再生/停止</p>
+                        </td>
+                        <td width="235">
+                            <p>オーディオクリップリストでオーディオクリップを選択した後、オーディオを再生したり停止することができます。ライブ映像をモニタリングしながら、ユーザーがお望みのオーディオを出力することができます。</p>
+                            <p>オーディオクリップは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[音声設定]</strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</p>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -296,7 +306,14 @@
                    
                 </ul>
             </div>															
-			
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+                <h4>オーディオクリップを再生するには、</h4>
+                    <ul>
+                        <li>オーディオクリップリストでオーディオクリップを選択した後、再生アイコン(<span class="tui tui-wn5-toolbar-play"></span>)をクリックします。</li>
+                    <li>オーディオクリップ再生を中止するには、停止アイコン(<span class="tui tui-wn5-toolbar-pause"></span>)をクリックします。</li>
+                       
+                    </ul>
+                </div>			
         </div>
     </div>
 </div>

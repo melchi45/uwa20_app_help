@@ -246,7 +246,8 @@
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>アラーム出力</h3>
             <p>IVAイベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
-           </div>
+            <p>カメラが対応する出力アラーム個数によって、アラーム出力オプションの表示が異なります。例えば出力されるアラームが2つなら、「アラーム出力1」、「アラーム出力2」とオプションが表示されます。 </p>   
+        </div>
           <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
             <h3>プリセットに移動</h3>
                     <p>IVAイベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
@@ -265,7 +266,11 @@
             <h3>プリセットに移動</h3>
                     <p>IVAイベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[PT設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
         </div>        
-
+        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+            <h3>オーディオクリップ</h3>
+            <p>IVAイベントが発生した時、特定のオーディオクリップが再生されるように設定することができます。オーディオクリップリストでファイルを選択すると、イベントが発生する時に該当のクリップが再生されます。イベントが発生してもオーディオクリップが再生されないように設定するためには、<strong class="UI">[Off]</strong>を選択します。再生ボタン(<span class="tui tui-wn5-toolbar-play"></span>)をクリックすると、該当オーディオファイルを再生してプレビューを聞くことができます。</p>
+            <p>オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</p>
+        </div>
     </div>
 </div>
 

@@ -226,6 +226,16 @@
                             <p ng-if="SupportAutoImageAlignment">La fonction haut-parleur est disponible seulement si vous avez sélectionné CAN 1.</p>
                         </td>
                     </tr>
+                    <tr ng-if="AudioClipCountRange !== undefined">
+                        <td width="235">
+                            <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-wn5-toolbar-pause"></span></p>
+                            <p>Lecture/Arr&ecirc;ter</p>
+                        </td>
+                        <td width="235">
+                            <p>Vous pouvez lire ou arr&ecirc;ter un clip audio de votre choix apr&egrave;s l&apos;avoir s&eacute;lectionn&eacute; dans la liste des clips audio. Vous pouvez lire l&apos;audio de votre choix tout en contr&ocirc;lant la vid&eacute;o en direct.</p>
+                            <p>Aller &agrave; <strong class="UI">[Configuration.]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Audio configuration]</strong>&gt;<strong class="UI">[Clip audio]</strong> pour enregistrer un clip audio.</p>
+                        </td>
+                    </tr>    
                 </tbody>
             </table>
         </div>
@@ -286,7 +296,16 @@
                     <li>Faites glisser la souris sur la vid&eacute;o pour d&eacute;finir une zone. A partir de cette zone, le nombre de pixels sera compt&eacute; et affich&eacute; &agrave; l&rsquo;&eacute;cran.</li>
                    
                 </ul>
-            </div>						
+            </div>
+            
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+                <h4>Pour lire un clip audio</h4>
+                    <ul>
+                        <li>Cliquer sur l&apos;ic&ocirc;ne Lecture(<span class="tui tui-wn5-toolbar-play"></span>) apr&egrave;s avoir s&eacute;lectionn&eacute; un clip audio de votre choix dans la liste de clips audio.</li>
+                    <li>Pour arr&ecirc;ter de le lire, cliquer sur l&apos;ic&ocirc;ne Arr&ecirc;ter (<span class="tui tui-wn5-toolbar-pause"></span>).</li>
+                       
+                    </ul>
+            </div>		
     </div>
 </div>
 

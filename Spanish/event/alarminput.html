@@ -64,6 +64,7 @@
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>Salida de alarma</h3>
             <p>Puede configurar la salida de alarma para un n&uacute;mero espec&iacute;fico de alarma cuando se crea un evento de entrada de alarma. Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+            <p>La pantalla de opción de salida de alarma variará según la cantidad de alarmas de salida que tenga la cámara. Por ejemplo, si hay 2 alarmas para la salida, la opción mostrará «Salida de alarma 1» y «Salida de alarma 2». </p>
         </div>
 		
          <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
@@ -84,6 +85,12 @@
             <h3>Ir a predefinido.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de entrada de alarma. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[Configuraci&oacute;n PT]</strong></a>.</p>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+            <h3>Clip de audio</h3>
+            <p>Esto habilita la reproducción de un clip de audio específico cuando ocurre un evento de entrada de alarma. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[<font color="blue">Apagado</font>]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
+            <p>Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong>&gt;<strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>
+        </div>
+    
     </div>
 </div>
 
