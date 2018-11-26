@@ -322,7 +322,8 @@
             
         <div class="wn5-setup-section-article-content">
             <h3>프레임 레이트 </h3>
-            <p>1초당 프레임 수를 설정합니다. <strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[카메라 설정]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[센서]</strong></a>에서 선택한 프레임 레이트의 값에 따라 설정할 수 있는 프레임 레이트 범위가 다르게 나타납니다.</p>
+            <p>1초당 프레임 수를 설정합니다. </p>
+            <p ng-if="Sensor"><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[카메라 설정]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[센서]</strong></a>에서 선택한 프레임 레이트의 값에 따라 설정할 수 있는 프레임 레이트 범위가 다르게 나타납니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>압축</h3>
@@ -399,7 +400,7 @@
         <div class="wn5-setup-section-article-content" ng-if="DynamicGOVSupport">
             <h3>다이내믹 GOV</h3>
             <p>다이내믹 GOV 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
-            <p>다이내믹 GOV는 영상 상황에 따라 GOV 길이가 최소 GOV 길이의 설정값에서부터 최대 다이내믹 GOV 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 GOV가 <strong class="UI">[다이내믹 GOV]</strong>에서 사용자가 설정한 값으로 동작하여 전체 영상의 비트레이트가 줄어듭니다. 움직임을 감지하면 그 직후 I프레임이 출력되며 이 후 움직임이 사라질 때까지 GOV가 GOV 길이의 설정값으로 동작하게 됩니다.</p>
+            <p>다이내믹 GOV는 영상 상황에 따라 GOV 길이가 최소 GOV 길이의 설정값에서부터 최대 다이내믹 GOV 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 GOV가 <strong class="UI">[다이내믹 GOV]</strong>에서 사용자가 설정한 값으로 동작하여 전체 영상의 비트레이트가 줄어듭니다. 움직임을 감지하면 그 직후 I프레임이 출력되며 이 후 움직임이 사라질 때까지 GOV가 GOV 길이의 설정값으로 동작하게 됩니다.  </p>
             <ul>
                 <li>영상에 움직임이 없을 때 적용할 최대 GOV 길이값을 입력합니다. 입력값의 범위는 <strong class="UI">[GOV 길이]</strong> 옆에 표시됩니다. <strong class="UI">[GOV 길이]</strong>에 입력한 값이 최솟값이 되고, 최댓값은 480으로 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</li>
             </ul>

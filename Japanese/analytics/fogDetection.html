@@ -5,8 +5,8 @@
 <div class="wn5-setup-section">
     <p>霧がかかって映像識別に困る天気に霧検知イベントを発生させ、設定によって曇り除去機能を実行して映像を補正することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。霧検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[霧検知]</strong>に同じく適用されます。</p>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2>
     </div>

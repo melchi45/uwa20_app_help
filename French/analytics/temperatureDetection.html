@@ -40,17 +40,17 @@
         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
                             <h3>Type de temp&eacute;rature</h3>
                             <p>S&eacute;lectionnez un type de temp&eacute;rature &agrave; observer.</p>
-                            <p>Les trois types de temp&eacute;rature sont inclus dans la zone d&rsquo;inclusion d&eacute;finie dans <strong class="UI">[Zone d&rsquo;inclusion]</strong>. S&eacute;lectionnez une temp&eacute;rature parmi les temp&eacute;ratures «&nbsp;minimum&nbsp;», «&nbsp;moyenne&nbsp;» et «&nbsp;maximum&nbsp;» qui seront la base d&rsquo;analyse pour les changements de temp&eacute;rature dans la zone d&rsquo;inclusion s&eacute;lectionn&eacute;e.</p>
+                            <p>Les trois types de temp&eacute;rature sont inclus dans la zone d&rsquo;inclusion d&eacute;finie dans <strong class="UI">[Zone]</strong>. S&eacute;lectionnez une temp&eacute;rature parmi les temp&eacute;ratures «&nbsp;minimum&nbsp;», «&nbsp;Moyen&nbsp;» et «&nbsp;maximum&nbsp;» qui seront la base d&rsquo;analyse pour les changements de temp&eacute;rature dans la zone d&rsquo;inclusion s&eacute;lectionn&eacute;e.</p>
                         </div>
                         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
                             <h3>Condition de d&eacute;tection</h3>
                             <p>S&eacute;lectionnez une condition de temp&eacute;rature &agrave; observer.</p>
-                            <p>Pour d&eacute;tecter si la temp&eacute;rature en cours d&rsquo;observation varie &agrave; la baisse ou &agrave; la hausse par rapport &agrave; un niveau particulier, s&eacute;lectionnez [Sup&eacute;rieur] ou [Inf&eacute;rieur]. Pour d&eacute;tecter si la temp&eacute;rature en cours d&rsquo;observation augmente ou baisse en fonction d&rsquo;un niveau d&eacute;fini (le montant de la variation de temp&eacute;rature), s&eacute;lectionnez [Augmenter] ou [Diminuer].</p>
+                            <p>Pour d&eacute;tecter si la temp&eacute;rature en cours d&rsquo;observation varie &agrave; la baisse ou &agrave; la hausse par rapport &agrave; un niveau particulier, s&eacute;lectionnez [Au-dessus] ou [Au-dessous]. Pour d&eacute;tecter si la temp&eacute;rature en cours d&rsquo;observation augmente ou baisse en fonction d&rsquo;un niveau d&eacute;fini (le montant de la variation de temp&eacute;rature), s&eacute;lectionnez [Augmentation] ou [Diminution].</p>
                         </div>
                         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
                             <h3>D&eacute;tection</h3>
                             <p>Entrez une valeur de temp&eacute;rature. &nbsp;</p>
-                            <p>Si [Sup&eacute;rieur] ou [Inf&eacute;rieur] est s&eacute;lectionn&eacute; dans <strong class="UI">[Condition de d&eacute;tection]</strong>, entrez une temp&eacute;rature &agrave; d&eacute;tecter. Aussi, si [Augmenter] ou [Diminuer] est s&eacute;lectionn&eacute; dans <strong class="UI">[Condition de d&eacute;tection]</strong>, entrez le montant de variation de temp&eacute;rature (montant en hausse ou en baisse) &agrave; d&eacute;tecter.</p>
+                            <p>Si [Au-dessus] ou [Au-dessous] est s&eacute;lectionn&eacute; dans <strong class="UI">[Condition de d&eacute;tection]</strong>, entrez une temp&eacute;rature &agrave; d&eacute;tecter. Aussi, si [Augmentation] ou [Diminution] est s&eacute;lectionn&eacute; dans <strong class="UI">[Condition de d&eacute;tection]</strong>, entrez le montant de variation de temp&eacute;rature (montant en hausse ou en baisse) &agrave; d&eacute;tecter.</p>
                         </div>
                         <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
                             <h3>Dur&eacute;e(s) minimum</h3>
@@ -64,9 +64,9 @@
                             <h4>Exemple de configuration d&rsquo;un &eacute;v&eacute;nement de d&eacute;tection de temp&eacute;rature (1)</h4>
                                 <p>Pour g&eacute;n&eacute;rer une notification d&rsquo;&eacute;v&eacute;nement lorsque la valeur de temp&eacute;rature maximum est &eacute;gale ou sup&eacute;rieure &agrave; 100 degr&eacute;s Celsius pendant au moins 3 secondes dans la Zone d&rsquo;inclusion 1, configurez comme suit&nbsp;:</p>
                                 <ul>
-                                    <li><strong class="UI">Zone d&rsquo;inclusion</strong>&nbsp;: S&eacute;lectionnez la Zone d&rsquo;inclusion 1.</li>
-                                    <li><strong class="UI">Type de temp&eacute;rature</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Maximum&nbsp;».</li>
-                                    <li><strong class="UI">Condition de d&eacute;tection</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Sup&eacute;rieur&nbsp;».</li>
+                                    <li><strong class="UI">Zone</strong>&nbsp;: S&eacute;lectionnez la Zone d&rsquo;inclusion 1.</li>
+                                    <li><strong class="UI">Type de temp&eacute;rature</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Max&nbsp;».</li>
+                                    <li><strong class="UI">Condition de d&eacute;tection</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Au-dessus&nbsp;».</li>
                                     <li><strong class="UI">D&eacute;tection</strong>&nbsp;: Entrez «&nbsp;100&nbsp;».</li>
                                     <li><strong class="UI">Dur&eacute;e minimum</strong>&nbsp;: Entrez «&nbsp;3&nbsp;».</li>
                                 </ul>
@@ -76,9 +76,9 @@
                             <h4>Exemple de configuration d&rsquo;un &eacute;v&eacute;nement de d&eacute;tection de temp&eacute;rature (2)</h4>
                                 <p>Pour g&eacute;n&eacute;rer une notification d&rsquo;&eacute;v&eacute;nement lorsque la valeur de temp&eacute;rature minimum d&eacute;passe la temp&eacute;rature de r&eacute;f&eacute;rence de 30 degr&eacute;s Celsius ou plus pendant au moins 5 secondes dans la Zone d&rsquo;inclusion 3, configurez comme suit&nbsp;:</p>
                                 <ul>
-                                    <li><strong class="UI">Zone d&rsquo;inclusion</strong>&nbsp;: S&eacute;lectionnez la Zone d&rsquo;inclusion 3.</li>
-                                        <li><strong class="UI">Type de temp&eacute;rature</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Minimum&nbsp;».</li>
-                                        <li><strong class="UI">Condition de d&eacute;tection</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Augmenter&nbsp;».</li>
+                                    <li><strong class="UI">Zone</strong>&nbsp;: S&eacute;lectionnez la Zone d&rsquo;inclusion 3.</li>
+                                        <li><strong class="UI">Type de temp&eacute;rature</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Min&nbsp;».</li>
+                                        <li><strong class="UI">Condition de d&eacute;tection</strong>&nbsp;: S&eacute;lectionnez «&nbsp;Augmentation&nbsp;».</li>
                                         <li><strong class="UI">D&eacute;tection</strong>&nbsp;: Entrez «&nbsp;30&nbsp;».</li>
                                     <li><strong class="UI">Dur&eacute;e minimum</strong>&nbsp;: Entrez «&nbsp;5&nbsp;».</li>
                                 </ul>
@@ -86,12 +86,12 @@
                             </div>
                         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
                             <h3>Transparence zone temp&eacute;rature</h3>
-                            <p>S&eacute;lectionnez les options &agrave; afficher sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Apr&egrave;s avoir s&eacute;lectionn&eacute; une zone d&rsquo;inclusion dans <strong class="UI">[Zone d&rsquo;inclusion]</strong>, vous pouvez s&eacute;lectionner ce que vous voulez afficher dans chaque zone d&rsquo;inclusion.</p>
+                            <p>S&eacute;lectionnez les options &agrave; afficher sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Apr&egrave;s avoir s&eacute;lectionn&eacute; une zone d&rsquo;inclusion dans <strong class="UI">[Zone]</strong>, vous pouvez s&eacute;lectionner ce que vous voulez afficher dans chaque zone d&rsquo;inclusion.</p>
                             <ul>
-                                <li><strong class="UI">Zone d&rsquo;inclusion</strong>&nbsp;: Choisit d&rsquo;afficher ou non le num&eacute;ro de zone d&rsquo;inclusion.</li>
-                                <li><strong class="UI">Moyenne</strong>&nbsp;: Choisit d&rsquo;afficher ou non la temp&eacute;rature moyenne de la zone d&rsquo;inclusion d&eacute;finie sur l&rsquo;&eacute;cran.</li>
-                                <li><strong class="UI">Minimum</strong>&nbsp;: Choisit ou non d&rsquo;afficher la temp&eacute;rature minimum de la zone d&rsquo;inclusion d&eacute;finie sur l&rsquo;&eacute;cran.</li>
-                                <li><strong class="UI">Maximum</strong>&nbsp;: Choisit ou non d&rsquo;afficher la temp&eacute;rature maximum de la zone d&rsquo;inclusion d&eacute;finie sur l&rsquo;&eacute;cran.</li>
+                                <li><strong class="UI">Zone</strong>&nbsp;: Choisit d&rsquo;afficher ou non le num&eacute;ro de zone d&rsquo;inclusion.</li>
+                                <li><strong class="UI">Moyen</strong>&nbsp;: Choisit d&rsquo;afficher ou non la temp&eacute;rature moyenne de la zone d&rsquo;inclusion d&eacute;finie sur l&rsquo;&eacute;cran.</li>
+                                <li><strong class="UI">Min</strong>&nbsp;: Choisit ou non d&rsquo;afficher la temp&eacute;rature minimum de la zone d&rsquo;inclusion d&eacute;finie sur l&rsquo;&eacute;cran.</li>
+                                <li><strong class="UI">Max</strong>&nbsp;: Choisit ou non d&rsquo;afficher la temp&eacute;rature maximum de la zone d&rsquo;inclusion d&eacute;finie sur l&rsquo;&eacute;cran.</li>
                             </ul>
                             <p>Les options s&eacute;lectionn&eacute;es sont affich&eacute;es en superposition en haut de l&rsquo;&eacute;cran vid&eacute;o <strong class="UI">[Direct]</strong>.</p>
                         </div>

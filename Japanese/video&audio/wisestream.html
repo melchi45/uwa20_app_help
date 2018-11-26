@@ -3,8 +3,8 @@
 <div class="wn5-setup-section">
     <p>ワイズストリームは、映像の複雑度を分析して画質は維持しながらデータのサイズを効果的に減らせる機能です。カメラが撮影中の映像にモーションが多く発生しない場合、圧縮率を上げ映像のサイズを減らして帯域幅を節約します。再度モーションが発生すると、元の状況に戻して映像情報が損失されないようにします。モーションが多い環境では、不適合で画面が割れることがあります。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2>
     </div>

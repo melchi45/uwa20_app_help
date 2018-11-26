@@ -317,7 +317,8 @@
 		</div>
         <div class="wn5-setup-section-article-content">
             <h3>Frame rate </h3>
-            <p>Set the number of frames per second. The range of frame rates available varies according to the frame rate value selected from <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
+            <p>Set the number of frames per second. </p>
+            <p ng-if="Sensor">The range of frame rates available varies according to the frame rate value selected from <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>Compression</h3>
@@ -392,7 +393,7 @@
 
         <div class="wn5-setup-section-article-content" ng-if="DynamicGOVSupport">
             <h3>Dynamic GOV</h3>
-                <p>To apply the Dynamic GOV function to the current profile, select <strong class="UI">[Enable]</strong>. Dynamic GOV is the function whereby the GOV length is changed automatically according to the image situation. In other words, in an image with almost no motion, the GOV length set by the user in <strong class="UI">[Dynamic GOV]</strong> increases to the maximum, and when motion is detected, it is reduced to the length set in <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV length]</strong></a> to output the image. Dynamic GOV is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>.</p>
+                <p>To apply the Dynamic GOV function to the current profile, select <strong class="UI">[Enable]</strong>. Dynamic GOV is the function whereby the GOV length is changed automatically according to the image situation. In other words, in an image with almost no motion, the GOV length set by the user in <strong class="UI">[Dynamic GOV]</strong> increases to the maximum, and when motion is detected, it is reduced to the length set in <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV length]</strong></a> to output the image. <!-- Dynamic GOV is activated only when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>.--> </p>
 
             <ul>
                 <li>Enter the maximum GOV length to apply when there is no motion in the image. The range of input value is displayed next to <strong class="UI">[GOV length]</strong>. The input value in <strong class="UI">[GOV length]</strong> becomes the minimum value, while the maximum value is 480; it varies according to the <strong class="UI">[Frame rate]</strong> in <strong class="UI">[Profile properties]</strong>.</li>
@@ -403,7 +404,7 @@
           	<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong> menu.</li>
-                <li>Dynamic GOV is enabled only when <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR] </strong>and <strong class="UI">[ATC mode]</strong>&nbsp;to&nbsp;<strong class="UI">[Disable]</strong>. If <strong class="UI">[Profile type] </strong>is set to&nbsp;<strong class="UI">[Record profile]</strong>, Dynamic GOV is disabled.</li>
+                <li>Dynamic GOV is enabled only when <strong class="UI">[[Bitrate control]</strong> is set to <strong class="UI">[VBR]</strong> and <strong class="UI">[ATC mode]</strong>&nbsp;to&nbsp;<strong class="UI">[Disable]</strong>. If <strong class="UI">[Profile type] </strong>is set to&nbsp;<strong class="UI">[Record profile]</strong>, Dynamic GOV is disabled.</li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content">

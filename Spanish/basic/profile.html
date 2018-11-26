@@ -219,7 +219,7 @@
                 <li ng-if="DPTZSetupPage && !SupportAutoImageAlignment"><strong class="UI">Perfil PTZ digital</strong>: Este perfil se utiliza para controlar los movimientos PTZ. &apos;DPTZ&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil PTZ digital aparecer&aacute; s&oacute;lo cuando H.264 o H.265 se establezca para el c&oacute;dec.</li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">Para la cámara de ojo de pez, al agregar un nuevo perfil, seleccione <strong class="UI">[Vista de corrección de distorsión]</strong> en <strong class="UI">[Tipo de vista de ojo de pez]</strong> y seleccione <strong class="UI">[Vista de división en 4]</strong> en <strong class="UI">[Vista]</strong> para registrar automáticamente el perfil como un perfil PTZ digital.
                 </li>
-                <li><strong class="UI">perfil de la velocidad de cuadro fijo</strong>: Este es un perfil aplicado para garantizar un determinado nivel de velocidad de cuadro del video. Esta opci&oacute;n de 'perfil de velocidad de cuadro fijo' solo aparece cuando se configura <strong class="UI">[Codec]</strong> a [H.264] o [H.265].</li>
+                <li><strong class="UI">Perfil de bloqueo del cuadro</strong>: Este es un perfil aplicado para garantizar un determinado nivel de velocidad de cuadro del video. Esta opci&oacute;n de 'perfil de velocidad de cuadro fijo' solo aparece cuando se configura <strong class="UI">[Codec]</strong> a [H.264] o [H.265].</li>
             </ul>        
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
@@ -320,7 +320,8 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>Velocidad de cuadro </h3>
-            <p>Ajuste el n&uacute;mero de fotogramas por segundo. El rango de velocidades de fotogramas disponibles var&iacute;a seg&uacute;n el valor de velocidad de fotograma seleccionado de <strong class="UI">[V&iacute;deo &amp; Audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de c&aacute;mara]</strong> &gt; <a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
+            <p>Ajuste el n&uacute;mero de fotogramas por segundo. </p>
+            <p ng-if="Sensor">El rango de velocidades de fotogramas disponibles var&iacute;a seg&uacute;n el valor de velocidad de fotograma seleccionado de <strong class="UI">[V&iacute;deo &amp; Audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de c&aacute;mara]</strong> &gt; <a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>Compresión </h3>
