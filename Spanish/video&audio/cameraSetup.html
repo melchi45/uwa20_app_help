@@ -85,7 +85,7 @@
 <hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
 <div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
-        <h2>Modo preestablecido de imagen</h2>
+        <h2>Modo de preajuste de imagen</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -143,7 +143,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>La funci&oacute;n SSDR sirve para hacer que todo parezca regular s&oacute;lo aumentando el brillo de las partes oscuras en las que tanto las partes oscuras como las brillantes difieren significativamente. Se establece autom&aacute;ticamente un valor de nivel para cada imagen preestablecida que proporciona la c&aacute;mara y no se pueden cambiar. Si no desea utilizar la funci&oacute;n o cambiar el nivel, deber&aacute; utilizar un preajuste del usuario.</p>
+            <p>La funci&oacute;n SSDR sirve para hacer que todo parezca regular s&oacute;lo aumentando el brillo de las partes oscuras en las que tanto las partes oscuras como las brillantes difieren significativamente. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>SSDR</h3>
@@ -173,7 +173,7 @@
             <h3>Modo</h3>
             <p>Seleccione el modo LCE que desea.</p>
             <p>Si selecciona una opci&oacute;n del modo, el &aacute;rea que muestra un alto contraste aparece como un cuadro verde. Por ejemplo, en el modo <strong class="UI">[Cielo]</strong>, el cuadro verde aparece en la parte superior de la pantalla del v&iacute;deo siempre que el cielo se muestre en la parte superior de la pantalla y corrige al v&iacute;deo para que represente de la mejor manera a los objetos dentro del &aacute;rea. En el caso, la tasa de reconocimiento del asunto puede que se baje relativamente en la parte inferior de la pantalla.</p>
-            <p>Si selecciona <strong class="UI">[Personalizado]</strong>, puede personalizar el &aacute;rea para que represente de la mejor manera a la relaci&oacute;n de contraste.</p>
+            <p>Si selecciona <strong class="UI">[Custom]</strong>, puede personalizar el &aacute;rea para que represente de la mejor manera a la relaci&oacute;n de contraste.</p>
         </div>
     </div>
 </div>
@@ -185,7 +185,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Puede hacer correcciones para mostrar el color blanco y otros colores correctamente, normalmente, en cualquier entorno de iluminaci&oacute;n. El ajuste no tiene importancia para la imagen predefinida.</p>
+            <p>Puede hacer correcciones para mostrar el color blanco y otros colores correctamente, normalmente, en cualquier entorno de iluminaci&oacute;n. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Modo</h3>
@@ -362,7 +362,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Es posible ajustar el nivel de exposici&oacute;n para adaptarse al entorno de grabaci&oacute;n de la c&aacute;mara. En caso de que el fondo sea m&aacute;s oscuro que el objeto, es preciso reducir el nivel de exposici&oacute;n para mostrar el objeto correctamente. En caso contrario, si el fondo es m&aacute;s brillante que el objeto, deber&aacute; aumentar el nivel de exposici&oacute;n. Cada imagen preestablecida se ajusta a la configuraci&oacute;n predeterminada que no se puede cambiar. Sin embargo, el brillo de cualquier imagen preestablecida se puede ajustar.</p> 
+            <p>Es posible ajustar el nivel de exposici&oacute;n para adaptarse al entorno de grabaci&oacute;n de la c&aacute;mara. En caso de que el fondo sea m&aacute;s oscuro que el objeto, es preciso reducir el nivel de exposici&oacute;n para mostrar el objeto correctamente. En caso contrario, si el fondo es m&aacute;s brillante que el objeto, deber&aacute; aumentar el nivel de exposici&oacute;n. </p> 
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Brillo</h3>
@@ -494,7 +494,7 @@
             <h3>Entrada alarma</h3>
             <p>Ajusta el v&iacute;deo a color o B/N en funci&oacute;n de la apertura o cierre del sensor de alarma. Cuando <strong class="UI">[Externo]</strong> est&aacute; ajustado para <strong class="UI">[Modo]</strong> de <strong class="UI">[D&iacute;a/Noche]</strong>, el <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Entrada de alarma]</strong> se desactivar&aacute; y no aparecer&aacute; la p&aacute;gina de configuraci&oacute;n.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+        <div class="wn5-setup-section-article-content" ng-if="DefocusDetectSimpleFocus">
             <h3>Enfoque sencillo despu&eacute;s de D&iacute;a/Noche</h3>
             <p>Ajusta el enfoque de la imagen autom&aacute;ticamente tras un cambio de D&iacute;a/Noche.</p>
         </div>
@@ -884,7 +884,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Una c&aacute;mara siempre funciona con una imagen preestablecida espec&iacute;fica. Es posible ajustar la imagen preestablecida deseada en el momento deseado. En caso de no seleccionar un preajuste de imagen espec&iacute;fico, el preajuste de imagen seleccionado en la parte superior funcionar&aacute; de forma predeterminada. El color cambiar&aacute; dependiendo del preajuste de imagen seleccionado anteriormente durante el tiempo de operaci&oacute;n.</p> 
+            <p>Una c&aacute;mara siempre funciona con una imagen preestablecida espec&iacute;fica. Es posible ajustar la imagen preestablecida deseada en el momento deseado. </p> 
         </div>
 
         <div class="wn5-setup-section-article-content">
