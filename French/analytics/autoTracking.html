@@ -12,8 +12,8 @@
             <li>Si vous acc&eacute;dez &agrave; [PTZ] &gt; [Configuration PTZ] &gt; <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptzSetup_ptzInfoSetup?#preset">[Pr&eacute;r&eacute;glage]</a> &gt; [Configuration pr&eacute;r&eacute;gl&eacute;e] &gt; [Action de suivi] et s&eacute;lectionnez Suivi automatique, la cam&eacute;ra adopte le pr&eacute;r&eacute;glage et ex&eacute;cute automatiquement la fonction de suivi automatique. </li>
         </ul>
     </div>
-<hr class="wn5-setup-hr" ng-if="SimpleFocusAfterDayNight">		                              
-<div class="wn5-setup-section" ng-if="SimpleFocusAfterDayNight">
+<hr class="wn5-setup-hr" ng-if="DefocusDetectSimpleFocus">		                              
+<div class="wn5-setup-section" ng-if="DefocusDetectSimpleFocus">
 <div class="wn5-setup-section-heading">
      <h2>R&eacute;glage du PTZ</h2>
  </div>
@@ -169,7 +169,7 @@
 		
         
 		
-		<div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+		<div class="wn5-setup-section-article-content" ng-if="DefocusDetectSimpleFocus">
             <h3>Mise au point simple</h3>
             <p>La mise au point simple est utilis&eacute;e pour ajuster la mise au point automatiquement lorsqu&rsquo;un &eacute;v&eacute;nement de suivi automatique est cr&eacute;&eacute;. La mise au point simple n&rsquo;est ex&eacute;cut&eacute;e qu&rsquo;une seule fois lors de la cr&eacute;ation d&rsquo;un &eacute;v&eacute;nement.</p>
         </div>
