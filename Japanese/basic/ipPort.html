@@ -16,11 +16,12 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>IPタイプ</h3>
-			<p>IP接続タイプを選択します。IPアドレスを固定的に使用する場合には、<strong class="UI">[手動]</strong>に設定してすべての情報を入力します。動的IPを使用する場合、<strong class="UI">[DHCP]</strong>に設定してDNSアドレスのみ入力します。 <strong class="UI">[PPPoE]</strong>タイプを使用する場合、DNSアドレスとID、パスワードのみ入力します。 </p>
+			<p>IP接続タイプを選択します。IPアドレスを固定的に使用する場合には、<strong class="UI">[手動]</strong>に設定してすべての情報を入力します。動的IPを使用する場合、<strong class="UI">[DHCP]</strong>に設定してDNSアドレスのみ入力します。</p>
+			<p ng-if="PPPoE"><strong class="UI">[PPPoE]</strong>タイプを使用する場合、DNSアドレスとID、パスワードのみ入力します。 </p>
 			<ul>
 			<li><strong class="UI">手動</strong>：IPアドレス、Subnet Mask、GATEWAY、DNS1、DNS2を直接入力して設定します。</li>
 			<li><strong class="UI">DHCP</strong>：DNS1、DNS2を設定します。</li>
-			<li><strong class="UI">PPPoE</strong>：DNS1、DNS2、ID、パスワードを設定します。</li> 
+			<li ng-if="PPPoE"><strong class="UI">PPPoE</strong>：DNS1、DNS2、ID、パスワードを設定します。</li> 
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -53,12 +54,12 @@
             <p>ホスト名を読み込むためのONVIF GetHostname操作に使用される名です。初文字は必ず英語のアルファベットで、英数字のみ入力することができます。また、最大63文字まで入力できます。カメラのデバイス名が初期値に入力されており、必須入力値ではないため値を設定する必要はありません。</p>
 		</div>		
 		
-		<div class="wn5-setup-section-article-content">	
+		<div class="wn5-setup-section-article-content" ng-if="PPPoE">	
 			<h3>ID</h3>
 			<p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[PPPoE]</strong>に設定した時に表示されます。アクセスするIDを入力します。</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="PPPoE">
 			<h3>Password</h3>
 			<p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[PPPoE]</strong>に設定した時に表示されます。アクセスするIDのパスワードを入力します。</p>
 		</div>
