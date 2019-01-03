@@ -177,7 +177,9 @@
 	<h2 class="wn5-setup-section-heading">접속자 정보</h2>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>관리자 외의 사용자 계정의 접속 정보를 설정하고 오디오 입력, 오디오 출력, 알람 출력, 프로파일 등의 사용 권한을 설정할 수 있습니다. 등록한 사용자가 로그인했을 때 사용자마다 설정된 기능만 활성화됩니다. 기본적으로 10개의 현재 사용자 계정이 설정되어 있고, 계정을 추가하거나 삭제할 수 있습니다. 현재 사용자 계정은 최대 10개까지 사용할 수 있습니다.</p>
+			<p ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">관리자 외의 사용자 계정의 접속 정보를 설정하고 오디오 입력, 오디오 출력, 알람 출력, 프로파일 등의 사용 권한을 설정할 수 있습니다. </p>
+			<p ng-if="MaxAudioInput !== 0 && MaxAudioOutput !== 0 && MaxAlarmOutput !== 0">관리자 외의 사용자 계정의 접속 정보를 설정하고 사용 권한을 설정할 수 있습니다. </p>				
+			<p>등록한 사용자가 로그인했을 때 사용자마다 설정된 기능만 활성화됩니다. 기본적으로 10개의 현재 사용자 계정이 설정되어 있고, 계정을 추가하거나 삭제할 수 있습니다. 현재 사용자 계정은 최대 10개까지 사용할 수 있습니다.</p>
 		</div>
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
@@ -224,10 +226,11 @@
 				<li>사용할 현재 사용자 계정의 라디오 버튼을 선택합니다. 현재 사용자 계정이 입력할 수 있는 상태로 변경됩니다.</li>
 				<li><strong class="UI">[사용]</strong> 컬럼에서 체크박스를 체크합니다.</li>
 				<li><strong class="UI">[이름]</strong>과 <strong class="UI">[비밀번호]</strong> 컬럼에 ID와 비밀번호를 입력합니다.</li>
-				<li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
+				
+				<!-- <li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> -->
 
-                <!--     <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
-                    <li ng-if="MaxAudioInput !== 0 && MaxAudioOutput !== 0 && MaxAlarmOutput !== 0"><strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>  --> 
+                <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
+                <li ng-if="MaxAudioInput !== 0 && MaxAudioOutput !== 0 && MaxAlarmOutput !== 0"><strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> 
 				
 				<li>현재 사용자 계정의 입력이 완료되면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</li>
 				<li>확인 창이 나타나면 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</li>
