@@ -78,6 +78,14 @@
                     </tr>
                 
                     <!-- PTZ 타입 5개임 1)Zoom 2)PTZ 3)DPTZ (PTRZ 포함) 4)fisheye 5) external  -->
+                    <tr ng-if="Zoom">
+                        <td width="235">
+                                <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PTZ</a></p>
+                        </td>
+                        <td width="235">카메라의 줌이나 초점을 조절하고 원하는 프리셋으로 이동할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[프리셋 설정]</strong> 페이지에서 설정한 프리셋 목록이 표시됩니다. <strong class="UI">[설정]</strong>버튼을 클릭한 후 새로운 프리셋 위치를 추가할 수도 있습니다.</td>
+                    </tr>
+                    
                     <tr ng-if="PanTiltOnlyModel">
                     <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
