@@ -618,7 +618,7 @@
             <h3>OSD透明性</h3>
             <p>OSDの透明度を設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">
             <h3>オーバーレイ</h3>
             <p>PTZ位置やプリセット名など、カメラ映像画面に表示するデータを選択します。</p>
             <ul>
@@ -638,7 +638,7 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>位置調整ができる項目(カメラタイトル、日付＆時間)の場合、固定された他のOSD項目と重なる場合には正しく画面に表示されないことがあります。</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel">「オーバーレイ」の「カメラID」は画面の左上、「PTZ位置」は画面の左下に表示され位置は変更できません。</li>
+                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">「オーバーレイ」の「カメラID」は画面の左上、「PTZ位置」は画面の左下に表示され位置は変更できません。</li>
                 <li>韓国語、英数字、記号だけ使用できます。</li>
             </ul>
         </div>
@@ -673,8 +673,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FocusModeOptions && PTZModel">
-<div class="wn5-setup-section" ng-if="FocusModeOptions && PTZModel">
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
+<div class="wn5-setup-section" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
     <div class="wn5-setup-section-heading">
         <h2>フォーカス</h2>
     </div>

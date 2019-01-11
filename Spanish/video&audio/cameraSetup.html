@@ -638,7 +638,7 @@
             <h3>Transparencia</h3>
             <p>Establece la transparencia de la OSD.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">
             <h3>Superposici&oacute;n</h3>
             <p>Seleccione informaci&oacute;n como la posici&oacute;n PTZ o el nombre de preajuste para que se muestren en la pantalla de v&iacute;deo de la c&aacute;mara.</p>
             <ul>
@@ -659,7 +659,7 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>En el caso del elemento con una ubicaci&oacute;n que se puede ajustar (t&iacute;tulo de la c&aacute;mara, fecha y hora), si se superpone con otros elementos fijos de OSD, puede que la pantalla no lo muestre de forma correcta.</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel">El ID de la c&aacute;mara en «Superposici&oacute;n» se muestra en la parte superior izquierda de la pantalla, mientras que la «posici&oacute;n PTZ» se muestra en la parte inferior izquierda de la pantalla, pero las ubicaciones no se pueden cambiar.</li>
+                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">El ID de la c&aacute;mara en «Superposici&oacute;n» se muestra en la parte superior izquierda de la pantalla, mientras que la «posici&oacute;n PTZ» se muestra en la parte inferior izquierda de la pantalla, pero las ubicaciones no se pueden cambiar.</li>
                 <li>S&oacute;lo se permiten n&uacute;meros y s&iacute;mbolos en coreano, ingl&eacute;s y espa&ntilde;ol.</li>
             </ul>
         </div>
@@ -694,8 +694,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FocusModeOptions && PTZModel">
-<div class="wn5-setup-section" ng-if="FocusModeOptions && PTZModel">
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
+<div class="wn5-setup-section" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
     <div class="wn5-setup-section-heading">
         <h2>Enfoque</h2>
     </div>

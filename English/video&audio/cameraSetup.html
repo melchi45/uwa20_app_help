@@ -774,7 +774,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <h3>Transparency</h3>
             <p>Set the transparency of OSD.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">
             <h3>Overlay</h3>
             <p>Display the camera’s PTZ coordinates, or preset names on the screen.</p>
             <ul>
@@ -805,7 +805,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>In case of the item with a location that can be adjusted(camera title, date &amp; time), if it overlaps with other fixed OSD items, the screen may fail to display it properly.</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel">The 'camera ID' in [Overlay] is displayed at the left top of screen while the 'PTZ position' is displayed at the left bottom of screen; The locations cannot be changed.</li>
+                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">The 'camera ID' in [Overlay] is displayed at the left top of screen while the 'PTZ position' is displayed at the left bottom of screen; The locations cannot be changed.</li>
                 <li>Only Korean, English, numbers, and symbols are allowed. </li>
             </ul>
         </div>
@@ -840,8 +840,8 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FocusModeOptions && PTZModel">
-<div class="wn5-setup-section" ng-if="FocusModeOptions && PTZModel">
+<hr class="wn5-setup-hr" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
+<div class="wn5-setup-section" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
     <div class="wn5-setup-section-heading">
         <h2>Focus</h2>
     </div>

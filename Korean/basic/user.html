@@ -229,8 +229,8 @@
 				
 				<!-- <li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> -->
 
-                <li ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0"><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
-                <li nng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0"><strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> 
+                <li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0"><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li>
+                <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> 
 				
 				<li>현재 사용자 계정의 입력이 완료되면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</li>
 				<li>확인 창이 나타나면 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</li>
