@@ -4,10 +4,33 @@
     <p>D&eacute;finit la valeur de liaison entre le contr&ocirc;leur et la cam&eacute;ra pour activer le contr&ocirc;le de la cam&eacute;ra PTZ via le contr&ocirc;leur connect&eacute; au terminal RS-485 de la cam&eacute;ra.&nbsp;Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="group"></a>Configuration RS-485</h2>
+        <h2>Ajuster le PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez ajuster les actions de panoramique, de mosa&iuml;que et de zoom de la cam&eacute;ra.</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4><a name="ptzcontrol"></a>Ajuster le PTZ</h4>
+            <ul>
+                <li>Lorsque vous faites glisser l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span>avec la souris, la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison.</li>
+                <li ng-if="PanTiltOnlyModel">S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <strong class="UI">[+]</strong> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <strong class="UI">[-]</strong> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
+                <li ng-if="PanTiltOnlyModel && ContinousFocus">D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Pour ajuster automatiquement la mise au point de la cam&eacute;ra pour prendre un clich&eacute;, cliquez sur le bouton <span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+    	</div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Configuration RS-485</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
