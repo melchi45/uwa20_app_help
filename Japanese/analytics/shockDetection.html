@@ -16,6 +16,17 @@
             <h3>衝撃検知を有効化</h3>
             <p>衝撃検知イベントを有効化するには、<strong class="UI">[衝撃検知を有効化]</strong>を選択します。</p>
         </div>
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>PTZ調整</h4>
+
+            <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+                <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>検知レベル</h3>
             <p>衝撃検知の基準になるレベル値を設定します。設定したレベル値以上の衝撃が検知されると、衝撃イベントを発生させます。</p>

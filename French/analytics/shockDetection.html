@@ -16,6 +16,17 @@
             <h3>Activer la d&eacute;tection des chocs</h3>
             <p>Pour activer les &eacute;v&eacute;nements de d&eacute;tection de choc, s&eacute;lectionnez <strong class="UI">[Activer la d&eacute;tection de choc]</strong>.</p>
         </div>
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>R&eacute;glage du PTZ</h4>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
+            <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
+            <ul>
+                <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
+                <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span>pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span>pour le r&eacute;duire.</li>
+                <li>Rapprochez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span>  ou &eacute;loignez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Pour ajuster la mise au point de la cam&eacute;ra pour une prise AF, cliquez sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Niveau de d&eacute;tection</h3>
             <p>R&eacute;glez la valeur de niveau de base de la d&eacute;tection de choc. Si un choc est d&eacute;tect&eacute; au-dessus de la valeur du niveau r&eacute;gl&eacute;, un &eacute;v&eacute;nement de choc est g&eacute;n&eacute;r&eacute;.</p>

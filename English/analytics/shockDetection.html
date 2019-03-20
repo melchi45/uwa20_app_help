@@ -16,6 +16,17 @@
             <h3>Enable shock detection</h3>
             <p>To enable shock detection events, select <strong class="UI">[Enable shock detection]</strong>.</p>
         </div>
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>Adjusting the PTZ</h4>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Under <strong class="UI"><a href="#channel">[Select channel]</a></strong>, select the <strong class="UI">[PTZ]</strong> channel. The PTZ jog panel will appear.</p>
+            <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
+            <ul>
+                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span>icon with the mouse, the camera will pan and tilt accordingly.</li>
+                <li>By using the zoom bar, you can adjust the video zooming ratio. Or, click the <span class="tui tui-wn5-ptz-plus"></span> icon to magnify the screen or click the <span class="tui tui-wn5-ptz-minus"></span> icon to reduce the screen.</li>
+                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Level of detection</h3>
             <p>Set the level value that is the basis of shock detection. If a shock is detected above the set level value, a shock event is generated.</p>

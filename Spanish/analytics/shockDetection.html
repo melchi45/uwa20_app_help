@@ -16,6 +16,17 @@
             <h3>Activar detecci&oacute;n de choque</h3>
             <p>Para activar los eventos de detecci&oacute;n de choques, seleccione <B>[Activar detecci&oacute;n de choque]</B>.</p>
         </div>
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>Ajuste del PTZ</h4>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">En <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>, seleccione el canal <strong class="UI">[PTZ]</strong>. El panel panor&aacute;mico del PTZ aparecer&aacute;.</p>
+            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+            <ul>
+                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
+                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Nivel de detecci&oacute;n</h3>
             <p>Establezca el valor de nivel que es la base de la detecci&oacute;n de choque. Si se detecta un choque por encima del valor del nivel establecido, se genera un evento de choque.</p>

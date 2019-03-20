@@ -16,6 +16,17 @@
             <h3>충격 감지 사용</h3>
             <p>충격 감지 이벤트를 사용하려면 <strong class="UI">[충격 감지 사용]</strong>을 선택합니다. </p>
         </div>
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>PTZ 조정하기</h4>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
+            <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다.</p>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span> 아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.    </li>
+                <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                <li><span class="tui tui-wn5-ptz-near"></span> 아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
+                <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>아이콘을 클릭합니다.</li>
+            </ul>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>감지 레벨 </h3>
             <p>충격 감지의 기준이 되는 레벨값을 설정합니다. 설정한 레벨값 이상의 충격이 감지되면 충격 이벤트를 발생시킵니다. </p>
