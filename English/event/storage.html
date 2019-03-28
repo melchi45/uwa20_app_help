@@ -107,11 +107,76 @@
             <ul>
                 
                 <li>High Endurance SD Cards are recommended. For detailed information, refer to the Hanwha Techwin website.</li>
-                <li>It can take up to 10 minutes to format the micro SD card with the EXT4 file system.  </li>
+                <li>It can take up to 10 minutes to format the (Micro) SD card with the EXT4 file system.  </li>
             </ul>
         </div>
     </div>
 </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Encryption</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p></p>
+            <p>SD card encryption allows you to save video data in your encrypted SD card (or microSD card). This keeps your SD card safe and secured even when you lost it.</p>
+            <p>The SD card encryption option appears when you select <strong class="UI">[SD]</strong> for <strong class="UI">[Device]</strong> under the <strong class="UI">[Storage action setup]</strong> column.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>If you change the SD card setting to encrypt or decrypt it, all of its data will be deleted and the SD card will be formatted.</li>  
+        </div>
+        <div class="wn5-setup-section-article-content">
+           
+            <h3>SD card encryption</h3>
+            <p>Selecting <strong class="UI">[Enable]</strong> encrypts the SD card while deselecting <strong class="UI">[Enable]</strong> decrypts it.</p>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>Encrypting SD card</h4>
+            <ol>
+                <li>Select <strong class="UI">[Enable]</strong> under <strong class="UI">[Encryption]</strong>.</li>
+                <li>Enter your <strong class="UI">[New password]</strong> in the field, and enter the same password again in the&nbsp;<strong class="UI">[Confirm password]</strong>.</li>
+                <li>Click the <strong class="UI">[Apply]</strong> button at the bottom of the screen.</li>
+                <li>If SD card encryption is working properly, the &lsquo;Encrypted&rsquo; message will appear.</li>
+            </ol><!--    <p>SD 카드 암호화 기능을 사용하기 위해 비밀번호를 설정하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+        <div class="wn5-online-help-action">
+            <h4>Decrypting SD card</h4>
+            <ol>
+                <li>Deselect <strong class="UI">[Enable]</strong> under <strong class="UI">[Encryption]</strong>.</li>
+                <li>Click the <strong class="UI">[Apply]</strong> button at the bottom of the screen. If SD card encryption is disabled, so the SD card data is not encrypted, &lsquo;Unencrypted&rsquo; message will appear.</li>
+            </ol><!--    <p>SD 카드 암호화를 해제하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+         <div class="wn5-online-help-action">
+            <h4>Changing password</h4>
+            <p>You can change the password for SD card encryption.</p>
+            <p>If the password of the encrypted SD card and the password entered by user do not match, &lsquo;Password error&rsquo; message will appear in the <strong class="UI">[Status]</strong> column of <strong class="UI">[Storage action setup]</strong>.</p>
+            <ol>
+                <li>Click the <strong class="UI">[Change password]</strong> button.</li>
+                <li>Enter the current password in the <strong class="UI">[Current password]</strong> field.</li>
+                <li>Enter the new password in the <strong class="UI">[New password]</strong> and <strong class="UI">[Confirm password]</strong> fields.</li>
+                <li>Click the <strong class="UI">[Apply]</strong> button at the bottom of the screen.</li>
+            </ol>
+        </div>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>Once forgotten or lost, your password cannot be recovered. You can reset your password instead, but then the SD card will be formatted and all of its data will be deleted.</li>
+                <li>The password length and restrictions are as follows:</li>
+                <ul>
+                    <li>For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+                    <li>For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+                    <li>You cannot use four or more consecutive characters (e.g. 1234, abcd).</li>
+                    <li>You cannot use the same character four or more times in a row (e.g. !!!!, 1111, aaaa).</li>
+                    <li>Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr" ng-if="NAS">
 <div class="wn5-setup-section" ng-if="NAS">
