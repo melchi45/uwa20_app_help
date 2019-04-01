@@ -20,7 +20,7 @@
             <p>Si des donn&eacute;es sont en cours d&apos;enregistrement sur l&apos;appareil, «&nbsp;Enregistrement&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils. Lorsque «&nbsp;Erreur&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong>, v&eacute;rifiez que le p&eacute;riph&eacute;rique d&apos;enregistrement est correctement connect&eacute;. Lorsque <strong class="UI">[Activ&eacute;]</strong> est d&eacute;fini pour une carte SD et un NAS en m&ecirc;me temps, le NAS est trait&eacute; en priorit&eacute;.</p>
             <ul>
                 <li><strong class="UI">SD</strong>: Vous pouvez choisir d&apos;utiliser ou non une carte SD. Lorsqu&apos;une carte SD est reconnue, l&apos;espace libre, la capacit&eacute; totale et l&apos;&eacute;tat sont affich&eacute;s. Pour formater la carte SD, cliquez sur le bouton <strong class="UI">[Formater]</strong>.</li>
-                <li><strong class="UI">NAS</strong>: Vous pouvez choisir d&apos;utiliser le NAS (Network Attached Storage - stockage li&eacute; au r&eacute;seau) ou non. Lorsqu&apos;une connexion au NAS est &eacute;tablie, l&apos;espace libre, la capacit&eacute; totale et l&apos;&eacute;tat sont affich&eacute;s. Pour formater le dossier par d&eacute;faut sur le NAS, cliquez sur le bouton <strong class="UI">[Formater]</strong>.</li>
+                <li ng-if="NAS"><strong class="UI">NAS</strong>: Vous pouvez choisir d&apos;utiliser le NAS (Network Attached Storage - stockage li&eacute; au r&eacute;seau) ou non. Lorsqu&apos;une connexion au NAS est &eacute;tablie, l&apos;espace libre, la capacit&eacute; totale et l&apos;&eacute;tat sont affich&eacute;s. Pour formater le dossier par d&eacute;faut sur le NAS, cliquez sur le bouton <strong class="UI">[Formater]</strong>.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -113,6 +113,71 @@
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Cryptage</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p></p>
+            <p>Le cryptage de la carte SD vous permet d&rsquo;enregistrer des donn&eacute;es vid&eacute;o sur votre carte SD crypt&eacute;e (ou votre carte microSD). Votre carte SD reste ainsi s&ucirc;re et s&eacute;curis&eacute;e, m&ecirc;me si vous la perdez.</p>
+            <p>L&rsquo;option de cryptage de la carte SD appara&icirc;t lorsque vous s&eacute;lectionnez <strong class="UI">[SD]</strong> dans <strong class="UI">[P&eacute;riph&eacute;rique]</strong> dans la colonne <strong class="UI">[Config. action de stockage]</strong>.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Si vous modifiez la configuration de la carte SD pour la crypter ou la d&eacute;crypter, toutes ses donn&eacute;es seront supprim&eacute;es et la carte SD sera format&eacute;e.</li>  
+        </div>
+        <div class="wn5-setup-section-article-content">
+           
+            <h3>Cryptage de la carte SD</h3>
+            <p>Le fait de cocher <strong class="UI">[Activer]</strong> entra&icirc;ne le cryptage de la carte SD, alors que le fait de d&eacute;cocher <strong class="UI">[Activer]</strong> entra&icirc;ne sont d&eacute;cryptage.</p>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>Crypter la carte SD</h4>
+            <ol>
+                <li>S&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Cryptage]</strong>.</li>
+                <li>Entrez votre nouveau mot de passe dans le champ <strong class="UI">[Nouveau mot de passe]</strong> et entrez le m&ecirc;me mot de passe une nouvelle fois dans le champ&nbsp;<strong class="UI">[Confirmer mot de p.]</strong>.</li>
+                <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran.</li>
+                <li>Si le cryptage de la carte SD fonctionne correctement, le message �&nbsp;Crypt&eacute;&nbsp;� s&rsquo;affiche.</li>
+            </ol><!--    <p>SD 카드 암호화 기능을 사용하기 위해 비밀번호를 설정하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+        <div class="wn5-online-help-action">
+            <h4>D&eacute;crypter la carte SD</h4>
+            <ol>
+                <li>D&eacute;cochez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Cryptage]</strong>.</li>
+                <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran. Si le cryptage de la carte SD est d&eacute;sactiv&eacute; et si en cons&eacute;quence, les donn&eacute;es de la carte SD ne sont pas crypt&eacute;es, le message �&nbsp;Non crypt&eacute;&nbsp;� s&rsquo;affiche.</li>
+            </ol><!--    <p>SD 카드 암호화를 해제하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+         <div class="wn5-online-help-action">
+            <h4>Modifier le mot de passe</h4>
+            <p>Vous pouvez modifier le mot de passe utilis&eacute; pour le cryptage de la carte SD.</p>
+            <p>Si le mot de passe de la carte SD crypt&eacute;e et le mot de passe de passe entr&eacute; par l&rsquo;utilisateur ne correspondent pas, le message �&nbsp;Erreur Mot de passe&nbsp;� s&rsquo;affiche dans la colonne <strong class="UI">[&Eacute;tat]</strong> de <strong class="UI">[Config. action de stockage]</strong>.</p>
+            <ol>
+                <li>Cliquez sur le bouton <strong class="UI">[Modifier le mot de passe]</strong>.</li>
+                <li>Entrez le mot de passe actuel dans le champ <strong class="UI">[Mot de passe actuel]</strong>.</li>
+                <li>Entrez le nouveau mot de passe dans les champs <strong class="UI">[Nouveau mot de passe]</strong> et <strong class="UI">[Confirmer mot de p.]</strong>.</li>
+                <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran.</li>
+            </ol>
+        </div>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Si le mot de passe est oubli&eacute; ou perdu, il ne peut pas &ecirc;tre r&eacute;cup&eacute;r&eacute;. &Agrave; la place, vous pouvez r&eacute;initialiser votre mot de passe, mais la carte SD sera alors format&eacute;e et toutes ses donn&eacute;es seront supprim&eacute;es.</li>
+                <li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
+                <ul>
+                    <li>Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                    <li>Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                    <li>Vous ne pouvez pas utiliser 4&nbsp;caract&egrave;res cons&eacute;cutifs ou plus (p.ex., 1234, abcd).</li>
+                    <li>Vous ne pouvez pas utiliser le m&ecirc;me caract&egrave;re quatre fois ou plus de suite (p.ex., !!!!, 1111, aaaa).</li>
+                    <li>Seuls ~`!@#$#$%^*()_-++=|{}[]?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="NAS">
+<div class="wn5-setup-section" ng-if="NAS">
     <div class="wn5-setup-section-heading">
         <h2>Configuration de la connexion NAS</h2>
     </div>
