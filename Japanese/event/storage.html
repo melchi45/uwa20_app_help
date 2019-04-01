@@ -63,7 +63,72 @@
             </ul>
         </div>
     </div>
-</div>		
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>暗号化</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p></p>
+            <p>SDカードの暗号化機能を使用する場合、映像を保存するときに暗号化されたSDカード(もしくはマイクロSDカード)に映像を保存することができます。これは、SDカードを失った場合にも映像のセキュリティを守ります。</p>
+            <p>SDカードの暗号化オプションは、<strong class="UI">[ストレージアクションの設定]</strong>の<strong class="UI">[デバイス]</strong>カラムで<strong class="UI">[SD]</strong>を選択すると、表示されます。</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>SDカードを暗号化したり、暗号化を選択解除するために設定を変更すると、SDカードのデータが削除となりSDカードがフォーマットされます。</li>  
+        </div>
+        <div class="wn5-setup-section-article-content">
+           
+            <h3>SDカードの暗号化</h3>
+            <p><strong class="UI">[使用]</strong>を選択するとSDカードが暗号化され、<strong class="UI">[使用]</strong>を選択解除するとSDカードの暗号化が選択解除されます。</p>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>SDカードを暗号化する</h4>
+            <ol>
+                <li><strong class="UI">[暗号化]</strong>で<strong class="UI">[使用]</strong>を選択します。</li>
+                <li><strong class="UI">[新しいパスワード]</strong>入力フィールドにパスワードを入力してから、同じパスワードを<strong class="UI">[パスワード確認]</strong>にもう一度入力します。</li>
+                <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
+                <li>SDカードの暗号化機能が正常に動作中の場合、「暗号化」メッセージが表示されます。</li>
+            </ol><!--    <p>SD 카드 암호화 기능을 사용하기 위해 비밀번호를 설정하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+        <div class="wn5-online-help-action">
+            <h4>SDカードの暗号化を選択削除する</h4>
+            <ol>
+                <li><strong class="UI">[暗号化]</strong>で<strong class="UI">[使用]</strong>を選択解除します。</li>
+                <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。SDカードの暗号化機能が選択解除され、SDカードのデータが暗号化されない場合、「暗号化されない」メッセージが表示されます。</li>
+            </ol><!--    <p>SD 카드 암호화를 해제하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+         <div class="wn5-online-help-action">
+            <h4>パスワードを変更する</h4>
+            <p>SDカードの暗号化のためのパスワードを変更することができます。</p>
+            <p>暗号化されたSDカードのパスワードとユーザーが入力したパスワードが一致しない場合、<strong class="UI">[ストレージアクションの設定]</strong>の<strong class="UI">[状況]</strong>カラムに「パスワードエラー」メッセージが表示されます。</p>
+            <ol>
+                <li><strong class="UI">[パスワード変更]</strong>ボタンをクリックします。</li>
+                <li><strong class="UI">[既存のパスワード]</strong>の入力フィールドに既存のパスワードを入力します。</li>
+                <li><strong class="UI">[新しいパスワード]</strong>と<strong class="UI">[パスワードの確認]</strong>入力フィールドに新しいパスワードを入力します。</li>
+                <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
+            </ol>
+        </div>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>パスワードを忘れたり失う場合、復旧できません。パスワードを再設定すると、SDカードがフォーマットされSDカードに保存されたデータが削除されます。</li>
+                <li>パスワード長さ&amp;上限は下記のどおりです。</li>
+                <ul>
+                    <li>8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
+                    <li>10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
+                    <li>連続された文字を4つ以上、使用できません。(例：1234、abcd)</li>
+                    <li>同じ文字を4回以上、繰り返して使用できません。(例：!!!!、1111、aaaa)</li>
+                    <li>特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
