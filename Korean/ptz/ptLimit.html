@@ -27,6 +27,7 @@
                 <li ng-if="PanTiltOnlyModel && ContinousFocus"><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
             </ul>
+            <p><strong class="UI">[팬 그라운드 설정]</strong>을 클릭하면 현재 촬상하고 있는 영상의 팬(Pan) 각도를 0도로 설정합니다. </p>
     	</div>
     </div>
 </div>
@@ -68,6 +69,7 @@
 <hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
     <div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
         <div class="wn5-setup-section-heading">
+            <!-- xnp-6320rh에서 팬/기울기 속도를 팬/틸트 속도 기울기로 변경함. 박종인 책임님 2019-03-26 메일 참조. 영어는 Pan/Tilt speed 에서 Pan/Tilt speed curve로 수정--> 
         <h2>팬/틸트 속도 기울기</h2>
        </div>
     <div class="wn5-setup-section-article">
@@ -101,7 +103,8 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>팬/틸트 기울기 초기화</h2>
+                    <!-- xnp-6320rh에서 팬/틸트 기울기 초기화를 팬/틸트 초기화로 변경함. 박종인 책임님 2019-03-26 메일 참조. 영어는 Pan/Tilt init. 에서 Pan/Tilt initialization로 수정 --> 
+        <h2>팬/틸트 초기화 </h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -114,7 +117,7 @@
             </div>
             <div class="wn5-setup-section-article-content">
                 <h3>초기화 시간</h3>
-                <p>초기화 동작 시간을 설정합니다. 0시부터 23시까지 정각 시간을 선택할 수 있습니다.</p>
+             <p>초기화 동작 시간을 설정합니다. 0시부터 23시까지 정각 시간을 선택할 수 있습니다.</p>
             </div>
 			<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
