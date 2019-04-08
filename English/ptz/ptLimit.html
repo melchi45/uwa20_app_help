@@ -27,6 +27,7 @@
                 <li ng-if="PanTiltOnlyModel && ContinousFocus">Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
             </ul>
+            <p>Click <strong class="UI">[Set Pan ground position]</strong> to set the pan degree of the video currently shot as 0.</p>
     	</div>
     </div>
 </div>
@@ -69,7 +70,8 @@
 
 <div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
 <div class="wn5-setup-section-heading">
-    <h2>Pan/Tilt speed</h2>
+    <!-- XNP-6320RH에 Pan/Tilt speed를 Pan/Tilt speed curve로 변경. 2019-04-04 --> 
+    <h2>Pan/Tilt speed curve</h2>
 </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -100,19 +102,21 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Pan/Tilt init</h2>
+            <!-- XNP-6320RH에 Pan/Tilt init를 Pan/Tilt initialization로 변경 2019-04-04 --> 
+        <h2>Pan/Tilt initialization</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Specifies whether or not to initialize the pan/tilt of camera as well as setting the initialization cycle and time.</p>
-            <p>For example, after selecting <strong class="UI">[Enable]</strong>, if you set <strong class="UI">[Duration]</strong> to &quot;2 days&quot; and <strong class="UI">[Init time]</strong> to &quot;9&quot;, pan/tilt position will be initialized every two days at 9 a.m. If the time is set to Jan 1, 2000, the initialization process begins at 9 a.m. on Jan 3, 2000, and then the pan/tilt position will be initialized every two days at 9 a.m. (i.e. Jan 5, Jan 7, and so on)</p>
+            <p>For example, after selecting <strong class="UI">[Enable]</strong>, if you set <strong class="UI">[Duration]</strong> to &quot;2 days&quot; and <strong class="UI">[Time]</strong> to &quot;9&quot;, pan/tilt position will be initialized every two days at 9 a.m. If the time is set to Jan 1, 2000, the initialization process begins at 9 a.m. on Jan 3, 2000, and then the pan/tilt position will be initialized every two days at 9 a.m. (i.e. Jan 5, Jan 7, and so on)</p>
         </div>
             <div class="wn5-setup-section-article-content">
                 <h3>Duration</h3>
                 <p>Set the initialization cycle. For example, if you set it to &quot;2 days&quot;, the initialization recurs every two days.</p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>Init time</h3>
+                <!-- XNP-6320RH에 Init time을 Time로 변경 2019-04-04 -->
+                <h3>Time</h3>
                 <p>Sets the initialization time. You can select the hourly time from 0 to 23.</p>
             </div>
 			<div class="wn5-online-help-info">
