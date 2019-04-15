@@ -1,4 +1,4 @@
-﻿<h1 class="wn5-setup-main-title">Smart codec</h1>
+﻿<h1 class="wn5-setup-main-title">スマートコーデック</h1>
 
 <div class="wn5-setup-section">
 	<p>Smart codecは、ユーザーが好む部分をROI領域に設定してROI領域の画質はユーザが設定したどおりに維持するが、その他のエリアは標準画質で管理して映像データサイズを減らす技術です。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
@@ -28,7 +28,16 @@
 		<div class="wn5-setup-section-article-content">
 			<p>ユーザーが直接カメラの映像画面でROI領域を設定することができます。画面にマウスをクリックしてドラッグすると、四角の形でROI領域が生成されます。ROI領域は最大5つまでで、エリアが重なると設定できません。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定したROI領域がすべて削除されます。</p>
 		</div>
-
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>PTZ調整</h4>
+            <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+                <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
+            </ul>
+        </div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 			<ul><li>Smart codecはビデオprofile別に使用有無を設定することができます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で<a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[ビットレート制御]</strong></a>を<strong class="UI">[CBR]</strong>に設定した後、<a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong class="UI">[Smart codec]</strong></a>で使用有無を設定します。「ビデオprofile」ページで「Smart codec」を「無効」に設定すると、Smart codec機能は動作しません。</li>

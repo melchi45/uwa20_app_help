@@ -5,7 +5,7 @@
 <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
     <ul>
-        <li>Lorsque vous utilisez la fonction limite de PT en s&eacute;lectionnant <strong class="UI">[Activer]</strong> dans <strong class="UI">[Limite de panoramique/inclinaison]</strong>, vous ne pouvez d&eacute;finir un pr&eacute;r&eacute;glage que dans la plage limit&eacute;e.</li>
+        <li>Lorsque vous utilisez la fonction limite de PT en s&eacute;lectionnant <strong class="UI">[Activer]</strong> dans <strong class="UI">[Seuil plateau/d’inclinaison]</strong>, vous ne pouvez d&eacute;finir un pr&eacute;r&eacute;glage que dans la plage limit&eacute;e.</li>
         <li>En cas de pr&eacute;r&eacute;glage au-del&agrave; de la plage de panoramique et d&apos;inclinaison pr&eacute;c&eacute;demment d&eacute;finie avant que la limite de PT ne soit utilis&eacute;e, le pr&eacute;r&eacute;glage fonctionnera selon le r&eacute;glage initial.</li>
     </ul>
 </div>
@@ -34,7 +34,9 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Limite de panoramique / inclinaison</h2>
+        <!-- 제품 용어집에 따라 변경. XNP-6320RH 진행시. 2019-04-12  
+            <h2>Limite de panoramique / inclinaison</h2>  --> 
+            <h2>Seuil plateau/d’inclinaison</h2> 
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -56,21 +58,36 @@
             <div class="wn5-online-help-action">
     	   <h4>D&eacute;finition de l&rsquo;intervalle limit&eacute;e des actions de panoramique et de mosa&iuml;que</h4>
                 <ol>
-                    <li>Commencez le r&eacute;glage en cliquant sur le bouton <strong class="UI">[D&eacute;marrer]</strong>.</li>
+                    <li>Commencez le r&eacute;glage en cliquant sur le bouton <strong class="UI">[Déb]</strong>.</li>
                     <li>Lorsque vous cliquez sur le bouton <strong class="UI">[D&eacute;finir]</strong>, la position du point de d&eacute;part s&apos;affiche &agrave; l&apos;image sur l&apos;&eacute;cran de la cam&eacute;ra. D&eacute;finissez la position de d&eacute;part pour l&rsquo;intervalle limit&eacute;e pendant le r&eacute;glage du PTZ.</li>
                     <li>Lorsque vous cliquez sur le bouton <strong class="UI">[D&eacute;finir]</strong>, la position finale s&apos;affiche &agrave; l&apos;image sur l&apos;&eacute;cran de la cam&eacute;ra. D&eacute;finissez la position du point final pour l&rsquo;intervalle limit&eacute;e pendant le r&eacute;glage du PTZ.</li>
                     <li>Cliquez sur le bouton <strong class="UI">[D&eacute;finir]</strong> une nouvelle fois.</li>
                 </ol>
-            <p>Lorsque vous cliquez sur le bouton <strong class="UI">[Annuler]</strong>, toutes les valeurs en cours de d&eacute;finition seront supprim&eacute;es. Vous pouvez cliquer sur le bouton <strong class="UI">[D&eacute;marrer]</strong> et d&eacute;finir de nouveau l&rsquo;intervalle d&apos;action limit&eacute;e.</p>
+            <p>Lorsque vous cliquez sur le bouton <strong class="UI">[Annuler]</strong>, toutes les valeurs en cours de d&eacute;finition seront supprim&eacute;es. Vous pouvez cliquer sur le bouton <strong class="UI">[Déb]</strong> et d&eacute;finir de nouveau l&rsquo;intervalle d&apos;action limit&eacute;e.</p>
             </div>
             </div>
              </div>		
 
-<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
+<hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
+    <div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
+        <div class="wn5-setup-section-heading">
+        <h2>Vitesse Pan/Inclinaison</h2>
+       </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez sélectionner l'option de vitesse pour le comportement Panoramique / Inclinaison des caméras.</p>
+            <p>Lorsque vous contrôlez le comportement de panoramique / inclinaison, plus le point central est éloigné, plus la vitesse du comportement est rapide.Sélectionnez <strong class="UI">[Exponentiel]</strong> pour voir l'augmentation de la vitesse sous la forme d'une courbe (c'est-à-dire initialement lente mais plus rapide avec l'accélération). Sélectionnez <strong class="UI">[Linéaire]</strong> pour voir une augmentation constante de la vitesse en ligne droite. </p>       
+ </div>
+	</div>
+</div>
 
+
+<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
 <div class="wn5-setup-section"  ng-if="ProportionalPTSpeedModes">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="group"></a>Panorama / inclinaison proportionnels</h2>
+            <!-- 제품 용어집에 따라 변경. XNP-6320RH 진행시. 2019-04-12    
+        <h2><a class="wn5-online-help-link" name="group"></a>Panorama / inclinaison proportionnels</h2>  --> 
+        <h2><a class="wn5-online-help-link" name="group"></a>Pan / Inclinaison proportionnel</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -87,7 +104,7 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>D&eacute;marrer Pan/inclinaison</h2>
+        <h2>Initialisation panoramique/inclinaison</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -95,7 +112,9 @@
             <p>Par exemple, apr&egrave;s avoir s&eacute;lectionn&eacute; <strong class="UI">[Activer]</strong>, si vous sp&eacute;cifiez <strong class="UI">[Dur&eacute;e alarme]</strong> sur «&nbsp;2&nbsp;jours&nbsp;» et <strong class="UI">[Heure de d&eacute;marrage]</strong> sur «&nbsp;9&nbsp;», la position Pan/inclinaison sera initialis&eacute;e tous les deux jours &agrave; 9h00. Si l&rsquo;heure est d&eacute;finie sur le 1er janv.&nbsp;2000, le processus d&rsquo;initialisation commence &agrave; 9h00 le 3&nbsp;janvier&nbsp;2000, et la position de Pan/inclinaison sera initialis&eacute;e tous les deux jours &agrave; 9h00 (c.&agrave;.d. le 5&nbsp;janvier, le 7&nbsp;janvier etc.)</p>
         </div>
             <div class="wn5-setup-section-article-content">
-                <h3>Dur&eacute;e alarme</h3>
+                <!-- 제품 용어집에 따라 변경. XNP-6320RH 진행시. 2019-04-12     
+                <h3>Dur&eacute;e alarme</h3>  --> 
+                <h3>Durée</h3>
                 <p>D&eacute;finir le cycle d&rsquo;initialisation. Par exemple, si vous le d&eacute;finissez sur «&nbsp;2&nbsp;jours&nbsp;», l&rsquo;initialisation a lieu tous les deux jours.</p>
             </div>
             <div class="wn5-setup-section-article-content">

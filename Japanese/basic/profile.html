@@ -145,7 +145,7 @@
             <h4>ビデオprofileの設定変更</h4>
             <div>
                 <ol><li>Profileリストで詳細設定を変更するProfileを選択します。</li>
-                    <li><strong class="UI">[Codec]</strong>、<strong class="UI">[Profileタイプ]</strong>、<strong class="UI">[解像度]</strong>など、Profileの詳細設定を変更します。</li>
+                    <li><strong class="UI">[Codec]</strong>、<strong class="UI">[プロファイルタイプ]</strong>、<strong class="UI">[解像度]</strong>など、Profileの詳細設定を変更します。</li>
                     <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
                     <li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。選択したProfileの設定が変更されます。</li>
                 </ol>
@@ -196,16 +196,16 @@
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3><a class="wn5-online-help-link" name="profiletype"></a>Profileタイプ</h3>
+            <h3><a class="wn5-online-help-link" name="profiletype"></a>プロファイルタイプ</h3>
             <p>適用するProfileタイプを選択します。選択したProfileタイプは、Profileリストの<strong class="UI">[タイプ]</strong>カラムに表示されます。選択したCodecタイプによって表示される設定項目が異なります。</p>
             <p ng-if="SupportAutoImageAlignment">また<a href="#channel"></a>チャンネル選択</a>で選択したチャンネルによって設定できるプロファイルタイプが異なることがあります。例えば、「録画プロファイル」はチャンネル1を選択した場合のみ設定することができます。</p>
             <ul>
-                <li><strong class="UI">基本Profile</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。Profileリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
+                <li><strong class="UI">基本プロファイル</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。Profileリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。 <strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP profileオプションが表示されます。</li>
                 <li li ng-if="Recording && NAS"><strong class="UI">録画Profile</strong>：SDカードまたはNASに映像を録画する時、適用するProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
                 <li ng-if="DPTZSetupPage && !SupportAutoImageAlignment"><strong class="UI">デジタルPTZ Profile</strong>：PTZモーションをデジタルに制御する時、使用するProfileです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「DPTZ」と表示されます。CodecをH.264もしくはH.265に設定したのみ、デジタルPTZ Profileオプションが表示されます。</li>
                 <li ng-if="FisheyeLens" style="list-style-image:url('');">魚眼カメラの場合、新しいProfileを追加する時に<strong class="UI">[魚眼ビュータイプ]</strong>で<strong class="UI">[歪み補正ビュー]</strong>を選択し、<strong class="UI">[ビュー]</strong>で<strong class="UI">[クワドビュー]</strong>を選択すると、該当Profileが自動でデジタルPTZ Profileに登録されます。</li>
-                <li><strong class="UI">フレームレートの固定profile</strong>：映像のフレームレートを一定レベルで保障する時、適用するProfileです。<strong class="UI">[Codec]</strong>を[H.264]または[H.265]に設定した場合のみ、「フレームレートの固定profile」オプションが表示されます。</li>
+                <li><strong class="UI">フレームレート固定プロファイル</strong>：映像のフレームレートを一定レベルで保障する時、適用するProfileです。<strong class="UI">[Codec]</strong>を[H.264]または[H.265]に設定した場合のみ、「フレームレート固定プロファイル」オプションが表示されます。</li>
             </ul>
 
         </div>
@@ -219,24 +219,24 @@
             <h3>ATCモード</h3>
             <p>ATC(Auto Transmit Control)モードは、ネットワーク帯域幅の変化量によって映像の属性を変更して伝送量を調整します。伝送量の調整方法は、ATCモードによって異なります。</p>
             <ul>
-                <li><strong class="UI">無効</strong>：ネットワーク帯域幅が変化してもビデオ伝送量を一定維持します。</li>
+                <li><strong class="UI">未使用</strong>：ネットワーク帯域幅が変化してもビデオ伝送量を一定維持します。</li>
                 <li><strong class="UI">有効－フレームレート制御</strong>：ネットワーク帯域幅が変化される場合、フレームレートを変更して伝送するデータ量を調整します。</li>
-                <li><strong class="UI">有効 - 圧縮制御</strong>：ネットワーク帯域幅が変化される場合、伝送するデータの圧縮率を変更して伝送するデータ量を調整します。圧縮調整する場合、画質が低くなることがあります。 </li>
-                <li><strong class="UI">有効 - イベント(MD)</strong>：<a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">モーション検知イベント</a>が設定されている場合、使用できるモードです。モーション検知イベントが発生してネットワーク帯域幅が変化する場合、フレームレートを変更してデータ量を調整します。モーションが検知されない場合、最小限のフレームだけを出力して帯域幅使用を節約します。</li>
+                <li><strong class="UI">On - 圧縮制御</strong>：ネットワーク帯域幅が変化される場合、伝送するデータの圧縮率を変更して伝送するデータ量を調整します。圧縮調整する場合、画質が低くなることがあります。 </li>
+                <li><strong class="UI">On - イベント(MD)</strong>：<a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">モーション検知イベント</a>が設定されている場合、使用できるモードです。モーション検知イベントが発生してネットワーク帯域幅が変化する場合、フレームレートを変更してデータ量を調整します。モーションが検知されない場合、最小限のフレームだけを出力して帯域幅使用を節約します。</li>
             </ul>
         </div>
             
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>感度</h3>
             <p>ネットワーク帯域幅変化量の反映速度を調整します。ATC感度が最高の場合に反映速度が最も早く、最低の場合に反映速度が最も遅いです。</p>
-            <p>ATC感度は、<strong class="UI">[ATCモード]</strong>を<strong class="UI">[有効－フレームレート制御]</strong>、<strong class="UI">[有効 - 圧縮制御]</strong>に選択する時のみ有効になります。</p>
+            <p>ATC感度は、<strong class="UI">[ATCモード]</strong>を<strong class="UI">[有効－フレームレート制御]</strong>、<strong class="UI">[On - 圧縮制御]</strong>に選択する時のみ有効になります。</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>上限</h3>
             <p>ネットワーク帯域幅変化量によってビデオ伝送量を変更する時、ある程度まで属性を変更するかATCモードの上限値を設定します。ATCモードを使用しなかった時を100%と仮定すると、10～50%に値を設定することができ、設定された値の以下にはビデオ伝送量は変更されません。</p>
             <p>この時、伝送量を減らし過ぎると画面が点滅する場合があるため、本設定値を調整して限界設定値を調整します。</p>
-            <p>ATC上限は、<strong class="UI">[ATCモード]</strong>を<strong class="UI">[有効－フレームレート制御]</strong>、<strong class="UI">[有効 - 圧縮制御]</strong>に選択する時のみ有効になります。</p>
+            <p>ATC上限は、<strong class="UI">[ATCモード]</strong>を<strong class="UI">[有効－フレームレート制御]</strong>、<strong class="UI">[On - 圧縮制御]</strong>に選択する時のみ有効になります。</p>
         </div>  
     <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
@@ -429,14 +429,14 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>マルチキャスト(RTSP)</h2>
+        <h2>マルチキャスト</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>マルチキャストは、一台のカメラで発生した映像を接続された数台のデバイスに送る時に使用します。現在、設定中のProfileでRTSP (Real Time Streaming Protocol)プロトコルの使用有無を設定して詳細を入力します。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>マルチキャスト(RTSP)</h3>
+            <h3>マルチキャスト</h3>
             <p>RTSPプロトコルを使用して映像を伝送するには、<strong class="UI">[有効]</strong>を選択します。</p>
         </div>
         <div class="wn5-setup-section-article-content">

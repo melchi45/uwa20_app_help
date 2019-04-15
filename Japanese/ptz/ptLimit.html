@@ -49,14 +49,7 @@
             <h3>チルト角度</h3>
             <p><strong class="UI">[モード]</strong>で<strong class="UI">[チルトリミット]</strong>を選択した場合、表示されます。チルトモーションの角度を設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>パン/チルト速度</h3>
-            <p>ジョグ速度レベルを指数と線形パターンの中で選択することができます。</p>
-            <ul>
-                <li><strong class="UI">指数</strong>：パン/チルトを曲線形の速度で制御します。</li>
-                <li><strong class="UI">線形</strong>：パン/チルトを一定な速度で制御します。</li>
-            </ul>
-        </div>
+
             <div class="wn5-setup-section-article-content">
                 <h3>動作</h3>
             <p>パンとチルトが動作する最大範囲を設定します。</p>
@@ -73,10 +66,28 @@
             </div>
             </div>
              </div>	
-             
-             
-<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
 
+
+<hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
+    <div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
+        <div class="wn5-setup-section-heading">
+        <h2>パン/タイル速度</h2>
+       </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>ジョグ速度レベルを指数と線形パターンの中で選択することができます。</p>
+            <ul>
+                    <li><strong class="UI">指数</strong>：パン/チルトを曲線形の速度で制御します。</li>
+                    <li><strong class="UI">線形</strong>：パン/チルトを一定な速度で制御します。</li>
+            </ul>  
+ </div>
+	</div>
+</div>
+             
+             
+
+
+<hr class="wn5-setup-hr"  ng-if="ProportionalPTSpeedModes">
 <div class="wn5-setup-section"  ng-if="ProportionalPTSpeedModes">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="group"></a>均等パン/チルト</h2>
@@ -88,12 +99,12 @@
         <div class="wn5-setup-section-article-content">
                 <h3>モード</h3>
             <p>ズーム倍率によってパン、チルトの手動操作速度が変更されるようにオプションを選択することができます。</p>
-            <ul>
+       <!--     <ul>
                 <li><strong class="UI">無効</strong>：均等パン/チルトを解除します。</li>
                 <li><strong class="UI">遅い</strong>：ズーム倍率に比例してパン、チルトの手動操作速度が変更されます。中より20%遅くなります。</li>
                 <li><strong class="UI">中</strong>：ズーム倍率に比例してパン、チルトの手動操作速度が変更されます。</li>
                 <li><strong class="UI">早い</strong>：ズーム倍率に比例してパン、チルトの手動操作速度が変更されます。中より20%早くなります。</li>
-            </ul>
+            </ul>  --> 
         </div>
 	</div>
 </div>
@@ -101,19 +112,19 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>パン/チルト傾き初期化</h2>
+        <h2>パン/チルト初期化</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラのパンとチルトモーター位置の初期化有無を設定して初期化周期や時間を設定することができます。</p>
-            <p>例えば、<strong class="UI">[使用]</strong>を選択した後、<strong class="UI">[継続時間]</strong>は「2日」、<strong class="UI">[init時間]</strong>は「9」に選択した場合、2日ごとに午前9時にパン/チルトの位置が初期化されます。カメラ設定時間が2000年1月1日の場合、2000年1月3日9時に初期化動作が開始され、この後2000年1月5日、7日のように2日ごとに午前9時定刻、パン/チルト位置が初期化されます。</p>
+            <p>例えば、<strong class="UI">[使用]</strong>を選択した後、<strong class="UI">[継続時間]</strong>は「2日」、<strong class="UI">[時間]</strong>は「9」に選択した場合、2日ごとに午前9時にパン/チルトの位置が初期化されます。カメラ設定時間が2000年1月1日の場合、2000年1月3日9時に初期化動作が開始され、この後2000年1月5日、7日のように2日ごとに午前9時定刻、パン/チルト位置が初期化されます。</p>
         </div>
             <div class="wn5-setup-section-article-content">
                 <h3>継続時間</h3>
                 <p>初期化周期を設定します。例えば、「2日」を選択した場合には2日ごとに初期化します。</p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>init時間</h3>
+                <h3>時間</h3>
                 <p>初期化動作時間を設定します。0時から23時まで定刻時間を選択することができます。</p>
             </div>
             <div class="wn5-online-help-info">

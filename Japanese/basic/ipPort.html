@@ -16,10 +16,10 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>IPタイプ</h3>
-			<p>IP接続タイプを選択します。IPアドレスを固定的に使用する場合には、<strong class="UI">[手動]</strong>に設定してすべての情報を入力します。動的IPを使用する場合、<strong class="UI">[DHCP]</strong>に設定してDNSアドレスのみ入力します。</p>
+			<p>IP接続タイプを選択します。IPアドレスを固定的に使用する場合には、<strong class="UI">[マニュアル]</strong>に設定してすべての情報を入力します。動的IPを使用する場合、<strong class="UI">[DHCP]</strong>に設定してDNSアドレスのみ入力します。</p>
 			<p ng-if="PPPoE"><strong class="UI">[PPPoE]</strong>タイプを使用する場合、DNSアドレスとID、パスワードのみ入力します。 </p>
 			<ul>
-			<li><strong class="UI">手動</strong>：IPアドレス、Subnet Mask、GATEWAY、DNS1、DNS2を直接入力して設定します。</li>
+			<li><strong class="UI">マニュアル</strong>：IPアドレス、Subnet Mask、GATEWAY、DNS1、DNS2を直接入力して設定します。</li>
 			<li><strong class="UI">DHCP</strong>：DNS1、DNS2を設定します。</li>
 			<li ng-if="PPPoE"><strong class="UI">PPPoE</strong>：DNS1、DNS2、ID、パスワードを設定します。</li> 
 			</ul>
@@ -34,12 +34,12 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Subnet Mask</h3>
-			<p>設定されたIPアドレスのSubnet Maskが表示されます。<strong class="UI">[IPタイプ]</strong>を<strong class="UI">[手動]</strong>に設定すると、Subnet Maskを変更することができます。</p>
+			<p>設定されたIPアドレスのSubnet Maskが表示されます。<strong class="UI">[IPタイプ]</strong>を<strong class="UI">[マニュアル]</strong>に設定すると、Subnet Maskを変更することができます。</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content" >
 			<h3>GATEWAY</h3>
-            <p>設定されたIPアドレスのGATEWAYが表示されます。<strong class="UI">[IPタイプ]</strong>を<strong class="UI">[手動]</strong>に設定すると、GATEWAYを変更することができます。</p>
+            <p>設定されたIPアドレスのGATEWAYが表示されます。<strong class="UI">[IPタイプ]</strong>を<strong class="UI">[マニュアル]</strong>に設定すると、GATEWAYを変更することができます。</p>
 			</div>
 		<div class="wn5-setup-section-article-content">	
             <h3>DHCPごとのDNS設定</h3>
@@ -81,7 +81,7 @@
 			<p>IP接続タイプを選択します。初期値は<strong class="UI">[初期値]</strong>です。この時にDHCPが見つからないと、自動に前の設定値に変更されます。</p>
             <ul>
                 <li><strong class="UI">DHCP</strong>：DHCPで与えられたIPv6アドレスが表示されます。</li>
-                <li><strong class="UI">手動</strong>：ユーザーが任意に設定したIPv6アドレスを入力することができます。</li>
+                <li><strong class="UI">マニュアル</strong>：ユーザーが任意に設定したIPv6アドレスを入力することができます。</li>
                 <li><strong class="UI">初期値</strong>：初期値に設定されているIPv6アドレスが表示されます。</li>
             </ul>
 		</div>
@@ -99,11 +99,11 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Prefix</h3>
-			<p>IPの範囲を設定することができる値です。<strong class="UI">[IPタイプ]</strong>が<strong class="UI">[初期値]</strong>の場合、<strong class="UI">[Prefix]</strong>値は64です。<strong class="UI">[手動]</strong>の場合には、<strong class="UI">[Prefix]</strong>値を変更することができます。</p>
+			<p>IPの範囲を設定することができる値です。<strong class="UI">[IPタイプ]</strong>が<strong class="UI">[初期値]</strong>の場合、<strong class="UI">[Prefix]</strong>値は64です。<strong class="UI">[マニュアル]</strong>の場合には、<strong class="UI">[Prefix]</strong>値を変更することができます。</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>GATEWAY</h3>
-			<p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[手動]</strong>に設定した時に表示されます。ユーザーが直接にGATEWAYアドレスを入力します。</p>
+			<p><strong class="UI">[IPタイプ]</strong>を<strong class="UI">[マニュアル]</strong>に設定した時に表示されます。ユーザーが直接にGATEWAYアドレスを入力します。</p>
 		</div>
 	</div>
 </div>

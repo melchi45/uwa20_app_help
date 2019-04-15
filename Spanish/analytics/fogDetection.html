@@ -26,6 +26,18 @@
             <h3>Activar Detecci&oacute;n de niebla</h3>
             <p>Para utilizar la detecci&oacute;n de niebla, seleccione <strong class="UI">[Activar Detecci&oacute;n de niebla]</strong>. </p>
         </div>
+
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>Ajuste del PTZ</h4>
+            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+            <ul>
+                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
+                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+        </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>Nivel de detecci&oacute;n  </h3>
             <p>El nivel de niebla actual aparecer&aacute; en el gr&aacute;fico de nivel. Una alarma se produce cuando el nivel actual es mayor que el nivel de detecci&oacute;n configurado. Un menor nivel de detecci&oacute;n permite la detecci&oacute;n de una imagen, incluso si es borrosa minuciosamente por la niebla.</p>
@@ -90,22 +102,22 @@
         </div>
 		
      <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
         </div>
 		
 		<div class="wn5-setup-section-article-content">
-            <h3>Ejecutar antiniebla  </h3>
+            <h3>Filtro antineblina  </h3>
             <p>Para ejecutar el filtro antineblina cuando se crea un evento de detecci&oacute;n de niebla, seleccione <strong class="UI">[Activar]</strong>. </p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">

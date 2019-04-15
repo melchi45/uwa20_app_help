@@ -29,12 +29,22 @@
             <h3>自動削除</h3>
             <p>自動削除機能の使用有無を設定します。現在の時間を基準に設定した自動削除日数だけのデータを残して過去のデータは自動に削除します。自動削除日は、最小1日から最大180日まで設定することができます。<strong class="UI">[自動削除]</strong>機能は<strong class="UI">[オーバーライト]</strong>を<strong class="UI">[有効]</strong>に設定した時のみ有効になります。</p>
         </div>
-        <div class="wn5-online-help-info">
+    <!--     <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                
                 <li>削除されたデータは復旧できません。</li>
                 <li>NASを使用する場合、NASの容量が推奨仕様以上の場合のみ自動削除することができます。</li>
+            </ul>
+        </div>  --> 
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul><li>デバイスリストで<strong class="UI">[状況]</strong>が「エラー」に表示されると、ストレージ用デバイスが正しく接続されているかストレージ用デバイスのファイルシステムが損傷されていないか、ストレージ用デバイスが物理的に損傷されていないかを確認します。ストレージ用デバイスを確認したにもかかわらず「エラー」メッセージが表示され続けたら、デバイスをフォーマットしたり交換します。</li>
+                <li>NAS使用時、一時的なネットワーク切断によって映像データが保存されない場合があるため、SDカードと共に使用することをお勧めします。</li>
+                <li>高解像度、高いビットレート、高いフレームレートなどを設定すると、映像データ量が増加します。データ量が増加すると、フルフレームに設定してもフレームスキップが発生することがあります。フレームスキップが発生すると、最小1秒当たり1枚以上の映像に保存します。</li>
+                <li>Micro SDカードを除去する時には、<strong class="UI">[無効]</strong>に変更してからカードを除去してください。<strong class="UI">[無効]</strong>に変更せずに任意で除去したり不安定な電源にカメラを接続させるとMicro SDカードが損傷される場合があります。</li>
+                <li>推奨速度以下のMicro SDメモリカードを使用する場合、フレームスキップが発生することがあります。 &nbsp;容量が大きいMicro SDメモリカードを使用する場合、フォーマット速度が遅くなることがあります。</li>
             </ul>
         </div>
 	</div>
@@ -141,62 +151,6 @@
 
     </div>
 </div>		
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
-        <h2>録画設定</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <h3>録画Profile</h3>
-            <p>録画する時に使用されるビデオprofile名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profileタイプ]</strong></a>で「録画Profile」に設定したProfileが表示されます。</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>通常録画</h3>
-            <p>イベントがない一般的な状況でいつも一定なフレームレートで映像を録画するタイプを設定します。</p>
-            <ul>
-        
-                    <li><strong class="UI">無し</strong>：カメラ映像を録画しません。</li>
-                    <li><strong class="UI">Iフレーム</strong>：通常録画時、Iフレームだけを録画します。</li>
-                    <li><strong class="UI">フルフレーム</strong>：通常録画時、フルフレームを録画します。</li>
-                </ul>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>イベント録画</h3>
-            <p>イベントが発生した時に録画するタイプを設定します。</p>
-            <ul>
-                <li><strong class="UI">Iフレーム</strong>：イベント発生時、Iフレームだけを録画します。</li>
-                <li><strong class="UI">フルフレーム</strong>：イベント発生時、フルフレームを録画します。</li>
-            </ul>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>プリイベント持続時間</h3>
-            <p>イベントが発生する直前の画像保存時間を設定します。イベント発生時間を基準に1、3、5秒前まで画像を保存することができます。</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>ポストイベント持続時間</h3>
-            <p>イベントが発生した後の画像保存時間を設定します。イベント発生時間を基準に5、10、30、60、120秒後まで画像を保存することができます。</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>レコードファイルの種類</h3>
-            <p>映像を保存するファイルタイプを設定します。保存ファイルタイプを変更すると、既存のデータがフォーマットされます。</p>
-            <ul>
-                <li><strong class="UI">STW</strong>：ハンファテックウィン独自のファイルタイプです。</li>
-                <li><strong class="UI">AVI</strong>：一般のAVIファイルタイプです。</li>
-            </ul>
-        </div>
-        <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-            <ul><li>デバイスリストで<strong class="UI">[状況]</strong>が「エラー」に表示されると、ストレージ用デバイスが正しく接続されているかストレージ用デバイスのファイルシステムが損傷されていないか、ストレージ用デバイスが物理的に損傷されていないかを確認します。ストレージ用デバイスを確認したにもかかわらず「エラー」メッセージが表示され続けたら、デバイスをフォーマットしたり交換します。</li>
-                <li>NAS使用時、一時的なネットワーク切断によって映像データが保存されない場合があるため、SDカードと共に使用することをお勧めします。</li>
-                <li>高解像度、高いビットレート、高いフレームレートなどを設定すると、映像データ量が増加します。データ量が増加すると、フルフレームに設定してもフレームスキップが発生することがあります。フレームスキップが発生すると、最小1秒当たり1枚以上の映像に保存します。</li>
-                <li>Micro SDカードを除去する時には、<strong class="UI">[無効]</strong>に変更してからカードを除去してください。<strong class="UI">[無効]</strong>に変更せずに任意で除去したり不安定な電源にカメラを接続させるとMicro SDカードが損傷される場合があります。</li>
-                <li>推奨速度以下のMicro SDメモリカードを使用する場合、フレームスキップが発生することがあります。 &nbsp;容量が大きいMicro SDメモリカードを使用する場合、フォーマット速度が遅くなることがあります。</li>
-            </ul>
-        </div>
-</div>
-</div>
-
 
 
 <hr class="wn5-setup-hr">
@@ -246,6 +200,58 @@
         </div>
     </div>
 </div>
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>録画設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>録画Profile</h3>
+            <p>録画する時に使用されるビデオprofile名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profileタイプ]</strong></a>で「録画Profile」に設定したProfileが表示されます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>通常録画</h3>
+            <p>イベントがない一般的な状況でいつも一定なフレームレートで映像を録画するタイプを設定します。</p>
+            <ul>
+        
+                    <li><strong class="UI">無し</strong>：カメラ映像を録画しません。</li>
+                    <li><strong class="UI">Iフレーム</strong>：通常録画時、Iフレームだけを録画します。</li>
+                    <li><strong class="UI">フルフレーム</strong>：通常録画時、フルフレームを録画します。</li>
+                </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>イベント録画</h3>
+            <p>イベントが発生した時に録画するタイプを設定します。</p>
+            <ul>
+                <li><strong class="UI">Iフレーム</strong>：イベント発生時、Iフレームだけを録画します。</li>
+                <li><strong class="UI">フルフレーム</strong>：イベント発生時、フルフレームを録画します。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>プリイベント持続時間</h3>
+            <p>イベントが発生する直前の画像保存時間を設定します。イベント発生時間を基準に1、3、5秒前まで画像を保存することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ポストイベント持続時間</h3>
+            <p>イベントが発生した後の画像保存時間を設定します。イベント発生時間を基準に5、10、30、60、120秒後まで画像を保存することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>レコードファイルの種類</h3>
+            <p>映像を保存するファイルタイプを設定します。保存ファイルタイプを変更すると、既存のデータがフォーマットされます。</p>
+            <ul>
+                <li><strong class="UI">STW</strong>：ハンファテックウィン独自のファイルタイプです。</li>
+                <li><strong class="UI">AVI</strong>：一般のAVIファイルタイプです。</li>
+            </ul>
+        </div>
+
+</div>
+</div>
+
+
+
 
 <hr class="wn5-setup-hr">
 

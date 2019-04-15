@@ -34,14 +34,24 @@
 			<h5>Cambio de un &aacute;rea</h5>
             <p>Se puede cambiar el tama&ntilde;o del &aacute;rea de detecci&oacute;n haciendo clic en la esquina inferior derecha del &aacute;rea de juego y arrastrando el &aacute;rea relevante con el rat&oacute;n. </p>
 
-        </div>
+            <div class="wn5-online-help-action" ng-if="PTZModel">
+                <h4>Ajuste del PTZ</h4>
+                <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+                <ul>
+                    <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                    <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
+                    <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
+                    <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
+                </ul>
+            </div>
+
         <div class="wn5-setup-section-article-content">
             
             <h5>Sensibilidad</h5>
             <p>Esto ajusta la sensibilidad del evento de detecci&oacute;n facial. Cuanto mayor sea la sensibilidad, m&aacute;s detallada ser&aacute; la detecci&oacute;n facial posible.</p>
           </div>
         <div class="wn5-setup-section-article-content">
-              <h3>Movimiento del área de ROI basado en movimiento</h3>
+              <h3>Área dinámica basada en el movimiento</h3>
               <p>Seleccione <strong class="UI">[Activar]</strong> si desea que el área de detección de rostros cambie automáticamente, de acuerdo con el análisis de movimiento.Si no se selecciona activar <strong class="UI">[Activar]</strong>, las caras solo se detectarán en el área ROI establecida. </p>
               <p>Si se establece el área de ROI, la cara se detectará solo dentro del área establecida, y la eficiencia de detección de la cara pequeña a una larga distancia puede deteriorarse. Si se utiliza la función "Movimiento de área ROI basada en movimiento ", cuando se detecta movimiento en toda la pantalla, el área para la detección de rostros cambia automáticamente &nbsp;y, por lo tanto, se mejora la eficacia de detección de rostros.</p>
           </div>
@@ -127,17 +137,17 @@
         </div>
 
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">

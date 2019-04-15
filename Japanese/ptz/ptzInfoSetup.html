@@ -69,7 +69,7 @@
        
             <p><strong class="UI">[プリセット設定]</strong>のダイアログボックスで入力したプリセットNo.です。</p>
 </div>
-        <div class="wn5-setup-section-article-content">
+        <div classトラッキング="wn5-setup-section-article-content">
             <h5>名前</h5>
        
             <p><strong class="UI">[プリセット設定]</strong>のダイアログボックスで入力したプリセット名です。</p>
@@ -80,8 +80,8 @@
        
             <p>カメラが該当プリセット位置に移動した後、実行するカメラの動作を設定します。(スウィング機能では適用されません。) </p>
         <ul>
-            <li><strong class="UI">無効</strong>：カメラが該当プリセット位置に移動した後、何の動作もしません。</li>
-                <li><strong class="UI">オートラン</strong>：<a class="wn5-online-help-link" href="ptzInfoSetup.html#autorun" ng-href="#/help/ptzSetup_ptzInfoSetup?#autorun"><strong class="UI">[オートラン]</strong></a><strong class="UI"></strong>タブで設定した動作が自動に実行されます。オートラン<strong class="UI">[モード]</strong>で<strong class="UI">[無効]</strong>を選択したり、オートラン動作がない場合にはプリセット実行状況が維持されます。(グループまたはツアー機能でプリセットが実行されると、適用されません。)
+            <li><strong class="UI">off</strong>：カメラが該当プリセット位置に移動した後、何の動作もしません。</li>
+                <li><strong class="UI">オートラン</strong>：<a class="wn5-online-help-link" href="ptzInfoSetup.html#autorun" ng-href="#/help/ptzSetup_ptzInfoSetup?#autorun"><strong class="UI">[オートラン]</strong></a><strong class="UI"></strong>タブで設定した動作が自動に実行されます。オートラン<strong class="UI">[モード]</strong>で<strong class="UI">[off]</strong>を選択したり、オートラン動作がない場合にはプリセット実行状況が維持されます。(グループまたはツアー機能でプリセットが実行されると、適用されません。)
 </li>
                 <li><strong class="UI">オートトラッキング</strong>：<strong class="UI">[トラッキング時間]</strong>カラムで設定した時間だけオートトラッキングを実行します。</li>
                 <li><strong class="UI">ビデオ映像分析</strong>：ビデオ映像分析の動作が実行されます。</li>
@@ -92,7 +92,7 @@
                    <p><strong class="UI">[フォローアップアクション]</strong>で<strong class="UI">[オートトラッキング]</strong>を選択した場合、オートトラッキングを実行するトラッキング時間を設定します。</p>
         </div>
 	   <div class="wn5-setup-section-article-content">
-            <h5>移動</h5>
+            <h5>メニューに移動</h5>
        
             <p>設定ページに移動して詳細オプションを確認したり設定することができます。</p>
             <ul>
@@ -102,15 +102,15 @@
             </ul>
     </div>
 	
-			           <div class="wn5-online-help-info">
+	<!--  임시삭제. 마지막 항목만 남겨야 함		           <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>プリセット設定を保存してから、必ず「シーケンス設定」またはプリセットを実行してください。 &nbsp;該当動作をしない場合、意図しないプリセット設定変更などの誤動作が発生することがあります。</li>
                 <li>プリセットを設定している間には、プリセット設定&amp;ホームポジション設定、ホームポジションに移動機能は実行できません。</li>
                 <li>高温もしくは低温状況でシーケンス動作を実行する時、シーケンス動作の正確度のために設定速度より遅く動作することがあります。</li>
-                <li>&nbsp;</li>
+ 
             </ul>
-            </div>
+            </div>  --> 
         <div class="wn5-setup-section-article-content">
             <h3>最終ポジション</h3>
             <p>カメラの電源をオフにしてからオンすると、保存された最終ポジションに移動するように設定することができます。カメラ最終ポジションの保存有無を選択して保存間隔を選択します。</p>
@@ -123,7 +123,7 @@
 <div class="wn5-setup-section-article-content">
             <h5>時間</h5>
        
-                <p>現在位置を最終ポジションに保存する保存間隔を設定します。単位は「秒」です。保存間隔をフィールドに入力した後、<strong class="UI">[設定]</strong>をクリックしてください。</p>
+                <p>現在位置を最終ポジションに保存する保存間隔を設定します。単位は「秒」です。保存間隔をフィールドに入力した後、<strong class="UI">[適用]</strong>をクリックしてください。</p>
         </div>
 
     </div>
@@ -329,13 +329,13 @@
                 <div class="wn5-setup-section-article-content">
                     <p>トラッキング機能はカメラのモーションパスを保存した後、そのパスどおりカメラを動かせる機能です。</p>
                 </div>
-				 <div class="wn5-online-help-info">
+<!-- 임시 삭제 				 <div class="wn5-online-help-info">
                             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>動作が保存されながらメモリ利用が表示され、保存時間はPTZ動作のレベルによって異なります。</li>
                 <li>メモリが満ちた状況で100%に表示されたり、保存開始から2分まで録画終了を設定しない場合には自動に終了されます。</li>
             </ul>
-                        </div>
+                        </div>  -->
                     <div class="wn5-setup-section-article-content">
                     <h3>トラッキング設定</h3>
                         <p>トラッキングパスを設定したり、トラッキング機能を開始して終了することができます。</p>
@@ -375,8 +375,8 @@
              <h3>モード</h3>
              <p>自動に実行する機能を選択した後、詳細設定を指定することができます。</p>    
                 <ul>
-                   <li><strong class="UI">無効</strong>：オートラン機能を使用しません。</li>
-                   <li><strong class="UI">ホーム</strong>：ホームポジションにカメラが移動します。ホームポジションは<a class="wn5-online-help-link" href="ptzInfoSetup.html#preset" ng-href="#/help/ptzSetup_ptzInfoSetup?#preset"><strong class="UI">[プリセット]</strong>タブ</a>で設定することができます。</li>
+                   <li><strong class="UI">off</strong>：オートラン機能を使用しません。</li>
+                   <li><strong class="UI">Home</strong>：ホームポジションにカメラが移動します。ホームポジションは<a class="wn5-online-help-link" href="ptzInfoSetup.html#preset" ng-href="#/help/ptzSetup_ptzInfoSetup?#preset"><strong class="UI">[プリセット]</strong>タブ</a>で設定することができます。</li>
                    <li><strong class="UI">プリセット</strong>：該当プリセットNo.に移動します。プリセットに移動する時間と移動するプリセット位置No.を設定することができます。</li><!--   <ul>
                             <li><strong class="UI">시간</strong>: <u>프리셋 위치로 자동으로 이동하는 시간을 설정합니다.</u></li>
                             <li><strong class="UI">프리셋</strong>: 카메라가 이동할 프리셋 위치 번호를 선택합니다. </li>
@@ -388,7 +388,7 @@
                         <li><strong class="UI">그룹</strong>: 그룹 번호를 선택합니다. 그룹은&nbsp;<a class="wn5-online-help-link" href="ptzInfoSetup.html#group" ng-href="#/help/ptzSetup_ptzInfoSetup?#group"><strong class="UI">[그룹] </strong>탭</a>에서 설정할 수 있습니다. </li>
                                                         </ul> --><li><strong class="UI">ツアー</strong>：ツアー動作を自動に実行します。</li><!-- <ul>
                         <li><strong class="UI">시간</strong>: <u>투어 동작이 자동으로 실행되는 시간을 설정합니다.</u></li>
-                        </ul> --><li><strong class="UI">トラッキング</strong>：トラッキング動作を自動に実行します。トラッキング動作が自動に実行される時間とトラッキングNo.を設定することができます。トラッキングの詳細機能は<a class="wn5-online-help-link" href="ptzInfoSetup.html#trace" ng-href="#/help/ptzSetup_ptzInfoSetup?#trace"><strong class="UI">[トラッキング]</strong>タブ</a>で設定することができます。</li><!--  <ul>
+                        </ul> --><li><strong class="UI">トラッキング</strong>：トラッキング動作を自動に実行します。トラッキング動作が自動に実行される時間とトラッキングNo.を設定することができます。トラッキングの詳細機能は<a class="wn5-online-help-link" href="ptzInfoSetup.html#trace" ng-href="#/help/ptzSetup_ptzInfoSetup?#trace"><strong class="UI">[トレース]</strong>タブ</a>で設定することができます。</li><!--  <ul>
                     <li><strong class="UI">시간</strong>: <u>추적 동작이 자동으로 실행되는 시간을 설정합니다.</u></li>
                     <li><strong class="UI">그룹</strong>: 추적 번호를 선택합니다. 추적 상세 기능은&nbsp;<a class="wn5-online-help-link" href="ptzInfoSetup.html#trace" ng-href="#/help/ptzSetup_ptzInfoSetup?#trace"><strong class="UI">[추적] 탭</strong></a>에서 설정할 수 있습니다.</li>
                                   </ul> --><li ng-if="AutoPan"><strong class="UI">オートパン</strong>：パン方向に360°回転する動作で自動に実行します。自動に実行される時間とカメラがパン方向に回転する速度とチルト固定角度を設定することができます。例えば、チルト角度を「30」に設定した場合、チルト角度は30°に維持されます。</li><!--  <ul>

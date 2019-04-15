@@ -12,8 +12,8 @@
             <li>Si vous acc&eacute;dez &agrave; [PTZ] &gt; [Configuration PTZ] &gt; <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html#preset" ng-href="#/help/ptzSetup_ptzInfoSetup?#preset">[Pr&eacute;r&eacute;glage]</a> &gt; [Configuration pr&eacute;r&eacute;gl&eacute;e] &gt; [Action de suivi] et s&eacute;lectionnez Suivi automatique, la cam&eacute;ra adopte le pr&eacute;r&eacute;glage et ex&eacute;cute automatiquement la fonction de suivi automatique. </li>
         </ul>
     </div>
-<hr class="wn5-setup-hr" ng-if="DefocusDetectSimpleFocus">		                              
-<div class="wn5-setup-section" ng-if="DefocusDetectSimpleFocus">
+<hr class="wn5-setup-hr" ng-if="PTZModel">		                              
+<div class="wn5-setup-section" ng-if="PTZModel">
 <div class="wn5-setup-section-heading">
      <h2>R&eacute;glage du PTZ</h2>
  </div>
@@ -49,14 +49,14 @@
             <h4><a name="exclude"></a>D&eacute;finition d&rsquo;une zone exclue</h4>
             <ol>
                 <li>D&eacute;finissez une zone exclue en faisant glisser la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</li>
-                <li>Saisissez le nom de la zone exclue dans la bo&icirc;te de dialogue <strong class="UI">[Suivi auto]</strong> et cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                <li>Saisissez le nom de la zone exclue dans la bo&icirc;te de dialogue <strong class="UI">[Suivi automatique]</strong> et cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
             </ol>
         </div>
             <div class="wn5-online-help-action">
                 <h4>Suppression d&rsquo;une zone exclue</h4>
                 <ol>
                     <li>S&eacute;lectionnez un num&eacute;ro &agrave; supprimer de la liste des zones exclues.</li>
-                    <li>Cliquez sur le bouton <strong class="UI">[Suppr]</strong>.  </li>
+                    <li>Cliquez sur le bouton <strong class="UI">[Effacer]</strong>.  </li>
                 </ol>
             </div>
             <div class="wn5-online-help-info">
@@ -96,7 +96,7 @@
             <p>Lorsque l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;e pour l&rsquo;indicateur d&rsquo;affichage, l&rsquo;indicateur est &eacute;galement affich&eacute; sur l&rsquo;image enregistr&eacute;e. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Exclure la zone </h3>
+            <h3>Zone exclue </h3>
             <p>Un objet d&eacute;tect&eacute; dans la zone d&eacute;finie est exclu du suivi automatique. Pour savoir comment d&eacute;finir une zone exclue, reportez-vous &agrave; la rubrique «&nbsp;<a class="wn5-online-help-link" href="autoTrackEvent#exclude" ng-href="#/help/analytics_autoTrackEvent?#exclude">D&eacute;finition d&rsquo;une zone exclue du suivi automatique</a>&nbsp;».</p>
             <p>Si l&rsquo;option <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;e, toutes les zones exclues d&eacute;finies seront utilis&eacute;es.</p>
             <p>Dans ces zones, la d&eacute;tection d&rsquo;un mouvement ne d&eacute;clenchera pas le suivi automatique.</p>
@@ -148,7 +148,7 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="action"></a>Action d&rsquo;&eacute;v&eacute;nement</h2>
+        <h2><a class="wn5-online-help-link" name="action"></a>Config. action évén.</h2>
     </div>
     <div class="wn5-setup-section-article">
         

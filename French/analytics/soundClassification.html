@@ -44,9 +44,9 @@
             <h3>Cat&eacute;gories</h3>
             <p>Cela d&eacute;tecte le type de son et cr&eacute;e un &eacute;v&eacute;nement. Le type de son &agrave; d&eacute;tecter peut &ecirc;tre s&eacute;lectionn&eacute; plusieurs fois.</p>
             <ul>
-                <li><strong class="UI">Cri</strong>&nbsp;: D&eacute;tecte un son fort et soudain, y compris le cri d&apos;une personne tel qu&rsquo;un homme, femme ou enfant, et cr&eacute;e un &eacute;v&eacute;nement.</li>
-                <li><strong class="UI">Coup de feu</strong>&nbsp;: D&eacute;tecte un coup de feu ne se produisant qu&rsquo;une fois et cr&eacute;e un &eacute;v&eacute;nement.</li>
-                <li><strong class="UI">Explosion</strong>&nbsp;: D&eacute;tecte une explosion et cr&eacute;e un &eacute;v&eacute;nement.</li>
+                <li><strong class="UI">Son de cri</strong>&nbsp;: D&eacute;tecte un son fort et soudain, y compris le cri d&apos;une personne tel qu&rsquo;un homme, femme ou enfant, et cr&eacute;e un &eacute;v&eacute;nement.</li>
+                <li><strong class="UI">Son de coup de feu</strong>&nbsp;: D&eacute;tecte un coup de feu ne se produisant qu&rsquo;une fois et cr&eacute;e un &eacute;v&eacute;nement.</li>
+                <li><strong class="UI">Son d'explosion</strong>&nbsp;: D&eacute;tecte une explosion et cr&eacute;e un &eacute;v&eacute;nement.</li>
                 <li><strong class="UI">Son de verre bris&eacute;</strong>&nbsp;: D&eacute;tecte le bruit de verre bris&eacute; et cr&eacute;e un &eacute;v&eacute;nement.</li>
             </ul>
         </div>
@@ -101,7 +101,7 @@
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="action"></a>Configuration des actions de l&apos;&eacute;v&eacute;nement</h2>
+        <h2><a class="wn5-online-help-link" name="action"></a>Config. action évén.</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -123,22 +123,22 @@
         </div>
 
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
-            <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+            <h3>Al à Prérég</h3>
                     <p>Vous pouvez d&eacute;finir la position de vue de la cam&eacute;ra pour passer &agrave; un num&eacute;ro pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement de classification sonore est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
-            <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+            <h3>Al à Prérég</h3>
                 <p>Vous pouvez d&eacute;finir la position de vue de la cam&eacute;ra pour passer &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de classification sonore est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la section <strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong></a>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
-            <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+            <h3>Al à Prérég</h3>
                 <p>Vous pouvez d&eacute;finir la position de la cam&eacute;ra pour passer &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de classification sonore est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[Configuration PT]</strong></a>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
-            <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+            <h3>Al à Prérég</h3>
                 <p>Vous pouvez d&eacute;finir la position de la cam&eacute;ra pour passer &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de classification sonore est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
         </div>
 
@@ -153,7 +153,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Ceci d&eacute;finit les r&eacute;glages de la <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_soundClassification?#action">Configuration des actions de l&apos;&eacute;v&eacute;nement</a>]</strong> pour qu&rsquo;ils fonctionnent en permanence, ou uniquement dans la plage horaire d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de classification sonore est cr&eacute;&eacute;.</p>
+            <p>Ceci d&eacute;finit les r&eacute;glages de la <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_soundClassification?#action">Config. action évén.</a>]</strong> pour qu&rsquo;ils fonctionnent en permanence, ou uniquement dans la plage horaire d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de classification sonore est cr&eacute;&eacute;.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Toujours</h3>

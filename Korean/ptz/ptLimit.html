@@ -27,7 +27,7 @@
                 <li ng-if="PanTiltOnlyModel && ContinousFocus"><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
             </ul>
-            <p><strong class="UI">[팬 그라운드 설정]</strong>을 클릭하면 현재 촬상하고 있는 영상의 팬(Pan) 각도를 0도로 설정합니다. </p>
+            <p><strong class="UI">[팬 그라운드 위치 설정]</strong>을 클릭하면 현재 촬상하고 있는 영상의 팬(Pan) 각도를 0도로 설정합니다. </p>
     	</div>
     </div>
 </div>
@@ -69,14 +69,14 @@
 <hr class="wn5-setup-hr" ng-if="PTLimitSpeedTypeOptions">
     <div class="wn5-setup-section" ng-if="PTLimitSpeedTypeOptions">
         <div class="wn5-setup-section-heading">
-            <!-- xnp-6320rh에서 팬/기울기 속도를 팬/틸트 속도 기울기로 변경함. 박종인 책임님 2019-03-26 메일 참조. 영어는 Pan/Tilt speed 에서 Pan/Tilt speed curve로 수정--> 
-        <h2>팬/틸트 속도 기울기</h2>
+            <!-- xnp-6320rh에서 팬/기울기 속도를 팬/틸트 속도 기울기로 변경함. 박종인 책임님 2019-03-26 메일 참조. 영어는 Pan/Tilt speed 에서 Pan/Tilt speed curve로 수정. 변경점 이후 반영하기로 재논의됨. 2019-04-12  --> 
+        <h2>팬/기울기 속도</h2>
        </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라의 팬/틸트 동작 제어시 속도 옵션을 선택합니다.</p>
             <p>카메라의 팬/틸트 동작을 제어할 때 중심점에서 멀어지면 동작 속도가 빨라지게 됩니다. <!-- <strong class="UI">[지수]</strong> 를 선택하면 곡선처럼 속도가 증가하는 것으로, 느리게 증가하다가 갈수록 빠르게 증가합니다. <strong class="UI">[선형]</strong> 을 선택하면 직선처럼 속도가 증가하는 것으로, 일정한 속도로 빨라집니다.</p>
-            <p> </p> --> <strong class="UI">[지수]</strong>를 선택하면 곡선의 형태와 같이 속도가 증가합니다. 즉 느리게 증가하다가 갈수록 빠르게 증가합니다. <strong class="UI">[선형]</strong>을 선택하면 직선의 형태와 같이 속도가 증가하기 때문에 일정한 속도로 빨라집니다.        
+            <p> </p> --> <strong class="UI">[지수]</strong>를 선택하면 곡선의 형태와 같이 속도가 증가합니다. 즉 느리게 증가하다가 갈수록 빠르게 증가합니다. <strong class="UI">[선형]</strong>을 선택하면 직선의 형태와 같이 속도가 증가하기 때문에 일정한 속도로 빨라집니다.   </p>     
  </div>
 	</div>
 </div>

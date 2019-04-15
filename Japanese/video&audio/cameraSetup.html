@@ -19,6 +19,31 @@
 	</div>
 </div> 
 
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>PTZ調整</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+        </div>
+
+<div class="wn5-online-help-action" ng-if="PTZModel">
+    <h4>PTZ調整</h4>
+    <ul>
+        <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+        <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+        <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+        <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
+    </ul>
+</div>
+</div>
+</div>
+
+
+
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
@@ -50,14 +75,17 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>カメラのCMOSセンサーが1秒に何フレーム(fps)を撮影するか設定します。センサーで設定したフレーム数によって<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。</p>
+            <p>カメラのCMOSセンサーが1秒に何フレーム(fps)を撮影するか設定します。</p>
         </div>
+        <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    <li>センサーモードのオプションを変更すると、[カメラ設定]で設定したすべての値が初期化されます。</li>
+                    <li>センサーモード値は、画像プリセットごとにそれぞれ異なる設定ができません。フレームレートは、すべての画像プリセットに等しく適用されます。</li>
+                    <li>センサーモードで設定したフレーム数に応じて、<strong class="UI">[Basic]</strong>＆gt;<strong class="UI">[ビデオprofile]</strong>＆gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。.</li>
+                </ul>
+            </div> 
 
-        <div class="wn5-setup-section-article-content">
-
-            <h3>センサーモード</h3>
-            <p>フレームレートを設定します。フレームレートは画像プリセット別にそれぞれ設定することができません。フレームレートはすべての画像プリセットに同じく適用されます。</p>
-        </div>
     </div>
 </div>
 
@@ -177,7 +205,7 @@
             <h3>モード</h3>
             <p>カメラを使用する環境によってホワイトバランスモードを選択します。</p>
             <ul>
-                <li><strong class="UI">手動</strong>：手動で赤のゲインと青のゲインを調整することができます。赤が多く表示されると赤のゲインを下げ、青が多く表示されると青のゲインを下げます。緑が多く表示されると青色値/赤色値を共に上げます。</li>
+                <li><strong class="UI">マニュアル</strong>：手動で赤のゲインと青のゲインを調整することができます。赤が多く表示されると赤のゲインを下げ、青が多く表示されると青のゲインを下げます。緑が多く表示されると青色値/赤色値を共に上げます。</li>
                 <li><strong class="UI">ATW</strong>：カメラのカラーを自動に補正します。</li>
                 <li><strong class="UI">屋外</strong>：カメラのカラーを屋外環境に最適化されるように補正します。</li>
                 <li><strong class="UI">屋内</strong>：カメラのカラーを屋内環境に最適化されるように補正します。</li>
@@ -223,13 +251,14 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
-            <p>BLC (Back Light Compensation)モードは、逆光で暗く撮影された映像にユーザーが特定エリアを設定して選択エリアの対象物がよく表示されるように補正します。上/下/左/右ボタンを左右に調整してエリアのサイズを調整します。</p>
+            <p>BLC (Back Light Compensation)モードは、逆光で暗く撮影された映像にユーザーが特定エリアを設定して選択エリアの対象物がよく表示されるように補正します。</p>
+            <p><strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI"></strong>[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>BLCレベル</h5>
             <p>低、中、高の中から選択することができます。レベルが高いと、設定したエリアの明るさがより明るくなります。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+    <!--     <div class="wn5-setup-section-article-content">
             <h5>エリア設定</h5>
             <ul>
                 <li><strong class="UI">上</strong>：画面の上側から上面がどれだけ離れているかを設定します。</li>
@@ -237,7 +266,7 @@
                 <li><strong class="UI">左</strong>：画面の左側から左面がどれだけ離れているかを設定します。</li>
                 <li><strong class="UI">右</strong>：画面の左側から右面がどれだけ離れているかを設定します。</li>
             </ul>
-        </div>
+        </div>   --> 
 		        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
@@ -248,6 +277,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation)モードは街灯や車のヘッドライトのように強い照明を効果的に遮断して強い照明の飽和によって車のナンバープレートなどの周囲にある物事が識別できないことを防止します。</p>
+            <p><strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI"></strong>[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLCレベル</h5>
@@ -258,10 +288,10 @@
             <h5>マスク</h5>
             <p>マスクの適用有無を選択します。</p>
             <ul>
-                <li><strong class="UI">無効</strong>：遮断エリアが生成されません。</li>
-                <li><strong class="UI">有効</strong>：一定の明るさ以上のエリアは常時遮断されます。</li>
+                <li><strong class="UI">off</strong>：遮断エリアが生成されません。</li>
+                <li><strong class="UI">on</strong>：一定の明るさ以上のエリアは常時遮断されます。</li>
                 <li><strong class="UI">全日</strong>：とても明るい時やとても暗い時を除けて遮断エリアが生成されます。</li>
-                <li><strong class="UI">夜間</strong>：とても暗くなる前まで遮断エリアが生成されます。</li>
+                <li><strong class="UI">夜間のみ</strong>：とても暗くなる前まで遮断エリアが生成されます。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
@@ -269,14 +299,14 @@
             <p>遮断エリアカラーを設定します。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
-            <h5>マスクトーン</h5>
+            <h5>MASK TONE</h5>
             <p>遮断エリアトーンを設定します。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>調光</h5>
             <p>画面の強い光エリアを検知して明るさを調整しながら、飽和エリアを減少させます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+    <!--     <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
             <h5>エリア設定</h5>
             <p>遮断エリアのサイズ&amp;位置を設定します。</p>
             <ul>
@@ -285,7 +315,7 @@
                 <li><strong class="UI">左</strong>：画面の左側から左面がどれだけ離れているかを設定します。</li>
                 <li><strong class="UI">右</strong>：画面の左側から右面がどれだけ離れているかを設定します。</li>
             </ul>
-        </div>
+        </div>  --> 
 				        <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
@@ -400,34 +430,34 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions">
             <h3>アイリス</h3>
-            <p>DC(自動)、手動、Pアイリスの中で選択することができます。</p>
+            <p>DC(自動)、マニュアル、Pアイリスの中で選択することができます。</p>
             <ul>
                 <li><strong class="UI">DC(自動)</strong>：周囲環境の光量によってアイリスを自動に調整します。<strike>。</strike></li>
-                <li><strong class="UI">手動</strong>：アイリスF値を手動に調整します。</li>
+                <li><strong class="UI">マニュアル</strong>：アイリスF値を手動に調整します。</li>
                 <li ng-if="PIrisInIrisList"><strong class="UI">Pアイリス</strong>：ステッピングモーターでアイリスを調整します。様々な距離にある複数の対象物を同時にフォーカスを合わせることができて深い深度を持つことができます。</li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
             <h3>アイリスF-No</h3>
-            <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[手動]</strong>の場合、有効になってアイリスF値を設定します。</p>
+            <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[マニュアル]</strong>の場合、有効になってアイリスF値を設定します。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Lens">
             <h3>レンズ</h3>
             <p>DC(自動)や手動、また使用できるPアイリス種類の中で選択することができます。</p>
             <ul>
                 <li><strong class="UI">DC(自動)</strong>：入る光の量を判断してアイリスを調整します</li>
-                <li><strong class="UI">手動</strong>：アイリスを手動に調整します。</li>
+                <li><strong class="UI">マニュアル</strong>：アイリスを手動に調整します。</li>
                 <li><strong class="UI">Pアイリス</strong>：ステッピングモーターでアイリスを調整します。様々な距離にある複数の対象物を同時にフォーカスを合わせることができて深い深度を持つことができます。使用できるアイリス種類の中で選択することができます。</li>
             </ul>
         </div>
         
         <div class="wn5-setup-section-article-content" ng-if="PIrisModeOptions">
             <h3>Pアイリス</h3>
-            <p><strong class="UI">[レンズ]</strong>からPアイリスを選択すると有効になります。<strong class="UI">[自動]</strong>を選択すると、明るさによってアイリスが自動に調整されます。<strong class="UI">[手動]</strong>を選択すると、ユーザーが直接にアイリスの位置を設定します。</p>
+            <p><strong class="UI">[レンズ]</strong>からPアイリスを選択すると有効になります。<strong class="UI">[自動]</strong>を選択すると、明るさによってアイリスが自動に調整されます。<strong class="UI">[マニュアル]</strong>を選択すると、ユーザーが直接にアイリスの位置を設定します。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PIrisPosition">
             <h3>Pアイリス位置</h3>
-            <p><strong class="UI">[Pアイリス]</strong>を<strong class="UI">[手動]</strong>に選択すると有効になります。Pアイリス位置を調整することができます。</p>
+            <p><strong class="UI">[Pアイリス]</strong>を<strong class="UI">[マニュアル]</strong>に選択すると有効になります。Pアイリス位置を調整することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
             <h3>AGC</h3>
@@ -461,7 +491,7 @@
             <h3>モード</h3>
             <p>カメラがカラーやB/Wに変更されるタイプを選択します。</p>
             <ul>
-                <li><strong class="UI">カラー</strong>：映像を常時カラーに出力します。</li>
+                <li><strong class="UI">色</strong>：映像を常時カラーに出力します。</li>
                 <li><strong class="UI">B/W</strong>：映像を常時B/Wに出力します。</li>
                 <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">[露出補正]</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[無効]</strong>に設定すると、デイ/ナイトを自動に設定することができません。</li>
                 <li ng-if="DayNightMode_ExternalBW"><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li>
@@ -550,37 +580,37 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>曇り除去</h3>
-            <p>霧がかかったり天気が曇った時、映像を補正します。<strong class="UI">[自動]</strong>に設定すると、周囲環境を検知して自動に映像を補正します。<strong class="UI">[手動]</strong>に設定すると、ユーザーが周囲環境を見て直接補正量を設定することができます。</p>
+            <p>霧がかかったり天気が曇った時、映像を補正します。<strong class="UI">[自動]</strong>に設定すると、周囲環境を検知して自動に映像を補正します。<strong class="UI">[マニュアル]</strong>に設定すると、ユーザーが周囲環境を見て直接補正量を設定することができます。</p>
             <p>初期値は<strong class="UI">[無効]</strong>に設定されています。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>曇り除去レベル</h3>
-            <p>曇り除去が<strong class="UI">[手動]</strong>の場合、有効になって曇り除去レベルを調整します。曇り除去レベルが高いと、映像がより鮮やかに表示されます。曇りレベルが低くて曇り除去レベルが高いと、画面が暗く表示されることがあります。</p>
+            <p>曇り除去が<strong class="UI">[マニュアル]</strong>の場合、有効になって曇り除去レベルを調整します。曇り除去レベルが高いと、映像がより鮮やかに表示されます。曇りレベルが低くて曇り除去レベルが高いと、画面が暗く表示されることがあります。</p>
         </div>
 		
 								<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                <li>曇り除去モードを<strong class="UI">[自動]</strong>に設定した場合、曇り量が減少すると曇り除去機能も共に減少します。曇り量が減少しても設定したレベルだけの機能を実行するには、曇り除去モードを<strong class="UI">[手動]</strong>に設定してください。 </li>
+                <li>曇り除去モードを<strong class="UI">[自動]</strong>に設定した場合、曇り量が減少すると曇り除去機能も共に減少します。曇り量が減少しても設定したレベルだけの機能を実行するには、曇り除去モードを<strong class="UI">[マニュアル]</strong>に設定してください。 </li>
                 <li>曇りレベルが低くて手動曇りレベルが高い場合、画面が真っ暗に表示されることがあります。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
             <h3>光学曇り除去フィルター</h3>
-            <p>カメラ映像に光学式曇り補正の使用有無を選択します。<strong class="UI">[曇り除去]</strong>を<strong class="UI">[手動]</strong>に設定した場合のみ、光学曇り除去フィルターを使用するように設定することができます。</p>
+            <p>カメラ映像に光学式曇り補正の使用有無を選択します。<strong class="UI">[曇り除去]</strong>を<strong class="UI">[マニュアル]</strong>に設定した場合のみ、光学曇り除去フィルターを使用するように設定することができます。</p>
         </div>	
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p>LDC (Lens Distortion Correction)は広角レンズの角部分の映像歪み現象を補正します。</p>
             <ul>
                 <li><strong class="UI">無効</strong>：映像の歪み補正機能を使用しません。</li>
-                <li><strong class="UI">手動</strong>：歪み補正レベルを手動に調整します。</li>
+                <li><strong class="UI">マニュアル</strong>：歪み補正レベルを手動に調整します。</li>
                 <li ng-if="LDCAuto"><strong class="UI">自動</strong>：自動に映像の歪みを調整します。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDCレベル</h3>
-            <p>歪み補正率レベルを調整します。<strong class="UI">[LDC]</strong>を<strong class="UI">[手動]</strong>に設定すると、有効になります。</p>
+            <p>歪み補正率レベルを調整します。<strong class="UI">[LDC]</strong>を<strong class="UI">[マニュアル]</strong>に設定すると、有効になります。</p>
         </div>
     </div>
 </div>
@@ -686,7 +716,7 @@
             <h3>モード</h3>
             <p>カメラのフォーカス動作タイプを設定します。</p>
             <ul>
-                <li>手動：カメラのフォーカスを手動に調整します。</li>
+                <li>マニュアル：カメラのフォーカスを手動に調整します。</li>
                 <li>自動：カメラのフォーカスが自動に調整されます。</li>
                 <li>ワンショットAF：ユーザーイベント(オートフォーカスもしくはズーム動作)が発生する時、自動にフォーカスが一回調整されます。</li>
             </ul>
@@ -710,7 +740,7 @@
             <p>ズーム動作時、カメラのフォーカスが同期されるタイプを設定します。</p>
             <ul>
                 <li>自動：ズーム倍率が変更されてもフォーカスが合う状況を常時判断して修正し、フォーカスを維持しながらズーム動作します。</li>
-                <li>手動：設定されているフォーカストラックでズーム動作します。ズーム倍率が変更されると、フォーカスが合わなくなります。</li>
+                <li>マニュアル：設定されているフォーカストラックでズーム動作します。ズーム倍率が変更されると、フォーカスが合わなくなります。</li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content">
