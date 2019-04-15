@@ -26,6 +26,36 @@
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
+            <h3>덮어쓰기</h3>
+            <p ng-if="NAS">SD 카드(혹은 마이크로 SD 카드) 또는 NAS의 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
+			<p ng-if="!NAS">SD 카드(혹은 마이크로 SD 카드) 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>자동 삭제</h3>
+            <p>자동 삭제 기능의 사용 여부를 설정합니다. 현재 시간을 기준으로 자동 삭제일 수로 설정한 날만큼의 데이터를 남기고 지난 데이터는 자동으로 삭제합니다. 자동삭제 일은 최소 1일부터 최대 180일까지 설정할 수 있습니다. <strong class="UI">[자동 삭제]</strong> 기능은 <strong class="UI">[덮어쓰기]</strong>를 <strong class="UI">[사용]</strong>으로 설정할 때만 활성화됩니다. </p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>장치 목록에서 <strong class="UI">[상태]</strong>가 ‘에러’라고 표시되면 저장 장치가 바르게 연결되었는지, 저장 장치의 파일 시스템이 손상되지 않았는지, 저장 장치가 물리적으로 손상되지 않았는지 확인합니다. 저장 장치를 확인했음에도 ‘에러’ 메시지가 지속적으로 표시되면 장치를 포맷하거나 교체합니다.</li>
+                <li ng-if="NAS">NAS 사용 시 일시적인 네트워크 끊어짐으로 인해 영상 데이터가 저장되지 않을 수 있으므로 SD 카드(혹은 마이크로 SD 카드)를 함께 사용하는 것을 권장합니다.</li>
+                <li>고해상도, 높은 비트 레이트, 높은 프레임 레이트 등을 설정하면 영상 데이터의 양이 증가합니다 데이터의 양이 증가하면 전체 프레임으로 설정해도 프레임 스킵이 발생할 수 있습니다. 프레임 스킵이 발생하면 최소 초당 1장 이상의 영상으로 저장합니다.</li>
+                <li>SD 카드(혹은 마이크로 SD 카드)를 제거할 때는 <strong class="UI">[사용 안 함]</strong>으로 변경 후 카드를 제거해 주십시오. <strong class="UI">[사용 안 함]</strong>으로 변경하지 않고 임의로 제거하거나 불안정한 전원에 카메라를 연결하면 SD 카드가 손상될 수 있습니다. </li>
+                <li>권장 속도 이하의 SD 메모리 카드를 사용할 경우 프레임 스킵이 발생할 수 있습니다.  용량이 큰 SD 메모리 카드를 사용할 경우 포맷 속도가 느려질 수 있습니다.</li>
+                <li>NAS를 사용하는 경우 NAS의 용량이 권장사양 이상인 경우에만 자동 삭제가 가능합니다.   </li>
+                <li>삭제된 데이터는 복구할 수 없습니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>저장 설정</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
             <h3>저장 프로파일</h3>
             <p>저장 시 사용될 비디오 프로파일의 이름이 나타납니다. <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[프로파일 타입]</strong></a>에서 ‘저장 프로파일’로 설정한 프로파일이 표시됩니다. </p>
         </div>
@@ -69,28 +99,8 @@
                 <li><strong class="UI">AVI</strong>: 일반 AVI 파일 형식입니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>덮어쓰기</h3>
-            <p ng-if="NAS">SD 카드(혹은 마이크로 SD 카드) 또는 NAS의 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
-			<p ng-if="!NAS">SD 카드(혹은 마이크로 SD 카드) 덮어쓰기 기능 사용 여부를 설정합니다. 장치의 용량이 가득 찼을 때 가장 오래된 데이터를 지우고 새로운 데이터를 저장합니다. 장치의 용량이 가득 차면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘가득 참’이라는 메시지가 표시됩니다. </p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>자동 삭제</h3>
-            <p>자동 삭제 기능의 사용 여부를 설정합니다. 현재 시간을 기준으로 자동 삭제일 수로 설정한 날만큼의 데이터를 남기고 지난 데이터는 자동으로 삭제합니다. 자동삭제 일은 최소 1일부터 최대 180일까지 설정할 수 있습니다. <strong class="UI">[자동 삭제]</strong> 기능은 <strong class="UI">[덮어쓰기]</strong>를 <strong class="UI">[사용]</strong>으로 설정할 때만 활성화됩니다. </p>
-        </div>
 
-        <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
-            <ul>
-                <li>장치 목록에서 <strong class="UI">[상태]</strong>가 ‘에러’라고 표시되면 저장 장치가 바르게 연결되었는지, 저장 장치의 파일 시스템이 손상되지 않았는지, 저장 장치가 물리적으로 손상되지 않았는지 확인합니다. 저장 장치를 확인했음에도 ‘에러’ 메시지가 지속적으로 표시되면 장치를 포맷하거나 교체합니다.</li>
-                <li ng-if="NAS">NAS 사용 시 일시적인 네트워크 끊어짐으로 인해 영상 데이터가 저장되지 않을 수 있으므로 SD 카드(혹은 마이크로 SD 카드)를 함께 사용하는 것을 권장합니다.</li>
-                <li>고해상도, 높은 비트 레이트, 높은 프레임 레이트 등을 설정하면 영상 데이터의 양이 증가합니다 데이터의 양이 증가하면 전체 프레임으로 설정해도 프레임 스킵이 발생할 수 있습니다. 프레임 스킵이 발생하면 최소 초당 1장 이상의 영상으로 저장합니다.</li>
-                <li>SD 카드(혹은 마이크로 SD 카드)를 제거할 때는 <strong class="UI">[사용 안 함]</strong>으로 변경 후 카드를 제거해 주십시오. <strong class="UI">[사용 안 함]</strong>으로 변경하지 않고 임의로 제거하거나 불안정한 전원에 카메라를 연결하면 SD 카드가 손상될 수 있습니다. </li>
-                <li>권장 속도 이하의 SD 메모리 카드를 사용할 경우 프레임 스킵이 발생할 수 있습니다.  용량이 큰 SD 메모리 카드를 사용할 경우 포맷 속도가 느려질 수 있습니다.</li>
-                <li>NAS를 사용하는 경우 NAS의 용량이 권장사양 이상인 경우에만 자동 삭제가 가능합니다.   </li>
-                <li>삭제된 데이터는 복구할 수 없습니다.</li>
-            </ul>
-        </div>
+
     </div>
 </div>
 

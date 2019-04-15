@@ -1,4 +1,4 @@
-﻿<h1 class="wn5-setup-main-title">Configuration de la cam&eacute;ra</h1>
+﻿<h1 class="wn5-setup-main-title">Réglage Caméra</h1>
 <div class="wn5-setup-section">
     <p>Dans l&rsquo;environnement o&ugrave; une cam&eacute;ra est install&eacute;e, vous pouvez modifier la configuration de la cam&eacute;ra pour enregistrer une vid&eacute;o de qualit&eacute; optimale. Par d&eacute;faut, des pr&eacute;r&eacute;glages d&rsquo;image adapt&eacute;s &agrave; divers environnements sont fournis, et les utilisateurs peuvent configurer leurs cam&eacute;ras eux-m&ecirc;mes. Sur l&rsquo;&eacute;cran d&rsquo;aper&ccedil;u de la cam&eacute;ra, vous pouvez v&eacute;rifier &agrave; quoi ressemblera l&rsquo;image de la cam&eacute;ra. Une fois l&rsquo;installation termin&eacute;e, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page. Si un d&eacute;lai sup&eacute;rieur &agrave; 240 sec s&rsquo;&eacute;coule sans cliquer sur le bouton <strong class="UI">[Appliquer]</strong> apr&egrave;s avoir modifi&eacute; les r&eacute;glages, ceux-ci reviennent &agrave; leur &eacute;tat pr&eacute;c&eacute;dent.</p>
 </div>
@@ -73,15 +73,17 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>D&eacute;finit le nombre d&rsquo;images par seconde que le capteur CMOS de la cam&eacute;ra capturera (la valeur maximale <strong class="UI">[Infos de base]</strong> &gt; <strong class="UI">[Vid&eacute;o profil]</strong> &gt; <strong class="UI">[Vitesse d&rsquo;enregistrement]</strong> en fonction du nombre d&rsquo;images d&eacute;finies pour le capteur).</p>
+                <p>Définissez le nombre d'images par seconde utilisées par le capteur CMOS pour capturer la caméra.</p>  
         </div>
+        <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Changer le mode du capteur réinitialisera tout le réglage de la caméra.</li>
+                    <li>Une fréquence d'images différente ne peut pas être définie pour chaque image prédéfinie et la fréquence d'images est appliquée de la même manière à chaque image prédéfinie.</li>
+                    <li>Valeur maximale de <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vidéo]</strong>&gt;<strong class="UI">[Vitesse d'enregistrement]</strong> varie en fonction du nombre d'images défini pour le mode de capteur.</li>
+                </ul>
+            </div>  
 
-        <div class="wn5-setup-section-article-content">
-            <h3>Capteur Mode</h3>
-            <p>D&eacute;finissez une fr&eacute;quence d&rsquo;images par seconde. Une fr&eacute;quence d&rsquo;image diff&eacute;rente peut &ecirc;tre d&eacute;finie pour chaque pr&eacute;r&eacute;glage d&rsquo;image et la fr&eacute;quence d&rsquo;image est appliqu&eacute;e de la m&ecirc;me mani&egrave;re &agrave; chaque pr&eacute;r&eacute;glage d&rsquo;image.</p>
-        </div>
-    </div>
-</div>
 
 <hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
 <div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
@@ -96,15 +98,15 @@
                 <li><strong class="UI">Pr&eacute;r&eacute;glage d&eacute;fini par l&rsquo;utilisateur 2</strong>&nbsp;: utilis&eacute; pour afficher l&rsquo;image telle que d&eacute;finie par l&rsquo;utilisateur.</li>
                 <li><strong class="UI">Jour ext&eacute;rieur</strong>&nbsp;: Utilis&eacute; pour afficher une vid&eacute;o claire et homog&egrave;ne enregistr&eacute;e en journ&eacute;e &agrave; l&rsquo;ext&eacute;rieur.</li>
                 <li><strong class="UI">Nuit ext&eacute;rieur</strong>&nbsp;: R&eacute;duit le niveau de bruit de la vid&eacute;o enregistr&eacute;e &agrave; l&rsquo;ext&eacute;rieur la nuit avec une faible luminosit&eacute; et pour &eacute;claircir les zones sombres.</li>
-                <li><strong class="UI">Contre-jour int&eacute;rieur</strong>&nbsp;: Affiche la vid&eacute;o qui est visible &agrave; l&rsquo;int&eacute;rieur et &agrave; l&rsquo;ext&eacute;rieur avec un contre-jour int&eacute;rieur.</li>
-                <li><strong class="UI">Int&eacute;rieur avec &eacute;clairage lumineux</strong>&nbsp;: Fournit une qualit&eacute; d&rsquo;image claire et r&eacute;duit le scintillement dans un environnement int&eacute;rieur &eacute;clair&eacute;.</li>
-                <li><strong class="UI">Plaque d&rsquo;immatriculation de v&eacute;hicule</strong>&nbsp;: Utilis&eacute; pour am&eacute;liorer la capacit&eacute; d&rsquo;identifier la plaque d&rsquo;immatriculation d&rsquo;un v&eacute;hicule de jour et de nuit.</li>
+                <li><strong class="UI">Lumière à contre-jour intérieur</strong>&nbsp;: Affiche la vid&eacute;o qui est visible &agrave; l&rsquo;int&eacute;rieur et &agrave; l&rsquo;ext&eacute;rieur avec un contre-jour int&eacute;rieur.</li>
+                <li><strong class="UI">Scènes lumineuses intérieur</strong>&nbsp;: Fournit une qualit&eacute; d&rsquo;image claire et r&eacute;duit le scintillement dans un environnement int&eacute;rieur &eacute;clair&eacute;.</li>
+                <li><strong class="UI">Plaques d’immatriculation</strong>&nbsp;: Utilis&eacute; pour am&eacute;liorer la capacit&eacute; d&rsquo;identifier la plaque d&rsquo;immatriculation d&rsquo;un v&eacute;hicule de jour et de nuit.</li>
                 <li><strong class="UI">Vivid video</strong>&nbsp;: Utilis&eacute; pour am&eacute;liorer la couleur et la clart&eacute;.</li>
             </ul>
         </div>
         
         <div class="wn5-online-help-info">
-            <h4>Remarque</h4>
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Apr&egrave;s avoir s&eacute;lectionn&eacute; un mode de pr&eacute;r&eacute;glage d&rsquo;image, modifiez les param&egrave;tres d&eacute;taill&eacute;s de l&rsquo;image de la cam&eacute;ra, tels que la balance des blancs et les modes nuit/jour, puis cliquez sur <strong class="UI">[Appliquer]</strong>. La valeur modifi&eacute;e sera sauvegard&eacute;e comme valeur de pr&eacute;r&eacute;glage de l&rsquo;image. Si vous voulez le ramener &agrave; la valeur initiale, cliquez sur la touche <strong class="UI">[R&eacute;initialiser]</strong>.</li>
             </ul>
@@ -127,7 +129,7 @@
         </div>
         
         <div class="wn5-online-help-info">
-            <h4>Remarque</h4>
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Apr&egrave;s avoir s&eacute;lectionn&eacute; un mode de pr&eacute;r&eacute;glage d&rsquo;image, changez les param&egrave;tres d&eacute;taill&eacute;s, tels que SSDR et Exposition et cliquez sur <strong class="UI">[Appliquer]</strong> pour enregistrer la valeur chang&eacute;e en tant que valeur de pr&eacute;r&eacute;glage d&rsquo;image. Pour r&eacute;initialiser la valeur par d&eacute;faut, cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>.</li>
             </ul>
@@ -175,7 +177,7 @@
             <p>Si vous s&eacute;lectionnez <strong class="UI">[Custom]</strong>, vous pouvez customiser la zone d&rsquo;inclusion pour mieux repr&eacute;senter le rapport de contraste.</p>
         </div>
         <div class="wn5-online-help-info">
-            <h4>Remarque</h4>
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Si <strong class="UI">[Retourner]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Activ&eacute;]</strong> dans <strong class="UI">[Vid&eacute;o &amp; Audio]</strong>&gt;<strong class="UI">[Configuration vid&eacute;o]</strong>&gt;<strong class="UI">[rotation de vid&eacute;o]</strong>, les modes <strong class="UI">[Ciel]</strong> et <strong class="UI">[Sol]</strong> de <strong class="UI">[LCE]</strong> seront invers&eacute;s. Cela signifie qu&rsquo;un encadr&eacute; vert sera affich&eacute; en bas de l&rsquo;&eacute;cran en mode <strong class="UI">[Ciel]</strong>, et en haut de l&rsquo;&eacute;cran en mode <strong class="UI">[Sol]</strong>, et le contraste dans l&rsquo;encadr&eacute; sera intensifi&eacute;.</li>
             </ul>
@@ -242,13 +244,14 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
-            <p>Le mode BLC (Compensation du contre-jour) s&eacute;lectionne et corrige une zone sp&eacute;cifique d&rsquo;une image sombre captur&eacute;e en raison du contre-jour, afin de montrer plus clairement un objet dans la zone s&eacute;lectionn&eacute;e. Utilisez le bouton haut/bas/gauche/droite pour r&eacute;gler la taille de la zone.</p>
+            <p>Le mode BLC (Compensation du contre-jour) s&eacute;lectionne et corrige une zone sp&eacute;cifique d&rsquo;une image sombre captur&eacute;e en raison du contre-jour, afin de montrer plus clairement un objet dans la zone s&eacute;lectionn&eacute;e. </p>
+            <p>Ajustez la taille de la zone en cliquant sur les boutons fléchés de <strong class="UI"></strong>[Réglage coffre]</strong>. Plus le nombre que vous définissez dans <strong class="UI"></strong>[Étape de la boîte]</strong> est élevé, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>Niveau de la BLC</h5>
             <p>Vous pouvez choisir entre bas, moyen et haut. Plus le niveau est &eacute;lev&eacute;, plus la zone est claire.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+    <!--    <div class="wn5-setup-section-article-content">
             <h5>Configuration de la zone</h5>
             <ul>
                 <li><strong class="UI">Haut</strong>&nbsp;: D&eacute;finit la distance entre la surface sup&eacute;rieure et le haut de l&rsquo;&eacute;cran.</li>
@@ -256,7 +259,7 @@
                 <li><strong class="UI">Gauche</strong>&nbsp;: D&eacute;finit la distance entre la surface gauche et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
                 <li><strong class="UI">Droit</strong>&nbsp;: D&eacute;finit la distance entre la surface droite et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
             </ul>
-        </div>
+        </div>  --> 
 		        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
@@ -267,6 +270,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>Le mode HLC (Compensation de lumi&egrave;re &eacute;lev&eacute;e) bloque l&rsquo;&eacute;clairage puissant tel qu&rsquo;un lampadaire ou les phares d&rsquo;un v&eacute;hicule, afin d&rsquo;&eacute;viter qu&rsquo;un objet ne soit pas reconnu.<strike> </strike>Il peut emp&ecirc;cher la d&eacute;tection d&rsquo;un objet voisin tel que la plaque d&rsquo;immatriculation de la voiture en raison de la saturation des lumi&egrave;res fortes.</p>
+            <p>Ajustez la taille de la zone en cliquant sur les boutons fléchés de <strong class="UI"></strong>[Réglage coffre]</strong>. Plus le nombre que vous définissez dans <strong class="UI"></strong>[Étape de la boîte]</strong> est élevé, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Niveau HLC</h5>
@@ -277,7 +281,7 @@
             <h5>Masque</h5>
             <p>Permet de choisir d&rsquo;appliquer ou non le masque.</p>
             <ul>
-                <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: Ne cr&eacute;e pas de zone bloqu&eacute;e.</li>
+                <li><strong class="UI">Désactivé</strong>&nbsp;: Ne cr&eacute;e pas de zone bloqu&eacute;e.</li>
                 <li><strong class="UI">Activer</strong>&nbsp;: Bloque toujours les zones de luminosit&eacute; au-dessus d&rsquo;un certain niveau.</li>
                 <li><strong class="UI">Toute la journ&eacute;e</strong>&nbsp;: Bloque les zones sauf pendant les p&eacute;riodes tr&egrave;s claires ou sombres.</li>
                 <li><strong class="UI">Nuit seulement</strong>&nbsp;: Bloque les zones existantes jusqu&rsquo;&agrave; ce qu&rsquo;il fasse nuit.</li>
@@ -295,7 +299,7 @@
             <h5>Att&eacute;nuation</h5>
             <p>D&eacute;tecte la zone fortement &eacute;clair&eacute;e de l&rsquo;&eacute;cran et ajuste la luminosit&eacute; pour r&eacute;duire la taille des zones satur&eacute;es.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+    <!--     <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
             <h5>Configuration de la zone</h5>
             <p>D&eacute;finit la taille et l&rsquo;emplacement de la zone bloqu&eacute;e.</p>
             <ul>
@@ -304,7 +308,7 @@
                 <li><strong class="UI">Gauche</strong>&nbsp;: D&eacute;finit la distance entre la surface gauche et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
                 <li><strong class="UI">Droit</strong>&nbsp;: D&eacute;finit la distance entre la surface droite et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
             </ul>
-        </div>
+        </div>  --> 
         <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
@@ -326,7 +330,7 @@
             <p>Ajuste l&rsquo;intensit&eacute; de la correction de contre-jour.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
-            <h5>Auto</h5>
+            <h5>Automatique</h5>
             <p>Si <strong class="UI">[Activer]</strong> est s&eacute;lectionn&eacute;, l&rsquo;image est analys&eacute;e et le mode WDR est activ&eacute; automatiquement lorsque la correction du contre-jour est n&eacute;cessaire.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="WDRLowLightOptions">
@@ -354,7 +358,7 @@
                 </ul>
                 <li>&nbsp;Les performances du WDR peuvent varier en fonction de la taille des zones lumineuses de l&rsquo;&eacute;cran, ajustez alors l&rsquo;angle d&rsquo;installation correctement pour obtenir les meilleures performances du WDR.</li>
                 <li>Si vous r&eacute;glez le niveau du WDR &agrave; un niveau trop &eacute;lev&eacute;, l&rsquo;&eacute;cran peut pr&eacute;senter des sympt&ocirc;mes non naturels.</li>
-                <li>&nbsp;Pour obtenir les meilleures performances WDR, il est recommand&eacute; de r&eacute;gler l&rsquo;iris d&rsquo;exposition sur <strong class="UI">[Auto]</strong>.</li>
+                <li>&nbsp;Pour obtenir les meilleures performances WDR, il est recommand&eacute; de r&eacute;gler l&rsquo;iris d&rsquo;exposition sur <strong class="UI">[Automatique]</strong>.</li>
             </ul>
         </div>
     </div>
@@ -399,7 +403,7 @@
             <h3>SSNR</h3>
             <p>Supprime le bruit de l&rsquo;image.</p>
             <ul>
-                <li><strong class="UI">Activer/D&eacute;sactiver</strong>&nbsp;: la fonction SSNR peut &ecirc;tre activ&eacute;e ou d&eacute;sactiv&eacute;e. Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, il est alors possible d&rsquo;ajuster le niveau du SSNR.</li>
+                <li><strong class="UI">Activer/Désactivé</strong>&nbsp;: la fonction SSNR peut &ecirc;tre activ&eacute;e ou d&eacute;sactiv&eacute;e. Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, il est alors possible d&rsquo;ajuster le niveau du SSNR.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">Wise NR</strong>&nbsp;: Lorsqu&rsquo;un objet en mouvement se trouve dans l&rsquo;image, le niveau de r&eacute;duction du bruit est ajust&eacute; automatiquement pour am&eacute;liorer la pr&eacute;cision de l&rsquo;identification de l&rsquo;objet.</li>
             </ul>
         </div>
@@ -443,15 +447,15 @@
         
         <div class="wn5-setup-section-article-content" ng-if="PIrisModeOptions">
             <h3>P-iris</h3>
-            <p>Il est activ&eacute; si vous s&eacute;lectionnez le P-iris sous <strong class="UI">[Objectif]</strong>. Si vous s&eacute;lectionnez <strong class="UI">[Auto]</strong>, l&rsquo;iris est alors automatiquement ajust&eacute; en fonction de la luminosit&eacute;. Si vous s&eacute;lectionnez <strong class="UI">[Manuel]</strong>, vous r&eacute;glez alors la position de l&rsquo;iris par vous-m&ecirc;me.</p>
+            <p>Il est activ&eacute; si vous s&eacute;lectionnez le P-iris sous <strong class="UI">[Objectif]</strong>. Si vous s&eacute;lectionnez <strong class="UI">[Automatique]</strong>, l&rsquo;iris est alors automatiquement ajust&eacute; en fonction de la luminosit&eacute;. Si vous s&eacute;lectionnez <strong class="UI">[Manuel]</strong>, vous r&eacute;glez alors la position de l&rsquo;iris par vous-m&ecirc;me.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PIrisPosition">
             <h3>Position du P-Iris</h3>
             <p>Elle est activ&eacute;e si <strong class="UI">[P-iris]</strong> est d&eacute;fini sur <strong class="UI">[Manuel]</strong>. La position du P-iris peut &ecirc;tre ajust&eacute;e &eacute;galement.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
-            <h3>AGC</h3>
-            <p>AGC (Contr&ocirc;le de gain automatique) ajuste la luminosit&eacute; en contr&ocirc;lant la sensibilit&eacute; du gain de l&rsquo;image lors de la capture d&rsquo;un objet dans une lumi&egrave;re faible.</p>
+            <h3>CAG</h3>
+            <p>CAG (Contr&ocirc;le de gain automatique) ajuste la luminosit&eacute; en contr&ocirc;lant la sensibilit&eacute; du gain de l&rsquo;image lors de la capture d&rsquo;un objet dans une lumi&egrave;re faible.</p>
         </div>
 		
 						        <div class="wn5-online-help-info">
@@ -470,7 +474,7 @@
 <hr class="wn5-setup-hr" ng-if="DayNight">
 <div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
-        <h2><a name="daynight"></a>Jour/Nuit</h2>
+        <h2><a name="daynight"></a>Diurne/nocturne</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -481,15 +485,15 @@
             <p>D&eacute;termine le changement de mode de la cam&eacute;ra entre la couleur et le noir et blanc.</p>
             <ul>
                 <li><strong class="UI">Couleur</strong>&nbsp;: Affiche une image en couleur.</li>
-                <li><strong class="UI">Noir et blanc</strong>&nbsp;: Affiche toujours une image en noir et blanc.</li>
-                <li><strong class="UI">Auto</strong>&nbsp;: Il passe en mode couleur le jour et en noir et blanc la nuit ou &agrave; l&rsquo;heure avec une faible luminosit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est r&eacute;gl&eacute; pour <strong class="UI">[AGC]</strong> de l&rsquo;<strong class="UI">[Exposition]</strong>, il est impossible de r&eacute;gler Jour/Nuit automatiquement.</li>
+                <li><strong class="UI">N/B</strong>&nbsp;: Affiche toujours une image en noir et blanc.</li>
+                <li><strong class="UI">Automatique</strong>&nbsp;: Il passe en mode couleur le jour et en noir et blanc la nuit ou &agrave; l&rsquo;heure avec une faible luminosit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est r&eacute;gl&eacute; pour <strong class="UI">[AGC]</strong> de l&rsquo;<strong class="UI">[Exposition]</strong>, il est impossible de r&eacute;gler Jour/Nuit automatiquement.</li>
                 <li ng-if="DayNightMode_ExternalBW"><strong class="UI">Entr&eacute;e externe</strong>&nbsp;: Lorsqu&rsquo;une borne d&rsquo;entr&eacute;e d&rsquo;alarme est reli&eacute;e &agrave; un &eacute;quipement externe, la couleur et le noir et blanc de la vid&eacute;o peuvent &ecirc;tre contr&ocirc;l&eacute;s.</li>
                 <li><strong class="UI">Calendrier</strong>&nbsp;: Jour/Nuit est modifi&eacute; pour passer au calendrier d&eacute;fini &agrave; partir de <strong class="UI">[Heure d&rsquo;activation (couleur)]</strong>.</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  --></ul>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Temps de passage</h3>
-            <p>Passe de la couleur au noir et blanc lorsque l&rsquo;option <strong class="UI">[Auto]</strong> est s&eacute;lectionn&eacute;e pour Jour/Nuit et que la luminosit&eacute; est maintenue pour le temps de passage d&eacute;fini.</p>
+            <p>Passe de la couleur au noir et blanc lorsque l&rsquo;option <strong class="UI">[Automatique]</strong> est s&eacute;lectionn&eacute;e pour Jour/Nuit et que la luminosit&eacute; est maintenue pour le temps de passage d&eacute;fini.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Dur&eacute;e</h3>
@@ -568,8 +572,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>D&eacute;sembuage</h3>
-            <p>Corrige l&rsquo;image lorsqu&rsquo;il y a du brouillage ou que le temps est mauvais. R&eacute;glez-le sur <strong class="UI">[Auto]</strong> pour corriger automatiquement une image en d&eacute;tectant l&rsquo;environnement environnant. Si vous le r&eacute;glez sur <strong class="UI">[Manuel]</strong> vous pouvez observer l&rsquo;environnement environnant et r&eacute;gler vous-m&ecirc;me la quantit&eacute; de correction.</p>
-            <p>La valeur initiale est d&eacute;finie sur <strong class="UI">[D&eacute;sactiver]</strong>.</p>
+            <p>Corrige l&rsquo;image lorsqu&rsquo;il y a du brouillage ou que le temps est mauvais. R&eacute;glez-le sur <strong class="UI">[Automatique]</strong> pour corriger automatiquement une image en d&eacute;tectant l&rsquo;environnement environnant. Si vous le r&eacute;glez sur <strong class="UI">[Manuel]</strong> vous pouvez observer l&rsquo;environnement environnant et r&eacute;gler vous-m&ecirc;me la quantit&eacute; de correction.</p>
+            <p>La valeur initiale est d&eacute;finie sur <strong class="UI">[Désactivé]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>Niveau de d&eacute;sembuage</h3>
@@ -579,7 +583,7 @@
 								<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>Si vous r&eacute;glez le mode de d&eacute;sembuage sur <strong class="UI">[Auto]</strong>, lorsque la quantit&eacute; de brouillard diminue, le niveau de la fonction de d&eacute;sembuage est &eacute;galement abaiss&eacute;. Si vous voulez maintenir le m&ecirc;me effet de la fonction malgr&eacute; une diminution du brouillard, r&eacute;glez le mode D&eacute;sembuage sur <strong class="UI">[Manuel]</strong>.</li>
+                <li>Si vous r&eacute;glez le mode de d&eacute;sembuage sur <strong class="UI">[Automatique]</strong>, lorsque la quantit&eacute; de brouillard diminue, le niveau de la fonction de d&eacute;sembuage est &eacute;galement abaiss&eacute;. Si vous voulez maintenir le m&ecirc;me effet de la fonction malgr&eacute; une diminution du brouillard, r&eacute;glez le mode D&eacute;sembuage sur <strong class="UI">[Manuel]</strong>.</li>
                 <li>Si le niveau de brouillard est bas et qu&rsquo;un niveau de d&eacute;sembuage manuel est &eacute;lev&eacute;, l&rsquo;&eacute;cran peut para&icirc;tre plus sombre.</li>
             </ul>
         </div>
@@ -593,7 +597,7 @@
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: Ne pas utiliser la fonction de correction de distorsion d&rsquo;image.</li>
                 <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement le niveau de correction de distorsion.</li>
-                <li ng-if="LDCAuto"><strong class="UI">Auto</strong>&nbsp;: R&egrave;gle automatiquement la distorsion de l&rsquo;image.</li>
+                <li ng-if="LDCAuto"><strong class="UI">Automatique</strong>&nbsp;: R&egrave;gle automatiquement la distorsion de l&rsquo;image.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
@@ -616,9 +620,9 @@
         <div class="wn5-setup-section-article-content">
 
             <h3>Titre de la cam&eacute;ra</h3>
-            <p>Permet d&rsquo;afficher ou non le titre d&rsquo;une cam&eacute;ra. Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, les boutons <strong class="UI">[Ajout]</strong>/<strong class="UI">[Effacer]</strong> seront activ&eacute;s.</p>
-            <p>Cliquez sur le bouton <strong class="UI">[Ajout]</strong> pour ajouter un champ o&ugrave; vous pouvez entrer le nom de la cam&eacute;ra dans la liste. Apr&egrave;s avoir saisi le titre de la cam&eacute;ra, d&eacute;placez les coordonn&eacute;es X et Y pour d&eacute;finir l&rsquo;emplacement. Vous pouvez ajouter jusqu&rsquo;&agrave; 5 titres de cam&eacute;ra.</p>
-            <p>Pour supprimer un titre de cam&eacute;ra, s&eacute;lectionnez un nom de cam&eacute;ra &agrave; supprimer et cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Apr&egrave;s avoir entr&eacute; le titre de la cam&eacute;ra, si vous voulez voir &agrave; quoi elle ressemble, entrez le nom de la cam&eacute;ra et cliquez sur le bouton <strong class="UI">[Aper&ccedil;u]</strong>.</p>
+            <p>Permet d&rsquo;afficher ou non le titre d&rsquo;une cam&eacute;ra. Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, les boutons <strong class="UI">[Ajouter]</strong>/<strong class="UI">[Effacer]</strong> seront activ&eacute;s.</p>
+            <p>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong> pour ajouter un champ o&ugrave; vous pouvez entrer le nom de la cam&eacute;ra dans la liste. Apr&egrave;s avoir saisi le titre de la cam&eacute;ra, d&eacute;placez les coordonn&eacute;es X et Y pour d&eacute;finir l&rsquo;emplacement. Vous pouvez ajouter jusqu&rsquo;&agrave; 5 titres de cam&eacute;ra.</p>
+            <p>Pour supprimer un titre de cam&eacute;ra, s&eacute;lectionnez un nom de cam&eacute;ra &agrave; supprimer et cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Apr&egrave;s avoir entr&eacute; le titre de la cam&eacute;ra, si vous voulez voir &agrave; quoi elle ressemble, entrez le nom de la cam&eacute;ra et cliquez sur le bouton <strong class="UI">[Priview]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Date et jheure</h3>
@@ -694,7 +698,7 @@
 <hr class="wn5-setup-hr" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
 <div class="wn5-setup-section" ng-if="FocusModeOptions && (PTZModel || ZoomOnlyModel)">
     <div class="wn5-setup-section-heading">
-        <h2>Focus</h2>
+        <h2>M.au.pt</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -705,7 +709,7 @@
             <p>R&egrave;gle la m&eacute;thode de mise au point de la cam&eacute;ra.</p>
             <ul>
                 <li>Manuel&nbsp;: R&egrave;gle manuellement la mise au point de la cam&eacute;ra.</li>
-                <li>Auto&nbsp;: R&egrave;gle automatiquement la mise au point de l&rsquo;image.</li>
+                <li>Automatique&nbsp;: R&egrave;gle automatiquement la mise au point de l&rsquo;image.</li>
                 <li>Prise AF&nbsp;: Dans le cas d&rsquo;un &eacute;v&eacute;nement utilisateur (mise au point automatique ou action de zoom), la mise au point sera automatiquement ajust&eacute;e une fois.</li>
             </ul>
         </div>
@@ -720,14 +724,14 @@
             <p>Pour utiliser le zoom num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
         </div>
 		<div class="wn5-setup-section-article-content">
-            <h3>Seuil zoom num&eacute;rique</h3>
+            <h3>Zoom numérique maximal</h3>
             <p>R&egrave;gle la port&eacute;e maximale du zoom num&eacute;rique disponible. Vous pouvez r&eacute;gler la port&eacute;e du zoom num&eacute;rique en r&eacute;glant <strong class="UI">[Zoom num&eacute;rique]</strong> sur <strong class="UI">[Activer]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Mode zoom</h3>
             <p>R&egrave;gle la m&eacute;thode de synchronisation de la mise au point de la cam&eacute;ra lorsque le zoom fonctionne.</p>
             <ul>
-                <li>Auto&nbsp;: M&ecirc;me si le grossissement du zoom est modifi&eacute;, le zoom fonctionne tout en maintenant la mise au point en &eacute;valuant et en modifiant continuellement la condition de mise au point.</li>
+                <li>Automatique&nbsp;: M&ecirc;me si le grossissement du zoom est modifi&eacute;, le zoom fonctionne tout en maintenant la mise au point en &eacute;valuant et en modifiant continuellement la condition de mise au point.</li>
                 <li>Manuel&nbsp;: Le zoom se d&eacute;place le long de la piste focale d&eacute;finie. Lorsque l&rsquo;agrandissement du zoom est modifi&eacute;, il se peut que la mise au point soit floue.</li>
             </ul>
         </div>
@@ -844,7 +848,7 @@
             <ul>
                 <li><strong class="UI">Désactivé</strong>&nbsp;: D&eacute;sactive la LED IR.</li>
                 <li><strong class="UI">Activé</strong>&nbsp;: Active la LED IR. Ce mode d&eacute;sactive <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong>. &nbsp;</li>
-                <li><strong class="UI">Diurne/Nocturne</strong>&nbsp;: Met l&rsquo;IR sur Marche/Arr&ecirc;t en fonction de Diurne/Nocturne. Cela signifie qu&rsquo;apr&egrave;s l&rsquo;activation de Diurne/Nocturne, la LED est d&eacute;sactiv&eacute;e lorsque la vid&eacute;o est en mode couleur et activ&eacute; lorsque la vid&eacute;o est en mode N/B. Si ce mode est s&eacute;lectionn&eacute;, <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong> est automatiquement d&eacute;fini sur [Auto] et le param&egrave;tre ne peut pas &ecirc;tre modifi&eacute;.</li>
+                <li><strong class="UI">Diurne/Nocturne</strong>&nbsp;: Met l&rsquo;IR sur Marche/Arr&ecirc;t en fonction de Diurne/Nocturne. Cela signifie qu&rsquo;apr&egrave;s l&rsquo;activation de Diurne/Nocturne, la LED est d&eacute;sactiv&eacute;e lorsque la vid&eacute;o est en mode couleur et activ&eacute; lorsque la vid&eacute;o est en mode N/B. Si ce mode est s&eacute;lectionn&eacute;, <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong> est automatiquement d&eacute;fini sur [Automatique] et le param&egrave;tre ne peut pas &ecirc;tre modifi&eacute;.</li>
                 <li><strong class="UI">Capteur</strong>&nbsp;: IR et Diurne/Nocturne varie en fonction de la quantit&eacute; de lumi&egrave;re d&eacute;tect&eacute;e par le capteur optique. Ce mode d&eacute;sactive <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong>.</li>
                 <li><strong class="UI">Chronom&eacute;tr&eacute;.</strong>&nbsp;: D&eacute;finit l&rsquo;IR sur heure. Ce mode d&eacute;sactive <strong class="UI"><a href="#daynight">[Diurne/Nocturne]</a></strong>. &nbsp;</li>
             </ul>
@@ -867,7 +871,7 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>LED de commande de l&rsquo;alim.</h3>
-            <p>S&eacute;lectionnez <strong class="UI">[Auto]</strong> pour contr&ocirc;ler l&rsquo;&eacute;tat de la saturation de l&rsquo;&eacute;cran en raison de la pr&eacute;sence d&rsquo;objets &agrave; proximit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est s&eacute;lectionn&eacute;, la saturation de l&rsquo;&eacute;cran ne sera pas contr&ocirc;l&eacute;e, m&ecirc;me s&rsquo;il est satur&eacute;.</p>
+            <p>S&eacute;lectionnez <strong class="UI">[Automatique]</strong> pour contr&ocirc;ler l&rsquo;&eacute;tat de la saturation de l&rsquo;&eacute;cran en raison de la pr&eacute;sence d&rsquo;objets &agrave; proximit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est s&eacute;lectionn&eacute;, la saturation de l&rsquo;&eacute;cran ne sera pas contr&ocirc;l&eacute;e, m&ecirc;me s&rsquo;il est satur&eacute;.</p>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>

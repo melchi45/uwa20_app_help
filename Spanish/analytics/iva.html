@@ -73,7 +73,7 @@
             <h3>Categor&iacute;as</h3>
             <ul>
                 <li><strong class="UI">Paso</strong>: Para crear un evento cuando se detecta un objeto que pasa la l&iacute;nea virtual establecida, seleccione la casilla de verificaci&oacute;n.</li>
-                <li><strong class="UI">Direcciones</strong>: Esto establece la direcci&oacute;n de un objeto para pasar la l&iacute;nea virtual.</li>
+                <li><strong class="UI">Direccion</strong>: Esto establece la direcci&oacute;n de un objeto para pasar la l&iacute;nea virtual.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
@@ -98,7 +98,7 @@
 <div class="wn5-setup-section">
 
     <div class="wn5-setup-section-heading">
-        <h2>Zona virtual</h2>
+        <h2>Área virtual</h2>
     </div>
 <div class="wn5-setup-section-article">
 
@@ -118,6 +118,16 @@
         <div class="wn5-online-help-action">
 			<h4>Eliminaci&oacute;n de una zona virtual</h4>
 			<p>Para eliminar una zona virtual, haga clic en el bot&oacute;n derecho del rat&oacute;n en el &aacute;rea correspondiente de la pantalla y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n de eliminaci&oacute;n.</p>
+        </div>
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>Ajuste del PTZ</h4>
+            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+            <ul>
+                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
+                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>&Aacute;rea</h3>
@@ -293,21 +303,21 @@
         </div>
 
     <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
-            <h3>Ir a predefinido.</h3>
+            <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[Configuraci&oacute;n PT]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">

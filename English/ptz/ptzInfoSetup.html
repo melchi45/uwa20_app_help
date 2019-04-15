@@ -24,7 +24,7 @@
                 </ul>
                               <!--XNP-6320RH에서 Preset setup 버튼을 Set preset으로 변경함. 2019-04-05 -->
                 <li>Click the <strong class="UI">[Set preset]</strong> button.</li>
-                <li>Select a desired preset No. from <strong class="UI">[Number]</strong> on the <strong class="UI">[Preset setup</strong>dialog box.</li>
+                <li>Select a desired preset No. from <strong class="UI">[Number]</strong> on the <strong class="UI">[Preset setup]</strong>dialog box.</li>
                 <li>Enter the relevant preset name in <strong class="UI">[Name]</strong>. The preset name can only be entered using upper/lower case alphabets and numbers.</li>
                 <li>Click the <strong class="UI">[OK]</strong> button.</li>
             </ol>
@@ -33,7 +33,7 @@
 				<div class="wn5-online-help-action">
     	   <h4>Deleting a preset</h4>
             <ul>
-                <li>Select the checkbox of a preset you wish to delete from the preset list of <strong class="UI">[Preset setup</strong> and click the <strong class="UI">[Delete]</strong> button.</li>
+                <li>Select the checkbox of a preset you wish to delete from the preset list of <strong class="UI">[Preset setup]</strong> and click the <strong class="UI">[Delete]</strong> button.</li>
             </ul>
     	</div>
 		<div class="wn5-online-help-action">
@@ -57,7 +57,12 @@
                 <li>Click the <strong class="UI">[Set home] </strong>button.</li>
             </ol>
     	</div>
-
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+        <ul>
+            <li>When the camera is rebooted after setting home position, the screen is positioned at home position. If another sequence (Preset, Swing, Group, Tour, Trace) is in operation, the sequence that was active will be executed without moving to the home position when the camera is rebooted. </li>
+        </ul>
+    </div>
         <div class="wn5-setup-section-article-content">
             <h3>Preset setup</h3>
             <p>You can view the preset list and modify or delete the detailed setting of each preset.</p>
@@ -76,8 +81,8 @@
        
             <p>Set the camera action to be executed after the camera moves to the relevant preset position.</p>
         <ul>
-            <li><strong class="UI">Disable</strong>: No action will be executed after the camera moves to the relevant preset position.</li>
-                <li><strong class="UI">Auto run</strong>: An action set from the <a class="wn5-online-help-link" href="ptzInfoSetup.html#autorun" ng-href="#/help/ptzSetup_ptzInfoSetup?#autorun"><strong class="UI">[Auto run] </strong>tab</a> will be executed automatically.&nbsp;When <strong class="UI">[Disable]</strong> is selected from the Auto run <strong class="UI">[Mode]</strong> or there is no auto start action, the preset execution status will be maintained.</li>
+            <li><strong class="UI">Off</strong>: No action will be executed after the camera moves to the relevant preset position.</li>
+                <li><strong class="UI">Auto run</strong>: An action set from the <a class="wn5-online-help-link" href="ptzInfoSetup.html#autorun" ng-href="#/help/ptzSetup_ptzInfoSetup?#autorun"><strong class="UI">[Auto run] </strong>tab</a> will be executed automatically.&nbsp;When <strong class="UI">[Off]</strong> is selected from the Auto run <strong class="UI">[Mode]</strong> or there is no auto start action, the preset execution status will be maintained.</li>
                 <li><strong class="UI">Auto tracking</strong>: Executes the auto tracking for a time set from the <strong class="UI">[Tracking time]</strong> column.</li>
                 <li><strong class="UI">Video analytics</strong>: Video analytics action will be executed.</li>
         </ul>
@@ -106,8 +111,8 @@
         </div> 
 <div class="wn5-setup-section-article-content">
             <h5>Time</h5>
-       
-            <p>Set the saving interval at which to save the current position as the last position. The unit used to measure the interval is seconds. Enter the saving interval on the field and click <strong class="UI">[Set]</strong>.</p>
+              <!-- Set 버튼 Appl 버튼으로 변경. 2019-04-12. XNP-6320RH 진행 시 -->
+            <p>Set the saving interval at which to save the current position as the last position. The unit used to measure the interval is seconds. Enter the saving interval on the field and click <strong class="UI">[Apply]</strong>.</p>
         </div>
         </div>
     </div>
@@ -155,8 +160,8 @@
         <div class="wn5-online-help-action">
             <h4>Swing setup</h4>
                 <ol>
-                    <li>Select preset No. to begin swing from the <strong class="UI">[Start time preset No.]</strong> column.</li>
-                    <li>Select preset No. to end swing from the <strong class="UI">[End time preset No.]</strong> column.</li>
+                    <li>Select preset No. to begin swing from the <strong class="UI">[From preset no.]</strong> column.</li>
+                    <li>Select preset No. to end swing from the <strong class="UI">[[To preset no.]</strong> column.</li>
                     <li>Enter the moving speed from the start preset to the end preset on the <strong class="UI">[Speed]</strong> column.</li>
                     <li>Enter the preset hold time on the <strong class="UI">[Dwell time]</strong> column to decide how long the camera stays in the start preset and then moves to the end preset.</li>
                     <li>Set the swing action mode from the <strong class="UI">[Swing mode]</strong> column. For example, if you wish to move to the camera to the preset only in the pan direction, select [Pan]. &nbsp;</li>
@@ -359,7 +364,7 @@
            <h3>Mode</h3>
             <p>You can select a function you wish to execute automatically and specify a detailed setting.</p>
              <ul>
-            <li><strong class="UI">Disable</strong>: The auto run function is not used.</li>
+            <li><strong class="UI">Off</strong>: The auto run function is not used.</li>
             <li><strong class="UI">Home</strong>: The camera moves to the home position. You can set the home position from the <a class="wn5-online-help-link" href="ptzInfoSetup.html#preset" ng-href="#/help/ptzSetup_ptzInfoSetup?#preset"><strong class="UI">[Preset]&nbsp;</strong>tab</a>.</li>
              <li><strong class="UI">Preset</strong>: Moves to the relevant preset No. You can set the time for the camera to move to the preset and the preset position No. where the camera will move.</li>
              <!--   <ul>
