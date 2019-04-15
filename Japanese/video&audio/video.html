@@ -32,15 +32,15 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-		    <p>カメラ映像でプライバシーの侵害の恐れがある部分を表示しないようにプライバシー領域として設定することができます。<strong class="UI">[プライバシー領域を有効にする]</strong>を選択した後。>プライバシー領域を無効にするには<strong class="UI">[プライバシー領域を有効にする]</strong>を選択解除した後。プライバシー領域によって隠される部分なくカメラ映像を確認することができます。設定しておいたエリアは、削除されることなくプライバシー領域リストで確認することができます。</p>
+		    <p>カメラ映像でプライバシーの侵害の恐れがある部分を表示しないようにプライバシー領域として設定することができます。<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した後。>プライバシー領域を無効にするには<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除した後。プライバシー領域によって隠される部分なくカメラ映像を確認することができます。設定しておいたエリアは、削除されることなくプライバシー領域リストで確認することができます。</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="PrivacyMaskPattern">
 			<h3>パターン</h3>
             <p>プライバシー領域に適用するモザイクパターンを選択します。<strong class="UI">[</strong><strong>ソリッド</strong><strong class="UI">]</strong>で設定すると、プライバシー領域のメニューで設定した色が適用されます。パターンを選択すると、すべてのエリアに同じく適用されます。</p>
 		</div>
 		<div class="wn5-online-help-action">
 			<h4>プライバシー領域設定</h4>
-			<ol><li><strong class="UI">[プライバシー領域を有効にする]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
+			<ol><li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
 				<li>カメラの映像画面からマウスで頂点4つをクリックしたりマウスをドラッグします。プライバシー領域のポップアップが表示されます。</li>
 				<li><strong class="UI">[名前]</strong>にプライバシー領域名を入力して<strong class="UI">[カラー]</strong>で映像を隠す色を選択した後、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
 				<li>追加したプライバシー領域がプライバシー領域リストに追加されます。カメラの映像画面には、設定したカラーでプライバシー領域が表示されます。</li>
@@ -177,14 +177,15 @@
 			<p>Wi-Fiドングルとハンファテックウィンで提供するスマートフォンアプリケーションでWi-Fi通信に接続してカメラにアクセスすることができます。ネットワークカメラを最初にインストールする時や視野角度、位置などを変更する場合、別途の設置用モニターがなくてもスマートフォンでカメラの映像を確認することができるため、有用です。</p>
 		</div>
 	    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">			
-			<h3>CVBS</h3>
-			<p>USBを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
+			<!-- <h3>CVBS</h3>  --> 
+			<h3>ビデオ出力</h3>	
+			<p>CVBSを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
 			<p>カメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができるため、有用です。</p>
 		</div>
 
 	    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
-		<h3>CVBS方式</h3>
-		
+	<!-- 	<h3>CVBS方式</h3> --> 
+		<h3>タイプ</h3>		
 	    	<p>CVBSを使用する場合、CVBSビデオ出力タイプを選択します。</p>
 			<ul>			
 				<li><strong class="UI">NTSC</strong>：NTSC (National Television System Committee)タイプは、アメリカで制定したカラーテレビの標準です。1秒当たりのフレーム数は30フレーム、水平走査線は525です。1秒当たりのフレーム数が高くて画面が自然に表現されます。主にアメリカ、日本、カナダなどで使用するタイプです。</li>

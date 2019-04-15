@@ -18,7 +18,7 @@
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">Since a privacy area is individually set for each channel, a privacy area set on CH1 will only apply to CH1 even if the same privacy area exists on CH2.</p>
-            <p>Click the <strong class="UI">[Detailed Information]</strong> button to see the overall summary of each channel.</p>
+            <p>Click the <strong class="UI">[Information]</strong> button to see the overall summary of each channel.</p>
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
 
         </div>
@@ -34,7 +34,7 @@
 		<div class="wn5-setup-section-article-content">
 		    <p>To prevent a possibility of privacy invasion in the camera's image, you can set a privacy area. To use the privay area function, click <strong class="UI">[Enable privacy area]</strong>. To deactivate a privacy area, deselect <strong class="UI">[Enable privacy area]</strong>, then you can check the full camera's image without anything hidden due to privacy. The set privacy areas are not deleted and they can be checked in the privacy area list.  </p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="PrivacyMaskPattern">
 			<h3>Pattern</h3>
             <p>Select the mosaic pattern to apply to a privacy area. Select <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> to apply the color set in the privacy area window. If you select the pattern, it will be applied to all the areas.</p>
 		</div>
@@ -236,13 +236,15 @@
                 <p>Using the Wi-Fi dongle and smartphone app from Hanwha Techwin, you can access your camera over Wi-Fi. This is useful when you are trying to install a network camera for the first time or change the angular field of view or position of your camera, since you can see the camera screen on your smartphone without the hassle of getting an additional monitor to check the installation.</p>
             </div>
 		    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
-                <h3>CVBS</h3>
+                <!-- <h3>CVBS</h3> -->
+                <h3>Video output</h3>
                 <p>To display a video by connecting a cable to the CVBS terminal, click <strong class="UI">[Enable]</strong>.</p>
                 <p>It is useful since you can set it while checking the lens position or focus when installing the camera.</p>
             </div>
 	
 	        <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
-		        <h3>CVBS type</h3>
+                <!-- <h3>CVBS type</h3>  -->
+                <h3>Type</h3>
 	    	        <p>To use CVBS, select the CVBS video output type.</p>
 			<ul>
 				<li><strong class="UI">NTSC</strong>: NTSC (National Television System Committee) is the US standard for color TVs. The number of frames per sec is 30 and the number of horizontal projection beam is 525, Since the number of frames per sec is high, the screen looks very natural. It is mostly used in USA, Japan, and Canada.</li>

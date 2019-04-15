@@ -137,7 +137,8 @@
 				<li>Select the radio button of the current user account you wish to use. The current user account is changed to a status where input is available.</li>
 				<li>Select the check box in the <strong class="UI">[Use]</strong> column.</li>
 				<li>Enter the ID and password in the <strong class="UI">[Name]</strong> and <strong class="UI">[Password]</strong> columns.</li>
-				<li>Select a function to allow in the <strong class="UI">[Audio in]</strong>, <strong class="UI">[Audio out]</strong> and <strong class="UI">[Alarm output]</strong> columns respectively, and select the type of profile to allow in the <strong class="UI">[Profile]</strong> column.</li>
+				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">Select a function to allow in the <strong class="UI">[Audio in]</strong>, <strong class="UI">[Audio out]</strong> and <strong class="UI">[Alarm output]</strong> columns respectively, and select the type of profile to allow in the <strong class="UI">[Profile]</strong> column.</li>
+				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">Select the type of profile to allow in the <strong class="UI">[Profile]</strong> column.</li>
 				<li>When the input of the current user account is completed, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</li>
 				<li>When the confirm window appears, click the <strong class="UI">[OK]</strong> button.</li>
 			</ol>

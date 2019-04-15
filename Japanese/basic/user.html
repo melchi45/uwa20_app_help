@@ -64,7 +64,7 @@
                     <li><strong class="UI">[IPタイプ]</strong>カラムでIPv4とIPv6の中、IPタイプを選択します。</li>
                     <li><strong class="UI">[IPタイプ]</strong>カラムでマネージャアカウントにアクセスを許可するIPアドレスを入力します。</li>
                 </ol>
-                <p><strong class="UI">[有効]</strong>チェックボックスをチェックすると、該当IPからマネージャアカウントでカメラ・ウェブビューアーにアクセスすることができます。</p>
+                <p><strong class="UI">[使用]</strong>チェックボックスをチェックすると、該当IPからマネージャアカウントでカメラ・ウェブビューアーにアクセスすることができます。</p>
             </div>
             <div class="wn5-online-help-action">
                 <h4>IPv4アドレス削除</h4>
@@ -127,8 +127,8 @@
 	<h2 class="wn5-setup-section-heading">デバイスマネージャ</h2>
 	<div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
-                <p>ハンファテックウィンから提供する「Wisenetデバイスマネージャ」でカメラを制御するには、<strong class="UI">[有効]</strong>を選択します。</p>
-                <p>初期値は<strong class="UI">[有効]</strong>オプションが選択解除になっています。保安上、安全のために初期化のまま使用することをお勧めします。</p>
+                <p>ハンファテックウィンから提供する「Wisenetデバイスマネージャ」でカメラを制御するには、<strong class="UI">[使用]</strong>を選択します。</p>
+                <p>初期値は<strong class="UI">[使用]</strong>オプションが選択解除になっています。保安上、安全のために初期化のまま使用することをお勧めします。</p>
             </div>
 	</div>
 </div>
@@ -220,9 +220,10 @@
 			<h4>現在のユーザー入力</h4>
 			<ol>
 				<li>使用する現在のユーザーアカウントのラジオボタンを選択します。現在のユーザーアカウントが入力できる状況に変更されます。</li>
-				<li><strong class="UI">[有効]</strong>カラムでチェックボックスをチェックします。</li>
+				<li><strong class="UI">[使用]</strong>カラムでチェックボックスをチェックします。</li>
 				<li><strong class="UI">[名前]</strong>と<strong class="UI">[Password]</strong>カラムにIDとパスワードを入力します。</li>
-				<li><strong class="UI">[音声入力]</strong>、<strong class="UI">[音声出力]</strong>、<strong class="UI">[アラーム出力]</strong>カラムで許可する機能をそれぞれ選択して<strong class="UI">[Profile]</strong>カラムで許可するProfileタイプを選択します。</li>
+				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0"><strong class="UI">[音声入力]</strong>、<strong class="UI">[音声出力]</strong>、<strong class="UI">[アラーム出力]</strong>カラムで許可する機能をそれぞれ選択して<strong class="UI">[Profile]</strong>カラムで許可するProfileタイプを選択します。</li>
+				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI"><strong class="UI">[Profile]</strong>カラムで許可するProfileタイプを選択します。</li>
 				<li>現在のユーザーアカウントの入力を完了したら、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
 				<li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
 			</ol>

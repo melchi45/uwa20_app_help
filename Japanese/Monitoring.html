@@ -9,8 +9,8 @@
     <div class="wn5-online-help-list">
     <p>上のボタンをクリックすると、ライブ画面や再生画面、設定画面に移動することができます。</p>
         <ul><li><span class="tui tui-wn5-top-live"></span>(ライブ)：カメラで撮影中のライブ画面を確認して、様々なカメラ機能を制御することができます。</li>
-            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(再生)：SDカードまたはNASに録画しておいた映像を検索して再生することができます。</li>
-            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(再生)：SDカードに録画しておいた映像を検索して再生することができます。</li>
+            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(プレーバック)：SDカードまたはNASに録画しておいた映像を検索して再生することができます。</li>
+            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(プレーバック)：SDカードに録画しておいた映像を検索して再生することができます。</li>
             <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(設定)：カメラの詳細設定を変更することができます。</li>
         </ul>
     </div>
@@ -87,20 +87,29 @@
                         </td>
                         <td width="235">カメラのパン/チルト動作をデジタルに制御することができます。</td>
                         </tr>
-					<tr>
+					<tr ng-if="DPTZSetupPage">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
                             <p>&nbsp;</p>
                         </td>
                     <td width="235">
-                        <p ng-if="DPTZSetupPage">カメラのパン/チルト/ズーム動作をデジタルに制御することができます。現在のライブ画面に適用されたビデオprofileがデジタルPTZに対応する場合のみ動作します。デジタルPTZ制御Profileに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
-
- 
-                         <p ng-if="ExternalPTZPage">カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでカメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
-                            
+                        <p >カメラのパン/チルト/ズーム動作をデジタルに制御することができます。現在のライブ画面に適用されたビデオprofileがデジタルPTZに対応する場合のみ動作します。デジタルPTZ制御Profileに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
+                    </td>
+                    </tr>
+					<tr ng-if="ExternalPTZPage">
+                        <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
+                        <td width="235">
+                         <p>カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでカメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
+                        </td>
+                    </tr>
+					<tr ng-if="PTZSetupPage">
+                    <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
+                    <td width="235">   
                         
-                        <p ng-if="PTZSetupPage">カメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ設定]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
+                        <p >カメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ設定]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
 						<p>&nbsp;</p>
                            
                     </td>
@@ -184,7 +193,7 @@
                     <tr ng-if="!CamSpecialModel">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
-                            <p>保存</p>
+                            <p>録画</p>
                         </td>
                         <td width="235">
                             <p>ライブ画面を手動で録画してPCに保存することができます。保存ボタンをクリックして録画を開始し、もう一度クリックすると録画を止めます。録画ファイルは.aviタイプで保存することができます。ブラウザによってブラウザのデフォルト保存パスに保存されるか別名で保存からファイルパスを設定することができます。</p>
@@ -202,7 +211,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput>0">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>マイク</p>
@@ -225,7 +234,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput>0">
+                    <tr ng-if="MaxAudioInput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>スピーカー</p>
@@ -283,7 +292,7 @@
                     <li>全画面モードを終了するには、もう一度全画面アイコン(<span class="tui tui-wn5-toolbar-fullscreen"></span>)をクリックするかキーボードの[Esc]キーをクリックします。</li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
             <h4>オーディオを使用するには、</h4>
                 <ul>
                     <li>オーディオアイコン(<span class="tui tui-wn5-toolbar-mic"></span>)をクリックします。</li>
@@ -641,7 +650,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <h3>profileへのアクセス</h3>
+            <h3>プロファイルへのアクセス</h3>
             <p>現在、設定されたすべてのProfileのアクセス状況を確認したり、アクセス中の現在ユーザーの状況を確認することができます。<strong class="UI">[profileへのアクセス]</strong>では、設定されたすべてのProfile名、Profile別の実際ビットレート(kbps)と適用されたビットレート(kbps)、Profile別の実際フレームレート(fps)と適用フレームレート(fps)、Profile別のATC(%)、Profile別のユーザー数を確認することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content">

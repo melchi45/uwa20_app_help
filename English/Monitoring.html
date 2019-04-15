@@ -219,7 +219,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput>0">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>Microphone</p>
@@ -271,7 +271,8 @@
             <h4>To change channel</h4>
                 <ul>
                     <li>Select the channel number you want. The video of the channel will appear in the viewer.</li>
-                    <li ng-if="!SupportAutoImageAlignment">For the quad view, click the Quad View icon.</li>
+                 <!--    <li ng-if="!SupportAutoImageAlignment">For the quad view, click the Quad View icon.</li> --> 
+                 <li ng-if="!SupportAutoImageAlignment">Click the Multi view icon to display all videos of camera channels on one screen. </li>
                     <li>To return to the single view, click the channel number. </li>
                 </ul>
             </div>
@@ -300,7 +301,7 @@
                     <li>To exit the full screen mode, click the Full screen icon(<span class="tui tui-wn5-toolbar-fullscreen"></span>) again or the [Esc] key on the keyboard. </li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
             <h4>To use microphone</h4>
                 <ul>
                     <li>Click the microphone icon(<span class="tui tui-wn5-toolbar-mic"></span>).</li>

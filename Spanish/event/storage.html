@@ -41,7 +41,7 @@
                 <li>Cuando la resoluci&oacute;n, tasa de bits y velocidad de fotogramas se fijan a alta, la cantidad de bit de datos de imagen tambi&eacute;n se incrementa. Si la cantidad de bit de datos aumenta, un salto de fotogramas puede ocurrir incluso si se pone en pantalla completa. Cuando se produce un salto de fotograma, una imagen se graba a una velocidad m&iacute;nima de una imagen por segundo. </li>
                 <li>Antes de extraer la tarjeta micro SD, primero cambie a <strong class="UI">[Deshabilitar]</strong>. Si la quita por su cuenta o enciende la c&aacute;mara con una fuente de electricidad inestable sin cambiar a <strong class="UI">[Deshabilitar]</strong>, puede da&ntilde;ar la tarjeta micro SD.</li>
                 <li>Si utiliza una tarjeta de memoria micro SD por debajo de la velocidad recomendada, puede causar saltos de cuadros.  &nbsp;Si utiliza la tarjeta de memoria micro SD con una capacidad demasiado grande, puede ralentizar la velocidad de formato.</li>
-                <li>Si utiliza NAS, la eliminaci&oacute;n autom&aacute;tica solo se admite cuando la capacidad de NAS est&aacute; por encima de las especificaciones recomendadas.</li>
+                <li ng-if="NAS">Si utiliza NAS, la eliminaci&oacute;n autom&aacute;tica solo se admite cuando la capacidad de NAS est&aacute; por encima de las especificaciones recomendadas.</li>
                 <li>Los datos eliminados no se pueden restaurar.</li>
             </ul>
         </div>
@@ -120,6 +120,31 @@
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h1>Grabar</h1>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p></p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Seleccionar canal/h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede definir los detalles para cada canal. </p>
+        </div>
+    </div>
+</div>
+
+<!--
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -149,13 +174,13 @@
                 <li>Introduzca su <strong class="UI">[Nueva contrase&ntilde;a]</strong> en el campo y vuelva a introducir la misma en&nbsp;<strong class="UI">[Confirmar contrase&ntilde;a]</strong>.</li>
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la pantalla.</li>
                 <li>Si la encriptaci&oacute;n de la tarjeta SD funciona correctamente, aparecer&aacute; el mensaje �Encriptada�.</li>
-            </ol><!--    <p>SD 카드 암호화 기능을 사용하기 위해 비밀번호를 설정하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+            </ol></div>
         <div class="wn5-online-help-action">
             <h4>Desencriptaci&oacute;n de la tarjeta SD</h4>
             <ol>
                 <li>Desmarque la selecci&oacute;n de <strong class="UI">[Activar]</strong> bajo <strong class="UI">[Encriptaci&oacute;n]</strong>.</li>
                 <li>Haga clic en e bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la pantalla. Si la encriptaci&oacute;n de la tarjeta SD est&aacute; desactivada, de manera que los datos de la tarjeta SD no est&aacute;n encriptados, aparecer&aacute; el mensaje �Desencriptada�.</li>
-            </ol><!--    <p>SD 카드 암호화를 해제하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+            </ol></div>
          <div class="wn5-online-help-action">
             <h4>Cambio de contrase&ntilde;a</h4>
             <p>Puede cambiar la contrase&ntilde;a para el encriptado de la tarjeta SD.</p>
@@ -183,7 +208,7 @@
         </div>
     </div>
 </div>
-
+-->
 
 <hr class="wn5-setup-hr" ng-if="NAS">
 <div class="wn5-setup-section" ng-if="NAS">

@@ -17,6 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">Selecting a recording device and selecting <strong class="UI">[On]</strong> allows you to change the setting for the relevant device.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Click <strong class="UI">[Info] </strong> to check the status of SD card (or Micro SD card) by channel.</p>
             <p>If data is being recorded on the device, ‘Recording’ is displayed in <strong class="UI">[Status]</strong> in the device list. When ‘Error’ is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. </p> 
             <p ng-if="NAS">When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
             <ul>
@@ -41,7 +42,7 @@
                 <li>When resolution, bit rate and frame rate are set at high, the amount of image data also increases. If the amount of data increases, a frame skip may occur even if set to full frame. When a frame skip occurs, an image is recorded at a minimum rate of one image per second.  </li>
                 <li>Before removing the (Micro) SD card, first switch to <strong class="UI">[Off]</strong>. If you remove it on your own or power up the camera with a unstable source of electricity without switching to <strong class="UI">[Off]</strong>, it can damage the (Micro) SD card.</li>
                 <li>If you use the (Micro) SD memory card below the recommended speed, it can cause frame skipping. If you use the (Micro) SD memory card with too large capacity, it can slow down the format speed.</li>
-                <li>If you use NAS, auto deletion is supported only when the NAS capacity is above the recommended specifications.</li>
+                <li ng-if="NAS">If you use NAS, auto deletion is supported only when the NAS capacity is above the recommended specifications.</li>
                 <li>Deleted data cannot be restored.</li>
             </ul>
         </div>
@@ -121,6 +122,31 @@
     </div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h1>Record</h1>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p></p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting your camera channel, you can set the details of the storage for each channel. /p>
+        </div>
+    </div>
+</div>
+
+<!--
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -150,13 +176,13 @@
                 <li>Enter your <strong class="UI">[New password]</strong> in the field, and enter the same password again in the&nbsp;<strong class="UI">[Confirm password]</strong>.</li>
                 <li>Click the <strong class="UI">[Apply]</strong> button at the bottom of the screen.</li>
                 <li>If SD card encryption is working properly, the &lsquo;Encrypted&rsquo; message will appear.</li>
-            </ol><!--    <p>SD 카드 암호화 기능을 사용하기 위해 비밀번호를 설정하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+            </ol></div>
         <div class="wn5-online-help-action">
             <h4>Decrypting SD card</h4>
             <ol>
                 <li>Deselect <strong class="UI">[Enable]</strong> under <strong class="UI">[Encryption]</strong>.</li>
                 <li>Click the <strong class="UI">[Apply]</strong> button at the bottom of the screen. If SD card encryption is disabled, so the SD card data is not encrypted, &lsquo;Unencrypted&rsquo; message will appear.</li>
-            </ol><!--    <p>SD 카드 암호화를 해제하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+            </ol></div>
          <div class="wn5-online-help-action">
             <h4>Changing password</h4>
             <p>You can change the password for SD card encryption.</p>
@@ -184,7 +210,7 @@
         </div>
     </div>
 </div>
-
+-->
 
 <hr class="wn5-setup-hr" ng-if="NAS">
 <div class="wn5-setup-section" ng-if="NAS">

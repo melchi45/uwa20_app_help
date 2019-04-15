@@ -213,7 +213,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput>0">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>Micr&oacute;fono</p>
@@ -235,8 +235,8 @@
                             <p>Al hacer clic en un n&uacute;mero de salida de alarma deseado, la alarma se emite seg&uacute;n lo establecido anteriormente. La alarma puede configurarse desde la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Evento]</strong>&gt;<strong class="UI">[Salida de alarma]</strong>. El n&uacute;mero de salidas de alarma var&iacute;a en funci&oacute;n de la c&aacute;mara.</p>
                             <p>&nbsp;</p>
                         </td>
-                    </tr ng-if="MaxAudioOutput>0">
-                    <tr >
+                    </tr >
+                    <tr ng-if="MaxAudioInput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Altavoz</p>
@@ -294,7 +294,7 @@
                     <li>Para salir del modo pantalla completa, vuelva a hacer clic en el icono <span class="tui tui-wn5-toolbar-fullscreen"></span>Pantalla completa o pulse la tecla [Esc]. </li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
             <h4>Para utilizar micr&oacute;fono</h4>
                 <ul>
                     <li>Haga clic en el icono de micr&oacute;fono <span class="tui tui-wn5-toolbar-mic"></span> .</li>

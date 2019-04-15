@@ -11,6 +11,10 @@
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
                     <p>Después de seleccionar su canal de cámara, puede establecer los detalles de Perfil de vídeo para cada canal. </p>
+                    <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
+                    <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
+                    <p>El número de canal seleccionado por última vez en la página en directo o en la página de reproducción se selecciona automáticamente. Haga clic en el botón <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
+                    <p>Si selecciona otro canal sin aplicar los cambios en la configuración, aparecerá un mensaje de alarma.</p>
                 </div>
             </div>
 </div>
@@ -385,7 +389,7 @@
             <p>Establezca el tipo para reducir la p&eacute;rdida de compresi&oacute;n. Se proporcionan dos tipos de codificaci&oacute;n de entrop&iacute;a, CAVLC (Codificaci&oacute;n de Longitud Variable Adaptable al Contexto) y CABAC (Codificaci&oacute;n Aritm&eacute;tica Binaria Adaptable al Contexto).</p>
             <ul>
                 <li><strong class="UI">CABAC</strong>: El procedimiento de tratamiento de bit de datos CABAC es m&aacute;s complicado que CAVLC, por lo que utiliza m&aacute;s recursos del sistema, pero tiene una velocidad de compresi&oacute;n excelente.</li>
-                <li><strong class="UI">CAVLC</strong>: El procedimiento de tratamiento de bit de datos para CAVLC es m&aacute;s simple que CABAC, para que utilice menos recursos del sistema, pero la velocidad de compresi&oacute;n es relativamente baja.</li>
+                <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: El procedimiento de tratamiento de bit de datos para CAVLC es m&aacute;s simple que CABAC, para que utilice menos recursos del sistema, pero la velocidad de compresi&oacute;n es relativamente baja.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">
