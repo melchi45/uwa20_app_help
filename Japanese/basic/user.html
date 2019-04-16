@@ -179,7 +179,9 @@
 	<h2 class="wn5-setup-section-heading">現在のユーザー</h2>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、Profileなどの使用権限を設定することができます。登録したユーザーがログインした時、ユーザーごとに設定された機能のみ有効になります。初期値に10つの現在のユーザーアカウントが設定されており、アカウントを追加したり削除することができます。現在のユーザーアカウントは最大10つまで使用することができます。</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、Profileなどの使用権限を設定することができます。</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">マネージャの他にユーザーアカウントのアクセス情報を設定して、Profileなどの使用権限を設定することができます。</p>
+			<p>登録したユーザーがログインした時、ユーザーごとに設定された機能のみ有効になります。初期値に10つの現在のユーザーアカウントが設定されており、アカウントを追加したり削除することができます。現在のユーザーアカウントは最大10つまで使用することができます。</p>
 		</div>
 				<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>

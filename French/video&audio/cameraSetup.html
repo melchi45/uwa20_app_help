@@ -503,7 +503,7 @@
             <h3>Entr&eacute;e d&rsquo;alerte</h3>
             <p>R&egrave;gle la vid&eacute;o en couleur ou N/B en fonction de l&rsquo;ouverture ou de la fermeture du capteur d&rsquo;alarme. Lorsque <strong class="UI">[Externe]</strong> est d&eacute;fini pour <strong class="UI">[Mode]</strong> de <strong class="UI">[Jour/Nuit]</strong>, la fonction <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[Entr&eacute;e d&rsquo;alerte]</strong> est alors d&eacute;sactiv&eacute;e et la page de configuration ne s&rsquo;affiche pas.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefocusDetectSimpleFocus">
+        <div class="wn5-setup-section-article-content" ng-if="ExternalPTZModel">
             <h3>Mise au point simple apr&egrave;s Jour/Nuit</h3>
             <p>R&egrave;gle automatiquement la mise au point de l&rsquo;image apr&egrave;s un passage au Jour/Nuit.</p>
         </div>
@@ -819,8 +819,8 @@
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: D&eacute;sactive le mode IR.</li>
                 <li><strong class="UI">Auto 1</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
-                <li><strong class="UI">Auto 2</strong>&nbsp;: En fonction de la luminosit&eacute; des objets au centre de l&rsquo;&eacute;cran et &agrave; proximit&eacute;, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
-                <li><strong class="UI">Manuel</strong>&nbsp;: Ajuste manuellement la luminosit&eacute; IR.</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 2</strong>&nbsp;: En fonction de la luminosit&eacute; des objets au centre de l&rsquo;&eacute;cran et &agrave; proximit&eacute;, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
+                <li ng-if="IRModeOptionManual"><strong class="UI">Manuel</strong>&nbsp;: Ajuste manuellement la luminosit&eacute; IR.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">

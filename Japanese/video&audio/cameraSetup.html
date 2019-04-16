@@ -410,22 +410,22 @@
             <h3>SSNR</h3>
             <p>映像のノイズを除去します。</p>
             <ul>
-                <li><strong class="UI">on/off</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[有効]</strong>を選択すると、SSNRレベルを調整することができます。</li>
+                <li><strong class="UI">On/Off</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[On]</strong>を選択すると、SSNRレベルを調整することができます。</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
             <h3>SSNR レベル</h3>
-            <p>SSNR レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[有効]に選択した場合、設定することができます。</p>
+            <p>SSNR レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]に選択した場合、設定することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>SSNR 2D レベル</h3>
-            <p>SSNR 2Dは、一つのフレームで隣接したピクセルを使用して映像のノイズを低下させます。SSNR 2D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[有効]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
+            <p>SSNR 2Dは、一つのフレームで隣接したピクセルを使用して映像のノイズを低下させます。SSNR 2D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
             <p>レベルを上げるほど、ノイズは低減するが映像がぼやけることがあります。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
             <h3>SSNR 3D レベル</h3>
-            <p>SSNR 3Dは、複数フレームのピクセルを使用して映像のノイズを低下させます。SSNR 3D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[有効]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
+            <p>SSNR 3Dは、複数フレームのピクセルを使用して映像のノイズを低下させます。SSNR 3D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
             <p>レベルを上げるほど、ノイズは低減するが映像に残像が発生することがあります。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions">
@@ -510,7 +510,7 @@
             <h3>アラーム入力</h3>
             <p>アラームセンサーの開/閉状況によって映像をカラーやB/Wに設定することができます。<strong class="UI">[デイ/ナイト]</strong>の<strong class="UI">[モード]</strong>を<strong class="UI">[外部]</strong>に設定すると、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入力]</strong>機能が無効になり設定ページが表示されません。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefocusDetectSimpleFocus">
+        <div class="wn5-setup-section-article-content" ng-if="ExternalPTZModel">
             <h3>デイ/ナイト切替後の単一フォーカス</h3>
             <p>デイ/ナイト切替後、映像のフォーカスを自動に合わせます。</p>
         </div>
@@ -603,7 +603,7 @@
             <h3>LDC</h3>
             <p>LDC (Lens Distortion Correction)は広角レンズの角部分の映像歪み現象を補正します。</p>
             <ul>
-                <li><strong class="UI">無効</strong>：映像の歪み補正機能を使用しません。</li>
+                <li><strong class="UI">Off</strong>：映像の歪み補正機能を使用しません。</li>
                 <li><strong class="UI">マニュアル</strong>：歪み補正レベルを手動に調整します。</li>
                 <li ng-if="LDCAuto"><strong class="UI">自動</strong>：自動に映像の歪みを調整します。</li>
             </ul>
@@ -827,8 +827,8 @@
             <ul>
                 <li><strong class="UI">無効</strong>：IRモードを使用しません。</li>
                 <li><strong class="UI">自動1</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
-                <li><strong class="UI">自動2</strong>：画面の中心部&amp;周囲部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
-                <li><strong class="UI">手動</strong>：手動でIRの明るさを調整します。</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">自動2</strong>：画面の中心部&amp;周囲部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
+                <li ng-if="IRModeOptionManual"><strong class="UI">手動</strong>：手動でIRの明るさを調整します。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -904,7 +904,7 @@
 
         <div class="wn5-setup-section-article-content">
 
-            <h3>無効</h3>
+            <h3>Off</h3>
             <p>カメラが上で選択した画像プリセットで動作します。</p>
         </div>
         <div class="wn5-setup-section-article-content">

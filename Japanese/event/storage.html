@@ -16,14 +16,17 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>ストレージ用デバイスの種類を選択して<strong class="UI">[使用]</strong>を選択すると、該当デバイスに対する設定を変更することができます。</p>
-            <p>デバイスにデータが正常的に保存されている場合、デバイスリストの<strong class="UI">[状況]</strong>に「保存中」と表示されます。<strong class="UI">[状況]</strong>に「エラー」と表示されると、ストレージ用デバイスが正しく接続されているか確認してください。SDカードとNASを同時に<strong class="UI">[使用]</strong>と設定すると、NASを優先に処理します。</p>
-            <ul><li><strong class="UI">SDカード</strong>：SDカードの使用有無を設定することができます。SDカードが認識されると使用可能容量、全体容量、状況が表示されます。SDカードをフォーマットするには、<strong class="UI">[フォーマット]</strong>ボタンをクリックします。</li>
-                <li><strong class="UI">NAS</strong>：NAS (Network Attached Storage)の使用有無を設定することができます。NASに接続したら使用可能容量、全体容量、状況が表示されます。NASの設定上のデフォルトフォルダをフォーマットするには、<strong class="UI">[フォーマット]</strong>ボタンをクリックします。</li>
+            <p>デバイスにデータが正常的に保存されている場合、デバイスリストの<strong class="UI">[状況]</strong>に「保存中」と表示されます。<strong class="UI">[状況]</strong>に「エラー」と表示されると、ストレージ用デバイスが正しく接続されているか確認してください。</p>
+            <p ng-if="NAS">SDカードとNASを同時に<strong class="UI">[使用]</strong>と設定すると、NASを優先に処理します。</p>
+            <ul>
+                <li><strong class="UI">SDカード</strong>：SDカードの使用有無を設定することができます。SDカードが認識されると使用可能容量、全体容量、状況が表示されます。SDカードをフォーマットするには、<strong class="UI">[フォーマット]</strong>ボタンをクリックします。</li>
+                <li ng-if="NAS"><strong class="UI">NAS</strong>：NAS (Network Attached Storage)の使用有無を設定することができます。NASに接続したら使用可能容量、全体容量、状況が表示されます。NASの設定上のデフォルトフォルダをフォーマットするには、<strong class="UI">[フォーマット]</strong>ボタンをクリックします。</li>
             </ul>
         </div>
        <div class="wn5-setup-section-article-content">
             <h3>オーバーライト</h3>
-            <p>SDカードまたはNASのオーバーライト機能使用有無を設定します。デバイスの容量がフルの場合、一番古いデータを削除して新しいデータを保存します。デバイスの容量がフルになると、デバイスリストの<strong class="UI">[状況]</strong>に「フル」というメッセージが表示されます。</p>
+            <p ng-if="NAS">SDカードまたはNASのオーバーライト機能使用有無を設定します。デバイスの容量がフルの場合、一番古いデータを削除して新しいデータを保存します。デバイスの容量がフルになると、デバイスリストの<strong class="UI">[状況]</strong>に「フル」というメッセージが表示されます。</p>
+            <p ng-if="!NAS">SDカードまのオーバーライト機能使用有無を設定します。デバイスの容量がフルの場合、一番古いデータを削除して新しいデータを保存します。デバイスの容量がフルになると、デバイスリストの<strong class="UI">[状況]</strong>に「フル」というメッセージが表示されます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>自動削除</h3>
@@ -41,7 +44,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul><li>デバイスリストで<strong class="UI">[状況]</strong>が「エラー」に表示されると、ストレージ用デバイスが正しく接続されているかストレージ用デバイスのファイルシステムが損傷されていないか、ストレージ用デバイスが物理的に損傷されていないかを確認します。ストレージ用デバイスを確認したにもかかわらず「エラー」メッセージが表示され続けたら、デバイスをフォーマットしたり交換します。</li>
-                <li>NAS使用時、一時的なネットワーク切断によって映像データが保存されない場合があるため、SDカードと共に使用することをお勧めします。</li>
+                <li ng-if="NAS">NAS使用時、一時的なネットワーク切断によって映像データが保存されない場合があるため、SDカードと共に使用することをお勧めします。</li>
                 <li>高解像度、高いビットレート、高いフレームレートなどを設定すると、映像データ量が増加します。データ量が増加すると、フルフレームに設定してもフレームスキップが発生することがあります。フレームスキップが発生すると、最小1秒当たり1枚以上の映像に保存します。</li>
                 <li>Micro SDカードを除去する時には、<strong class="UI">[無効]</strong>に変更してからカードを除去してください。<strong class="UI">[無効]</strong>に変更せずに任意で除去したり不安定な電源にカメラを接続させるとMicro SDカードが損傷される場合があります。</li>
                 <li>推奨速度以下のMicro SDメモリカードを使用する場合、フレームスキップが発生することがあります。 &nbsp;容量が大きいMicro SDメモリカードを使用する場合、フォーマット速度が遅くなることがあります。</li>
@@ -182,8 +185,8 @@
 </div>		
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="NAS">
+<div class="wn5-setup-section" ng-if="NAS">
     <div class="wn5-setup-section-heading">
         <h2>NAS接続設定</h2>
     </div>

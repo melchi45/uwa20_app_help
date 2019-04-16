@@ -636,7 +636,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <h3>Alarm input</h3>
             <p>Set the image to color or b/w according to the opening and closing status of the alarm sensor. When <strong class="UI">[External]</strong> is set for <strong class="UI">[Mode]</strong> of <strong class="UI">[Day/Night]</strong>, the <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm input]</strong> function will be deactivated and the setup page will not appear. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefocusDetectSimpleFocus">
+        <div class="wn5-setup-section-article-content" ng-if="ExternalPTZModel">
             <h3>Simple focus after D/N</h3>
             <p>Adjusts the focus of the image automatically after a Day/Night switch.</p>
         </div>
@@ -966,8 +966,8 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <ul>
                 <li><strong class="UI">Off</strong>: Disables the IR mode.</li>
                 <li><strong class="UI">Auto 1</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
-                <li><strong class="UI">Auto 2</strong>: Automatically adjusts the IR brightness depending on the brightness of object at and around the center of screen.</li>
-                <li><strong class="UI">Manual</strong>: Manually adjusts the IR brightness.</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 2</strong>: Automatically adjusts the IR brightness depending on the brightness of object at and around the center of screen.</li>
+                <li ng-if="IRModeOptionManual"><strong class="UI">Manual</strong>: Manually adjusts the IR brightness.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">

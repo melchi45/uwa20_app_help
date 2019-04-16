@@ -85,7 +85,9 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation, y compris l&apos;entr&eacute;e audio, la sortie audio, l&rsquo;&eacute;mission d&apos;alerte et le profil. Lorsqu&apos;un utilisateur enregistr&eacute; se connecte, seules les fonctions d&eacute;finies pour cet utilisateur sont activ&eacute;es. 10&nbsp;comptes utilisateurs actuels sont d&eacute;finis par d&eacute;faut. Vous pouvez ajouter ou supprimer un compte. Il est possible d&apos;utiliser jusqu&apos;&agrave; 10&nbsp;comptes d&apos;utilisateur IP actuels.</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation, y compris l&apos;entr&eacute;e audio, la sortie audio, l&rsquo;&eacute;mission d&apos;alerte et le profil. </p>	
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation. </p>
+			<p>Lorsqu&apos;un utilisateur enregistr&eacute; se connecte, seules les fonctions d&eacute;finies pour cet utilisateur sont activ&eacute;es. 10&nbsp;comptes utilisateurs actuels sont d&eacute;finis par d&eacute;faut. Vous pouvez ajouter ou supprimer un compte. Il est possible d&apos;utiliser jusqu&apos;&agrave; 10&nbsp;comptes d&apos;utilisateur IP actuels.</p>
 		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
@@ -138,7 +140,8 @@
 				<li>S&eacute;lectionnez le bouton radio du compte d&apos;utilisateur actuel que vous souhaitez utiliser. Le compte utilisateur actuel est remplac&eacute; par un &eacute;tat o&ugrave; l&apos;entr&eacute;e est disponible.</li>
 				<li>Cochez la case dans la colonne <strong class="UI">[Utiliser]</strong>.</li>
 				<li>Saisissez l&apos;identifiant et le mot de passe dans les colonnes <strong class="UI">[Nom]</strong> et <strong class="UI">[Mot de passe]</strong>.</li>
-				<li>S&eacute;lectionnez une fonction &agrave; autoriser dans les colonnes <strong class="UI">[Entr&eacute;e audio]</strong>, <strong class="UI">[Sortie audio]</strong> et <strong class="UI">[&Eacute;mission alerte]</strong> respectivement, puis s&eacute;lectionnez le type de profil &agrave; autoriser dans la colonne <strong class="UI">[Profil]</strong>.</li>
+				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">S&eacute;lectionnez une fonction &agrave; autoriser dans les colonnes <strong class="UI">[Entr&eacute;e audio]</strong>, <strong class="UI">[Sortie audio]</strong> et <strong class="UI">[&Eacute;mission alerte]</strong> respectivement, puis s&eacute;lectionnez le type de profil &agrave; autoriser dans la colonne <strong class="UI">[Profil]</strong>.</li>
+				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">S&eacute;lectionnez le type de profil &agrave; autoriser dans la colonne <strong class="UI">[Profil]</strong>.</li>
 				<li>Lorsque l&apos;entr&eacute;e du compte utilisateur actuel est termin&eacute;e, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
 				<li>Lorsque la fen&ecirc;tre de confirmation appara&icirc;t, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
 			</ol>

@@ -77,7 +77,8 @@
 	<h2 class="wn5-setup-section-heading">Usuario actual</h2>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso, incluyendo audio, salida de audio, salida de alarma y el perfil. Cuando un usuario registrado inicie la sesi&oacute;n, s&oacute;lo las funciones establecidas para ese usuario est&aacute;n habilitadas. 10 cuentas de usuario actuales se establecen de forma predeterminada; se puede a&ntilde;adir o eliminar una cuenta. Hasta 10 cuentas de usuario actuales IP se pueden utilizar.</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso, incluyendo audio, salida de audio, salida de alarma y el perfil.</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso.</p>	<p>Cuando un usuario registrado inicie la sesi&oacute;n, s&oacute;lo las funciones establecidas para ese usuario est&aacute;n habilitadas. 10 cuentas de usuario actuales se establecen de forma predeterminada; se puede a&ntilde;adir o eliminar una cuenta. Hasta 10 cuentas de usuario actuales IP se pueden utilizar.</p>
 		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
@@ -125,7 +126,8 @@
 				<li>Seleccione el bot&oacute;n de radio de la cuenta de usuario actual que desee utilizar. La cuenta de usuario actual se cambia a un estado donde la entrada est&eacute; disponible.</li>
 				<li>Seleccione la casilla de verificaci&oacute;n en la columna de <strong class="UI">[Uso]</strong>.</li>
 				<li>Introduzca el ID y la contrase&ntilde;a en las columnas <strong class="UI">[Nombre]</strong> y <strong class="UI">[Contrase&ntilde;a]</strong>.</li>
-				<li>Seleccione una funci&oacute;n para habilitar las columnas <strong class="UI">[Entrada de audio]</strong>, <strong class="UI">[Salida de audio]</strong> y <strong class="UI">[Salida de alarma]</strong> respectivamente, y seleccione el tipo de perfil para habilitar la columna <strong class="UI">[Perfil]</strong>.</li>
+				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">Seleccione una funci&oacute;n para habilitar las columnas <strong class="UI">[Entrada de audio]</strong>, <strong class="UI">[Salida de audio]</strong> y <strong class="UI">[Salida de alarma]</strong> respectivamente, y seleccione el tipo de perfil para habilitar la columna <strong class="UI">[Perfil]</strong>.</li>
+				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">Seleccione el tipo de perfil para habilitar la columna <strong class="UI">[Perfil]</strong>.</li>
 				<li>Cuando se haya completado la entrada de la cuenta de usuario actual, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
 				<li>Cuando aparezca la ventana de confirmaci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
 			</ol>

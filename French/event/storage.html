@@ -51,56 +51,6 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Paramètres d'enregistrement</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <h3>Enregistrer le profil</h3>
-            <p>Le nom du profil vid&eacute;o qui sera utilis&eacute; pour l&apos;enregistrement s&apos;affiche. Le profil d&eacute;fini comme «&nbsp;Profil d&apos;enregistrement&nbsp;» dans <strong class="UI">[Base]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Type de profil]</strong></a> s&apos;affiche.</p>
-        </div>
-
-        <div class="wn5-setup-section-article-content">
-            <h3>Enregistrement normal</h3>
-			<p>Ceci d&eacute;finit l&apos;enregistrement normal sans &eacute;v&eacute;nement.</p>
-            <ul>
-        
-                    <li><strong class="UI">Aucun</strong>&nbsp;: Aucune image de cam&eacute;ra n&apos;est enregistr&eacute;e.</li>
-                    <li><strong class="UI">Image-I</strong>&nbsp;: Enregistre une image-I uniquement pour l&apos;enregistrement normal.</li>
-                    <li><strong class="UI">Image compl&egrave;te</strong>&nbsp;: Enregistre une image compl&egrave;te en enregistrement normal.</li>
-                </ul>
-        </div>
-
-        <div class="wn5-setup-section-article-content">
-            <h3>Enregistrement d&apos;&eacute;v&eacute;nements</h3>
-            <p>D&eacute;finit le type d&apos;enregistrement lorsqu&apos;un &eacute;v&eacute;nement se produit.</p>
-            <ul>
-                <li><strong class="UI">Image-I</strong>&nbsp;: Enregistre uniquement une image-I lorsqu&apos;un &eacute;v&eacute;nement se produit.</li>
-                <li><strong class="UI">Plein format</strong>&nbsp;: Enregistre une image compl&egrave;te lorsqu&apos;un &eacute;v&eacute;nement se produit.</li>
-            </ul>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Dur&eacute;e pr&eacute;-&eacute;v&eacute;nement</h3>
-            <p>D&eacute;finit la dur&eacute;e d&apos;enregistrement de l&apos;image avant qu&apos;un &eacute;v&eacute;nement se produise. Une image peut &ecirc;tre enregistr&eacute;e 1 seconde, 3 secondes et 5 secondes avant l&apos;apparition d&apos;un &eacute;v&eacute;nement.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Dur&eacute;e post-&eacute;v&eacute;nement</h3>
-            <p>D&eacute;finit la dur&eacute;e d&apos;enregistrement de l&apos;image apr&egrave;s un &eacute;v&eacute;nement. Une image peut &ecirc;tre enregistr&eacute;e pendant 5 secondes, 10 secondes, 30 secondes, 60 secondes ou 120 secondes apr&egrave;s l&apos;occurrence d&apos;un &eacute;v&eacute;nement.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Type de fichier enregistré</h3>
-            <p>D&eacute;finit le format de fichier pour l&apos;enregistrement d&apos;une image. Lorsque le format d&apos;enregistrement de fichier est modifi&eacute;, les donn&eacute;es existantes sont effac&eacute;es.</p>
-            <ul>
-                <li><strong class="UI">STW</strong>: C&apos;est le type de fichier unique pour Hanwha Techwin.</li>
-                <li><strong class="UI">AVI</strong>: Ceci est un fichier AVI.</li>
-            </ul>
-        </div>
-
-    </div>
-</div>
-
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
         <h2>Syst&egrave;me de fichiers SD</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -121,6 +71,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
@@ -262,6 +215,58 @@
         </div>
     </div>
 </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Paramètres d'enregistrement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Enregistrer le profil</h3>
+            <p>Le nom du profil vid&eacute;o qui sera utilis&eacute; pour l&apos;enregistrement s&apos;affiche. Le profil d&eacute;fini comme «&nbsp;Profil d&apos;enregistrement&nbsp;» dans <strong class="UI">[Base]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Type de profil]</strong></a> s&apos;affiche.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Enregistrement normal</h3>
+			<p>Ceci d&eacute;finit l&apos;enregistrement normal sans &eacute;v&eacute;nement.</p>
+            <ul>
+        
+                    <li><strong class="UI">Aucun</strong>&nbsp;: Aucune image de cam&eacute;ra n&apos;est enregistr&eacute;e.</li>
+                    <li><strong class="UI">Image-I</strong>&nbsp;: Enregistre une image-I uniquement pour l&apos;enregistrement normal.</li>
+                    <li><strong class="UI">Image compl&egrave;te</strong>&nbsp;: Enregistre une image compl&egrave;te en enregistrement normal.</li>
+                </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Enregistrement d&apos;&eacute;v&eacute;nements</h3>
+            <p>D&eacute;finit le type d&apos;enregistrement lorsqu&apos;un &eacute;v&eacute;nement se produit.</p>
+            <ul>
+                <li><strong class="UI">Image-I</strong>&nbsp;: Enregistre uniquement une image-I lorsqu&apos;un &eacute;v&eacute;nement se produit.</li>
+                <li><strong class="UI">Plein format</strong>&nbsp;: Enregistre une image compl&egrave;te lorsqu&apos;un &eacute;v&eacute;nement se produit.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Dur&eacute;e pr&eacute;-&eacute;v&eacute;nement</h3>
+            <p>D&eacute;finit la dur&eacute;e d&apos;enregistrement de l&apos;image avant qu&apos;un &eacute;v&eacute;nement se produise. Une image peut &ecirc;tre enregistr&eacute;e 1 seconde, 3 secondes et 5 secondes avant l&apos;apparition d&apos;un &eacute;v&eacute;nement.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Dur&eacute;e post-&eacute;v&eacute;nement</h3>
+            <p>D&eacute;finit la dur&eacute;e d&apos;enregistrement de l&apos;image apr&egrave;s un &eacute;v&eacute;nement. Une image peut &ecirc;tre enregistr&eacute;e pendant 5 secondes, 10 secondes, 30 secondes, 60 secondes ou 120 secondes apr&egrave;s l&apos;occurrence d&apos;un &eacute;v&eacute;nement.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Type de fichier enregistré</h3>
+            <p>D&eacute;finit le format de fichier pour l&apos;enregistrement d&apos;une image. Lorsque le format d&apos;enregistrement de fichier est modifi&eacute;, les donn&eacute;es existantes sont effac&eacute;es.</p>
+            <ul>
+                <li><strong class="UI">STW</strong>: C&apos;est le type de fichier unique pour Hanwha Techwin.</li>
+                <li><strong class="UI">AVI</strong>: Ceci est un fichier AVI.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
 
 <hr class="wn5-setup-hr">
 

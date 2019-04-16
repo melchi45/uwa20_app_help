@@ -17,7 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">Selecting a recording device and selecting <strong class="UI">[On]</strong> allows you to change the setting for the relevant device.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Click <strong class="UI">[Info] </strong> to check the status of SD card (or Micro SD card) by channel.</p>
+            <p ng-if="MaxChannel > 1 || HandoverCalibration">Click <strong class="UI">[Info] </strong> to check the status of SD card (or Micro SD card) by channel.</p>
             <p>If data is being recorded on the device, ‘Recording’ is displayed in <strong class="UI">[Status]</strong> in the device list. When ‘Error’ is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. </p> 
             <p ng-if="NAS">When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
             <ul>
@@ -46,56 +46,9 @@
                 <li>Deleted data cannot be restored.</li>
             </ul>
         </div>
-
-        <hr class="wn5-setup-hr">
-        <div class="wn5-setup-section">
-            <div class="wn5-setup-section-heading">
-                <h2>Record setup</h2>
-            </div>
-            <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <h3>Record profile</h3>
-            <p>The name of the video profile which will be used for recording is displayed. The profile set as ‘Record profile’ from <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profile type]</strong></a> is displayed. </p>
-        </div>
-
-        <div class="wn5-setup-section-article-content">
-            <h3>Normal recording</h3>
-			<p>Sets for normal recording with no event; Video is saved with a fixed frame rate at all times in an ordinary situation without an event.</p>
-            <ul>
-        
-                    <li><strong class="UI">None</strong>: No camera image is recorded.</li>
-                    <li><strong class="UI">I-Frame</strong>: Records I-Frame only for normal recording.</li>
-                    <li><strong class="UI">Full frame</strong>: Records full frame normal recording.</li>
-                </ul>
-        </div>
-
-        <div class="wn5-setup-section-article-content">
-            <h3>Event recording</h3>
-            <p>Sets the recording type when an event occurs. </p>
-            <ul>
-                <li><strong class="UI">I-Frame</strong>: Records only I-Frame when an event occurs.</li>
-                <li><strong class="UI">Full frame</strong>: Records full frame when an event occurs.</li>
-            </ul>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Pre event duration</h3>
-            <p>Sets the image recording time before an event occurs. An image can be recorded at 1 second, 3 seconds and 5 seconds prior to the occurrence of an event.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Post event duration</h3>
-            <p>Sets the image recording time span after an event. An image can be recorded for 5 seconds, 10 seconds, 30 seconds, 60 seconds or 120 seconds after the occurrence of an event.</p>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>Record file type</h3>
-            <p>Sets the file format for recording an image. When the file recording format is changed, the existing data will be erased.</p>
-            <ul>
-                <li><strong class="UI">STW</strong>: This is the unique file type for Hanwha Techwin.</li>
-                <li><strong class="UI">AVI</strong>: This is an AVI file.</li>
-            </ul>
-        </div>
-
     </div>
 </div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -141,7 +94,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting your camera channel, you can set the details of the storage for each channel. /p>
+            <p>After selecting your camera channel, you can set the details of the storage for each channel.</p>
         </div>
     </div>
 </div>
@@ -260,6 +213,57 @@
         </div>
     </div>
 </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Record setup</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+<div class="wn5-setup-section-article-content">
+    <h3>Record profile</h3>
+    <p>The name of the video profile which will be used for recording is displayed. The profile set as ‘Record profile’ from <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profile type]</strong></a> is displayed. </p>
+</div>
+
+<div class="wn5-setup-section-article-content">
+    <h3>Normal recording</h3>
+    <p>Sets for normal recording with no event; Video is saved with a fixed frame rate at all times in an ordinary situation without an event.</p>
+    <ul>
+
+            <li><strong class="UI">None</strong>: No camera image is recorded.</li>
+            <li><strong class="UI">I-Frame</strong>: Records I-Frame only for normal recording.</li>
+            <li><strong class="UI">Full frame</strong>: Records full frame normal recording.</li>
+        </ul>
+</div>
+
+<div class="wn5-setup-section-article-content">
+    <h3>Event recording</h3>
+    <p>Sets the recording type when an event occurs. </p>
+    <ul>
+        <li><strong class="UI">I-Frame</strong>: Records only I-Frame when an event occurs.</li>
+        <li><strong class="UI">Full frame</strong>: Records full frame when an event occurs.</li>
+    </ul>
+</div>
+<div class="wn5-setup-section-article-content">
+    <h3>Pre event duration</h3>
+    <p>Sets the image recording time before an event occurs. An image can be recorded at 1 second, 3 seconds and 5 seconds prior to the occurrence of an event.</p>
+</div>
+<div class="wn5-setup-section-article-content">
+    <h3>Post event duration</h3>
+    <p>Sets the image recording time span after an event. An image can be recorded for 5 seconds, 10 seconds, 30 seconds, 60 seconds or 120 seconds after the occurrence of an event.</p>
+</div>
+<div class="wn5-setup-section-article-content">
+    <h3>Record file type</h3>
+    <p>Sets the file format for recording an image. When the file recording format is changed, the existing data will be erased.</p>
+    <ul>
+        <li><strong class="UI">STW</strong>: This is the unique file type for Hanwha Techwin.</li>
+        <li><strong class="UI">AVI</strong>: This is an AVI file.</li>
+    </ul>
+</div>
+
+</div>
+</div>
+
 
 <hr class="wn5-setup-hr">
 

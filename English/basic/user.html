@@ -85,7 +85,9 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile. When a registered user logs in, only the functions set for that user are enabled. 10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile. </p>	
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">You can set the connection information for user accounts other than the administrator, and set use permissions.</p>				
+			<p>When a registered user logs in, only the functions set for that user are enabled. 10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p>
 		</div>
 		<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>

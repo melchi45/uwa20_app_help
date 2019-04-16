@@ -67,10 +67,10 @@
 		<div class="wn5-setup-section-article-content">
 			<p>시스템 설정을 제품을 구입했을 당시의 설정으로 초기화할 수 있습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭한 후 확인창에서 <strong class="UI">[확인]</strong> 버튼을 클릭하면 공장 초기화가 진행됩니다. (단, 로그는 초기화되지 않습니다 .)</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel">
+		<div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel && OpenSDKSupport">
 			<p>공장 초기화를 진행할 때 네트워크 설정 및 설치된 오픈 플랫폼 설정을 제외하고 다른 설정만 공장 초기화하려면 <strong class="UI">[네트워크 설정 및 오픈 플랫폼 설정 유지]</strong>를 선택합니다. 공장 초기화 진행 시 카메라와 접속이 끊깁니다. 웹뷰어 처음 접속 시 비밀번호를 다시 설정해야 합니다. </p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="CamSpecialModel">
+		<div class="wn5-setup-section-article-content" ng-if="CamSpecialModel && !OpenSDKSupport">
 			<p>공장 초기화를 진행할 때 네트워크 설정을 제외하고 다른 설정만 공장 초기화하려면 <strong class="UI">[네트워크 설정 유지]</strong>를 선택합니다. 공장 초기화 진행 시 카메라와 접속이 끊깁니다. 웹뷰어 처음 접속 시 비밀번호를 다시 설정해야 합니다. </p>
 		</div>
 	</div>

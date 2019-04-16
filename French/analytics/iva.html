@@ -96,8 +96,11 @@
     </div>
 <div class="wn5-setup-section-article">
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="IvaAppearDisappear && IvaLoitering">
 			<p>L&apos;utilisateur &eacute;tablit la zone virtuelle et applique la r&egrave;gle d&apos;intrusion de l&apos;image, entr&eacute;e/sortie, apparition (disparition) et fl&acirc;nerie dans la zone concern&eacute;e afin de d&eacute;tecter le mouvement d&apos;un objet.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="!IvaAppearDisappear && !IvaLoitering">
+			<p>L&apos;utilisateur &eacute;tablit la zone virtuelle et applique la r&egrave;gle d&apos;intrusion de l&apos;image et entr&eacute;e/sortie dans la zone concern&eacute;e afin de d&eacute;tecter le mouvement d&apos;un objet.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>D&eacute;finir une zone virtuelle</h4>
@@ -127,18 +130,18 @@
                 </ul>
                 <li><strong class="UI">Entrer</strong>&nbsp;: lorsqu&apos;un objet entrera dans la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
                 <li><strong class="UI">Sortie</strong>&nbsp;: lorsqu&apos;un objet en mouvement sortira de la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
-                <li><strong class="UI">Apparition (Disparition)</strong>&nbsp;: lorsqu&apos;un objet qui n&apos;existe pas dans la zone d&eacute;sign&eacute;e par l&apos;utilisateur appara&icirc;t &agrave; l&apos;int&eacute;rieur de la zone sans passer la ligne de la zone et reste pendant un certain temps, ou si un objet existant dans la zone dispara&icirc;t, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
-                <ul>
+                <li ng-if="IvaAppearDisappear"><strong class="UI">Apparition (Disparition)</strong>&nbsp;: lorsqu&apos;un objet qui n&apos;existe pas dans la zone d&eacute;sign&eacute;e par l&apos;utilisateur appara&icirc;t &agrave; l&apos;int&eacute;rieur de la zone sans passer la ligne de la zone et reste pendant un certain temps, ou si un objet existant dans la zone dispara&icirc;t, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <ul ng-if="IvaAppearDisappear">
                     <li><strong class="UI">Dur&eacute;e(s) minimum</strong>&nbsp;: d&eacute;finit le d&eacute;lai minimum pour qu&apos;un objet soit d&eacute;tect&eacute; comme &eacute;tant en train d&rsquo;appara&icirc;tre (dispara&icirc;tre). Lorsqu&apos;un objet qui existe dans la zone de d&eacute;tection &agrave; l&apos;heure r&eacute;gl&eacute;e dispara&icirc;t, il est d&eacute;tect&eacute; comme &eacute;tant en train de dispara&icirc;tre et lorsqu&apos;un objet qui n&apos;existe pas appara&icirc;t pendant la dur&eacute;e d&eacute;finie, il est d&eacute;tect&eacute; comme en train d&rsquo;appara&icirc;tre.</li>
                 </ul>
-                <li><strong class="UI">Fl&acirc;nerie</strong>&nbsp;: Lorsqu&apos;un objet fl&acirc;nant dans la zone de d&eacute;tection est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
-                <ul>
+                <li ng-if="IvaLoitering"><strong class="UI">Fl&acirc;nerie</strong>&nbsp;: Lorsqu&apos;un objet fl&acirc;nant dans la zone de d&eacute;tection est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
+                <ul ng-if="IvaLoitering">
                     <li><strong class="UI">Dur&eacute;e(s) minimum</strong>&nbsp;: Ceci d&eacute;finit la dur&eacute;e minimale de d&eacute;tection d&apos;un objet fl&acirc;nant et de cr&eacute;ation d&apos;un &eacute;v&eacute;nement. Lorsqu&apos;un objet qui fl&acirc;ne plus longtemps que le temps d&eacute;fini est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
                 </ul>
             </ul>
         </div>
 
-				<div class="wn5-online-help-info">
+				<div class="wn5-online-help-info" ng-if="IvaLoitering">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Lorsque la d&eacute;tection de fl&acirc;nerie est utilis&eacute;e avec d&apos;autres dispositifs de d&eacute;tection d&apos;&eacute;v&eacute;nement IVA, les performances peuvent se d&eacute;t&eacute;riorer jusqu&apos;&agrave; un certain degr&eacute; en comparaison avec une utilisation s&eacute;par&eacute;e de la d&eacute;tection de fl&acirc;nerie.</li>
