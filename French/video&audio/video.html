@@ -33,7 +33,7 @@
 		<div class="wn5-setup-section-article-content">
 		    <p>Pour &eacute;viter toute possibilit&eacute; d&rsquo;atteinte &agrave; la vie priv&eacute;e dans l&rsquo;image de la cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute;. Apr&egrave;s avoir s&eacute;lectionn&eacute; <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong>. Pour d&eacute;sactiver une zone de confidentialit&eacute;, d&eacute;s&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong>. Vous pouvez v&eacute;rifier l&rsquo;image compl&egrave;te de la cam&eacute;ra sans rien cacher pour des raisons de confidentialit&eacute;. Les zones de confidentialit&eacute; d&eacute;finies ne sont pas supprim&eacute;es et peuvent &ecirc;tre v&eacute;rifi&eacute;es dans la liste des zones de confidentialit&eacute;.</p>
 		</div>
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="PrivacyMaskPattern">
 			<h3>Mod&egrave;le</h3>
             <p>S&eacute;lectionnez le mod&egrave;le de mosa&iuml;que &agrave; appliquer &agrave; une zone de confidentialit&eacute;. S&eacute;lectionnez <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> pour appliquer le jeu de couleurs dans la fen&ecirc;tre de la zone de confidentialit&eacute;. Si vous s&eacute;lectionnez le mod&egrave;le, il sera appliqu&eacute; &agrave; toutes les zones.</p>
 		</div>
@@ -233,13 +233,15 @@
                 <p>En utilisant le dongle Wi-Fi et l’application pour smartphone de Hanwha Techwin, vous pouvez accéder à votre caméra via Wi-Fi. C’est utile lorsque vous essayez d’installer une caméra réseau pour la première fois ou de modifier le champ de vision angulaire ou la position de votre caméra, car vous pouvez voir l’écran de la caméra sur votre smartphone sans avoir à vous procurer un moniteur supplémentaire pour vérifier l’installation.</p>
             </div>
 			            <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
-                <h3>CVBS</h3>
+                <!-- <h3>CVBS</h3>-->
+                <h3>Sortie vid&eacute;o</h3>
                 <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
                 <p>Elle est utile car vous pouvez la régler en vérifiant la position de l’objectif ou la mise au point lors de l’installation de la caméra.</p>
             </div>
 	
 	<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
-		<h3>Type de CVBS</h3>
+        <!-- <h3>Type de CVBS</h3> -->
+        <h3>Type</h3> 
 	    	<p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>
 
 			<ul>

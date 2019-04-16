@@ -345,7 +345,7 @@
             <p><strong class="UI">[有効]</strong>を選択すると、低照度環境でWDRモードを自動にオフします。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="WDRIRLEDEnableOptions">
-            <h5>B/Wオフ</h5>
+            <h5>IRオフ</h5>
             <p><strong class="UI">[有効]</strong>を選択すると、B/Wモードが動作した時にWDRモードを自動にオフします。</p>
         </div>
         <div class="wn5-online-help-info">
@@ -410,7 +410,7 @@
             <h3>SSNR</h3>
             <p>映像のノイズを除去します。</p>
             <ul>
-                <li><strong class="UI">有効/無効</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[有効]</strong>を選択すると、SSNRレベルを調整することができます。</li>
+                <li><strong class="UI">on/off</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[有効]</strong>を選択すると、SSNRレベルを調整することができます。</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
             </ul>
         </div>
@@ -493,13 +493,13 @@
             <ul>
                 <li><strong class="UI">色</strong>：映像を常時カラーに出力します。</li>
                 <li><strong class="UI">B/W</strong>：映像を常時B/Wに出力します。</li>
-                <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">[露出補正]</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[無効]</strong>に設定すると、デイ/ナイトを自動に設定することができません。</li>
+                <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">[露出補正]</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[off]</strong>に設定すると、デイ/ナイトを自動に設定することができません。</li>
                 <li ng-if="DayNightMode_ExternalBW"><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li>
                 <li><strong class="UI">スケジュール</strong>：<strong class="UI">[動作時間(カラー)]</strong>で設定したスケジュールにデイ/ナイトが変更されます。</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  --></ul>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>切替時間</h3>
+            <h3>滞留時間</h3>
             <p>デイ/ナイトを<strong class="UI">[自動]</strong>に選択した場合、設定した切替時間の間に明るさ条件が維持された時、映像をカラーやB/Wに変更します。</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -563,7 +563,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>シャープネスレベル</h3>
-            <p>映像の全判的なシャープを調整します。<strong class="UI">[シャープネス]</strong>を<strong class="UI">[有効]</strong>に設定すると、シャープネスレベルを設定することができます。</p>
+            <p>映像の全判的なシャープを調整します。<strong class="UI">[シャープネス]</strong>を<strong class="UI">[on]</strong>に設定すると、シャープネスレベルを設定することができます。</p>
             <p>シャープネスレベルが高いほど、映像のシャープが強くて鮮明になります。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Gamma">
@@ -581,7 +581,7 @@
         <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>曇り除去</h3>
             <p>霧がかかったり天気が曇った時、映像を補正します。<strong class="UI">[自動]</strong>に設定すると、周囲環境を検知して自動に映像を補正します。<strong class="UI">[マニュアル]</strong>に設定すると、ユーザーが周囲環境を見て直接補正量を設定することができます。</p>
-            <p>初期値は<strong class="UI">[無効]</strong>に設定されています。</p>
+            <p>初期値は<strong class="UI">[off]</strong>に設定されています。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>曇り除去レベル</h3>
@@ -641,11 +641,11 @@
             <p>OSDのサイズを調整します。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>カラー</h3>
+            <h3>色</h3>
             <p>OSDのカラーを設定します。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>OSD透明性</h3>
+            <h3>透明性</h3>
             <p>OSDの透明度を設定します。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">
@@ -895,7 +895,7 @@
 <hr class="wn5-setup-hr" ng-if="ActivationTime">
 <div class="wn5-setup-section" ng-if="ActivationTime">
     <div class="wn5-setup-section-heading">
-        <h2>イベントアクションスケジュール</h2>
+        <h2>動作時間</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">

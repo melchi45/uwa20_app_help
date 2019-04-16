@@ -30,7 +30,7 @@
 			<ul>
 				<li><strong class="UI">G.711</strong>: This is the standard audio codec for ITU-T, which is mainly used in telephone communication; the audio quality is low. It is also called the pulse code modulation of sound frequency; soundwaves can be delivered digitally in PSTN or through PBX.</li>
 				<li><strong class="UI">G.726</strong>: This is the standard audio codec for ITU-T, which is mainly used in telephone communication; the audio quality is low. It is possible to change and compress 64 Kbps PCM to 16, 24, 32 or 40 Kbps through Adaptive Differential Pulse Code Modulation (ADPCM). </li>
-				<li><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding) is the international standard that succeeds MP3. It is more efficient than MP3 and has sound quality similar to an original copy of a CD. AAC enables the use of audio of a higher sampling rate than is the case when using the previous G.711 and G.726 codecs.</li>
+				<li ng-if="SupportAAC"><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding) is the international standard that succeeds MP3. It is more efficient than MP3 and has sound quality similar to an original copy of a CD. AAC enables the use of audio of a higher sampling rate than is the case when using the previous G.711 and G.726 codecs.</li>
 			</ul>
 		</div>
 		<div class="wn5-online-help-info">

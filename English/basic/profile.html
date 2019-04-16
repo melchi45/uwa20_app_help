@@ -11,6 +11,11 @@
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
                     <p>After selecting your camera channel, you can set the details of Video profile for each channel.</p>
+                    <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
+                    <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
+                    <p>On the live page or play page, the last selected channel number is automatically displayed. Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition. </p>
+                    <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
+
                 </div>
             </div>
 </div>
@@ -252,7 +257,7 @@
             <p>In this case, decreasing this value too much might cause the flickering of screen. Therefore, you should adjust the limit setting by adjusting this setting.</p>
             <p>ATC limit is activated only when <strong class="UI">[Enable - Control frame rate]</strong> or <strong class="UI">[Enable - Control compression]</strong> is selected for <strong class="UI">[ATC mode]</strong>.</p>
         </div>
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="ATCModes">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                 <ul>
                     <li ng-if="ATCModes">It is recommended to use ATC only in an environment where all cameras are supporting ATC.</li>
@@ -381,7 +386,7 @@
             <p>Set the type to reduce compression loss. Two entropy coding types, CAVLC (Context Adaptive Variable Length Coding) and CABAC (Context Adaptive Binary Arithmetic Coding), are provided.</p>
             <ul>
                 <li><strong class="UI">CABAC</strong>: The CABAC data processing procedure is more complicated than CAVLC, so that it uses more system resources, but it has an excellent compression rate.</li>
-                <li><strong class="UI">CAVLC</strong>: The data processing procedure for CAVLC is simpler than CABAC, so that it uses fewer system resources, but the compression rate is relatively low.</li>
+                <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: The data processing procedure for CAVLC is simpler than CABAC, so that it uses fewer system resources, but the compression rate is relatively low.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">
@@ -404,7 +409,8 @@
           	<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong> menu.</li>
-                <li>Dynamic GOV is enabled only when <strong class="UI">[Bitrate control]</strong> is set to <strong class="UI">[VBR]</strong> and <strong class="UI">[ATC mode]</strong>&nbsp;to&nbsp;<strong class="UI">[Disable]</strong>. If <strong class="UI">[Profile type] </strong>is set to&nbsp;<strong class="UI">[Record profile]</strong>, Dynamic GOV is disabled.</li>
+                <li ng-if="ATCModes">Dynamic GOV is enabled only when <strong class="UI">[Bitrate control]</strong> is set to <strong class="UI">[VBR]</strong> and <strong class="UI">[ATC mode]</strong>&nbsp;to&nbsp;<strong class="UI">[Disable]</strong>. If <strong class="UI">[Profile type] </strong>is set to&nbsp;<strong class="UI">[Record profile]</strong>, Dynamic GOV is disabled.</li>
+                <li ng-if="!ATCModes">Dynamic GOV is enabled only when <strong class="UI">[Bitrate control]</strong> is set to <strong class="UI">[VBR]</strong>. If <strong class="UI">[Profile type] </strong>is set to&nbsp;<strong class="UI">[Record profile]</strong>, Dynamic GOV is disabled.</li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content">
@@ -418,13 +424,14 @@
         <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">           
             <h3>Minimum FPS</h3>
                 <p>Enter the minimum FPS value to be applied when Dynamic FPS is enabled.  </p>
-                <p>The [Minimum FPS] option is not displayed if the Minimum FPS value is set as 1.</p>
+                <p>The <strong class="UI">[Minimum FPS]</strong> option is not displayed if the Minimum FPS value is set as 1.</p>
         </div>
         <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>When the WiseStream function is used, if the dynamic GOV and dynamic FPS functions are used, the WiseStream performance is optimized. The WiseStream can be set in the <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong> menu.</li>
-                <li>Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>. Dynamic FPS is also enabled&nbsp;when <strong class="UI">[ATC mode]</strong> is set to <strong class="UI">[Disable]</strong> whereas Dynamic FPS is disabled when <strong class="UI">[Profile type]</strong> is set to <strong class="UI">[Record profile]</strong>.</li>
+                <li ng-if="ATCModes">Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>. Dynamic FPS is also enabled&nbsp;when <strong class="UI">[ATC mode]</strong> is set to <strong class="UI">[Disable]</strong> whereas Dynamic FPS is disabled when <strong class="UI">[Profile type]</strong> is set to <strong class="UI">[Record profile]</strong>.</li>
+                <li ng-if="!ATCModes">Dynamic FPS is enabled only when <strong class="UI">[Codec]</strong> is set to <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> and <strong class="UI">[Bitrate Control Method]</strong> is set to <strong class="UI">[VBR]</strong>.</li>
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">

@@ -82,19 +82,31 @@
                         <td width="235">Vous pouvez contrôler numériquement les actions de panoramique/inclinaison de la caméra.</td>
                         </tr>
 					<tr>
-                        <td width="235">
+                        <td width="235" ng-if="DPTZSetupPage">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p ng-if="DPTZSetupPage">Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
-                            <p ng-if="ExternalPTZPage">Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra. Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
-                            <p ng-if="PTZSetupPage">Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. Vous pouvez passer &agrave; l&apos;emplacement pr&eacute;d&eacute;fini &eacute;tabli &agrave; la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuration PTZ]</strong> ou d&eacute;marrer/arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
+                            <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
+                            <p> </p>                         
+                    </td>
+                    </tr>
+					<tr ng-if="ExternalPTZPage">
+                    <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
+                    <td width="235">
+                            <p>Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra. Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
+                            <p> </p>
+                    </td>
+                    </tr>
+					<tr ng-if="PTZSetupPage">
+                    <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
+                    <td width="235">
+                            <p>Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. Vous pouvez passer &agrave; l&apos;emplacement pr&eacute;d&eacute;fini &eacute;tabli &agrave; la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuration PTZ]</strong> ou d&eacute;marrer/arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
                         </td>
                     </tr>
-                  </td>
-                  </tr>
     <!--     <tr ng-if="FisheyeLens">
                     <td width="235">
                         <p><span class="tui tui-wn5-toolbar-fisheye"></span></p>
@@ -192,8 +204,8 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="235" ng-if="MaxAudioInput>0">
+                    <tr ng-if="MaxAudioInput>0">
+                        <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>Microphone</p>
                             <p>&nbsp;</p>
@@ -215,7 +227,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput>0">
+                    <tr ng-if="MaxAudioInput>0">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Haut-parleur</p>
@@ -273,7 +285,7 @@
                     <li>Pour quitter le mode Plein &eacute;cran, cliquez &agrave; nouveau sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-toolbar-fullscreen"></span> Plein &eacute;cran ou appuyez sur le touche [Esc] du clavier.</li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
             <h4>Pour utiliser un microphone</h4>
                 <ul>
                     <li>Cliquez sur l&rsquo;ic&ocirc;ne du microphone <span class="tui tui-wn5-toolbar-mic"></span> .</li>

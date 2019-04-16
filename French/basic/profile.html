@@ -3,6 +3,22 @@
     <p>L&apos;utilisateur peut ajouter ou supprimer un profil vid&eacute;o et modifier les propri&eacute;t&eacute;s du profil. D&eacute;finissez &agrave; l&apos;avance le profil vid&eacute;o, la fr&eacute;quence d&apos;images et le codec en tant que «&nbsp;Profil vid&eacute;o&nbsp;», puis modifiez le profil vid&eacute;o pour diffuser ou lire une image. Lorsque vous avez termin&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>Sélectionner un canal</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                    <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails du profil vid&eacute;o pour chaque canal.</p>
+                    <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
+                    <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+                    <p>Sur la page en direct ou la page de lecture, le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; s&rsquo;affiche automatiquement. Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher un r&eacute;sum&eacute; de la condition du canal.</p>
+                    <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
+                </div>
+            </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZMode">
 <div class="wn5-setup-section" ng-if="PTZMode">
             <div class="wn5-setup-section-heading">
@@ -363,7 +379,7 @@
             <p>D&eacute;finissez le type pour r&eacute;duire la perte de compression. Deux types de codage entropique, CAVLC (codage adaptatif de longueur variable de contexte) et CABAC (codage arithm&eacute;tique binaire adaptatif de contexte), sont fournis.</p>
             <ul>
                 <li><strong class="UI">CABAC</strong>: La proc&eacute;dure de traitement de donn&eacute;es CABAC est plus compliqu&eacute;e que celle de CAVLC, de sorte qu&apos;elle utilise davantage de ressources syst&egrave;me, mais son taux de compression est excellent.</li>
-                <li><strong class="UI">CAVLC</strong>: La proc&eacute;dure de traitement des donn&eacute;es pour CAVLC est plus simple que CABAC, de sorte qu&apos;elle utilise moins de ressources syst&egrave;me, mais le taux de compression est relativement faible.</li>
+                <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: La proc&eacute;dure de traitement des donn&eacute;es pour CAVLC est plus simple que CABAC, de sorte qu&apos;elle utilise moins de ressources syst&egrave;me, mais le taux de compression est relativement faible.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">

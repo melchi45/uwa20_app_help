@@ -75,6 +75,33 @@
     </div>
 </div>
 
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h1>録画</h1>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p></p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別に詳細を設定することができます。</p>
+        </div>
+    </div>
+</div>
+
+
+<!--
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -104,13 +131,13 @@
                 <li><strong class="UI">[新しいパスワード]</strong>入力フィールドにパスワードを入力してから、同じパスワードを<strong class="UI">[パスワード確認]</strong>にもう一度入力します。</li>
                 <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
                 <li>SDカードの暗号化機能が正常に動作中の場合、「暗号化」メッセージが表示されます。</li>
-            </ol><!--    <p>SD 카드 암호화 기능을 사용하기 위해 비밀번호를 설정하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+            </ol></div>
         <div class="wn5-online-help-action">
             <h4>SDカードの暗号化を選択削除する</h4>
             <ol>
                 <li><strong class="UI">[暗号化]</strong>で<strong class="UI">[使用]</strong>を選択解除します。</li>
                 <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。SDカードの暗号化機能が選択解除され、SDカードのデータが暗号化されない場合、「暗号化されない」メッセージが表示されます。</li>
-            </ol><!--    <p>SD 카드 암호화를 해제하는 경우, SD 카드의 기존 영상은 모두 삭제되고 SD 카드가 포맷됩니다.</p>  --></div>
+            </ol></div>
          <div class="wn5-online-help-action">
             <h4>パスワードを変更する</h4>
             <p>SDカードの暗号化のためのパスワードを変更することができます。</p>
@@ -138,6 +165,8 @@
         </div>
     </div>
 </div>
+
+-->
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
@@ -269,7 +298,7 @@
             <p>映像をストレージ用デバイスに常時録画します。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>スケジュール録画</h3>
+            <h3>スケジュール動作</h3>
             <p>設定した時間のみ映像を録画します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベントアクションスケジュールは、該当曜日と時間に繰り返して実行されます。</p>
 			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベントアクションスケジュールがすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
         </div>
