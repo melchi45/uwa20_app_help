@@ -59,11 +59,11 @@
 		<div class="wn5-setup-section-article-content">
 			<p>システム設定を製品を購入した当時の設定に初期化することができます。<strong class="UI">[初期化]</strong>ボタンをクリックいした後、確認ポップアップで<strong class="UI">[OK]</strong>ボタンをクリックすると出荷条件初期化を行います。(但し、ログは初期化されません。)</p>
 		</div>
-        <div class="wn5-setup-section-article-content" ng-if="!CamSpecialModel && OpenSDKSupport">
+        <div class="wn5-setup-section-article-content" ng-if="OpenSDKSupport">
             <p>出荷条件初期化を行うとき、ネットワーク設定&amp;設置されたオープンプラットフォームを除外して他の設定だけを出荷条件初期化するためには、<strong class="UI">[ネットワーク設定&amp;オープンプラットフォーム設定維持]</strong>を選択します。出荷条件初期化を進行すると、カメラとのアクセスが切断されます。ウェブビューアーに初回アクセスする時にパスワードを再設定する必要があります。</p>
             <p><strong class="UI">[ネットワーク設定&amp;オープンプラットフォーム設定維持]</strong>を選択せずにカメラを出荷条件初期化すると、IP接続タイプがDHCPに設定されます。この時、DHCPサーバーを見つけないとカメラのIPアドレスは192.168.1.100に自動変更されます。</p>
         </div>
-		<div class="wn5-setup-section-article-content"  ng-if="CamSpecialModel && !OpenSDKSupport">
+		<div class="wn5-setup-section-article-content"  ng-if="!OpenSDKSupport">
 			<p>出荷条件初期化を行うとき、ネットワーク設定を除外して他の設定だけを出荷条件初期化するためには、<strong class="UI">[ネットワーク設定維持]</strong>を選択します。出荷条件初期化を進行すると、カメラとのアクセスが切断されます。ウェブビューアーに初回アクセスする時にパスワードを再設定する必要があります。</p>
 		</div>
 	</div>
