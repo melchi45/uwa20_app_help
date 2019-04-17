@@ -369,13 +369,13 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly. </p>>
-            <p>Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
+            <p ng-if="PTZModel">Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>BLC level</h5>
             <p>You can select a level from low, middle or high. The higher the level, the brighter the set area. </p>
         </div>
-    <!--     <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
             <h5>Area setting</h5>
             <ul>
                 <li><strong class="UI">Top</strong>: Set how far the top surface is away from the top of the screen. </li>
@@ -383,7 +383,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                 <li><strong class="UI">Left</strong>: Set how far the left surface is away from the left side of the screen. </li>
                 <li><strong class="UI">Right</strong>: Set how far the right surface is away from the right side of the screen. </li>
             </ul>
-        </div> --> 
+        </div> 
 		        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
@@ -394,7 +394,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>The HLC (High Light Compensation) mode blocks strong lighting such as a streetlight or the headlights of a vehicle,<strike> </strike>to prevent failures to detect a neighboring object, such as a car license plate, due to saturation of strong lights. </p>
-            <p>Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
+            <p ng-if="PTZModel">Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLC level </h5>
@@ -423,7 +423,8 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
             <h5>Dimming </h5>
             <p>Detects the strongly illuminated area on the screen and adjusts brightness to reduce the size of the saturated areas.</p>
         </div>
-     <!--    <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+  
+        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel"> 
             <h5>Area setting</h5>
             <p>Set the blocked area’s size and location. </p>
             <ul>
@@ -432,7 +433,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                 <li><strong class="UI">Left</strong>: Set how far the left surface is away from the left side of the screen.  </li>
                 <li><strong class="UI">Right</strong>: Set how far the right surface is away from the right side of the screen.  </li>
             </ul>
-        </div>  --> 
+        </div>  
         <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
@@ -735,6 +736,12 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <li ng-if="LDCAuto"><strong class="UI">Auto</strong>: Adjusts the image distortion automatically.  </li>
             </ul>
         </div>
+        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>When <strong class="UI">[Enable privacy area]</strong> is selected in <strong class="UI">[Vidoe & Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Video setup]</a></strong>, both <strong class="UI">[LDC]</strong>and <strong class="UI">[LDC level] </strong>options are disabled. Uncheck <strong class="UI">[Enable privacy area]</strong> to use the LDC function. </li>
+            </ul>
+        </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC Level</h3>
             <p>Adjusts the distortion correction level. Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[LDC]</strong>. </p>

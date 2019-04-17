@@ -268,9 +268,10 @@
        </div>
 	</div>	
 	
-	<!-- 멀티 센터 변경점 진행 시 ng-if="!SupportAutoImageAlignment 분기 코드 이 문서에서 모두 삭제할 것. 다국어 파일에서도 삭제할 것--> 
-<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
+    <!-- 멀티 센터 변경점 진행 시 ng-if="!SupportAutoImageAlignment 분기 코드 이 문서에서 모두 삭제할 것. 다국어 파일에서도 삭제할 것--> 
+<!--     <hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">  박종찬 선임님 4/17일 메일에 따라 !SupportAutoImageAlignment -> VaDetectionResultOverlay코드로 변경함.  -->
+<hr class="wn5-setup-hr" ng-if="VaDetectionResultOverlay">
+<div class="wn5-setup-section" ng-if="VaDetectionResultOverlay">
     <div class="wn5-setup-section-heading">
         <h2>오버레이</h2>
     </div>

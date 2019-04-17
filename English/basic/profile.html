@@ -36,8 +36,8 @@
 
 <hr class="wn5-setup-hr">
 
-<div class="wn5-setup-section">
-    <div class="wn5-setup-section-heading">
+<div class="wn5-setup-section" ng-if="ProfileSessionPolicy">
+    <div class="wn5-setup-section-heading" ng-if="ProfileSessionPolicy">
         <h2>Video profile connection policy</h2>
     </div>
     <div class="wn5-setup-section-article">
@@ -454,7 +454,7 @@
             <p>Multicast is the method used to send data in one instance from the camera to multiple pieces of equipment. Set whether or not to use RTSP (Real Time Streaming Protocol) on the current profile and enter the detailed information. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Multicast</h3>
+            <h3>Multicast (RTSP)</h3>
             <p>To send an image by using RTSP, select <strong class="UI">[Enable]</strong>. </p>
         </div>
         <div class="wn5-setup-section-article-content">

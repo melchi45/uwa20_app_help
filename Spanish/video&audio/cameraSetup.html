@@ -242,24 +242,24 @@
 <hr class="wn5-setup-hr" ng-if="BackLight">
 <div class="wn5-setup-section" ng-if="BackLight">
     <div class="wn5-setup-section-heading">
-        <h2>Luz trasera</h2>
+        <h2>Retroiluminación</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="HLC">Puede corregir una imagen expuesta a la luz de fondo. Seleccione entre Off, BLC, HLC, o WDR en <strong class="UI">[Modo]</strong> y cambie la configuraci&oacute;n seg&uacute;n el modo de luz de fondo seleccionado.</p>
-            <p ng-if="!HLC">Puede corregir una imagen expuesta a la luz de fondo. Seleccione entre Off, BLC, o WDR en <strong class="UI">[Modo]</strong> y cambie la configuraci&oacute;n seg&uacute;n el modo de luz de fondo seleccionado.</p>
+            <p ng-if="HLC">Puede corregir una imagen expuesta a la luz de fondo. Seleccione entre Des, BLC, HLC, o WDR en <strong class="UI">[Modo]</strong> y cambie la configuraci&oacute;n seg&uacute;n el modo de luz de fondo seleccionado.</p>
+            <p ng-if="!HLC">Puede corregir una imagen expuesta a la luz de fondo. Seleccione entre Des, BLC, o WDR en <strong class="UI">[Modo]</strong> y cambie la configuraci&oacute;n seg&uacute;n el modo de luz de fondo seleccionado.</p>
 
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Compensaci&oacute;n de la luz) selecciona el modo y corrige un &aacute;rea espec&iacute;fica de una imagen oscura capturada gracias a la retroiluminaci&oacute;n, para mostrar un objeto en el &aacute;rea seleccionada con mayor claridad. </p>
-            <p>Ajuste el tamaño del área haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el número establecido en <strong class="UI">[Paso de caja]</strong>, mayor será el tamaño del área al hacer clic en los botones.</p>
+            <p ng-if="PTZModel">Ajuste el tamaño del área haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el número establecido en <strong class="UI">[Paso de caja]</strong>, mayor será el tamaño del área al hacer clic en los botones.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>Nivel de BLC</h5>
             <p>Puede seleccionar bajo, medio y alto. Mientras m&aacute;s alto sea el nivel, m&aacute;s brillante ser&aacute; el &aacute;rea.</p>
         </div>
-    <!--    <div class="wn5-setup-section-article-content">
+       <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
             <h5>Configuraci&oacute;n del &aacute;rea</h5>
             <ul>
                 <li><strong class="UI">Arriba</strong>: Ajuste la distancia de la superficie superior a la parte superior de la pantalla.</li>
@@ -267,7 +267,7 @@
                 <li><strong class="UI">Izquierda</strong>: Ajuste la distancia de la superficie izquierda a la parte izquierda de la pantalla.</li>
                 <li><strong class="UI">Derecha</strong>: Ajuste la distancia de la superficie derecha a la parte izquierda de la pantalla.</li>
             </ul>
-        </div>   --> 
+        </div>   
 		        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
@@ -278,7 +278,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>El modo HLC (Compensaci&oacute;n de luz alta) bloquea iluminaci&oacute;n potente, como una farola o los faros de un veh&iacute;culo, para evitar que un objeto sea irreconocible.<strike> </strike>De este modo se evitan los fallos en la detecci&oacute;n de un objeto cercano, como la matr&iacute;cula del carro, debido a la saturaci&oacute;n de las luces fuertes.</p>
-            <p>Ajuste el tamaño del área haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el número establecido en <strong class="UI">[Paso de caja]</strong>, mayor será el tamaño del área al hacer clic en los botones.</p>
+            <p ng-if="PTZModel">Ajuste el tamaño del área haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el número establecido en <strong class="UI">[Paso de caja]</strong>, mayor será el tamaño del área al hacer clic en los botones.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Nivel HLC</h5>
@@ -307,7 +307,7 @@
             <h5>Atenuaci&oacute;n</h5>
             <p>Detecta el &aacute;rea intensamente iluminada de la pantalla y ajusta el brillo a fin de reducir el tama&ntilde;o de las &aacute;reas saturadas.</p>
         </div>
-    <!--    <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
             <h5>Configuraci&oacute;n del &aacute;rea</h5>
             <p>Ajuste el tama&ntilde;o y la ubicaci&oacute;n del &aacute;rea bloqueada.</p>
             <ul>
@@ -316,7 +316,7 @@
                 <li><strong class="UI">Izquierda</strong>: Ajuste la distancia de la superficie izquierda a la parte izquierda de la pantalla.</li>
                 <li><strong class="UI">Derecha</strong>: Ajuste la distancia de la superficie derecha a la parte izquierda de la pantalla.</li>
             </ul>
-        </div>  -->
+        </div>  
         <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
@@ -608,6 +608,12 @@
                 <li ng-if="LDCAuto"><strong class="UI">Autom&aacute;tico</strong>: Ajusta la distorsi&oacute;n de la imagen autom&aacute;ticamente.</li>
             </ul>
         </div>
+        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>Cuando se selecciona <strong class="UI">[Activar la zona de privacidad]</strong> en <strong class="UI">[Vídeo y Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Conf. de vídeo]</a></strong>, tanto <strong class="UI">[LDC]</strong> como <strong class="UI">[LDC Nivel]</strong>. Desmarque <strong class="UI">[Activar la zona de privacidad]</strong> para usar la función LDC. </li>
+            </ul>
+        </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>Nivel LDC</h3>
             <p>Ajusta el nivel de correcci&oacute;n de la distorsi&oacute;n. Ajuste <strong class="UI">[LDC]</strong> a <strong class="UI">[Manual]</strong> para habilitarlo.</p>
@@ -864,11 +870,11 @@
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Nivel encendido del LED</h3>
+            <h3>Nivel LED encendido</h3>
             <p>Si la cantidad de luz est&aacute; por debajo del nivel de encendido del LED, el LED se enciende autom&aacute;ticamente. El «Nivel de encendido del IR» se habilita si selecciona <strong class="UI">[Sensor]</strong> en <strong class="UI">[Modo]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Nivel apagado del LED</h3>
+            <h3>Nivel LED apagado</h3>
             <p>Si la cantidad de luz est&aacute; por encima del nivel de encendido del LED, el LED se apaga autom&aacute;ticamente. El «Nivel de apagado del IR» se habilita si selecciona <strong class="UI">[Sensor]</strong> en <strong class="UI">[Modo]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -876,11 +882,11 @@
             <p>Configura el horario en el que se enciende el IR. El 첞orario de encendido del LEDse habilita si selecciona <strong class="UI">[Hora]</strong> en <strong class="UI">[Modo]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Potencia m&aacute;xima del LED</h3>
+            <h3>Potencia máx. de LED</h3>
             <p>Configura el brillo m&aacute;ximo del IR.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Control de potencia del LED</h3>
+            <h3>Control de potencia LED</h3>
             <p>Seleccione <strong class="UI">[Auto]</strong> para controlar el estado de saturaci&oacute;n de la pantalla ante la presencia de objetos cercanos. Si selecciona <strong class="UI">[Apagado]</strong>, no se controlar&aacute; la saturaci&oacute;n de la pantalla, a&uacute;n si est&aacute; saturada.</p>
         </div>
         <div class="wn5-online-help-info">

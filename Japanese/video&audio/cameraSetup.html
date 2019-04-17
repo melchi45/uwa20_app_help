@@ -33,10 +33,11 @@
 <div class="wn5-online-help-action" ng-if="PTZModel">
     <h4>PTZ調整</h4>
     <ul>
-        <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
-        <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
-        <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
-        <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
+        <li><span class="tui tui-wn5-ptz-handle"></span> アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+        <li>ズームバーを調整して映像の倍率を調整します。もしくは<span class="tui tui-wn5-ptz-plus"></span>アイコンをクリックして画面をズームインしたり、<span class="tui tui-wn5-ptz-minus"></span>アイコンをクリックして画面をズームアウトして映像の倍率を選択します。</li>
+        <li><span class="tui tui-wn5-ptz-near"></span> アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+        <li>カメラフォーカスを自動に一回合わせるには、<span class="tui tui-wn5-simple-focus"></span>アイコンをクリックします。</li>
+        <li>北側に設定する方向に画面の中央を位置させてから、<span class="tui tui-wn5-north"></span>(北側設定)ボタンをクリックすると、該当位置を北側に変更します。(北側設定ボタンは<strong class="UI">[OSD]</strong>タブをクリックすると、表示されます。)</li>
     </ul>
 </div>
 </div>
@@ -252,13 +253,13 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Back Light Compensation)モードは、逆光で暗く撮影された映像にユーザーが特定エリアを設定して選択エリアの対象物がよく表示されるように補正します。</p>
-            <p><strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI"></strong>[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
+            <p ng-if="PTZModel"><strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI"></strong>[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>BLCレベル</h5>
             <p>低、中、高の中から選択することができます。レベルが高いと、設定したエリアの明るさがより明るくなります。</p>
         </div>
-    <!--     <div class="wn5-setup-section-article-content">
+         <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
             <h5>エリア設定</h5>
             <ul>
                 <li><strong class="UI">上</strong>：画面の上側から上面がどれだけ離れているかを設定します。</li>
@@ -266,7 +267,7 @@
                 <li><strong class="UI">左</strong>：画面の左側から左面がどれだけ離れているかを設定します。</li>
                 <li><strong class="UI">右</strong>：画面の左側から右面がどれだけ離れているかを設定します。</li>
             </ul>
-        </div>   --> 
+        </div>   
 		        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
@@ -277,7 +278,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation)モードは街灯や車のヘッドライトのように強い照明を効果的に遮断して強い照明の飽和によって車のナンバープレートなどの周囲にある物事が識別できないことを防止します。</p>
-            <p><strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI"></strong>[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
+            <p ng-if="PTZModel"><strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI"></strong>[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLCレベル</h5>
@@ -306,7 +307,7 @@
             <h5>調光</h5>
             <p>画面の強い光エリアを検知して明るさを調整しながら、飽和エリアを減少させます。</p>
         </div>
-    <!--     <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+       <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
             <h5>エリア設定</h5>
             <p>遮断エリアのサイズ&amp;位置を設定します。</p>
             <ul>
@@ -315,7 +316,7 @@
                 <li><strong class="UI">左</strong>：画面の左側から左面がどれだけ離れているかを設定します。</li>
                 <li><strong class="UI">右</strong>：画面の左側から右面がどれだけ離れているかを設定します。</li>
             </ul>
-        </div>  --> 
+        </div>  
 				        <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
@@ -608,6 +609,12 @@
                 <li ng-if="LDCAuto"><strong class="UI">自動</strong>：自動に映像の歪みを調整します。</li>
             </ul>
         </div>
+        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li><strong class="UI">[映像&音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[ビデオ設定]</a></strong>の <strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した場合、<strong class="UI">[LDC]</strong>と <strong class="UI">[LDC レベル] </strong>オプションが無効になります。カメラLDC機能を使用するには、<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除する必要があります。</li>
+            </ul>
+        </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDCレベル</h3>
             <p>歪み補正率レベルを調整します。<strong class="UI">[LDC]</strong>を<strong class="UI">[マニュアル]</strong>に設定すると、有効になります。</p>

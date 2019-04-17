@@ -29,8 +29,8 @@
                 </div>
             </div>
         </div>
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="ProfileSessionPolicy">
+<div class="wn5-setup-section" ng-if="ProfileSessionPolicy">
         <div class="wn5-setup-section-heading">
             <h2>ビデオプロファイル接続ポリシー</h2>
         </div>    
@@ -440,7 +440,7 @@
             <p>マルチキャストは、一台のカメラで発生した映像を接続された数台のデバイスに送る時に使用します。現在、設定中のProfileでRTSP (Real Time Streaming Protocol)プロトコルの使用有無を設定して詳細を入力します。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>マルチキャスト</h3>
+            <h3>マルチキャスト(RTSP)</h3>
             <p>RTSPプロトコルを使用して映像を伝送するには、<strong class="UI">[有効]</strong>を選択します。</p>
         </div>
         <div class="wn5-setup-section-article-content">

@@ -83,8 +83,8 @@
                     <li>Valeur maximale de <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vidéo]</strong>&gt;<strong class="UI">[Vitesse d'enregistrement]</strong> varie en fonction du nombre d'images défini pour le mode de capteur.</li>
                 </ul>
             </div>  
-
-
+        </div>  
+    </div>  
 <hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
 <div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
@@ -245,13 +245,13 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>Le mode BLC (Compensation du contre-jour) s&eacute;lectionne et corrige une zone sp&eacute;cifique d&rsquo;une image sombre captur&eacute;e en raison du contre-jour, afin de montrer plus clairement un objet dans la zone s&eacute;lectionn&eacute;e. </p>
-            <p>Ajustez la taille de la zone en cliquant sur les boutons fléchés de <strong class="UI"></strong>[Réglage coffre]</strong>. Plus le nombre que vous définissez dans <strong class="UI"></strong>[Étape de la boîte]</strong> est élevé, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
+            <p ng-if="PTZModel">Ajustez la taille de la zone en cliquant sur les boutons fléchés de <strong class="UI"></strong>[Réglage coffre]</strong>. Plus le nombre que vous définissez dans <strong class="UI"></strong>[Étape de la boîte]</strong> est élevé, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>Niveau de la BLC</h5>
             <p>Vous pouvez choisir entre bas, moyen et haut. Plus le niveau est &eacute;lev&eacute;, plus la zone est claire.</p>
         </div>
-    <!--    <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
             <h5>Configuration de la zone</h5>
             <ul>
                 <li><strong class="UI">Haut</strong>&nbsp;: D&eacute;finit la distance entre la surface sup&eacute;rieure et le haut de l&rsquo;&eacute;cran.</li>
@@ -259,7 +259,7 @@
                 <li><strong class="UI">Gauche</strong>&nbsp;: D&eacute;finit la distance entre la surface gauche et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
                 <li><strong class="UI">Droit</strong>&nbsp;: D&eacute;finit la distance entre la surface droite et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
             </ul>
-        </div>  --> 
+        </div>  
 		        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
@@ -270,7 +270,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>Le mode HLC (Compensation de lumi&egrave;re &eacute;lev&eacute;e) bloque l&rsquo;&eacute;clairage puissant tel qu&rsquo;un lampadaire ou les phares d&rsquo;un v&eacute;hicule, afin d&rsquo;&eacute;viter qu&rsquo;un objet ne soit pas reconnu.<strike> </strike>Il peut emp&ecirc;cher la d&eacute;tection d&rsquo;un objet voisin tel que la plaque d&rsquo;immatriculation de la voiture en raison de la saturation des lumi&egrave;res fortes.</p>
-            <p>Ajustez la taille de la zone en cliquant sur les boutons fléchés de <strong class="UI"></strong>[Réglage coffre]</strong>. Plus le nombre que vous définissez dans <strong class="UI"></strong>[Étape de la boîte]</strong> est élevé, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
+            <p ng-if="PTZModel">Ajustez la taille de la zone en cliquant sur les boutons fléchés de <strong class="UI"></strong>[Réglage coffre]</strong>. Plus le nombre que vous définissez dans <strong class="UI"></strong>[Étape de la boîte]</strong> est élevé, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Niveau HLC</h5>
@@ -299,7 +299,7 @@
             <h5>Att&eacute;nuation</h5>
             <p>D&eacute;tecte la zone fortement &eacute;clair&eacute;e de l&rsquo;&eacute;cran et ajuste la luminosit&eacute; pour r&eacute;duire la taille des zones satur&eacute;es.</p>
         </div>
-    <!--     <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
             <h5>Configuration de la zone</h5>
             <p>D&eacute;finit la taille et l&rsquo;emplacement de la zone bloqu&eacute;e.</p>
             <ul>
@@ -308,7 +308,7 @@
                 <li><strong class="UI">Gauche</strong>&nbsp;: D&eacute;finit la distance entre la surface gauche et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
                 <li><strong class="UI">Droit</strong>&nbsp;: D&eacute;finit la distance entre la surface droite et le c&ocirc;t&eacute; gauche de l&rsquo;&eacute;cran.</li>
             </ul>
-        </div>  --> 
+        </div>  
         <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
@@ -600,6 +600,12 @@
                 <li ng-if="LDCAuto"><strong class="UI">Automatique</strong>&nbsp;: R&egrave;gle automatiquement la distorsion de l&rsquo;image.</li>
             </ul>
         </div>
+        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Lorsque <strong class="UI">[Activer la zone de confidentialité]</strong> est sélectionné dans <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Vidéo configuration]</a></strong>, <strong class="UI">[LDC]</strong> et <strong class="UI">[LDC Niveau]</strong>. Décochez la case <strong class="UI">[Activer la zone de confidentialité]</strong> pour utiliser la fonction LDC. </li>
+            </ul>
+        </div> 
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>Niveau de LDC</h3>
             <p>R&egrave;gle le niveau de correction de distorsion. R&eacute;glez <strong class="UI">[LDC]</strong> sur <strong class="UI">[Manuel]</strong> pour l&rsquo;activer.</p>
@@ -625,7 +631,7 @@
             <p>Pour supprimer un titre de cam&eacute;ra, s&eacute;lectionnez un nom de cam&eacute;ra &agrave; supprimer et cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Apr&egrave;s avoir entr&eacute; le titre de la cam&eacute;ra, si vous voulez voir &agrave; quoi elle ressemble, entrez le nom de la cam&eacute;ra et cliquez sur le bouton <strong class="UI">[Priview]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Date et jheure</h3>
+            <h3>Date et heure</h3>
             <p>Pour afficher la date et l&rsquo;heure &agrave; l&rsquo;&eacute;cran, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. S&eacute;lectionnez le type d&rsquo;affichage de la date et r&eacute;glez la position pour afficher la date et l&rsquo;heure en d&eacute;pla&ccedil;ant les coordonn&eacute;es X et Y.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="FontSizeOptions">

@@ -87,8 +87,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
         <h2>S&eacute;lectionner un canal</h2>
     </div>
@@ -234,7 +234,7 @@
         
                     <li><strong class="UI">Aucun</strong>&nbsp;: Aucune image de cam&eacute;ra n&apos;est enregistr&eacute;e.</li>
                     <li><strong class="UI">Image-I</strong>&nbsp;: Enregistre une image-I uniquement pour l&apos;enregistrement normal.</li>
-                    <li><strong class="UI">Image compl&egrave;te</strong>&nbsp;: Enregistre une image compl&egrave;te en enregistrement normal.</li>
+                    <li><strong class="UI">Plein format</strong>&nbsp;: Enregistre une image compl&egrave;te en enregistrement normal.</li>
                 </ul>
         </div>
 

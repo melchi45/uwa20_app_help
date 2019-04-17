@@ -252,13 +252,13 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Back Light Compensation) 모드는 역광으로 어둡게 촬영된 영상 중 사용자가 특정 영역을 설정하여 선택 영역의 물체가 더욱 잘 보이도록 보정합니다. </p>
-            <p>BLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
+            <p ng-if="PTZModel">BLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>BLC 레벨</h5>
             <p>낮음, 중간, 높음 중에 선택할 수 있습니다. 레벨이 높으면 설정한 영역의 밝기가 더 밝아집니다. </p>
         </div>
-    <!--     <div class="wn5-setup-section-article-content">
+         <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
             <h5>영역 설정</h5>
             <ul>
                 <li><strong class="UI">상</strong>: 화면의 위쪽에서부터 윗면이 얼마나 떨어져 있는지 설정합니다. </li>
@@ -266,7 +266,7 @@
                 <li><strong class="UI">좌</strong>: 화면의 왼쪽에서부터 왼쪽면이 얼마나 떨어져 있는지 설정합니다. </li>
                 <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다. </li>
             </ul>
-        </div> -->
+        </div> 
 		        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
@@ -277,7 +277,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation) 모드는 가로등이나 자동차 헤드라이트와 같은 강한 조명을 효과적으로 차단하여,<strike> </strike>강한 조명의 포화로 인해 차량 번호판 등의 주변 사물이 식별이 안 되는 것을 방지합니다. </p>
-            <p>HLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
+            <p ng-if="PTZModel">HLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLC 레벨 </h5>
@@ -306,8 +306,9 @@
             <h5>디밍 </h5>
             <p>화면의 강한 빛 영역을 감지하여 밝기를 조절하면서 포화 영역을 감소시켜줍니다.</p>
         </div>
-    <!--     <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
-            <h5>영역 설정</h5>
+  
+        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+        <h5>영역 설정</h5>
             <p>차단 영역의 크기 및 위치를 설정합니다. </p>
             <ul>
                 <li><strong class="UI">상</strong>: 화면의 위쪽에서부터 윗면이 얼마나 떨어져 있는지 설정합니다.  </li>
@@ -315,7 +316,7 @@
                 <li><strong class="UI">좌</strong>: 화면의 왼쪽에서부터 왼쪽면이 얼마나 떨어져 있는지 설정합니다.  </li>
                 <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다.  </li>
             </ul>
-        </div>  --> 
+        </div>  
         <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
@@ -619,12 +620,12 @@
                 <li ng-if="LDCAuto"><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li>
             </ul>
         </div>
-<!--         <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[비디오 설정]</a></strong>에서 <strong class="UI">[프라이버시 영역 사용]</strong>을 선택한 경우, <strong class="UI">[LDC]</strong>와 <strong class="UI">[LDC 레벨] </strong>옵션이 모두 비활성화됩니다. 카메라 LDC 기능을 사용하려면, <strong class="UI">[프라이버시 영역 사용]</strong>을 선택 해제해야 합니다. </li>
             </ul>
-        </div>  -->
+        </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC 레벨</h3>
             <p>왜곡 보정률 레벨을 조절합니다. <strong class="UI">[LDC]</strong>를 <strong class="UI">[수동]</strong>으로 설정하면 활성화됩니다. </p>

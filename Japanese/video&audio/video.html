@@ -32,20 +32,78 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-		    <p>カメラ映像でプライバシーの侵害の恐れがある部分を表示しないようにプライバシー領域として設定することができます。<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した後。>プライバシー領域を無効にするには<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除した後。プライバシー領域によって隠される部分なくカメラ映像を確認することができます。設定しておいたエリアは、削除されることなくプライバシー領域リストで確認することができます。</p>
+		    <p>カメラ映像でプライバシーの侵害の恐れがある部分を表示しないようにプライバシー領域として設定することができます。<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した後。プライバシー領域を無効にするには<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除した後。プライバシー領域によって隠される部分なくカメラ映像を確認することができます。設定しておいたエリアは、削除されることなくプライバシー領域リストで確認することができます。</p>
+		</div>
+		<div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+			<ul>				
+				<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択すると、カメラのLDC機能が無効になります。カメラLDC機能は <strong class="UI">[映像&音声]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="cameraSetup.html" ng-href="#/help/videoAudio_cameraSetup">カメラ設定</a>]</strong>&gt;<strong class="UI">[特別設定]</strong>で確認することができます。
+				 </li>
+			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="PrivacyMaskPattern">
 			<h3>パターン</h3>
             <p>プライバシー領域に適用するモザイクパターンを選択します。<strong class="UI">[</strong><strong>ソリッド</strong><strong class="UI">]</strong>で設定すると、プライバシー領域のメニューで設定した色が適用されます。パターンを選択すると、すべてのエリアに同じく適用されます。</p>
 		</div>
-		<div class="wn5-online-help-action">
+	<!-- 	<div class="wn5-online-help-action">
 			<h4>プライバシー領域設定</h4>
 			<ol><li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
 				<li>カメラの映像画面からマウスで頂点4つをクリックしたりマウスをドラッグします。プライバシー領域のポップアップが表示されます。</li>
 				<li><strong class="UI">[名前]</strong>にプライバシー領域名を入力して<strong class="UI">[カラー]</strong>で映像を隠す色を選択した後、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
 				<li>追加したプライバシー領域がプライバシー領域リストに追加されます。カメラの映像画面には、設定したカラーでプライバシー領域が表示されます。</li>
 			</ol>
+		</div>  -->
+
+		<div class="wn5-online-help-action">
+			<h4>プライバシー領域設定(ズームカメラやPTZカメラ以外の場合)</h4>
+			<ol>
+				<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択します。</li>
+				<li>カメラの映像画面からマウスで頂点4つをクリックします。</li>
+				<li><strong class="UI">[プライバシー領域]</strong>で次の項目を設定します。</li>
+				<ul>
+					<li><strong class="UI">[名前]</strong>にプライバシー領域名を入力して<strong class="UI">[カラー]</strong>で映像を隠す色を選択します。</li>
+				</ul>
+				<li><strong class="UI">[プライバシー領域]</strong>で<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
+				<li>追加したプライバシー領域がプライバシー領域リストに追加されます。カメラ映像画面に設定したカラーでプライバシー領域が表示されます。</li>
+			</ol>
 		</div>
+	
+
+				<div class="wn5-online-help-action">
+					<h4>プライバシー領域設定(PTZカメラの場合)</h4>
+					<ol>
+						<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択します。</li>
+						<li>カメラ映像画面でマウスをドラッグしてプライバシー領域のサイズを設定します。</li>
+						<li><strong class="UI">[プライバシー領域]</strong>で次の項目を設定します。</li>
+						<ul>
+							<li><SPAN class="tui tui-wn5-ptz-handle"></SPAN> アイコンをドラッグして好む映像画面がプライバシー領域に位置するようにカメラのパン/チルトを調整します。</li>
+							<li><strong class="UI">[名前]</strong>にプライバシー領域名を入力して<strong class="UI">[カラー]</strong>で映像を隠す色を選択します。</li>
+							<li><strong class="UI">[ズーム閾値]</strong>機能の使用状況の確認を選択します。「ズーム閾値」は[ズーム倍率制限設定]で指定したズーム倍率以上に映像をズームインした場合のみ、プライバシー領域が動作する機能です。つまり、設定したズーム倍率より映像画面をズームアウトすると、プライバシー領域が映像から除去されます。</li>
+						</ul>
+						<li><strong class="UI">[プライバシー領域]</strong>で<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
+						<li>3段階で<strong class="UI">[ズーム閾値]</strong>オプションの中、<strong class="UI">[使用]</strong>を選択した場合、<strong class="UI">[ズーム倍率制限設定]</strong>が表示されます。お望みの倍率でズームを調整してから、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
+						<li>追加したプライバシー領域がプライバシー領域リストに追加されます。ズーム閾値機能が適用されたプライバシー領域は、プライバシー領域リストに「[ズーム]」が表記されます。カメラの映像画面に設定したカラーでプライバシー領域が表示されます。</li>
+					</ol>
+				</div>
+		
+				<div class="wn5-online-help-action">
+					<h4>プライバシー領域設定(ズームカメラの場合)</h4>
+					<ol>
+						<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択します。</li>
+						<li>カメラの映像画面でマウスをドラッグしてプライバシー領域を設定します。</li>
+						<li><strong class="UI">[プライバシー領域]</strong>で次の項目を設定します。</li>
+						<ul>
+							<li><strong class="UI">[名前]</strong>にプライバシー領域名を入力して<strong class="UI">[カラー]</strong>で映像を隠す色を選択します。</li>
+							<li><strong class="UI">[ズーム閾値]</strong>機能の使用状況の確認を選択します。「ズーム閾値」は[ズーム倍率制限設定]で指定したズーム倍率以上に映像をズームインした場合のみ、プライバシー領域が動作する機能です。つまり、設定したズーム倍率より映像画面をズームアウトすると、プライバシー領域が映像から除去されます。</li>
+						</ul>
+						<li><strong class="UI">[プライバシー領域]</strong>で<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
+						<li>3段階で<strong class="UI">[ズーム閾値]</strong>オプションの中、<strong class="UI">[使用]</strong>を選択した場合、<strong class="UI">[ズーム倍率制限設定]</strong>が表示されます。お望みの倍率でズームを調整してから、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
+						<li>追加したプライバシー領域がプライバシー領域リストに追加されます。ズーム閾値機能が適用されたプライバシー領域は、プライバシー領域リストに「[ズーム]」が表記されます。カメラの映像画面に設定したカラーでプライバシー領域が表示されます。</li>
+					</ol>
+				</div>
+
+
+
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 			<ul><li>プライバシー領域名は、英数字、ダーシ(-)、ピリオド(.)だけ入力することができます。</li>
