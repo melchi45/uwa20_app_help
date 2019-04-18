@@ -144,7 +144,7 @@
                         <td width="235">
                             <p>Les num&eacute;ros des canaux de la cam&eacute;ra sont affich&eacute;s.</p>
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Si vous s&eacute;lectionnez le num&eacute;ro d&rsquo;un canal, la vid&eacute;o du canal appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne Vue Quad, les vid&eacute;os des 4 canaux seront affich&eacute;es sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</p>  --> 
-                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Après la sélection d’un numéro de canal, la vidéo du canal sera affichée sur la visionneuse. Si vous sélectionnez l’icône Multi-vues, les vidéos de tous les canaux pris en charge par la caméra seront affichées en même temps. Pour revenir au plein écran unique, cliquez sur le numéro du canal.</p>                           
+                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Si vous sélectionnez l’icône Multi-vues, les vidéos de tous les canaux pris en charge par la caméra seront affichées sur le même écran. Pour revenir à la vue simple, cliquez sur le numéro de canal.</p>                           
                             <p ng-if="HandoverCalibration">Si vous s&eacute;lectionnez le num&eacute;ro du canal de votre cam&eacute;ra fixe, la vid&eacute;o appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez [PTZ], la vid&eacute;o du canal unique PTZ appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne multi-canal, les vid&eacute;os de la cam&eacute;ra fixe et de la cam&eacute;ra PTZ appara&icirc;tront sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro du canal ou sur [PTZ].</p>
                             <p ng-if="SupportAutoImageAlignment">L’écran de la caméra de chaque canal s’affiche lorsque vous sélectionnez un canal de caméra CAN 2 à CAN 5. Si vous sélectionnez CAN 1, les écrans de caméra CAN 2 à CAN 5 seront alignés en ligne droite pour montrer une vue panoramique. Si vous sélectionnez CAN 6 et CAN 7, vous pouvez vérifier la vidéo du CAN 1 tout en <a href="#PTZ">ajustant PTZ de la caméra</a>.</p>
                         </td>
@@ -256,7 +256,7 @@
             <h4>Pour changer de canal</h4>
                 <ul>
                     <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
-                    <li ng-if="!SupportAutoImageAlignment">Pour la vue quadravision, cliquez sur l&rsquo;ic&ocirc;ne Vue Quadravision.</li>
+                    <li ng-if="!SupportAutoImageAlignment">Cliquez sur l’icône Multi-vues pour afficher toutes les vidéos des canaux de la caméra sur un même écran.</li>
                     <li>Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</li>
                 </ul>
             </div>

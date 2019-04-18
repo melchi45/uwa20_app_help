@@ -153,7 +153,7 @@
                                 <p>Se muestran los n&uacute;meros de canal de la c&aacute;mara.</p>
                             <!--     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">En caso de seleccionar un n&uacute;mero de canal, el v&iacute;deo del canal se mostrar&aacute; en el visor. Si selecciona el icono de Vista cu&aacute;druple, los v&iacute;deos de 4 canales se mostrar&aacute;n en una pantalla. Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal.</p> -->
 
-                                <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Una vez que se selecciona un número de canal, el vídeo del canal se mostrará en el visor. Si selecciona el icono Vista múltiple, los vídeos de todos los canales admitidos por la cámara se mostrarán todos a la vez. Para volver a la vista de una sola pantalla completa, haga clic en el número de canal.</p>
+                                <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Si selecciona el icono Multivista, los vídeos de todos los canales admitidos por la cámara se mostrarán en una pantalla. Para volver a la vista única, haga clic en el número del canal.</p>
                                 <p ng-if="HandoverCalibration">Si selecciona el n&uacute;mero de canal fijo de su c&aacute;mara, el v&iacute;deo aparecer&aacute; en el visor. Si selecciona [PTZ], el v&iacute;deo de un solo canal PTZ aparecer&aacute; en el visor. Si selecciona el &iacute;cono multicanal, los v&iacute;deos de la c&aacute;mara fija y de la c&aacute;mara PTZ aparecer&aacute;n en una pantalla. Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal o [PTZ].</p>
                                 <p ng-if="SupportAutoImageAlignment">La pantalla de la cámara para cada canal se muestra cuando selecciona un canal de la cámara de Canal2 a Canal5. Si selecciona Canal1, las pantallas de la cámara Canal2 a Canal5 se alinearán en una línea recta para mostrar una vista panorámica. Si selecciona Canal6 y Canal7, podrá verificar el video Canal1 mientras <a href="#PTZ">ajusta la cámara PTZ</a>.</p>
                             </td>
@@ -266,6 +266,7 @@
                 <ul>
                     <li>Seleccione el n&uacute;mero del canal que desea. El video del canal aparecer&aacute; en el visor.</li>
                     <li ng-if="!SupportAutoImageAlignment">Para la vista quad, haga clic en el icono de la visa Quad.</li>
+                    <li ng-if="!SupportAutoImageAlignment">Haga clic en el icono Multivista para mostrar todos los vídeos de los canales de la cámara en una pantalla.</li>
                     <li>Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal. </li>
                 </ul>
             </div>

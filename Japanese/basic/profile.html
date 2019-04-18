@@ -370,7 +370,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>エントロピー符号化</h3>
-            <p>エントロピー符号化は、シンタックス(Syntax)の統計を用いた可変長コーディングで無損失の圧縮タイプです。CAVLC (Context Adaptive Variable Length Coding)とCABAC (Context Adaptive Binary Arithmetic Coding)の2タイプを提供します。但し、Baseline Profileの場合にはCAVLCタイプのみ使用できます。</p>
+            <p>エントロピー符号化は、シンタックス(Syntax)の統計を用いた可変長コーディングで無損失の圧縮タイプです。</p>
+            <p ng-if="EntropyCodingOptionCAVLC">CAVLC (Context Adaptive Variable Length Coding)とCABAC (Context Adaptive Binary Arithmetic Coding)の2タイプを提供します。但し、Baseline Profileの場合にはCAVLCタイプのみ使用できます。</p>
             <ul>
                 <li><strong class="UI">CABAC</strong>：圧縮率が高いが、データの処理過程が複雑でシステムリソースを多く使用します。 </li>
                 <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>：CABACに比べて圧縮率が低いが、データの処理過程がシンプルでシステムリソースを少なく使用します。</li>

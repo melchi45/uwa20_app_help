@@ -386,7 +386,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Codif. Entropia</h3>
-            <p>Establezca el tipo para reducir la p&eacute;rdida de compresi&oacute;n. Se proporcionan dos tipos de codificaci&oacute;n de entrop&iacute;a, CAVLC (Codificaci&oacute;n de Longitud Variable Adaptable al Contexto) y CABAC (Codificaci&oacute;n Aritm&eacute;tica Binaria Adaptable al Contexto).</p>
+            <p>Establezca el tipo para reducir la p&eacute;rdida de compresi&oacute;n. </p>
+            <p ng-if="EntropyCodingOptionCAVLC">Se proporcionan dos tipos de codificaci&oacute;n de entrop&iacute;a, CAVLC (Codificaci&oacute;n de Longitud Variable Adaptable al Contexto) y CABAC (Codificaci&oacute;n Aritm&eacute;tica Binaria Adaptable al Contexto).</p>
             <ul>
                 <li><strong class="UI">CABAC</strong>: El procedimiento de tratamiento de bit de datos CABAC es m&aacute;s complicado que CAVLC, por lo que utiliza m&aacute;s recursos del sistema, pero tiene una velocidad de compresi&oacute;n excelente.</li>
                 <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: El procedimiento de tratamiento de bit de datos para CAVLC es m&aacute;s simple que CABAC, para que utilice menos recursos del sistema, pero la velocidad de compresi&oacute;n es relativamente baja.</li>
@@ -413,6 +414,8 @@
 
                           <ul>
                               <li>Cuando se utiliza la función WiseStream, si se utilizan las funciones dinámicas GOV y FPS dinámicas, se optimiza el rendimiento de WiseStream. El WiseStream se puede configurar en el menú <strong class="UI">[Vídeo y Audio]</strong> > <strong class="UI">[WiseStream]</strong> menu.</li>
+                              <li ng-if="ATCModes">GOV din&aacute;mica est&aacute; activado solo cuando <strong class="UI">[Control de vel. bits]</strong> est&aacute; definido en <strong class="UI">[VBR]</strong> y <strong class="UI">[Modo ATC]</strong>&nbsp;en&nbsp;<strong class="UI">[Desactivar]</strong>. Si <strong class="UI">[Tipo de perfil] </strong>est&aacute; definido en&nbsp;<strong class="UI">[Perfil de grabaci&oacute;n]</strong>, GOV din&aacute;mica est&aacute; desactivado.</li>
+                              <li ng-if="!ATCModes">GOV din&aacute;mica est&aacute; activada solo cuando <strong class="UI">[Control de vel. bits]</strong> est&aacute; definido en <strong class="UI">[VBR]</strong>. Si <strong class="UI">[Tipo de perfil] </strong>est&aacute; definido en&nbsp;<strong class="UI">[Perfil de grabaci&oacute;n]</strong>, GOV din&aacute;mica estar&aacute; desactivado.</li>
                           </ul>
               		</div>
 
@@ -423,12 +426,15 @@
     		<div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">
                 <h3>Mínimo FPS</h3>               
                     <p>Introduzca el valor FPS mínimo que se aplicará cuando FPS dinámico esté habilitado.  </p>
+                    <p>La opci&oacute;n <strong class="UI">[M&iacute;nimo FPS]</strong> no se muestra si el valor de M&iacute;nimo FPS se ha definido en 1.</p>
             </div>
     <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
     			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 
                 <ul>
                     <li>Cuando se utiliza la función WiseStream, si se utilizan las funciones dinámicas GOV y FPS dinámicas, se optimiza el rendimiento de WiseStream. El WiseStream se puede configurar en el menú <strong class="UI">[Vídeo y Audio]</strong> > <strong class="UI">[WiseStream]</strong>.</li>
+                    <li ng-if="ATCModes">FPS din&aacute;mica est&aacute; activado solo cuando <strong class="UI">[C&oacute;dec]</strong> est&aacute; definido en <strong class="UI">[H.264]</strong> o <strong class="UI">[H.265]</strong> y <strong class="UI">[Control de vel. bits]</strong> est&aacute; definido en <strong class="UI">[VBR]</strong>. FPS din&aacute;mica est&aacute; tambi&eacute;n activado cuando <strong class="UI">[Modo ATC]</strong> est&aacute; definido en <strong class="UI">[Desactivar]</strong>, mientras que FPS din&aacute;mica est&aacute; desactivado cuando <strong class="UI">[Tipo de perfil]</strong> est&aacute; definido en <strong class="UI">[Perfil de grabaci&oacute;n]</strong>.</li>
+                <li ng-if="!ATCModes">FPS din&aacute;mica solo se activa cuando <strong class="UI">[C&oacute;dec]</strong> est&aacute; definido en <strong class="UI">[H.264]</strong> o <strong class="UI">[H.265]</strong> y <strong class="UI">[Control de vel. bits]</strong> est&aacute; definido en <strong class="UI">[VBR]</strong>.</li>
                 </ul>
     		        </div>
     <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">
@@ -436,6 +442,7 @@
 
                 <ul>
                     <li>Cuando se utiliza la función WiseStream, si se utilizan las funciones FPS dinámicas, se optimiza el rendimiento de WiseStream. El WiseStream se puede configurar en el menú <strong class="UI">[Vídeo y Audio]</strong> > <strong class="UI">[WiseStream]</strong>.</li>
+
                 </ul>
     		        </div>
                 </div>

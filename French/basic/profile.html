@@ -376,7 +376,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Codage entropique</h3>
-            <p>D&eacute;finissez le type pour r&eacute;duire la perte de compression. Deux types de codage entropique, CAVLC (codage adaptatif de longueur variable de contexte) et CABAC (codage arithm&eacute;tique binaire adaptatif de contexte), sont fournis.</p>
+            <p>D&eacute;finissez le type pour r&eacute;duire la perte de compression. </p>
+            <p ng-if="EntropyCodingOptionCAVLC">Deux types de codage entropique, CAVLC (codage adaptatif de longueur variable de contexte) et CABAC (codage arithm&eacute;tique binaire adaptatif de contexte), sont fournis.</p>
             <ul>
                 <li><strong class="UI">CABAC</strong>: La proc&eacute;dure de traitement de donn&eacute;es CABAC est plus compliqu&eacute;e que celle de CAVLC, de sorte qu&apos;elle utilise davantage de ressources syst&egrave;me, mais son taux de compression est excellent.</li>
                 <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: La proc&eacute;dure de traitement des donn&eacute;es pour CAVLC est plus simple que CABAC, de sorte qu&apos;elle utilise moins de ressources syst&egrave;me, mais le taux de compression est relativement faible.</li>
@@ -403,6 +404,8 @@
 
                       <ul>
                           <li>Lorsque la fonction WiseStream est utilis&eacute;e, si les fonctions GOV dynamique et FPS dynamique sont utilis&eacute;es, les performances de WiseStream sont optimis&eacute;es. Le WiseStream peut &ecirc;tre d&eacute;fini dans le menu <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong>.</li>
+                <li ng-if="ATCModes">GOV dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong> et que <strong class="UI">[Mode ATC]</strong>&nbsp;est r&eacute;gl&eacute; sur&nbsp;<strong class="UI">[D&eacute;sactiver]</strong>. Si <strong class="UI">[Type de profil] </strong>est r&eacute;gl&eacute; sur&nbsp;<strong class="UI">[Enregistrer profil]</strong>, GOV dynamique est d&eacute;sactiv&eacute;.</li>
+                <li ng-if="!ATCModes">GOV dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>. Si <strong class="UI">[Type de profil] </strong>est r&eacute;gl&eacute; sur&nbsp;<strong class="UI">[Enregistrer profil]</strong>, GOV dynamique est d&eacute;sactiv&eacute;.</li>
                       </ul>
           		</div>
 
@@ -413,12 +416,15 @@
         <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">           
             <h3>FPS minimale</h3>
                 <p>Entrez la valeur FPS minimale &agrave; appliquer lorsque FPS dynamique est activ&eacute;.</p>
+                <p>L&rsquo;option <strong class="UI">[Minimale FPS]</strong> n&rsquo;est pas affich&eacute;e si la valeur de Minimale FPS value est d&eacute;finie comme 1.</p>
         </div>
         <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 
             <ul>
                 <li>Lorsque la fonction WiseStream est utilis&eacute;e, si les fonctions GOV dynamique et FPS dynamique sont utilis&eacute;es, les performances de WiseStream sont optimis&eacute;es. Le WiseStream peut &ecirc;tre d&eacute;fini dans le menu <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong>.</li>
+                <li ng-if="ATCModes">FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contrôle du débit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>. FPS dynamique est &eacute;galement activ&eacute; lorsque <strong class="UI">[Mode ATC]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[D&eacute;sactiver]</strong> alors que FPS dynamique est d&eacute;sactiv&eacute; lorsque <strong class="UI">[Type de profil]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Enregistrer profil]</strong>.</li>
+                <li ng-if="!ATCModes">FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contrôle du débit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>.</li>
             </ul>
                 </div>
         <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">
