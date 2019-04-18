@@ -145,7 +145,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="MaxChannel > 1">
                             <td width="235">
                                 <p>Seleccionar canal</p>
                             </td>
@@ -265,7 +265,7 @@
             <h4>Para cambiar el canal</h4>
                 <ul>
                     <li>Seleccione el n&uacute;mero del canal que desea. El video del canal aparecer&aacute; en el visor.</li>
-                    <li ng-if="!SupportAutoImageAlignment">Para la vista quad, haga clic en el icono de la visa Quad.</li>
+                <!--    <li ng-if="!SupportAutoImageAlignment">Para la vista quad, haga clic en el icono de la visa Quad.</li>  -->
                     <li ng-if="!SupportAutoImageAlignment">Haga clic en el icono Multivista para mostrar todos los vídeos de los canales de la cámara en una pantalla.</li>
                     <li>Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal. </li>
                 </ul>
