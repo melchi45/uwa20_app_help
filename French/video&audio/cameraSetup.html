@@ -251,7 +251,7 @@
             <h5>Niveau de la BLC</h5>
             <p>Vous pouvez choisir entre bas, moyen et haut. Plus le niveau est &eacute;lev&eacute;, plus la zone est claire.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Configuration de la zone</h5>
             <ul>
                 <li><strong class="UI">Haut</strong>&nbsp;: D&eacute;finit la distance entre la surface sup&eacute;rieure et le haut de l&rsquo;&eacute;cran.</li>
@@ -824,7 +824,8 @@
             <p>En mode N/B lorsque la LED IR est allum&eacute;e, la saturation au centre de l&rsquo;&eacute;cran est emp&ecirc;ch&eacute;e, de sorte qu&rsquo;il est possible d&rsquo;identifier un objet proche.</p>
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: D&eacute;sactive le mode IR.</li>
-                <li><strong class="UI">Auto 1</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
+                <li ng-if="!IRModeOptionAuto2"><strong class="UI">Auto</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 1</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 2</strong>&nbsp;: En fonction de la luminosit&eacute; des objets au centre de l&rsquo;&eacute;cran et &agrave; proximit&eacute;, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">Manuel</strong>&nbsp;: Ajuste manuellement la luminosit&eacute; IR.</li>
             </ul>

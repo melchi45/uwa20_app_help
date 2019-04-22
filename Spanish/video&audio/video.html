@@ -17,7 +17,7 @@
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">Debido a que se configura individualmente un &aacute;rea privada para cada canal, una configuraci&oacute;n de &aacute;rea privada en Canal1 aplicar&aacute; &uacute;nicamente a Canal1, incluso si la misma &aacute;rea privada existe en Canal2.</p>
-            <p>Haga clic en el bot&oacute;n <strong class="UI">[Informaci&oacute;n detallada]</strong> para ver un resumen general de cada canal.</p>
+            <p>Haga clic en el bot&oacute;n <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
             <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
 	</div>
@@ -220,8 +220,8 @@
 </div>
 </div>
 <!-- 멀티 센터 변경점 이 후에는 분기 코드 삭제해야 함 --> 
-<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Salida de v&iacute;deo</h2>
     </div>

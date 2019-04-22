@@ -368,14 +368,14 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
-            <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly. </p>>
+            <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly. </p>
             <p ng-if="PTZModel">Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h5>BLC level</h5>
             <p>You can select a level from low, middle or high. The higher the level, the brighter the set area. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Area setting</h5>
             <ul>
                 <li><strong class="UI">Top</strong>: Set how far the top surface is away from the top of the screen. </li>
@@ -739,7 +739,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>When <strong class="UI">[Enable privacy area]</strong> is selected in <strong class="UI">[Vidoe & Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Video setup]</a></strong>, both <strong class="UI">[LDC]</strong>and <strong class="UI">[LDC level] </strong>options are disabled. Uncheck <strong class="UI">[Enable privacy area]</strong> to use the LDC function. </li>
+                <li>When <strong class="UI">[Enable privacy area]</strong> is selected in <strong class="UI">[Vidoe & Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Video setup]</a></strong>, both <strong class="UI">[LDC]</strong> and <strong class="UI">[LDC level]</strong> options are disabled. Uncheck <strong class="UI">[Enable privacy area]</strong> to use the LDC function. </li>
             </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
@@ -972,7 +972,8 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <p>In the B/W mode when the IR LED is turned on, the saturation at the center of screen is prevented, so it is possible to identify a nearby object.</p>
             <ul>
                 <li><strong class="UI">Off</strong>: Disables the IR mode.</li>
-                <li><strong class="UI">Auto 1</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
+                <li ng-if="!IRModeOptionAuto2"><strong class="UI">Auto</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 1</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 2</strong>: Automatically adjusts the IR brightness depending on the brightness of object at and around the center of screen.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">Manual</strong>: Manually adjusts the IR brightness.</li>
             </ul>

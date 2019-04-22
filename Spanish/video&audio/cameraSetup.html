@@ -259,7 +259,7 @@
             <h5>Nivel de BLC</h5>
             <p>Puede seleccionar bajo, medio y alto. Mientras m&aacute;s alto sea el nivel, m&aacute;s brillante ser&aacute; el &aacute;rea.</p>
         </div>
-       <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+       <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Configuraci&oacute;n del &aacute;rea</h5>
             <ul>
                 <li><strong class="UI">Arriba</strong>: Ajuste la distancia de la superficie superior a la parte superior de la pantalla.</li>
@@ -834,7 +834,8 @@
             <p>En el modo B/N, cuando el LED IR est&aacute; encendido, la saturaci&oacute;n en el centro de la pantalla se previene, de modo que es posible identificar un objeto cercano.</p>
             <ul>
                 <li><strong class="UI">Desactivar</strong>: Desactiva el modo IR.</li>
-                <li><strong class="UI">Autom&aacute;tico 1</strong>: En funci&oacute;n del brillo del objeto en el centro de la pantalla, el brillo IR se ajusta autom&aacute;ticamente.</li>
+                <li ng-if="!IRModeOptionAuto2"><strong class="UI">Autom&aacute;tico</strong>: En funci&oacute;n del brillo del objeto en el centro de la pantalla, el brillo IR se ajusta autom&aacute;ticamente.</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">Autom&aacute;tico 1</strong>: En funci&oacute;n del brillo del objeto en el centro de la pantalla, el brillo IR se ajusta autom&aacute;ticamente.</li>
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">Autom&aacute;tico 2</strong>: En funci&oacute;n del brillo del objeto en el centro de la pantalla y alrededor de la misma, el brillo IR se ajusta autom&aacute;ticamente.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">Manual</strong>: Ajusta de forma manual el brillo IR.</li>
             </ul>
@@ -915,7 +916,7 @@
             <p>La c&aacute;mara funciona a la hora seleccionada en el predefinido de imagen.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Solo en la hora programada</h3>
+            <h3>Solo tiempo programado</h3>
             <p>Puede definir si desea permitir que un usuario ejecute una imagen preajustada deseada en un momento espec&iacute;fico. Seleccione un preajuste de imagen y establezca la hora de inicio y de fin. Ajuste la imagen preajustada para cada hora de acuerdo con el uso de la c&aacute;mara.</p>
             <p>La fecha de domingo a s&aacute;bado, basada en la hora actual de la c&aacute;mara, se muestra en la tabla de horas que se muestra cuando se selecciona <strong class="UI">[Solo tiempo programado]</strong>. Puede definir la hora haciendo clic en esta o bien arrastrando la tabla de horas con el rat&oacute;n. La hora de activaci&oacute;n ajustada definida se ejecuta repetidamente en el d&iacute;a y la hora de la semana correspondientes.</p>
             <p>Puede cambiar la unidad de la vista de la hora haciendo clic en el bot&oacute;n <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Cuando hace clic en el bot&oacute;n <strong class="UI">[Restablecer]</strong>, se borrar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, vaya a <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>

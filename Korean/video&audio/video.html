@@ -224,9 +224,10 @@
 		</div>
 	</div>
 </div> 
-<!-- 멀티 센터 카메라 변경점 진행할 때 [아날로그 비디오]는 삭제하고 [비디오 출력] 분기 코드는 삭제해야 함  -->  
-<hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="!SupportAutoImageAlignment">
+<!-- 멀티 센터 카메라 변경점 진행할 때 [아날로그 비디오]는 삭제하고 [비디오 출력] 분기 코드는 삭제해야 함  
+2019-04-22 박종찬 선임님 코멘트에 따라 ng-if="!SupportAutoImageAlignment"를 VideoTypeOptions || UsbConfigEnable로 수정함. -->  
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || UsbConfigEnable">
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>
 	</div>

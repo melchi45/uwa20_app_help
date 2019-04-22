@@ -259,7 +259,7 @@
             <h5>BLCレベル</h5>
             <p>低、中、高の中から選択することができます。レベルが高いと、設定したエリアの明るさがより明るくなります。</p>
         </div>
-         <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>エリア設定</h5>
             <ul>
                 <li><strong class="UI">トップ</strong>：画面の上側から上面がどれだけ離れているかを設定します。</li>
@@ -833,7 +833,8 @@
             <p>B/Wの時、IR LEDがオンになると画面中央の飽和を防止して近くでも被写体を識別することができます。</p>
             <ul>
                 <li><strong class="UI">無効</strong>：IRモードを使用しません。</li>
-                <li><strong class="UI">自動1</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
+                <li ng-if="!IRModeOptionAuto2"><strong class="UI">自動</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">自動1</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">自動2</strong>：画面の中心部&amp;周囲部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">手動</strong>：手動でIRの明るさを調整します。</li>
             </ul>
