@@ -106,15 +106,15 @@
                     </div>
                 </div>
                 
-                <hr class="wn5-setup-hr">
-                <div class="wn5-setup-section">
+                <hr class="wn5-setup-hr" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
+                <div class="wn5-setup-section" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
                     <div class="wn5-setup-section-heading">
                         <h2>Transfert</h2>
                     </div>
                     <div class="wn5-setup-section-article">
                         <div class="wn5-setup-section-article-content">
                             <h3>Transfert</h3>
-                            <p>S&eacute;lectionnez un num&eacute;ro de cam&eacute;ra r&eacute;cepteur de relais. S&eacute;lectionnez <strong class="UI">[D&eacute;sactiver]</strong> si vous ne souhaitez pas utiliser la fonction de relais.</p>
+                            <p>S&eacute;lectionnez un num&eacute;ro de cam&eacute;ra r&eacute;cepteur de relais. S&eacute;lectionnez <strong class="UI">[Désactivé]</strong> si vous ne souhaitez pas utiliser la fonction de relais.</p>
                             <p>Le relais est une fonction permettant &agrave; la cam&eacute;ra r&eacute;cepteur de passer &agrave; la position PTZ pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de classification de sources audio se produit. La cam&eacute;ra recevant le relais peut &ecirc;tre d&eacute;finie dans le menu <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt; <strong class="UI">[Transfert]</strong>.</p>
             </div>				
         </div>
