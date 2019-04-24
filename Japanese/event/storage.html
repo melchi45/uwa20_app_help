@@ -104,9 +104,9 @@
 </div>
 
 
-<!--
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<hr class="wn5-setup-hr" ng-if="DASEncryptSupport">
+<div class="wn5-setup-section" ng-if="DASEncryptSupport">
     <div class="wn5-setup-section-heading">
         <h2>暗号化</h2>
     </div>
@@ -169,7 +169,7 @@
     </div>
 </div>
 
--->
+
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
