@@ -1,13 +1,16 @@
 ﻿
 <h1 class="wn5-setup-main-title">プレーバック</h1>
 <div class="wn5-setup-section">
-    <p>SDカードまたはNASに保存された録画映像を読み込んで再生することができます。画面上の<span class="tui tui-wn5-top-playback"></span>ボタンをクリックすると、録画画面が表示されます。再生画面の下にタイムバーが表示され、設定したスケジュールで録画された映像やイベントによって録画された映像がタイムバーに表示されます。録画映像をイベント種類や日付別に検索することができ、キャプチャーしたりPCに保存することができます。</p>
+    <p ng-if="NAS">SDカードまたはに保存された録画映像を読み込んで再生することができます。</p>
+    <p ng-if="!NAS">SDカードに保存された録画映像を読み込んで再生することができます。</p>    
+    <p>画面上の<span class="tui tui-wn5-top-playback"></span>ボタンをクリックすると、録画画面が表示されます。再生画面の下にタイムバーが表示され、設定したスケジュールで録画された映像やイベントによって録画された映像がタイムバーに表示されます。録画映像をイベント種類や日付別に検索することができ、キャプチャーしたりPCに保存することができます。</p>
 </div>
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
     <p>上のボタンをクリックすると、ライブ画面や再生画面、設定画面に移動することができます。</p>
         <ul><li><span class="tui tui-wn5-top-live"></span>(ライブ)：カメラで撮影中のライブ映像を確認して、様々なカメラ機能を制御することができます。</li>
-            <li><span class="tui tui-wn5-top-playback"></span>(プレーバック)：SDカードまたはNASに録画しておいた映像を検索して再生することができます。</li>
+            <li ng-if="NAS"><span class="tui tui-wn5-top-playback"></span>(プレーバック)：SDカードまたはNASに録画しておいた映像を検索して再生することができます。</li>
+            <li ng-if="!NAS"><span class="tui tui-wn5-top-playback"></span>(プレーバック)：SDカードに録画しておいた映像を検索して再生することができます。</li>
             <li><span class="tui tui-wn5-top-setup"></span>(設定)：カメラの詳細設定を変更することができます。</li>
         </ul>
     </div>
@@ -16,7 +19,8 @@
     <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
         <ul><li>映像を再生するには、先に<strong class="UI">[ライブ]</strong>ページで映像を<a href="Monitoring.html#record">録画</a>する必要があります。&nbsp; </li>
-                <li>SDカードやNASに接続されていない場合、再生機能を使用することができません。</li>
+                <li ng-if="NAS">SDカードやNASに接続されていない場合、再生機能を使用することができません。</li>
+                <li ng-if="!NAS">SDカードに接続されていない場合、再生機能を使用することができません。</li>
                 <li>Chromeでウェブビューアに接続すると、再生画面の機能を最も安定した状態で使用することができます。</li><!-- <li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 백업 기능을 사용할 수 있습니다.  
 				플러그인을 설치하려면 오른쪽 상단의  플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오. </li>   --></ul>
     </div>

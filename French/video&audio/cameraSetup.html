@@ -203,8 +203,8 @@
                 <li><strong class="UI">Ext&eacute;rieur</strong>&nbsp;: Les couleurs de la cam&eacute;ra sont corrig&eacute;es pour &ecirc;tre optimis&eacute;es pour un environnement ext&eacute;rieur.</li>
                 <li><strong class="UI">Int&eacute;rieur</strong>&nbsp;: Les couleurs de la cam&eacute;ra sont corrig&eacute;es pour &ecirc;tre optimis&eacute;es pour un environnement int&eacute;rieur.</li>
                 <li><strong class="UI">AWC</strong>&nbsp;: Ajustez l&rsquo;&eacute;cran pour optimiser la couleur de la cam&eacute;ra en fonction de l&rsquo;environnement d&rsquo;&eacute;clairage actuel. Placez un papier blanc devant la cam&eacute;ra et appuyez sur le bouton <strong class="UI">[Param&egrave;tres]</strong> pour ajuster les gains rouge/bleu et appliquer les r&eacute;sultats &agrave; la vid&eacute;o. La valeur de balance des blancs continue d&rsquo;&ecirc;tre appliqu&eacute;e &agrave; la vid&eacute;o actuellement affich&eacute;e et vous devez l&rsquo;ajuster &agrave; nouveau lorsque l&rsquo;environnement change.</li>
-                <li ng-if="PTZModel"><strong class="UI">MERCURE</strong>&nbsp;: La correction d&rsquo;&eacute;cran est faite pour adapter les couleurs &agrave; l&rsquo;environnement d&rsquo;&eacute;clairage au mercure.</li>
-                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>&nbsp;: La correction d&rsquo;&eacute;cran est faite pour adapter les couleurs &agrave; l&rsquo;environnement d&rsquo;&eacute;clairage au sodium.</li>
+                <li><strong class="UI">MERCURE</strong>&nbsp;: La correction d&rsquo;&eacute;cran est faite pour adapter les couleurs &agrave; l&rsquo;environnement d&rsquo;&eacute;clairage au mercure.</li>
+                <li><strong class="UI">SODIUM</strong>&nbsp;: La correction d&rsquo;&eacute;cran est faite pour adapter les couleurs &agrave; l&rsquo;environnement d&rsquo;&eacute;clairage au sodium.</li>
             </ul>
         </div>
 
@@ -404,7 +404,7 @@
             <p>Supprime le bruit de l&rsquo;image.</p>
             <ul>
                 <li><strong class="UI">Activer/Désactivé</strong>&nbsp;: la fonction SSNR peut &ecirc;tre activ&eacute;e ou d&eacute;sactiv&eacute;e. Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, il est alors possible d&rsquo;ajuster le niveau du SSNR.</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">Wise NR</strong>&nbsp;: Lorsqu&rsquo;un objet en mouvement se trouve dans l&rsquo;image, le niveau de r&eacute;duction du bruit est ajust&eacute; automatiquement pour am&eacute;liorer la pr&eacute;cision de l&rsquo;identification de l&rsquo;objet.</li>
+                <li><strong class="UI">Wise NR</strong>&nbsp;: Lorsqu&rsquo;un objet en mouvement se trouve dans l&rsquo;image, le niveau de r&eacute;duction du bruit est ajust&eacute; automatiquement pour am&eacute;liorer la pr&eacute;cision de l&rsquo;identification de l&rsquo;objet.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -428,7 +428,7 @@
             <ul>
                 <li><strong class="UI">DC (Auto)</strong>&nbsp;: Ajuste automatiquement l&rsquo;iris en fonction de l&rsquo;intensit&eacute; optique de l&rsquo;environnement.</li>
                 <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement la valeur F de l&rsquo;iris.</li>
-                <li ng-if="PIrisInIrisList"><strong class="UI">P-iris</strong>&nbsp;: Le r&eacute;glage de l&rsquo;obturateur s&rsquo;effectue &agrave; l&rsquo;aide d&rsquo;un moteur &agrave; enclenchement. Une grande profondeur de champ peut &ecirc;tre s&eacute;curis&eacute;e de sorte qu&rsquo;un certain nombre d&rsquo;objets &agrave; diff&eacute;rentes distances peuvent &ecirc;tre mis au point en m&ecirc;me temps.</li>
+                <li><strong class="UI">P-iris</strong>&nbsp;: Le r&eacute;glage de l&rsquo;obturateur s&rsquo;effectue &agrave; l&rsquo;aide d&rsquo;un moteur &agrave; enclenchement. Une grande profondeur de champ peut &ecirc;tre s&eacute;curis&eacute;e de sorte qu&rsquo;un certain nombre d&rsquo;objets &agrave; diff&eacute;rentes distances peuvent &ecirc;tre mis au point en m&ecirc;me temps.</li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
@@ -462,10 +462,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>L&rsquo;exposition de l&rsquo;&eacute;cran peut &ecirc;tre satur&eacute;e en fonction de la plage max/min des r&eacute;glages de l&rsquo;obturateur.</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">Il peut s&rsquo;&eacute;couler un certain temps avant que l&rsquo;effet soit appliqu&eacute; ou annul&eacute; apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">Le niveau de bruit peut augmenter malgr&eacute; l&rsquo;am&eacute;lioration de la capacit&eacute; de d&eacute;tection vid&eacute;o apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">Dans un environnement clair et moins bruyant, l&rsquo;effet de Wise NR (SSNR 2D et SSNR 3D) peut &ecirc;tre faible.</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
+                <li>Il peut s&rsquo;&eacute;couler un certain temps avant que l&rsquo;effet soit appliqu&eacute; ou annul&eacute; apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
+                <li>Le niveau de bruit peut augmenter malgr&eacute; l&rsquo;am&eacute;lioration de la capacit&eacute; de d&eacute;tection vid&eacute;o apr&egrave;s le r&eacute;glage du mode Wise NR (SSNR 2D et SSNR 3D).</li>
+                <li>Dans un environnement clair et moins bruyant, l&rsquo;effet de Wise NR (SSNR 2D et SSNR 3D) peut &ecirc;tre faible.</li>
+                <li>Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
             </ul>
 			</div> 
     </div>
@@ -487,7 +487,7 @@
                 <li><strong class="UI">Couleur</strong>&nbsp;: Affiche une image en couleur.</li>
                 <li><strong class="UI">N/B</strong>&nbsp;: Affiche toujours une image en noir et blanc.</li>
                 <li><strong class="UI">Automatique</strong>&nbsp;: Il passe en mode couleur le jour et en noir et blanc la nuit ou &agrave; l&rsquo;heure avec une faible luminosit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est r&eacute;gl&eacute; pour <strong class="UI">[AGC]</strong> de l&rsquo;<strong class="UI">[Exposition]</strong>, il est impossible de r&eacute;gler Jour/Nuit automatiquement.</li>
-                <li ng-if="DayNightMode_ExternalBW"><strong class="UI">Entr&eacute;e externe</strong>&nbsp;: Lorsqu&rsquo;une borne d&rsquo;entr&eacute;e d&rsquo;alarme est reli&eacute;e &agrave; un &eacute;quipement externe, la couleur et le noir et blanc de la vid&eacute;o peuvent &ecirc;tre contr&ocirc;l&eacute;s.</li>
+                <li><strong class="UI">Entr&eacute;e externe</strong>&nbsp;: Lorsqu&rsquo;une borne d&rsquo;entr&eacute;e d&rsquo;alarme est reli&eacute;e &agrave; un &eacute;quipement externe, la couleur et le noir et blanc de la vid&eacute;o peuvent &ecirc;tre contr&ocirc;l&eacute;s.</li>
                 <li><strong class="UI">Calendrier</strong>&nbsp;: Jour/Nuit est modifi&eacute; pour passer au calendrier d&eacute;fini &agrave; partir de <strong class="UI">[Heure d&rsquo;activation (couleur)]</strong>.</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  --></ul>
         </div>
@@ -597,7 +597,7 @@
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: Ne pas utiliser la fonction de correction de distorsion d&rsquo;image.</li>
                 <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement le niveau de correction de distorsion.</li>
-                <li ng-if="LDCAuto"><strong class="UI">Automatique</strong>&nbsp;: R&egrave;gle automatiquement la distorsion de l&rsquo;image.</li>
+                <li><strong class="UI">Automatique</strong>&nbsp;: R&egrave;gle automatiquement la distorsion de l&rsquo;image.</li>
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
@@ -652,7 +652,7 @@
             <ul>
                 <li><strong class="UI">Position PTZ</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non la position PTZ &agrave; l&rsquo;&eacute;cran.</li>
                 <li><strong class="UI">Pr&eacute;r&eacute;gler nom</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non le nom pr&eacute;r&eacute;gl&eacute; &agrave; l&rsquo;&eacute;cran.</li>
-                <li ng-if="RS485Support"><strong class="UI">Adresse</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non le num&eacute;ro de cam&eacute;ra &agrave; l&rsquo;&eacute;cran.</li>
+                <li><strong class="UI">Adresse</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non le num&eacute;ro de cam&eacute;ra &agrave; l&rsquo;&eacute;cran.</li>
                 <li><strong class="UI">Azimut</strong>&nbsp;: La fonction est utilis&eacute;e pour afficher l&rsquo;azimut de la zone que vous &ecirc;tes en train de regarder sur l&rsquo;&eacute;cran. Lorsque la fonction est activ&eacute;e, les 8 directions E(Est)/W(Ouest)/S(Sud)/N(Nord)/NE(Nord-Est)/NW(Nord-Ouest)/SE(Sud-Est)/SW(Sud-Ouest) sont affich&eacute;es en bas &agrave; droite de l&rsquo;&eacute;cran.</li>
             </ul>
         </div><!--<div class="wn5-setup-section-article-content">
@@ -824,13 +824,13 @@
             <p>En mode N/B lorsque la LED IR est allum&eacute;e, la saturation au centre de l&rsquo;&eacute;cran est emp&ecirc;ch&eacute;e, de sorte qu&rsquo;il est possible d&rsquo;identifier un objet proche.</p>
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: D&eacute;sactive le mode IR.</li>
-                <li ng-if="!IRModeOptionAuto2"><strong class="UI">Auto</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
-                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 1</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
-                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 2</strong>&nbsp;: En fonction de la luminosit&eacute; des objets au centre de l&rsquo;&eacute;cran et &agrave; proximit&eacute;, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
-                <li ng-if="IRModeOptionManual"><strong class="UI">Manuel</strong>&nbsp;: Ajuste manuellement la luminosit&eacute; IR.</li>
+                <li><strong class="UI">Auto</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
+                <li><strong class="UI">Auto 1</strong>&nbsp;: Selon la luminosit&eacute; de l&rsquo;objet au centre de l&rsquo;&eacute;cran, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
+                <li><strong class="UI">Auto 2</strong>&nbsp;: En fonction de la luminosit&eacute; des objets au centre de l&rsquo;&eacute;cran et &agrave; proximit&eacute;, la luminosit&eacute; IR est automatiquement ajust&eacute;e.</li>
+                <li><strong class="UI">Manuel</strong>&nbsp;: Ajuste manuellement la luminosit&eacute; IR.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+        <div class="wn5-setup-section-article-content">
             <h3>Niveau</h3>
             <p>D&eacute;finir le niveau IR.</p>
             <p>Le niveau IR est activ&eacute; lorsque le <strong class="UI">[Mode]</strong> est d&eacute;fini sur <strong class="UI">[Manuel]</strong>.</p>

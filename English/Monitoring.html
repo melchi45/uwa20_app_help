@@ -242,7 +242,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput>0">
+                    <tr ng-if="MaxAudioInput>0">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Speaker</p>
@@ -306,12 +306,13 @@
             <h4>To use microphone</h4>
                 <ul>
                     <li>Click the microphone icon(<span class="tui tui-wn5-toolbar-mic"></span>).</li>
-                    <li>Adjust the audio volume using the Volume control bar.</li>
+                    <!-- <li>Adjust the audio volume using the Volume control bar.</li>  --> 
                 </ul>
                 <p>If no sound is heard when connecting or disconnecting the audio jack from the PC while playing the audio, click the microphone icon(<span class="tui tui-wn5-toolbar-mic"></span>) and enable it.</p>
+                <p>The sound output from the camera may be inconsistent depending on the microphone device settings. If the sound is not well heard, turn off the improvement function of the microphone properties in the PC where the web viewer is operating, or adjust the microphone device volume.</p> 
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
                 <h4>To use speaker</h4>
                 <ul>
                     <li> Click the Speaker icon(<span class="tui tui-wn5-toolbar-sound"></span>).</li>
@@ -394,7 +395,7 @@
             <h3>Display </h3>
             <p>Set the contrast, brightness, sharpness and color level of the live screen; when you enter the setting, it will be applied to the live screen immediately. Click the <span class="tui tui-wn5-return"></span> button if you want to reset all the display settnigs.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="spotTemperatureSupport">
+        <div class="wn5-setup-section-article-content" ng-if="IsAdmin && spotTemperatureSupport">
             <h3>Display </h3>
             <p>Set the contrast, brightness, and sharpness of the live screen; when you enter the setting, it will be applied to the live screen immediately. Click the <span class="tui tui-wn5-return"></span> button if you want to reset all the display settnigs.</p>
         </div>

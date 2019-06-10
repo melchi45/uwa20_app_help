@@ -17,11 +17,11 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>Tipo IP</h3>
 			<p>Seleccione el tipo de conexi&oacute;n IP. Si se utiliza una direcci&oacute;n IP fija, establezca <strong class="UI">[Manual]</strong> e introduzca la informaci&oacute;n. Si se utiliza una direcci&oacute;n IP din&aacute;mica, establezca <strong class="UI">[DHCP]</strong> e introduzca la direcci&oacute;n DNS solamente.</p>
-			<p ng-if="PPPoE"> Si se utiliza <strong class="UI">[PPPoE]</strong>, introduzca la direcci&oacute;n DNS, ID y contrase&ntilde;a. </p>
+			<p> Si se utiliza <strong class="UI">[PPPoE]</strong>, introduzca la direcci&oacute;n DNS, ID y contrase&ntilde;a. </p>
 			<ul>
 			<li><strong class="UI">Manual</strong>: Escriba y establezca la direcci&oacute;n IP, m&aacute;scara de subred, puerta de enlace, DNS1 y DNS2 directamente.</li>
 			<li><strong class="UI">DHCP</strong>: Establezca DNS1 y DNS2.</li>
-			<li ng-if="PPPoE"><strong class="UI">PPPoE</strong>: Establezca DNS1, DNS2, ID y contrase&ntilde;a.</li>
+			<li><strong class="UI">PPPoE</strong>: Establezca DNS1, DNS2, ID y contrase&ntilde;a.</li>
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -58,12 +58,17 @@
 			<p>Es el nombre para recuperar el nombre de host que es utilizado en el comando GetHostname ONVIF. El primer car&aacute;cter debe ser alfab&eacute;tico y solo se pueden introducir caracteres alfanum&eacute;ricos. Se pueden introducir hasta 63 caracteres. El nombre de la c&aacute;mara se introduce como predeterminado; no necesita ser definido ya que no es un valor requerido. </p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PPPoE">
+		<div class="wn5-setup-section-article-content" ng-if="MTUSupport">
+			<h3>MTU</h3>
+            <p>Configure la unidad de transmisión máxima (MTU) a la que se pueden transferir los datos desde la interfaz de red. El valor de la MTU puede ajustarse entre 1280 y 1500 octetos. Si el valor es demasiado bajo, la reproducción de vídeo puede retrasarse. Por lo tanto, el valor de la MTU debe ajustarse de acuerdo con el entorno de red del usuario.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
 			<h3>ID</h3>
 			<p>Esto se visualiza cuando <strong class="UI">[PPPoE]</strong> est&aacute; configurado para <strong class="UI">[Tipo IP]</strong>. Introduzca la ID apropiada para conectarse.</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PPPoE">
+		<div class="wn5-setup-section-article-content">
 			<h3>Contrase&ntilde;a</h3>
 			<p>Esto se visualiza cuando <strong class="UI">[PPPoE]</strong> est&aacute; configurado para <strong class="UI">[Tipo IP]</strong>. Introduzca la contrase&ntilde;a correcta para conectarse.</p>
 		</div> 

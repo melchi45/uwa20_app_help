@@ -299,12 +299,13 @@
             <h4>Para utilizar micr&oacute;fono</h4>
                 <ul>
                     <li>Haga clic en el icono de micr&oacute;fono <span class="tui tui-wn5-toolbar-mic"></span> .</li>
-                    <li>Ajuste el volumen de audio utilizando la barra de control de Volumen.</li>
+                    <!-- <li>Ajuste el volumen de audio utilizando la barra de control de Volumen.</li>  -->
                 </ul>
                 <p>Si no se escucha ning&uacute;n sonido al conectar o desconectar el enchufe de audio de la PC mientras se reproduce el audio, haga clic en el icono micr&oacute;fono <span class="tui tui-wn5-toolbar-mic"></span> y habil&iacute;telo.</p>
+                <p>La salida de sonido de la cámara puede ser inconsistente dependiendo de la configuración del dispositivo del micrófono. Si el sonido no se oye bien, apague la función de mejora de las propiedades del micrófono en el PC donde funciona el visor web o ajuste el volumen del micrófono en el dispositivo.</p> 
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
                 <h4>Para utilizar el parlante</h4>
                 <ul>
                     <li>Haga clic en el icono del parlante <span class="tui tui-wn5-toolbar-sound"></span> .</li>
@@ -383,9 +384,13 @@
                       <!--   <p ng-if="FisheyeLens">Si accede al visor web mediante Internet Explorer, los v&iacute;deos de perfiles distintos del c&oacute;dec MJPEG solo se pueden ver despu&eacute;s de instalar el complemento. Para instalar el complemento, haga clic en el complemento en la esquina superior derecha.</p> -->
 
                                       </div>
-                    <div class="wn5-setup-section-article-content" ng-if="IsAdmin">
+                    <div class="wn5-setup-section-article-content" ng-if="IsAdmin && !spotTemperatureSupport">
             <h3>Mostrar</h3>
             <p>Ajuste el contraste, el brillo, la nitidez y el nivel de color de la pantalla en vivo; cuando entre en el ajuste, se aplicar&aacute; a la pantalla en vivo inmediatamente.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="IsAdmin && spotTemperatureSupport">
+            <h3>Mostrar</h3>
+            <p>Ajuste el contraste, el brillo, la nitidez de la pantalla en vivo; cuando entre en el ajuste, se aplicar&aacute; a la pantalla en vivo inmediatamente.</p>
         </div>
     </div>
 </div>

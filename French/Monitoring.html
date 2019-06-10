@@ -183,7 +183,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr>
+                    <tr ng-if="!CamSpecialModel">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>Enregistrer</p>
@@ -204,7 +204,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput>0">
+                    <tr ng-if="MaxAudioOutput>0">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>Microphone</p>
@@ -289,12 +289,13 @@
             <h4>Pour utiliser un microphone</h4>
                 <ul>
                     <li>Cliquez sur l&rsquo;ic&ocirc;ne du microphone <span class="tui tui-wn5-toolbar-mic"></span> .</li>
-                    <li>R&eacute;glez le volume audio &agrave; l&rsquo;aide de la barre de contr&ocirc;le du volume.</li>
+                    <!-- <li>R&eacute;glez le volume audio &agrave; l&rsquo;aide de la barre de contr&ocirc;le du volume.</li>  -->
                 </ul>
                 <p>Si aucun son n&rsquo;est &eacute;mis lors de la connexion ou de la d&eacute;connexion de la prise audio du PC pendant la lecture audio, cliquez sur l&rsquo;ic&ocirc;ne du microphone <span class="tui tui-wn5-toolbar-mic"></span> et activez-le.</p>
+                <p>La sortie son depuis la caméra peut être incohérente en fonction du réglage sur le périphérique microphone. Si le son n’est pas correctement audible, désactivez la fonction d’amélioration dans les propriétés du microphone sur l’ordinateur sur lequel le Web Viewer fonctionne ou réglez le volume du périphérique microphone.</p> 
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
                 <h4>Pour utiliser le haut-parleur</h4>
                 <ul>
                     <li>Cliquez sur l&rsquo;ic&ocirc;ne Haut-parleur <span class="tui tui-wn5-toolbar-sound"></span> .</li>
@@ -371,9 +372,13 @@
         <div class="wn5-setup-section-article-content">
             <h3>Profil</h3>
             <p>Le nom et les informations d&eacute;taill&eacute;es du profil vid&eacute;o appliqu&eacute; &agrave; l&apos;actuel &eacute;cran de direct seront affich&eacute;s. Lorsque vous appuyez sur le bouton d&eacute;roulant <strong class="UI">[Profil]</strong>, une liste de profils vid&eacute;o pouvant &ecirc;tre utilis&eacute;s dans la visionneuse web actuelle s&apos;affiche. Lorsque vous s&eacute;lectionnez le profil vid&eacute;o souhait&eacute;, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct. Vous pouvez v&eacute;rifier la r&eacute;solution, le codec, la vitesse d&apos;enregistrement et le d&eacute;bit binaire cible du profil vid&eacute;o s&eacute;lectionn&eacute;.</p><!--   <p ng-if="FisheyeLens">If you access the web viewer with Internet Explorer, the videos of profiles other than the MJPEG codec can be viewed only after installing the plugin. To install the plugin, click the plugin in the upper right corner.</p>  --></div>
-        <div class="wn5-setup-section-article-content"  ng-if="IsAdmin">
+        <div class="wn5-setup-section-article-content"  ng-if="IsAdmin && !spotTemperatureSupport">
             <h3>Affichage</h3>
             <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; et le niveau des couleurs de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct.</p>
+        </div>
+        <div class="wn5-setup-section-article-content"  ng-if="IsAdmin && spotTemperatureSupport">
+            <h3>Affichage</h3>
+            <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct.</p>
         </div>
     </div>
 </div>

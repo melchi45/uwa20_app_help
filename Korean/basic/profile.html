@@ -309,8 +309,8 @@
             <h3>해상도</h3>
             <p>카메라 영상의 해상도를 설정합니다.</p>
         </div>
-		
-		<div class="wn5-online-help-info" ng-if="!FixedProfileCodecChange">
+<!-- 	!FixedProfileCodecChange 분기 코드 삭제. 2019-05-08  --> 	
+		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
@@ -385,10 +385,12 @@
         <div class="wn5-setup-section-article-content">
             <h3>엔트로피 코딩</h3>
             <p>엔트로피 코딩은 신택스(Syntax)의 통계를 이용한 가변 길이 코딩으로 무손실 압축방식입니다.</p>
-            <p ng-if="EntropyCodingOptionCAVLC">CAVLC(Context Adaptive Variable Length Coding)와 CABAC(Context Adaptive Binary Arithmetic Coding)의 두 가지 방식을 제공합니다. 단, Baseline 프로파일 일 때는 CAVLC 방식만 사용가능 합니다.</p>
+            <p>CAVLC(Context Adaptive Variable Length Coding)와 CABAC(Context Adaptive Binary Arithmetic Coding)의 두 가지 방식을 제공합니다. 단, Baseline 프로파일 일 때는 CAVLC 방식만 사용가능 합니다.</p>
+            <!-- <p ng-if="EntropyCodingOptionCAVLC">CAVLC(Context Adaptive Variable Length Coding)와 CABAC(Context Adaptive Binary Arithmetic Coding)의 두 가지 방식을 제공합니다. 단, Baseline 프로파일 일 때는 CAVLC 방식만 사용가능 합니다.</p> -->
             <ul>
                 <li><strong class="UI">CABAC</strong>: <!-- 데이터 처리과정이 복잡하여 시스템 리소스를 많이 사용하지만 압축률이 높습니다. -->압축률이 높지만 데이터 처리과정이 복잡하여 시스템 리소스를 많이 사용합니다.</li>
-                <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: <!-- 데이터 처리과정이 CABAC에 비해 단순하여 시스템 리소스를 적게 사용하지만 압축률이 상대적으로 낮습니다. -->CABAC에 비해 압축률이 낮지만, 데이터 처리과정이 단순하여 시스템 리소스를 적게 사용합니다.</li>
+                <li><strong class="UI">CAVLC</strong>: <!-- 데이터 처리과정이 CABAC에 비해 단순하여 시스템 리소스를 적게 사용하지만 압축률이 상대적으로 낮습니다. -->CABAC에 비해 압축률이 낮지만, 데이터 처리과정이 단순하여 시스템 리소스를 적게 사용합니다.</li>
+                <!-- <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: CABAC에 비해 압축률이 낮지만, 데이터 처리과정이 단순하여 시스템 리소스를 적게 사용합니다.</li> -->
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">
@@ -417,20 +419,20 @@
             </ul>
 		</div>
 		    
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">
             <h3>다이내믹 FPS</h3>
             <p>다이내믹 FPS 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
             <p ng-if="!SupportAutoImageAlignment">다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 최소 FPS 설정값부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 FPS가 최소 FPS의 설정값으로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
             <p ng-if="SupportAutoImageAlignment">다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 1 FPS부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 1 FPS로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
         </div>
         <!-- PNM-9030V 모델에서만 최소 FPS 항목이 웹에서 보이지 않음. 웹팀에서 분기 코드를 생성하기 어려워 9030용 분기 코드를 적용해 둠. 참고할 것 --> 
-        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">
+        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">
             <h3>최소 FPS</h3>
             <p>다이내믹 FPS가 작동할 때 적용할 최소 FPS 값을 입력합니다. </p>
             <p>최소 FPS 값이 1일 때는 <strong class="UI">[최소 FPS]</strong> 옵션이 보이지 않습니다. </p>
         </div>
 
-        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
+        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport && DynamicFPSSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>
@@ -439,7 +441,7 @@
                 <li ng-if="!ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
             </ul>
 		</div>
-        <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">
+        <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport && DynamicFPSSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
 
             <ul>

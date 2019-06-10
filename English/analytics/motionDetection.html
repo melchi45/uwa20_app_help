@@ -77,7 +77,8 @@
         </div>
             <div class="wn5-online-help-action">
             <h4>Setting an area</h4>
-            <p>When you select 4 corners of an image with the mouse, it is set as the motion detection area and the color of the number buttons in <strong class="UI">[Area]</strong> changes. Up to 8 areas can be set and the level, sensitivity, and minimum duration can be set separately for each motion detection area.</p>
+            <p>When you select 4 corners of an image with the mouse, it is set as the motion detection area and the color of the number buttons in <strong class="UI">[Area]</strong> changes.  </p>
+            <p ng-if="!S1Features">Up to 8 areas can be set and the level, sensitivity, and minimum duration can be set separately for each motion detection area.</p>
         </div>
             <div class="wn5-online-help-action">
             <h4>Changing an area</h4>
@@ -90,7 +91,7 @@
 		
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Adjusting the PTZ</h4>
-            <p>When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
             <ul>
                 <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse, the camera moves to the pan and tilt.</li>
                 <li>Select an image magnification by adjusting the zoom slide bar, or by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
@@ -165,12 +166,12 @@
             <ul>
                 
                 <li>You can set handover for each ROI area. The handover function can be used after setting the ROI area first.</li>
-                <li>The ‘Handover’ menu appears only when the fixed camera channel has been selected in the <strong class="UI"><a href="#channel">[Select channel]</a></strong> menu. The menu won’t appear if the PTZ channel is selected.</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration">The ‘Handover’ menu appears only when the fixed camera channel has been selected in the <strong class="UI"><a href="#channel">[Select channel]</a></strong> menu. The menu won’t appear if the PTZ channel is selected.</li>
             </ul>
         </div>
     </div>
 </div>
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!S1Features">
 
     <div class="wn5-setup-section-heading">
         <h2>Exclude area</h2>

@@ -46,7 +46,7 @@
             <ul><li>デバイスリストで<strong class="UI">[状況]</strong>が「エラー」に表示されると、ストレージ用デバイスが正しく接続されているかストレージ用デバイスのファイルシステムが損傷されていないか、ストレージ用デバイスが物理的に損傷されていないかを確認します。ストレージ用デバイスを確認したにもかかわらず「エラー」メッセージが表示され続けたら、デバイスをフォーマットしたり交換します。</li>
                 <li ng-if="NAS">NAS使用時、一時的なネットワーク切断によって映像データが保存されない場合があるため、SDカードと共に使用することをお勧めします。</li>
                 <li>高解像度、高いビットレート、高いフレームレートなどを設定すると、映像データ量が増加します。データ量が増加すると、フルフレームに設定してもフレームスキップが発生することがあります。フレームスキップが発生すると、最小1秒当たり1枚以上の映像に保存します。</li>
-                <li>Micro SDカードを除去する時には、<strong class="UI">[無効]</strong>に変更してからカードを除去してください。<strong class="UI">[無効]</strong>に変更せずに任意で除去したり不安定な電源にカメラを接続させるとMicro SDカードが損傷される場合があります。</li>
+                <li>Micro SDカードを除去する時には、<strong class="UI">[off]</strong>に変更してからカードを除去してください。<strong class="UI">[off]</strong>に変更せずに任意で除去したり不安定な電源にカメラを接続させるとMicro SDカードが損傷される場合があります。</li>
                 <li>推奨速度以下のMicro SDメモリカードを使用する場合、フレームスキップが発生することがあります。 &nbsp;容量が大きいMicro SDメモリカードを使用する場合、フォーマット速度が遅くなることがあります。</li>
             </ul>
         </div>
@@ -64,7 +64,7 @@
         <div class="wn5-setup-section-article-content">
            
             <h3>タイプ</h3>
-            <p>SDカードのファイルシステムをVFATまたはEXT4の中で選択します。設定を変更する時、既存のデータはフォーマットされるため、設定を変更する前には必ずデータをバックアップします。</p>
+            <p>SDカードのファイルシステムをVFATまたはEXT4の中で選択します。設定を変更する時、既存のデータはフォーマットされるため、設定を変更する前には必ずデータをエクスポートします。</p>
         </div>
 		
 		<div class="wn5-online-help-info">
@@ -101,7 +101,7 @@
             <p>カメラチャンネルを選択した後、チャンネル別に保存関連の詳細を設定することができます。</p>
         </div>
     </div>
-</div>
+</div> 
 
 
 
@@ -170,7 +170,7 @@
 </div>
 
 
-
+<!-- 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
@@ -182,7 +182,7 @@
         </div>
 
     </div>
-</div>		
+</div>		  --> 
 
 
 <hr class="wn5-setup-hr" ng-if="NAS">
@@ -242,7 +242,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>録画Profile</h3>
-            <p>録画する時に使用されるビデオprofile名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profileタイプ]</strong></a>で「録画Profile」に設定したProfileが表示されます。</p>
+            <p>録画する時に使用されるビデオプロファイル名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profileタイプ]</strong></a>で「録画Profile」に設定したプロファイルが表示されます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>通常録画</h3>
@@ -302,8 +302,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>スケジュール動作</h3>
-            <p>設定した時間のみ映像を録画します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベントアクションスケジュールは、該当曜日と時間に繰り返して実行されます。</p>
-			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベントアクションスケジュールがすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+            <p>設定した時間のみ映像を録画します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベント動作時間は、該当曜日と時間に繰り返して実行されます。</p>
+			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベント動作時間がすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
         </div>
 
     </div>

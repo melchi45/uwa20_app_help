@@ -21,10 +21,15 @@
 			<h3>소스</h3>
 			<p>오디오 입력 방식을 선택합니다.</p>
 			<ul>
+				<li><strong class="UI">내장 마이크</strong>: 카메라에 포함된 내장 마이크입니다.</li>
+				<li><strong class="UI">외부 마이크</strong>: 카메라에 외부 마이크를 연결하여 사용합니다. <strong class="UI">[외부 마이크 전원 활성화]</strong>를 선택하면 외부 마이크의 전원이 공급되지 않을 경우에 카메라에서 외부 마이크에 전원을 공급합니다.</li>
+				<li><strong class="UI">라인</strong>: 케이블을 통해 음향기기와 연결합니다. 예를 들어 MP3 플레이어 같은 음향 기기와 카메라를 케이블을 통해 연결한 뒤 MP3 플레이어에 녹음된 오디오를 카메라에 입력할 때 선택합니다.</li>
+			</ul>
+			<!-- <ul>
 				<li ng-if="InternalMic"><strong class="UI">내장 마이크</strong>: 카메라에 포함된 내장 마이크입니다.</li>
 				<li ng-if="ExternalMIC"><strong class="UI">외부 마이크</strong>: 카메라에 외부 마이크를 연결하여 사용합니다. <strong class="UI">[외부 마이크 전원 활성화]</strong>를 선택하면 외부 마이크의 전원이 공급되지 않을 경우에 카메라에서 외부 마이크에 전원을 공급합니다.</li>
 				<li ng-if="LineIn"><strong class="UI">라인</strong>: 케이블을 통해 음향기기와 연결합니다. 예를 들어 MP3 플레이어 같은 음향 기기와 카메라를 케이블을 통해 연결한 뒤 MP3 플레이어에 녹음된 오디오를 카메라에 입력할 때 선택합니다.</li>
-			</ul>
+			</ul> -->
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>코덱</h3>
@@ -32,7 +37,8 @@
             <ul>
                 <li><strong class="UI">G.711</strong>: <!-- ITU-T의 표준 음성 코덱으로 주로 전화 통신에서 사용하며 오디오 품질이 낮습니다. 음성 주파수의 펄스 부호 변조(PCM)라고도 하며 PSTN에서나 PBX를 통해 음성 파형을 디지털로 전달할 수 있습니다.-->64Kbps 펄스 부호 변조(PCM) 음성 코딩 기법을 사용하는 음성 코덱 표준으로 PSTN에서나PBX를 통해 디지털 음성 전달을 할 수 있는 포맷으로 ITU 표준 음성 코덱입니다.</li>
                 <li><strong class="UI">G.726</strong>: <!-- ITU-T의 표준 음성 코덱으로 주로 전화 통신에서 사용하며 오디오 품질이 낮습니다. 적응 차분 펄스 부호 변조(ADPCM)를 통해 64 Kbps의 PCM을 16 Kbps, 24 Kbps, 32 Kbps, 40 Kbps 등으로 변경하여 압축할 수 있습니다.-->64Kbps 펄스 부호 변조(PCM)를 40/32/24/16Kbps 등으로 가변해서 압축하기 위해 적응 차분 펄스 부호 변조(ADPCM) 음성 부호화 기법을 사용하는 ITU 음성 코덱입니다. </li>
-                <li ng-if="SupportAAC"><strong class="UI">AAC</strong>: <!--AAC (Advanced Audio Coding)는 MP3의 뒤를 잇는 국제 표준입니다. MP3보다 효율적이면서 CD의 원본과 비슷한 음질을 가집니다. 기존의 G.711, G.726 코덱을 사용할 때 보다 더 높은 샘플링 레이트의 오디오를 사용할 수 있습니다. -->Advanced Audio Coding의 약자로 MP3의 뒤를 잇는 국제 표준입니다. 기존의 G.711, G.726코덱을 사용할 때 보다 더 높은 샘플링 레이트의 오디오를 사용할 수 있습니다. </li>
+				<li><strong class="UI">AAC</strong>: <!--AAC (Advanced Audio Coding)는 MP3의 뒤를 잇는 국제 표준입니다. MP3보다 효율적이면서 CD의 원본과 비슷한 음질을 가집니다. 기존의 G.711, G.726 코덱을 사용할 때 보다 더 높은 샘플링 레이트의 오디오를 사용할 수 있습니다. -->Advanced Audio Coding의 약자로 MP3의 뒤를 잇는 국제 표준입니다. 기존의 G.711, G.726코덱을 사용할 때 보다 더 높은 샘플링 레이트의 오디오를 사용할 수 있습니다. </li>
+				<!-- <li ng-if="SupportAAC"><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding)는 MP3의 뒤를 잇는 국제 표준입니다. MP3보다 효율적이면서 CD의 원본과 비슷한 음질을 가집니다. 기존의 G.711, G.726 코덱을 사용할 때 보다 더 높은 샘플링 레이트의 오디오를 사용할 수 있습니다. Advanced Audio Coding의 약자로 MP3의 뒤를 잇는 국제 표준입니다. 기존의 G.711, G.726코덱을 사용할 때 보다 더 높은 샘플링 레이트의 오디오를 사용할 수 있습니다. </li> -->
             </ul>
 		</div>
 		<div class="wn5-online-help-info">

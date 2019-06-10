@@ -179,8 +179,8 @@
 	<h2 class="wn5-setup-section-heading">現在のユーザー</h2>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、Profileなどの使用権限を設定することができます。</p>
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">マネージャの他にユーザーアカウントのアクセス情報を設定して、Profileなどの使用権限を設定することができます。</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、プロファイルなどの使用権限を設定することができます。</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">マネージャの他にユーザーアカウントのアクセス情報を設定して、プロファイルなどの使用権限を設定することができます。</p>
 			<p>登録したユーザーがログインした時、ユーザーごとに設定された機能のみ有効になります。初期値に10つの現在のユーザーアカウントが設定されており、アカウントを追加したり削除することができます。現在のユーザーアカウントは最大10つまで使用することができます。</p>
 		</div>
 				<div class="wn5-online-help-info">
@@ -219,7 +219,7 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Profile</h3>
-			<p><strong class="UI">[初期値]</strong>に設定すると、基本Profileでのみ映像を確認することができ、<strong class="UI">[全体]</strong>に設定するとすべてのProfileで映像を確認することができます。</p>
+			<p><strong class="UI">[初期値]</strong>に設定すると、基本プロファイでのみ映像を確認することができ、<strong class="UI">[全体]</strong>に設定するとすべてのプロファイルで映像を確認することができます。</p>
 		</div>
 
 		<div class="wn5-online-help-action">
@@ -228,8 +228,8 @@
 				<li>使用する現在のユーザーアカウントのラジオボタンを選択します。現在のユーザーアカウントが入力できる状況に変更されます。</li>
 				<li><strong class="UI">[使用]</strong>カラムでチェックボックスをチェックします。</li>
 				<li><strong class="UI">[名前]</strong>と<strong class="UI">[Password]</strong>カラムにIDとパスワードを入力します。</li>
-				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0"><strong class="UI">[音声入力]</strong>、<strong class="UI">[音声出力]</strong>、<strong class="UI">[アラーム出力]</strong>カラムで許可する機能をそれぞれ選択して<strong class="UI">[Profile]</strong>カラムで許可するProfileタイプを選択します。</li>
-				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI"><strong class="UI">[Profile]</strong>カラムで許可するProfileタイプを選択します。</li>
+				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0"><strong class="UI">[音声入力]</strong>、<strong class="UI">[音声出力]</strong>、<strong class="UI">[アラーム出力]</strong>カラムで許可する機能をそれぞれ選択して<strong class="UI">[Profile]</strong>カラムで許可するプロファイルタイプを選択します。</li>
+				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI"><strong class="UI">[Profile]</strong>カラムで許可するプロファイルタイプを選択します。</li>
 				<li>現在のユーザーアカウントの入力を完了したら、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
 				<li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
 			</ol>

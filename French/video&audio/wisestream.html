@@ -4,6 +4,21 @@
     <p>WiseStream est une fonction qui, en analysant la complexit&eacute; d&apos;une image, peut efficacement r&eacute;duire la taille des donn&eacute;es tout en conservant la qualit&eacute;. Elle r&eacute;duit la taille de l&apos;image et &eacute;conomise la bande passante en augmentant le taux de compression, si de nombreux mouvements ne sont pas cr&eacute;&eacute;s sur l&apos;image captur&eacute;e par la cam&eacute;ra. Si le mouvement augmente, l&apos;image revient &agrave; son &eacute;tat pr&eacute;c&eacute;dent, emp&ecirc;chant la perte d&apos;informations sur l&apos;image. Cette fonction ne convient pas dans un environnement avec beaucoup de mouvement, car l&apos;&eacute;cran peut mal fonctionner. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails WiseStream pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
+            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
+            <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
+        </div>
+    </div>
+</div>
+
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">

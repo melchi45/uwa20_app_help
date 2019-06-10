@@ -208,8 +208,10 @@
                 <li><strong class="UI">실내</strong>: 카메라의 색상을 실내 환경에 최적화되도록 보정합니다. 
                 </li>
                 <li><strong class="UI">AWC</strong>: 카메라의 색상을 현재 조명 환경에 최적화 되도록 화면을 보정합니다. 카메라에 흰 종이를 비추고 <strong class="UI">[설정]</strong> 버튼을 누르면 적색/청색 게인값이 조절되어 영상에 적용됩니다. 현재 보이는 영상의 화이트 밸런스 값이 계속 영상에 적용되며, 환경이 바뀌면 다시 조정해야 합니다. </li>
-                <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: 카메라 색상을 수은등 조명 환경에 최적화되도록 자동 보정합니다.</li>
-                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: 카메라 색상을 나트룸등 조명 환경에 최적화되도록 자동 보정합니다.</li>
+                <li><strong class="UI">MERCURY</strong>: 카메라 색상을 수은등 조명 환경에 최적화되도록 자동 보정합니다.</li>
+                <li><strong class="UI">SODIUM</strong>: 카메라 색상을 나트룸등 조명 환경에 최적화되도록 자동 보정합니다.</li>
+                <!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: 카메라 색상을 수은등 조명 환경에 최적화되도록 자동 보정합니다.</li>
+                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: 카메라 색상을 나트룸등 조명 환경에 최적화되도록 자동 보정합니다.</li> -->
             </ul>
         </div>
 
@@ -413,7 +415,8 @@
             <ul>
                 <li><strong class="UI">사용함/사용 안 함</strong>: SSNR 기능의 사용 여부를 설정합니다. <strong class="UI">[사용함]</strong>을 선택하면 SSNR 레벨을 조절할 수 있습니다. 
                 </li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
+                <li><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li>
+                <!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li> -->
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -439,7 +442,8 @@
                 <li><strong class="UI">DC(자동)</strong>: 주변 환경의 광량에 따라 조리개를 자동으로 조절합니다.</li>
                 <li><strong class="UI">수동</strong>: 조리개 F 값을 수동으로 조절합니다.</li>
                 <!-- PIrisModeOptions 코드가 적용돼 있었으나 XNV-6081에 이슈 등록되어 PIrisInIrisList로 수정함. 박종찬 선임님 메일 참고 --> 
-                <li ng-if="PIrisInIrisList"><strong class="UI">P-조리개</strong>:  스텝 모터를 통해 조리개를 조절합니다. 다양한 거리에 있는 여러 물체를 동시에 포커스를 맞출 수 있어 깊은 심도를 가질 수 있습니다.  </li>
+                <li><strong class="UI">P-조리개</strong>:  스텝 모터를 통해 조리개를 조절합니다. 다양한 거리에 있는 여러 물체를 동시에 포커스를 맞출 수 있어 깊은 심도를 가질 수 있습니다.  </li>
+                <!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-조리개</strong>:  스텝 모터를 통해 조리개를 조절합니다. 다양한 거리에 있는 여러 물체를 동시에 포커스를 맞출 수 있어 깊은 심도를 가질 수 있습니다.  </li> -->
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
@@ -473,11 +477,18 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
+                <li>지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
+                <li>지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
+                <li>노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
+                <li>지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다. </li>
+            </ul>
+            <!-- <ul>
+                <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다. </li>
-            </ul>
+            </ul> -->
 			</div> 
     </div>
 </div>
@@ -501,8 +512,10 @@
                 </li>
                 <li><strong class="UI">자동</strong>: 주간에는 컬러 모드로, 야간이나 저조도시에는 흑백으로 전환합니다. 단 <strong class="UI">[노출 보정]</strong>의 <strong class="UI">[AGC]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정하면 주야간 모드를 자동으로 설정할 수 없습니다. 
                 </li>
-                <li ng-if="DayNightMode_ExternalBW"><strong class="UI">외부 입력</strong>: 알람 입력 단자를 외부 기기와 연동했을 경우에 영상의 컬러와 흑백을 제어할 수 있습니다.
+                <li><strong class="UI">외부 입력</strong>: 알람 입력 단자를 외부 기기와 연동했을 경우에 영상의 컬러와 흑백을 제어할 수 있습니다.
                 </li>
+                <!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">외부 입력</strong>: 알람 입력 단자를 외부 기기와 연동했을 경우에 영상의 컬러와 흑백을 제어할 수 있습니다.
+                </li> -->
                 <li><strong class="UI">스케줄</strong>: <strong class="UI">[컬러 영상 동작 시간]</strong>에서 설정한 스케줄로 주야간 모드가 변경됩니다.</li>
            <!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  -->
@@ -617,7 +630,8 @@
             <ul>
                 <li><strong class="UI">사용 안 함</strong>: 영상 왜곡 보정 기능을 사용하지 않습니다.</li>
                 <li><strong class="UI">수동</strong>: 왜곡 보정 레벨을 수동으로 조절합니다.</li>
-                <li ng-if="LDCAuto"><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li>
+                <li><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li>
+                <!-- <li ng-if="LDCAuto"><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li> -->
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
@@ -673,7 +687,8 @@
             <ul>
                 <li><strong class="UI">PTZ 좌표</strong>: 화면에 PTZ 위치 표시 여부를 설정합니다.</li>
                 <li><strong class="UI">프리셋 이름</strong>: 화면에 프리셋 이름 표시 여부를 설정합니다.</li>
-                <li ng-if="RS485Support"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
+                <li><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
+                <!-- <li ng-if="RS485Support"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li> -->
                 <li><strong class="UI">방위각</strong>: 현재 화면 상으로 보고있는 영역의 방위각을 표시하는 기능입니다. 기능 설정 시 E(동)/W(서)/S(남)/N(북)/NE(북동)/NW(북서)/SE(남동)/SW(남서)의 8방향으로 표시하며, 화면 우측 하단에 나타나게 됩니다.</li>
             </ul>
         </div>
@@ -855,17 +870,29 @@
             <p>흑백 시 IR LED가 켜지면 화면 중앙의 포화를 방지하여 근거리에서도 피사체의 식별이 가능합니다.</p>
             <ul>
                 <li><strong class="UI">사용 안 함</strong>: IR 모드를 사용하지 않습니다.</li>
+                <li><strong class="UI">자동</strong>: 화면 중심부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
+                <li><strong class="UI">자동 1</strong>: 화면 중심부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
+                <li><strong class="UI">자동 2</strong>: 화면 중심부 및 주변부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
+                <li><strong class="UI">수동</strong>: 수동으로 IR의 밝기를 조절합니다.</li>
+            </ul>
+            <!-- <ul>
+                <li><strong class="UI">사용 안 함</strong>: IR 모드를 사용하지 않습니다.</li>
                 <li ng-if="!IRModeOptionAuto2"><strong class="UI">자동</strong>: 화면 중심부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">자동 1</strong>: 화면 중심부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">자동 2</strong>: 화면 중심부 및 주변부에 있는 피사체의 밝기에 따라 자동으로 IR의 밝기를 조절합니다.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">수동</strong>: 수동으로 IR의 밝기를 조절합니다.</li>
-            </ul>
+            </ul> -->
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+        <div class="wn5-setup-section-article-content">
             <h3>레벨</h3>
             <p>IR 레벨을 설정합니다.</p>
             <p>IR 레벨은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[수동]</strong>을 선택하면 활성화됩니다.</p>
         </div>
+        <!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+            <h3>레벨</h3>
+            <p>IR 레벨을 설정합니다.</p>
+            <p>IR 레벨은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[수동]</strong>을 선택하면 활성화됩니다.</p>
+        </div> -->
     </div>
 </div>
 

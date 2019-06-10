@@ -1,6 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title"><a class="wn5-online-help-link"></a>モーション検知</h1>
 <div class="wn5-setup-section">
-    <p>ROI領域と除外エリアを設定した後、ユーザーが設定したエリア内でモーションを検知すると、モーション検知イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+    <p>エリアと除外エリアを設定した後、ユーザーが設定したエリア内でモーションを検知すると、モーション検知イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
     <p>モーション検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[モーション検知]</strong>に同じく適用されます。</p>
 </div>
 
@@ -43,7 +43,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 
-                <li>モーションのサイズ範囲に合わせてROI領域と除外エリアを設定して使用します。</li>
+                <li>モーションのサイズ範囲に合わせてエリアと除外エリアを設定して使用します。</li>
                 <li>対象物の形によってサイズ認識に誤差ある場合があります。</li>
                 <li>下記の場合には、モーション検知イベントの性能が低下されるか誤動作することがあります。<ul>
 					<li>対象物が画面の背景と似た明るさか色である場合</li>
@@ -69,23 +69,23 @@
 			</div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>ユーザーが指定するエリアをモーションROI領域に設定します。</p>
-            <p>ROI領域にモーションが検知される場合、イベント信号が発生します。</p>
+            <p>ユーザーが指定するエリアをモーションエリアに設定します。</p>
+            <p>エリアにモーションが検知される場合、イベント信号が発生します。</p>
         </div>
         <div class="wn5-online-help-action">
-            <h4>ROI領域設定</h4>
-            <p>プレビュー画面からマウスで頂点4つを選択するか、マウスでドラッグして四角を描くとROI領域が設定されます。</p>
-            <p>ROI領域は最大8つまで設定することができ、エリア別にレベルと感度をそれぞれ設定することができます。</p>
+            <h4>エリア設定</h4>
+            <p>プレビュー画面からマウスで頂点4つを選択するか、マウスでドラッグして四角を描くとエリアが設定されます。</p>
+            <p>エリアは最大8つまで設定することができ、エリア別にレベルと感度をそれぞれ設定することができます。</p>
         </div>
         <div class="wn5-online-help-action">
-            <h4>ROI領域変更</h4>
-            <p>ROI領域の頂点を動かしてROI領域のサイズを変更することができます。</p>
+            <h4>エリア変更</h4>
+            <p>エリアの頂点を動かしてエリアのサイズを変更することができます。</p>
             <p>多角形を作るには、作られた四角の線を選択した後、表示されるプラス(+)記号をクリックして頂点を追加します。最大4つの点を追加して多角形を作ることができます。</p>
-            <p>ROI領域を移動するには、マウスで該当エリアをクリックしてドラッグします。</p>
+            <p>エリアを移動するには、マウスで該当エリアをクリックしてドラッグします。</p>
 		</div>
         <div class="wn5-online-help-action">
-            <h4>ROI領域削除</h4>
-			<p>ROI領域を削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+            <h4>エリア削除</h4>
+			<p>エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
         </div>
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>PTZ調整</h4>
@@ -99,12 +99,12 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>エリア</h3>
-            <p>ROI領域が追加されると、順番にエリア数字ボタン色が変更されます。数字ボタンをクリックすると、該当のROI領域がプレビュー画面で選択されます。</p>
+            <p>エリアが追加されると、順番にエリア数字ボタン色が変更されます。数字ボタンをクリックすると、該当のエリアがプレビュー画面で選択されます。</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
             <h3>検知レベル</h3>
-            <p>モーション検知の基準になるレベル値を設定します。<strong class="UI">[エリア]</strong>で設定したROI領域別にレベル値を設置することができます。設定したレベル値よりモーションが大きい場合、モーション検知イベントを発生させます。</p>
+            <p>モーション検知の基準になるレベル値を設定します。<strong class="UI">[エリア]</strong>で設定したエリア別にレベル値を設置することができます。設定したレベル値よりモーションが大きい場合、モーション検知イベントを発生させます。</p>
             <p>またエリア別にモーションを検知するとモーショングラフが表示され、モーション検知イベントが発生した場合グラフ色が変更されます。</p>
         </div>
 
@@ -202,7 +202,7 @@
         <div class="wn5-online-help-info">
         <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
         <ul>
-            <li>ROI領域と除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
+            <li>エリアと除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
             <li>ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
         </ul>
         </div>
@@ -219,14 +219,14 @@
                 <div class="wn5-setup-section-article">
                     <div class="wn5-setup-section-article-content">
                         <h3>ハンドオーバ</h3>
-                        <p>ハンドオーバー・レシーバカメラNo.を選択します。ハンドオーバー機能を使用したくない場合、<strong class="UI">[Off]</strong>を選択します。</p>
-                        <p>ハンドオーバーは、モーション検知イベントが発生すると、レシーバカメラがすでに設定しておいたPTZプリセット位置に移動する機能です。ハンドオーバー・レシーバカメラは、<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバー]</strong>メニューで設定することができます。</p>
+                        <p>ハンドオーバ・レシーバカメラNo.を選択します。ハンドオーバ機能を使用したくない場合、<strong class="UI">[off]</strong>を選択します。</p>
+                        <p>ハンドオーバは、モーション検知イベントが発生すると、レシーバカメラがすでに設定しておいたPTZプリセット位置に移動する機能です。ハンドオーバ・レシーバカメラは、<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>メニューで設定することができます。</p>
                     </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                         <ul>
                 
-                            <li>ROI領域別にハンドオーバー・レシーバカメラを設定することができます。ハンドオーバー機能は、ROI領域を先に設定してから使用することができます。</li>
+                            <li>エリア別にハンドオーバ・レシーバカメラを設定することができます。ハンドオーバ機能は、エリアを先に設定してから使用することができます。</li>
                         </ul>
         </div>					
 					
@@ -261,11 +261,11 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>録画</h3>
-            <p>モーション検知イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</p>
+            <p>モーション検知イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>アラーム出力</h3>
-            <p>モーション検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
+            <p>モーション検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
             <p>カメラが対応する出力アラーム個数によって、アラーム出力オプションの表示が異なります。例えば出力されるアラームが2つなら、「アラーム出力1」、「アラーム出力2」とオプションが表示されます。 </p>
         </div>
          <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
@@ -314,8 +314,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>スケジュール動作</h3>
-            <p>設定した時間にモーション検知イベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベントアクションスケジュールは、該当曜日と時間に繰り返して実行されます。</p>
-			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベントアクションスケジュールがすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+            <p>設定した時間にモーション検知イベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベント動作時間は、該当曜日と時間に繰り返して実行されます。</p>
+			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベント動作時間がすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
         </div>
     </div>
 </div>

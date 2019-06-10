@@ -18,9 +18,9 @@
 		<div class="wn5-setup-section-article-content"><h3>Source</h3>
 			<p>S&eacute;lectionnez un type d&apos;entr&eacute;e d&apos;alerte.</p>
 			<ul>
-				<li ng-if="InternalMic"><strong class="UI">Microphone interne</strong>&nbsp;: Il s&rsquo;agit du microphone interne inclus avec la cam&eacute;ra.</li>
-				<li ng-if="ExternalMIC"><strong class="UI">Microphone externe</strong>&nbsp;: Un microphone externe peut &ecirc;tre connect&eacute; &agrave; la cam&eacute;ra et utilis&eacute; &agrave; la place du microphone interne. Lorsque vous s&eacute;lectionnez <strong class="UI">[Appliquer l'alimentation à Ext. Mic.]</strong>, la cam&eacute;ra alimente un microphone externe.</li>
-				<li ng-if="LineIn"><strong class="UI">Ligne</strong>&nbsp;: Connectez-vous &agrave; l&apos;&eacute;quipement de son gr&acirc;ce &agrave; un c&acirc;ble. Par exemple, connectez un &eacute;quipement audio tel qu&apos;un lecteur MP3 et une cam&eacute;ra &agrave; l&apos;aide d&apos;un c&acirc;ble, puis s&eacute;lectionnez le lecteur MP3 lorsque vous ins&eacute;rez du son enregistr&eacute; dans la cam&eacute;ra.</li>
+				<li><strong class="UI">Microphone interne</strong>&nbsp;: Il s&rsquo;agit du microphone interne inclus avec la cam&eacute;ra.</li>
+				<li><strong class="UI">Microphone externe</strong>&nbsp;: Un microphone externe peut &ecirc;tre connect&eacute; &agrave; la cam&eacute;ra et utilis&eacute; &agrave; la place du microphone interne. Lorsque vous s&eacute;lectionnez <strong class="UI">[Appliquer l'alimentation à Ext. Mic.]</strong>, la cam&eacute;ra alimente un microphone externe.</li>
+				<li><strong class="UI">Ligne</strong>&nbsp;: Connectez-vous &agrave; l&apos;&eacute;quipement de son gr&acirc;ce &agrave; un c&acirc;ble. Par exemple, connectez un &eacute;quipement audio tel qu&apos;un lecteur MP3 et une cam&eacute;ra &agrave; l&apos;aide d&apos;un c&acirc;ble, puis s&eacute;lectionnez le lecteur MP3 lorsque vous ins&eacute;rez du son enregistr&eacute; dans la cam&eacute;ra.</li>
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -29,7 +29,7 @@
 			<ul>
 				<li><strong class="UI">G.711</strong>&nbsp;: Il s&rsquo;agit du codec audio standard pour l&apos;UIT-T. Il est principalement utilis&eacute; dans les communications t&eacute;l&eacute;phoniques&nbsp;; la qualit&eacute; audio est basse. On l&apos;appelle aussi la modulation par impulsions cod&eacute;es de la fr&eacute;quence sonore&nbsp;; les ondes sonores peuvent &ecirc;tre transmises num&eacute;riquement dans RTCP ou par PBX.</li>
 				<li><strong class="UI">G.726</strong>&nbsp;: Il s&rsquo;agit du codec audio standard pour l&apos;UIT-T. Il est principalement utilis&eacute; dans les communications t&eacute;l&eacute;phoniques&nbsp;; la qualit&eacute; audio est basse. Il est possible de changer et de compresser de 64&nbsp;Kbps de MIC en 16, 24, 32 ou 40&nbsp;Kbps par l&apos;interm&eacute;diaire de la MICDA (modulation par impulsions et codage diff&eacute;rentiel adaptatif).</li>
-				<li ng-if="SupportAAC"><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding) est la norme internationale qui succ&egrave;de au format MP3. Il est plus efficace que le MP3 et poss&egrave;de une qualit&eacute; sonore similaire &agrave; une copie originale d&apos;un CD. AAC permet l&apos;utilisation d&apos;audio avec un d&eacute;bit d&apos;&eacute;chantillonnage plus &eacute;lev&eacute; que dans le cas des codecs G.711 et G.726 pr&eacute;c&eacute;dents.</li>
+				<li><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding) est la norme internationale qui succ&egrave;de au format MP3. Il est plus efficace que le MP3 et poss&egrave;de une qualit&eacute; sonore similaire &agrave; une copie originale d&apos;un CD. AAC permet l&apos;utilisation d&apos;audio avec un d&eacute;bit d&apos;&eacute;chantillonnage plus &eacute;lev&eacute; que dans le cas des codecs G.711 et G.726 pr&eacute;c&eacute;dents.</li>
 			</ul>
 		</div>
 		<div class="wn5-online-help-info">
@@ -88,4 +88,86 @@
 			</ul>
 		</div>
 	</div>
-</div>`<hr class="wn5-setup-hr">
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="AudioClipCountRange !== undefined">
+
+<div class="wn5-setup-section" ng-if="AudioClipCountRange !== undefined">
+	<div class="wn5-setup-section-heading">
+		<h2>Clip audio</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>Vous pouvez enregistrer ou effacer un fichier de clip audio. Vous pouvez &eacute;galement r&eacute;gler le calendrier pour lire le clip audio &agrave; une heure sp&eacute;cifique seulement.</p>
+			<p>Vous devez cliquer sur le bouton <strong class="UI">[Appliquer]</strong> apr&egrave;s l&apos;enregistrement du fichier pour afficher le fichier audio dans la liste de clips audio sur la page <strong class="UI">[Direct]</strong> ou <strong class="UI">[Config. &eacute;v&eacute;n.]</strong>. Il est possible d&apos;enregistrer jusqu&apos;&agrave; 5&nbsp;clips audio dans la limite de capacit&eacute; totale de 3&nbsp;Mo.</p>
+			<p>Apr&egrave;s avoir enregistr&eacute; vos clips audio, vous pouvez r&eacute;gler le d&eacute;clenchement d&apos;un &eacute;v&eacute;nement de votre choix ou lire le clip en le s&eacute;lectionnant pendant le contr&ocirc;le de la vid&eacute;o de la cam&eacute;ra sur l&apos;&eacute;cran <strong class="UI">[Direct]</strong>.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>T&eacute;l&eacute;charger</h3>
+			<p>Enregistre un fichier audio. Seul le format .WAV est pris en charge.</p>
+			<p>Cliquer sur le bouton <strong class="UI">[Upload]</strong> et s&eacute;lectionner un fichier.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Enregistrement</h3>
+			<p>L&apos;audio enregistr&eacute; peut &ecirc;tre enregistr&eacute; sous forme de clip audio.</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Enregistrement de l&apos;audio</h4>
+				<ol>
+					<li>Cliquez sur le bouton <strong class="UI">[Enregistrer]</strong>.</li>
+					<li>R&eacute;gler la bo&icirc;te de dialogue <strong class="UI">[Enregistrer]</strong> comme suit&nbsp;:</li>
+					<ul>
+						<li>Saisir un nom pour le fichier clip audio dans le champ <strong class="UI">[Name]</strong>. Seuls les caract&egrave;res alphanum&eacute;riques sont autoris&eacute;s.</li>
+						<li>Cliquer sur le bouton <strong class="UI">[D&eacute;b.]</strong> pour lancer l&apos;enregistrement audio.</li>
+						<li>Pour arr&ecirc;ter l&apos;enregistrement, cliquer sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. Ensuite, l&apos;heure disponible pour l&apos;enregistrement et la longueur de l&apos;audio enregistr&eacute; s&apos;affichent.</li>
+						<li>Cliquer sur le bouton <strong class="UI">[Lecture]</strong> pour &eacute;couter l&apos;enregistrement.</li>
+					</ul>
+				<li>Dans la bo&icirc;te de dialogue <strong class="UI">[Enregistrer]</strong>, cliquer sur le bouton <strong class="UI">[OK]</strong>.</li>
+				</ol>
+			</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+				<ul>
+					<li>Cette fonction d&apos;enregistrement audio est seulement disponible pour les navigateurs qui prennent en charge l&apos;enregistrement audio.</li>
+					<li>Si vous voyez ce message : «&nbsp;Le mode HTTP ne prend pas en charge l&apos;enregistrement audio. Veuillez passer en mode d&apos;acc&egrave;s s&eacute;curis&eacute; HTTPS.&nbsp;», vous devez acc&eacute;der au Web Viewer de la cam&eacute;ra &agrave; l&apos;aide du mode s&eacute;curis&eacute; HTTPS. Pour acc&eacute;der au mode s&eacute;curis&eacute;, s&eacute;lectionner <strong class="UI">[HTTPS (Mode de connex. s&eacute;curis&eacute;e avec certificat unique)]</strong> ou <strong class="UI">[HTTPS (Mode connexion s&eacute;curis&eacute; &agrave; l&apos;aide du certificat public)]</strong> dans le <strong class="UI">[R&eacute;seau]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Syst. de connexion s&eacute;cu.]</strong>, puis r&eacute;essayer d&apos;acc&eacute;der au Web Viewer.</li>
+				</ul>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Effacer</h3>
+			<p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le bouton radio du clip &agrave; effacer dans la liste des clips audio, cliquer sur le bouton <strong class="UI">[Effacer]</strong> pour effacer le clip audio s&eacute;lectionn&eacute;. &nbsp;</p>
+		</div>
+			<div class="wn5-setup-section-article-content">
+			<h3>Liste des clips audio</h3>
+				<p>La liste des clips audio enregistr&eacute;s s&apos;affiche.</p>
+				<p>Pour s&eacute;lectionner un clip, cliquer sur le bouton radio.</p>
+				<ul>
+					<li><strong class="UI">Name&nbsp;</strong>: Le nom des clips audio s&apos;affiche.</li>
+					<li><strong class="UI">Lecture&nbsp;</strong>: Cliquer sur le bouton Lecture (<span class="tui tui-wn5-toolbar-play"></span>) pour lire et pr&eacute;visualiser le fichier audio.</li>
+					<li><strong class="UI">Gain&nbsp;</strong>: Vous pouvez r&eacute;gler la valeur d&apos;amplification de sortie audio. Si votre sortie audio n&apos;est pas assez puissante, vous pouvez augmenter la valeur de gain pour amplifier la sortie du signal audio. Plus la valeur est &eacute;lev&eacute;e, plus la sortie audio est puissante.</li>
+					<li><strong class="UI">Upload&nbsp;</strong>: Vous pouvez t&eacute;l&eacute;charger un fichier de clip audio. &nbsp;</li>
+				</ul>
+			</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>Calendrier</h3>
+			<p>Vous pouvez r&eacute;gler le calendrier de lecture automatique de vos clips audio enregistr&eacute;s. Vous pouvez r&eacute;gler un calendrier diff&eacute;rent pour chaque clip audio.</p>
+			<p>Vous devez d&apos;abord enregistrer un clip audio pour activer l&apos;option Calendrier. &nbsp;</p>
+		</div>
+			<div class="wn5-online-help-action">
+				<h4>R&eacute;glage du calendrier pour la lecture de clips audio</h4>
+					<ol>
+						<li>S&eacute;lectionner un clip audio dans la liste des clips audio pour le lire &agrave; une heure pr&eacute;cise.</li>
+						<li>Cochez la case <strong class="UI">[Activer]</strong> sous <strong class="UI">[Calendrier]</strong>.</li>
+						<li>Sp&eacute;cifier l&apos;heure de lecture.</li>
+					<ul>
+						<li>Si vous souhaitez la lire tous les jours &agrave; une heure pr&eacute;cise, s&eacute;lectionnez <strong class="UI">[Par jour]</strong> et l&apos;heure sp&eacute;cifique que vous souhaitez. </li>
+						<li>Si vous souhaitez la lire un jour de la semaine &agrave; une heure sp&eacute;cifique, s&eacute;lectionnez <strong class="UI">[Par semaine]</strong> et le jour et l&apos;heure de la semaine que vous souhaitez. </li>
+					</ul>
+					</ol>
+				</div>
+			</div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">

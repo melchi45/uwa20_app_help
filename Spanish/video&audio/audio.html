@@ -19,9 +19,9 @@
 			<h3>Fuente</h3>
 			<p>Seleccione un tipo de entrada de alarma.</p>
 			<ul>
-				<li ng-if="InternalMic"><strong class="UI">Micr&oacute;fono interno</strong>: Este es el micr&oacute;fono interno incluido con la c&aacute;mara.</li>
-				<li ng-if="ExternalMIC"><strong class="UI">Micr&oacute;fono externo</strong>: Un micr&oacute;fono externo puede ser conectado a la c&aacute;mara y ser utilizado en lugar del micr&oacute;fono interno. Cuando se selecciona <strong class="UI">[Aplicar alimentaci&oacute;n al micr&oacute;fono externo]</strong>, la c&aacute;mara suministra energ&iacute;a al micr&oacute;fono externo.</li>
-				<li ng-if="LineIn"><strong class="UI">L&iacute;nea</strong>: Conectar con el equipo de sonido a trav&eacute;s de un cable. Por ejemplo, conecte un equipo de sonido, como un reproductor de MP3 y una c&aacute;mara a trav&eacute;s de un cable, y seleccione el reproductor de MP3 cuando introduce el audio grabado desde &eacute;l a la c&aacute;mara.</li>
+				<li><strong class="UI">Micr&oacute;fono interno</strong>: Este es el micr&oacute;fono interno incluido con la c&aacute;mara.</li>
+				<li><strong class="UI">Micr&oacute;fono externo</strong>: Un micr&oacute;fono externo puede ser conectado a la c&aacute;mara y ser utilizado en lugar del micr&oacute;fono interno. Cuando se selecciona <strong class="UI">[Aplicar alimentaci&oacute;n al micr&oacute;fono externo]</strong>, la c&aacute;mara suministra energ&iacute;a al micr&oacute;fono externo.</li>
+				<li><strong class="UI">L&iacute;nea</strong>: Conectar con el equipo de sonido a trav&eacute;s de un cable. Por ejemplo, conecte un equipo de sonido, como un reproductor de MP3 y una c&aacute;mara a trav&eacute;s de un cable, y seleccione el reproductor de MP3 cuando introduce el audio grabado desde &eacute;l a la c&aacute;mara.</li>
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -30,7 +30,7 @@
 			<ul>
 				<li><strong class="UI">G.711</strong>: Este es el c&oacute;dec de audio est&aacute;ndar de ITU-T, que se utiliza principalmente en la comunicaci&oacute;n telef&oacute;nica; la calidad del sonido es baja. Tambi&eacute;n se conoce como la modulaci&oacute;n de c&oacute;digo de pulso de frecuencia de sonido; ondas sonoras pueden ser entregados en forma digital a trav&eacute;s de PSTN o PBX.</li>
 				<li><strong class="UI">G.726</strong>: Este es el c&oacute;dec de audio est&aacute;ndar de ITU-T, que se utiliza principalmente en la comunicaci&oacute;n telef&oacute;nica; la calidad del sonido es baja. Es posible cambiar y comprimir 64 Kbps PCM a 16, 24, 32 o 40 Kbps a trav&eacute;s de ADPCM. </li>
-				<li ng-if="SupportAAC"><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding) es la norma internacional que mejora al MP3. Es m&aacute;s eficiente que el MP3 y tiene una calidad de sonido similar a una copia original de un CD. AAC permite el uso de audio de una velocidad de muestreo mayor que la que se utiliza en los anteriores c&oacute;decs G.711 y G.726.</li>
+				<li><strong class="UI">AAC</strong>: AAC (Advanced Audio Coding) es la norma internacional que mejora al MP3. Es m&aacute;s eficiente que el MP3 y tiene una calidad de sonido similar a una copia original de un CD. AAC permite el uso de audio de una velocidad de muestreo mayor que la que se utiliza en los anteriores c&oacute;decs G.711 y G.726.</li>
 			</ul>
 		</div>
 		<div class="wn5-online-help-info">
@@ -111,15 +111,15 @@
 		<div class="wn5-online-help-action">
 			<h4>Grabaci&oacute;n de audio</h4>
 				<ol>
-					<li>Pulse el bot&oacute;n <strong class="UI">[<font color="blue">Grabar</font>]</strong>.</li>
-					<li>Defina el cuadro de di&aacute;logo <strong class="UI">[<font color="blue">Grabar</font>]</strong> de la siguiente manera:</li>
+					<li>Pulse el bot&oacute;n <strong class="UI">[Grabar]</strong>.</li>
+					<li>Defina el cuadro de di&aacute;logo <strong class="UI">[Grabar]</strong> de la siguiente manera:</li>
 					<ul>
 						<li>Ingrese un nombre para el archivo de clip de audio en el campo <strong class="UI">[Nombre]</strong>. Solo se permiten caracteres alfanum&eacute;ricos.</li>
 						<li>Pulse el bot&oacute;n <strong class="UI">[Inicio]</strong> para comenzar a grabar un audio.</li>
 						<li>Para detener la grabaci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Detener]</strong>. Luego se muestran el tiempo disponible para grabar y la duraci&oacute;n del audio grabado.</li>
 						<li>Pulse el bot&oacute;n <strong class="UI">[Reproducir]</strong> para escuchar la grabaci&oacute;n.</li>
 					</ul>
-				<li>En el cuadro de di&aacute;logo <strong class="UI">[<font color="blue">Grabar</font>]</strong>, pulse el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
+				<li>En el cuadro de di&aacute;logo <strong class="UI">[Grabar]</strong>, pulse el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
 				</ol>
 			</div>
 		<div class="wn5-online-help-info">
@@ -153,11 +153,11 @@
 				<h4>Ajustar la programaci&oacute;n para reproducci&oacute;n de clip de audio</h4>
 					<ol>
 						<li>Seleccione un clip de audio de la lista de clips de audios para reproducirlo a una hora espec&iacute;fica.</li>
-						<li>Marque el cuadro <strong class="UI">[<font color="blue">Activar</font>]</strong> debajo de <strong class="UI">[Programaci&oacute;n]</strong>.</li>
+						<li>Marque el cuadro <strong class="UI">[Activar]</strong> debajo de <strong class="UI">[Programaci&oacute;n]</strong>.</li>
 						<li>Especifique la hora de reproducci&oacute;n.</li>
 					<ul>
-						<li>Si prefiere reproducirlo diariamente a una hora espec&iacute;fica, seleccione <strong class="UI">[<font color="blue">Diariamente</font>]</strong> y la hora espec&iacute;fica que desee. </li>
-						<li>Si prefiere reproducirlo un d&iacute;a de la semana a una hora espec&iacute;fica, seleccione <strong class="UI">[<font color="blue">Semanal</font>]</strong> y el d&iacute;a de la semana espec&iacute;fico, junto con la hora que desee. </li>
+						<li>Si prefiere reproducirlo diariamente a una hora espec&iacute;fica, seleccione <strong class="UI">[Diariamente]</strong> y la hora espec&iacute;fica que desee. </li>
+						<li>Si prefiere reproducirlo un d&iacute;a de la semana a una hora espec&iacute;fica, seleccione <strong class="UI">[Semanal]</strong> y el d&iacute;a de la semana espec&iacute;fico, junto con la hora que desee. </li>
 					</ul>
 					</ol>
 				</div>

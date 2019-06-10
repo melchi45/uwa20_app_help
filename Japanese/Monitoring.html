@@ -21,8 +21,8 @@
             <li>Chromeでウェブビューアに接続すると、再生画面の機能を最も安定した状態で使用することができます。</li>
             <li>ライブページで映像を再生する場合、下記の条件で画面に残像が表示されることがあります。</li>
             <ul>
-                <li>Profileを変更するときに解像度が変わる場合</li>
-                <li>Profileを変更するときにネットワーク遅延発生でデータ受信が遅れる場合</li>
+                <li>プロファイルを変更するときに解像度が変わる場合</li>
+                <li>プロファイルを変更するときにネットワーク遅延発生でデータ受信が遅れる場合</li>
                 <li>ウェブブラウザのサイズ変更&amp;位置を移動する場合</li>
             </ul><!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> --></ul>
     
@@ -62,7 +62,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>現在のライブ画面に適用されたProfileを確認したり、Profileを変更することができます。また、ライブ画面のディスプレイ設定を変更することができます。</p>
+                            <p>現在のライブ画面に適用されたプロファイルを確認したり、プロファイルを変更することができます。また、ライブ画面のディスプレイ設定を変更することができます。</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -94,7 +94,8 @@
                             <p>&nbsp;</p>
                         </td>
                     <td width="235">
-                        <p >カメラのパン/チルト/ズーム動作をデジタルに制御することができます。現在のライブ画面に適用されたビデオprofileがデジタルPTZに対応する場合のみ動作します。デジタルPTZ制御Profileに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
+                        <p>カメラのパン/チルト/ズーム動作をデジタルに制御することができます。現在のライブ画面に適用されたビデオプロファイルがデジタルPTZに対応する場合のみ動作します。</p>
+                        <p ng-if="!FisheyeLens">デジタルPTZ制御プロファイルに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
                     </td>
                     </tr>
 					<tr ng-if="ExternalPTZPage">
@@ -132,7 +133,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Profileごとに接続情報や現在カメラに接続したユーザーの情報を確認することができます。</p>
+                            <p>プロファイルごとに接続情報や現在カメラに接続したユーザーの情報を確認することができます。</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -150,7 +151,7 @@
                         <td width="235">
                             <p>カメラのチャンネル番号が表示されます。</p>
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">チャンネル番号を選択すると、該当チャンネルの映像がビューアに表示されます。4分割画面のアイコンを選択すると、4つのチャンネル映像を一気に表示します。シングル画面に戻すには、チャンネル番号をクリックします。</p>  -->
-                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">チャンネル番号を選択すると、そのチャンネルの映像がビューアに表示されます。マルチビューアイコンを選択すると、カメラが対応する全チャンネルの映像が一つの画面に表示されます。シングル画面に戻るには、チャンネル番号をクリックします。 </p>
+                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">チャンネル番号を選択すると、そのチャンネルの映像がビューアに表示されます。クワドビューアイコンを選択すると、カメラが対応する全チャンネルの映像が一つの画面に表示されます。シングル画面に戻るには、チャンネル番号をクリックします。 </p>
 
                             <p ng-if="HandoverCalibration">固定型カメラのチャンネル番号を選択すると、該当の映像がビューアに表示されます。[PTZ]を選択すると、PTZシングルチャンネル映像がビューアに表示されます。マルチチャンネルのアイコンを選択すると、固定型カメラとPTZカメラの映像がすべて表示されます。シングル画面に戻すには、チャンネル番号や[PTZ]をクリックします。</p> 
                             <p ng-if="SupportAutoImageAlignment">カメラチャンネル2～5を選択すると、各チャンネル別のカメラ映像を表示します。チャンネル1を選択すると、チャンネル2～5のカメラ映像を一つに接続させてパノラマタイプに表示します。チャンネル6と7を選択すると、チャンネル1の映像をカメラ<a href="#PTZ">PTZ調整</a>しながら確認することができます。</p>
@@ -218,7 +219,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>マイク機能を使用することができます。マイク機能を使用するためには、該当のProfileに<strong class="UI">[音声入力]</strong>機能を有効にする必要があります。ビデオ入力機能を有効にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[音声入力]</strong>で<strong class="UI">[On]</strong>を選択します。</p>
+                            <p>マイク機能を使用することができます。マイク機能を使用するためには、該当のプロファイルに<strong class="UI">[音声入力]</strong>機能を有効にする必要があります。ビデオ入力機能を有効にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[音声入力]</strong>で<strong class="UI">[On]</strong>を選択します。</p>
                             <p ng-if="SupportAutoImageAlignment">チャンネル1を選択した場合のみ、マイク機能を使用することができます。</p>
                             <p>&nbsp;</p>
                         </td>
@@ -296,12 +297,13 @@
             <h4>オーディオを使用するには、</h4>
                 <ul>
                     <li>オーディオアイコン(<span class="tui tui-wn5-toolbar-mic"></span>)をクリックします。</li>
-                    <li>音量調整バーでオーディオ音量を調整します。</li>
+                    <!-- <li>音量調整バーでオーディオ音量を調整します。</li>  -->
                 </ul>
                 <p>オーディオ動作中、PCのオーディオジャックを接続・分離するときに音が出ない場合、オーディオアイコン(<span class="tui tui-wn5-toolbar-mic"></span>)をクリックして有効にしてください。</p>
+                <p>マイクデバイスの設定によってカメラから出力される音が均一に出ないことがあります。よく音がしない場合、ウェブビューアーが動作しているPCからマイク属性の改善機能をオフにするかマイクデバイスのボリュームを調整してください。</p> 
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
+            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
                 <h4>スピーカーを使用するには、</h4>
                 <ul>
                     <li>スピーカーアイコン(<span class="tui tui-wn5-toolbar-sound"></span>)をクリックします。</li>
@@ -374,11 +376,15 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>Profile</h3>
-            <p>現在のライブ画面に適用されたビデオprofile名とインフォメーションが表示されます。<strong class="UI">[Profile]</strong>ドロップダウンボタンを押すと、現在のWebviewerで使用できるビデオprofileリストが表示され、適用したいビデオprofileを選択すると、ライブ画面にすぐ適用されます。選択したビデオprofileの解像度、Codec、フレームレート、ターゲットビットレートを確認することができます。</p><!--  <p ng-if="FisheyeLens">Internet Explorer로 웹뷰어에 접속한 경우, MJPEG 코덱을 제외한 다른 프로파일의 영상은 플러그인을 설치해야 영상을 볼 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인을 클릭하십시오.</p>
+            <p>現在のライブ画面に適用されたビデオプロファイル名とインフォメーションが表示されます。<strong class="UI">[Profile]</strong>ドロップダウンボタンを押すと、現在のWebviewerで使用できるビデオプロファイルリストが表示され、適用したいビデオプロファイルを選択すると、ライブ画面にすぐ適用されます。選択したビデオプロファイルの解像度、Codec、フレームレート、ターゲットビットレートを確認することができます。</p><!--  <p ng-if="FisheyeLens">Internet Explorer로 웹뷰어에 접속한 경우, MJPEG 코덱을 제외한 다른 프로파일의 영상은 플러그인을 설치해야 영상을 볼 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인을 클릭하십시오.</p>
             <p ng-if="FisheyeLens">또한 플러그인을 설치한 경우, 균등성을 보장하려면 <strong class="UI">[플러그인 균등성]</strong>을 선택합니다. </p> --></div>
 		
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="IsAdmin && !spotTemperatureSupport">
+            <h3>ディスプレイ</h3>
+            <p>ライブ画面のコントラスト、明るさ、シャープ、カラーレベルを設定することができます。設定値を入力すると、ライブ画面にすぐ適用されます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="IsAdmin && spotTemperatureSupport">
             <h3>ディスプレイ</h3>
             <p>ライブ画面のコントラスト、明るさ、シャープ、カラーレベルを設定することができます。設定値を入力すると、ライブ画面にすぐ適用されます。</p>
         </div>
@@ -651,11 +657,11 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>プロファイルへのアクセス</h3>
-            <p>現在、設定されたすべてのProfileのアクセス状況を確認したり、アクセス中の現在ユーザーの状況を確認することができます。<strong class="UI">[プロファイルへのアクセス]</strong>では、設定されたすべてのProfile名、Profile別の実際ビットレート(kbps)と適用されたビットレート(kbps)、Profile別の実際フレームレート(fps)と適用フレームレート(fps)、Profile別のATC(%)、Profile別のユーザー数を確認することができます。</p>
+            <p>現在、設定されたすべてのプロファイルのアクセス状況を確認したり、アクセス中の現在ユーザーの状況を確認することができます。<strong class="UI">[プロファイルへのアクセス]</strong>では、設定されたすべてのプロファイル名、プロファイル別の実際ビットレート(kbps)と適用されたビットレート(kbps)、プロファイル別の実際フレームレート(fps)と適用フレームレート(fps)、プロファイル別のATC(%)、プロファイル別のユーザー数を確認することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>現在のユーザー</h3>
-            <p>現在、カメラにアクセスしたすべてのユーザーのユーザー別に適用したProfile、ビットレート(kbps)、ネットワーク接続ステータス、IPアドレスを確認することができます。</p>
+            <p>現在、カメラにアクセスしたすべてのユーザーのユーザー別に適用したプロファイル、ビットレート(kbps)、ネットワーク接続ステータス、IPアドレスを確認することができます。</p>
         </div>
         
     </div>

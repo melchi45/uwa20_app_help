@@ -17,11 +17,11 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>Type d&rsquo;IP</h3>
 			<p>S&eacute;lectionnez le type de connexion IP. Si une adresse IP fixe est utilis&eacute;e, choisissez <strong class="UI">[Manuel]</strong> et entrez les informations. Si une adresse IP dynamique est utilis&eacute;e, choisissez <strong class="UI">[DHCP]</strong> et entrez uniquement l&apos;adresse du DNS. </p>
-			<p ng-if="PPPoE">Si <strong class="UI">[PPPoE]</strong> est utilis&eacute;, entrez l&apos;adresse, l&apos;ID et le mot de passe du DNS.</p>
+			<p>Si <strong class="UI">[PPPoE]</strong> est utilis&eacute;, entrez l&apos;adresse, l&apos;ID et le mot de passe du DNS.</p>
 			<ul>
 			<li><strong class="UI">Manuel</strong>&nbsp;: Entrez et r&eacute;glez l&apos;adresse IP, le masque de sous-r&eacute;seau, la passerelle, les DNS1 et DNS2 directement.</li>
 			<li><strong class="UI">DHCP</strong>: R&eacute;glez les DNS1 et DNS2.</li>
-		    <li ng-if="PPPoE"><strong class="UI">PPPoE</strong>&nbsp;: R&eacute;glez le DNS1, le DNS2, l&rsquo;identifiant et le mot de passe.</li>  
+		    <li><strong class="UI">PPPoE</strong>&nbsp;: R&eacute;glez le DNS1, le DNS2, l&rsquo;identifiant et le mot de passe.</li>  
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -56,12 +56,17 @@
 			<p>Il est affich&eacute; lorsque <strong class="UI">[Manuel]</strong> est d&eacute;fini pour <strong class="UI">[Type d&rsquo;IP]</strong>. Le nom d&apos;h&ocirc;te est le nom qui r&eacute;cup&egrave;re le nom d&apos;h&ocirc;te utilis&eacute; dans la commande ONVIF GetHostname. Le premier caract&egrave;re doit &ecirc;tre alphab&eacute;tique et seuls les caract&egrave;res alphanum&eacute;riques peuvent &ecirc;tre saisis. Vous pouvez entrer jusqu&apos;&agrave; 16&nbsp;caract&egrave;res. Le nom de la cam&eacute;ra est entr&eacute; par d&eacute;faut, il n&apos;a pas besoin d&apos;&ecirc;tre d&eacute;fini car ce n&apos;est pas une valeur requise.</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PPPoE">
+		<div class="wn5-setup-section-article-content" ng-if="MTUSupport">
+			<h3>MTU</h3>
+            <p>Réglez l’unité de transmission maximale (MTU) à laquelle les données peuvent être transférées depuis l’interface réseau. La valeur MTU peut être réglée de 1 280 octets à 1 500 octets. Si la valeur est réglée trop bas, la lecture de la vidéo pourra être différée. En conséquence, la valeur MTU doit être réglée en fonction de l’environnement réseau de l’utilisateur.</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
 			<h3>ID</h3>
 			<p>Il s&rsquo;affiche lorsque <strong class="UI">[PPPoE]</strong> est d&eacute;fini pour <strong class="UI">[Type d&rsquo;IP]</strong>. Entrez le bon identifiant afin de vous connecter.</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PPPoE">
+		<div class="wn5-setup-section-article-content">
 			<h3>Mot de passe</h3>
 			<p>Il s&rsquo;affiche lorsque <strong class="UI">[PPPoE]</strong> est d&eacute;fini pour <strong class="UI">[Type d&rsquo;IP]</strong>. Entrez le bon mot de passe afin de vous connecter.</p>
 		</div> 

@@ -17,11 +17,13 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>IP type</h3>
 			<p>Select the IP connection type. If a fixed IP address is used, set <strong class="UI">[Manual]</strong> and enter the information. If a dynamic IP is used, set <strong class="UI">[DHCP]</strong> and enter the DNS address only.</p>
-			<p ng-if="PPPoE">If <strong class="UI">[PPPoE]</strong> is used, enter the DNS address, ID and password. </p>
+			<p>If <strong class="UI">[PPPoE]</strong> is used, enter the DNS address, ID and password. </p>
+			<!-- <p ng-if="PPPoE">If <strong class="UI">[PPPoE]</strong> is used, enter the DNS address, ID and password. </p> -->
 			<ul>
 			<li><strong class="UI">Manual</strong>: Enter and set the IP address, subnet mask, gateway, DNS1 and DNS2 directly.</li>
 			<li><strong class="UI">DHCP</strong>: Set DNS1 and DNS2.</li>
-			<li ng-if="PPPoE"><strong class="UI">PPPoE</strong>: Set DNS1, DNS2, ID and password.</li> 
+			<li><strong class="UI">PPPoE</strong>: Set DNS1, DNS2, ID and password.</li> 
+			<!-- <li ng-if="PPPoE"><strong class="UI">PPPoE</strong>: Set DNS1, DNS2, ID and password.</li>  -->
 			</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -56,15 +58,28 @@
 			<p>Host name is the name to retrieve the host name which is used in ONVIF GetHostname command. The first character must be alphabetic and only alphanumeric characters can be entered. Up to 63&nbsp;characters can be entered. Name of the camera is input as default; does not need to be set as it is not a required value. </p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PPPoE">
+		<div class="wn5-setup-section-article-content" ng-if="MTUSupport">
+			<h3>MTU</h3>
+            <p>Set the maximum transmission unit (MTU) at which data can be transferred from the network interface. The MTU value can be set from 1280 octets to 1500 octets. If the value is set too low, the video playback may be delayed. Therefore, the MTU value should be set according to the user’s network environment. </p>
+		</div>
+
+		<div class="wn5-setup-section-article-content">
 			<h3>ID</h3>
 			<p>This is displayed when <strong class="UI">[PPPoE]</strong> is set for <strong class="UI">[IP type]</strong>. Enter the proper ID to connect.</p>
 		</div>
+		<!-- <div class="wn5-setup-section-article-content" ng-if="PPPoE">
+			<h3>ID</h3>
+			<p>This is displayed when <strong class="UI">[PPPoE]</strong> is set for <strong class="UI">[IP type]</strong>. Enter the proper ID to connect.</p>
+		</div> -->
 
-		<div class="wn5-setup-section-article-content" ng-if="PPPoE">
+		<div class="wn5-setup-section-article-content">
 			<h3>Password</h3>
 			<p>This is displayed when <strong class="UI">[PPPoE]</strong> is set for <strong class="UI">[IP type]</strong>. Enter the correct password to connect.</p>
 		</div> 
+		<!-- <div class="wn5-setup-section-article-content" ng-if="PPPoE">
+			<h3>Password</h3>
+			<p>This is displayed when <strong class="UI">[PPPoE]</strong> is set for <strong class="UI">[IP type]</strong>. Enter the correct password to connect.</p>
+		</div>  -->
 	</div>
 </div>
 

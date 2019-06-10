@@ -211,8 +211,8 @@
                 <li><strong class="UI">屋外</strong>：カメラのカラーを屋外環境に最適化されるように補正します。</li>
                 <li><strong class="UI">屋内</strong>：カメラのカラーを屋内環境に最適化されるように補正します。</li>
                 <li><strong class="UI">AWC</strong>：カメラのカラーを現在の照明環境に最適化されるように画面を補正します。カメラに白い紙を映して<strong class="UI">[設定]</strong>ボタンを押すと、赤/青のゲイン値が調整され映像に適用されます。現在、表示される映像のホワイトバランス値が映像に適用し続け、環境が変わると再調整する必要があります。</li>
-                <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>：カメラのカラーを水銀灯照明環境に最適化されるように自動補正します。</li>
-                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>：カメラのカラーをナトリウム灯照明環境に最適化されるように自動補正します。</li>
+                <li><strong class="UI">MERCURY</strong>：カメラのカラーを水銀灯照明環境に最適化されるように自動補正します。</li>
+                <li><strong class="UI">SODIUM</strong>：カメラのカラーをナトリウム灯照明環境に最適化されるように自動補正します。</li>
             </ul>
         </div>
 
@@ -412,7 +412,7 @@
             <p>映像のノイズを除去します。</p>
             <ul>
                 <li><strong class="UI">On/Off</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[On]</strong>を選択すると、SSNRレベルを調整することができます。</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
+                <li><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -435,7 +435,7 @@
             <ul>
                 <li><strong class="UI">DC(自動)</strong>：周囲環境の光量によってアイリスを自動に調整します。<strike>。</strike></li>
                 <li><strong class="UI">マニュアル</strong>：アイリスF値を手動に調整します。</li>
-                <li ng-if="PIrisInIrisList"><strong class="UI">Pアイリス</strong>：ステッピングモーターでアイリスを調整します。様々な距離にある複数の対象物を同時にフォーカスを合わせることができて深い深度を持つことができます。</li>
+                <li><strong class="UI">Pアイリス</strong>：ステッピングモーターでアイリスを調整します。様々な距離にある複数の対象物を同時にフォーカスを合わせることができて深い深度を持つことができます。</li>
             </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
@@ -469,10 +469,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>最小シャッター、最大シャッターの設定範囲によって画面の露出を飽和することができます。</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">WISE NRモード設定後、適用/解除されるまでは一定時間がかかります。</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">WISE NRモード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">明るくてノイズが少ない環境では、あまりWISE NRの効果がないです。</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">WISE NR設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
+                <li>WISE NRモード設定後、適用/解除されるまでは一定時間がかかります。</li>
+                <li>WISE NRモード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
+                <li>明るくてノイズが少ない環境では、あまりWISE NRの効果がないです。</li>
+                <li>WISE NR設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
             </ul>
 			</div> 
     </div>
@@ -495,7 +495,7 @@
                 <li><strong class="UI">色</strong>：映像を常時カラーに出力します。</li>
                 <li><strong class="UI">B/W</strong>：映像を常時B/Wに出力します。</li>
                 <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">[露出補正]</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[off]</strong>に設定すると、デイ/ナイトを自動に設定することができません。</li>
-                <li ng-if="DayNightMode_ExternalBW"><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li>
+                <li><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li>
                 <li><strong class="UI">スケジュール</strong>：<strong class="UI">[動作時間(カラー)]</strong>で設定したスケジュールにデイ/ナイトが変更されます。</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  --></ul>
         </div>
@@ -606,7 +606,7 @@
             <ul>
                 <li><strong class="UI">Off</strong>：映像の歪み補正機能を使用しません。</li>
                 <li><strong class="UI">マニュアル</strong>：歪み補正レベルを手動に調整します。</li>
-                <li ng-if="LDCAuto"><strong class="UI">自動</strong>：自動に映像の歪みを調整します。</li>
+                <li><strong class="UI">自動</strong>：自動に映像の歪みを調整します。</li>
             </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
@@ -661,7 +661,7 @@
             <ul>
                 <li><strong class="UI">PTZ位置</strong>：画面にPTZ位置表示有無を設定します。</li>
                 <li><strong class="UI">プリセット名</strong>：画面にプリセット名の表示有無を設定します。</li>
-                <li ng-if="RS485Support"><strong class="UI">カメラID</strong>：画面にカメラIDのNo.表示有無を設定します。</li>
+                <li><strong class="UI">カメラID</strong>：画面にカメラIDのNo.表示有無を設定します。</li>
                 <li><strong class="UI">アジマス</strong>：現在、画面上で見ているエリアのアジマスを表示する機能です。機能設定時、E(東)/W(西)/S(南)/N(北)/NE(北東)/NW(北西)/SE(南東)/SW(南西)の8方向に表示して画面の右下に表示されます。</li>
             </ul>
         </div><!--<div class="wn5-setup-section-article-content">
@@ -833,13 +833,13 @@
             <p>B/Wの時、IR LEDがオンになると画面中央の飽和を防止して近くでも被写体を識別することができます。</p>
             <ul>
                 <li><strong class="UI">無効</strong>：IRモードを使用しません。</li>
-                <li ng-if="!IRModeOptionAuto2"><strong class="UI">自動</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
-                <li ng-if="IRModeOptionAuto2"><strong class="UI">自動1</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
-                <li ng-if="IRModeOptionAuto2"><strong class="UI">自動2</strong>：画面の中心部&amp;周囲部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
-                <li ng-if="IRModeOptionManual"><strong class="UI">手動</strong>：手動でIRの明るさを調整します。</li>
+                <li><strong class="UI">自動</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
+                <li><strong class="UI">自動1</strong>：画面の中心部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
+                <li><strong class="UI">自動2</strong>：画面の中心部&amp;周囲部にある被写体の明るさによって自動にIRの明るさを調整します。</li>
+                <li><strong class="UI">手動</strong>：手動でIRの明るさを調整します。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+        <div class="wn5-setup-section-article-content">
             <h3>レベル</h3>
             <p>IRレベルを設定します。</p>
             <p>IRレベルは<strong class="UI">[モード]</strong>で<strong class="UI">[手動]</strong>を選択すると、有効になります。</p>

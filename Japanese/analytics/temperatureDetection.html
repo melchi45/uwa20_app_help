@@ -2,7 +2,7 @@
 <h1 class="wn5-setup-main-title">温度検知</h1>
 
 <div class="wn5-setup-section">
-    <p>ユーザーが指定したROI領域で急激な温度変化が発生した場合、温度検知イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。温度検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[温度検知]</strong>に同じく適用されます。</p>
+    <p>ユーザーが指定したエリアで急激な温度変化が発生した場合、温度検知イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。温度検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[温度検知]</strong>に同じく適用されます。</p>
 </div>
 
 <hr class="wn5-setup-hr">
@@ -22,12 +22,12 @@
             </div>
         <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
             <h3>エリア</h3>
-            <p>温度変化量を検知するエリアを設定します。設定したエリアの右下にある頂点を動かしてROI領域のサイズを変更することができます。エリアを移動させるためには、マウスで該当エリアをクリックしてドラッグします。エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+            <p>温度変化量を検知するエリアを設定します。設定したエリアの右下にある頂点を動かしてエリアのサイズを変更することができます。エリアを移動させるためには、マウスで該当エリアをクリックしてドラッグします。エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
             <p>エリアは3つまで設定することができ、エリア別に温度変化検知の規則を設定することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="BoxTemperatureDetection">
                 <h3>エリア</h3>
-                <p>温度変化量を検知するエリアを設定します。設定したエリアの右下にある頂点を動かしてROI領域のサイズを変更することができます。エリアを移動させるためには、マウスで該当エリアをクリックしてドラッグします。エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+                <p>温度変化量を検知するエリアを設定します。設定したエリアの右下にある頂点を動かしてエリアのサイズを変更することができます。エリアを移動させるためには、マウスで該当エリアをクリックしてドラッグします。エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
                 <p>エリアは3つまで設定することができ、エリア別に温度検知の規則を設定することができます。</p>
             </div>		
         <div class="wn5-setup-section-article-content" ng-if="!BoxTemperatureDetection">
@@ -115,12 +115,12 @@
         <div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
                 <h3>ハンドオーバ</h3>
-                <p>ハンドオーバー・レシーバカメラNo.を選択します。ハンドオーバー機能を使用したくない場合、<strong class="UI">[Off]</strong>を選択します。</p>
-    <p>ハンドオーバーは、温度検知イベントが発生した時、レシーバカメラがすでに設定しておいたPTZプリセット位置に移動する機能です。ハンドオーバー・レシーバカメラは、<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバー]</strong>メニューで設定することができます。</p>
+                <p>ハンドオーバ・レシーバカメラNo.を選択します。ハンドオーバ機能を使用したくない場合、<strong class="UI">[off]</strong>を選択します。</p>
+    <p>ハンドオーバは、タンパリングイベントが発生すると、レシーバカメラがすでに設定しておいたPTZプリセット位置に移動する機能です。ハンドオーバ・レシーバカメラは、<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>メニューで設定することができます。</p>
             </div>
 
 </div>
-</div>     
+</div>           
 
 
 <hr class="wn5-setup-hr">
@@ -140,11 +140,11 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>録画</h3>
-            <p>温度検知イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</p>
+            <p>温度検知イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>アラーム出力</h3>
-            <p>温度検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[無効]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
+            <p>温度検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
             <p>カメラが対応する出力アラーム個数によって、アラーム出力オプションの表示が異なります。例えば出力されるアラームが2つなら、「アラーム出力1」、「アラーム出力2」とオプションが表示されます。 </p>
         </div>
           <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
@@ -185,8 +185,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>スケジュール動作</h3>
-            <p>設定した時間に温度検知イベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベントアクションスケジュールは、該当曜日と時間に繰り返して実行されます。</p>
-			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベントアクションスケジュールがすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+            <p>設定した時間に温度検知イベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベント動作時間は、該当曜日と時間に繰り返して実行されます。</p>
+			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベント動作時間がすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
         </div>
     </div>
 </div>

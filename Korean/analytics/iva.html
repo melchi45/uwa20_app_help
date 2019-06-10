@@ -114,7 +114,7 @@
             <h2>가상 영역</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content" ng-if="IvaAppearDisappear && IvaLoitering">
+        <div class="wn5-setup-section-article-content" ng-if="IvaAppearDisappear && IvaLoitering && !S1Features">
 			<p>사용자가 가상 영역을 설정하여 해당 영역에 침입, 들어감, 나감, 나타남(사라짐), 배회의 영상 규칙을 적용하여 물체의 움직임을 감지합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!IvaAppearDisappear && !IvaLoitering">
@@ -122,9 +122,10 @@
         </div>
         <div class="wn5-online-help-action"> 
             <h4>가상 영역 설정하기  </h4>
-            <p>미리보기 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면  가상 영역이 설정됩니다. 가상 영역은 최대 8개까지 설정할 수 있으며, 영역별로 영상 분석 규칙을 설정할 수 있습니다. </p>
+            <p>미리보기 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면 가상 영역이 설정됩니다. </p>
+            <p ng-if="!S1Features">가상 영역은 최대 8개까지 설정할 수 있으며, 영역별로 영상 분석 규칙을 설정할 수 있습니다. </p>
         </div>
-        <div class="wn5-online-help-action"> 
+        <div class="wn5-online-help-action" g-if="!S1Features"> 
             <h4>가상 영역 변경하기  </h4>
             <p>설정한 가상 영역의 꼭지점을 움직여 가상 영역의 크기를 변경할 수 있습니다. </p>
             <p>다각형을 만들려면 만들어진 사각형의 선을 선택한 후 + 기호가 나타나면 +기호를 클릭하여 꼭지점을 추가합니다. 최대 4개의 점을 추가하여 원하는 다각형을 만들 수 있습니다. </p>
@@ -142,8 +143,8 @@
             <h3>카테고리  </h3>
             <p>가상 영역별로 적용할 규칙을 설정할 수 있습니다.</p>
             <ul>
-                <li><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
-                <ul>
+                <li ng-if="!S1Features"><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
+                <ul ng-if="!S1Features">
                     <li><strong class="UI">최소 관찰 시간(초)</strong>: 감지 후 이벤트를 발생하기 위한 최소시간을 설정합니다. 설정한 시간보다 더 오래 움직임이 지속될 때 이벤트를 발생시킵니다.  </li>
                 </ul>
                 <li><strong class="UI">들어감</strong>: 움직이는 물체가 사용자가 지정한 영역의 외부에서 내부로 들어올 때 이벤트를 발생시킵니다.
@@ -154,13 +155,13 @@
                 <ul ng-if="IvaAppearDisappear">
                     <li><strong class="UI">최소 관찰 시간(초)</strong>: 나타남(사라짐)을 감지하기 위한 물체의 최소 지속 시간을 설정합니다. 가상 영역에서 실행 시간동안 존재하던 물체가 사라지면 이를 사라짐으로 감지하고, 실행 시간 동안 존재하지 않던 물체가 나타나면 나타남으로 감지합니다. </li>
                 </ul>
-                <li ng-if="IvaLoitering"><strong class="UI">배회</strong>: 설정한 가상 영역 내에서 배회하는 움직임을 감지하면 이벤트를 발생시킵니다.</li>
-                <ul ng-if="IvaLoitering">
+                <li ng-if="IvaLoitering && !S1Features"><strong class="UI">배회</strong>: 설정한 가상 영역 내에서 배회하는 움직임을 감지하면 이벤트를 발생시킵니다.</li>
+                <ul ng-if="IvaLoitering && !S1Features">
                     <li><strong class="UI">최소 관찰 시간(초)</strong>: 배회하는 물체를 감지하고 이벤트를 발생하기 위한 최소시간을 설정합니다. 설정한 시간보다 더 오래 배회하는 물체를 감지하면 이벤트를 발생시킵니다.</li>
                 </ul>
             </ul>
         </div>
-		<div class="wn5-online-help-info" ng-if="IvaLoitering">
+		<div class="wn5-online-help-info" ng-if="IvaLoitering && !S1Features">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>배회 감지는 다른 IVA 이벤트 감지와 함께 사용할 경우, 단독으로 사용하는 것보다 성능이 다소 저하될 수 있습니다.</li>
@@ -185,7 +186,7 @@
         </div>
     </div>
 </div>
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!S1Features">
 
     <div class="wn5-setup-section-heading">
             <h2>제외 영역</h2>
@@ -196,7 +197,7 @@
             </div>
 			 <div class="wn5-online-help-action"> 
             <h4>제외 영역 설정하기  </h4>
-            <p>미리보기 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면  제외 영역이 설정됩니다. 제외 영역은 최대 8개까지 설정할 수 있습니다.</p>
+            <p>미리보기 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면 제외 영역이 설정됩니다. 제외 영역은 최대 8개까지 설정할 수 있습니다.</p>
 			
             </div>
             <div class="wn5-online-help-action"> 
