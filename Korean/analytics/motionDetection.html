@@ -255,9 +255,9 @@
     </div>
 </div>
 <!-- 멀티 센터 변경점 이 후 오버레이 분기 코드 삭제할 것 -->
-<!-- <hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">  박종찬 선임님 4/17일 메일에 따라 코드 !SupportAutoImageAlignment -> ng-if="VaDetectionResultOverlay" 로 수정 -->
-<hr class="wn5-setup-hr" ng-if="VaDetectionResultOverlay">
-<div class="wn5-setup-section" ng-if="VaDetectionResultOverlay">
+<!-- <hr class="wn5-setup-hr" ng-if="!SupportAutoImageAlignment">  박종찬 선임님 4/17일 메일에 따라 코드 !SupportAutoImageAlignment -> ng-if="VaDetectionResultOverlay" 로 수정  -> MotionDetectionOverlay로 재수정(박종찬 선임님. 6/11일 메일 참고) -->
+<hr class="wn5-setup-hr" ng-if="MotionDetectionOverlay">
+<div class="wn5-setup-section" ng-if="MotionDetectionOverlay">
     <div class="wn5-setup-section-heading">
         <h2>오버레이</h2>
     </div>

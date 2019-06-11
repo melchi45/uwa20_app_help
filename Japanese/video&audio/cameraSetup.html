@@ -539,7 +539,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>映像のシャープを調整したりコントラスト、カラー調整、曇り除去などを設定することができます。</p> 
+            <p>映像のシャープを調整したりコントラスト、カラー調整などを設定することができます。</p> 
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
 
@@ -589,7 +589,7 @@
             <p>曇り除去が<strong class="UI">[マニュアル]</strong>の場合、有効になって曇り除去レベルを調整します。曇り除去レベルが高いと、映像がより鮮やかに表示されます。曇りレベルが低くて曇り除去レベルが高いと、画面が暗く表示されることがあります。</p>
         </div>
 		
-								<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="DefogModeOptions">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>曇り除去モードを<strong class="UI">[自動]</strong>に設定した場合、曇り量が減少すると曇り除去機能も共に減少します。曇り量が減少しても設定したレベルだけの機能を実行するには、曇り除去モードを<strong class="UI">[マニュアル]</strong>に設定してください。 </li>

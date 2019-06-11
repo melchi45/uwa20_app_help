@@ -680,7 +680,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>You can adjust an image for sharpness, contrast, color level and defog.</p> 
+            <p>You can adjust an image for sharpness, contrast, and color level.</p> 
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
             <h3>DIS </h3>
@@ -729,7 +729,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <p>Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[Defog]</strong>; it adjusts the defog level. A higher defog level displays the image more clearly. If the fog level is low and a high defog level is set, the screen may look darker. </p>
         </div>
 		
-		<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="DefogModeOptions">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>If you set the Defog mode to <strong class="UI">[Auto]</strong>, as the amount of fog decreases, the level of defog function is also lowered. If you want to maintain the same effect of the function despite a decrease in the fog, then set the Defog mode to <strong class="UI">[Manual]</strong>.  </li>

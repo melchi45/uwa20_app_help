@@ -564,7 +564,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>영상의 윤곽을 조절하거나 대비, 색조절, 안개 제거 등을 할 수 있습니다.</p> 
+            <!-- <p>영상의 윤곽을 조절하거나 대비, 색조절, 안개 제거 등을 할 수 있습니다.</p>  -->
+            <p>영상의 윤곽을 조절하거나 대비, 색조절 등을 할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
             <h3>DIS </h3>
@@ -613,7 +614,7 @@
             <p><strong class="UI">[안개 제거]</strong>가 <strong class="UI">[수동]</strong>인 경우 활성화되며 안개 제거 레벨을 조절합니다. 안개 제거 레벨이 높으면 영상이 더 선명하게 보입니다. 안개가 낀 정도가 약하면서 안개 제거 레벨이 높으면 화면이 어두워 보일 수 있습니다. </p>
         </div>
 		
-								<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="DefogModeOptions">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>안개 제거 모드를 <strong class="UI">[자동]</strong>으로 설정한 경우 안개량이 감소하면 안개 제거 기능도 같이 감소합니다. 안개량이 감소하여도 설정한 레벨만큼 기능을 실행하려면 안개제거 모드를 <strong class="UI">[수동]</strong>으로 설정하십시오.  </li>
