@@ -57,7 +57,12 @@
 			<h3>Nombre de host</h3>
 			<p>Es el nombre para recuperar el nombre de host que es utilizado en el comando GetHostname ONVIF. El primer car&aacute;cter debe ser alfab&eacute;tico y solo se pueden introducir caracteres alfanum&eacute;ricos. Se pueden introducir hasta 63 caracteres. El nombre de la c&aacute;mara se introduce como predeterminado; no necesita ser definido ya que no es un valor requerido. </p>
 		</div>
-
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>Si elige la opci&oacute;n <strong class="UI">[Cambiar el nombre de host]</strong> <strong class="UI">[Red]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../network/ssl.html" ng-href="#/help/network_ssl">HTTPS</a>]</strong>&gt;<strong class="UI">[Sistema de conexi&oacute;n segura]</strong>&gt;<strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado &uacute;nico)]</strong>, el nombre de host se cambiar&aacute; al nombre de host com&uacute;n definido en el certificado.</li>
+            </ul>
+		</div>	
 		<div class="wn5-setup-section-article-content" ng-if="MTUSupport">
 			<h3>MTU</h3>
             <p>Configure la unidad de transmisión máxima (MTU) a la que se pueden transferir los datos desde la interfaz de red. El valor de la MTU puede ajustarse entre 1280 y 1500 octetos. Si el valor es demasiado bajo, la reproducción de vídeo puede retrasarse. Por lo tanto, el valor de la MTU debe ajustarse de acuerdo con el entorno de red del usuario.</p>

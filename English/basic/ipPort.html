@@ -57,6 +57,12 @@
 			<h3>Host name</h3>
 			<p>Host name is the name to retrieve the host name which is used in ONVIF GetHostname command. The first character must be alphabetic and only alphanumeric characters can be entered. Up to 63&nbsp;characters can be entered. Name of the camera is input as default; does not need to be set as it is not a required value. </p>
 		</div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>If you choose <strong class="UI">[Change the host name]</strong> option under <strong class="UI">[Network]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../network/ssl.html" ng-href="#/help/network_ssl">HTTPS</a>]</strong>&gt;<strong class="UI">[Secure connection system]</strong>&gt;<strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong>, the host name will be changed to the common name set in the certificate.</li>
+            </ul>
+		</div>
 
 		<div class="wn5-setup-section-article-content" ng-if="MTUSupport">
 			<h3>MTU</h3>
