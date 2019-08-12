@@ -446,7 +446,7 @@
     <div class="wn5-setup-section-article-content">
         <h3>Preajuste</h3>
         <p>Cuando selecciona un preajuste que desee desde la lista de preajustes y hace clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, se mover&aacute; hasta la ubicaci&oacute;n de preajuste deseada.</p>
-        <p>Para configurar una posici&oacute;n de preajuste, haga clic en el &iacute;cono <span class="tui tui-wn5-ptz-handle"></span> en la pantalla de control de PT, ajuste la posici&oacute;n de vista de la c&aacute;mara, luego haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n]</strong>. Configure el nombre y n&uacute;mero de preajuste en los campos <strong class="UI">[Nombre]</strong> y <strong class="UI">[N&uacute;mero]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>.</p>
+        <p>Para configurar una posici&oacute;n de preajuste, haga clic en el &iacute;cono <span class="tui tui-wn5-ptz-handle"></span> en la pantalla de control de PT, ajuste la posici&oacute;n de vista de la c&aacute;mara, luego haga clic en el bot&oacute;n <strong class="UI">[Definir]</strong>. Configure el nombre y n&uacute;mero de preajuste en los campos <strong class="UI">[Nombre]</strong> y <strong class="UI">[N&uacute;mero]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>.</p>
         <p>La vista de la c&aacute;mara regresa a la posici&oacute;n de inicio al hacer clic en el bot&oacute;n <strong class="UI">[Inicio]</strong>. La posici&oacute;n de inicio se puede configurar en la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n PT]</strong>&gt;<strong class="UI">[Preajuste]</strong>.</p>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -502,8 +502,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Zoom">
-<div class="wn5-setup-section" ng-if="Zoom">
+<hr class="wn5-setup-hr" ng-if="Zoom || ExternalPTZ">
+<div class="wn5-setup-section" ng-if="Zoom || ExternalPTZ">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -523,7 +523,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>Mover un preajuste</h3>
             <p>Cuando selecciona un preajuste que desee desde la lista de preajustes y hace clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, se mover&aacute; hasta la ubicaci&oacute;n de preajuste deseada.</p>
-            <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n] </strong>, introduzca el nombre de preajuste, defina un n&uacute;mero, y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Un preajuste puede ser a&ntilde;adido o cambiado desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de preajustes]</strong>.</p>
+            <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Definir] </strong>, introduzca el nombre de preajuste, defina un n&uacute;mero, y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Un preajuste puede ser a&ntilde;adido o cambiado desde la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de preajustes]</strong>.</p>
         </div>
     </div>
 </div>
@@ -550,7 +550,8 @@
         <div class="wn5-setup-section-article-content">
             <h3>Preajuste</h3>
             <p> Seleccione un n&uacute;mero de preajuste y haga clic en el bot&oacute;n <strong class="UI">[Mover]</strong> para mover la vista de c&aacute;mara a la posici&oacute;n de PTZ preajustada.</p>
-            <p>Seleccione un n&uacute;mero de presinton&iacute;a deseado en la lista de preajustes y haga clic en el bot&oacute;n <strong class="UI">[Mover]</strong> para desplazarse a la posici&oacute;n predeterminada deseada. Puede a&ntilde;adir o modificar la lista de preajustes desde la ficha <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ Digital]</strong> &gt; <strong class="UI">[Preajuste]</strong>.</p>
+            <p>Seleccione un n&uacute;mero de presinton&iacute;a deseado en la lista de preajustes y haga clic en el bot&oacute;n <strong class="UI">[Mover]</strong> para desplazarse a la posici&oacute;n predeterminada deseada. 
+            Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Definir]</strong>, ingrese un nombre predefinido, defina su n&uacute;mero, y luego haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Adem&aacute;s, en la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[PTZ digital]</strong>&gt;<strong class="UI">[Preajuste]</strong>, puede cambiar o a&ntilde;adir preajustes.   </p>
         </div>
 		          <div class="wn5-setup-section-article-content">
                         <h3>Grupo</h3>
@@ -576,7 +577,7 @@
     <div class="wn5-setup-section-article-content">
         <h3>Preajuste</h3>
         <p>Luego de seleccionar un n&uacute;mero definido en la lista de preajustes, haga clic en el bot&oacute;n <strong class="UI">[Ir]</strong> para mover la posici&oacute;n de preajuste PTZ. </p>
-        <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n]</strong>, ingrese un nombre predefinido, defina su n&uacute;mero, y luego haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Adem&aacute;s, en la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[PTZ digital]</strong>&gt;<strong class="UI">[Preajuste]</strong>, puede cambiar o a&ntilde;adir preajustes.</p>
+        <p>Para agregar un preajuste, haga clic en el bot&oacute;n <strong class="UI">[Definir]</strong>, ingrese un nombre predefinido, defina su n&uacute;mero, y luego haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>. Adem&aacute;s, en la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[PTZ digital]</strong>&gt;<strong class="UI">[Preajuste]</strong>, puede cambiar o a&ntilde;adir preajustes.</p>
     <!--    <p>La vista de la c&aacute;mara regresa a la posici&oacute;n de inicio al hacer clic en el bot&oacute;n <strong class="UI">[Inicio]</strong>. La posici&oacute;n de Inicio se puede configurar en la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ digital]</strong>&gt;<strong class="UI">[Preajuste]</strong>.</p>  -->
     </div>
     <div class="wn5-setup-section-article-content">
@@ -610,7 +611,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>Preajuste</h3>
             <p>Cuando selecciona un preajuste que desee desde la lista de preajustes y hace clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, se mover&aacute; hasta la ubicaci&oacute;n de preajuste deseada.</p>
-            <p>Para configurar una posici&oacute;n de preajuste, haga clic en el &iacute;cono <span class="tui tui-wn5-ptz-handle"></span> en la pantalla de control de PTZ, ajuste la posici&oacute;n de vista de la c&aacute;mara, luego haga clic en el bot&oacute;n <strong class="UI">[Configuraci&oacute;n]</strong>. Configure el nombre y n&uacute;mero de preajuste en los campos <strong class="UI">[Nombre]</strong> y <strong class="UI">[N&uacute;mero]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>.</p>
+            <p>Para configurar una posici&oacute;n de preajuste, haga clic en el &iacute;cono <span class="tui tui-wn5-ptz-handle"></span> en la pantalla de control de PTZ, ajuste la posici&oacute;n de vista de la c&aacute;mara, luego haga clic en el bot&oacute;n <strong class="UI">[Definir]</strong>. Configure el nombre y n&uacute;mero de preajuste en los campos <strong class="UI">[Nombre]</strong> y <strong class="UI">[N&uacute;mero]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>.</p>
             <p>La vista de la c&aacute;mara regresa a la posici&oacute;n de inicio al hacer clic en el bot&oacute;n <strong class="UI">[Inicio]</strong>. La posici&oacute;n de inicio se puede configurar en la pesta&ntilde;a <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ Digital]</strong>&gt;<strong class="UI">[Preajuste]</strong>.</p>
         </div>
 		          <div class="wn5-setup-section-article-content">

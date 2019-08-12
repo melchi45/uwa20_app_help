@@ -98,7 +98,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera's RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group,   tour, and tracking functions. </p>
+                            <p>You can control pan/tilt/zoom operation of the camera through a pan/tilt receiver connected to the camera's RS-485 or RS-422 terminal. You can move to the preset position set in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> page, or start and stop the swing, group, tour, and tracking functions. </p>
                         </td>
                     </tr>
 
@@ -452,7 +452,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article-content">
         <h3>Preset</h3>
             <p>When you select a desired preset from the preset list and click the <strong class="UI">[Go]</strong> button, it will move to the desired preset location. </p>
-            <p>To set a preset position, click the <span class="tui tui-wn5-ptz-handle"></span> icon on the PT control screen, adjust the camera view position, and then click the <strong class="UI">[Setup]</strong> button. Set the preset name and number in the <strong class="UI">[Name]</strong> and <strong class="UI">[Number]</strong> fields and click the <strong class="UI">[Apply]</strong> button.</p>
+            <p>To set a preset position, click the <span class="tui tui-wn5-ptz-handle"></span> icon on the PT control screen, adjust the camera view position, and then click the <strong class="UI">[Set]</strong> button. Set the preset name and number in the <strong class="UI">[Name]</strong> and <strong class="UI">[Number]</strong> fields and click the <strong class="UI">[Apply]</strong> button.</p>
             <p>Clicking the <strong class="UI">[Home]</strong> button moves the camera view to the home position. The home position can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT setup]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p>
     </div>
         <div class="wn5-setup-section-article-content">
@@ -511,8 +511,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Zoom">
-<div class="wn5-setup-section" ng-if="Zoom">
+<hr class="wn5-setup-hr" ng-if="Zoom || ExternalPTZ">
+<div class="wn5-setup-section" ng-if="Zoom || ExternalPTZ">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -557,7 +557,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Preset</h3>
             <p> Select a preset number and click the <strong class="UI">[Go]</strong> button to move the camera view to the PTZ preset position.</p>
-            <p>Select a desired preset number from the preset list and click the <strong class="UI">[Go]</strong> button to move to the desired preset position. You can add or modify the preset list from <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt;<strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Preset]</strong> tab.</p>
+            <p>Select a desired preset number from the preset list and click the <strong class="UI">[Go]</strong> button to move to the desired preset position. To add a preset, click the <strong class="UI">[Set]</strong> button, enter a preset name, set its number, and then click the <strong class="UI">[Apply]</strong> button. You can also add or modify the preset list from <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt;<strong class="UI">[Digital PTZ]</strong> &gt; <strong class="UI">[Preset]</strong> tab.</p>
         </div>
 		    <div class="wn5-setup-section-article-content">
             <h3>Group</h3>
@@ -583,7 +583,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article-content">
         <h3>Preset</h3>
         <p>After selecting a preset number in the Preset list, click the <strong class="UI">[Go]</strong> button to move to the PTZ preset position. </p>
-        <p>To add a preset, click the <strong class="UI">[Setup]</strong> button, enter a preset name, set its number, and then click the <strong class="UI">[Apply]</strong> button. Also, in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab, you can add or change presets.</p>
+        <p>To add a preset, click the <strong class="UI">[Set]</strong> button, enter a preset name, set its number, and then click the <strong class="UI">[Apply]</strong> button. Also, in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab, you can add or change presets.</p>
     <!--     <p>Clicking the <strong class="UI">[Home]</strong> button moves the camera view to the home position. The home position can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p> --> 
     </div>
     <div class="wn5-setup-section-article-content">
@@ -619,7 +619,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Preset</h3>
             <p>When you select a desired preset from the preset list and click the <strong class="UI">[Go]</strong> button, it will move to the desired preset location. </p>
-            <p>To set a preset position, click the <span class="tui tui-wn5-ptz-handle"></span> icon on the PTZ control screen, adjust the camera view position, and then click the <strong class="UI">[Setup]</strong> button. Set the preset name and number in the <strong class="UI">[Name]</strong> and <strong class="UI">[Number]</strong> fields and click the <strong class="UI">[Apply]</strong> button.</p>
+            <p>To set a preset position, click the <span class="tui tui-wn5-ptz-handle"></span> icon on the PTZ control screen, adjust the camera view position, and then click the <strong class="UI">[Set]</strong> button. Set the preset name and number in the <strong class="UI">[Name]</strong> and <strong class="UI">[Number]</strong> fields and click the <strong class="UI">[Apply]</strong> button.</p>
             <p>Clicking the <strong class="UI">[Home]</strong> button moves the camera view to the home position. The home position can be set in the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong>&gt;<strong class="UI">[Preset]</strong> tab.</p>
         </div>
 		          <div class="wn5-setup-section-article-content">

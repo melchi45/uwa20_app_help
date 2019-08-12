@@ -432,7 +432,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article-content">
         <h3>Pr&eacute;r&eacute;glage</h3>
         <p>Lorsque vous s&eacute;lectionnez un pr&eacute;r&eacute;glage souhait&eacute; dans la liste des pr&eacute;r&eacute;glages et cliquez sur le bouton <strong class="UI">[Aller]</strong>, il se d&eacute;place vers l&apos;emplacement pr&eacute;d&eacute;fini souhait&eacute;.</p>
-        <p>Pour d&eacute;finir une position pr&eacute;r&eacute;gl&eacute;e, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> sur l&rsquo;&eacute;cran de contr&ocirc;le PT, ajustez la position de la vue cam&eacute;ra puis cliquez sur le bouton <strong class="UI">[Configurer]</strong>. D&eacute;finissez le nom pr&eacute;r&eacute;gl&eacute; et le num&eacute;ro dans les champs <strong class="UI">[Nom]</strong> et <strong class="UI">[Num&eacute;ro]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
+        <p>Pour d&eacute;finir une position pr&eacute;r&eacute;gl&eacute;e, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> sur l&rsquo;&eacute;cran de contr&ocirc;le PT, ajustez la position de la vue cam&eacute;ra puis cliquez sur le bouton <strong class="UI">[Régler]</strong>. D&eacute;finissez le nom pr&eacute;r&eacute;gl&eacute; et le num&eacute;ro dans les champs <strong class="UI">[Nom]</strong> et <strong class="UI">[Num&eacute;ro]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
         <p>En cliquant sur le bouton <strong class="UI">[Home]</strong> la vue de la cam&eacute;ra passe en position initiale. La position initiale peut &ecirc;tre d&eacute;finie dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[configurer PT]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -488,8 +488,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Zoom">
-<div class="wn5-setup-section" ng-if="Zoom">
+<hr class="wn5-setup-hr" ng-if="Zoom || ExternalPTZ">
+<div class="wn5-setup-section" ng-if="Zoom || ExternalPTZ">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -538,7 +538,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Pr&eacute;r&eacute;glage</h3>
             <p>Lorsque vous s&eacute;lectionnez un pr&eacute;r&eacute;glage souhait&eacute; dans la liste des pr&eacute;r&eacute;glages et cliquez sur le bouton <strong class="UI">[Aller]</strong>, il se d&eacute;place vers l&apos;emplacement pr&eacute;d&eacute;fini souhait&eacute;.</p>
-            <p>Pour d&eacute;finir une position pr&eacute;r&eacute;gl&eacute;e, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> sur l&rsquo;&eacute;cran de contr&ocirc;le PTZ, ajustez la position de la vue cam&eacute;ra puis cliquez sur le bouton <strong class="UI">[Configurer]</strong>. D&eacute;finissez le nom pr&eacute;r&eacute;gl&eacute; et le num&eacute;ro dans les champs <strong class="UI">[Nom]</strong> et <strong class="UI">[Num&eacute;ro]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
+            <p>Pour d&eacute;finir une position pr&eacute;r&eacute;gl&eacute;e, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> sur l&rsquo;&eacute;cran de contr&ocirc;le PTZ, ajustez la position de la vue cam&eacute;ra puis cliquez sur le bouton <strong class="UI">[Régler]</strong>. D&eacute;finissez le nom pr&eacute;r&eacute;gl&eacute; et le num&eacute;ro dans les champs <strong class="UI">[Nom]</strong> et <strong class="UI">[Num&eacute;ro]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
             <p>En cliquant sur le bouton <strong class="UI">[Home]</strong> la vue de la cam&eacute;ra passe en position initiale. La position initiale peut &ecirc;tre d&eacute;finie dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
         </div>
 		          <div class="wn5-setup-section-article-content">
@@ -572,7 +572,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <h3>Pr&eacute;r&eacute;glage</h3>
             <p>S&eacute;lectionnez un num&eacute;ro pr&eacute;d&eacute;fini et cliquez sur le bouton <strong class="UI">[Aller]</strong> pour d&eacute;placer la vue de la cam&eacute;ra sur la position PTZ pr&eacute;d&eacute;finie.</p>
-            <p>S&eacute;lectionnez le num&eacute;ro pr&eacute;d&eacute;fini voulu dans la liste des pr&eacute;r&eacute;glages et cliquez sur le bouton <strong class="UI">[Aller]</strong> pour passer &agrave; la position pr&eacute;d&eacute;finie souhait&eacute;e. Vous pouvez ajouter ou modifier la liste des pr&eacute;r&eacute;glages dans l&rsquo;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
+            <p>Pour ajouter un pr&eacute;r&eacute;glage, cliquez sur le bouton <strong class="UI">[Régler]</strong>, entrez un nom pr&eacute;r&eacute;gl&eacute;, d&eacute;finissez son num&eacute;ro puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong>. Aussi, Vous pouvez ajouter ou modifier la liste des pr&eacute;r&eacute;glages dans l&rsquo;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
         </div>
 		<div class="wn5-setup-section-article-content">
             <h3>Groupe</h3>
@@ -600,7 +600,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article-content">
         <h3>Pr&eacute;r&eacute;glage</h3>
         <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro pr&eacute;r&eacute;gl&eacute; dans la liste Pr&eacute;r&eacute;glages, cliquez sur le bouton <strong class="UI">[Aller]</strong> pour acc&eacute;der &agrave; la position de pr&eacute;r&eacute;glage PTZ. </p>
-        <p>Pour ajouter un pr&eacute;r&eacute;glage, cliquez sur le bouton <strong class="UI">[Configuration]</strong>, entrez un nom pr&eacute;r&eacute;gl&eacute;, d&eacute;finissez son num&eacute;ro puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong>. Aussi, dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>, vous pouvez ajouter ou changer les pr&eacute;r&eacute;glages.</p>
+        <p>Pour ajouter un pr&eacute;r&eacute;glage, cliquez sur le bouton <strong class="UI">[Régler]</strong>, entrez un nom pr&eacute;r&eacute;gl&eacute;, d&eacute;finissez son num&eacute;ro puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong>. Aussi, dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>, vous pouvez ajouter ou changer les pr&eacute;r&eacute;glages.</p>
     <!--    <p>En cliquant sur le bouton <strong class="UI">[Home]</strong> la vue de la cam&eacute;ra passe en position initiale. La position initiale Home peut &ecirc;tre d&eacute;finie dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>  --> 
     </div>
     <div class="wn5-setup-section-article-content">
