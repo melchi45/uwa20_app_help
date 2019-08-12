@@ -23,8 +23,8 @@
     	   <h4><a name="ptzcontrol"></a>PTZ調整</h4>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
-                <li ng-if="PanTiltOnlyModel">ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
-                <li ng-if="PanTiltOnlyModel && ContinousFocus"><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                <li ng-if="PanTiltOnlyModel || PTZModel">ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel"><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
                 <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
             </ul>
             <p><strong class="UI">[パンのグラウンド位置設定]</strong>をクリックすると、現在撮像している映像のパン(Pan)の角度を0度に設定します。</p>
