@@ -144,7 +144,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1">
+                    <tr ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
                         <td width="235">
                             <p><a href="#channel">チャンネル選択</a></p>
                         </td>
@@ -157,6 +157,26 @@
                             <p ng-if="SupportAutoImageAlignment">カメラチャンネル2～5を選択すると、各チャンネル別のカメラ映像を表示します。チャンネル1を選択すると、チャンネル2～5のカメラ映像を一つに接続させてパノラマタイプに表示します。チャンネル6と7を選択すると、チャンネル1の映像をカメラ<a href="#PTZ">PTZ調整</a>しながら確認することができます。</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
+                            <td width="235">
+                                <p>ビュー</p>
+                            </td>
+                            <td width="235">
+                                <p>フィッシュアイカメラの映像のタイプを選択します。<strong class="UI">[設定]</strong>><strong class="UI">[Basic]><strong class="UI">[ビデオprofile]</strong>><strong class="UI">[チャンネル選択]</strong>で<strong class="UI">[チャンネル有効]</strong>オプションを選択したチャンネルの映像だけをリストに表示されます。</p>
+                                <ul>
+                                        <li>魚眼ビュー：魚眼カメラの映像をそのまま補正なしで見せます。</li>
+                                        <li>シングルパノラマ：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
+                                        <li>ダブルパノラマ：360˚エリアを撮影した映像を歪み補正してパノラマタイプの上下分割画面に見せます。</li>
+                                        <li>クワドビュー：人の視野に適するように歪み補正した特定画面4つを同時に表示します。分割画面を選択してビューを上下左右に移動したり、ズーム機能を使用することができます。</li>
+                                        <li>Q1：クワドビューの左上のビューを表示します。</li>
+                                        <li>Q2：クワドビューの右上のビューを表示します。</li>
+                                        <li>Q3：クワドビューの左下のビューを表示します。</li>
+                                        <li>Q4：クワドビューの右下のビューを表示します。</li>
+                                </ul>
+                            </td>
+                        </tr>
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -260,7 +280,7 @@
                 </tbody>
             </table>
         </div>
-            <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
+            <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
             <h4>チャンネルを変更するには、</h4>
                 <ul>
                     <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
@@ -283,6 +303,13 @@
                     <li>手動録画を終了するには、もう一保存アイコン(<span class="tui tui-wn5-toolbar-record"></span>)をクリックします。</li>
                </ul>
                 <p>ユーザーPCに手動録画を.aviファイルで保存することができます。パスを指定して映像を保存してください。</p>
+
+                <p>録画した映像にパスワードを設定するには、</p>
+                <ul>
+                        <li>リストでZIPを選択した後、パスワードを入力します。</li>
+                       
+                </ul>    
+                <p>ユーザーPCに録画したファイルが.zipファイルに保存され、映像を再生するときに設定したパスワード入力する必要があります。</p>           
                 <p ng-if="FisheyeLens">魚眼ビューモードで録画すると、ユーザーが見ている歪み補正ビューではなくオリジナル画像で保存されます。</p>
             </div>
 			
@@ -592,7 +619,10 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
             <!--     <li><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li> --> 
-                <li><strong class="UI">[映像&amp;音声]</strong>&gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で<strong class="UI">[天井]</strong>を選択した場合のみ、パン機能を使用することができます。</li>
+                <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">[映像&amp;音声]</strong>&gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で<strong class="UI">[天井]</strong>を選択した場合のみ、パン機能を使用することができます。</li>
+                <li ng-if="SupportChannelEnabledFeature">ビューモードリストで<strong class="UI">[魚眼ビュー]</strong>を選択すると、PTZ機能を使用できません。</li>
+                <li ng-if="SupportChannelEnabledFeature">ビューモードリストで<strong class="UI">[クワドビュー]</strong>や<strong class="UI">[Q1]</strong>、<strong class="UI">[Q2]</strong>、<strong class="UI">[Q3]</strong>、<strong class="UI">[Q4]</strong>を選択した場合のみ、4分割選択とプリセット、グループ機能を使用できます。</li>
+                <li ng-if="SupportChannelEnabledFeature">ビューモードリストで<strong class="UI">[シングルパノラマ]</strong>や<strong class="UI">[ダブルパノラマ]</strong>を選択した場合のみ、<strong class="UI">[ファン]</strong>と<strong class="UI">[ホーム]</strong>機能が有効になります。</li>
             </ul>
     
         </div>

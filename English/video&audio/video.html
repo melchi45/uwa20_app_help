@@ -18,6 +18,19 @@
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">Since a privacy area is individually set for each channel, a privacy area set on CH1 will only apply to CH1 even if the same privacy area exists on CH2.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. &apos;Video setup&apos; can be enabled on Channel 1 only.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                    <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
+                    <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
+                    <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
+                    <li>Channel 4: Dewarps 4 screens similar to human visual perception and displays them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
+                    <li>Channel 5: Displays the top left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
+                    <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
+            </ul>
+
             <p>Click the <strong class="UI">[Info]</strong> button to see the overall summary of each channel.</p>
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
 
@@ -45,22 +58,9 @@
 			<h3>Pattern</h3>
             <p>Select the mosaic pattern to apply to a privacy area. Select <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> to apply the color set in the privacy area window. If you select the pattern, it will be applied to all the areas.</p>
 		</div>
-				<div class="wn5-online-help-action">
-			<h4>Setting a privacy area (except for a zoom or PTZ camera)</h4>
-            <ol>
-				
-				<li>Select <strong class="UI">[Enable privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </li>
-                <li>Click on 4 corners with the mouse on the camera video screen.</li>
-                <li>In the <strong class="UI">[Privacy area]</strong> window, set the following:</li>
-                <ul>
-                    <li>Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong>.</li>
-                </ul>
-                <li> In the <strong class="UI">[Privacy area] </strong> window, click the <strong class="UI">[OK]</strong> button.</li>
-                <li>A new privacy area is added to the list of privacy areas. The color set in the camera's image screen is used to display a privacy area.</li>
-            </ol>
-		</div>
+
 	
-	        <div class="wn5-online-help-action">
+	        <div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>Setting a privacy area (PTZ camera)  </h4>
             <ol>
 				
@@ -79,7 +79,7 @@
             <!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> -->
         </div>
 		
-        <div class="wn5-online-help-action">
+        <div class="wn5-online-help-action" ng-if="Zoom && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>Setting a privacy area (zoom camera)  </h4>
             <ol>
 				
@@ -96,7 +96,33 @@
             </ol>
         </div>
 
-		
+
+        <div class="wn5-online-help-action" ng-if="!PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+                <h4>Setting a privacy area (except for a zoom or PTZ camera)</h4>
+                <ol>
+                    
+                    <li>Select <strong class="UI">[Enable privacy area]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page. </li>
+                    <li>Click on 4 corners with the mouse on the camera video screen.</li>
+                    <li>In the <strong class="UI">[Privacy area]</strong> window, set the following:</li>
+                    <ul>
+                        <li>Enter the name of the privacy area in <strong class="UI">[Name]</strong>, select the color to cover the image in <strong class="UI">[Color]</strong>.</li>
+                    </ul>
+                    <li> In the <strong class="UI">[Privacy area] </strong> window, click the <strong class="UI">[OK]</strong> button.</li>
+                    <li>A new privacy area is added to the list of privacy areas. The color set in the camera's image screen is used to display a privacy area.</li>
+                </ol>
+            </div>
+
+            <div class="wn5-online-help-action" ng-if="PrivacyMasGlobalColor">
+                    <h4>Setting a privacy area</h4>
+                    <ol>
+                        <li>Select <strong class="UI">[Enable privacy area]</strong>.</li>
+                        <li>Drag the mouse on the camera video screen to set the privacy area.</li>
+                        <li>Enter the name of the privacy area in <strong class="UI">[Name]</strong> under <strong class="UI">[Privacy area]</strong>, and click the <strong class="UI">[OK]</strong> button.</li>
+                        <li>The new privacy area will be added to the privacy area list. It will be displayed in the set color on the camera video screen.</li>
+                        <li>To apply a color to the privacy area, go to <strong class="UI">[Color]</strong> and select a color to paint the area. The selected color will be applied to every privacy area.</li>
+                    </ol>
+                </div>
+
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
 			<ul>

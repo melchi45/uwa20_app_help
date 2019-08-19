@@ -69,6 +69,19 @@
         <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
             <h3>Seleccionar canal</h3>
             <p>Puede comprobar el registro de eventos de cada canal seleccionando el n&uacute;mero del canal.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La información de registro se puede verificar solo en el canal 1.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
+                <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
+                <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
+                <li>Canal 4: Corrige la distorsi&oacute;n de 4 pantallas similares a la percepci&oacute;n visual humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.</li>
+                <li>Canal 5: Muestra el v&iacute;deo superior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+            </ul>
+
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Tipo de registro  </h3>

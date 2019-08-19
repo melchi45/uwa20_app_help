@@ -14,6 +14,19 @@
             <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
             <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
             <p ng-if="SupportAutoImageAlignment">「カメラ設定」はチャンネル1でしか設定できません。</p>
+
+            <p ng-if="SupportChannelEnabledFeature">チャンネル別のビューモードは、下記のどおりです。「カメラ設定」はチャンネル1のみ有効になります。</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>チャンネル1：魚眼カメラの映像をそのまま補正なしで見せます。</li>
+                <li>チャンネル2：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
+                <li>チャンネル3：360˚エリアを撮影した映像を歪み補正してパノラマタイプの上下分割モードに見せます。</li>
+                <li>チャンネル4：人の視野に適合するように歪み補正した特定画面4つを同時に見せます。4分割画面を選択して、ビューを上下左右に移動したり、ズーム機能を使用できます。</li>
+                <li>チャンネル5：チャンネル4の4分割画面で左上の映像を見せます。</li>
+                <li>チャンネル6：チャンネル4の4分割画面で右上の映像を見せます。</li>
+                <li>チャンネル7：チャンネル4の4分割画面で左下の映像を見せます。</li>
+                <li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
+            </ul>
+            
             <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
         </div>
 	</div>
@@ -255,10 +268,14 @@
             <p>BLC (Back Light Compensation)モードは、逆光で暗く撮影された映像にユーザーが特定エリアを設定して選択エリアの対象物がよく表示されるように補正します。</p>
             <p ng-if="PTZModel"><strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI"></strong>[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLCレベル</h5>
             <p>低、中、高の中から選択することができます。レベルが高いと、設定したエリアの明るさがより明るくなります。</p>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+                <h5>BLCレベル</h5>
+                <p>スライドバーを調整してBLCレベルを設定します。レベルが高いほど設定した領域の明るさがより明るくなります。</p>
+            </div>
          <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>エリア設定</h5>
             <ul>

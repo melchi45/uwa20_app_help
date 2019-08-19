@@ -145,7 +145,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1">
+                    <tr ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
                             <td width="235">
                                 <p>Seleccionar canal</p>
                             </td>
@@ -158,6 +158,28 @@
                                 <p ng-if="SupportAutoImageAlignment">La pantalla de la cámara para cada canal se muestra cuando selecciona un canal de la cámara de Canal2 a Canal5. Si selecciona Canal1, las pantallas de la cámara Canal2 a Canal5 se alinearán en una línea recta para mostrar una vista panorámica. Si selecciona Canal6 y Canal7, podrá verificar el video Canal1 mientras <a href="#PTZ">ajusta la cámara PTZ</a>.</p>
                             </td>
                         </tr>
+
+                        <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
+                                <td width="235">
+                                    <p>Tipo de vista</p>
+                                </td>
+                                <td width="235">
+                                    <p>Selecciona el tipo de vídeo de la cámara ojo de pez que se mostrará. Solo las imágenes de los canales que están activados con la opción <strong class="UI">[Activar canal]</strong> en <strong class="UI">[Configuración]</strong>> <strong class="UI">[Básico]</strong>> <strong class="UI">[Perfil de video]</strong>> <strong class="UI">[Seleccionar canal]</strong> aparecen en la lista.
+                                    </p>
+                                    <ul>
+                                        <li>Vista de ojo de pez: Muestra el vídeo de cámara de ojo de pez sin corrección.</li>
+                                        <li>Solo panorama:  Corrige un video de 360˚ y lo muestra como una panor&aacute;mica de pared.  </li>
+                                        <li>Doble panorama: Corrige un video de 360˚ y lo muestra como una panor&aacute;mica dividida/hacia abajo. </li>
+                                        <li>Vista dividida en 4: Corrige 4 pantallas apropiadas para la vista humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.  </li>                                        
+                                        <li>Q1: Muestra la vista superior izquierda de la división en 4.   </li>
+                                        <li>Q2: Muestra la vista superior derecha de la división en 4. </li>
+                                        <li>Q3: Muestra la vista inferior izquierda de la división en 4.</li>
+                                        <li>Q4: Muestra la vista inferior derecha de la división en 4. </li>
+                                    </ul>
+                                </td>
+                            </tr>
+            
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -261,7 +283,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
+        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
             <h4>Para cambiar el canal</h4>
                 <ul>
                     <li>Seleccione el n&uacute;mero del canal que desea. El video del canal aparecer&aacute; en el visor.</li>
@@ -285,6 +307,13 @@
                     <li>Para finalizar la grabaci&oacute;n manual, vuelva a hacer clic en el bot&oacute;n <span class="tui tui-wn5-toolbar-record"></span>Guardar.</li>
                </ul>
                 <p>La grabaci&oacute;n manual se puede guardar como un archivo .avi en su PC. Especifique la ruta y guarde el video. </p>
+
+                <p>ara proteger sus grabaciones de vídeo con contraseña </p>
+               <ul>
+                    <li>Seleccione ZIP de la lista e ingrese una contraseña.</li>
+               </ul>
+               <p>Sus grabaciones de vídeo se guardarán como archivos .zip en su PC. Deberá ingresar la contraseña para reproducir los vídeos.</p>
+
                 <p ng-if="FisheyeLens">Si graba el video en el modo de vista Ojo de pez, se guardar&aacute;n las im&aacute;genes originales en lugar de las im&aacute;genes de la vista desformada que se muestra actualmente.</p>
             </div>
 			
@@ -603,6 +632,16 @@
             </ul>
 
         </div> -->
+
+        <div class="wn5-online-help-info"  ng-if="SupportChannelEnabledFeature">
+                <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+                <li>Si se selecciona <strong class="UI">[Vista ojo de pez]</strong> de la lista de modos de visualizaci&oacute;n, la funci&oacute;n PTZ se deshabilitar&aacute;.</li>
+                <li>Solo al seleccionar <strong class="UI">[Vista de cuadrante]</strong> o <strong class="UI">[Q1]</strong>/<strong class="UI">[Q2]</strong>/<strong class="UI">[Q3]</strong>/<strong class="UI">[Q4]</strong> de la lista de modos de visualizaci&oacute;n, se podr&aacute;n usar las funciones Cuadrante, Predefinido y Grupo.</li>
+                <li>Solo al seleccionar <strong class="UI">[Panorama &uacute;nico]</strong> o <strong class="UI">[Panorama doble]</strong> de la lista de modos de visualizaci&oacute;n, se habilitar&aacute;n las funciones <strong class="UI">[Panor&aacute;mica]</strong> e <strong class="UI">[Inicio]</strong>.</li>
+                </ul>
+        </div>
+
      <div class="wn5-setup-section-article-content">
             <h3>C&oacute;mo seleccionar una pantalla dividida</h3>
             <p>Utilice un n&uacute;mero para seleccionar un v&iacute;deo individual en la vista de 4 divisiones. 1 es la parte superior izquierda de la vista dividida en 4, 2 es la parte superior derecha, 3 es la parte inferior izquierda y 4 la parte inferior derecha.</p>

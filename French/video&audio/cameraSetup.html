@@ -14,6 +14,19 @@
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">“&nbsp;Configuration de la cam&eacute;ra&nbsp;” peut seulement &ecirc;tre d&eacute;fini sur CAN1.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;Configuration de la cam&eacute;ra&nbsp;” peut &ecirc;tre activ&eacute; sur le canal&nbsp;1 uniquement.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
+                <li>Canal&nbsp;2&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique murale.</li>
+                <li>Canal&nbsp;3&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique fractionn&eacute;e haut/bas.</li>
+                <li>Canal&nbsp;4&nbsp;: Lisse 4 &eacute;crans pour les rendre similaires &agrave; la vision humaines et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou pour un zoom avant/arri&egrave;re.</li>
+                <li>Canal&nbsp;5&nbsp;: Affiche la vid&eacute;o en haut &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;6&nbsp;: Affiche la vid&eacute;o en haut &agrave; droite de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
+            </ul>
+
             <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
         </div>
 	</div>
@@ -247,10 +260,15 @@
             <p>Le mode BLC (Compensation du contre-jour) s&eacute;lectionne et corrige une zone sp&eacute;cifique d&rsquo;une image sombre captur&eacute;e en raison du contre-jour, afin de montrer plus clairement un objet dans la zone s&eacute;lectionn&eacute;e. </p>
             <p ng-if="PTZModel">Ajustez la taille de la zone en cliquant sur les boutons fléchés de <strong class="UI"></strong>[Réglage coffre]</strong>. Plus le nombre que vous définissez dans <strong class="UI"></strong>[Étape de la boîte]</strong> est élevé, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Niveau de la BLC</h5>
             <p>Vous pouvez choisir entre bas, moyen et haut. Plus le niveau est &eacute;lev&eacute;, plus la zone est claire.</p>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+                <h5>Niveau de la BLC</h5>
+                <p>Faites glisser la barre de défilement pour ajuster le niveau de BLC. Plus le niveau est élevé, plus la zone définie est lumineuse.</p>
+            </div>
+
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Configuration de la zone</h5>
             <ul>

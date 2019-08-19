@@ -16,6 +16,19 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">&apos;Camera setup&apos; can only be set on CH1.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. &apos;Camera setup&apos; can be enabled on Channel 1 only.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                    <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
+                    <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
+                    <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
+                    <li>Channel 4: Dewarps 4 screens similar to human visual perception and displays them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
+                    <li>Channel 5: Displays the top left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
+                    <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
+            </ul>
+
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
         </div>
 	</div>
@@ -368,15 +381,21 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
             <p ng-if="!HLC">An image captured against the light can be corrected. Select from among Off, BLC, or WDR in <strong class="UI">[Mode]</strong> and change the setting according to the selected backlight mode. </p>
 
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" >
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly. </p>
             <p ng-if="PTZModel">Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLC level</h5>
             <p>You can select a level from low, middle or high. The higher the level, the brighter the set area. </p>
         </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+            <h5>BLC level</h5>
+            <p>Move the slide bar to adjust the BLC level. The higher the level, the brighter the set area.</p>
+        </div>
+
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Area setting</h5>
             <ul>

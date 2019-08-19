@@ -14,6 +14,19 @@
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">La “Configuraci&oacute;n de c&aacute;mara” solo se puede configurar en Canal1.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La “Configuración de la cámara” se puede habilitar solo en el canal 1.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
+                <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
+                <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
+                <li>Canal 4: Corrige la distorsi&oacute;n de 4 pantallas similares a la percepci&oacute;n visual humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.</li>
+                <li>Canal 5: Muestra el v&iacute;deo superior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+            </ul>
+
             <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
 	</div>
@@ -255,10 +268,15 @@
             <p>BLC (Compensaci&oacute;n de la luz) selecciona el modo y corrige un &aacute;rea espec&iacute;fica de una imagen oscura capturada gracias a la retroiluminaci&oacute;n, para mostrar un objeto en el &aacute;rea seleccionada con mayor claridad. </p>
             <p ng-if="PTZModel">Ajuste el tamaño del área haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el número establecido en <strong class="UI">[Paso de caja]</strong>, mayor será el tamaño del área al hacer clic en los botones.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Nivel de BLC</h5>
             <p>Puede seleccionar bajo, medio y alto. Mientras m&aacute;s alto sea el nivel, m&aacute;s brillante ser&aacute; el &aacute;rea.</p>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+                <h5>Nivel de BLC</h5>
+                <p>Mueva la barra de desplazamiento para ajustar el nivel de BLC. Cuanto más alto sea el nivel, más brillante será el área establecida.</p>
+            </div>
+
        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Configuraci&oacute;n del &aacute;rea</h5>
             <ul>

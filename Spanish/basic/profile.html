@@ -13,6 +13,20 @@
                     <p>Después de seleccionar su canal de cámara, puede establecer los detalles de Perfil de vídeo para cada canal. </p>
                     <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
                     <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
+
+                    <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n.</p>
+                    <ul ng-if="SupportChannelEnabledFeature">
+                        <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
+                        <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
+                        <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
+                        <li>Canal 4: Corrige la distorsi&oacute;n de 4 pantallas similares a la percepci&oacute;n visual humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.</li>
+                        <li>Canal 5: Muestra el v&iacute;deo superior izquierdo desde la vista de cuadrante del canal 4.</li>
+                        <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+                        <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
+                        <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+                    </ul>
+                    <p ng-if="SupportChannelEnabledFeature">Para usar un modo espec&iacute;fico de visualizaci&oacute;n, seleccione un n&uacute;mero de canal y seleccione <strong class="UI">[Habilitar canal]</strong>. Por ejemplo, si solo est&aacute;n habilitados los canales 2 y 3, el v&iacute;deo de la c&aacute;mara se mostrar&aacute; en una vista panor&aacute;mica o en una vista dividida arriba/abajo, sin que se admitan otras vistas de pantalla.</p>
+                    
                     <p>El número de canal seleccionado por última vez en la página en directo o en la página de reproducción se selecciona automáticamente. Haga clic en el botón <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
                     <p>Si selecciona otro canal sin aplicar los cambios en la configuración, aparecerá un mensaje de alarma.</p>
                 </div>
@@ -185,7 +199,7 @@
 
 
 
-                  <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                  <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
                       <h3>Tipo de vista de ojo de pez</h3>
                       <p>Selecciona el tipo de vídeo de la cámara ojo de pez que se mostrará en el perfil.</p>
                       <ul>
@@ -193,16 +207,14 @@
                           <li>Vista de corrección de distorsión: Corrige el vídeo de 360​​° capturado por la cámara ojo de pez para ajustarse a la vista. El tipo de vídeo de corrección se puede seleccionar desde la opción <strong class="UI">[Vista]</strong> mostrada cuando se selecciona 'Vista de corrección de distorsión'. </li>
                       </ul>
                   </div>
-                  <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                  <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
                       <h3>Vista</h3>
                       <p>Selecciona el tipo de vídeo de corrección de distorsión.</p>
                       <p>Esto se activa cuando se selecciona <strong class="UI">[Vista de corrección de distorsión]</strong> en <strong class="UI">[Tipo de vista ojo de pez]</strong>.</p>
                       <ul>
                           <li>Solo panorama:  Corrige un video de 360˚ y lo muestra como una panor&aacute;mica de pared.  </li>
                           <li>Vista dividida en 4: Corrige 4 pantallas apropiadas para la vista humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.  </li>
-                          <li>Doble panorama: Corrige un video de 360˚ y lo muestra como una panor&aacute;mica dividida/hacia abajo. La opción Panorama doble solo aparece cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[Vídeo y audio]</strong> > <strong class="UI">[Configuración de vídeo]</strong> > <strong class="UI">[Rotación de vídeo]</strong> > <strong class="UI">[Modo de montaje de la cámara]</strong>.
-
-                        </li>
+                          <li>Doble panorama: Corrige un video de 360˚ y lo muestra como una panor&aacute;mica dividida/hacia abajo. La opción Panorama doble solo aparece cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[Vídeo y audio]</strong> > <strong class="UI">[Configuración de vídeo]</strong> > <strong class="UI">[Rotación de vídeo]</strong> > <strong class="UI">[Modo de montaje de la cámara]</strong>.</li>
                           <li>Q1: Muestra la vista superior izquierda de la división en 4.   </li>
                           <li>Q2: Muestra la vista superior derecha de la división en 4. </li>
                           <li>Q3: Muestra la vista inferior izquierda de la división en 4.</li>

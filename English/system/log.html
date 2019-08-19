@@ -64,11 +64,22 @@
             <p>You can check the date &amp; time and detailed information for an event which has occurred in the system.</p>
         </div>
 
-        
         <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
             <h3>Select channel</h3>
             <p>You can check the event log of each channel by selecting the channel number.</p>
+            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. Log information of only Channel 1 can be checked.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                    <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
+                    <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
+                    <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
+                    <li>Channel 4: Dewarps 4 screens similar to human visual perception and displays them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
+                    <li>Channel 5: Displays the top left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
+                    <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
+            </ul>
         </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>Log type  </h3>
             <p>You can check occurrence date &amp; time and detailed information for a selected event. When you select All, you can check the date &amp; time and detailed information for all events occurring in the system.</p>

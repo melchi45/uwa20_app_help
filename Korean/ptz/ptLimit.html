@@ -23,7 +23,9 @@
     	   <h4><a name="ptzcontrol"></a>PTZ 조정하기</h4>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
+<!-- PanTiltOnlyModel -> PanTiltOnlyModel || PTZModel으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> 
                 <li ng-if="PanTiltOnlyModel || PTZModel">줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+<!-- PanTiltOnlyModel && ContinousFocus -> (PanTiltOnlyModel && ContinousFocus) || PTZModel으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> 
                 <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel"><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
             </ul>
