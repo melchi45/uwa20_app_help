@@ -17,6 +17,20 @@
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">Debido a que se configura individualmente un &aacute;rea privada para cada canal, una configuraci&oacute;n de &aacute;rea privada en Canal1 aplicar&aacute; &uacute;nicamente a Canal1, incluso si la misma &aacute;rea privada existe en Canal2.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n.  La “Configuración de vídeo” se puede habilitar solo en el canal 1.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
+                <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
+                <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
+                <li>Canal 4: Corrige la distorsi&oacute;n de 4 pantallas similares a la percepci&oacute;n visual humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.</li>
+                <li>Canal 5: Muestra el v&iacute;deo superior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+            </ul>
+
+
             <p>Haga clic en el bot&oacute;n <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
             <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
@@ -43,22 +57,9 @@
 			<h3>Patr&oacute;n</h3>
             <p>Seleccione el patr&oacute;n de mosaico para aplicar al &aacute;rea privada. Seleccionar <strong class="UI">[</strong><strong>Opaco</strong><strong class="UI">]</strong> para aplicar la configuraci&oacute;n del color en la ventana del &aacute;rea privada. Si selecciona el patr&oacute;n, se aplicar&aacute; a todas las &aacute;reas.</p>
 		</div>
-				<div class="wn5-online-help-action">
-			<h4>Configurar un &aacute;rea privada(excepto para el c&aacute;mara PTZ o zoom)</h4>
-            <ol>
-				
-				<li>Seleccione <strong class="UI">[Activar &aacute;rea privada]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
-                <li>Haga clic en las 4 esquinas con el mouse en la pantalla de video de la c&aacute;mara.</li>
-                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, configure lo siguiente:</li>
-                <ul>
-                    <li>Introduzca el nombre del &aacute;rea privada en <strong class="UI">[Nombre]</strong>, seleccione el color para cubrir la imagen en <strong class="UI">[Color]</strong>.</li>
-                </ul>
-                <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, haga clic en el bot&oacute;n <strong class="UI">[OK]</strong>.</li>
-                <li>Se a&ntilde;ade una nueva &aacute;rea privada a la lista de &aacute;reas privadas. La configuraci&oacute;n del color en la pantalla de imagen de la c&aacute;mara se usa para mostrar un &aacute;rea privada.</li>
-            </ol>
-		</div>
-	
-	        <div class="wn5-online-help-action">
+        
+
+	        <div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>Configurar un &aacute;rea privada (c&aacute;mara PTZ)</h4>
             <ol>
 				
@@ -75,7 +76,7 @@
                 <li>Se a&ntilde;ade una nueva &aacute;rea privada a la lista de &aacute;reas privadas. El &aacute;rea privada a la que se aplica el umbral del zoom se marcar&aacute; como «[Zoom]» en la lista de &aacute;reas privadas. La configuraci&oacute;n del color en la pantalla de imagen de la c&aacute;mara se usa para mostrar el &aacute;rea privada.</li>
             </ol><!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> --></div>
 		
-        <div class="wn5-online-help-action">
+        <div class="wn5-online-help-action" ng-if="Zoom && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>Configurar un &aacute;rea privada (c&aacute;mara zoom)</h4>
             <ol>
 				
@@ -92,6 +93,32 @@
             </ol>
         </div>
 
+        <div class="wn5-online-help-action" ng-if="!PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+                <h4>Configurar un &aacute;rea privada(excepto para el c&aacute;mara PTZ o zoom)</h4>
+                <ol>
+                    
+                    <li>Seleccione <strong class="UI">[Activar &aacute;rea privada]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
+                    <li>Haga clic en las 4 esquinas con el mouse en la pantalla de video de la c&aacute;mara.</li>
+                    <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, configure lo siguiente:</li>
+                    <ul>
+                        <li>Introduzca el nombre del &aacute;rea privada en <strong class="UI">[Nombre]</strong>, seleccione el color para cubrir la imagen en <strong class="UI">[Color]</strong>.</li>
+                    </ul>
+                    <li>En la ventana del <strong class="UI">[&Aacute;rea privada]</strong>, haga clic en el bot&oacute;n <strong class="UI">[OK]</strong>.</li>
+                    <li>Se a&ntilde;ade una nueva &aacute;rea privada a la lista de &aacute;reas privadas. La configuraci&oacute;n del color en la pantalla de imagen de la c&aacute;mara se usa para mostrar un &aacute;rea privada.</li>
+                </ol>
+            </div>
+
+            <div class="wn5-online-help-action" ng-if="PrivacyMasGlobalColor">
+                    <h4>Configuraci&oacute;n de un &aacute;rea de privacidad</h4>
+                    <ol>
+                        
+                        <li>Seleccione <strong class="UI">[Habilitar &aacute;rea de privacidad]</strong>.</li>
+                        <li>Arrastre el rat&oacute;n sobre la pantalla de v&iacute;deo de la c&aacute;mara para configurar el &aacute;rea de privacidad.</li>
+                        <li>Ingrese el nombre del &aacute;rea de privacidad en <strong class="UI">[Nombre]</strong> debajo de <strong class="UI">[&Aacute;rea de privacidad]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
+                        <li>La nueva &aacute;rea de privacidad se a&ntilde;adir&aacute; a la lista de &aacute;reas de privacidad. Se mostrar&aacute; en el color establecido en la pantalla de v&iacute;deo de la c&aacute;mara.</li>
+                        <li>Para aplicar un color al &aacute;rea de privacidad, vaya a <strong class="UI">[Color]</strong> y seleccione un color para pintar el &aacute;rea. El color seleccionado se aplicar&aacute; a cada &aacute;rea de privacidad.</li>
+                    </ol>
+            </div>            
 		
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>

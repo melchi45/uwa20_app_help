@@ -152,7 +152,7 @@
                         <td width="235">The name of the lens model installed in the camera is displayed. If you select a channel in <a href="#channel">Select channel</a>, you can see the name of the lens installed for each channel. </td>
                         <p> </p>
                     </tr>
-                    <tr ng-if="MaxChannel > 1">
+                    <tr ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
                         <td width="235">
                             <p><a href="#channel">Select channel</a></p>
                         </td>
@@ -164,7 +164,27 @@
                             <p ng-if="SupportAutoImageAlignment">The camera screen of each channel is shown when you select a camera channel from CH2 to CH5. If you select CH1, the camera screens of CH2 to CH5 will be aligned in a straight line to show a panoramic view. If you select CH6 and CH7, you can check the CH1 video while <a href="#PTZ">adjusting the camera PTZ.</a></p>
                         </td>
                     </tr>
-                    <tr>
+
+                    <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
+                        <td width="235">
+                            <p>View type</p>
+                        </td>
+                       <td width="235">
+                            <p>Selects a video type of the fisheye camera to be displayed. Only the images of the channels that are acviated with the <strong class="UI">[Enable channel]</strong> option in <strong class="UI">[Setup]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[Video profile]</strong>><strong class="UI">[Select channel]</strong> appear in the list.</p>
+                                <ul>
+                                    <li>Fisheye view: Displays the fisheye camera video without correction.</li>
+                                    <li>Single panorama: Dewarps a 360&deg; video and displays it as a wall panorama.</li>
+                                    <li>Double panorama: Dewarps a 360&deg; video and displays it as a panorama split up/down.</li>
+                                    <li>Quad view: Dewarps 4 screens appropriate to the human view and display them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out. </li>
+                                    <li>Q1: Shows the upper left view among the quad view.   </li>
+                                    <li>Q2: Shows the top right view among quad view. </li>
+                                    <li>Q3: Shows the lower left view among the quad view.</li>
+                                    <li>Q4: Shows the lower right view among the quad view. </li>
+                                </ul>
+                        </td>
+                    </tr>
+
+                    <tr>                       
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
                             <p>Full screen</p>
@@ -205,6 +225,7 @@
                         </td>
                         <td width="235">
                             <p>You can record and save the live screen to a PC. Click the Record icon to start recording; click the icon again to stop recording. Recorded files are saved in .avi format and can be saved in the default path of the browser or a file path can be set in the 'Save as' window.</p>
+                            <p>To protect your video files with password, select ZIP from the list of the video recording file format and enter a password. You need to enter the password to play back downloaded videos.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -267,7 +288,7 @@
                 </tbody>
             </table>
         </div>
-		 <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
+		 <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
             <h4>To change channel</h4>
                 <ul>
                     <li>Select the channel number you want. The video of the channel will appear in the viewer.</li>
@@ -292,6 +313,11 @@
                     <li>To end the manual recording, click the Record icon(<span class="tui tui-wn5-toolbar-record"></span>) again.</li>
                </ul>
                 <p>The manual recording can be saved as an .avi file in your PC. Specify the path and save the video. </p>
+                <p>To protect video recordings with password</p>
+                <ul>
+                    <li>Select ZIP from the list and enter a password.</li>
+                </ul>
+                <p>Your video recordings will be saved as .zip in your PC. You need to enter the password to play back the videos.</p>  
                 <p ng-if="FisheyeLens">If you record the video in the Fisheye view mode, the original images will be saved instead of images from the dewarped view currently displayed.</p>
             </div>
 			
@@ -605,8 +631,11 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
             <!--     <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> --> 
-                <li>The Pan function can be used only when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
-                <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when  <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> and 'Guad view', 'Q1', 'Q2', 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> is enabled when 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. </li>
+                <li ng-if="!SupportChannelEnabledFeature">The Pan function can be used only when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
+                <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when  <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong> and 'Guad view', 'Q1', 'Q2', 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> is enabled when 'Q3', or 'Q4' is selected in <strong class="UI">[View]</strong>. </li>
+                <li ng-if="SupportChannelEnabledFeature">If <strong class="UI">[Fisheye view]</strong> is selected from the view mode list, PTZ function will be disabled.</li>
+                <li ng-if="SupportChannelEnabledFeature">Only when <strong class="UI">[4-split view]</strong> or <strong class="UI">[Q1]</strong>/<strong class="UI">[Q2]</strong>/<strong class="UI">[Q3]</strong>/<strong class="UI">[Q4]</strong> is selected from the view mode list, Quadrant as well as Preset and Group functions can be used.</li>
+                <li ng-if="SupportChannelEnabledFeature">Only when <strong class="UI">[Single panorama]</strong> or <strong class="UI">[Double panorama]</strong> is selected from the view mode list, <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> functions will be enabled.</li>
             </ul>
 
         </div>

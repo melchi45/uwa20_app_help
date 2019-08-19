@@ -25,6 +25,20 @@
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">The presets set in the Digital PTZ menu can be seen on the Live screen.</p>
             <p ng-if="SupportAutoImageAlignment">'Digital PTZ setup' can only be set on CH6 and CH7.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">After selecting your camera channel, you can set the details of PTZ for each channel. </p>
+            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. Only Channel 4 to 8 can be set up.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                    <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
+                    <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
+                    <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
+                    <li>Channel 4: Dewarps 4 screens similar to human visual perception and displays them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
+                    <li>Channel 5: Displays the top left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
+                    <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
+                    <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
+            </ul>
+
         </div>
     </div>
 </div>

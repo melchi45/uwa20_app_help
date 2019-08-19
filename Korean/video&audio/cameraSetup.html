@@ -14,6 +14,19 @@
             <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
             <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
             <p ng-if="SupportAutoImageAlignment">'카메라 설정'은 채널 1에만 설정할 수 있습니다.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">채널별 뷰 모드는 다음과 같습니다. '카메라 설정'은 채널 1번만 활성화됩니다.  </p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
+                <li>채널 2: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.</li>
+                <li>채널 3: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다.</li>
+                <li>채널 4: 사람의 시야에 적합하도록 왜곡 보정한 특정 화면 4개를 동시에 보여줍니다. 분할 화면을 선택하여 뷰를 상하좌우로 이동하거나 줌 기능을 사용할 수 있습니다.</li>
+                <li>채널 5: 채널 4의 4분할 화면에서 왼쪽 상단의 영상을 보여줍니다.</li>
+                <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
+                <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
+                <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
+            </ul>
+
             <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
 	</div>
@@ -256,9 +269,13 @@
             <p>BLC (Back Light Compensation) 모드는 역광으로 어둡게 촬영된 영상 중 사용자가 특정 영역을 설정하여 선택 영역의 물체가 더욱 잘 보이도록 보정합니다. </p>
             <p ng-if="PTZModel">BLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLC 레벨</h5>
             <p>낮음, 중간, 높음 중에 선택할 수 있습니다. 레벨이 높으면 설정한 영역의 밝기가 더 밝아집니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+            <h5>BLC 레벨 </h5>
+            <p>슬라이드 막대를 조정하여 BLC 레벨을 설정합니다. 레벨이 높으면 설정한 영역의 밝기가 더 밝아집니다.  </p>
         </div>
          <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>영역 설정</h5>
@@ -898,6 +915,7 @@
     </div>
 </div>
 
+<!-- PTZModel -> PTZModel && IR으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> 
 <hr class="wn5-setup-hr" ng-if="PTZModel && IR">
 <div class="wn5-setup-section" ng-if="PTZModel && IR">
     <div class="wn5-setup-section-heading">

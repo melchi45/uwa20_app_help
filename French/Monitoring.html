@@ -137,7 +137,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1">
+                    <tr nng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
                         <td width="235">
                             <p><a href="#channel">S&eacute;lectionner un canal</a></p>
                         </td>
@@ -149,6 +149,26 @@
                             <p ng-if="SupportAutoImageAlignment">L’écran de la caméra de chaque canal s’affiche lorsque vous sélectionnez un canal de caméra CAN 2 à CAN 5. Si vous sélectionnez CAN 1, les écrans de caméra CAN 2 à CAN 5 seront alignés en ligne droite pour montrer une vue panoramique. Si vous sélectionnez CAN 6 et CAN 7, vous pouvez vérifier la vidéo du CAN 1 tout en <a href="#PTZ">ajustant PTZ de la caméra</a>.</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
+                            <td width="235">
+                                <p>Type d&apos;affichage</p>
+                            </td>
+                            <td width="235">
+                                <p>S&eacute;lectionne un type de vid&eacute;o de la cam&eacute;ra fisheye &agrave; afficher. Seules les images des chaînes activées à l'aide de l'option <strong class="UI">[Activer la chaîne]</strong> dans <strong class="UI">[Configuration]</strong>> <strong class="UI">[Base]</strong>> <strong class="UI">[Profil vidéo]</strong>> <strong class="UI">[Sélectionner chaîne]</strong> apparaissent dans la liste. </p>
+                                <ul>
+                                    <li>Affichage Fisheye&nbsp;: Affiche la vid&eacute;o de la cam&eacute;ra fisheye sans correction.</li>
+                                    <li>Panorama simple&nbsp;: lisse une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama mural.    </li>
+                                    <li>Double panorama&nbsp;: lisse une vid&eacute;o &agrave; 360˚  et l&rsquo;affiche sous forme de panorama partag&eacute; en haut/bas. </li>
+                                    <li>Quadravision&nbsp;:lisse 4 &eacute;crans appropri&eacute;s &agrave; la vue humaine et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou le zoom avant/arri&egrave;re.  </li>
+                                    <li>Q1&nbsp;: Affiche la vue en haut &agrave; gauche dans la quadravision.</li>
+                                    <li>Q2&nbsp;: Affiche la vue en haut &agrave; droite dans la quadravision.</li>
+                                    <li>Q3&nbsp;: Affiche la vue en bas &agrave; gauche dans la quadravision.</li>
+                                    <li>Q4&nbsp;: Affiche la vue en bas &agrave; droite dans la quadravision..</li>
+                                </ul>
+                            </td>
+                    </tr>
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -252,7 +272,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="MaxChannel > 1">
+        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
             <h4>Pour changer de canal</h4>
                 <ul>
                     <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
@@ -275,6 +295,13 @@
                     <li>Pour terminer l&rsquo;enregistrement manuel, cliquez &agrave; nouveau sur le bouton enregistrer <span class="tui tui-wn5-toolbar-record"></span>.</li>
                </ul>
                 <p>L&rsquo;enregistrement manuel peut &ecirc;tre sauvegard&eacute; sous forme de fichier.avi sur votre PC. Sp&eacute;cifiez le chemin d&rsquo;acc&egrave;s et enregistrez la vid&eacute;o.</p>
+
+                <p>Pour protéger les enregistrements vidéo par un mot de passe.</p>
+                <ul>
+                    <li>•Sélectionnez ZIP dans la liste et entrez un mot de passe.</li>
+                </ul>
+                <p>L’enregistrement manuel peut être sauvegardé sous forme de fichier .avi sur votre PC. Vous devez entrer le mot de passe pour lire les vidéos.</p>
+
                 <p ng-if="FisheyeLens">Si vous enregistrez la vid&eacute;o en mode d&rsquo;affichage Fisheye, les images originales seront sauvegard&eacute;es &agrave; la place des images de la vue en cours d&rsquo;affichage.</p>
             </div>
 			
@@ -530,6 +557,17 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             </ul>
 
         </div>  -->
+
+        <div class="wn5-online-help-info" ng-if="SupportChannelEnabledFeature">
+                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                        <li>Si <strong class="UI">[Affichage Fisheye]</strong> est s&eacute;lectionn&eacute; dans la liste des modes d&rsquo;affichage, la fonction PTZ sera d&eacute;sactiv&eacute;e.</li>
+                        <li>Les fonctions Quadrant ainsi que Pr&eacute;r&eacute;gl&eacute; et Groupe peuvent &ecirc;tre utilis&eacute;es uniquement lorsque <strong class="UI">[Vue Quad]</strong> ou <strong class="UI">[Q1]</strong>/<strong class="UI">[Q2]</strong>/<strong class="UI">[Q3]</strong>/<strong class="UI">[Q4]</strong> est s&eacute;lectionn&eacute; dans la liste des modes d&rsquo;affichage.</li>
+                        <li>Seulement lorsque <strong class="UI">[Panorama simple]</strong> ou <strong class="UI">[Panorama double]</strong> est s&eacute;lectionn&eacute; dans la liste des modes d&rsquo;affichage, les fonctions <strong class="UI">[Pan]</strong> et <strong class="UI">[Home]</strong> sont activ&eacute;es.</li>
+                </ul>
+    
+        </div> 
+
       <div class="wn5-setup-section-article-content">
             <h3>Comment s&eacute;lectionner un &eacute;cran divis&eacute;</h3>
             <p>S&eacute;lectionnez un num&eacute;ro pour une vid&eacute;o individuelle dans l&apos;affichage en mosa&iuml;que par 4. 1 correspond &agrave; la partie sup&eacute;rieure gauche de l&apos;affichage en mosa&iuml;que par 4, 2 correspond &agrave; la partie sup&eacute;rieure droite, 3 &agrave; la partie inf&eacute;rieure gauche et 4 &agrave; la partie inf&eacute;rieure droite.</p>

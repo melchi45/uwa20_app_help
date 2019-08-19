@@ -43,6 +43,19 @@
             <p>Después de seleccionar su canal de cámara, puede gestionar y definir la Configuración de acciones de evento para cada canal en <strong class="UI">[Lista de eventos del canal]</strong>.</p>
             <p ng-if="HandoverCalibration">El canal de la cámara fija se muestra como un número y el canal PTZ se muestra como «PTZ».</p>
             <p>Los ajustes definidos en <strong class="UI">[Lista de eventos comunes]</strong> se aplicará a todos los demás canales.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La acción del evento se puede configurar solo en el canal 1.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
+                <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
+                <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
+                <li>Canal 4: Corrige la distorsi&oacute;n de 4 pantallas similares a la percepci&oacute;n visual humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.</li>
+                <li>Canal 5: Muestra el v&iacute;deo superior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
+                <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
+            </ul>
+
             <p>El número de canal seleccionado por última vez en la página en directo o en la página de reproducción se selecciona automáticamente. Haga clic en el botón <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
             <p>Si selecciona otro canal sin aplicar los cambios en la configuración, aparecerá un mensaje de alarma.</p>
         </div>

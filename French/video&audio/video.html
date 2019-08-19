@@ -18,6 +18,19 @@
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">Du fait qu&rsquo;une zone de confidentialit&eacute; est d&eacute;finie individuellement pour chaque canal, une zone de confidentialit&eacute; d&eacute;finie sur CAN1 sera seulement appliqu&eacute;e &agrave; CAN1 m&ecirc;me si la m&ecirc;me zone de confidentialit&eacute; existe sur CAN2.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;Configuration de la vidéo&nbsp;” peut être activé sur le canal 1 uniquement.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
+                <li>Canal&nbsp;2&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique murale.</li>
+                <li>Canal&nbsp;3&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique fractionn&eacute;e haut/bas.</li>
+                <li>Canal&nbsp;4&nbsp;: Lisse 4 &eacute;crans pour les rendre similaires &agrave; la vision humaines et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou pour un zoom avant/arri&egrave;re.</li>
+                <li>Canal&nbsp;5&nbsp;: Affiche la vid&eacute;o en haut &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;6&nbsp;: Affiche la vid&eacute;o en haut &agrave; droite de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
+            </ul>
+
             <p>Cliquez sur le bouton <strong class="UI">[Informations d&eacute;taill&eacute;es]</strong> pour afficher le r&eacute;sum&eacute; global de chaque canal.</p>
             <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
         </div>
@@ -44,22 +57,8 @@
 			<h3>Mod&egrave;le</h3>
             <p>S&eacute;lectionnez le mod&egrave;le de mosa&iuml;que &agrave; appliquer &agrave; une zone de confidentialit&eacute;. S&eacute;lectionnez <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> pour appliquer le jeu de couleurs dans la fen&ecirc;tre de la zone de confidentialit&eacute;. Si vous s&eacute;lectionnez le mod&egrave;le, il sera appliqu&eacute; &agrave; toutes les zones.</p>
 		</div>
-				<div class="wn5-online-help-action">
-			<h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (sauf pour un zoom ou une cam&eacute;ra PTZ)</h4>
-            <ol>
-				
-				<li>S&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
-                <li>Cliquez sur les 4 coins avec la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</li>
-                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, d&eacute;finissez les &eacute;l&eacute;ments suivants&nbsp;:</li>
-                <ul>
-                    <li>Entrez le nom de la zone de confidentialit&eacute; dans <strong class="UI">[Nom]</strong>, s&eacute;lectionnez la couleur de couverture de l&rsquo;image dans <strong class="UI">[Couleur]</strong>.</li>
-                </ul>
-                <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
-                <li>Une nouvelle zone de confidentialit&eacute; est ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La couleur d&eacute;finie dans l&rsquo;&eacute;cran d&rsquo;image de la cam&eacute;ra est utilis&eacute;e pour afficher une zone de confidentialit&eacute;.</li>
-            </ol>
-		</div>
-	
-	        <div class="wn5-online-help-action">
+
+	        <div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (cam&eacute;ra PTZ)</h4>
             <ol>
 				
@@ -76,7 +75,7 @@
                 <li>Une nouvelle zone de confidentialit&eacute; est ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La zone de confidentialit&eacute; &agrave; laquelle le seuil de zoom est appliqu&eacute; sera marqu&eacute;e comme «&nbsp;[Zoom]&nbsp;» dans la liste des zones de confidentialit&eacute;. La couleur d&eacute;finie dans l&rsquo;&eacute;cran d&rsquo;image de l&rsquo;appareil photo est utilis&eacute;e pour afficher la zone de confidentialit&eacute;.</li>
             </ol><!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> --></div>
 		
-        <div class="wn5-online-help-action">
+        <div class="wn5-online-help-action" ng-if="Zoom && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (cam&eacute;ra avec zoom)</h4>
             <ol>
 				
@@ -93,7 +92,33 @@
             </ol>
         </div>
 
-		
+        <div class="wn5-online-help-action" ng-if="!PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+                <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (sauf pour un zoom ou une cam&eacute;ra PTZ)</h4>
+                <ol>
+                    
+                    <li>S&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> puis cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
+                    <li>Cliquez sur les 4 coins avec la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</li>
+                    <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, d&eacute;finissez les &eacute;l&eacute;ments suivants&nbsp;:</li>
+                    <ul>
+                        <li>Entrez le nom de la zone de confidentialit&eacute; dans <strong class="UI">[Nom]</strong>, s&eacute;lectionnez la couleur de couverture de l&rsquo;image dans <strong class="UI">[Couleur]</strong>.</li>
+                    </ul>
+                    <li>Dans la fen&ecirc;tre <strong class="UI">[Zone de confidentialit&eacute;]</strong>, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                    <li>Une nouvelle zone de confidentialit&eacute; est ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La couleur d&eacute;finie dans l&rsquo;&eacute;cran d&rsquo;image de la cam&eacute;ra est utilis&eacute;e pour afficher une zone de confidentialit&eacute;.</li>
+                </ol>
+            </div>
+ 
+            <div class="wn5-online-help-action" ng-if="PrivacyMasGlobalColor">
+                    <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute;</h4>
+                    <ol>
+                        
+                        <li>S&eacute;lectionnez <strong class="UI">[Activer zone de confidentialit&eacute;]</strong>.</li>
+                        <li>Faites glisser la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra pour d&eacute;finir la taille de la zone de confidentialit&eacute;.</li>
+                        <li>Entrez le nom de la zone de confidentialit&eacute; dans <strong class="UI">[Nom]</strong> dans <strong class="UI">[Zone de confidentialit&eacute;]</strong>, puis cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
+                        <li>La nouvelle zone de confidentialit&eacute; sera ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. Elle sera affich&eacute;e dans la couleur d&eacute;finie sur l&rsquo;&eacute;cran de la vid&eacute;o de la cam&eacute;ra.</li>
+                        <li>Pour appliquer une couleur &agrave; la zone de confidentialit&eacute;, acc&eacute;dez &agrave; <strong class="UI">[Couleur]</strong> et s&eacute;lectionnez une couleur pour la zone. La couleur s&eacute;lectionn&eacute;e sera appliqu&eacute;e &agrave; chaque zone de confidentialit&eacute;.</li>
+                    </ol>
+                </div>
+            
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 			<ul>

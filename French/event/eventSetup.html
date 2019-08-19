@@ -44,6 +44,19 @@
             <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez g&eacute;rer et d&eacute;finir les param&egrave;tres d&rsquo;action d&rsquo;&eacute;v&eacute;nement pour chaque canal dans <strong class="UI">[Liste des événements du canal]</strong>.</p> 
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme «&nbsp;PTZ&nbsp;».</p>
             <p>Les param&egrave;tres d&eacute;finis dans la <strong class="UI">[Liste des événements communs]</strong> s&rsquo;appliqueront &agrave; tous les autres canaux.</p>
+
+            <p ng-if="SupportChannelEnabledFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. Chaque action d’événement peut être configurée sur le canal 1 uniquement.</p>
+            <ul ng-if="SupportChannelEnabledFeature">
+                <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
+                <li>Canal&nbsp;2&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique murale.</li>
+                <li>Canal&nbsp;3&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique fractionn&eacute;e haut/bas.</li>
+                <li>Canal&nbsp;4&nbsp;: Lisse 4 &eacute;crans pour les rendre similaires &agrave; la vision humaines et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou pour un zoom avant/arri&egrave;re.</li>
+                <li>Canal&nbsp;5&nbsp;: Affiche la vid&eacute;o en haut &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;6&nbsp;: Affiche la vid&eacute;o en haut &agrave; droite de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
+                <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
+            </ul>
+
             <p>Sur la page en direct ou la page de lecture, le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; s&rsquo;affiche automatiquement. Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher un r&eacute;sum&eacute; de la condition du canal.</p>
             <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
         </div>

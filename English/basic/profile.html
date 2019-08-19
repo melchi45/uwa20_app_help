@@ -13,6 +13,20 @@
                     <p>After selecting your camera channel, you can set the details of Video profile for each channel.</p>
                     <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
                     <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
+
+                    <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below.</p>
+                    <ul ng-if="SupportChannelEnabledFeature">
+                            <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
+                            <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
+                            <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
+                            <li>Channel 4: Dewarps 4 screens similar to human visual perception and displays them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
+                            <li>Channel 5: Displays the top left video from the 4-split view of Channel 4.</li>
+                            <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
+                            <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
+                            <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
+                    </ul>
+                    <p ng-if="SupportChannelEnabledFeature">To use a specific view mode, select a channel number and select <strong class="UI">[Enable channel]</strong>. For example, if only Channels 2 and 3 are enabled, the camera video will be displayed in a wall panoramic view or an up/down split view, and other screen views won&apos;t be supported.</p>
+                    
                     <p>On the live page or play page, the last selected channel number is automatically displayed. Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition. </p>
                     <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
 
@@ -187,7 +201,7 @@
 
 
 
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
                     <h3>Fisheye view type</h3>
                     <p>Selects a video type of the fisheye camera to be displayed in the profile.</p>
                     <ul>
@@ -195,16 +209,14 @@
                         <li>Dewarping view: Corrects the 360&deg; video captured by the fisheye camera to fit the view. The dewarping video type can be selected from the <strong class="UI">[View]</strong>. </li>
                     </ul>
                 </div>
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
                     <h3>Views</h3>
                     <p>Selects the dewarping video type.</p>
                     <p>It is activated when <strong class="UI">[Dewarping view]</strong> is selected in <strong class="UI">[Fisheye view type]</strong>.</p>
                     <ul>
                         <li>Single panorama: Dewarps a 360&deg; video and displays it as a wall panorama.</li>
                         <li>Quad view: Dewarps 4 screens appropriate to the human view and display them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out. </li>
-                        <li>Double panorama: Dewarps a 360&deg; video and displays it as a panorama split up/down. The Double panorama option only appears when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>..
-
-                      </li>
+                        <li>Double panorama: Dewarps a 360&deg; video and displays it as a panorama split up/down. The Double panorama option only appears when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
                         <li>Q1: Shows the upper left view among the quad view.   </li>
                         <li>Q2: Shows the top right view among quad view. </li>
                         <li>Q3: Shows the lower left view among the quad view.</li>
