@@ -246,8 +246,9 @@
     </div>
 </div>
 
-            <hr class="wn5-setup-hr" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
-            <div class="wn5-setup-section" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
+<!-- !HandoverCalibration && !SupportAutoImageAlignment -> HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)로 수정. 김영호 책임님 가이드. Amba L시리즈 이슈 수정. 2018-08-21) --> 
+            <hr class="wn5-setup-hr" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
+            <div class="wn5-setup-section" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
     <div class="wn5-setup-section-heading">
         <h2>핸드오버  </h2>
     </div>
