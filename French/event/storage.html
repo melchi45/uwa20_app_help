@@ -89,8 +89,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
     <div class="wn5-setup-section-heading">
         <h2>S&eacute;lectionner un canal</h2>
     </div>
@@ -131,18 +131,18 @@
                 <li>S&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Cryptage]</strong>.</li>
                 <li>Entrez votre nouveau mot de passe dans le champ <strong class="UI">[Nouveau mot de passe]</strong> et entrez le m&ecirc;me mot de passe une nouvelle fois dans le champ&nbsp;<strong class="UI">[Confirmer mot de p.]</strong>.</li>
                 <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran.</li>
-                <li>Si le cryptage de la carte SD fonctionne correctement, le message �&nbsp;Crypt&eacute;&nbsp;� s&rsquo;affiche.</li>
+                <li>Si le cryptage de la carte SD fonctionne correctement, le message «&nbsp;Crypt&eacute;&nbsp;» s&rsquo;affiche.</li>
             </ol></div>
         <div class="wn5-online-help-action">
             <h4>D&eacute;crypter la carte SD</h4>
             <ol>
                 <li>D&eacute;cochez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Cryptage]</strong>.</li>
-                <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran. Si le cryptage de la carte SD est d&eacute;sactiv&eacute; et si en cons&eacute;quence, les donn&eacute;es de la carte SD ne sont pas crypt&eacute;es, le message �&nbsp;Non crypt&eacute;&nbsp;� s&rsquo;affiche.</li>
+                <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran. Si le cryptage de la carte SD est d&eacute;sactiv&eacute; et si en cons&eacute;quence, les donn&eacute;es de la carte SD ne sont pas crypt&eacute;es, le message «&nbsp;Non crypt&eacute;&nbsp;» s&rsquo;affiche.</li>
             </ol></div>
          <div class="wn5-online-help-action">
             <h4>Modifier le mot de passe</h4>
             <p>Vous pouvez modifier le mot de passe utilis&eacute; pour le cryptage de la carte SD.</p>
-            <p>Si le mot de passe de la carte SD crypt&eacute;e et le mot de passe de passe entr&eacute; par l&rsquo;utilisateur ne correspondent pas, le message �&nbsp;Erreur Mot de passe&nbsp;� s&rsquo;affiche dans la colonne <strong class="UI">[&Eacute;tat]</strong> de <strong class="UI">[Config. action de stockage]</strong>.</p>
+            <p>Si le mot de passe de la carte SD crypt&eacute;e et le mot de passe de passe entr&eacute; par l&rsquo;utilisateur ne correspondent pas, le message «&nbsp;Erreur Mot de passe&nbsp;» s&rsquo;affiche dans la colonne <strong class="UI">[&Eacute;tat]</strong> de <strong class="UI">[Config. action de stockage]</strong>.</p>
             <ol>
                 <li>Cliquez sur le bouton <strong class="UI">[Modifier le mot de passe]</strong>.</li>
                 <li>Entrez le mot de passe actuel dans le champ <strong class="UI">[Mot de passe actuel]</strong>.</li>
