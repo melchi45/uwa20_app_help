@@ -1,19 +1,134 @@
 ﻿<h1 class="wn5-setup-main-title">Configuration PTRZ</h1>
 <div class="wn5-setup-section">
-    <p>PTRZ permet &agrave; une cam&eacute;ra de se d&eacute;placer de haut en bas, de gauche &agrave; droite, de zoomer en avant et en arri&egrave;re, et de tourner m&ecirc;me s&apos;il ne s&apos;agit pas d&apos;une cam&eacute;ra PTZ. En particulier lorsqu&apos;une cam&eacute;ra est install&eacute;e sur un plafond, un mur ou un coin, PTRZ est utile pour ajuster la position de la cam&eacute;ra verticalement et horizontalement afin d&apos;obtenir une vue optimale.</p>
-    <p>Sur la page «&nbsp;Configuration PTRZ&nbsp;», la fonction PTRZ peut &ecirc;tre utilis&eacute;e pour ajuster la position de la cam&eacute;ra et r&eacute;gler la mise au point. Lorsque le r&eacute;glage est termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong>&nbsp;en bas de la page.</p>
+    <p>PTRZ est une fonction qui permet &agrave; une cam&eacute;ra sans fonction PTZ d&rsquo;effectuer un panoramique, une inclinaison, un d&eacute;placement et une rotation ainsi qu&rsquo;un zoom avant/arri&egrave;re sur la cam&eacute;ra. Ceci est particuli&egrave;rement utile pour les cam&eacute;ras qui sont mont&eacute;es sur le plafond/mur ou dans le coin car cela permet le mouvement directionnel de la position de la cam&eacute;ra pour offrir une vue optimale. </p>
+    <p>Sur la page «&nbsp;Configuration PTRZ&nbsp;», vous pouvez utiliser la fonction PTRZ pour ajuster la position de la cam&eacute;ra et r&eacute;gler le zoom et la mise au point. </p>
 </div>
 <div class="wn5-online-help-info">
     <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
     <ul>
-        <li>Il est recommand&eacute; d&apos;utiliser la fonction PTRZ pour d&eacute;finir le champ de vision souhait&eacute; ou pour aligner l&apos;&eacute;cran vid&eacute;o horizontalement lors de l&apos;installation de la cam&eacute;ra.</li>
+        <li>Il est recommand&eacute; d&rsquo;utiliser la fonction PTRZ pour d&eacute;finir le champ de vision souhait&eacute; ou pour aligner l&rsquo;&eacute;cran vid&eacute;o horizontalement lors de l&rsquo;installation de la cam&eacute;ra. </li>
     </ul>
 </div>
-<hr class="wn5-setup-hr">
 
-
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
+        <h2><a name="Channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de la cam&eacute;ra, vous pouvez sp&eacute;cifier les d&eacute;tails de PTRZ (panoramique de la cam&eacute;ra et position d&rsquo;inclinaison, rotation et zoom) pour chaque canal. </p>
+            <p>Une fois que vous avez s&eacute;lectionn&eacute; un canal, seule la vid&eacute;o du canal s&eacute;lectionn&eacute; sera affich&eacute;e &agrave; l&rsquo;&eacute;cran, et vous pouvez sp&eacute;cifier les d&eacute;tails de chaque fonction PTRZ individuelle pour chaque canal. </p>
+            <p>Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne Multi-vues, vous pouvez voir les vid&eacute;os de chaque canal en m&ecirc;me temps et appliquer les m&ecirc;mes valeurs &agrave; toutes les cam&eacute;ras. Vous pouvez &eacute;galement appliquer les m&ecirc;mes valeurs &agrave; une ou plusieurs cam&eacute;ras de votre choix.  </p>
+            <p>De plus, en mode Multi-vues, un message d&eacute;crivant l&rsquo;&eacute;tat de chaque cam&eacute;ra s&rsquo;affiche au bas de l&rsquo;&eacute;cran de pr&eacute;visualisation de chaque canal. L&rsquo;un des messages suivants s&rsquo;affiche&nbsp;: </p>
+            <ul>
+                <li>Initialisation&nbsp;: Ce message s&rsquo;affiche lorsque l&rsquo;initialisation de la cam&eacute;ra est en cours apr&egrave;s avoir cliqu&eacute; sur <strong class="UI">[Initialiser PTRZ]</strong>. Tant que l&rsquo;initialisation n&rsquo;est pas termin&eacute;e, aucune autre action ne peut &ecirc;tre effectu&eacute;e.</li>
+                <li>&Eacute;chec de l&rsquo;initilisation&nbsp;: Ce message s&rsquo;affiche pour plusieurs raisons telles que le d&eacute;phasage de la cam&eacute;ra pendant le processus d&rsquo;initialisation de la configuration de la cam&eacute;ra. Si l&rsquo;initialisation est incompl&egrave;te, le contr&ocirc;le PTR peut ne pas fonctionner correctement. Dans ce cas, changez la position de la cam&eacute;ra et r&eacute;initialisez.</li>
+                <li>Passer aux pr&eacute;r&eacute;glages&nbsp;: Ce message s&rsquo;affiche lorsque l&rsquo;appareil photo se d&eacute;place actuellement vers une position pr&eacute;d&eacute;finie que vous avez d&eacute;j&agrave; d&eacute;finie en cliquant sur <strong class="UI">[360]</strong>, <strong class="UI">[200]</strong> ou <strong class="UI">[Pr&eacute;r&eacute;glage utilisateur]</strong>. Tant que le mouvement n&rsquo;est pas termin&eacute;, aucune autre action ne peut &ecirc;tre effectu&eacute;e.</li>
+                <li>&Eacute;chec des pr&eacute;r&eacute;glages&nbsp;: Ce message s&rsquo;affiche lorsque la cam&eacute;ra ne parvient pas &agrave; passer une position de pr&eacute;r&eacute;glage en raison de probl&egrave;mes tels qu&rsquo;un probl&egrave;me de d&eacute;phasage. Changez la position de la cam&eacute;ra en ajustant le PTR de la cam&eacute;ra et r&eacute;essayez l&rsquo;op&eacute;ration Aller &agrave; pr&eacute;r&eacute;glage.</li>
+                <li>D&eacute;placement en cours&nbsp;: Ce message s&rsquo;affiche lorsque l&rsquo;une des op&eacute;rations PTR (Panoramique/inclinaison/rotation) est en cours.</li>
+                <li>Entr&eacute;e en collision&nbsp;: Ce message s&rsquo;affiche lorsqu&rsquo;une cam&eacute;ra est incapable de se d&eacute;placer, car elle entre en contact avec une autre cam&eacute;ra qui utilise un canal diff&eacute;rent.</li>
+                <li>Veille&nbsp;: Ce message s&rsquo;affiche lorsque le PTR est en mode veille et que les cam&eacute;ras gardent une certaine distance entre elles.</li>
+            </ul>
+            <p>Pour initialiser la configuration de PTRZ, s&eacute;lectionnez <strong class="UI">[Initialiser PTRZ]</strong>. <strong class="UI">[Initialiser PTRZ]</strong> n&rsquo;est activ&eacute; qu&rsquo;en mode Multi-vues. </p>
+        </div>
+	</div>
+</div> 
+
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="Lens_status"></a>&Eacute;tat de la lentille</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>L&rsquo;information sur l&rsquo;emplacement de la lentille par canal s&rsquo;affiche. Chaque cam&eacute;ra est affich&eacute;e sous la forme d&rsquo;une ic&ocirc;ne de num&eacute;ro de canal. Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal, modifiez les informations PTR pour afficher l&rsquo;emplacement modifi&eacute; de la cam&eacute;ra s&eacute;lectionn&eacute;e.</p>
+            <p>Deux options pr&eacute;r&eacute;gl&eacute;es, [360] et [200], sont fournies afin que la cam&eacute;ra puisse facilement se d&eacute;placer vers le PTRZ r&eacute;gl&eacute;. </p>
+            <p>Si <strong class="UI">[360]</strong> est s&eacute;lectionn&eacute;, comme le montre l&rsquo;image ci-dessous, les quatre cam&eacute;ras sont inclin&eacute;s et positionn&eacute;s de mani&egrave;re &agrave; ce que le champ de vision angulaire total soit de 360&nbsp;degr&eacute;s. Par ailleurs, la valeur d&rsquo;inclinaison est r&eacute;gl&eacute;e &agrave; 45&nbsp;degr&eacute;s, la rotation &agrave; 0&nbsp;degr&eacute;, et le zoom est situ&eacute; &agrave; la fin de la largeur. </p>
+            <p><img src="../../base/images/setup/ptrzSetup_360.png"></p>
+            <p>Si <strong class="UI">[200]</strong> est s&eacute;lectionn&eacute;, comme le montre l&rsquo;image ci-dessous, les trois cam&eacute;ras (canaux&nbsp;1, 2 et 4 de la cam&eacute;ra) sont inclin&eacute;s et positionn&eacute;s de mani&egrave;re &agrave; ce que le champ de vision angulaire total soit de 200&nbsp;degr&eacute;s. Par ailleurs, la valeur d&rsquo;inclinaison est r&eacute;gl&eacute;e &agrave; 45&nbsp;degr&eacute;s, la rotation &agrave; 0&nbsp;degr&eacute;, et le zoom est situ&eacute; &agrave; la fin de la largeur. </p>
+            <p><img src="../../base/images/setup/ptrzSetup_200.png"></p>
+            <p><a href="#set_preset">Les utilisateurs peuvent personnaliser la position pr&eacute;d&eacute;finie du PTRZ</a>. Pour passer &agrave; la position personnalis&eacute;e par l&rsquo;utilisateur, s&eacute;lectionnez <strong class="UI">[Pr&eacute;r&eacute;glage utilisateur]</strong>.</p>
+        </div>
+		
+        <div class="wn5-online-help-action">
+            <h4><a name="set_preset"></a>Configuration d&rsquo;un pr&eacute;r&eacute;glage PTRZ</h4>
+            <ol>
+                <li>S&eacute;lectionnez un canal pour configurer le pr&eacute;r&eacute;glage dans <strong class="UI"><a href="#Lens_status">[&Eacute;tat de la lentille]</a></strong>. Pour s&eacute;lectionner plus d&rsquo;un canal, s&eacute;lectionnez l&rsquo;ic&ocirc;ne Multi-vues dans <strong class="UI"><a href="#Channel">[S&eacute;lectionner un canal]</a></strong>.    </li>
+                <li>Configurez les informations PTRZ de la cam&eacute;ra comme ci-dessous.    </li>
+                <ul>
+                    <li>Utilisez <span class="tui tui-wn5-ptz-handle"></span> l&rsquo;ic&ocirc;ne dans <strong class="UI"><a href="#ptr_setup">[Configuration PTR]</a></strong> pour r&eacute;gler le panoramique et l&rsquo;inclinaison de la cam&eacute;ra afin d&rsquo;ajuster la vue de la cam&eacute;ra, ou utilisez le bouton <i class="tui tui-wn5-return"></i> ou <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> pour faire pivoter la cam&eacute;ra.</li>
+                    <li> D&eacute;finissez les valeurs de Zoom et de Mise au point que vous voulez dans <strong class="UI"><a href="#zoom_focus">[Configuration du zoom et de la mise au point]</a></strong>. </li>
+                </ul>
+                <li>Cliquez sur <strong class="UI">[Configurer le pr&eacute;r&eacute;glage]</strong>. </li>
+            </ol>
+            <p>Si vous cliquez sur <strong class="UI">[Pr&eacute;r&eacute;glage utilisateur]</strong>, la cam&eacute;ra se d&eacute;place vers le dernier emplacement du pr&eacute;r&eacute;glage PTRZ que vous avez d&eacute;fini. </p>
+        </div>
+		
+	</div>
+</div> 
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="ptr_setup"></a>Configuration PTRZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Pour ajuster la vue de la cam&eacute;ra, cliquez sur le bouton <span class="tui tui-wn5-ptz-handle"></span> &agrave; l&rsquo;aide de la souris et faites-le glisser vers le haut, le bas, la gauche ou la droite. La position de la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison. </p>
+            <p>Vous pouvez &eacute;galement cliquer sur le bouton <i class="tui tui-wn5-return"></i> pour faire pivoter la cam&eacute;ra vers la droite.La cam&eacute;ra continuera de tourner vers la droite jusqu&rsquo;&agrave; ce que le bouton <i class="tui tui-wn5-return"></i> soit rel&acirc;ch&eacute;. Cliquez sur le bouton <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> pour faire pivoter la cam&eacute;ra vers la gauche.Continuez &agrave; le faire tourner vers la gauche jusqu&rsquo;&agrave; ce que le bouton <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> soit rel&acirc;ch&eacute;. </p>
+            <p>Cliquez sur les ic&ocirc;nes triangulaires autour du pav&eacute; de navigation sur l&rsquo;&eacute;cran pour ajuster le d&eacute;filement et l&rsquo;inclinaison de la cam&eacute;ra. Si vous appuyez et maintenez appuy&eacute; sur un des ic&ocirc;nes triangulaires, la vitesse de d&eacute;filement et d&rsquo;inclinaison est constante. </p>
+        </div>
+	</div>
+</div> 
+
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="zoom_focus"></a>Configuration de la mise au point du zoom</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Il est possible d&rsquo;ajuster et de r&eacute;gler le zoom et la mise au point de la cam&eacute;ra. </p>
+            <p>Pour r&eacute;initialiser la mise au point, cliquez sur le bouton <strong class="UI">[Initialisation de la mise au point]</strong>. La mise au point est ajust&eacute;e &agrave; la position par d&eacute;faut.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mise au point </h3>
+            <p>Cliquez sur le bouton Mise au point sur l&rsquo;&eacute;cran et r&eacute;glez la mise au point manuellement. La valeur affich&eacute;e sur le bouton fait r&eacute;f&eacute;rence &agrave; l&rsquo;intervalle de d&eacute;placement de la mise au point. «&nbsp;1&nbsp;» signifie d&eacute;placer la mise au point d&rsquo;un facteur 1, tandis que «&nbsp;10&nbsp;» signifie d&eacute;placer la mise au point d&rsquo;un facteur 10. «&nbsp;100&nbsp;» signifie d&eacute;placer la mise au point d&rsquo;un facteur 100. «&nbsp;-&nbsp;» rapproche la zone de mise au point et «&nbsp;+&nbsp;» &eacute;loigne la zone de mise au point.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Zoom </h3>
+            <p>Ajuste manuellement l&rsquo;agrandissement du zoom. La valeur affich&eacute;e sur le bouton fait r&eacute;f&eacute;rence &agrave; l&rsquo;intervalle de d&eacute;placement du zoom. «&nbsp;1&nbsp;» signifie d&eacute;placer le zoom d&rsquo;un facteur 1, «&nbsp;10&nbsp;» signifie d&eacute;placer le zoom d&rsquo;un facteur 10 et «&nbsp;100&nbsp;» signifie d&eacute;placer le zoom d&rsquo;un facteur 100. «&nbsp;-&nbsp;» signifie zoom arri&egrave;re (plus large) et «&nbsp;+&nbsp;» signifie zoom avant (plus proche).</p>
+        </div>	
+
+<div class="wn5-setup-section-article-content">
+            <h3>Mise au point simple</h3>
+            <p>La mise au point est ajust&eacute;e automatiquement, en fonction de l&rsquo;emplacement d&eacute;sign&eacute; par l&rsquo;utilisateur. Lorsque vous d&eacute;finissez l&rsquo;emplacement de mise au point en cliquant et en faisant glisser sur l&rsquo;&eacute;cran avec la souris, puis cliquez sur le bouton <strong class="UI">[Mise au point simple]</strong>, N (Proche) et<->F (Loin) sont affich&eacute;s sur l&rsquo;&eacute;cran et la mise au point est contr&ocirc;l&eacute;e automatiquement, en fonction de l&rsquo;emplacement d&eacute;sign&eacute; par l&rsquo;utilisateur.</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Dans les cas suivants, la fonction Mise au point simple peut ne pas fonctionner correctement&nbsp;:</li>
+                    <ul>
+                        <li>S&rsquo;il y a un changement soudain (mouvement ou disparition) de l&rsquo;objet pendant le r&eacute;glage de la mise au point</li>
+                        <li>S&rsquo;il y a un changement soudain de la luminosit&eacute; pendant le r&eacute;glage de la mise au point</li>
+                        <li>Si le contraste de l&rsquo;image est faible</li>
+                        <li>Si une forte source de lumi&egrave;re se trouve &agrave; proximit&eacute;</li>
+                    </ul>
+                    <li>Dans ce cas, si la cam&eacute;ra est hors focus apr&egrave;s l&rsquo;op&eacute;ration de mise au point simple, utilisez alors le bouton Zoom (-100, -10, -1, 1, 10 ou 100) pour effectuer la mise au point manuellement.</li>
+                    <li>S&rsquo;il est difficile d&rsquo;effectuer une simple mise au point dans l&rsquo;environnement, il est recommand&eacute; d&rsquo;effectuer la mise au point manuellement. </li>
+                </ul>
+        </div>		
+			
+	</div>
+</div> 
+
+
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading" ng-if="MaxChannel > 1">
         <h2>Configuration PTRZ</h2>
     </div>
 	    <div class="wn5-setup-section-article">

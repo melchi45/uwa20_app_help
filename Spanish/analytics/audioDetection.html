@@ -4,8 +4,21 @@
     <p>Un evento de detecci&oacute;n de audio se puede crear cuando se detecta audio por encima de un nivel determinado, mientras que la c&aacute;mara est&aacute; capturando una imagen. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste en el evento de detecci&oacute;n de audio se aplica a <strong class="UI">[Detecci&oacute;n de audio]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Una vez que haya seleccionado un canal de la c&aacute;mara, podr&aacute; ajustar los detalles de detecci&oacute;n de audio para cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona de manera autom&aacute;tica. </p>
+            <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma. </p>
+        </div>
+    </div>
+</div>
 
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Detecci&oacute;n de audio</h2>

@@ -4,8 +4,21 @@
     <p>Lorsque vous installez une application suppl&eacute;mentaire sur la cam&eacute;ra, vous pouvez utiliser les fonctions de l&apos;application install&eacute;e en plus des fonctions existantes.</p>
 </div>
 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal d&rsquo;une cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails de plate-forme ouverte pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;. </p>
+            <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche. </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Plate-forme ouverte</h2>

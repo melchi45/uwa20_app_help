@@ -4,8 +4,22 @@
     <p>Un &eacute;v&eacute;nement de d&eacute;tection audio peut &ecirc;tre cr&eacute;&eacute; lorsqu&rsquo;un audio sup&eacute;rieur &agrave; un niveau d&eacute;fini est d&eacute;tect&eacute; pendant que la cam&eacute;ra capture une image. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page. La configuration de l&apos;&eacute;v&eacute;nement de d&eacute;tection audio s&apos;applique &agrave; <strong class="UI">[D&eacute;tection audio]</strong> sur les pages <strong class="UI">[&Eacute;v&eacute;nement]</strong> et <a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuration de l&apos;&eacute;v&eacute;nement]</strong></a> de la m&ecirc;me mani&egrave;re.</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal d&rsquo;une cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails de d&eacute;tection audio pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;. </p>
+            <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche. </p>
+        </div>
+    </div>
+</div>
 
+
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>D&eacute;tection audio</h2>

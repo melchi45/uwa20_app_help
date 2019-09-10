@@ -4,8 +4,21 @@
     <p>カメラで映像撮影中に設定したレベル以上の音声が検知される場合、音声検知イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。音声検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[音声検知]</strong>に同じく適用されます。</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別に音声検知の詳細を設定することができます。ライブページや再生ページで最も最近選択したチャンネル番号が自動に選択されています。 </p>
+            <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。 </p>
+        </div>
+    </div>
+</div>
 
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>音声検知</h2>

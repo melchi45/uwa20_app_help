@@ -4,8 +4,21 @@
     <p>カメラに追加でアプリケーションをインストールすると、既存の機能の他にも追加でインストールしたアプリケーションの機能を使用することができます。</p>
 </div>
 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別にオープンプラットフォームの詳細を設定することができます。ライブページや再生ページで最も最近選択したチャンネル番号が自動に選択されています。 </p>
+            <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。 </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>オープンプラットフォーム</h2>

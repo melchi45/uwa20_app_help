@@ -4,8 +4,21 @@
     <p>When you install an additional application on the camera, you can use the functions of the installed application in addition to existing functions.</p>
 </div>
 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting a camera channel, you can specify the details of open platform for each channel. The channel number last selected on the Live or Playback page is automatically selected. </p>
+            <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Open platform</h2>

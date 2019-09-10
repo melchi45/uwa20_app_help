@@ -4,8 +4,22 @@
     <p>Al instalar una aplicaci&oacute;n adicional en la c&aacute;mara, puede utilizar las funciones de la aplicaci&oacute;n instalada, adem&aacute;s de las funciones existentes.</p>
 </div>
 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Una vez que haya seleccionado un canal de la c&aacute;mara, podr&aacute; ajustar los detalles de plataforma abierta para cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona de manera autom&aacute;tica. </p>
+            <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma. </p>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Plataforma abierta</h2>
