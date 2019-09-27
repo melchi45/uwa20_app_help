@@ -1,6 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">Tampering detection</h1>
 <div class="wn5-setup-section">
-    <p>A tamper detection event can be created when the screen is blocked or the camera position is changed. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the tamper detection event applies to <strong class="UI">[Tamper detection]</strong>in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
+    <p>A tampering detection event can be created when the screen is blocked or the camera position is changed. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the tampering detection event applies to <strong class="UI">[Tampering detection]</strong>in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
@@ -41,7 +41,7 @@
         <div class="wn5-setup-section-article-content">
 
             <h3>Enable tampering detection </h3>
-            <p>To use the tamper detection event, select <strong class="UI">[Enable tampering detection]</strong>. </p>
+            <p>To use the tampering detection event, select <strong class="UI">[Enable tampering detection]</strong>. </p>
         </div>
 		        <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Adjusting the PTZ</h4>
@@ -55,8 +55,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Level of detection </h3>
-            <p>This sets the standard level of tamper detection. A tamper detection event is created when a tampering of the set level is detected. </p>
-            <p>Also, when a tampering is detected, a graph showing the level of tampering will appear, and when a tamper detection event is created, the color of the graph will change. </p>
+            <p>This sets the standard level of tampering detection. A tampering detection event is created when a tampering of the set level is detected. </p>
+            <p>Also, when a tampering is detected, a graph showing the level of tampering will appear, and when a tampering detection event is created, the color of the graph will change. </p>
         </div>
 
 		<div class="wn5-setup-section-article-content">
@@ -66,7 +66,7 @@
 
         <div class="wn5-setup-section-article-content">
             <h3>Minimum duration (s)    </h3>
-            <p>This sets the minimum time to detect a tampering and create an event. A tamper detection event is created only when tampering persists for the minimum duration.</p>
+            <p>This sets the minimum time to detect a tampering and create an event. A tampering detection event is created only when tampering persists for the minimum duration.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DarknessDetection">
             <h3>Except dark images  </h3>
@@ -85,7 +85,7 @@
             <ul>
                 <li>The detection performance may deteriorate on a uniform background, or in a night-time, low-light environment.</li>
 				<li>If the camera shakes too much or if there is sudden change in light, the tampering detection may not function properly.</li>
-                <li>It may take up to 5 seconds for a tamper detection event to be created after a tampering occurs.</li>
+                <li>It may take up to 5 seconds for a tampering detection event to be created after a tampering occurs.</li>
                 <li>When a camera tampering is detected, the function will restart after stabilizing for approximately 5 seconds, and any tampering will not be detected during the stabilization process.</li>
                 <li>When an incorrect event is repeatedly being created, errors can be minimized by gradually lowering the level. </li>
 				<li>If you set the level of detection too low, then it is possible to trigger an alarm out of quite small changes on the screen, but it can also lead to false detection cause by objects in motion or change in brightness.</li>
@@ -116,20 +116,20 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <h3>FTP</h3>
-            <p>To save an image on an FTP server when a tamper detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            <p>To save an image on an FTP server when a tampering detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>E-mail</h3>
-            <p>To send an image by e-mail when a tamper detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            <p>To send an image by e-mail when a tampering detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>Record</h3>
-            <p ng-if="NAS">To save an image on an SD card or NAS when a tamper detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
-            <p ng-if="!NAS">To save an image on an SD card when a tamper detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="NAS">To save an image on an SD card or NAS when a tampering detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="!NAS">To save an image on an SD card when a tampering detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when a tamper detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
+            <p>It is possible to set the alarm output number for a specific alarm when a tampering detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
             <p>Depending on the number of output alarms supported by your camera, the display of Alarm output option will vary. For example, if there are 2 alarms for output, the option will display ‘Alarm output 1’ and ‘Alarm output 2’.</p>
         </div>
 
@@ -168,16 +168,16 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>This sets the event action from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">Event action settings</a>]</strong> to always operate, or only at the set time when a tamper detection event is created.</p>
+            <p>This sets the event action from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_tamperDetection?#action">Event action settings</a>]</strong> to always operate, or only at the set time when a tampering detection event is created.</p>
         </div>
         <div class="wn5-setup-section-article-content">
 
             <h3>Always</h3>
-            <p>The event action settings are always executed when a tamper detection event is created.</p>
+            <p>The event action settings are always executed when a tampering detection event is created.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Only scheduled time</h3>
-            <p>The event action settings are only executed when a tamper detection event is created during the set time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the time table with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
+            <p>The event action settings are only executed when a tampering detection event is created during the set time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the time table with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
 			<p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
         </div>
     </div>

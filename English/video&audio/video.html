@@ -2,8 +2,9 @@
 <h1 class="wn5-setup-main-title">Video setup</h1>
 
 <div class="wn5-setup-section">
-    <p ng-if="PrivacyMaskSupport && FlipMirrorSupport">You can set a privacy area in the camera's image or flip it in reverse directions (vertically or horizontally). In addition, you can display an analog image or change the video output type.</p>
-    <p ng-if="!PrivacyMaskSupport && !FlipMirrorSupport">You can determine the output type of the video for an analog video output.</p>
+    <p>You can set a privacy area in the camera's image or flip it in reverse directions (vertically or horizontally). </p>
+    <!-- <p>In addition, you can display an analog image or change the video output type.</p> -->
+    <p ng-if="SupportAutoImageAlignment && !PrivacyMaskSupport && !FlipMirrorSupport">You can determine the output type of the video for an analog video output.</p>
     <p>Once you have completed the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 
@@ -14,7 +15,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting a camera channel, you can set a privacy area for each channel, or set the detailed video settings, such as video rotation, analog output, etc.</p> 
+            <p ng-if="SupportAutoImageAlignment">After selecting a camera channel, you can set a privacy area for each channel, or set the detailed video settings, such as video rotation, analog output, etc.</p> 
+            <p ng-if="!SupportAutoImageAlignment">After selecting a camera channel, you can set the detailed video settings.</p> 
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">Since a privacy area is individually set for each channel, a privacy area set on CH1 will only apply to CH1 even if the same privacy area exists on CH2.</p>

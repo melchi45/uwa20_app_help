@@ -2,8 +2,9 @@
 <h1 class="wn5-setup-main-title">Configuraci&oacute;n del v&iacute;deo</h1>
 
 <div class="wn5-setup-section">
-    <p ng-if="PrivacyMaskSupport && FlipMirrorSupport">Puede configurar un &aacute;rea privada en la imagen de la c&aacute;mara o voltearla en las direcciones inversas (verticalmente u horizontalmente). Adem&aacute;s, puede mostrar una imagen anal&oacute;gica o cambiar el tipo de salida del video. Una vez que haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
-    <p ng-if="!PrivacyMaskSupport && !FlipMirrorSupport">Puede determinar el tipo de salida del video para una salida de video anal&oacute;gica.</p>
+    <p>Puede configurar un &aacute;rea privada en la imagen de la c&aacute;mara o voltearla en las direcciones inversas (verticalmente u horizontalmente).</p>
+    <!-- <p>Adem&aacute;s, puede mostrar una imagen anal&oacute;gica o cambiar el tipo de salida del video.</p> -->
+    <p ng-if="SupportAutoImageAlignment && !PrivacyMaskSupport && !FlipMirrorSupport">Puede determinar el tipo de salida del video para una salida de video anal&oacute;gica.</p>
     <p>Una vez que haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
 </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
@@ -13,7 +14,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados, como la rotaci&oacute;n de video, la salida anal&oacute;gica, etc.</p> 
+            <p ng-if="SupportAutoImageAlignment">Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados, como la rotaci&oacute;n de video, la salida anal&oacute;gica, etc.</p> 
+            <p ng-if="!SupportAutoImageAlignment">Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados.</p> 
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">Debido a que se configura individualmente un &aacute;rea privada para cada canal, una configuraci&oacute;n de &aacute;rea privada en Canal1 aplicar&aacute; &uacute;nicamente a Canal1, incluso si la misma &aacute;rea privada existe en Canal2.</p>

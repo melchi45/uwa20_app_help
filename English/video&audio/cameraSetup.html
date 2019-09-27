@@ -493,7 +493,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
 
             <ul>
                 <li>When WDR mode is selected, the shutter value will be reset. The screen will become bright and then become dark.  </li>
-                <li>When the P-Iris lens is used manually or the anti flicker shutter is used, the performance of WDR mode becomes limited.  </li>
+                <li ng-if="PIrisModeOptions || AFLKModeOptions">When the P-Iris lens is used manually or the anti flicker shutter is used, the performance of WDR mode becomes limited.  </li>
                 <li>When WDR mode is used, the frame rate is reduced by half.  </li>
                 <li>It is recommended to use the WDR mode when a camera is installed indoor and there is very strong backlight.</li>
                 <li>If the WDR mode is used, noise may occur between the bright area and the dark area.</li>

@@ -29,8 +29,8 @@
             <h3>タイプ</h3>
             <p>アラーム出力タイプを選択します。</p>
             <ul>
-                <li><strong class="UI">ノーマルオープン</strong>：アラーム出力センサーが基本的に開いた状態で、閉じられた状態になるとアラームを出力します。</li>
-                <li><strong class="UI">ノーマルクローズ</strong>：アラーム出力センサーが基本的に閉じられた状態で、開いた状態になるとアラームを出力します。</li>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">ノーマルオープン</strong>：アラーム出力センサーが基本的に開いた状態で、閉じられた状態になるとアラームを出力します。</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">ノーマルクローズ</strong>：アラーム出力センサーが基本的に閉じられた状態で、開いた状態になるとアラームを出力します。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">

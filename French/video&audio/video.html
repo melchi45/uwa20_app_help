@@ -2,8 +2,9 @@
 <h1 class="wn5-setup-main-title">Vidéo configuration</h1>
 
 <div class="wn5-setup-section">
-    <p ng-if="PrivacyMaskSupport && FlipMirrorSupport">Vous pouvez d&eacute;finir une zone de confidentialit&eacute; dans l&rsquo;image de la cam&eacute;ra ou la retourner dans le sens inverse (verticalement ou horizontalement). De plus, vous pouvez afficher une image analogique ou changer le type de sortie vid&eacute;o. Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
-    <p ng-if="!PrivacyMaskSupport && !FlipMirrorSupport">Vous pouvez déterminer le type de sortie vid&eacute;o pour une sortie vid&eacute;o analogique.</p>
+    <p>Vous pouvez d&eacute;finir une zone de confidentialit&eacute; dans l&rsquo;image de la cam&eacute;ra ou la retourner dans le sens inverse (verticalement ou horizontalement). </p>
+    <!-- <p>De plus, vous pouvez afficher une image analogique ou changer le type de sortie vid&eacute;o. Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p> -->
+    <p ng-if="SupportAutoImageAlignment && !PrivacyMaskSupport && !FlipMirrorSupport">Vous pouvez déterminer le type de sortie vid&eacute;o pour une sortie vid&eacute;o analogique.</p>
     <p>Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
@@ -14,7 +15,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s, tels que la rotation vid&eacute;o, la sortie analogique, etc.</p> 
+            <p ng-if="SupportAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s, tels que la rotation vid&eacute;o, la sortie analogique, etc.</p> 
+            <p ng-if="!SupportAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s.</p> 
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">Du fait qu&rsquo;une zone de confidentialit&eacute; est d&eacute;finie individuellement pour chaque canal, une zone de confidentialit&eacute; d&eacute;finie sur CAN1 sera seulement appliqu&eacute;e &agrave; CAN1 m&ecirc;me si la m&ecirc;me zone de confidentialit&eacute; existe sur CAN2.</p>
