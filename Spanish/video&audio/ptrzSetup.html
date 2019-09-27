@@ -22,7 +22,7 @@
             <p>Si selecciona el icono de vista m&uacute;ltiple, visualizar&aacute; los v&iacute;deos de cada canal a la vez, y se puede establecer los mismos valores para todas las c&aacute;maras. Tambi&eacute;n puede establecer valores para una o varias c&aacute;maras que seleccione.  </p>
             <p>Tambi&eacute;n, en el modo de vista m&uacute;ltiple, se muestra un mensaje que describe el estado de cada c&aacute;mara en la parte inferior de la previsualizaci&oacute;n de cada canal. Se mostrar&aacute; uno de los siguientes mensajes: </p>
             <ul>
-                <li>Inicializaci&oacute;n: este mensaje se mostrar&aacute; cuando la c&aacute;mara se est&eacute; inicializando tras hacer clic en <strong class="UI">[Inicializaci&oacute;n PTRZ]</strong>. Hasta que se complete la inicializaci&oacute;n, no se puede realizar ninguna otra operaci&oacute;n.</li>
+                <li>Inicializaci&oacute;n: este mensaje se mostrar&aacute; cuando la c&aacute;mara se est&eacute; inicializando tras hacer clic en <strong class="UI">[Iniciar PTRZ]</strong>. Hasta que se complete la inicializaci&oacute;n, no se puede realizar ninguna otra operaci&oacute;n.</li>
                 <li>Fallo de inicializaci&oacute;n: este mensaje se debe a diferentes razones tales como que la c&aacute;mara salga del modo de inicializaci&oacute;n durante el mismo. Si la inicializaci&oacute;n est&aacute; incompleta, es posible que PTR no funcione correctamente. Dado el caso, cambie la posici&oacute;n de la c&aacute;mara y reinicialice.</li>
                 <li>Cambiando a preajuste: este mensaje se muestra cuando la c&aacute;mara se est&aacute; moviendo a una posici&oacute;n de preajuste ya establecida al hacer clic en <strong class="UI">[360]</strong>, <strong class="UI">[200]</strong>, o en <strong class="UI">[Preajuste de usuario]</strong>. No se podr&aacute; realizar ninguna otra operaci&oacute;n hasta que se complete el cambio.</li>
                 <li>Fallo de preajuste: este mensaje se muestra cuando la c&aacute;mara no se mueve a una posici&oacute;n de preajuste por problemas tales como desfase. Cambie la posici&oacute;n de la c&aacute;mara ajustando el PTR de la misma e intente de nuevo la operaci&oacute;n Ir a preajuste.</li>
@@ -30,7 +30,7 @@
                 <li>Choque: este mensaje se muestra cuando la c&aacute;mara no puede moverse al entrar en contacto con otra c&aacute;mara que usa otro canal diferente.</li>
                 <li>Modo de espera: este mensaje se muestra cuando el PTR est&aacute; en modo inactivo y las c&aacute;maras mantienen una cierta distancia entre ellas.</li>
             </ul>
-            <p>Para inicializar la configuraci&oacute;n PTRZ, seleccione <strong class="UI">[Inicializaci&oacute;n PTRZ]</strong>. La <strong class="UI">[Inicializaci&oacute;n PTRZ]</strong> est&aacute; habilitada solamente en el modo de vista m&uacute;ltiple. </p>
+            <p>Para inicializar la configuraci&oacute;n PTRZ, seleccione <strong class="UI">[Iniciar PTRZ]</strong>. La <strong class="UI">[Iniciar PTRZ]</strong> est&aacute; habilitada solamente en el modo de vista m&uacute;ltiple. </p>
         </div>
 	</div>
 </div> 
@@ -39,7 +39,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="Lens_status"></a>Estado de las lentes</h2>
+        <h2><a name="Lens_status"></a>Estado de lente</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -55,13 +55,13 @@
         <div class="wn5-online-help-action">
             <h4><a name="set_preset"></a>Configuraci&oacute;n de preajustes PTRZ</h4>
             <ol>
-                <li>Seleccione un canal para establecer ajuste predeterminado en <strong class="UI"><a href="#Lens_status">[Estado lente]</a></strong>. Para seleccionar m&aacute;s de un canal, seleccione el icono de Vista m&uacute;ltiple en <strong class="UI"><a href="#Channel">[Seleccionar canal]</a></strong>.    </li>
+                <li>Seleccione un canal para establecer ajuste predeterminado en <strong class="UI"><a href="#Lens_status">[Estado de lente]</a></strong>. Para seleccionar m&aacute;s de un canal, seleccione el icono de Vista m&uacute;ltiple en <strong class="UI"><a href="#Channel">[Seleccionar canal]</a></strong>.    </li>
                 <li>Configure la informaci&oacute;n PTRZ como se muestra a continuaci&oacute;n.    </li>
                 <ul>
-                    <li>Use el icono <span class="tui tui-wn5-ptz-handle"></span> en <strong class="UI"><a href="#ptr_setup">[Config. PTR]</a></strong> para ajustar la panor&aacute;mica e inclinaci&oacute;n de la c&aacute;mara y as&iacute; ajustar la vista de la c&aacute;mara, o use los botones <i class="tui tui-wn5-return"></i> o <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> para girar la c&aacute;mara.</li>
+                    <li>Use el icono <span class="tui tui-wn5-ptz-handle"></span> en <strong class="UI"><a href="#ptr_setup">[Configuración PTR]</a></strong> para ajustar la panor&aacute;mica e inclinaci&oacute;n de la c&aacute;mara y as&iacute; ajustar la vista de la c&aacute;mara, o use los botones <i class="tui tui-wn5-return"></i> o <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> para girar la c&aacute;mara.</li>
                     <li> Establezca los valores de zoom y enfoque en <strong class="UI"><a href="#zoom_focus">[Configuraci&oacute;n del enfoque y del zoom]</a></strong>. </li>
                 </ul>
-                <li>Haga clic en <strong class="UI">[Defina predef]</strong>. </li>
+                <li>Haga clic en <strong class="UI">[Configurar predefinido]</strong>. </li>
             </ol>
             <p>Si hace clic en <strong class="UI">[Preajuste de usuario]</strong>, la c&aacute;mara se mover&aacute; a la &uacute;ltima posici&oacute;n de preajuste PTRZ que configur&oacute;. </p>
         </div>
@@ -72,7 +72,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="ptr_setup"></a>Configuraci&oacute;n PTRZ</h2>
+        <h2><a name="ptr_setup"></a>Configuraci&oacute;n PTR</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -87,7 +87,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="zoom_focus"></a>Configuraci&oacute;n de zoom y enfoque</h2>
+        <h2><a name="zoom_focus"></a>Configuración del enfoque y del zoom</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -104,8 +104,8 @@
         </div>	
 
 <div class="wn5-setup-section-article-content">
-            <h3>Enfoque sencillo</h3>
-            <p>El enfoque se ajusta autom&aacute;ticamente, basado en la ubicaci&oacute;n designada por el usuario. Cuando se establece la posici&oacute;n del enfoque haciendo clic y arrastra en la pantalla con el rat&oacute;n y luego hace clic en el bot&oacute;n de <strong class="UI">[Enfoque sencillo]</strong>, N (Cerca) y<->F (Lejos) se muestran en la pantalla y el enfoque se controla autom&aacute;ticamente, basado en la ubicaci&oacute;n designada por el usuario.</p>
+            <h3>Enfoque simple</h3>
+            <p>El enfoque se ajusta autom&aacute;ticamente, basado en la ubicaci&oacute;n designada por el usuario. Cuando se establece la posici&oacute;n del enfoque haciendo clic y arrastra en la pantalla con el rat&oacute;n y luego hace clic en el bot&oacute;n de <strong class="UI">[Enfoque simple]</strong>, N (Cerca) y<->F (Lejos) se muestran en la pantalla y el enfoque se controla autom&aacute;ticamente, basado en la ubicaci&oacute;n designada por el usuario.</p>
         </div>
 
         <div class="wn5-online-help-info">
