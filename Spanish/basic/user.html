@@ -9,13 +9,14 @@
 	<h2 class="wn5-setup-section-heading">Cambiar contrase&ntilde;a de administrador</h2>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Puede cambiar el ID de la cuenta de administrador y la contrase&ntilde;a. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
+			<p ng-if="MaxChannel==0">Puede cambiar el ID de la cuenta de administrador y la contrase&ntilde;a. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
+			<p ng-if="MaxChannel > 1">Puede cambiar la contrase&ntilde;a de administrador. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="MaxChannel==0">
 			<h3>ID</h3>
 	        <p>Puede ver o cambiar el ID de administrador que se est&eacute; utilizando actualmente.</p>
 	    </div>
-		<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="MaxChannel==0">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>El ID de administrador solo debe contener caracteres alfanum&eacute;ricos, con una longitud m&aacute;xima total de 8&nbsp;caracteres.</li>
