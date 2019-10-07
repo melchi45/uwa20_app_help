@@ -68,6 +68,7 @@
 		 <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
             <h3>チャンネル選択</h3>
             <p>カメラチャンネルを選択すると、チャンネル別にイベントログを確認することができます。</p>
+            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。チャンネル1のログ情報のみ確認できます。</p>
 
             <p ng-if="SupportChannelEnabledFeature">チャンネル別のビューモードは、下記のどおりです。チャンネル1のログ情報のみ確認できます。</p>
             <ul ng-if="SupportChannelEnabledFeature">

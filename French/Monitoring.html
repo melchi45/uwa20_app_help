@@ -48,6 +48,16 @@
                 </thead>
                 <tbody>
 
+               <tr ng-if="objectDetectionSupport">
+                                <td width="235">BestShot</td>
+                                <td width="235">
+                                    <p>BestShot est l'image extraite de l'objet le plus clairement visible parmi les objets (Personne, Visage, Véhicule, Plaque d'immatriculation) détectés par la caméra. Le format d'image de BestShot est JPEG, et cette image ne contient qu'une partie de la zone où se trouvaient les objets.</p>
+                                    <p>Vous pouvez activer BestShot pour tous les objets depuis le panneau BestShot de la page Direct. De plus, les propriétés détaillées de chaque objet sont affichées sous forme d'icônes. Par exemple, un objet "Personne" a des propriétés telles que le sexe, la couleur/longueur des vêtements, le port d'un chapeau et/ou d'un sac.</p>
+                                    <p>Le type d'objet qui apparaîtra dans le panneau BestShot peut être sélectionné ici : <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Analyse]</strong>&gt;<strong class="UI">[Détection d'objets]</strong>&gt;<strong class="UI">[BestShot]</strong>.</p>
+                                    <p>&nbsp;</p>
+                                </td>
+                 </tr>
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
@@ -88,7 +98,9 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
+                            <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. </p>
+                            <p ng-if="!FisheyeLens">Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
+                            <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel_AI">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p>
                             <p> </p>                         
                     </td>
                     </tr>
@@ -130,6 +142,20 @@
                         </td>
                     </tr>
 
+
+                    <tr ng-if="objectDetectionSupport">
+                            <td width="235">
+                                <p><span class="tui tui-ch-live-overlay"></span></p>
+                                <p>Superposition</p>
+                            </td>
+                            <td width="235">
+                                <p>Vous pouvez configurer le type d'objets qui apparaîtront à l'écran lorsque la caméra détecte des objets.</p>
+                                <p>Les objets détectés par une caméra IA ne sont affichés que lorsque l'algorithme d'analyse de la caméra IA est fonctionnel. Pour que l'algorithme IA soit fonctionnel, l'une des fonctions suivantes doit être activée : Détection d'objets, IVA, Comptage de personnes, Gestion des files d’attente ou Carte thermique.</p>
+                                <p>L'icône de superposition ne s'active que lorsque le canal 1 est sélectionné dans [<a href="Monitoring.html#channel_AI">Sélectionner un canal</a>].</p>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+
                     <tr ng-if="LensModelViewOptions">
                         <td width="235">Nom du mod&egrave;le de lentille</td>
                         <td width="235">
@@ -149,6 +175,19 @@
                             <p ng-if="SupportAutoImageAlignment">L’écran de la caméra de chaque canal s’affiche lorsque vous sélectionnez un canal de caméra CAN 2 à CAN 5. Si vous sélectionnez CAN 1, les écrans de caméra CAN 2 à CAN 5 seront alignés en ligne droite pour montrer une vue panoramique. Si vous sélectionnez CAN 6 et CAN 7, vous pouvez vérifier la vidéo du CAN 1 tout en <a href="#PTZ">ajustant PTZ de la caméra</a>.</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="MaxChannel > 1 && objectDetectionSupport">
+                            <td width="235"><a name="channel_AI">Sélectionner un canal</a></td>
+                            <td width="235">
+                                <p>Les canaux pris en charge par la caméra sont affichés.</p>
+                                <ul>
+                                    <li>Canal 1 : Affiche la vidéo Live (direct).</li>
+                                    <li>Canal 2 : Affiche la vidéo PTZ numérique. Sélectionner le canal 2 pour utiliser la fonction <a href="#PTZ">PTZ</a>.</li>
+                                </ul>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+
 
                     <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
                             <td width="235">
@@ -601,6 +640,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
+            <li ng-if="objectDetectionSupport">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[<a href="#channel_AI">Sélectionner un canal</a>]</strong>.</li>
             <li>La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>  
                 <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
                 <li>Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>

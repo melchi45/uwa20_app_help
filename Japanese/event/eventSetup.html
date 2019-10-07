@@ -41,7 +41,9 @@
         <div class="wn5-setup-section-article-content">
                 
             <p>カメラチャンネルを選択した後、<strong class="UI">[チャンネルイベントリスト]</strong>でチャンネル別にイベントアクションを管理して設定することができます。</p>
+
             <p><strong class="UI">[共通イベントリスト]</strong>で設定した内容は全チャンネルに同じく適用されます。</p>
+            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[イベント設定]は、チャンネル1でのみ設定できます。</p>
             <p ng-if="SupportAutoImageAlignment">「IVA」はチャンネル1でしか設定できません。</p>
 
             <p ng-if="SupportChannelEnabledFeature">チャンネル別のビューモードは、下記のどおりです。イベント動作はチャンネル1でのみ設定できます。</p>

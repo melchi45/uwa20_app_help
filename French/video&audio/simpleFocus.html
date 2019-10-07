@@ -4,8 +4,20 @@
     <p>L&apos;utilisateur peut d&eacute;finir la mise au point de l&apos;&eacute;cran manuellement ou automatiquement via Mise au point simple. La mise au point peut &eacute;galement &ecirc;tre r&eacute;initialis&eacute;e &agrave; la valeur par d&eacute;faut via [Initialiser mise au point].</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Sélectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>La Configuration de la mise au point de chaque canal peut être effectuée en détail une fois qu'un canal caméra a été sélectionné. Le dernier numéro de canal sélectionné sur la page Live (direct) ou de Lecture est sélectionné automatiquement.</p>
+<p>La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Configuration de la mise au point] que sur le canal 1.</p>
+        </div>
+	</div>
+</div> 
 
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Configuration de la mise au point</h2>

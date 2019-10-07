@@ -69,6 +69,7 @@
         <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
             <h3>Seleccionar canal</h3>
             <p>Puede comprobar el registro de eventos de cada canal seleccionando el n&uacute;mero del canal.</p>
+            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. Solo se comprobará el registro de eventos del canal 1</p>
 
             <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La información de registro se puede verificar solo en el canal 1.</p>
             <ul ng-if="SupportChannelEnabledFeature">

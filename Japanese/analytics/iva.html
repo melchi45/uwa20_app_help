@@ -2,6 +2,12 @@
 <div class="wn5-setup-section">
     <p>ビデオ映像分析に対する規則を設定して、イベント規則条件を満足するモーションを検知すると、IVA(Intelligent Video Analytics、インテリジェントビデオ解析)イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。IVAイベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[IVA]</strong>に同じく適用されます。</p>
 </div>
+<div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+<ul>
+    <li><strong class="UI">[対象物]</strong>オプションで特定対象物を選択した場合、カメラ映像で選択した対象物だけを検知し、該当対象物がIVAイベントルールを満たす場合、IVAイベントが発生します。反面、<strong class="UI">[対象物]</strong>でオプションを何も選択しない場合、動く対象物を検知します。</li>
+</ul>
+    </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
@@ -11,6 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラチャンネルを選択した後、チャンネル別にIVAの詳細を設定することができます。ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
+            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[IVA]は、チャンネル1でのみ設定できます。</p>
             <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
             <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
             <p ng-if="SupportAutoImageAlignment">「IVA」はチャンネル1でしか設定できません。</p>
@@ -48,11 +55,14 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+            <!-- <p>ユーザーが設定したバーチャルラインと方向を基準に対象物が通過することを検知します。</p> -->
             <p>ユーザーが設定したバーチャルラインと方向を基準に対象物が通過することを検知します。</p>
         </div>
         <div class="wn5-online-help-action">  
             <h4>バーチャルライン設定</h4>
-			<p>カメラ映像画面の設定したい位置でラインの開始点と端点をクリックすると、バーチャルラインが設定され<strong class="UI">[ライン入力]</strong>の数字ボタン色が変更されます。バーチャルラインの真ん中にある矢印をクリックすると、方向をAからB、BからA、両方向に変更したり<strong class="UI">[カテゴリー]</strong>の<strong class="UI">[方向]</strong>でお望みの方向を選択することもできます。バーチャルラインは最大8つまで設定することができます。</p>
+            <p>カメラ映像画面の設定したい位置でラインの開始点と端点をクリックすると、バーチャルラインが設定され<strong class="UI">[ライン入力]</strong>の数字ボタン色が変更されます。</p>
+                <p ng-if="objectDetectionSupport">バーチャルラインを設定した後、<strong class="UI">[名前]</strong>フィールドに設定したバーチャルライン名を入力できます。</p>               
+                <p>バーチャルラインの真ん中にある矢印をクリックすると、方向をAからB、BからA、両方向に変更したり<strong class="UI">[カテゴリー]</strong>の<strong class="UI">[方向]</strong>でお望みの方向を選択することもできます。バーチャルラインは最大8つまで設定することができます。</p>
         </div>
         <div class="wn5-online-help-action">  
             <h4>バーチャルライン変更</h4>
@@ -76,10 +86,27 @@
             <h3>ライン入力</h3>
             <p>バーチャルラインが追加されると、順番に<strong class="UI">[ライン入力]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当のバーチャルラインはプレビュー画面に表示されません。もう一度、数字ボタンをクリックするとバーチャルラインが再度表示されます。</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>名前</h3>
+                <p><strong class="UI">[ライン]</strong>で選択したバーチャルライン名を確認したり、変更できます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>対象物</h3>
+                <p>IVAイベントを発生するための対象物タイプを選択します。</p>
+                <p>例えば、対象物タイプで「人」を選択した場合、人がバーチャルラインを通るとIVAイベントが発生します。イベント発生時、<a href="#handover">ハンドオーバ</a>を動作させたり、<a href="#action">イベント動作</a>が実行するように設定できます。</p>
+            </div>
+            <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    <li>対象物を選択した場合、カメラ映像で選択した対象物だけを検知します。対象物を選択しない場合、カメラ映像でモーションを検知します。例えば、<strong class="UI">[対象物]</strong>でオプションを選択しなかった場合、IVAイベントルール条件を満たす動く対象物を検知すると、IVAイベントが発生します。</li>
+                </ul>
+            </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>カテゴリー</h3>
             <ul>
-                <li><strong class="UI">通過</strong>：設定した規則によってバーチャルラインを通過する対象物を検知した時、イベントを発生させるためにはチェックボックスを選択する必要があります。</li>
+                <li><strong class="UI">通過</strong>：設定したルールによってバーチャルラインを通過する対象物を検知した時、イベントを発生させるためにはチェックボックスを選択する必要があります。</li>
                 <li><strong class="UI">方向</strong>：対象物がバーチャルラインを通過する方向を設定します。</li>
             </ul>
         </div>
@@ -101,6 +128,7 @@
             <h4>バーチャルエリア設定</h4>
             <p>プレビュー画面からマウスで頂点4つを選択するか、マウスでドラッグして四角を描くとエリアが設定されます。</p>
             <p>バーチャルエリアは最大8つまで設定することができ、エリア別にビデオ映像分析の規則を設定することができます。</p>
+            <p ng-if="objectDetectionSupport">ユーザーが希望する場合、バーチャルエリアを設定した後、<strong class="UI">[名前]</strong>フィールドに設定したバーチャルエリアに対して名前を入力できます。</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>バーチャルエリア変更</h4>
@@ -116,30 +144,63 @@
             <h3>エリア</h3>
             <p>バーチャルエリアが追加されると、順番に<strong class="UI">[エリア]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当のバーチャルエリアはプレビュー画面に表示されません。もう一度、数字ボタンをクリックするとバーチャルエリアが再度表示されます。</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>名前</h3>
+                <p><strong class="UI">[領域]</strong>で選択したバーチャルエリア名を確認したり、変更できます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>対象物</h3>
+                <p>IVAイベントを発生するための対象物タイプを選択します。</p>
+                <p>例えば、「人」を選択した場合、バーチャルエリアで人を検知した場合のみ、IVAイベントが発生します。イベント発生時、<a href="iva.html#handover">ハンドオーバ</a>を動作させたり、<a href="iva.html#action">イベント動作</a>が実行するように設定できます。</p>
+            </div>	
+                    <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    <li>対象物を選択した場合、カメラ映像で選択した対象物だけを検知します。対象物を選択しない場合、カメラ映像でモーションを検知します。例えば、<strong class="UI">[対象物]</strong>でオプションを選択しなかった場合、IVAイベントルール条件を満たす動く対象物を検知すると、IVAイベントが発生します。</li>
+                </ul>
+            </div>	
+
         <div class="wn5-setup-section-article-content">
             <h3>カテゴリー</h3>
             <p>バーチャルエリア別に適用する規則を設定することができます。</p>
             <ul>
-                <li><strong class="UI">侵入する</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">侵入する</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">侵入</strong>：設定した領域内部に<strong class="UI">[対象物]</strong>で選択した対象物を検知すると、イベントを発生させます。</li>
                 <ul>
                     <li><strong class="UI">最短時間(秒)</strong>：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます。 </li>
                 </ul>
-                <li><strong class="UI">進入</strong>：動く対象物がユーザーの指定したエリアの外部から内部に入る時、イベントを発生させます。</li>
-                <li><strong class="UI">出る</strong>：動く対象物がユーザーの指定したエリアの内部から外部に出る時、イベントを発生させます。</li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">進入</strong>：動く対象物がユーザーの指定したエリアの外部から内部に入る時、イベントを発生させます。</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">進入</strong>：<strong class="UI">[対象物]</strong>で選択した対象物がユーザーの指定した領域の外部から内部に入る時、イベントを発生させます。</li>
+
+                <li ng-if="!objectDetectionSupport"><strong class="UI">出る</strong>：動く対象物がユーザーの指定したエリアの内部から外部に出る時、イベントを発生させます。</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">出る</strong>：<strong class="UI">[対象物]</strong>で選択した対象物がユーザーの指定した領域の内部から外部に退出時、イベントを発生させます。</li>
+
                 <li ng-if="IvaAppearDisappear"><strong class="UI">出現(消滅)</strong>：ユーザーが指定したエリア内部に存在しなかった対象物がエリアラインを通過せずにエリア内部に現れ一定時間とどまったり、エリア内部に存在してた対象物が消えるとイベントを発生させます。</li>
+                <li ng-if="objectDetectionSupport" style="list-style-type:none;"><strong class="UI">[出現(消滅)]</strong>オプションの場合、他のオプションとは違って<strong class="UI">[対象物]</strong>で選択した対象物ではなく、動くすべての対象物を検知します。</li>
                 <ul ng-if="IvaAppearDisappear">
                     <li><strong class="UI">最短時間(秒)</strong>：出現(消滅)を検知するための対象物の最短持続時間を設定します。検知エリアで実行時間の間、存在してた対象物が消えると消滅に検知し、実行時間の間に存在しなかった対象物が現れると出現と検知します。</li>
                 </ul>
-                <li ng-if="IvaLoitering"><strong class="UI">うろつく</strong>：設定した検知エリア内でうろつくモーションを検知すると、イベントを発生させます。</li>
-                <ul ng-if="IvaLoitering">
+                <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">うろつく</strong>：設定した検知エリア内でうろつくモーションを検知すると、イベントを発生させます。</li>
+                <li ng-if="IvaLoitering && objectDetectionSupport"><strong class="UI">うろつく</strong>：設定したバーチャルエリア内で<strong class="UI">[対象物]</strong>で選択した対象物がうろつくことを検知すると、イベントを発生させます。</li>
+                <ul ng-if="IvaLoitering && !objectDetectionSupport">
                     <li><strong class="UI">最短時間(秒)</strong>：うろつく対象物を検知してイベントを発生させるための最短時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
                 </ul>
+                <ul ng-if="IvaLoitering && objectDetectionSupport">
+                        <li><strong class="UI">最短時間(秒)</strong>：うろつく対象物を検知してイベントを発生するための最小時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
+                    </ul>
             </ul>
         </div>
 		<div class="wn5-online-help-info" ng-if="IvaLoitering">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>うろつく検知は他のIVAイベント検知と共に使用する場合、単独で使用することより多少性能が低下することがあります。</li>
+                <li>下記の場合には、対象物が消滅したことに認識してうろつく検知機能が動作しないことがあります。</li>
+                <ul>
+                    <li>うろついている対象物が他の対象物と重なる場合</li>
+                    <li>うろついている対象物が一定時間、動かない場合</li>
+                    <li>うろついている対象物と近接領域に移動体がある複雑な環境が発生した場合<br> </li>
+                </ul>
             </ul>
         </div>
     </div>
@@ -174,6 +235,12 @@
             <h3>エリア</h3>
             <p>除外エリアが追加されると、順番に<strong class="UI">[エリア]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当の除外エリアはプレビュー画面に選択されます。</p>
  </div>
+ <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+        <ul>
+            <li><strong class="UI">[IVA]</strong>の<strong class="UI">[除外エリア] </strong>タブで設定した値は、<strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">対象物検知</a>]</strong>&gt;<strong class="UI">[除外エリア]</strong>値と同期します。つまり、<strong class="UI">[IVA]</strong>の<strong class="UI">[除外エリア]</strong>タブで除外エリアを設定すると、<strong class="UI">[対象物検知]</strong>&gt;<strong class="UI">[除外エリア]</strong>にも同じく除外エリアが作成されます。</li>
+        </ul>
+    </div> 
     </div>
 </div>
 <div class="wn5-setup-section">
@@ -195,11 +262,20 @@
             <p>バーチャルラインとバーチャルエリアでモーションを検知する対象物の最小、最大サイズを設定します。頂点をクリックした後、マウスをドラッグしてサイズを変更することができます。サイズを変更すると、<strong class="UI">[サイズ]</strong>の<strong class="UI">[最小]</strong>値と<strong class="UI">[最大]</strong>値も変更されます。</p>
         </div>
 
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>除外エリア</h3>
+                <p>AIカメラは、各対象物別に詳細を分析したデータをカメラと同期するプログラムなどで活用するように転送します。この場合、除外エリアに設定された領域で検知した対象物の情報は、基本的に転送しません。除外エリアで検知した対象物の情報と各対象物の詳細を転送するには、<strong class="UI">[検知除外領域の対象物データ使用]</strong>を選択します。 &nbsp;</p>
+                <p>カメラが転送する対象物別の詳細情報は「AI Camera Metadata Specification」ドキュメントをご参照ください。</p>
+            </div>
+
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
+                    <li ng-if="objectDetectionSupport"><strong class="UI">[IVA]</strong>の<strong class="UI">[共通設定]</strong>タブで設定した値は、<strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">対象物検知</a>]</strong>&gt;<strong class="UI">[共通設定]</strong>値と同期します。つまり、<strong class="UI">[IVA]</strong>の<strong
+                        class="UI">[共通設定]</strong>タブで値を変更すると、<strong class="UI">[対象物検知]</strong>&gt;<strong class="UI">[共通設定]</strong>値も同じく変更されます。</li>
                 <li>エリアと除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
-                <li>ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
+                <li ng-if="!objectDetectionSupport">ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
+                <li ng-if="objectDetectionSupport">ユーザーが指定した最小サイズより小さい対象物や最大サイズより大きい対象物は、検知しません。大小のノイズによる誤検知を避けるために、インストール環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。</li>
             </ul>
         </div>
     </div>

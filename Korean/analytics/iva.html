@@ -1,7 +1,13 @@
-﻿<h1 class="wn5-setup-main-title">IVA </h1>
+﻿<h1 class="wn5-setup-main-title">IVA</h1>
 <div class="wn5-setup-section">
     <p>영상 분석에 대한 규칙을 설정하고 이벤트 규칙 조건을 만족하는 움직임을 감지하면 IVA 이벤트를 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. IVA 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[IVA]</strong>에 동일하게 적용됩니다.</p>
 </div>
+        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+    <ul>
+        <li><strong class="UI">[개체] </strong>옵션에서 특정 개체를 선택한 경우, 카메라 영상에서 선택한 개체만을 감지하며, 해당 개체가&nbsp;IVA 이벤트 규칙을 만족하는 경우 IVA 이벤트가 발생합니다. 반면에&nbsp;<strong class="UI">[개체]</strong>에서 어떤 옵션도 선택하지 않은 경우, 움직이는&nbsp;물체를 감지합니다.</li>
+    </ul>
+        </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
@@ -10,6 +16,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선 택한 후 채널별로 IVA 세부 항목을 설정할 수 있습니다. 라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
+			<p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [IVA]는 채널 1에서만 설정할 수 있습니다. </p>
             <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
             <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
             <p ng-if="SupportAutoImageAlignment">'IVA'는 채널 1에만 설정할 수 있습니다.</p>
@@ -28,6 +35,8 @@
             <h3>IVA 사용</h3>
             <p>IVA 이벤트를 사용하려면 <strong class="UI">[IVA 사용]</strong>을 선택합니다.</p>
         </div>
+		
+
 		        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>타입</h3>
             <p>모든 프리셋에 동일한 IVA(지능형 영상 분석)을 설정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 IVA(지능형 영상 분석)을  설정하려면<strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다.</p>
@@ -53,11 +62,13 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>사용자가 설정한 가상선과 방향을 기준으로 물체가 지나가는 것을 감지합니다. </p>
+            <p>사용자가 설정한 가상선과 방향을 기준으로 개체가 지나가는 것을 감지합니다. </p>
         </div>
         <div class="wn5-online-help-action">  
             <h4>가상선 설정하기  </h4>
-			<p>카메라 영상 화면의 원하는 위치에서 라인의 시작점과 끝점을 각각 클릭하면 가상선이 설정되며 <strong class="UI">[라인]</strong>의 숫자 버튼 색상이 변경됩니다. 가상선의 가운데 화살표를 클릭하면 방향을 A로부터 B 방향, B로부터 A 방향, 양방향으로 변경하거나 <strong class="UI">[카테고리]</strong>의 <strong class="UI">[방향]</strong>에서 원하는 방향을 선택할 수도 있습니다. 가상선은 최대 8개까지 설정할 수 있습니다.</p>
+            <p>카메라 영상 화면의 원하는 위치에서 라인의 시작점과 끝점을 각각 클릭하면 가상선이 설정되며 <strong class="UI">[라인]</strong>의 숫자 버튼 색상이 변경됩니다. </p>
+            <p ng-if="objectDetectionSupport">가상선을 설정한 뒤 <strong class="UI">[이름]</strong>필드에 설정한 가상선의 이름을 입력할 수 있습니다. </p>
+            <p>가상선의 가운데 화살표를 클릭하면 방향을 A로부터 B 방향, B로부터 A 방향, 양방향으로 변경하거나 <strong class="UI">[카테고리]</strong>의 <strong class="UI">[방향]</strong>에서 원하는 방향을 선택할 수도 있습니다. 가상선은 최대 8개까지 설정할 수 있습니다.</p>
         </div>
         <div class="wn5-online-help-action">  
             <h4>가상선 변경하기  </h4>
@@ -79,14 +90,28 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>라인</h3>
-            <p>가상선이 추가되면 순서대로 <strong class="UI">[라인]</strong>의 숫자 버튼 색상이 변경됩니다. 숫자 버튼을 클릭하면 해당 가상선이 미리보기 화면에 나타납니다.</p>
+            <p>가상선이 추가되면 순서대로 <strong class="UI">[라인]</strong>의 숫자 버튼 색상이 변경됩니다. 숫자 버튼을 클릭하면 해당 가상선이 영상&nbsp;화면에 나타납니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>이름</h3>
+            <p><strong class="UI">[라인]</strong>에서 선택한 가상선의 이름을 확인하거나 변경할 수 있습니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>개체</h3>
+            <p>IVA 이벤트를 발생하기 위한 개체 타입을 선택합니다. </p>
+            <p>예를 들어 개체 타입에서&nbsp;'사람'을 선택한 경우, 사람이 가상선을 지나가면&nbsp;IVA 이벤트가 발생합니다. 이벤트 발생 시 <a href="#handover">핸드오버</a>가 동작하도록 하거나 <a href="#action">이벤트 동작</a>이 실행하도록 설정할 수 있습니다.</p>
+        </div>
+        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>개체를 선택한 경우 카메라 영상에서 선택한 개체만을 감지합니다. 개체를 선택하지 않는 경우, 카메라 영상에서 움직임을 감지합니다. 예를 들어 <strong class="UI">[개체]</strong>에서 어떤 옵션도 선택하지 않은 경우, IVA 이벤트 규칙 조건을 만족하는 움직이는 물체를 감지하면 IVA 이벤트가 발생합니다. </li>
+            </ul>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>카테고리</h3>
+            <h3>카테고리 </h3>
             <ul>
-                <li><strong class="UI">지나감</strong>: 설정한 규칙에 따라 가상선을 지나가는 물체를 감지했을 때 이벤트를 발생시키려면 체크박스를 선택합니다. 
-                </li>
-                <li><strong class="UI">방향</strong>: 물체가 가상선을 지나가는 방향을 설정합니다.</li>
+                <li><strong class="UI">지나감</strong>: 설정한 규칙에 따라 가상선을 지나가는 개체를 감지했을 때 이벤트를 발생시키려면 체크박스를 선택합니다.  </li>
+                <li><strong class="UI">방향</strong>: 개체가 가상선을 지나가는 방향을 설정합니다.  </li>
             </ul>
         </div>
 		       <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
@@ -124,6 +149,7 @@
             <h4>가상 영역 설정하기  </h4>
             <p>미리보기 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면 가상 영역이 설정됩니다. </p>
             <p ng-if="!S1Features">가상 영역은 최대 8개까지 설정할 수 있으며, 영역별로 영상 분석 규칙을 설정할 수 있습니다. </p>
+            <p ng-if="objectDetectionSupport">사용자가 원하는 경우 가상 영역을 설정한 뒤 <strong class="UI">[이름]</strong>필드에 설정한 가상 영역에 대해 이름을 입력할 수 있습니다.</p>
         </div>
         <div class="wn5-online-help-action" g-if="!S1Features"> 
             <h4>가상 영역 변경하기  </h4>
@@ -139,25 +165,48 @@
             <h3>영역  </h3>
             <p>가상 영역이 추가되면 순서대로 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 숫자 버튼을 클릭하면 해당 가상 영역이 미리보기 화면에 나타납니다.</p>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>이름</h3>
+            <p><strong class="UI">[영역]</strong>에서 선택한 가상 영역의 이름을 확인하거나 변경할 수 있습니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>개체</h3>
+            <p>IVA 이벤트를 발생하기 위한 개체 타입을 선택합니다. </p>
+            <p>예를 들어 '사람'을 선택한 경우, 가상 영역에서 사람을 감지한 경우에만 IVA 이벤트가 발생합니다. 이벤트 발생 시 <a href="iva.html#handover">핸드오버</a>가 동작하도록 하거나 <a href="iva.html#action">이벤트 동작</a>이 실행하도록 설정할 수 있습니다.</p>
+        </div>	
+		        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>개체를 선택한 경우 카메라 영상에서 선택한 개체만을 감지합니다. 개체를 선택하지 않는 경우, 카메라 영상에서 움직임을 감지합니다. 예를 들어 <strong class="UI">[개체]</strong>에서 어떤 옵션도 선택하지 않은 경우, IVA 이벤트 규칙 조건을 만족하는 움직이는 물체를 감지하면 IVA 이벤트가 발생합니다. </li>
+            </ul>
+        </div>	
         <div class="wn5-setup-section-article-content">
             <h3>카테고리  </h3>
             <p>가상 영역별로 적용할 규칙을 설정할 수 있습니다.</p>
             <ul>
-                <li ng-if="!S1Features"><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
+                <li ng-if="!S1Features && !objectDetectionSupport"><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
+                <li ng-if="!S1Features && objectDetectionSupport"><strong class="UI">침입</strong>: 설정한 영역 내부에 <strong class="UI">[개체]</strong>에서 선택한 개체를 감지하면 이벤트를 발생시킵니다.  </li>
                 <ul ng-if="!S1Features">
-                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 감지 후 이벤트를 발생하기 위한 최소시간을 설정합니다. 설정한 시간보다 더 오래 움직임이 지속될 때 이벤트를 발생시킵니다.  </li>
+                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 감지 후 이벤트를 발생하기 위한 최소 시간을 설정합니다. 설정한 시간보다 더 오래 움직임이 지속될 때 이벤트를 발생시킵니다.</li>
                 </ul>
-                <li><strong class="UI">들어감</strong>: 움직이는 물체가 사용자가 지정한 영역의 외부에서 내부로 들어올 때 이벤트를 발생시킵니다.
-                                </li>
-                <li><strong class="UI">나감</strong>: 움직이는 물체가 사용자가 지정한 영역의 내부에서 외부로 나갈 때 이벤트를 발생시킵니다.
-                                </li>
-                <li ng-if="IvaAppearDisappear"><strong class="UI">나타남(사라짐)</strong>: 사용자가 지정한 영역 내부에 존재하지 않았던 물체가 영역 라인을 통과하지 않고 영역 내부에 나타나 일정시간 머무르거나, 영역 내부에 존재하던 물체가 사라지면 이벤트를 발생시킵니다. </li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">들어감</strong>: 움직이는 물체가 사용자가 지정한 영역의 외부에서 내부로 들어올 때 이벤트를 발생시킵니다.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">들어감</strong>: <strong class="UI">[개체]</strong>에서 선택한 개체가 사용자가 지정한 영역의 외부에서 내부로 들어올 때 이벤트를 발생시킵니다. </li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">나감</strong>: 움직이는 물체가 사용자가 지정한 영역의 내부에서 외부로 나갈 때 이벤트를 발생시킵니다.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">나감</strong>: <strong class="UI">[개체]</strong>에서 선택한 개체가 사용자가 지정한 영역의 내부에서 외부로 나갈 때 이벤트를 발생시킵니다. </li>
+                <li ng-if="IvaAppearDisappear"><strong class="UI">나타남(사라짐)</strong>: 사용자가 지정한 영역 내부에 존재하지 않았던 물체가 영역 라인을 통과하지 않고 영역 내부에 나타나 일정시간 머무르거나, 영역 내부에 존재하던 물체가 사라지면 이벤트를 발생시킵니다.</li>
+
+                <li ng-if="objectDetectionSupport" style="list-style-type:none;"><strong class="UI">[나타남(사라짐)]</strong> 옵션의 경우 다른 옵션과 달리 <strong class="UI">[개체]</strong>에서 선택한 개체가 아닌 움직이는&nbsp;물체를 감지합니다. </li>
+
                 <ul ng-if="IvaAppearDisappear">
-                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 나타남(사라짐)을 감지하기 위한 물체의 최소 지속 시간을 설정합니다. 가상 영역에서 실행 시간동안 존재하던 물체가 사라지면 이를 사라짐으로 감지하고, 실행 시간 동안 존재하지 않던 물체가 나타나면 나타남으로 감지합니다. </li>
+                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 나타남(사라짐)을 감지하기 위한 물체의 최소 지속 시간을 설정합니다. 가상 영역에서 실행 시간동안 존재하던 물체가 사라지면 이를 사라짐으로 감지하고, 실행 시간 동안 존재하지 않던 물체가 나타나면 나타남으로 감지합니다.</li>
                 </ul>
-                <li ng-if="IvaLoitering && !S1Features"><strong class="UI">배회</strong>: 설정한 가상 영역 내에서 배회하는 움직임을 감지하면 이벤트를 발생시킵니다.</li>
-                <ul ng-if="IvaLoitering && !S1Features">
-                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 배회하는 물체를 감지하고 이벤트를 발생하기 위한 최소시간을 설정합니다. 설정한 시간보다 더 오래 배회하는 물체를 감지하면 이벤트를 발생시킵니다.</li>
+                <li ng-if="IvaLoitering && !S1Features && !objectDetectionSupport"><strong class="UI">배회</strong>: 설정한 가상 영역 내에서 배회하는 움직임을 감지하면 이벤트를 발생시킵니다.</li>
+                <li ng-if="IvaLoitering && !S1Features && objectDetectionSupport"><strong class="UI">배회</strong>: 설정한 가상 영역 내에서 <strong class="UI">[개체]</strong>에서 선택한 개체가 배회하는 것을 감지하면 이벤트를 발생시킵니다. </li>
+                <ul ng-if="IvaLoitering && !S1Features && !objectDetectionSupport">
+                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 배회하는 물체를 감지하고 이벤트를 발생하기 위한 최소 시간을 설정합니다. 설정한 시간보다 더 오래 배회하는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
+                </ul>
+			    <ul ng-if="IvaLoitering && !S1Features && objectDetectionSupport">
+                    <li><strong class="UI">최소 관찰 시간(초)</strong>: 배회하는 개체를 감지하고 이벤트를 발생하기 위한 최소 시간을 설정합니다. 설정한 시간보다 더 오래 배회하는 개체를 감지하면 이벤트를 발생시킵니다.  </li>
                 </ul>
             </ul>
         </div>
@@ -165,6 +214,13 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>배회 감지는 다른 IVA 이벤트 감지와 함께 사용할 경우, 단독으로 사용하는 것보다 성능이 다소 저하될 수 있습니다.</li>
+                <li>다음과 같은 경우 개체가 사라진 것으로 인식하여 배회 감지 기능이 동작하지 않을 수 있습니다.</li>
+                <ul>
+                    <li>배회하고 있는 개체가 다른 개체와 겹치는 경우</li>
+                    <li>배회하고 있는 개체가 일정 시간동안 움직이지 않는 경우</li>
+                    <li>배회하고 있는 개체와 근접 영역에 이동체가 있는 복잡한 환경이 발생한 경우 <br>
+</li>
+                </ul>
             </ul>
         </div>
 		       <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
@@ -217,6 +273,12 @@
             <h3>영역</h3>
             <p>제외 영역이 추가되면 순서대로 <strong class="UI">[영역]</strong>의 숫자 버튼 색상이 변경됩니다. 숫자 버튼을 클릭하면 해당 제외 영역이 미리보기 화면에서 선택됩니다. </p>
  </div>
+ <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li><strong class="UI">[IVA]</strong>의 <strong class="UI">[제외 영역] </strong>탭에서 설정한 값은 <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">개체 감지</a>]</strong>&gt;<strong class="UI">[제외 영역] </strong>값과 연동합니다. 즉&nbsp;<strong class="UI">[IVA]</strong>의 <strong class="UI">[제외 영역] </strong>탭에서 제외 영역을 설정하면 <strong class="UI">[개체 감지]</strong>&gt;<strong class="UI">[제외 영역]</strong>에도 동일한 제외 영역이 생성됩니다.</li>
+            </ul>
+        </div> 
     </div>
 </div>
 <div class="wn5-setup-section">
@@ -237,12 +299,19 @@
             <h3>크기</h3>
             <p>가상선과 가상 영역에서 움직임을 감지할 물체의 최소 크기와 최대 크기를 설정합니다. 오른쪽 하단의 꼭지점을 클릭한 후 마우스를 드래그하여 크기를 변경할 수 있습니다. 크기를 변경하면 <strong class="UI">[크기]</strong>에서 <strong class="UI">[최소]</strong> 값과 <strong class="UI">[최대]</strong> 값도 변경됩니다. </p>
         </div>
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>제외 영역</h3>
+            <p>AI 카메라는 각 개체별로 세부 속성을 분석한 데이터를 카메라와 연동하는 프로그램 등에서 활용할 수 있도록 전송합니다. 이 때 제외 영역으로 설정된 영역에서 감지한 개체 정보는&nbsp;기본적으로 전송하지 않습니다. 제외 영역에서 감지한 개체의 정보와 각 개체의 세부 속성을 전송하려면 <strong class="UI">[</strong><strong>감지 제외 영역의 개체 데이터 사용</strong><strong class="UI">]</strong>을 선택합니다. &nbsp;</p>
+            <p>카메라가 전송하는 개체별 세부 속성 정보는 &quot;AI Camera Metadata Specification&quot; 문서를 참조하십시오.</p>
+        </div>
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
+                <li ng-if="objectDetectionSupport"><strong class="UI">[IVA]</strong>의 <strong class="UI">[공통 설정]</strong> 탭에서 설정한 값은 <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">개체 감지</a>]</strong>&gt;<strong class="UI">[공통 설정] </strong>값과 연동합니다. 즉 <strong class="UI">[IVA]</strong>의 <strong class="UI">[공통 설정]</strong> 탭에서 값을 변경하면 <strong class="UI">[개체 감지]</strong>&gt;<strong class="UI">[공통 설정] </strong>값도 동일하게 변경됩니다.</li>
                 <li>가상 영역과 제외 영역이 동일하거나 겹치는 경우, 제외 영역이 우선합니다.</li>
-                <li>사용자가 지정한 최소 크기보다 작은 움직임과 최대 크기보다 큰 움직임은 감지하지 않습니다. 크고 작은 노이즈에 의한 오감지를 피하기 위하여 설치 환경에 적합한 최소/최대 감지 크기를 설정하십시오. 단, 동일한 위치에서의 동일한 움직임이라도 감지되는 크기는 다소 차이가 있을 수 있기 때문에 편차를 고려하여 여유를 포함하여 최소/최대 크기 제한을 설정하십시오. </li>
+                <li ng-if="!objectDetectionSupport">사용자가 지정한 최소 크기보다 작은 움직임과 최대 크기보다 큰 움직임은 감지하지 않습니다. 크고 작은 노이즈에 의한 오감지를 피하기 위하여 설치 환경에 적합한 최소/최대 감지 크기를 설정하십시오. 단, 동일한 위치에서의 동일한 움직임이라도 감지되는 크기는 다소 차이가 있을 수 있기 때문에 편차를 고려하여 여유를 포함하여 최소/최대 크기 제한을 설정하십시오.</li>
+                <li ng-if="objectDetectionSupport">사용자가 지정한 최소 크기보다 작은 개체나&nbsp;최대 크기보다 큰 개체는 감지하지 않습니다. 크고 작은 노이즈에 의한 오감지를 피하기 위하여 설치 환경에 적합한 최소/최대 감지 크기를 설정하십시오. 단, 동일한 위치에서의 동일한 움직임이라도 감지되는 크기는 다소 차이가 있을 수 있기 때문에 편차를 고려하여 여유를 포함하여 최소/최대 크기 제한을 설정하십시오.</li>
             </ul>
         </div>
     </div>
@@ -251,7 +320,7 @@
             <hr class="wn5-setup-hr" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
             <div class="wn5-setup-section" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
                 <div class="wn5-setup-section-heading">
-                    <h2>핸드오버</h2>
+                    <h2><a name="handover"></a>핸드오버</h2>
                 </div>
                 <div class="wn5-setup-section-article">
                     <div class="wn5-setup-section-article-content">
@@ -259,8 +328,8 @@
                         <p>핸드오버 수신 카메라 번호를 선택합니다. 핸드오버 기능을 사용하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택합니다.</p>
                         <p>핸드오버는 IVA 이벤트가 발생하면, 수신 카메라가 미리 설정해 둔 PTZ 프리셋 위치로 이동하는 기능입니다. 핸드오버 수신 카메라는 <strong class="UI">[이벤트]</strong> &gt; <strong class="UI">[핸드오버]</strong> 메뉴에서 설정할 수 있습니다. </p>
                     </div>
-					       <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+					<div class="wn5-online-help-info">
+                    <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                         <ul>
                 
                             <li>가상선과 가상 영역 별로 핸드오버 수신 카메라를 설정할 수 있으며, 핸드오버 기능은 가상선이나 가상 영역을 먼저 설정한 후 사용할 수 있습니다.</li>

@@ -3,6 +3,13 @@
     <p>Un evento IVA puede ser creado cuando se establece la regla para la anal&iacute;tica de v&iacute;deo y se detecta un movimiento que satisface la condici&oacute;n de regla del evento. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte de abajo de la p&aacute;gina. El ajuste del evento IVA se aplica a <strong class="UI">[IVA]</strong> en el <strong class="UI">[Evento]</strong>&gt; y la p&aacute;gina de <a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
 
+<div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+<ul>
+    <li>Si se selecciona un cierto tipo de objeto en el campo&nbsp;<strong class="UI">[Objeto]</strong>, la cámara detectará únicamente ese tipo de objeto y activará eventos IVA cuando dicho tipo de objeto cumpla las condiciones de reglas de eventos IVA. Si no selecciona ninguna opción en el campo [Objeto], la cámara detectará cualquier tipo de objeto móvil. </li>
+</ul>
+    </div>
+
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
@@ -11,6 +18,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede definir los detalles de IVA para cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
+            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [IVA] solo puede configurarse en el canal 1.</p>
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">El “IVA” solo se puede configurar en Canal1.</p>
@@ -50,11 +58,14 @@
         <div class="wn5-setup-section-article">
 
         <div class="wn5-setup-section-article-content">
-            <p>El movimiento de un objeto es detectado con respecto a la l&iacute;nea virtual y la direcci&oacute;n establecida por el usuario.</p>
+            <!-- <p>El movimiento de un objeto es detectado con respecto a la l&iacute;nea virtual y la direcci&oacute;n establecida por el usuario.</p> -->
+            <p>Detecta los objetos que pasan con respecto a la línea virtual y la dirección configuradas por el usuario.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Configuraci&oacute;n de una l&iacute;nea virtual</h4>
-			<p>Al hacer clic en el punto inicial y el punto final de la l&iacute;nea en cada posici&oacute;n deseada de la pantalla de imagen de la c&aacute;mara, la l&iacute;nea virtual se define y el color del bot&oacute;n num&eacute;rico en <strong class="UI">[L&iacute;nea]</strong> cambiar&aacute;. Puede cambiar la direcci&oacute;n de A a B, B a A o ambas direcciones haciendo clic en la flecha del medio de la l&iacute;nea virtual, o puede seleccionar la direcci&oacute;n que desee desde <strong class="UI">[Direcciones]</strong> en <strong class="UI">[Categor&iacute;as]</strong>. Se pueden configurar hasta 8 l&iacute;neas virtuales.</p>
+            <p>Al hacer clic en el punto inicial y el punto final de la l&iacute;nea en cada posici&oacute;n deseada de la pantalla de imagen de la c&aacute;mara, la l&iacute;nea virtual se define y el color del bot&oacute;n num&eacute;rico en <strong class="UI">[L&iacute;nea]</strong> cambiar&aacute;. </p>
+            <p ng-if="objectDetectionSupport">Puede introducir el nombre de la línea virtual en el campo <strong class="UI">[Nombre]</strong> tras configurar esta.</p>     
+            <p>Puede cambiar la direcci&oacute;n de A a B, B a A o ambas direcciones haciendo clic en la flecha del medio de la l&iacute;nea virtual, o puede seleccionar la direcci&oacute;n que desee desde <strong class="UI">[Direcciones]</strong> en <strong class="UI">[Categor&iacute;as]</strong>. Se pueden configurar hasta 8 l&iacute;neas virtuales.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Cambiar una l&iacute;nea virtual</h4>
@@ -69,11 +80,28 @@
             <h3>L&iacute;nea</h3>
             <p>Cuando se a&ntilde;ade una l&iacute;nea virtual, el color de los botones num&eacute;ricos en <strong class="UI">[L&iacute;nea]</strong> cambiar&aacute;. Al desactivar una l&iacute;nea virtual haciendo clic en los botones num&eacute;ricos, la l&iacute;nea virtual de referencia no se mostrar&aacute; en la pantalla de vista previa. Al hacer clic en los botones num&eacute;ricos de nuevo, la l&iacute;nea virtual volver&aacute; a aparecer.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>Nombre</h3>
+                <p>Permite consultar o cambiar el nombre de la línea virtual seleccionada en <strong class="UI">[Línea]</strong>.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>Objeto</h3>
+                <p>Permite seleccionar el tipo de objeto que activará eventos IVA.</p>
+                <p>Así, por ejemplo, si elige la opción Persona como tipo de objeto, se activará un evento IVA si una persona cruza la línea virtual. Puede configurar los eventos para que activen un <a href="#handover">Traspaso</a> o para que ejecuten las acciones definidas en <a href="#action">Configuración de acciones de evento</a> cuando se produzcan.</p>
+            </div>
+            <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+                <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+                    <li>Si selecciona un objeto, la cámara detectará únicamente ese tipo de objetos. Si no se selecciona ninguno, la cámara detectará cualquier tipo de&nbsp;movimiento. Así, por ejemplo, si no selecciona ninguna opción en <strong class="UI">[Objeto]</strong>, se activará un evento IVA cuando cualquier objeto en movimiento cumpla las condiciones de reglas de eventos IVA.</li>
+                </ul>
+            </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>Categor&iacute;as</h3>
             <ul>
-                <li><strong class="UI">Paso</strong>: Para crear un evento cuando se detecta un objeto que pasa la l&iacute;nea virtual establecida, seleccione la casilla de verificaci&oacute;n.</li>
-                <li><strong class="UI">Direccion</strong>: Esto establece la direcci&oacute;n de un objeto para pasar la l&iacute;nea virtual.</li>
+                <li><strong class="UI">Paso</strong>: Marque la casilla de verificación para activar un evento cuando se detecta un objeto que atraviesa la línea virtual establecida.</li>
+                <li><strong class="UI">Direccion</strong>: Establece la dirección del objeto al atravesar la línea virtual.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
@@ -110,7 +138,8 @@
         </div>
         <div class="wn5-online-help-action">
 			<h4>Configuraci&oacute;n de una zona virtual</h4>
-			<p>En la pantalla vista previa, use su mouse para seleccionar 4 esquinas y arrastrar para dibujar una forma cuadril&aacute;tera que luego ser&aacute; su &aacute;rea de ROI. Hasta 8 zonas virtuales se pueden configurar y una regla de an&aacute;lisis de im&aacute;genes se pueden establecer para cada &aacute;rea.</p>
+            <p>En la pantalla vista previa, use su mouse para seleccionar 4 esquinas y arrastrar para dibujar una forma cuadril&aacute;tera que luego ser&aacute; su &aacute;rea de ROI. Hasta 8 zonas virtuales se pueden configurar y una regla de an&aacute;lisis de im&aacute;genes se pueden establecer para cada &aacute;rea.</p>
+            <p ng-if="objectDetectionSupport">Si lo desea, puede definir un área virtual y configurar el nombre de esta en el campo <strong class="UI">[Nombre]</strong>.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Cambio de una zona virtual</h4>
@@ -136,24 +165,50 @@
             <h3>&Aacute;rea</h3>
             <p>Cuando se a&ntilde;ade una zona virtual, el color de los botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Cuando se desactiva una zona virtual haciendo clic en los botones num&eacute;ricos, la zona virtual de referencia no se mostrar&aacute; en la pantalla de vista previa. Al hacer clic en los botones num&eacute;ricos de nuevo, la zona virtual volver&aacute; a aparecer.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>Nombre</h3>
+                <p>Permite consultar o cambiar el nombre del área virtual seleccionada en <strong class="UI">[Área]</strong>.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>Objeto</h3>
+                <p>Permite seleccionar el tipo de objeto que activará eventos IVA.</p>
+                <p>Así, por ejemplo, si elige la opción Persona, se activará un evento IVA únicamente si se detectan personas en el área virtual. Puede configurar los eventos para que activen un <a href="iva.html#handover">Traspaso</a> o para que ejecuten las acciones definidas en <a href="iva.html#action">Configuración de acciones de evento</a> cuando se produzcan.</p>
+            </div>	
+                    <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+                <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+                    <li>Si selecciona un objeto, la cámara detectará únicamente ese tipo de objetos. Si no se selecciona ninguno, la cámara detectará cualquier tipo de&nbsp;movimiento. Así, por ejemplo, si no selecciona ninguna opción en <strong class="UI">[Objeto]</strong>, se activará un evento IVA cuando cualquier objeto en movimiento cumpla las condiciones de reglas de eventos IVA.</li>
+                </ul>
+            </div>	
+
         <div class="wn5-setup-section-article-content">
             <h3>Categor&iacute;as</h3>
             <p>Puede configurar la regla a aplicar para cada zona virtual.</p>
             <ul>
-                <li><strong class="UI">Allanamiento</strong>: Cuando un objeto se mueve dentro del &aacute;rea establecida, se crear&aacute; un evento.</li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">Allanamiento</strong>: Cuando un objeto se mueve dentro del &aacute;rea establecida, se crear&aacute; un evento.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Allanamiento</strong>: Este evento se activa cuando la cámara detecta un objeto seleccionado en <strong class="UI">[Objeto]</strong> dentro del área definida.</li>
                 <ul>
                     <li> <strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>: Configure la cantidad m&iacute;nima de tiempo para activar un evento despu&eacute;s de la detecci&oacute;n. Cuando el movimiento dura m&aacute;s que el tiempo configurado, el evento se activa. </li>
                 </ul>
-                <li><strong class="UI">Entrada</strong>: Cuando un objeto entra en el &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
-                <li><strong class="UI">Salida</strong>: Cuando un objeto en movimiento sale del &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">Entrada</strong>: Cuando un objeto entra en el &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Entrada</strong>: Este evento se activa cuando la cámara detecta que un objeto seleccionado en <strong class="UI">[Objeto]</strong> ha entrado en el área definida.</li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">Salida</strong>: Cuando un objeto en movimiento sale del &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Salida</strong>: Este evento se activa cuando la cámara detecta que un objeto seleccionado en <strong class="UI">[Objeto]</strong> ha abandonado el área definida.</li>
                 <li ng-if="IvaAppearDisappear"><strong class="UI">Aparici&oacute;n (desaparici&oacute;n)</strong>: Cuando un objeto que no existe dentro del &aacute;rea designada por el usuario aparece dentro del &aacute;rea sin pasar la l&iacute;nea del &aacute;rea y se mantiene durante un cierto per&iacute;odo de tiempo, o si un objeto que existe dentro del &aacute;rea desaparece, se crear&aacute; un evento.</li>
+                <li ng-if="objectDetectionSupport" style="list-style-type:none;">A diferencia de otras opciones, <strong class="UI">[Aparición (Desaparición)]</strong> detecta no solo el tipo de objeto seleccionado en <strong class="UI">[Objeto]</strong>, sino también el resto de los tipos de objetos móviles. </li>  
                 <ul ng-if="IvaAppearDisappear">
-                    <li><strong class="UI">Duraci&oacute;n m&iacute;nima</strong>: Esto establece el plazo m&iacute;nimo para que un objeto sea detectado como que aparece (desaparece). Cuando un objeto que existe en el &aacute;rea de detecci&oacute;n durante el tiempo establecido desaparece, se detecta como desapareciendo, y cuando un objeto que no existe aparece durante la cantidad de tiempo establecido, se detecta como apareciendo.</li>
+                    <li><strong class="UI">Duraci&oacute;n m&iacute;nima</strong>:  Configura el tiempo mínimo para que un objeto sea detectado como que aparece (desaparece). Cuando un objeto que existía en el área de detección durante el tiempo establecido desaparece, se detecta como Desapareciendo, y cuando un objeto que no existía aparece durante la cantidad de tiempo establecida, se detecta como Apareciendo.</li>
+  
                 </ul>
-                <li ng-if="IvaLoitering"><strong class="UI">Merodeo</strong>: Cuando se detecta un objeto merodeando en el &aacute;rea de detecci&oacute;n establecida, se crear&aacute; un evento.</li>
-                <ul ng-if="IvaLoitering"> 
+                <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">Merodeo</strong>: Cuando se detecta un objeto merodeando en el &aacute;rea de detecci&oacute;n establecida, se crear&aacute; un evento.</li>
+                <li ng-if="IvaLoitering && objectDetectionSupport"><strong class="UI">Merodeo</strong>: Este evento se activa cuando la cámara detecta que el objeto seleccionado en <strong class="UI">[Objeto]</strong> merodea dentro del área virtual definida.</li>
+                <ul ng-if="IvaLoitering && !objectDetectionSupport"> 
                     <li><strong class="UI">Duraci&oacute;n m&iacute;nima</strong>: Esto establece el per&iacute;odo de tiempo m&iacute;nimo para un objeto que merodea sea detectado y se cree un evento. Cuando se detecta un objeto que merodea por m&aacute;s tiempo que el establecido, se crear&aacute; un evento.</li>
                 </ul>
+                <ul ng-if="IvaLoitering && objectDetectionSupport">
+                        <li><strong class="UI">Duración mínima (s)</strong>: Establece la cantidad mínima de tiempo desde que la cámara detecta un objeto con movimiento de merodeo hasta que activa el evento. Cuando un objeto realice un movimiento de merodeo durante un tiempo superior a este umbral, se activará un evento.</li>
+                    </ul>  
             </ul>
         </div>
 
@@ -161,6 +216,12 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Cuando se utiliza la detecci&oacute;n de merodeo junto con otra detecci&oacute;n de eventos IVA, el rendimiento puede deteriorarse hasta cierto grado, en comparaci&oacute;n con la utilizaci&oacute;n por separado de la detecci&oacute;n de merodeo.</li>
+                <li>En los siguientes casos, la función de detección de merodeo podría no funcionar, ya que la cámara considera que el objeto ha desaparecido.</li>
+                <ul>
+                        <li>Si un objeto con movimiento de merodeo se solapa con otro objeto.</li>
+                        <li>Si un objeto con movimiento de merodeo se detiene en un lugar durante cierto tiempo.</li>
+                        <li>Si el entorno es complejo y existe un objeto móvil cerca del objeto con movimiento de merodeo.<br/> </li>
+                </ul>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
@@ -214,6 +275,12 @@
             <h3>&Aacute;rea</h3>
             <p>Cuando se a&ntilde;ade un &aacute;rea excluida, el color de los botones num&eacute;ricos en el <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Si hace clic en los botones num&eacute;ricos para desactivarlos, entonces el &aacute;rea excluida se seleccionar&aacute; en la pantalla de vista previa.</p>
         </div>
+        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+                <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>El valor configurado en la pestaña <strong class="UI">[Excluir área]</strong> de <strong class="UI">[IVA]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Detección de objetos</a>]</strong>&gt;<strong class="UI">[Excluir área]</strong>. Así, cuando se defina un área excluida en la pestaña <strong class="UI">[Excluir área] </strong>de <strong class="UI">[IVA]</strong>, se creará un área excluida idéntica en <strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[Excluir área]</strong>.</li>
+            </ul>
+            </div> 
     </div>
 </div>
 
@@ -227,7 +294,6 @@
         <div class="wn5-setup-section-article-content">
             <p>Esto ajusta la sensibilidad y el tama&ntilde;o m&iacute;nimo y m&aacute;ximo de un objeto a detectar que se aplicar&aacute; tanto a la l&iacute;nea virtual como a la zona virtual.</p>
             <p>Esta es una configuraci&oacute;n que puede aplicar para aumentar la precisi&oacute;n de la detecci&oacute;n y minimizar la incidencia de la detecci&oacute;n falsa dependiendo de su entorno.</p>
-<p>&nbsp;</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -239,11 +305,20 @@
             <p>Esto establece el tama&ntilde;o m&iacute;nimo y m&aacute;ximo de un objeto a detectar que se aplicar&aacute; tanto a la l&iacute;nea virtual como la zona virtual. Se puede cambiar el tama&ntilde;o haciendo clic y arrastrando una esquina con el rat&oacute;n. Cuando se cambia el tama&ntilde;o, <strong class="UI">[M&iacute;nimo]</strong> y <strong class="UI">[M&aacute;ximo]</strong> en <strong class="UI">[Tama&ntilde;o]</strong> tambi&eacute;n cambian.</p>
         </div>
 
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+                <h3>Excluir área</h3>
+                <p>La cámara de IA transfiere los datos de analítica de cada objeto a los programas vinculados a la cámara para que estos los utilicen. Los datos de objetos detectados en el área excluida no se transferirán. Seleccione <strong class="UI">[Habilitar datos del objeto desde el área excluida]</strong> para transferir los datos. &nbsp;</p>
+                <p>Consulte el documento «Especificación de los metadatos de la cámara de IA» para más detalles acerca de la información de objeto transmitida por la cámara.</p>
+            </div>
+
+
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
+                    <li ng-if="objectDetectionSupport">El valor configurado en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[IVA]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Detección de objetos</a>]</strong>&gt;<strong class="UI">[Común]</strong>. Así, cuando se cambie el valor en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[IVA]</strong>, el valor en <strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[Común]</strong> también cambiará.</li>
                 <li>Si el &aacute;rea de detecci&oacute;n y el &aacute;rea excluida son id&eacute;nticos o se solapan, el &aacute;rea excluida tiene prioridad.</li>
-                <li>Cualquier movimiento menor que el tama&ntilde;o m&iacute;nimo especificado o mayor que el tama&ntilde;o m&aacute;ximo especificado no se detectar&aacute;. Determine los mejores valores para los tama&ntilde;os de detecci&oacute;n m&aacute;ximos/m&iacute;nimos que sean apropiados para el entorno de instalaci&oacute;n para evitar que cualquier detecci&oacute;n falsa surja de sonidos grandes o peque&ntilde;os. Recuerde que el mismo movimiento en el mismo lugar no siempre genera el mismo tama&ntilde;o de detecci&oacute;n. por lo tanto, se recomienda permitir habitaciones lo suficientemente grandes/peque&ntilde;as para sus l&iacute;mites de tama&ntilde;o m&aacute;ximo/m&iacute;nimo considerando la desviaci&oacute;n en los tama&ntilde;os detectados.</li>
+                <li ng-if="!objectDetectionSupport">Cualquier movimiento menor que el tama&ntilde;o m&iacute;nimo especificado o mayor que el tama&ntilde;o m&aacute;ximo especificado no se detectar&aacute;. Determine los mejores valores para los tama&ntilde;os de detecci&oacute;n m&aacute;ximos/m&iacute;nimos que sean apropiados para el entorno de instalaci&oacute;n para evitar que cualquier detecci&oacute;n falsa surja de sonidos grandes o peque&ntilde;os. Recuerde que el mismo movimiento en el mismo lugar no siempre genera el mismo tama&ntilde;o de detecci&oacute;n. por lo tanto, se recomienda permitir habitaciones lo suficientemente grandes/peque&ntilde;as para sus l&iacute;mites de tama&ntilde;o m&aacute;ximo/m&iacute;nimo considerando la desviaci&oacute;n en los tama&ntilde;os detectados.</li>
+                <li ng-if="objectDetectionSupport">La cámara no detecta objetos menores que el tamaño mínimo o mayores que el tamaño máximo. Para evitar falsos positivos por ruido de tamaño mayor o menor, defina los valores de detección de tamaño mínimo y máximo óptimos para el entorno de instalación. Sin embargo, tenga en cuenta que estos valores deben establecerse con cierta tolerancia, dado que a veces incluso un mismo movimiento detectado en una misma área puede tener tamaños diferentes.</li>
               </ul>
           </div>
       </div>
@@ -325,7 +400,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
             <h3>Clip de audio</h3>
-            <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento IVA. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[<font color="blue">Apagado</font>]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
+            <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento IVA. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[Apagado]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
             <p>Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong>&gt;<strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>
         </div>
 

@@ -47,6 +47,15 @@
                 </thead>
                 <tbody>
 
+                    <tr ng-if="objectDetectionSupport">
+                                <td width="235">BestShot</td>
+                                <td width="235">
+                                    <p>BestShot es la imagen extraída del objeto detectado de forma más fiable de entre los diferentes objetos (Persona, Rostro, Vehículo, Matrícula) por la cámara. BestShot usa el formato de imagen JPEG y contiene solo parte de la región donde se muestran los objetos.</p>
+                                    <p>Puede consultar el BestShot de cada objeto en el panel BestShot de la página en directo. Además, las propiedades detalladas de cada objeto se muestran como iconos. Así, por ejemplo, los objetos Persona tienen propiedades como sexo, color/longitud de prendas de arriba y abajo, o si llevan sombrero y/o bolso.</p>
+                                    <p>Puede elegir el tipo de objeto que se muestra en el panel BestShot en <strong class="UI">[Configuración]</strong>&gt;<strong class="UI">[Analítica]</strong>&gt;<strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[BestShot]</strong>.</p>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
 				    <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
@@ -89,6 +98,7 @@
                         <td width="235">
                             <p >Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n/Zoom de la c&aacute;mara. PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital.</p>
                             <p ng-if="!FisheyeLens">Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
+                            <p ng-if="objectDetectionSupport">Al seleccionar el canal 2 en <strong class="UI">[<a href="#channel_AI">Seleccionar canal</a>]</strong>, se activará la función PTZ.</p>
                           </td>
                       </tr>
 
@@ -138,6 +148,20 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="objectDetectionSupport">
+                            <td width="235">
+                                <p><span class="tui tui-ch-live-overlay"></span></p>
+                                <p>Superposición</p>
+                            </td>
+                            <td width="235">
+                                <p>Permite seleccionar qué tipo de objetos se mostrará en pantalla cuando la cámara detecte objetos.</p>
+                                <p>Los objetos detectados por una cámara de IA solo se mostrarán si el algoritmo analítico de la cámara de IA está activado. Para ello, deberá tener activada una de las siguientes funciones: Detección de objetos, IVA, Recuento de personas, Gestión de colas o Mapa de calor.</p>
+                                <p>El icono de Superposición solo se activa si se selecciona el canal 1 en [<a href="Monitoring.html#channel_AI">Seleccionar canal</a>].</p>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+
                     <tr ng-if="LensModelViewOptions">
                         <td width="235">Nombre del modelo de lentes</td>
                         <td width="235">
@@ -158,6 +182,19 @@
                                 <p ng-if="SupportAutoImageAlignment">La pantalla de la cámara para cada canal se muestra cuando selecciona un canal de la cámara de Canal2 a Canal5. Si selecciona Canal1, las pantallas de la cámara Canal2 a Canal5 se alinearán en una línea recta para mostrar una vista panorámica. Si selecciona Canal6 y Canal7, podrá verificar el video Canal1 mientras <a href="#PTZ">ajusta la cámara PTZ</a>.</p>
                             </td>
                         </tr>
+
+                        <tr ng-if="MaxChannel > 1 && objectDetectionSupport">
+                                <td width="235"><a name="channel_AI">Seleccionar canal</a></td>
+                                <td width="235">
+                                    <p>Aquí se muestran los canales compatibles con la cámara.</p>
+                                    <ul>
+                                        <li>Canal 1: Muestra el vídeo en directo.</li>
+                                        <li>Canal 2: Muestra el vídeo PTZ digital. Seleccione el canal 2 para usar la función <a href="#PTZ">PTZ</a>.</li>
+                                    </ul>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
+
 
                         <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
                                 <td width="235">
@@ -570,9 +607,10 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
+            <li ng-if="objectDetectionSupport">La función PTZ solo puede usarse cuando se selecciona el canal 2 en <strong class="UI">[<a href="#channel_AI">Seleccionar canal</a>]</strong>.</li>
              <li>La funci&oacute;n PTZ solo est&aacute; disponible cuando se selecciona <strong class="UI">[Perfil PTZ digital]</strong> en <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[B&aacute;sica]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong> &gt; <strong class="UI">[Tipo de perfil]</strong>.</li> 
-                <li>Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ, y ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
-                <li>Al hacer clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo, el seguimiento autom&aacute;tico se detendr&aacute;.</li>
+            <li>Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ, y ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
+            <li>Al hacer clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo, el seguimiento autom&aacute;tico se detendr&aacute;.</li>
             </ul>
 
         </div>

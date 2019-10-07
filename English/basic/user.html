@@ -41,28 +41,72 @@
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>For enhanced security, it is recommended to create a password that combine special characters, numbers, and uppercase and lowercase letters.</li>
+                <li>To reinforce security, it is recommended to create a password by combining special characters, numbers, and uppercase and lowercase letters.</li>
                 <li>It is recommended to change the password every three months.</li>
                 <li>The password length and restrictions are as follows:</li>
                 <ul>
                     <li>For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li>For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li>It should be different from your ID.</li>
-                    <li>You cannot use four consecutive letters of one type. (Ex: 1234, abcd)</li>
-                    <li>You cannot repeat the same letter four or more times in a row. (Ex: !!!!, 1111, aaaa)</li>
+                    <li>You cannot use four or more consecutive characters (e.g. 1234, abcd)</li>
+                    <li>You cannot use the same character four or more times in a row (e.g. !!!!, 1111, aaaa)</li>
                     <li>Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
                     <li>After the factory reset, both the admin and user passwords will reset, and you need to create them again.</li>
                     <li>When you access the camera web viewer for the first time, or access it after the initialization, you will be moved to the password setting menu.</li>
                     <li>To use the web viewer menu, you need to set the new password in the password change menu and log in to the web viewer again with the changed password.</li>
                     <li>When changing the admin password, if the current password is not matched, then you cannot set the new password.</li>
-                    <li>After changing the password, if there is a camera connected to a client, such as CMS or NVR, then you need to register the changed password before use. If you maintain the same connection, the client will use the previous password for authentication, so the account can be locked.</li>
+                    <li>After changing the password, if there is a camera connected to a client, such as CMS or NVR, then you need to register the changed password before use.  If you maintain the same connection, the client will use the previous password for authentication, so the account can be locked.</li>
                 </ul>
-                <li>When logging in to the web viewer, if you entered incorrect password more than five times, it will be locked for 30 seconds and you won’t be able to access the web viewer. </li>
-                <li>If connection is made from various places with the same ID, or the password is changed while a number of Internet browsers are open, the Internet browsers may malfunction. It is recommended that a password be changed only from one location or only through one Internet browser.</li>
+                <li>When logging in to the web viewer, if you entered incorrect password more than five times, it will be locked for 30 seconds and you won&rsquo;t be able to access the web viewer. </li>
+                <li>If connection is made from various places with the same ID, or the password is changed while a number of Internet browsers are open, the Internet browsers may malfunction.  It is recommended that a password be changed only from one location or only through one Internet browser.</li>
             </ul>
 		</div>
 	</div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
+<div class="wn5-setup-section" ng-if="AdminFilterSupport">
+		<div class="wn5-setup-section-heading">
+				<h2>IP address to allow admin login</h2>
+		</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>Only registered IP addresses can be set to access the camera web viewer with the administrator account. </p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Adding IP addresses that can access with the administrator account</h4>
+			<ol>
+				<li>Click the <strong class="UI">[Add]</strong> button. A field is created to enter the IP address type and the IP address.</li>
+				<li>In the <strong class="UI">[IP Address Type]</strong> column, select the IP address type, either IPv4 or IPv6.  </li>
+				<li>In the <strong class="UI">[IP Address Type]</strong> column, enter the IP address that you want to allow access with the administrator account.</li>
+			</ol>
+			<p>You have to check the <strong class="UI">[Use]</strong> check box to access the camera web viewer in the corresponding IP address with the administrator account. </p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Deleting an IPv4 address</h4>
+			<ol>
+				<li>Select the IP address to delete.</li>
+				<li>Click the <strong class="UI">[Delete]</strong> button.</li>
+				<li>Click the <strong class="UI">[OK]</strong> button in the delete confirmation window. The IPv4 address is deleted.</li>
+			</ol>
+		
+		</div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="AdminTimeout">
+<div class="wn5-setup-section" ng-if="AdminTimeout">
+	<div class="wn5-setup-section-heading">
+			<h2>Administrator login automatic disconnect</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>If there are no activities for a certain period of time after accessing the camera web viewer with the administrator account, the web viewer login will be disconnected. Enter the time to automatically disconnect the login when the administrator is not active. </p>
+        </div>
+	</div>
+</div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -71,11 +115,22 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>When you select <strong class="UI">[Allow guest access]</strong>, a guest can connect to a web viewer screen. When you connect with a guest account, you can see only the live screen on the web viewer. Guest ID and password are 'guest/guest' and these cannot be changed. </p>
+			<p>When you select <strong class="UI">[Allow guest access]</strong>, a guest can connect to a web viewer screen. When you connect with a guest account, you can see only the live screen on the web viewer. Guest ID and password are &apos;guest/guest&apos; and these cannot be changed. </p>
 		</div>
 	</div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <div class="wn5-setup-section-heading">
+		<h2>RTSP settings</h2>
+	</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>When you select <strong class="UI">[Allow RTSP connection without encryption]</strong>, you can view the video in RTSP format even if the program does not support the S1 video encryption protocol.</p>
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -84,8 +139,69 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>When you select <strong class="UI">[Allow RTSP connection without authentication]</strong>, you can connect to the camera image using RTSP (Real Time Streaming Protocol) without login authentication.</p>
+			<p>When you select <strong class="UI">[Allow RTSP connection without authentication]</strong>, you can access the camera video using RTSP (Real Time Streaming Protocol) without the login authentication.</p>
 		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
+<div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
+	<div class="wn5-setup-section-heading">
+		<h2>Device Manager</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Select <strong class="UI">[Use]</strong> to control the camera in &lsquo;Wisenet device manager&rsquo; provided by Hanwha Techwin. </p>
+                <p>Default value is the <strong class="UI">[Use]</strong> option deselected. We recommend keeping the default value for security reasons.</p>
+            </div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
+<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+	<div class="wn5-setup-section-heading">
+		<h2>Digest authentication</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>Select the algorithm option for digest authentication. </p>
+		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <div class="wn5-setup-section-heading">
+		<h2>TTA settings </h2>
+	</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>When you select <strong class="UI">[Use ONVIF TTA authentication]</strong>, the message digest authentication method is used instead of the plain text authentication method that is not encrypted in ONVIF TTA authentication. </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<div class="wn5-setup-section-heading">
+		<h2>Finding your password</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>When you select <strong class="UI">[Use password search]</strong>, you can find your password through the email you set up on the login page. </p>
+        </div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<div class="wn5-setup-section-heading">
+		<h2>Password change cycle</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Set the message exposure cycle to induce administrator password change. After the set period has lapsed, you will be prompted to change your password. </p>
+        </div>
 	</div>
 </div>
 
@@ -97,15 +213,15 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile. </p>	
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">You can set the connection information for user accounts other than the administrator, and set use permissions.</p>				
-			<p>When a registered user logs in, only the functions set for that user are enabled. 10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile. </p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">You can set the connection information for user accounts other than the administrator, and set use permissions. </p>				
+			<p>When a registered user logs in, only the functions set for that user are enabled.  10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p>
 		</div>
 		<div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-    <ul>
-        <li>If you want to select the configured user that can use ONVIF, the use of the function may be restricted depending on the permission level set.</li>
-    </ul>
+	        <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                <ul>
+                    <li>If you want to select the configured user that can use ONVIF, the use of the function may be restricted depending on the permission level set.</li>
+                </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Use</h3>
@@ -131,16 +247,11 @@
 			<h3>Alarm output</h3>
 			<p>Set alarm output permissions. When an alarm has been set, a user who connects to a relevant account can output the alarm.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
-
+				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
-			<p>Sets the permission to control the PTZ in <strong class="UI">[Live]</strong> mode. </p>
+            <p>Sets the permission to control the PTZ in <strong class="UI">[Live]</strong> mode. </p>
 		</div>
-
-
-
 		<div class="wn5-setup-section-article-content">
-
 			<h3>Profile</h3>
 			<p>When <strong class="UI">[Default]</strong> is set, the user can watch the image only in default mode; when <strong class="UI">[All]</strong> is set, the user can watch the image in all profiles.</p>
 		</div>
@@ -150,9 +261,9 @@
 			<ol>
 				<li>Select the radio button of the current user account you wish to use. The current user account is changed to a status where input is available.</li>
 				<li>Select the check box in the <strong class="UI">[Use]</strong> column.</li>
-				<li>Enter the ID and password in the <strong class="UI">[Name]</strong> and <strong class="UI">[Password]</strong> columns.</li>
-				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">Select a function to allow in the <strong class="UI">[Audio in]</strong>, <strong class="UI">[Audio out]</strong> and <strong class="UI">[Alarm output]</strong> columns respectively, and select the type of profile to allow in the <strong class="UI">[Profile]</strong> column.</li>
-				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">Select the type of profile to allow in the <strong class="UI">[Profile]</strong> column.</li>
+				<li>Enter the ID and password in the <strong class="UI">[Name]</strong> and <strong class="UI">[Password]</strong> columns.</li><!-- <li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> --><li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">Select a function to allow in the <strong class="UI">[Audio in]</strong>, <strong class="UI">[Audio out]</strong> and <strong class="UI">[Alarm output]</strong> columns respectively, and select the type of profile to allow in the <strong class="UI">[Profile]</strong> column.</li>
+                <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">Select the type of profile to allow in the <strong class="UI">[Profile]</strong> column.</li> 
+				
 				<li>When the input of the current user account is completed, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</li>
 				<li>When the confirm window appears, click the <strong class="UI">[OK]</strong> button.</li>
 			</ol>

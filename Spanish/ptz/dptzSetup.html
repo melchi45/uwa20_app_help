@@ -22,6 +22,8 @@
             </div>
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+                <p ng-if="objectDetectionSupport">Tras seleccionar su canal de cámara, puede definir la configuración detallada de PTZ para cada canal.</p>
+                <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [PTZ digital] solo puede configurarse en el canal 2.</p>
             <p ng-if="SupportAutoImageAlignment">Después de seleccionar su canal de cámara, puede configurar los detalles de PTZ para cada canal. </p>
             <p ng-if="SupportAutoImageAlignment">Las configuraciones de preajuste establecidas en el men&uacute; PTZ digital se pueden ver en la pantalla directo.</p>
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
@@ -61,7 +63,7 @@
     			<li>Introduzca el nombre preajuste relevante en <strong class="UI">[Nombre]</strong>.</li>
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>.</li>
             </ol>
-            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment">Al hacer clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo, el seguimiento autom&aacute;tico se detendr&aacute;.</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">Al hacer clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo, el seguimiento autom&aacute;tico se detendr&aacute;.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Ir a un predefinido</h4>
@@ -76,6 +78,23 @@
                 <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>, se borrar&aacute; el preajuste.</li>
     		</ol>
         </div>
+
+        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+                <h4>Activar seguimiento automático</h4>
+                <p>La función de seguimiento automático se utiliza para el seguimiento automático del movimiento de los objetos detectados.</p>
+                <ol>
+                    <li>Seleccione el tipo de objeto del que quiere hacer un seguimiento en la columna <strong class="UI">[Objeto]</strong>.</li>
+                    <li>Haga clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> para que la cámara siga automáticamente los objetos del tipo indicado en <strong class="UI">[Objeto]</strong> cuando los detecte.</li>
+                    <li>Para detener el seguimiento automático, vuelva a hacer clic en el icono de seguimiento automático <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>.</li>
+                </ol>
+            </div>
+            <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
+                    <h4>Activar seguimiento automático</h4>
+                    <p>La función de seguimiento automático se utiliza para el seguimiento automático de objetos detectados en la pantalla.</p>
+                    <ol>
+                        <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> Vuelva a hacer clic en el icono para que la cámara siga automáticamente objetos en movimiento. El icono cambia a <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. Vuelva a hacer clic en el icono para detener la función de Seguimiento automático.</li>
+                    </ol>
+                </div> -->
     </div>
 </div>
 

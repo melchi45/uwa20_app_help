@@ -11,6 +11,7 @@
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
                     <p>After selecting your camera channel, you can set the details of Video profile for each channel.</p>
+                    <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video.</p>
                     <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
                     <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
 
@@ -237,6 +238,7 @@
                 <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. ‘DPTZ’ is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
                 <li style="list-style-type: none;" ng-if="FisheyeLens && !SupportChannelEnabledFeature">For the fisheye camera, when adding a new profile, select <strong class="UI">[Dewarping view]</strong> in <strong class="UI">[Fisheye view type]</strong> and select <strong class="UI">[Quad view]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.</li>
                 <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">Frame Lock profile</strong>: This is a profile applied to guarantee a certain level of video frame rate. This ‘Frame Lock profile’ option appears only when <strong class="UI">[Codec]</strong> is set to [h.264] or [h.265].</li>
+                <li ng-if="SupportChannelEnabledFeature" style="list-style-type:none;">The maximum frame rate might not be guaranteed if you access multiple channels at the same time.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">

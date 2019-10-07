@@ -14,6 +14,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+                <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Conf. de vídeo] solo puede configurarse en el canal 1.</p> 
             <p ng-if="SupportAutoImageAlignment">Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados, como la rotaci&oacute;n de video, la salida anal&oacute;gica, etc.</p> 
             <p ng-if="!SupportAutoImageAlignment">Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados.</p> 
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>

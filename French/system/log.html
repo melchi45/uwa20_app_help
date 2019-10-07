@@ -69,7 +69,7 @@
         <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
             <h3>S&eacute;lectionner un canal</h3>
             <p>Vous pouvez consultez le journal &eacute;v&eacute;nements de chaque canal en s&eacute;lectionnant le num&eacute;ro du canal.</p>
-            
+            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Seul le journal du canal 1 peut être consulté.</p>
             <p ng-if="SupportChannelEnabledFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. Seules les informations du journal du canal 1 peuvent être vérifiées.</p>
             <ul ng-if="SupportChannelEnabledFeature">
                 <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction. </li>

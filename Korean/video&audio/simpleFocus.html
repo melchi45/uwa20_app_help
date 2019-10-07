@@ -5,8 +5,21 @@
     <p>화면의 포커스를 사용자가 직접 설정하거나, 심플 포커스를 통해 자동으로 조절할 수 있습니다. 또한 포커스 초기화를 통해 포커스를 기본 위치로 조절할 수 있습니다.</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>채널 선택</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>카메라 채널을 선택한 후 채널별로 포커스 설정 관련 세부 항목을 설정할 수 있습니다. 라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
+            <p>채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [포커스 설정]은 채널 1에서만 설정할 수 있습니다. </p>
+        </div>
+	</div>
+</div> 
 
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>포커스 설정</h2>

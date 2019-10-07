@@ -48,6 +48,16 @@
                 </thead>
                 <tbody>
 
+                    <tr ng-if="objectDetectionSupport">
+                        <td width="235">BestShot</td>
+                        <td width="235">
+                            <p>BestShot is the extracted image of the most confident object among the entities (Person, Face, Vehicle, License plate) detected by the camera. The image format of BestShot is JPEG, and its image contains only part of the region where the entities are shown.</p>
+                            <p>BestShot for individual object can be checked from the BestShot panel in the live page. In addition, the detailed properties of each object are displayed as icons. For example, a Person object has properties such as gender, color/length of tops and bottoms, wearing of a hat and/or bag.</p>
+                            <p>The type of object to be displayed in the BestShot panel can be selected from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Analytics]</strong>&gt;<strong class="UI">[Object detection]</strong>&gt;<strong class="UI">[BestShot]</strong>.</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
@@ -74,8 +84,8 @@
                     </tr>
                     <tr ng-if="PanTiltOnlyModel">
                             <td width="235">
-                                    <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
-                                    <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
+                                <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
                             </td>
                             <td width="235">You can digitally control the pan/tilt actions of the camera.</td>
                             </tr>
@@ -88,6 +98,7 @@
                         <td width="235">
                             <p>You can control the Pan/Tilt/Zoom motions of the camera. PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. </p>
                             <p ng-if="!FisheyeLens">To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.</p> 
+                            <p ng-if="objectDetectionSupport">If channel 2 is selected from <strong class="UI">[<a href="#channel_AI">Select channel</a>]</strong>, the PTZ function is enabled.</p>
                         </td>                    
                     </tr>
 
@@ -146,7 +157,22 @@
                             <p>Check the connection information for each profile and for connected users at the same time.</p>
                             <p>&nbsp;</p>
                         </td>
-                    </tr>  
+                    </tr> 
+                    
+                    <tr ng-if="objectDetectionSupport">
+                            <td width="235">
+                                <p><span class="tui tui-ch-live-overlay"></span></p>
+                                <p>Overlay</p>
+                            </td>
+                            <td width="235">
+                                <p>The type of entities to be displayed on screen when the camera detects entities can be selected.</p>
+                                <p>The entities detected by an AI camera are displayed only when the analytics algorithm of the AI camera is working. For AI algorithm to work, one of the following functions must be enabled: Object detection, IVA, People counting, Queue management, or Heatmap.</p>
+                                <p>The overlay icon is activated only when channel 1 is selected from [<a href="Monitoring.html#channel_AI">Select channel</a>].</p>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>                    
+
+
 					<tr ng-if="LensModelViewOptions">
                         <td width="235">Lens model name</td>
                         <td width="235">The name of the lens model installed in the camera is displayed. If you select a channel in <a href="#channel">Select channel</a>, you can see the name of the lens installed for each channel. </td>
@@ -164,7 +190,17 @@
                             <p ng-if="SupportAutoImageAlignment">The camera screen of each channel is shown when you select a camera channel from CH2 to CH5. If you select CH1, the camera screens of CH2 to CH5 will be aligned in a straight line to show a panoramic view. If you select CH6 and CH7, you can check the CH1 video while <a href="#PTZ">adjusting the camera PTZ.</a></p>
                         </td>
                     </tr>
-
+                    <tr ng-if="MaxChannel > 1 && objectDetectionSupport">
+                            <td width="235"><a name="channel_AI">Select channel</a></td>
+                            <td width="235">
+                                <p>The channels supported by the camera are displayed.</p>
+                                <ul>
+                                    <li>Channel 1: Shows the live feed.</li>
+                                    <li>Channel 2: Shows the digital PTZ video. Select channel 2 to use the <a href="#PTZ">PTZ</a> function.</li>
+                                </ul>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
                     <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
                         <td width="235">
                             <p>View type</p>
@@ -575,7 +611,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-              <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> 
+                <li ng-if="objectDetectionSupport">The PTZ function can be used only when channel 2 is selected from <strong class="UI">[<a href="#channel_AI">Select channel</a>]</strong>.</li>
+                <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> 
                 <li>Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen and then you can adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon. </li>
                 <li>When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically. When you click the icon again, auto tracking will stop.</li>
             </ul>

@@ -1,0 +1,197 @@
+﻿<h1 class="wn5-setup-main-title">Detección de objetos</h1>
+<div class="wn5-setup-section">
+    <p>Permite activar un evento de detección de objetos cuando la cámara detecta un objeto definido por el usuario. La cámara puede detectar cuatro tipos de objetos: Persona, Vehículo, Rostro y Matrícula.</p>
+    <p>Haga clic en el botón <strong class="UI">[Aplicar]</strong> cuando complete la configuración. La configuración de detección de objetos también se aplica a <strong class="UI">[Detección de objetos]</strong> en <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuración de eventos]</strong></a>.</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Tras seleccionar un canal de cámara, puede definir la configuración detallada de la detección de objetos de cada canal. En la página en directo o de reproducción se selecciona automáticamente el número del canal seleccionado más recientemente.</p>
+            <p>El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Detección de objetos] solo puede configurarse en el canal 1.</p>
+        </div>
+    </div>
+</div>	
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Detección de objetos</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Activar detección de objetos</h3>
+            <p>Para activar los eventos de detección de objetos, seleccione <strong class="UI">[Activar detección de objetos]</strong>.</p>
+            <p>Cuando se selecciona <strong class="UI">[Activar detección de objetos]</strong> se activará un evento de detección de objetos cuando un objeto del tipo seleccionado en <strong class="UI">[Objeto]</strong> permanezca en pantalla más tiempo del definido en <strong class="UI">[Duración mínima]</strong>.</p>
+        </div>		        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Objeto</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Permite definir el tipo de objetos que detectará la cámara.</p>
+        </div>
+ 
+        <div class="wn5-setup-section-article-content">
+            <h3>Objeto</h3>
+            <p>Seleccione uno de los tipos de objeto que desee que detecte la cámara: Persona, Vehículo, Rostro o Matrícula.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Duración mínima (s)</h3>
+            <p>Define el tiempo mínimo desde que la cámara detecta un objeto hasta que activa un evento. Los eventos solo se activarán si el objeto detectado se mueve durante un tiempo superior al configurado.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Excluir área</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Define el área de la que se excluirán los objetos seleccionados en <strong class="UI">[Objeto]</strong>.</p>
+        </div>
+			 <div class="wn5-online-help-action"> 
+            <h4>Configurar un área excluida</h4>
+            <p>Seleccione 4 vértices con el ratón o dibuje un cuadrilátero arrastrando con el ratón en la pantalla Vista previa para definir el área excluida. Pueden excluirse hasta 8 áreas.</p>
+			
+            </div>
+            <div class="wn5-online-help-action"> 
+            <h4>Cambiar un área excluida</h4>
+            <p>Puede modificar la forma de un área excluida moviendo los vértices.</p>
+            <p>Para dibujar un polígono, seleccione una de las aristas de un cuadrilátero existente y haga clic en + para añadir un nuevo vértice. Puede añadir hasta 4 vértices a un cuadrilátero existente.</p>
+            <p>Para mover un área excluida, seleccione y arrastre con el ratón.</p>
+			</div>
+            <div class="wn5-online-help-action"> 
+            <h4>Eliminar un área excluida</h4>
+			<p>Para eliminar un área excluida, haga clic con el botón derecho en esta y haga clic en el botón <strong class="UI">[Aceptar]</strong> en la ventana de Confirmar eliminación.</p>
+            </div>
+
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Área</h3>
+            <p>Al añadir un área excluida, el color de los botones numéricos correspondientes en <strong class="UI">[Área]</strong> cambiará en consecuencia. Para elegir un área excluida de la pantalla Vista previa, haga clic en el botón numérico correspondiente.</p>
+ </div>
+
+<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>El valor configurado en la pestaña <strong class="UI">[Excluir área]</strong> de <strong class="UI">[Detección de objetos]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="iva.html" ng-href="#/help/analytics_iva">IVA</a>]</strong>&gt;<strong class="UI">[Excluir área]</strong>. Así, cuando se defina un área excluida en la pestaña <strong class="UI">[Excluir área]</strong> de <strong class="UI">[Detección de objetos]</strong>, se creará un área excluida idéntica en <strong class="UI">[IVA]</strong>&gt;<strong class="UI">[Excluir área]</strong>.</li>
+            </ul>
+        </div> 
+ 
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+            <h2>Común</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Configura la sensibilidad, tamaño mínimo y tamaño máximo para la detección de objetos de la cámara.</p>
+            <p>Puede usar estos ajustes para aumentar la precisión de la detección y minimizar los falsos positivos, dependiendo del entorno.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensibilidad</h3>
+            <p>Permite ajustar la sensibilidad de la detección de objetos. Disminuya la sensibilidad en entornos donde los objetos sean fácilmente distinguibles del fondo y auméntela en entornos oscuros donde estos sean difíciles de distinguir.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Tamaño</h3>
+            <p>Establece el tamaño mínimo y máximo de los objetos que detectar. Haga clic en el vértice en la parte inferior derecha y arrástrelo para cambiar el tamaño. Cuando el objeto cambia de tamaño, los valores de <strong class="UI">[Mínimo]</strong> y <strong class="UI">[Máximo]</strong> en <strong class="UI">[Tamaño]</strong> también cambian.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Excluir área</h3>
+            <p>La cámara de IA transfiere los datos de analítica de cada objeto a los programas vinculados a la cámara para que estos los utilicen. Los datos de objetos detectados en el área excluida no se transferirán. Seleccione <strong class="UI">[Habilitar datos del objeto desde el área excluida]</strong> para transferir los datos. &nbsp;</p>
+            <p>Consulte el documento «Especificación de los metadatos de la cámara de IA» para más detalles acerca de la información de objeto transmitida por la cámara.</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>El valor configurado en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[Detección de objetos]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="iva.html" ng-href="#/help/analytics_iva">IVA</a>]</strong>&gt;<strong class="UI">[Común]</strong>. Así, cuando se cambie el valor en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[Detección de objetos]</strong>, el valor en <strong class="UI">[IVA]</strong>&gt;<strong class="UI">[Común]</strong> también cambiará.</li>
+                <li>La cámara no detecta objetos menores que el tamaño mínimo o mayores que el tamaño máximo. Para evitar falsos positivos por ruido de tamaño mayor o menor, defina los valores de detección de tamaño mínimo y máximo óptimos para el entorno de instalación. Sin embargo, tenga en cuenta que estos valores deben establecerse con cierta tolerancia, dado que a veces incluso un mismo movimiento detectado en una misma área puede tener tamaños diferentes.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+            <h2>BestShot</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>BestShot es una imagen creada por el objeto detectado de forma más fiable de entre los diferentes objetos (Persona, Rostro, Vehículo, Matrícula) por la cámara de IA. La imagen es en formato JPEG y contiene solo una porción del área donde se detectan los objetos en cuestión.</p>
+            <p>Los datos de la imagen BestShot pueden transferirse a los programas vinculados a la cámara para que estos los utilicen.</p>
+			             
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>BestShot</h3>
+            <p>Seleccione el tipo de objeto que desee capturar con BestShot.</p>
+            <p>El BestShot del objeto seleccionado puede visualizarse en el panel de la parte izquierda de la página en directo del visor web. Bajo la imagen BestShot se muestra información detallada de sus propiedades en forma de icono. Así, por ejemplo, en el caso de un objeto tipo Vehículo se mostrará información de su tipo (Coche, Autobús, Camión, Motocicleta, Tren, Bicicleta) en la parte inferior de la imagen BestShot.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+      <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
+  </div>
+  <div class="wn5-setup-section-article">
+      <div class="wn5-setup-section-article-content">
+          <h3>FTP</h3>
+          <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+      </div>
+      <div class="wn5-setup-section-article-content">
+          <h3>E-mail</h3>
+          <p>Para enviar una imagen por e-mail cuando se produce un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+      </div>
+      <div class="wn5-setup-section-article-content" ng-if="Recording">
+          <h3>Grabar</h3>
+          <p ng-if="NAS">Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+          <p ng-if="!NAS">Para guardar una imagen en una tarjeta SD cuando se crea un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+      </div>
+      <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+          <h3>Salida de alarma</h3>
+          <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento IVA.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Desactivar]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+          <p>La pantalla de opción de salida de alarma variará según la cantidad de alarmas de salida que tenga la cámara. Por ejemplo, si hay 2 alarmas para la salida, la opción mostrará «Salida de alarma 1» y «Salida de alarma 2». </p>
+      </div>
+  </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+  <div class="wn5-setup-section-heading">
+      <h2>Tiempo de activaci&oacute;n de evento</h2>
+  </div>
+  <div class="wn5-setup-section-article">
+      <div class="wn5-setup-section-article-content">
+          <p>Esto establece el tiempo de funcionamiento de las configuraciones de acci&oacute;n de eventos IVA. Establezca la configuraci&oacute;n de acciones de eventos desde <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_iva?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a la hora programada.</p>
+      </div>
+
+      <div class="wn5-setup-section-article-content">
+          <h3>Siempre</h3>
+          <p>Los valores de acciones evento siempre se ejecutan cuando se crea un evento IVA.</p>
+      </div>
+      <div class="wn5-setup-section-article-content">
+          <h3>S&oacute;lo tiempo programado</h3>
+          <p>Los ajustes de acciones de eventos se ejecutan solo cuando se crea un evento IVA durante el tiempo establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se muestra en la tabla de tiempos que aparece cuando <strong class="UI">[Sólo tiempo programado]</strong> se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n del evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
+          <p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+      </div>
+  </div>
+</div>
+           
+		
+<hr class="wn5-setup-hr">

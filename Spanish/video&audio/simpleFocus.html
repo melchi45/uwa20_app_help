@@ -4,8 +4,21 @@
     <p>El usuario puede ajustar el foco de la pantalla manualmente, o autom&aacute;ticamente a trav&eacute;s de Enfoque simple. El enfoque tambi&eacute;n se puede restablecer a los valores predeterminados a trav&eacute;s de [Inicializar Enfoque].</p>
 </div>
 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>Tras seleccionar un canal de cámara, puede definir la configuración detallada de enfoque de cada canal. En la página en directo o de reproducción se selecciona automáticamente el número del canal seleccionado más recientemente.</p>
+<p>El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Conf. enfoque] solo puede configurarse en el canal 1.</p>
+        </div>
+	</div>
+</div> 
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Conf. Enfoque</h2>

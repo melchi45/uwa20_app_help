@@ -12,6 +12,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede establecer los detalles de Detecci&oacute;n de manipulaci&oacute;n para cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
+            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Detección de manipulación] solo puede configurarse en el canal 1.</p>
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">La “Detecci&oacute;n de manipulaci&oacute;n” solo se puede configurar en Canal1.</p>
@@ -163,7 +164,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
             <h3>Clip de audio</h3>
-            <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento de detecci&oacute;n de manipulaci&oacute;n. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[<font color="blue">Apagado</font>]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
+            <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento de detecci&oacute;n de manipulaci&oacute;n. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[Apagado]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
             <p>Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong>&gt;<strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>
         </div>
 

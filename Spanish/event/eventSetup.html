@@ -44,6 +44,8 @@
             <p ng-if="HandoverCalibration">El canal de la cámara fija se muestra como un número y el canal PTZ se muestra como «PTZ».</p>
             <p>Los ajustes definidos en <strong class="UI">[Lista de eventos comunes]</strong> se aplicará a todos los demás canales.</p>
 
+            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Configuración de eventos] solo puede configurarse en el canal 1.</p>
+
             <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La acción del evento se puede configurar solo en el canal 1.</p>
             <ul ng-if="SupportChannelEnabledFeature">
                 <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>

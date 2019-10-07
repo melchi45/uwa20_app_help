@@ -19,6 +19,8 @@
             </div>
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+            <p ng-if="objectDetectionSupport">Après avoir sélectionné le canal caméra, vous pouvez définir les détails PTZ pour chaque canal.</p>
+            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [PTZ numérique] que sur le canal 2.</p>
             <p ng-if="SupportAutoImageAlignment">Après avoir sélectionné le canal de la caméra, vous pouvez définir les détails PTZ pour chaque canal. </p>
             <p ng-if="SupportAutoImageAlignment">L&rsquo;ensemble de pr&eacute;s&eacute;lections dans le menu de PTZ num&eacute;rique peut &ecirc;tre vu sur l&rsquo;&eacute;cran de direct.</p>
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
@@ -60,8 +62,10 @@
     			<li>Entrez le nom de pr&eacute;r&eacute;glage appropri&eacute; dans <strong class="UI">[Nom]</strong>.</li>
                 <li>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong>.</li>
             </ol>
-            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</p>
-    	</div>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</p>
+        </div>
+
+
         <div class="wn5-online-help-action">
     	   <h4>Passer &agrave; un pr&eacute;r&eacute;glage</h4>
     		<ol>
@@ -77,6 +81,24 @@
                 <li>Lorsque vous cliquez sur le bouton <strong class="UI">[Supprimer]</strong>, le pr&eacute;r&eacute;glage sera supprim&eacute;.</li>
     		</ol>
         </div>
+
+        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+                <h4>Activer le suivi automatique</h4>
+                <p>La fonction de suivi automatique est utilisée pour suivre automatiquement les mouvements d'un objet détecté.</p>
+                <ol>
+                    <li>Sélectionnez le type d'objets à suivre dans la colonne <strong class="UI">[Objet]</strong>.</li>
+                    <li>Cliquez sur l'icône <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> pour que la caméra suive automatiquement le mouvement des objets du type désigné dans <strong class="UI">[Objet]</strong> lorsqu'elle les détecte.</li>
+                    <li>Pour arrêter le Suivi automatique, cliquez sur l'icône de Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> une seconde fois.</li>
+                </ol>
+            </div>
+            <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
+                    <h4>Activer le Suivi automatique</h4>
+                    <p>La fonction de suivi automatique est utilisée pour suivre automatiquement les mouvements d'un objet détecté à l'écran.</p>
+                    <ol>
+                        <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> Cliquez sur l'icône à nouveau pour que la caméra suive automatiquement les objets en mouvement. L'icône devient <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. Cliquez sur l’icône à nouveau pour arrêter la fonction de Suivi automatique.</li>
+                    </ol>
+                </div> -->
+
     </div>
 </div>
 

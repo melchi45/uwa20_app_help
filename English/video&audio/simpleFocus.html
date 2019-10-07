@@ -4,8 +4,20 @@
     <p>The user can set the focus of the screen manually, or automatically through Simple Focus. The focus can also be reset to the default through [Initialize Focus].</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>The detailed Focus setup for each channel can be configured after selecting a camera channel. On the Live or Play page, the most recently selected channel number is automatically selected.</p>
+<p>Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Focus setup] can only be configured on channel 1.</p>
+        </div>
+	</div>
+</div> 
 
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Focus setup</h2>

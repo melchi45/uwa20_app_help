@@ -5,8 +5,20 @@
     <p>If a shock or vibration is detected on the camera or a change in physical position is detected, a shock detection event can be generated. When the setting is completed, click the [Apply]</strong> button at the bottom of the page. The settings for shock detection events are the same for <strong class="UI">[Shock detection]</strong> on the <strong class="UI">[Event]</strong>&gt; <a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event Setup]</strong></a> page.</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+<p>The detailed Shock detection setup for each channel can be configured after selecting a camera channel. On the Live or Play page, the most recently selected channel number is automatically selected.</p>
+<p>Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Shock detection] can only be configured on channel 1.</p>
+        </div>
+    </div>
+</div> 
 
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Shock detection</h2>

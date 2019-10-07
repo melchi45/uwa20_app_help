@@ -16,6 +16,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+			<p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[ビデオ設定]は、チャンネル1でのみ設定できます。</p> 
 			<p ng-if="SupportAutoImageAlignment">カメラチャンネルを選択した後、チャンネル別にプライバシー領域を設定したりビデオ回転やアナログ出力有無などのビデオ関連の詳細を設定することができます。</p> 
 			<p ng-if="!SupportAutoImageAlignment">カメラのチャンネルを選択した後、ビデオ関連の詳細項目を設定することができます。</p>
             <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>

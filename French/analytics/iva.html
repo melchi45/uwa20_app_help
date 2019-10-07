@@ -2,6 +2,12 @@
 <div class="wn5-setup-section">
     <p>Un &eacute;v&eacute;nement IVA peut &ecirc;tre cr&eacute;&eacute; lorsque la r&egrave;gle de l&rsquo;analytique de vid&eacute;o est d&eacute;finie et qu&apos;un mouvement qui remplit les conditions d&apos;&eacute;v&eacute;nement est d&eacute;tect&eacute;. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page. La configuration de l&apos;&eacute;v&eacute;nement IVA s&apos;applique &agrave; <strong class="UI">[IVA]</strong> aux pages <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuration de l&apos;&eacute;v&eacute;nement]</strong></a> de la m&ecirc;me mani&egrave;re.</p>
 </div>
+<div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+    <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+<ul>
+<li>Si un certain type d'objets est sélectionné dans le champ&nbsp;<strong class="UI">[Objet]</strong>, la caméra ne détectera que les objets de ce type et un événement IVA se déclenchera si un objet de ce type remplit les conditions d'événement IVA. Si aucune option n'est sélectionnée dans le champ [Objet], la caméra détectera tous les objets en mouvement. </li>
+</ul>
+</div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
@@ -11,6 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails IVA pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
+            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [IVA] que sur le canal 1.</p>
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">“&nbsp;IVA&nbsp;” peut seulement &ecirc;tre configur&eacute; sur CAN1.</p>
@@ -51,11 +58,14 @@
         <div class="wn5-setup-section-article">
 
         <div class="wn5-setup-section-article-content">
-            <p>Le mouvement d&apos;un objet est d&eacute;tect&eacute; en fonction de la ligne virtuelle et des instructions d&eacute;finies par l&apos;utilisateur.</p>
+            <!-- <p>Le mouvement d&apos;un objet est d&eacute;tect&eacute; en fonction de la ligne virtuelle et des instructions d&eacute;finies par l&apos;utilisateur.</p> -->
+            <p>Le mouvement d'un objet est détecté en fonction de la ligne virtuelle et des instructions définies par l'utilisateur.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>D&eacute;finir une ligne virtuelle</h4>
-			<p>Lorsque vous cliquez sur le point de d&eacute;part et le point d&rsquo;arriv&eacute;e de la ligne, &agrave; chaque position souhait&eacute;e, sur l&apos;&eacute;cran d&apos;image de la cam&eacute;ra, la ligne virtuelle sera d&eacute;finie et la couleur du bouton num&eacute;rique dans <strong class="UI">[Ligne]</strong> change. Vous pouvez modifier la direction de A &agrave; B, de B &agrave; A, ou les deux directions, en cliquant sur la fl&egrave;che au milieu de la ligne virtuelle, ou vous pouvez s&eacute;lectionner une direction souhait&eacute;e parmi <strong class="UI">[Direction]</strong> dans <strong class="UI">[Cat&eacute;gories]</strong>. Il est possible de d&eacute;finir jusqu&apos;&agrave;&nbsp;8 lignes virtuelles.</p>
+            <p>Lorsque vous cliquez sur le point de d&eacute;part et le point d&rsquo;arriv&eacute;e de la ligne, &agrave; chaque position souhait&eacute;e, sur l&apos;&eacute;cran d&apos;image de la cam&eacute;ra, la ligne virtuelle sera d&eacute;finie et la couleur du bouton num&eacute;rique dans <strong class="UI">[Ligne]</strong> change. </p>
+            <p ng-if="objectDetectionSupport">Un nom de ligne virtuelle peut être défini dans le champ <strong class="UI">[Nom]</strong> suite à la configuration d'une ligne virtuelle.</p>
+            <p> Vous pouvez modifier la direction de A &agrave; B, de B &agrave; A, ou les deux directions, en cliquant sur la fl&egrave;che au milieu de la ligne virtuelle, ou vous pouvez s&eacute;lectionner une direction souhait&eacute;e parmi <strong class="UI">[Direction]</strong> dans <strong class="UI">[Cat&eacute;gories]</strong>. Il est possible de d&eacute;finir jusqu&apos;&agrave;&nbsp;8 lignes virtuelles.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Modifier une ligne virtuelle</h4>
@@ -80,6 +90,24 @@
             <h3>Ligne</h3>
             <p>Lorsqu&apos;une ligne virtuelle est ajout&eacute;e, la couleur des boutons num&eacute;riques dans <strong class="UI">[Ligne]</strong> change. Lorsque vous d&eacute;sactivez une ligne virtuelle en cliquant sur les boutons num&eacute;riques, la ligne virtuelle correspondante ne s&apos;affiche pas sur l&apos;&eacute;cran d&apos;aper&ccedil;u. Lorsque vous cliquez &agrave; nouveau sur les boutons num&eacute;riques, la ligne virtuelle r&eacute;appara&icirc;t.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>Nom</h3>
+            <p>Affichez ou modifiez le nom de la ligne virtuelle sélectionnée dans<strong class="UI">[Ligne]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>Objet</h3>
+            <p>Sélectionnez le type d'objets devant déclencher un événement IVA.</p>
+            <p>Par exemple, si le type d'objet "Personnes" est sélectionné, un événement IVA se déclenchera si une personne traverse la ligne virtuelle. Il est possible de configurer un événement de manière à ce qu'il déclenche un <a href="#handover">Relais</a> ou qu'il exécute la <a href="#action">Configuration des actions de l'événement</a> lorsque cela se produit.</p>
+        </div>
+        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Si un type d'objets est sélectionné, la caméra ne détectera que les objets du type sélectionné. Si aucun type d'objets n'est sélectionné, la caméra détectera tous&nbsp;types de mouvements. Par exemple, si aucune option n'est sélectionnée dans <strong class="UI">[Objet]</strong>, un événement IVA se déclenchera dès qu'un objet en mouvement remplira les conditions d'événement IVA définies.</li>
+            </ul>
+        </div>
+
+
         <div class="wn5-setup-section-article-content">
             <h3>Cat&eacute;gories</h3>
             <ul>
@@ -104,7 +132,8 @@
         </div>
         <div class="wn5-online-help-action">
 			<h4>D&eacute;finir une zone virtuelle</h4>
-			<p>Sur l&rsquo;&eacute;cran Aper&ccedil;u, utilisez votre souris pour s&eacute;lectionner 4 coins ou faites glisser pour dessiner une forme quadrilat&eacute;rale qui sera alors votre zone d&rsquo;int&eacute;r&ecirc;t. Il est possible de d&eacute;finir jusqu&apos;&agrave; 8 zones virtuelles et une r&egrave;gle d&apos;analyse d&apos;image pour chaque zone.</p>
+            <p>Sur l&rsquo;&eacute;cran Aper&ccedil;u, utilisez votre souris pour s&eacute;lectionner 4 coins ou faites glisser pour dessiner une forme quadrilat&eacute;rale qui sera alors votre zone d&rsquo;int&eacute;r&ecirc;t. Il est possible de d&eacute;finir jusqu&apos;&agrave; 8 zones virtuelles et une r&egrave;gle d&apos;analyse d&apos;image pour chaque zone.</p>
+            <p ng-if="objectDetectionSupport">Si vous le souhaitez, vous pouvez configurer une zone virtuelle et saisir le nom de cette zone dans le champ <strong class="UI">[Nom]</strong>.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Modifier une zone virtuelle</h4>
@@ -120,24 +149,53 @@
             <h3>Zone</h3>
             <p>Lorsqu&apos;une zone virtuelle est ajout&eacute;e, la couleur des boutons num&eacute;riques change dans <strong class="UI">[Zone]</strong>. Lorsque vous d&eacute;sactivez une zone virtuelle en cliquant sur les boutons num&eacute;riques, la zone virtuelle correspondante ne s&apos;affiche pas sur l&apos;&eacute;cran d&apos;aper&ccedil;u. Lorsque vous cliquez &agrave; nouveau sur les boutons num&eacute;riques, la zone virtuelle r&eacute;appara&icirc;t.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>Nom</h3>
+            <p>Affichez ou modifiez le nom de la zone virtuelle sélectionnée dans<strong class="UI">[Zone]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>Objet</h3>
+            <p>Sélectionnez le type d'objets devant déclencher un événement IVA.</p>
+            <p>Par exemple, si "Personnes" est sélectionné, un événement IVA ne se déclenchera que si des personnes sont détectées en train de traverser la zone virtuelle. Il est possible de configurer un événement de manière à ce qu'il déclenche un <a href="iva.html#handover">Relais</a> ou qu'il exécute la <a href="iva.html#action">Configuration des actions de l'événement</a> lorsque cela se produit.</p>
+        </div>	
+		        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Si un type d'objets est sélectionné, la caméra ne détectera que les objets du type sélectionné. Si aucun type d'objets n'est sélectionné, la caméra détectera tous&nbsp;types de mouvements. Par exemple, si aucune option n'est sélectionnée dans <strong class="UI">[Objet]</strong>, un événement IVA se déclenchera dès qu'un objet en mouvement remplira les conditions d'événement IVA définies.</li>
+            </ul>
+        </div>	
+
         <div class="wn5-setup-section-article-content">
             <h3>Cat&eacute;gories</h3>
             <p>Vous pouvez d&eacute;finir la r&egrave;gle &agrave; appliquer pour chaque zone virtuelle.</p>
             <ul>
-                <li><strong class="UI">Intrusion</strong>&nbsp;: lorsqu&apos;un objet se d&eacute;placera dans la zone d&eacute;finie, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">Intrusion</strong>&nbsp;: lorsqu&apos;un objet se d&eacute;placera dans la zone d&eacute;finie, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Intrusion</strong>: L'événement se déclenche lorsque la caméra détecte l'objet sélectionné dans [Objet] à l'intérieur de la zone désignée.</li>
                 <ul>
                     <li><strong class="UI">Dur&eacute;e(s) minimum</strong>&nbsp;:D&eacute;finit le temps minimum pour d&eacute;clencher un &eacute;v&eacute;nement apr&egrave;s la d&eacute;tection. Lorsque le mouvement dure plus longtemps que la p&eacute;riode d&eacute;finie, l&rsquo;&eacute;v&eacute;nement est d&eacute;clench&eacute;.</li>
                 </ul>
-                <li><strong class="UI">Entrer</strong>&nbsp;: lorsqu&apos;un objet entrera dans la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
-                <li><strong class="UI">Sortie</strong>&nbsp;: lorsqu&apos;un objet en mouvement sortira de la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <li ng-if="!objectDetectionSupport"><strong class="UI">Entrer</strong>&nbsp;: lorsqu&apos;un objet entrera dans la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Entrée</strong> : L'événement se déclenche lorsque la caméra détecte l'entrée de l'objet sélectionné dans <strong class="UI">[Objet]</strong> dans la zone désignée.</li>
+
+
+                <li ng-if="!objectDetectionSupport"><strong class="UI">Sortie</strong>&nbsp;: lorsqu&apos;un objet en mouvement sortira de la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Sortie</strong> : L'événement se déclenche lorsque la caméra détecte la sortie de l'objet sélectionné dans <strong class="UI">[Objet]</strong> de la zone désignée.</li>
+
+
                 <li ng-if="IvaAppearDisappear"><strong class="UI">Apparition (Disparition)</strong>&nbsp;: lorsqu&apos;un objet qui n&apos;existe pas dans la zone d&eacute;sign&eacute;e par l&apos;utilisateur appara&icirc;t &agrave; l&apos;int&eacute;rieur de la zone sans passer la ligne de la zone et reste pendant un certain temps, ou si un objet existant dans la zone dispara&icirc;t, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <li ng-if="objectDetectionSupport" style="list-style-type:none;">Contrairement aux autres options, l'option <strong class="UI">[Apparition (Disparition)]</strong> détecte non seulement les objets appartenant au type d'objets sélectionné dans <strong class="UI">[Objet]</strong>, mais aussi tous les autres types d'objets en mouvement. </li>
                 <ul ng-if="IvaAppearDisappear">
-                    <li><strong class="UI">Dur&eacute;e(s) minimum</strong>&nbsp;: d&eacute;finit le d&eacute;lai minimum pour qu&apos;un objet soit d&eacute;tect&eacute; comme &eacute;tant en train d&rsquo;appara&icirc;tre (dispara&icirc;tre). Lorsqu&apos;un objet qui existe dans la zone de d&eacute;tection &agrave; l&apos;heure r&eacute;gl&eacute;e dispara&icirc;t, il est d&eacute;tect&eacute; comme &eacute;tant en train de dispara&icirc;tre et lorsqu&apos;un objet qui n&apos;existe pas appara&icirc;t pendant la dur&eacute;e d&eacute;finie, il est d&eacute;tect&eacute; comme en train d&rsquo;appara&icirc;tre.</li>
+                    <li><strong class="UI">Durée(s) minimum</strong> : Définit le délai minimum pour qu'un objet soit détecté comme étant en train d’apparaître (disparaître). Lorsqu'un objet qui existe dans la zone de détection pendant la durée définie disparaît, il est détecté comme étant en train de disparaître et lorsqu'un objet qui n'existe pas apparaît pendant la durée définie, il est détecté comme en train d’apparaître.</li>
                 </ul>
-                <li ng-if="IvaLoitering"><strong class="UI">Fl&acirc;nerie</strong>&nbsp;: Lorsqu&apos;un objet fl&acirc;nant dans la zone de d&eacute;tection est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
-                <ul ng-if="IvaLoitering">
+                <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">Fl&acirc;nerie</strong>&nbsp;: Lorsqu&apos;un objet fl&acirc;nant dans la zone de d&eacute;tection est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
+                <li ng-if="IvaLoitering && !S1Features && objectDetectionSupport"><strong class="UI">Flânerie</strong> : L'événement se déclenche lorsque la caméra détecte l'objet sélectionné dans <strong class="UI">[Objet]</strong> en train de flâner dans la zone désignée.</li>
+                <ul ng-if="IvaLoitering && !S1Features && !objectDetectionSupport">
                     <li><strong class="UI">Dur&eacute;e(s) minimum</strong>&nbsp;: Ceci d&eacute;finit la dur&eacute;e minimale de d&eacute;tection d&apos;un objet fl&acirc;nant et de cr&eacute;ation d&apos;un &eacute;v&eacute;nement. Lorsqu&apos;un objet qui fl&acirc;ne plus longtemps que le temps d&eacute;fini est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
                 </ul>
+                <ul ng-if="IvaLoitering && !S1Features && objectDetectionSupport">
+                    <li><strong class="UI">Durée(s) minimum :</strong> Définit la durée minimum pendant laquelle la caméra doit détecter un objet flânant avant de déclencher l'événement. Tout objet flânant plus longtemps que la durée minimale fixée déclenche l'événement.</li>
+                </ul>  
             </ul>
         </div>
 
@@ -145,9 +203,14 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Lorsque la d&eacute;tection de fl&acirc;nerie est utilis&eacute;e avec d&apos;autres dispositifs de d&eacute;tection d&apos;&eacute;v&eacute;nement IVA, les performances peuvent se d&eacute;t&eacute;riorer jusqu&apos;&agrave; un certain degr&eacute; en comparaison avec une utilisation s&eacute;par&eacute;e de la d&eacute;tection de fl&acirc;nerie.</li>
+                <li>Dans les cas ci-dessous, la fonction de détection de flânerie peut ne pas fonctionner, car la caméra considère que l'objet a disparu.</li>
+                <ul>
+                    <li>Lorsqu'un objet flânant se confond avec un autre objet</li>
+                    <li>Quand un objet flânant s'arrête à un endroit pendant un certain temps</li>
+                    <li>Lorsque l'environnement est complexe et qu'il y a un objet en mouvement à proximité de l'objet flânant<br/> </li>
             </ul>
         </div>
-	</div>
+    </div>
 </div>
 
 <div class="wn5-setup-section">
@@ -180,6 +243,14 @@
             <h3>Zone</h3>
             <p>Lors de l&rsquo;ajout d&rsquo;une zone exclue, la couleur des boutons num&eacute;rot&eacute;s dans la <strong class="UI">[Zone]</strong> changent. Si vous cliquez sur les boutons de num&eacute;rotation pour les d&eacute;sactiver, la zone exclue est alors s&eacute;lectionn&eacute;e sur l&rsquo;&eacute;cran Aper&ccedil;u</p>
         </div>
+
+        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+        <ul>
+            <li>La valeur configurée dans l'onglet <strong class="UI">[Zone exclue]</strong> de <strong class="UI">[IVA]</strong> est liée à la valeur de <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Détection d'objets</a>]</strong>&gt;<strong class="UI">[Zone exclue] </strong>. En d'autres termes, lorsqu'une zone exclue est configurée dans l'onglet <strong class="UI">[Zone exclue] </strong>de <strong class="UI">[IVA]</strong>, une zone exclue identique est également créée dans <strong class="UI">[Détection d'objets]</strong>&gt;<strong class="UI">[Zone exclue]</strong>.</li>
+        </ul>
+        </div> 
+
     </div>
 </div>
 
@@ -203,12 +274,18 @@
             <h3>Taille</h3>
             <p>Cette option d&eacute;finit la taille minimum et maximum d&apos;un objet &agrave; d&eacute;tecter qui sera appliqu&eacute;e &agrave; la fois &agrave; la ligne virtuelle et &agrave; la zone virtuelle. Vous pouvez modifier la taille en cliquant sur un coin avec la souris et en le faisant glisser. Lorsque la taille est modifi&eacute;e, le <strong class="UI">[Minimum]</strong> et le <strong class="UI">[Maximum]</strong> dans <strong class="UI">[Taille]</strong> changent &eacute;galement.</p>
         </div>
-
+        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <h3>Exclure la zone</h3>
+            <p>La caméra IA transfère les données d'analyse de chaque objet aux programmes auxquels elle est connectée afin qu'ils puissent s'en servir. Les données concernant les objets détectés dans la zone exclue ne sont pas transférées. Sélectionnez <strong class="UI">[Pour activer les données d’objet en provenance des zones exclues]</strong> pour transférer ces données. &nbsp;</p>
+            <p>Pour les informations d'objets détaillées transférées par la caméra, reportez-vous au document "Spécification des métadonnées des caméras IA".</p>
+        </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
+                <li ng-if="objectDetectionSupport">La valeur configurée dans l'onglet <strong class="UI">[Commun]</strong> de <strong class="UI">[IVA]</strong> est liée à la valeur de <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Détection d'objets</a>]</strong>&gt;<strong class="UI">[Commun]</strong>. En d'autres termes, si la valeur configurée dans l'onglet <strong class="UI">[Commun]</strong> de la <strong class="UI">[IVA]</strong> change, la valeur de <strong class="UI">[Détection d'objets]</strong>&gt;<strong class="UI">[Commun]</strong> change également.</li>    
                 <li>Si la zone de d&eacute;tection et la zone exclue sont identiques ou se superposent, la zone exclue est prioritaire.</li>
-                <li>Tout mouvement inf&eacute;rieur &agrave; la taille minimale sp&eacute;cifi&eacute;e ou sup&eacute;rieur &agrave; la taille maximale sp&eacute;cifi&eacute;e ne sera pas d&eacute;tect&eacute;. Veuillez d&eacute;terminer les meilleures valeurs pour les tailles de d&eacute;tection minimales/maximales appropri&eacute;es &agrave; l&rsquo;environnement d&rsquo;installation, afin d&rsquo;&eacute;viter toute d&eacute;tection erron&eacute;e r&eacute;sultant de petits et/ou grands bruits. Rappelez-vous que le m&ecirc;me mouvement au m&ecirc;me endroit n&rsquo;entra&icirc;ne pas toujours la m&ecirc;me taille de d&eacute;tection. Par cons&eacute;quent, il est recommand&eacute; de laisser suffisamment de petits/grands espaces pour vos limites de taille minimum/maximum en tenant compte de l&rsquo;&eacute;cart dans les tailles d&eacute;tect&eacute;es.</li>
+                <li ng-if="!objectDetectionSupport">Tout mouvement inf&eacute;rieur &agrave; la taille minimale sp&eacute;cifi&eacute;e ou sup&eacute;rieur &agrave; la taille maximale sp&eacute;cifi&eacute;e ne sera pas d&eacute;tect&eacute;. Veuillez d&eacute;terminer les meilleures valeurs pour les tailles de d&eacute;tection minimales/maximales appropri&eacute;es &agrave; l&rsquo;environnement d&rsquo;installation, afin d&rsquo;&eacute;viter toute d&eacute;tection erron&eacute;e r&eacute;sultant de petits et/ou grands bruits. Rappelez-vous que le m&ecirc;me mouvement au m&ecirc;me endroit n&rsquo;entra&icirc;ne pas toujours la m&ecirc;me taille de d&eacute;tection. Par cons&eacute;quent, il est recommand&eacute; de laisser suffisamment de petits/grands espaces pour vos limites de taille minimum/maximum en tenant compte de l&rsquo;&eacute;cart dans les tailles d&eacute;tect&eacute;es.</li>
+                <li ng-if="objectDetectionSupport">La caméra ne détectera aucun objet de taille inférieure à la taille minimale spécifiée ou supérieure à la taille maximale spécifiée. Pour éviter les fausses détections causées par des bruits grands et petits, réglez la taille de détection minimum/maximum optimale adaptée en fonction de l'environnement d'installation. Toutefois, la taille de détection minimale/maximale doit avoir une certaine marge de tolérance, car même un mouvement identique détecté dans la même zone peut varier en taille.</li>
             </ul>
         </div>
     </div>

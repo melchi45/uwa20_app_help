@@ -1,4 +1,4 @@
-﻿<h1 class="wn5-setup-main-title">Digital PTZ setup</h1>
+﻿<h1 class="wn5-setup-main-title">Digital PTZ</h1>
 
 <div class="wn5-setup-section">
 	<p>You can set the camera views to move after digital zoom is executed, rather than having the camera view change by physically moving the camera up and down (tilt) or left and right (pan). You can set a preset or change the camera views by setting a group of presets. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.  </p>
@@ -21,6 +21,8 @@
             </div>
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+            <p ng-if="objectDetectionSupport">After selecting your camera channel, you can set the details of PTZ for each channel.</p>
+            <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Digital PTZ] can only be configured on channel 2.</p>
             <p ng-if="SupportAutoImageAlignment">After selecting your camera channel, you can set the details of PTZ for each channel. </p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">The presets set in the Digital PTZ menu can be seen on the Live screen.</p>
@@ -66,7 +68,7 @@
                 <li>Click the <strong class="UI">[Add]</strong> button.</li>
             </ol>
             <p></p>
-            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment">When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically, and the icon turns into <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. When you click the button again, auto tracking will stop.</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically, and the icon turns into <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. When you click the button again, auto tracking will stop.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Moving to a preset</h4>
@@ -92,6 +94,10 @@
                 <li>Click Set home position<span class="tui tui-wn5-top-setup"></span> icon.</li>
             </ol>
         </div>
+
+
+
+
         <div class="wn5-online-help-action" ng-if="FisheyeLens">
             <h4>Navigating to the home position</h4>
             <ol>
@@ -104,6 +110,25 @@
                 <li>Select a number in <strong class="UI">[Guadrant]</strong>. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</li>
             </ol>
         </div>
+
+        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+            <h4>Enabling Auto tracking</h4>
+            <p>The Auto tracking function is used to automatically track the motion of detected objects.</p>
+            <ol>
+                <li>Select the type of object to track from the <strong class="UI">[Object]</strong> column.</li>
+                <li>Click the icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> to have the camera automatically track the motion of the objects whose type is designated in <strong class="UI">[Object]</strong> when it detects them.</li>
+                <li>To stop Auto tracking, click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> again.</li>
+            </ol>
+        </div>       
+
+    <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
+        <h4>Enable Auto tracking</h4>
+        <p>The Auto tracking function is used to automatically track the motion of objects detected from the screen.</p>
+            <ol>
+                    <li>Click the icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> again to have the camera automatically track moving objects. The icon changes to <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. Click the icon again to stop the Auto tracking function.</li>
+            </ol>
+   </div> -->
+
     </div>
 </div>
 

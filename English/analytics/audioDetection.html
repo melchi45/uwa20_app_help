@@ -12,6 +12,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After selecting a camera channel, you can specify the details of audio detection for each channel. The channel number last selected on the Live or Playback page is automatically selected. </p>
+            <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Audio detection] can only be configured on channel 1.</p>
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p>
         </div>
     </div>

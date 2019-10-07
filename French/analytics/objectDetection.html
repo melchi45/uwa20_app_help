@@ -1,0 +1,198 @@
+﻿<h1 class="wn5-setup-main-title">Détection d’objet</h1>
+<div class="wn5-setup-section">
+    <p>Un événement de détection d'objets peut être déclenché lorsque la caméra détecte un objet déterminé par l'utilisateur. La caméra peut détecter quatre types d'objets : Personnes, Véhicules, Visages, et Plaques d'immatriculation.</p>
+    <p>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> lorsque la configuration est terminée. Les paramètres de détection d'objets peuvent également être configurés via <strong class="UI">[Détection d’objet]</strong> dans le menu <strong class="UI">[Événement]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuration de l'événement]</strong></a>.</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Sélectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>La détection d'objets de chaque canal peut être configurée en détail une fois qu'un canal caméra a été sélectionné. Le dernier numéro de canal sélectionné sur la page Live (direct) ou de Lecture est sélectionné automatiquement.</p>
+            <p>La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Détection d’objet] que sur le canal 1.</p>
+        </div>
+    </div>
+</div>	
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Détection d’objet</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Activer la Détection d’objet</h3>
+            <p>Pour activer les événements de détection d'objets, sélectionnez <strong class="UI">[Activer la Détection d’objet]</strong>.</p>
+            <p>Lorsque <strong class="UI">[Activer la Détection d’objet]</strong> est sélectionné, un événement de détection d'objets se déclenche lorsqu'un objet de type déterminé dans <strong class="UI">[Objet]</strong> reste à l'écran pour une durée supérieure à la durée configurée dans <strong class="UI">[Durée minimum]</strong>.</p>
+        </div>		        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Objet</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Détermine le type d'objets que la caméra doit détecter.</p>
+        </div>
+ 
+        <div class="wn5-setup-section-article-content">
+            <h3>Objet</h3>
+            <p>Sélectionnez l'un des types d'objets que la caméra doit détecter : Personnes, Véhicules, Visages, ou Plaques d'immatriculation.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Durée(s) minimum</h3>
+            <p>Définit la durée minimum nécessaire pour qu’un événement se déclenche après la détection d'un objet par la caméra. L'événement ne se déclenche que si l'objet détecté se déplace pendant une durée supérieure à la durée choisie.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Zone exclue</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Détermine la zone dans laquelle les objets sélectionnés dans <strong class="UI">[Objet]</strong> seront ignorés.</p>
+        </div>
+			 <div class="wn5-online-help-action"> 
+            <h4>Définir une zone exclue</h4>
+            <p>Sélectionnez 4 sommets à l'aide de la souris ou dessinez un quadrilatère en faisant glisser la souris depuis l'écran Aperçu pour définir la zone exclue. Jusqu'à 8 zones peuvent être exclues.</p>
+			
+            </div>
+            <div class="wn5-online-help-action"> 
+            <h4>Modifier une zone exclue</h4>
+            <p>Une zone exclue peut être modifiée en déplaçant ses sommets.</p>
+            <p>Pour dessiner un polygone, sélectionnez une des lignes d'un quadrilatère existant et cliquez sur le signe + pour ajouter un nouveau sommet. Il est possible d'ajouter jusqu'à 4 sommets à un quadrilatère existant.</p>
+            <p>Pour déplacer une zone exclue, utilisez la souris pour la sélectionner puis faites-la glisser.</p>
+			</div>
+            <div class="wn5-online-help-action"> 
+            <h4>Supprimer une zone exclue</h4>
+			<p>Pour supprimer une zone exclue, cliquez avec le bouton droit sur la zone exclue à supprimer et cliquez sur le bouton <strong class="UI">[OK]</strong> dans la fenêtre de confirmation de suppression.</p>
+            </div>
+
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Zone</h3>
+            <p>Lorsqu'une zone exclue est ajoutée, la couleur des boutons numériques concernés change dans <strong class="UI">[Zone]</strong>. Pour sélectionner une zone exclue depuis l'écran d'Aperçu, cliquez sur le bouton numérique correspondant.</p>
+ </div>
+
+<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>La valeur configurée dans l'onglet <strong class="UI">[Zone exclue]</strong> de la <strong class="UI">[Détection d’objet]</strong> est liée à la valeur de <strong class="UI">[<a class="wn5-online-help-link" href="iva.html" ng-href="#/help/analytics_iva">IVA</a>]</strong>&gt;<strong class="UI">[Zone exclue]</strong>. Ce qui signifie que lorsqu'une zone exclue est configurée dans l'onglet <strong class="UI">[Zone exclue]</strong> de la <strong class="UI">[Détection d’objet]</strong>, une zone exclue identique est également créée dans <strong class="UI">[IVA]</strong>&gt;<strong class="UI">[Zone exclue]</strong>.</li>
+            </ul>
+        </div> 
+ 
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+            <h2>Commun</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Définit la sensibilité, la taille minimale et la taille maximale des objets pouvant être détectés par la caméra.</p>
+            <p>Il s’agit d’un réglage que vous pouvez appliquer pour augmenter la précision de détection et minimiser l’apparition de fausses détections en fonction de votre environnement.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensibilité</h3>
+            <p>Cette option définit la sensibilité de la détection d'objets. Diminue la sensibilité dans un environnement où l'arrière-plan et les objets peuvent être facilement distingués, et augmente la sensibilité dans un environnement sombre où l'arrière-plan et les objets sont difficiles à distinguer.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Taille</h3>
+            <p>Règle les tailles minimale et maximale des objets à détecter. Cliquez sur le sommet en bas à droite et faites-le glisser pour le redimensionner. Lorsqu'un objet est redimensionné, les valeurs de <strong class="UI">[Minimum]</strong> et <strong class="UI">[Maximum]</strong> dans <strong class="UI">[Taille]</strong> changent également.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Zone exclue</h3>
+            <p>La caméra IA transfère les données d'analyse de chaque objet aux programmes auxquels elle est connectée afin qu'ils puissent s'en servir. Les données concernant les objets détectés dans la zone exclue ne sont pas transférées. Sélectionnez <strong class="UI">[Pour activer les données d’objet en provenance des zones exclues]</strong> pour transférer ces données. &nbsp;</p>
+            <p>Pour les informations d'objets détaillées transférées par la caméra, reportez-vous au document "Spécification des métadonnées des caméras IA".</p>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>La valeur configurée dans l'onglet <strong class="UI">[Commun]</strong> de la <strong class="UI">[Détection d’objet]</strong> est liée à la valeur de <strong class="UI">[<a class="wn5-online-help-link" href="iva.html" ng-href="#/help/analytics_iva">IVA</a>]</strong>&gt;<strong class="UI">[Commun]</strong>. En d'autres termes, si la valeur configurée dans l'onglet <strong class="UI">[Configuration commune]</strong> de la <strong class="UI">[Détection d’objet]</strong> change, la valeur de <strong class="UI">[IVA]</strong>&gt;<strong class="UI">[Configuration commune]</strong> change également.</li>
+                <li>La caméra ne détectera aucun objet de taille inférieure à la taille minimale spécifiée ou supérieure à la taille maximale spécifiée. Pour éviter les fausses détections causées par des bruits grands et petits, réglez la taille de détection minimum/maximum optimale adaptée en fonction de l'environnement d'installation. Toutefois, la taille de détection minimale/maximale doit avoir une certaine marge de tolérance, car même un mouvement identique détecté dans la même zone peut varier en taille.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+            <h2>BestShot</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>BestShot est une image de l'objet le plus clairement visible parmi les objets (Personne, Visage, Véhicule, Plaque d'immatriculation) détectés par la caméra IA. L'image est au format JPEG et ne représente qu'une portion de la zone où les objets ciblés ont été détectés.</p>
+            <p>Les données d'image BestShot peuvent être transférées aux programmes liés à la caméra pour qu'ils puissent les utiliser.</p>
+			             
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>BestShot</h3>
+            <p>Sélectionnez le type d'objets à capturer avec BestShot.</p>
+            <p>Le BestShot de l'objet sélectionné peut être visualisé à partir du panneau BestShot situé sur le côté gauche de la page Live (direct) dans le Web Viewer. Au bas de l'image BestShot se trouvent des informations détaillées sur les propriétés de l'objet. Pour un objet de type "véhicule" par exemple, les informations concernant son type (Berline, Autobus, Camion, Moto, Train, Vélo) apparaissent au bas de l'image BestShot.</p>
+        </div>
+    </div>
+</div>
+
+
+           
+		
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Config. action évén.</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>Pour enregistrer une image sur un serveur FTP lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le FTP peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Pour envoyer une image par e-mail lorsqu&apos;un &eacute;v&eacute;nement IVA se produit, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour l&apos;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
+            <h3>Enregistrer</h3>
+            <p>Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+            <h3>&Eacute;mission d&apos;alerte</h3>
+            <p>Il est possible de d&eacute;finir le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte pour une alarme pr&eacute;cise lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute;.&nbsp;Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre une alarme. Vous pouvez d&eacute;finir une alarme continue jusqu&apos;&agrave; ce qu&apos;elle soit d&eacute;sactiv&eacute;e par l&apos;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong>, ou r&eacute;gler l&apos;alarme pour 5, 10 ou 15&nbsp;secondes. Les r&eacute;glages d&eacute;taill&eacute;s pour l&rsquo;&eacute;mission d&apos;alerte peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&apos;alerte]</strong></a>.</p>
+            <p>En fonction du nombre d’émissions d’alerte prises en charge par votre caméra, l’affichage de l’option d’émission d’alerte variera. Par exemple, s’il y a 2 émissions d’alerte, l’option affichera « émission d’alerte 1 » et « émission d’alerte 2 ». </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Temps d&apos;activation d&apos;&eacute;v&egrave;nement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Cela d&eacute;finit le temps de fonctionnement de la configurations des actions de l&apos;&eacute;v&eacute;nement IVA. D&eacute;finit la configuration des actions de l&apos;&eacute;v&eacute;nement dans <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_iva?#action">Config. action évén.</a>]</strong> afin qu&rsquo;elle fonctionne constamment, ou uniquement &agrave; l&apos;heure d&eacute;finie.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Toujours</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement est toujours ex&eacute;cut&eacute;e lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute;.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Heure programm&eacute;e uniquement</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement est ex&eacute;cut&eacute;e lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute; pendant l&apos;heure d&eacute;finie. La date, allant du dimanche au samedi en fonction de l&apos;horaire actuel de la cam&eacute;ra, est affich&eacute;e sur le calendrier visible lorsque l&rsquo;option <strong class="UI">[Heure programm&eacute;e uniquement]</strong> est s&eacute;lectionn&eacute;e. Vous pouvez d&eacute;finir l&apos;heure de configuration des actions de l&apos;&eacute;v&eacute;nement en cliquant ou en faisant glisser la souris sur le calendrier. L&apos;heure d&apos;activation de l&apos;&eacute;v&eacute;nement d&eacute;finie est r&eacute;alis&eacute;e plusieurs fois le jour de la semaine et &agrave; l&apos;heure concern&eacute;s.</p>
+			<p>Vous pouvez changer l&apos;unit&eacute; d&apos;affichage de l&apos;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Lorsque vous cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>, toutes les heures d&apos;activation des &eacute;v&eacute;nements d&eacute;finies seront supprim&eacute;es. Pour confirmer ou modifier l&apos;heure de la cam&eacute;ra, reportez-vous &agrave; la section <strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

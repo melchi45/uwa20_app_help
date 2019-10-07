@@ -51,7 +51,15 @@
                     </tr>
                 </thead>
                 <tbody>
-
+                <tr ng-if="objectDetectionSupport">
+                    <td width="235">BestShot</td>
+                    <td width="235">
+                        <p>BestShot은 영상에서 감지된 개체(사람, 얼굴, 차량, 번호판)에서&nbsp;신뢰도가 가장 높은 개체를&nbsp;이미지로 추출한 것입니다. BestShot의 이미지 형식은 JPEG이며, 개체를 포함하는 일부 영역만 추출하여 이미지를 생성합니다. </p>
+                        <p>라이브 페이지의 BestShot 패널에서는&nbsp;개체별 BestShot을 확인할 수 있습니다. 또한 각 개체의 세부 속성이 아이콘으로 표시됩니다. 예를 들어 사람의 경우 성별,&nbsp;상/하의 옷 색상과 길이, 모자나 가방 착용 여부 등 세부 정보를 보여줍니다. </p>
+                        <p>BestShot 패널에 표시될 개체의 종류는 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[분석]</strong>&gt;<strong class="UI">[개체 감지]</strong>&gt;<strong class="UI">[BestShot]</strong>에서 선택할 수 있습니다. </p>
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
@@ -102,6 +110,7 @@
                     <td width="235">
                         <p>카메라의 팬/틸트/줌 동작을 디지털로 제어할 수 있습니다. 현재 라이브 화면에 적용된 비디오 프로파일이 디지털 PTZ를 지원하는 경우에만 작동합니다. </p>
                         <p ng-if="!FisheyeLens">디지털 PTZ 제어 프로파일로 변경하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택합니다.</p>
+						<p ng-if="objectDetectionSupport"><strong class="UI">[<a href="#channel_AI">채널 선택</a>]</strong>에서 채널 2를 선택한 경우 PTZ 기능이 활성화됩니다.</p>
                         <p> </p>                         
                     </td>
                     </tr>
@@ -143,6 +152,20 @@
                             <p> </p>
                         </td>
                     </tr>
+					
+               <tr ng-if="objectDetectionSupport">
+                    <td width="235">
+                        <p><span class="tui tui-ch-live-overlay"></span></p>
+                        <p>오버레이</p>
+                    </td>
+                    <td width="235">
+                        <p>카메라가 개체를 감지할 때 영상 화면에 표시할 개체 타입을 선택할 수 있습니다. </p>
+                        <p>AI 카메라의 개체 분석 알고리즘이 작동하는 경우에만 감지한 개체가 영상 화면에 표시되며, AI 알고리즘이 동작하려면&nbsp;개체 감지, IVA, 피플 카운팅, 대기열 관리, 히트맵 중 하나의 기능이 활성화돼 있어야 합니다. </p>
+                        <p><a href="Monitoring.html#channel_AI">[채널 선택]</a>에서 채널 1을 선택한 경우에만 오버레이 아이콘이 활성화됩니다. </p>
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>					
+					
                     <tr ng-if="LensModelViewOptions">
                         <td width="235">렌즈 모델명</td>
                         <td width="235">
@@ -162,12 +185,25 @@
 						<p ng-if="SupportAutoImageAlignment">카메라 채널 2~5번을 선택하면 각 채널별 카메라 영상을 보여줍니다. 채널 1을 선택하면 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여줍니다. 채널 6번과 7번을 선택하면 1번 채널 영상을 카메라 <a href="#PTZ">PTZ를 조정</a>하면서 확인할 수 있습니다. </p>
                     </td>
                 </tr>
+				
+                <tr ng-if="MaxChannel > 1 && objectDetectionSupport">
+                    <td width="235"><a name="channel_AI">채널 선택</a></td>
+                    <td width="235">
+                        <p>카메라가 지원하는 채널이 표시됩니다.</p>
+                        <ul>
+                            <li>채널 1: 라이브 영상을 보여 주는 채널입니다. </li>
+                            <li>채널 2: 디지털 PTZ 영상을보여줍니다. 채널 2를 선택하면 <a href="#PTZ">PTZ</a> 기능을 사용할 수 있습니다. </li>
+                        </ul>
+                        <p>&nbsp;</p>
+                    </td>
+                </tr>				
+				
                 <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
                     <td width="235">
                         <p>뷰 모드</p>
                     </td>
                     <td width="235">
-                        <p>피쉬아이 카메라의 영상 타입을 선택합니다. <strong class="UI">[설정]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[비디오 프로파일]</strong>><strong class="UI">[채널 선택]</strong>에서 <strong class="UI">[채널 활성화]</strong> 옵션을 선택한 채널의 영상만 목록에 나타납니다.</p>
+                        <p>피쉬아이 카메라의 영상 타입을 선택합니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[채널 선택]</strong>에서 <strong class="UI">[채널 활성화]</strong> 옵션을 선택한 채널의 영상만 목록에 나타납니다.</p>
                         <ul>
                             <li>피쉬아이 뷰: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
                             <li>싱글 파노라마: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.  </li>
@@ -550,7 +586,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <h3>영역 줌</h3>
                      
             <p>영역 줌은 특정 영역만 확대하여 볼 수 있는 기능입니다.</p>
-            <p><span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 클릭한 뒤 카메라 영상 화면에서 마우스를 드래그하여 영역을 선택하면, 선택한 영역을 기준으로 줌 기능이 작동하고 카메라 위치도 선택한 영역으로 이동합니다. <span class="tui tui-chi-live-ptz-areazoom-back"></span>아이콘을 클릭하여 이 전 선택 영역과 설정으로 이동할 수 있으며, 이 전으로 이동한 경우 이동 전 영역과 설정으로 다시 이동하려면 <span class="tui tui-chi-live-ptz-areazoom-pre"></span>아이콘을 클릭합니다. <span class="tui tui-chi-live-ptz-areazoom-1x"></span>아이콘을 클릭하면 줌 배율이 1배로 변경되고 카메라 위치도 원래 위치로 이동합니다.  </p>
+            <p><span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 클릭한 뒤 카메라 영상 화면에서 마우스를 드래그하여 영역을 선택하면, 선택한 영역을 기준으로 줌 기능이 작동하고 카메라 위치도 선택한 영역으로 이동합니다. <span class="tui tui-chi-live-ptz-areazoom-back"></span>아이콘을 클릭하여 이 전 선택 영역과 설정으로 이동할 수 있으며, 이 전으로 이동한 경우 이동 전 영역과 설정으로 다시 이동하려면 <span class="tui tui-chi-live-ptz-areazoom-pre"></span>아이콘을 클릭합니다. <span class="tui tui-chi-live-ptz-areazoom-1x"></span>아이콘을
+클릭하면 줌 배율이 1배로 변경되고 카메라 위치도 원래 위치로 이동합니다.  </p>
             <p>  </p>
             <p> 영역 줌 설정을 종료하려면 <span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 한 번 더 클릭합니다. 현재 설정한 영역 줌은 그대로 유지되고 영역 줌 설정 기능은 종료됩니다.</p>
         </div>
@@ -572,6 +609,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     <div class="wn5-online-help-info">
         <h4>알아두기</h4>
             <ul>
+			 <li ng-if="objectDetectionSupport"><strong class="UI"><a href="#channel_AI">[채널 선택]</a></strong>에서 채널 2를 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>
              <li><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>  
              <li>PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 카메라 영상을 먼저 확대한 후, <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하고 드래그하여 카메라 뷰를 조정할 수 있습니다. </li>
             <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</li>
@@ -629,7 +667,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <ul>
              <!--   <li><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li> -->
                 <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 팬 기능을 사용할 수 있습니다.</li>
-                <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 '왜곡 보정 뷰'를 선택한 후 <strong class="UI">[뷰]</strong>에서 '4분할 뷰'나 'Q1', 'Q2', 'Q3', 'Q4'를 선택한 경우 <strong class="UI">[프리셋]</strong>과 <strong class="UI">[그룹]</strong>이 나타납니다. <strong class="UI">[뷰]</strong>에서 '싱글 파노라마'나 '더블 파노라마'를 선택한 경우에는 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈]</strong>이 나타납니다. </li>
+                <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 '왜곡 보정 뷰'를 선택한 후 <strong class="UI">[뷰]</strong>에서 '4분할 뷰'나 'Q1', 'Q2', 'Q3', 'Q4'를 선택한 경우 <strong class="UI">[프리셋]</strong>과 <strong class="UI">[그룹]</strong>이 나타납니다. <strong class="UI">[뷰]</strong>에서
+'싱글 파노라마'나 '더블 파노라마'를 선택한 경우에는 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈]</strong>이 나타납니다. </li>
                 <li ng-if="SupportChannelEnabledFeature">뷰 모드 목록에서 <strong class="UI">[피쉬아이 뷰]</strong>를 선택하면 PTZ 기능을 사용할 수 없습니다. </li>
                 <li ng-if="SupportChannelEnabledFeature">뷰 모드 목록에서 <strong class="UI">[4분할 뷰]</strong> 나 <strong class="UI">[Q1]</strong>, <strong class="UI">[Q2]</strong>, <strong class="UI">[Q3]</strong>, <strong class="UI">[Q4]</strong> 선택한 경우에만 분할 화면 선택과 프리셋, 그룹 기능을 사용할 수 있습니다.  </li>
                 <li ng-if="SupportChannelEnabledFeature">뷰 모드 목록에서 <strong class="UI">[싱글 파노라마]</strong>나 <strong class="UI">[더블 파노라마]</strong>를 선택한 경우에만 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈]</strong> 기능이 활성화됩니다.</li>

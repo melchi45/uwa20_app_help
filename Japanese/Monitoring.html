@@ -48,6 +48,16 @@
                 </thead>
                 <tbody>
 
+                        <tr ng-if="objectDetectionSupport">
+                                <td width="235">ベストショット</td>
+                                <td width="235">
+                                    <p>ベストショットは、映像で検知された対象物(人、顔、車両、ナンバープレート)で最も信頼度が高い対象物を画像に抽出したものです。ベストショットの画像タイプはJPEGであり、対象物を含む一部領域だけを抽出して画像を作成します。</p>
+                                    <p>ライブページのベストショットパネルでは、対象物別のベストショットを確認できます。また、各対象物の詳細がアイコンに表示されます。例えば、人の場合は性別、上下衣の服カラーと長、帽子や鞄の着用有無などの詳細情報を表示します。</p>
+                                    <p>ベストショットパネルに表示される対象物タイプは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[分析]</strong>&gt;<strong class="UI">[対象物検知]</strong>&gt;<strong class="UI">[ベストショット]</strong>で選択できます。</p>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
+                    
             <!--    <tr>
                     <td width="235">チャンネル変更</td>
                     <td width="235">
@@ -96,6 +106,7 @@
                     <td width="235">
                         <p>カメラのパン/チルト/ズーム動作をデジタルに制御することができます。現在のライブ画面に適用されたビデオプロファイルがデジタルPTZに対応する場合のみ動作します。</p>
                         <p ng-if="!FisheyeLens">デジタルPTZ制御プロファイルに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
+                        <p ng-if="objectDetectionSupport"><strong class="UI">[<a href="#channel_AI">チャンネル選択</a>]</strong>でチャンネル2を選択した場合、PTZ機能が有効になります。
                     </td>
                     </tr>
 					<tr ng-if="ExternalPTZPage">
@@ -137,6 +148,19 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+                    <tr ng-if="objectDetectionSupport">
+                            <td width="235">
+                                <p><span class="tui tui-ch-live-overlay"></span></p>
+                                <p>オーバーレイ</p>
+                            </td>
+                            <td width="235">
+                                <p>カメラが対象物を検知するとき、映像画面に表示する対象物タイプを選択できます。</p>
+                                <p>AIカメラの対象物分析アルゴリズムが動作する場合のみ、検知した対象物が映像画面に表示され、AIアルゴリズムが動作するには対象物検知、IVA、人数カウント、キュー管理、ヒートマップ中の一つの機能が有効である必要があります。</p>
+                                <p><a href="Monitoring.html#channel_AI">[チャンネル選択]</a>でチャンネル1を選択した場合のみ、オーバーレイアイコンが有効になります。</p>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+
                     <tr ng-if="LensModelViewOptions">
                         <td width="235">レンズモデル名</td>
                         <td width="235">
@@ -158,6 +182,19 @@
                         </td>
                     </tr>
 
+
+                    <tr ng-if="MaxChannel > 1 && objectDetectionSupport">
+                            <td width="235"><a name="channel_AI">チャンネル選択</a></td>
+                            <td width="235">
+                                <p>カメラが対応するチャンネルが表示されます。</p>
+                                <ul>
+                                    <li>チャンネル1：ライブ映像を表示するチャンネルです。</li>
+                                    <li>チャンネル2：デジタルPTZ映像を表示します。チャンネル2を選択すると、<a href="#PTZ">PTZ</a>機能を使用できます。</li>
+                                </ul>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+                    
                     <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
                             <td width="235">
                                 <p>ビュー</p>
@@ -563,6 +600,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     <div class="wn5-online-help-info">
         <h4>参考事項</h4>
             <ul>
+                    <li ng-if="objectDetectionSupport"><strong class="UI"><a href="#channel_AI">[チャンネル選択]</a></strong>でチャンネル2を選択した場合のみ、PTZ機能を使用することができます。</li>
                 <li><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li> 
                 <li>PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
                 <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</li>

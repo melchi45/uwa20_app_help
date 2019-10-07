@@ -4,6 +4,21 @@
     <p>카메라 영상 촬영 중에 감지되는 소리의 종류를 분류하여 음원 분류 이벤트로 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 음원 분류 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[음원 분류]</strong>에 동일하게 적용됩니다.</p>
 </div>
 
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section" ng-if="MaxChannel > 1">
+        <div class="wn5-setup-section-heading">
+            <h2><a name="channel"></a>채널 선택</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>카메라 채널을 선택한 후 채널별로 충격 감지 설정 관련 세부 항목을 설정할 수 있습니다. 라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
+                <p>채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [음원 분류]는 채널 1에서만 설정할 수 있습니다. </p>
+            </div>
+        </div>
+    </div> 
+
+    
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">

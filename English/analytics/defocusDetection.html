@@ -10,6 +10,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After selecting your camera channel, you can set the details of Defocus detection for each channel. </p>
+            <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Defocus detection] can only be configured on channel 1.</p>
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number.</p>
 
             <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below.</p>

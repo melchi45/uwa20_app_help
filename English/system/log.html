@@ -67,6 +67,7 @@
         <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
             <h3>Select channel</h3>
             <p>You can check the event log of each channel by selecting the channel number.</p>
+            <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. Only the log of channel 1 can be checked.</p>
             <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. Log information of only Channel 1 can be checked.</p>
             <ul ng-if="SupportChannelEnabledFeature">
                     <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>

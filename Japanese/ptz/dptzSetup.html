@@ -22,6 +22,8 @@
             </div>
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+                <p ng-if="objectDetectionSupport">カメラチャンネルを選択した後、チャンネル別にPTZ関連の詳細を設定することができます。</p>
+                <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[デジタルPTZ設定]は、チャンネル2でのみ設定できます。</p>
             <p ng-if="SupportAutoImageAlignment">カメラチャンネルを選択した後、チャンネル別にPTZ関連の詳細を設定することができます。 </p>
             <p ng-if="SupportAutoImageAlignment">デジタルPTZメニューで設定されたプリセットは、ライブ画面で確認することができます。</p>
             <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
@@ -62,7 +64,7 @@
     			<li><strong class="UI">[名前]</strong>に該当プリセット名を入力します。</li>
                 <li><strong class="UI">[追加]</strong>ボタンをクリックします。</li>
             </ol>
-            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>プリセットに移動</h4>
@@ -77,6 +79,23 @@
                 <li><strong class="UI">[削除]</strong>ボタンをクリックすると、プリセットを削除します。</li>
     		</ol>
         </div>
+
+        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+                <h4>オートトラッキング機能を有効にする</h4>
+                <p>オートトラッキングは対象物を検知した場合、自動に対象物のモーションをトラッキングする機能です。</p>
+                <ol>
+                    <li>モーションをトラッキングする対象物のタイプを<strong class="UI">[対象物]</strong>カラムで選択します。</li>
+                    <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> アイコンをクリックすると、カメラが<strong class="UI">[対象物]</strong>で設定した対象物タイプを検知する場合、対象物のモーションを自動にトラッキングします。</li>
+                    <li>オートトラッキングを中止するには、オートトラッキングアイコン<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>をもう一度クリックします。</li>
+                </ol>
+            </div>
+            <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
+                    <h4>オートトラッキング機能を有効にする</h4>
+                    <p>オートトラッキングは、画面でモーションを検知する場合、自動にモーションをトラッキングする機能です。</p>
+                    <ol>
+                        <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> アイコンをクリックすると、画面で移動する対象物を自動にトラッキングし、アイコンが<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>に変更されます。アイコンをもう一度クリックすると、オートトラッキングが中止されます。</li>
+                    </ol>
+                </div> -->
     </div>
 </div>
 
