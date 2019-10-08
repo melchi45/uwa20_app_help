@@ -173,10 +173,10 @@
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Intrusion</strong>&nbsp;: lorsqu&apos;un objet se d&eacute;placera dans la zone d&eacute;finie, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">Intrusion</strong>: L'événement se déclenche lorsque la caméra détecte l'objet sélectionné dans [Objet] à l'intérieur de la zone désignée.</li>
                 <ul>
-                    <li><strong class="UI">Dur&eacute;e(s) minimum</strong>&nbsp;:D&eacute;finit le temps minimum pour d&eacute;clencher un &eacute;v&eacute;nement apr&egrave;s la d&eacute;tection. Lorsque le mouvement dure plus longtemps que la p&eacute;riode d&eacute;finie, l&rsquo;&eacute;v&eacute;nement est d&eacute;clench&eacute;.</li>
+                    <li><strong class="UI">Dur&eacute;e minimum (s)</strong>&nbsp;:D&eacute;finit le temps minimum pour d&eacute;clencher un &eacute;v&eacute;nement apr&egrave;s la d&eacute;tection. Lorsque le mouvement dure plus longtemps que la p&eacute;riode d&eacute;finie, l&rsquo;&eacute;v&eacute;nement est d&eacute;clench&eacute;.</li>
                 </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Entrer</strong>&nbsp;: lorsqu&apos;un objet entrera dans la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
-                <li ng-if="objectDetectionSupport"><strong class="UI">Entrée</strong> : L'événement se déclenche lorsque la caméra détecte l'entrée de l'objet sélectionné dans <strong class="UI">[Objet]</strong> dans la zone désignée.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Entrer</strong> : L'événement se déclenche lorsque la caméra détecte l'entrée de l'objet sélectionné dans <strong class="UI">[Objet]</strong> dans la zone désignée.</li>
 
 
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Sortie</strong>&nbsp;: lorsqu&apos;un objet en mouvement sortira de la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
@@ -186,15 +186,15 @@
                 <li ng-if="IvaAppearDisappear"><strong class="UI">Apparition (Disparition)</strong>&nbsp;: lorsqu&apos;un objet qui n&apos;existe pas dans la zone d&eacute;sign&eacute;e par l&apos;utilisateur appara&icirc;t &agrave; l&apos;int&eacute;rieur de la zone sans passer la ligne de la zone et reste pendant un certain temps, ou si un objet existant dans la zone dispara&icirc;t, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
                 <li ng-if="objectDetectionSupport" style="list-style-type:none;">Contrairement aux autres options, l'option <strong class="UI">[Apparition (Disparition)]</strong> détecte non seulement les objets appartenant au type d'objets sélectionné dans <strong class="UI">[Objet]</strong>, mais aussi tous les autres types d'objets en mouvement. </li>
                 <ul ng-if="IvaAppearDisappear">
-                    <li><strong class="UI">Durée(s) minimum</strong> : Définit le délai minimum pour qu'un objet soit détecté comme étant en train d’apparaître (disparaître). Lorsqu'un objet qui existe dans la zone de détection pendant la durée définie disparaît, il est détecté comme étant en train de disparaître et lorsqu'un objet qui n'existe pas apparaît pendant la durée définie, il est détecté comme en train d’apparaître.</li>
+                    <li><strong class="UI">Durée minimum (s)</strong> : Définit le délai minimum pour qu'un objet soit détecté comme étant en train d’apparaître (disparaître). Lorsqu'un objet qui existe dans la zone de détection pendant la durée définie disparaît, il est détecté comme étant en train de disparaître et lorsqu'un objet qui n'existe pas apparaît pendant la durée définie, il est détecté comme en train d’apparaître.</li>
                 </ul>
                 <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">Fl&acirc;nerie</strong>&nbsp;: Lorsqu&apos;un objet fl&acirc;nant dans la zone de d&eacute;tection est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
                 <li ng-if="IvaLoitering && !S1Features && objectDetectionSupport"><strong class="UI">Flânerie</strong> : L'événement se déclenche lorsque la caméra détecte l'objet sélectionné dans <strong class="UI">[Objet]</strong> en train de flâner dans la zone désignée.</li>
                 <ul ng-if="IvaLoitering && !S1Features && !objectDetectionSupport">
-                    <li><strong class="UI">Dur&eacute;e(s) minimum</strong>&nbsp;: Ceci d&eacute;finit la dur&eacute;e minimale de d&eacute;tection d&apos;un objet fl&acirc;nant et de cr&eacute;ation d&apos;un &eacute;v&eacute;nement. Lorsqu&apos;un objet qui fl&acirc;ne plus longtemps que le temps d&eacute;fini est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
+                    <li><strong class="UI">Dur&eacute;e minimum (s)</strong>&nbsp;: Ceci d&eacute;finit la dur&eacute;e minimale de d&eacute;tection d&apos;un objet fl&acirc;nant et de cr&eacute;ation d&apos;un &eacute;v&eacute;nement. Lorsqu&apos;un objet qui fl&acirc;ne plus longtemps que le temps d&eacute;fini est d&eacute;tect&eacute;, un &eacute;v&eacute;nement est cr&eacute;&eacute;.</li>
                 </ul>
                 <ul ng-if="IvaLoitering && !S1Features && objectDetectionSupport">
-                    <li><strong class="UI">Durée(s) minimum :</strong> Définit la durée minimum pendant laquelle la caméra doit détecter un objet flânant avant de déclencher l'événement. Tout objet flânant plus longtemps que la durée minimale fixée déclenche l'événement.</li>
+                    <li><strong class="UI">Durée minimum (s) :</strong> Définit la durée minimum pendant laquelle la caméra doit détecter un objet flânant avant de déclencher l'événement. Tout objet flânant plus longtemps que la durée minimale fixée déclenche l'événement.</li>
                 </ul>  
             </ul>
         </div>
@@ -275,7 +275,7 @@
             <p>Cette option d&eacute;finit la taille minimum et maximum d&apos;un objet &agrave; d&eacute;tecter qui sera appliqu&eacute;e &agrave; la fois &agrave; la ligne virtuelle et &agrave; la zone virtuelle. Vous pouvez modifier la taille en cliquant sur un coin avec la souris et en le faisant glisser. Lorsque la taille est modifi&eacute;e, le <strong class="UI">[Minimum]</strong> et le <strong class="UI">[Maximum]</strong> dans <strong class="UI">[Taille]</strong> changent &eacute;galement.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
-            <h3>Exclure la zone</h3>
+            <h3>Zone exclue</h3>
             <p>La caméra IA transfère les données d'analyse de chaque objet aux programmes auxquels elle est connectée afin qu'ils puissent s'en servir. Les données concernant les objets détectés dans la zone exclue ne sont pas transférées. Sélectionnez <strong class="UI">[Pour activer les données d’objet en provenance des zones exclues]</strong> pour transférer ces données. &nbsp;</p>
             <p>Pour les informations d'objets détaillées transférées par la caméra, reportez-vous au document "Spécification des métadonnées des caméras IA".</p>
         </div>

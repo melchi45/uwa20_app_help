@@ -101,14 +101,15 @@
             <h3>Categor&iacute;as</h3>
             <ul>
                 <li><strong class="UI">Paso</strong>: Marque la casilla de verificación para activar un evento cuando se detecta un objeto que atraviesa la línea virtual establecida.</li>
-                <li><strong class="UI">Direccion</strong>: Establece la dirección del objeto al atravesar la línea virtual.</li>
+                <li><strong class="UI">Dirección</strong>: Establece la dirección del objeto al atravesar la línea virtual.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
             <h3>Traspaso</h3>
             <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea predefinida cuando un objeto es detectado cruzando una l&iacute;nea virtual en la c&aacute;mara fija.</p>
             <ul>
-                <li><strong class="UI">Desactivar</strong>: Desactiva la funci&oacute;n de traspaso.</li>
+                <!-- <li><strong class="UI">Desactivar</strong>: Desactiva la funci&oacute;n de traspaso.</li> -->
+                <li><strong class="UI">Des</strong>: Desactiva la funci&oacute;n de traspaso.</li>
                 <li><strong class="UI">Zoom inteligente</strong>: Cuando un objeto es detectado al cruzar una l&iacute;nea virtual, el enfoque de la c&aacute;mara PTZ se ampl&iacute;a con su centro fijado en el centro de la l&iacute;nea virtual. Las coordenadas de la pantalla deben definirse de antemano para que se puedan conectar la c&aacute;mara fija y la c&aacute;mara PTZ. Vaya a <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong> para definir las coordenadas.</li>
                 <li><strong class="UI">Nº de traspaso</strong>: cuando un objeto es detectado cruzando una l&iacute;nea virtual, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea predefinida. Seleccione un Nº de traspaso que contenga datos predefinidos de la lista. Vaya a <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> para a&ntilde;adir o modificar a lista.</li>
             </ul>
@@ -228,7 +229,7 @@
             <h3>Traspaso</h3>
             <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea designada en la pantalla o hacia un &aacute;rea predefinida cuando ocurre un evento de IVA en la c&aacute;mara fija.</p>
             <ul>
-                <li><strong class="UI">Desactivar</strong>: Desactiva la funci&oacute;n de traspaso.</li>
+                <li><strong class="UI">Des</strong>: Desactiva la funci&oacute;n de traspaso.</li>
                 <li><strong class="UI">Zoom inteligente</strong>: Cuando se produce un evento IVA en el &aacute;rea de ROI, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea ROI y se ampl&iacute;a con su centro fijo en el centro del &aacute;rea ROI. Las coordenadas del &aacute;rea de la pantalla deben definirse de antemano para que se puedan conectar la c&aacute;mara fija y la c&aacute;mara PTZ. Vaya a <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[Calibraci&oacute;n]</strong> para definir las coordenadas.</li>
                 <li><strong class="UI">Nº de traspaso</strong>: Cuando se produce un evento IVA en el &aacute;rea ROI, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea predefinida. Seleccione un Nº de traspaso que contenga datos predefinidos de la lista. Vaya a <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> para a&ntilde;adir o modificar la lista.</li>
             </ul>
@@ -278,7 +279,7 @@
         <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
-                <li>El valor configurado en la pestaña <strong class="UI">[Excluir área]</strong> de <strong class="UI">[IVA]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Detección de objetos</a>]</strong>&gt;<strong class="UI">[Excluir área]</strong>. Así, cuando se defina un área excluida en la pestaña <strong class="UI">[Excluir área] </strong>de <strong class="UI">[IVA]</strong>, se creará un área excluida idéntica en <strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[Excluir área]</strong>.</li>
+                <li>El valor configurado en la pestaña <strong class="UI">[Área excluida]</strong> de <strong class="UI">[IVA]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Detección de objetos</a>]</strong>&gt;<strong class="UI">[Área excluida]</strong>. Así, cuando se defina un área excluida en la pestaña <strong class="UI">[Área excluida] </strong>de <strong class="UI">[IVA]</strong>, se creará un área excluida idéntica en <strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[Área excluida]</strong>.</li>
             </ul>
             </div> 
     </div>
@@ -306,7 +307,7 @@
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
-                <h3>Excluir área</h3>
+                <h3>Área excluida</h3>
                 <p>La cámara de IA transfiere los datos de analítica de cada objeto a los programas vinculados a la cámara para que estos los utilicen. Los datos de objetos detectados en el área excluida no se transferirán. Seleccione <strong class="UI">[Habilitar datos del objeto desde el área excluida]</strong> para transferir los datos. &nbsp;</p>
                 <p>Consulte el documento «Especificación de los metadatos de la cámara de IA» para más detalles acerca de la información de objeto transmitida por la cámara.</p>
             </div>
@@ -376,7 +377,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>Salida de alarma</h3>
-            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento IVA.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Desactivar]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento IVA.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
             <p>La pantalla de opción de salida de alarma variará según la cantidad de alarmas de salida que tenga la cámara. Por ejemplo, si hay 2 alarmas para la salida, la opción mostrará «Salida de alarma 1» y «Salida de alarma 2». </p>
         </div>
 

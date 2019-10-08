@@ -166,7 +166,7 @@
             <p>バーチャルエリア別に適用する規則を設定することができます。</p>
             <ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">侵入する</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
-                <li ng-if="objectDetectionSupport"><strong class="UI">侵入</strong>：設定した領域内部に<strong class="UI">[対象物]</strong>で選択した対象物を検知すると、イベントを発生させます。</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">侵入する</strong>：設定した領域内部に<strong class="UI">[対象物]</strong>で選択した対象物を検知すると、イベントを発生させます。</li>
                 <ul>
                     <li><strong class="UI">最短時間(秒)</strong>：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます。 </li>
                 </ul>
@@ -271,8 +271,8 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                    <li ng-if="objectDetectionSupport"><strong class="UI">[IVA]</strong>の<strong class="UI">[共通設定]</strong>タブで設定した値は、<strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">対象物検知</a>]</strong>&gt;<strong class="UI">[共通設定]</strong>値と同期します。つまり、<strong class="UI">[IVA]</strong>の<strong
-                        class="UI">[共通設定]</strong>タブで値を変更すると、<strong class="UI">[対象物検知]</strong>&gt;<strong class="UI">[共通設定]</strong>値も同じく変更されます。</li>
+                    <li ng-if="objectDetectionSupport"><strong class="UI">[IVA]</strong>の<strong class="UI">[一般]</strong>タブで設定した値は、<strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">対象物検知</a>]</strong>&gt;<strong class="UI">[一般]</strong>値と同期します。つまり、<strong class="UI">[IVA]</strong>の<strong
+                        class="UI">[一般]</strong>タブで値を変更すると、<strong class="UI">[対象物検知]</strong>&gt;<strong class="UI">[一般]</strong>値も同じく変更されます。</li>
                 <li>エリアと除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
                 <li ng-if="!objectDetectionSupport">ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
                 <li ng-if="objectDetectionSupport">ユーザーが指定した最小サイズより小さい対象物や最大サイズより大きい対象物は、検知しません。大小のノイズによる誤検知を避けるために、インストール環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。</li>
