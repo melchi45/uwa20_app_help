@@ -98,8 +98,8 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. </p>
-                            <p ng-if="!FisheyeLens">Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
+                            <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. </p>
+                            <p ng-if="!FisheyeLens && !objectDetectionSupport">PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
                             <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel_AI">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p>
                             <p> </p>                         
                     </td>

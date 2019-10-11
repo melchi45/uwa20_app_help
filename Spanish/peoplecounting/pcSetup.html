@@ -82,8 +82,8 @@
     </div>
 </div>
 
-<div class="wn5-setup-section-article-content">
-    <div class="wn5-setup-section-heading">
+<div class="wn5-setup-section-article-content" ng-if="!objectDetectionSupport">
+    <div class="wn5-setup-section-heading" ng-if="!objectDetectionSupport">
     <h2><a name="calibration"></a>Calibraci&oacute;n</h2>
   	</div>
     <div class="wn5-setup-section-article">
@@ -124,7 +124,6 @@
 
 
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Informe</h2>
@@ -146,8 +145,9 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
 
+
+<!-- <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Programaci&oacute;n de acciones de evento</h2>
@@ -167,9 +167,10 @@
             <p>Puede cambiar la unidad de la vista de la hora haciendo clic en los botones de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Si hace clic sobre el bot&oacute;n <strong class="UI">[Restablecer]</strong> se borrar&aacute;n todas las programaciones configuradas. Para comprobar o cambiar la hora de la c&aacute;mara, vaya a <strong class="UI">[B&aacute;sica]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
         </div>
     </div>
-</div> 
-<hr class="wn5-setup-hr">
+</div>  -->
 
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
             <div class="wn5-setup-section-heading">
             <h2>Borrar datos</h2>

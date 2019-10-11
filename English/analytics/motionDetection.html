@@ -11,7 +11,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting your camera channel, you can set the details of Motion detection for each channel. The channel number last selected on the Live or Playback page is automatically selected.</p>
+            <p>After selecting your camera channel, you can set the details of Motion detection for each channel. </p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">The channel number last selected on the Live or Playback page is automatically selected.</p>
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Motion detection] can only be configured on channel 1.</p>
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
@@ -29,7 +30,7 @@
                     <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
             </ul>
 
-            <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
+            <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p> -->
         </div>
     </div>
 </div>	

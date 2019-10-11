@@ -15,12 +15,13 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라 채널을 선 택한 후 채널별로 IVA 세부 항목을 설정할 수 있습니다. 라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
+            <p>카메라 채널을 선 택한 후 채널별로 IVA 세부 항목을 설정할 수 있습니다. </p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
 			<p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [IVA]는 채널 1에서만 설정할 수 있습니다. </p>
             <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
             <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
             <p ng-if="SupportAutoImageAlignment">'IVA'는 채널 1에만 설정할 수 있습니다.</p>
-            <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
+            <!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> -->
         </div>
     </div>
 </div>	

@@ -81,8 +81,8 @@
     </div>
 </div>
 
-<div class="wn5-setup-section-article-content">
-    <div class="wn5-setup-section-heading">
+<div class="wn5-setup-section-article-content" ng-if="!objectDetectionSupport">
+    <div class="wn5-setup-section-heading" ng-if="!objectDetectionSupport">
     <h2><a name="calibration"></a>&Eacute;talonnage</h2>
   	</div>
     <div class="wn5-setup-section-article">
@@ -122,7 +122,6 @@
 
 
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Rapport</h2>
@@ -144,8 +143,9 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
 
+
+<!-- <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Calendrier actions de l&rsquo;&eacute;v&eacute;nement</h2>
@@ -165,9 +165,9 @@
             <p>Vous pouvez changer l&rsquo;unit&eacute; d&rsquo;affichage de l&rsquo;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Le fait de cliquer sur le bouton <strong class="UI">[R&eacute;initialiser]</strong> supprime tous les calendriers configur&eacute;s. Pour v&eacute;rifier ou modifier l&rsquo;heure de la cam&eacute;ra, consultez la section <strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
         </div>
     </div>
-</div> 
-<hr class="wn5-setup-hr">
+</div>  -->
 
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
             <div class="wn5-setup-section-heading">
             <h2>Supprimer toutes les donn&eacute;es</h2>

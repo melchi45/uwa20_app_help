@@ -17,7 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">Selecting a recording device and selecting <strong class="UI">[On]</strong> allows you to change the setting for the relevant device.</p>
-            <p ng-if="MaxChannel > 1 || HandoverCalibration">Click <strong class="UI">[Info] </strong> to check the status of SD card (or Micro SD card) by channel.</p>
+            <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport">Click <strong class="UI">[Info] </strong> to check the status of SD card (or Micro SD card) by channel.</p>
             <p>If data is being recorded on the device, ‘Recording’ is displayed in <strong class="UI">[Status]</strong> in the device list. When ‘Error’ is displayed in <strong class="UI">[Status]</strong>, check if the recording device is connected properly. </p> 
             <p ng-if="NAS">When <strong class="UI">[On]</strong> is set for an SD card and NAS at the same time, NAS is processed by priority.</p>
             <ul>
@@ -87,8 +87,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature && !objectDetectionSupport">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature && !objectDetectionSupport">
     <div class="wn5-setup-section-heading">
         <h2>Select channel</h2>
     </div>

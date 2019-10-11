@@ -96,8 +96,8 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p >Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n/Zoom de la c&aacute;mara. PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital.</p>
-                            <p ng-if="!FisheyeLens">Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
+                            <p >Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n/Zoom de la c&aacute;mara. </p>
+                            <p ng-if="!FisheyeLens && !objectDetectionSupport">PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital. Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
                             <p ng-if="objectDetectionSupport">Al seleccionar el canal 2 en <strong class="UI">[<a href="#channel_AI">Seleccionar canal</a>]</strong>, se activará la función PTZ.</p>
                           </td>
                       </tr>

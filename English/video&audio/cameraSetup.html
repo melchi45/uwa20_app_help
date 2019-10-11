@@ -12,7 +12,8 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting a camera channel, you can set the details of each channel. The channel number last selected on the Live or Playback page is automatically selected.</p>
+            <p>After selecting a camera channel, you can set the details of each channel. </p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">The channel number last selected on the Live or Playback page is automatically selected.</p>
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Camera setup] can only be configured on channel 1.</p>
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
@@ -30,7 +31,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                     <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
             </ul>
 
-            <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
+            <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p> -->
         </div>
 	</div>
 </div> 
@@ -572,7 +573,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <p>SSNR 3D reduces noise on the image using the pixels of various frames. Set the SSNR 3D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
             <p>The higher the level, the less the noises, but then the video might lag.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions">
+        <div class="wn5-setup-section-article-content" ng-if="IrisSupport">
             <h3>Iris</h3>
             <!-- <p>Select from DC (Auto), manual, P-Iris.</p>  --> 
             <p>Select the iris type</p>

@@ -230,7 +230,7 @@
                 <li><strong class="UI">Profil par d&eacute;faut</strong>&nbsp;: C&apos;est le profil par d&eacute;faut appliqu&eacute; pour diffuser une image de cam&eacute;ra en direct. «&nbsp;Default&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
                 <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. «&nbsp;&Eacute;v&eacute;nement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
                 <li><strong class="UI">Enregistrer profil</strong>&nbsp;: Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Enregistrement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
-                <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li>
+                <li ng-if="DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li>
                 <li style="list-style-type: none;" ng-if="FisheyeLens && !SupportChannelEnabledFeature">Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique.</li>
                 <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;:Il s&rsquo;agit d&rsquo;un profil appliqu&eacute; pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265].</li>
             </ul>
@@ -378,7 +378,7 @@
             <p>D&eacute;finissez la priorit&eacute; entre vitesse d&apos;enregistrement et qualit&eacute; d&apos;image si la quantit&eacute; de donn&eacute;es d&apos;image d&eacute;passe le d&eacute;bit binaire cible.</p>
 			<p>Si <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> est s&eacute;lectionn&eacute; comme <strong class="UI">[Codec]</strong> pour le profil, l&apos;utilisateur peut choisir entre <strong class="UI">[Vitesse d&apos;enregistrement]</strong> et <strong class="UI">[Compression]</strong>. Si <strong class="UI">[Vitesse d&apos;enregistrement]</strong> est d&eacute;fini comme une haute priorit&eacute;, la vitesse d&apos;enregistrement maximale est s&eacute;curis&eacute;e, mais la qualit&eacute; de l&apos;image peut &ecirc;tre r&eacute;duite. D&apos;autre part, lorsque <strong class="UI">[Compression]</strong> est d&eacute;finie comme haute priorit&eacute;, la qualit&eacute; d&apos;image est s&eacute;curis&eacute;e, mais certaines images peuvent &ecirc;tre omises, de sorte que l&apos;image peut &ecirc;tre d&eacute;connect&eacute;e ou ne pas sembler naturelle. Si <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> est s&eacute;lectionn&eacute; comme <strong class="UI">[Codec]</strong> pour le profil, <strong class="UI">[Priorit&eacute; d&apos;encodage]</strong> est activ&eacute;e uniquement lorsque <strong class="UI">[CBR]</strong> est r&eacute;gl&eacute; pour <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong>.</p>
 
-			<p>Si le <strong class="UI">[Codec]</strong> du profil est <strong class="UI">[MJPEG]</strong>, vous pouvez choisir entre <strong class="UI">[Vitesse d&apos;enregistrement]</strong> et  <strong class="UI">[D&eacute;bit binaire]</strong>.</p>
+			<p ng-if="!objectDetectionSupport">Si le <strong class="UI">[Codec]</strong> du profil est <strong class="UI">[MJPEG]</strong>, vous pouvez choisir entre <strong class="UI">[Vitesse d&apos;enregistrement]</strong> et  <strong class="UI">[D&eacute;bit binaire]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="GOV"></a>Longueur de GOV</h3>
@@ -424,16 +424,16 @@
                       </ul>
           		</div>
 
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">
             <h3>FPS dynamique</h3>
             <p>S&eacute;lectionnez <strong class="UI">[Activer]</strong> pour appliquer la fonction FPS dynamique au profil en cours de d&eacute;finition. FPS dynamique est une fonction qui change automatiquement les r&eacute;glages FPS, du r&eacute;glage minimum FPS au r&eacute;glage de la vitesse d&rsquo;enregistrement des images selon la situation de l&rsquo;&eacute;cran. Dans une vid&eacute;o presque immobile, FPS fonctionnera en utilisant le r&eacute;glage FPS minimum, ce qui &agrave; son tour r&eacute;duit le d&eacute;bit binaire global de l&rsquo;&eacute;cran. Lorsqu&rsquo;un mouvement est d&eacute;tect&eacute;, FPS utilisera une valeur FPS augment&eacute;e.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment">           
+        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">           
             <h3>FPS minimale</h3>
                 <p>Entrez la valeur FPS minimale &agrave; appliquer lorsque FPS dynamique est activ&eacute;.</p>
                 <p>L&rsquo;option <strong class="UI">[Minimale FPS]</strong> n&rsquo;est pas affich&eacute;e si la valeur de Minimale FPS value est d&eacute;finie comme 1.</p>
         </div>
-        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
+        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport && DynamicFPSSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 
             <ul>
@@ -442,7 +442,7 @@
                 <li ng-if="!ATCModes">FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contrôle du débit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>.</li>
             </ul>
                 </div>
-        <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport">
+        <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport && DynamicFPSSupport">
                     <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
         
                     <ul>

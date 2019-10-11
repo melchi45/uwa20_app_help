@@ -17,7 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>La s&eacute;lection d&apos;un p&eacute;riph&eacute;rique d&apos;enregistrement et la s&eacute;lection de <strong class="UI">[Activ&eacute;]</strong> vous permettent de modifier les param&egrave;tres de l&apos;appareil concern&eacute;.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Cliquez sur <strong class="UI">[Info]</strong> pour v&eacute;rifier l&rsquo;&eacute;tat de la carte SD par canal.</p>	
+            <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport">Cliquez sur <strong class="UI">[Info]</strong> pour v&eacute;rifier l&rsquo;&eacute;tat de la carte SD par canal.</p>	
             <p>Si des donn&eacute;es sont en cours d&apos;enregistrement sur l&apos;appareil, «&nbsp;Enregistrement&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils. Lorsque «&nbsp;Erreur&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong>, v&eacute;rifiez que le p&eacute;riph&eacute;rique d&apos;enregistrement est correctement connect&eacute;. </p> 
                 <p ng-if="NAS">Lorsque <strong class="UI">[Activ&eacute;]</strong> est d&eacute;fini pour une carte SD et un NAS en m&ecirc;me temps, le NAS est trait&eacute; en priorit&eacute;.</p>
             <ul>
@@ -89,8 +89,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature && !objectDetectionSupport">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature && !objectDetectionSupport">
     <div class="wn5-setup-section-heading">
         <h2>S&eacute;lectionner un canal</h2>
     </div>
