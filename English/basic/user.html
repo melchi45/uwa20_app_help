@@ -10,36 +10,23 @@
 		<h2>Change administrator password</h2>
 	</div>
 	<div class="wn5-setup-section-article">
-		<!-- <div class="wn5-setup-section-article-content">
-			<p ng-if="MaxChannel==0">You can change the administrator account ID and password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
-			<p ng-if="MaxChannel > 1">You can change the administrator password.  To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
+		<div class="wn5-setup-section-article-content">
+			<p ng-if="AdminID == undefined || AdminID">You can change the administrator account ID and password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
+			<p ng-if="AdminID == undefined || !AdminID">You can change the administrator password.  To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxChannel==0">
+		<div class="wn5-setup-section-article-content" ng-if="AdminID == undefined || AdminID">
 			<h3>ID</h3>
 	        <p>You can view or change the administrator ID that is currently used.</p>
 	    </div>
-		<div class="wn5-online-help-info" ng-if="MaxChannel==0">
+		<div class="wn5-online-help-info" ng-if="AdminID == undefined || AdminID">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>Administrator ID must contain only alphanumeric characters with a maximum length of 8 characters.</li>
                 <li>The default guest ID “guest” or the default user ID “user1”, “user2”...“user10” cannot be used as the administrator ID.</li>
             </ul>
-		</div> -->
+		</div>
 
-		<div class="wn5-setup-section-article-content">
-			<p>You can change the administrator account ID and password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
-		</div>
-		<div class="wn5-setup-section-article-content">
-			<h3>ID</h3>
-	        <p>You can view or change the administrator ID that is currently used.</p>
-	    </div>
-		<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul>
-                <li>Administrator ID must contain only alphanumeric characters with a maximum length of 8 characters.</li>
-                <li>The default guest ID “guest” or the default user ID “user1”, “user2”...“user10” cannot be used as the administrator ID.</li>
-            </ul>
-		</div>
+
 		<div class="wn5-setup-section-article-content">
 			<h3>Current password</h3>
 	        <p>Enter the current password. To prevent the password from being changed by someone else, the administrator password can be changed only after entering the previous password.</p>

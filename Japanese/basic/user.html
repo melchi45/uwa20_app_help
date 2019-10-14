@@ -8,9 +8,9 @@
 <div class="wn5-setup-section">
 	<h2 class="wn5-setup-section-heading">Admin Password変更</h2>
 	<div class="wn5-setup-section-article">
-		<!-- <div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content">
 			<p ng-if="MaxChannel==0">マネージャアカウントのIDとパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
-			<p ng-if="MaxChannel > 1">マネージャのパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
+			<p ng-if="AdminID == undefined || !AdminID">マネージャのパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="MaxChannel==0">
 			<h3>ID</h3>
@@ -22,22 +22,9 @@
                 <li>マネージャIDは、英数字のみ入力することができます。また、最大8文字まで入力できます。</li>
                 <li>マネージャIDで基本ゲストIDの「guest」や基本ユーザーIDの「user1」、「user2」…「user10」は使用できません。</li>
             </ul>
-		</div> -->
+		</div>
 
-		<div class="wn5-setup-section-article-content">
-			<p>マネージャアカウントのIDとパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
-		</div>
-		<div class="wn5-setup-section-article-content">
-			<h3>ID</h3>
-	        <p>現在、使用中のマネージャIDを確認したり変更することができます。</p>
-	    </div>
-		<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-            <ul>
-                <li>マネージャIDは、英数字のみ入力することができます。また、最大8文字まで入力できます。</li>
-                <li>マネージャIDで基本ゲストIDの「guest」や基本ユーザーIDの「user1」、「user2」…「user10」は使用できません。</li>
-            </ul>
-		</div>
+
 		<div class="wn5-setup-section-article-content">
 			<h3>現在のパスワード</h3>
 	        <p>現在、使用中のパスワードを入力します。誰かが任意にパスワードを変更することを防止するために既存のパスワードを入力してからマネージャのパスワードを変更することができます。</p>
