@@ -64,7 +64,7 @@
                 <li>In order to receive an alarm indicating defocus detection after it has occurred previously, the status must return to the stable status at least once. Instances of returning to the stable status are as follows.
 					<ul>
 					<li>When <strong class="UI">[Enable defocus detection]</strong> is deselected</li>
-					<li>When simple focus operates so that an image can be distinguishable</li>
+					<li ng-if="DefocusDetectSimpleFocus">When simple focus operates so that an image can be distinguishable</li>
 					<li>When an object in the image moves to a defocus position so that it can be distinguishable</li></ul>
 					<li>In any of the following cases, the defocus detection performance may deteriorate, or a malfunction may occur.
 					<ul>
