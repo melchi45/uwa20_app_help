@@ -72,7 +72,7 @@
             </ul>
 
             <p ng-if="HandoverCalibration && SupportAutoImageAlignment">On the live page or play page, the last selected channel number is automatically displayed. </p>
-            <p>Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition. </p>
+            <p ng-if="!objectDetectionSupport">Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition. </p>
             <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear. </p> -->
         </div>
     </div>

@@ -59,7 +59,7 @@
             </ul>
 
             <p ng-if="HandoverCalibration && SupportAutoImageAlignment">設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
-            <p><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
+            <p ng-if="!objectDetectionSupport"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
             <!-- <p>設定を変更した後、保存しないまま他のチャンネルを選択する場合、通知メッセージが表示されます。</p> -->
         </div>
     </div>

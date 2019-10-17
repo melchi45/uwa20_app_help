@@ -1,6 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">Object detection</h1>
 <div class="wn5-setup-section">
-    <p>An object detection event can be triggered when the camera detects an object set by the user. The camera can detect four types of entities: Person, Vehicle, Face, and License plate.</p>
+    <p>An object detection event can be triggered when the camera detects an object set by the user. The camera can detect four types of objects: Person, Vehicle, Face, and License plate.</p>
     <p>Click the <strong class="UI">[Apply]</strong> button when the setup is complete. The settings for object detection applies the same to <strong class="UI">[Object detection]</strong> under <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a>.</p>
 </div>
 <hr class="wn5-setup-hr">
@@ -36,7 +36,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Sets the type of entities for the camera to detect.</p>
+            <p>Sets the type of objects for the camera to detect.</p>
         </div>
  
         <div class="wn5-setup-section-article-content">
@@ -58,7 +58,7 @@
     </div>
         <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Sets the area from which the entities selected from <strong class="UI">[Object]</strong> are to be excluded.</p>
+            <p>Sets the area from which the objects selected from <strong class="UI">[Object]</strong> are to be excluded.</p>
         </div>
 			 <div class="wn5-online-help-action"> 
             <h4>Setting an exclude area</h4>
@@ -98,27 +98,27 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Sets the sensitivity, minimum size, and maximum size for the camera to detect entities.</p>
+            <p>Sets the sensitivity, minimum size, and maximum size for the camera to detect objects.</p>
             <p>This is a setting you can apply to raise the detection accuracy and minimize the occurrence of false detection depending on your environment.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Sensitivity</h3>
-            <p>Sets the sensitivity of detecting entities. Decrease the sensitivity in an environment where background and entities are clearly distinguished, and increase the sensitivity in a dark environment where background and entities are hard to be distinguished.</p>
+            <p>Sets the sensitivity of detecting objects. Decrease the sensitivity in an environment where background and objects are clearly distinguished, and increase the sensitivity in a dark environment where background and objects are hard to be distinguished.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Size</h3>
-            <p>Sets the minimum and maximum size of the entities to be detected. Click the vortex at the bottom right and drag it to resize it. When an object is resized, the values for <strong class="UI">[Minimum]</strong> and <strong class="UI">[Maximum]</strong> in <strong class="UI">[Size]</strong> change as well.</p>
+            <p>Sets the minimum and maximum size of the objects to be detected. Click the vortex at the bottom right and drag it to resize it. When an object is resized, the values for <strong class="UI">[Minimum]</strong> and <strong class="UI">[Maximum]</strong> in <strong class="UI">[Size]</strong> change as well.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Exclude area</h3>
-            <p>The AI camera transfers the analytics data of each object to the programs that are linked to the camera so that they can utilize the data. The data of entities detected in excluded area are not transferred. Select <strong class="UI">[</strong><strong>Enable object data from the excluded area</strong><strong class="UI">]</strong> to transfer the data. &nbsp;</p>
+            <p>The AI camera transfers the analytics data of each object to the programs that are linked to the camera so that they can utilize the data. The data of objects detected in excluded area are not transferred  by default. Select <strong class="UI">[</strong><strong>Enable object data from the excluded area</strong><strong class="UI">]</strong> to transfer the data. &nbsp;</p>
             <p>For the detailed object information transferred by the camera, refer to the &quot;AI Camera Metadata Specification&quot; document.</p>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>The value configured on the <strong class="UI">[Common]</strong> tab of <strong class="UI">[Object detection]</strong> is linked to the <strong class="UI">[<a class="wn5-online-help-link" href="iva.html" ng-href="#/help/analytics_iva">IVA</a>]</strong>&gt;<strong class="UI">[Common]</strong> value. In other words, if the value on the <strong class="UI">[Common setup]</strong> tab of <strong class="UI">[Object detection]</strong> changes, the <strong class="UI">[IVA]</strong>&gt;<strong class="UI">[Common setup]</strong> value is also changed.</li>
-                <li>The camera doesn&apos;t detect entities that are smaller than the minimum size or larger than the maximum size. To avoid false detection caused by noises large and small, set the optimal minimum/maximum detection size appropriate for the installation environment. However, the minimum/maximum detection size needs to have some room for toleration because even the same motion detected in the same area could vary in size.</li>
+                <li>The camera doesn&apos;t detect objects that are smaller than the minimum size or larger than the maximum size. To avoid false detection caused by noises large and small, set the optimal minimum/maximum detection size appropriate for the installation environment. However, the minimum/maximum detection size needs to have some room for toleration because even the same motion detected in the same area could vary in size.</li>
             </ul>
         </div>
     </div>
@@ -132,14 +132,14 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>BestShot is an image created by the most confident object among the all entities (Person, Face, Vehicle, License plate) detected by AI camera. The image is in JPEG format and contains only a portion of the area where the target entities are detected.</p>
+            <p>BestShot is an image created by the most confident object among the all objects (Person, Face, Vehicle, License plate) detected by AI camera. The image is in JPEG format and contains only a portion of the area where the target objects are detected.</p>
             <p>BestShot image data can be transferred to the programs linked to the camera for them to utilize.</p>
 			             
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>BestShot</h3>
             <p>Select the type of object to be captured for BestShot.</p>
-            <p>The selected object&apos;s BestShot can be viewed from the BestShot panel located at the left side of the Live page in the web viewer. At the bottom of the BestShot image is detailed property information displayed in icon. For a &apos;Vehicle&apos; object for instance, its type (Sedan, Bus, Truck, Motorcycle, Train, Bicycle) information is displayed at the bottom of the BestShot image.</p>
+            <p>The selected object&apos;s BestShot can be viewed from the BestShot panel located at the left side of the Live page in the web viewer. At the bottom of the BestShot image is detailed property information displayed in icon. For a &apos;Vehicle&apos; object for instance, its type (Sedan, Bus, Truck, Motorcycle, Train, Bicycle) information is displayed at the bottom of the BestShot image in the Live page.</p>
         </div>
     </div>
 </div>      
