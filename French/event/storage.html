@@ -156,11 +156,16 @@
                 <li>Si le mot de passe est oubli&eacute; ou perdu, il ne peut pas &ecirc;tre r&eacute;cup&eacute;r&eacute;. &Agrave; la place, vous pouvez r&eacute;initialiser votre mot de passe, mais la carte SD sera alors format&eacute;e et toutes ses donn&eacute;es seront supprim&eacute;es.</li>
                 <li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
                 <ul>
-                    <li>Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
-                    <li>Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                    <li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                    <li ng-if="PasswordRule1">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+					<li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caractères, il doit contenir au moins trois des règles suivantes : majuscules / minuscules, chiffres et symboles.</li>
                     <li>Vous ne pouvez pas utiliser 4&nbsp;caract&egrave;res cons&eacute;cutifs ou plus (p.ex., 1234, abcd).</li>
                     <li>Vous ne pouvez pas utiliser le m&ecirc;me caract&egrave;re quatre fois ou plus de suite (p.ex., !!!!, 1111, aaaa).</li>
-                    <li>Seuls ~`!@#$#$%^*()_-++=|{}[]?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+                    <li ng-if="PasswordRule1">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+                    <li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
                 </ul>
             </ul>
         </div>

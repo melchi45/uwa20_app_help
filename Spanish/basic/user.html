@@ -46,12 +46,17 @@
 					<li>Se recomienda cambiar la contrase&ntilde;a cada tres meses.</li>
 					<li>La longitud y restricciones de la contrase&ntilde;a son las siguientes:</li>
 					<ul>
-						<li>Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-						<li>Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+						<li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+						<li ng-if="PasswordRule1">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+						<li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+						<li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+						<li ng-if="PasswordRule2">Si la contraseña tiene más de 9 caracteres, deberá contener al menos tres de las siguientes reglas: mayúsculas/minúsculas, números y símbolos.</li>
 						<li>Debe ser diferente de su identificaci&oacute;n.</li>
 						<li>No se pueden utilizar cuatro letras consecutivas de un tipo (Por ejemplo: 1234, abcd)</li>
 						<li>No se puede repetir la misma letra cuatro o m&aacute;s veces seguidas. (Por ejemplo: !!!!, 1111, aaaa)</li>
-						<li>Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+						<li ng-if="PasswordRule1">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+						<li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+						<li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
 						<li>Despu&eacute;s del restablecimiento de f&aacute;brica, se restablecer&aacute;n las contrase&ntilde;as de administrador y de usuario y deber&aacute; crearlas nuevamente.</li>
 						<li>Cuando acceda al visor web de la c&aacute;mara por primera vez o acceda a &eacute;l despu&eacute;s de la inicializaci&oacute;n, se lo llevar&aacute; al men&uacute; de configuraci&oacute;n de la contrase&ntilde;a.</li>
 						<li>Para utilizar el men&uacute; del visor web, se debe configurar la nueva contrase&ntilde;a en el men&uacute; de cambio de contrase&ntilde;a e iniciar sesi&oacute;n nuevamente en el visor web con la nueva contrase&ntilde;a.</li>

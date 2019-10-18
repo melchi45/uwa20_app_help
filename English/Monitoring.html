@@ -51,7 +51,7 @@
                     <tr ng-if="objectDetectionSupport">
                         <td width="235">BestShot</td>
                         <td width="235">
-                            <p>BestShot is the extracted image of the most confident object among the entities (Person, Face, Vehicle, License plate) detected by the camera. The image format of BestShot is JPEG, and its image contains only part of the region where the entities are shown.</p>
+                            <p>BestShot is the extracted image of the most confident object among the objects (Person, Face, Vehicle, License plate) detected by the camera. The image format of BestShot is JPEG, and its image contains only part of the region where the objects are shown.</p>
                             <p>BestShot for individual object can be checked from the BestShot panel in the live page. In addition, the detailed properties of each object are displayed as icons. For example, a Person object has properties such as gender, color/length of tops and bottoms, wearing of a hat and/or bag.</p>
                             <p>The type of object to be displayed in the BestShot panel can be selected from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Analytics]</strong>&gt;<strong class="UI">[Object detection]</strong>&gt;<strong class="UI">[BestShot]</strong>.</p>
                             <p>&nbsp;</p>
@@ -165,8 +165,8 @@
                                 <p>Overlay</p>
                             </td>
                             <td width="235">
-                                <p>The type of entities to be displayed on screen when the camera detects entities can be selected.</p>
-                                <p>The entities detected by an AI camera are displayed only when the analytics algorithm of the AI camera is working. For AI algorithm to work, one of the following functions must be enabled: Object detection, IVA, People counting, Queue management, or Heatmap.</p>
+                                <p>The type of objects to be displayed on screen when the camera detects objects can be selected.</p>
+                                <p>The objects detected by an AI camera are displayed only when the analytics algorithm of the AI camera is working. For AI algorithm to work, one of the following functions must be enabled: Object detection, IVA, People counting, Queue management, or Heatmap.</p>
                                 <p>The overlay icon is activated only when channel 1 is selected from [<a href="Monitoring.html#channel_AI">Select channel</a>].</p>
                                 <p>&nbsp;</p>
                             </td>
@@ -254,7 +254,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="!CamSpecialModel">
+                    <tr ng-if="!CamSpecialModel && BrowserBackup">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>Record</p>
@@ -342,7 +342,7 @@
                 </ul>
                 <p>If image capture does not work in Windows 7 or later with the Internet Explorer browser, run the Internet Explorer browser as administrator. </p>
             </div>
-            <div class="wn5-online-help-action" ng-if="!CamSpecialModel">
+            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && BrowserBackup">
             <h4><a name="record"></a>To record video</h4>
                 <ul>
                     <li>Click the Record icon(<span class="tui tui-wn5-toolbar-record"></span>).</li>
