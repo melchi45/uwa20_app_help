@@ -31,6 +31,7 @@
 									style="margin-left: 8px; margin-right: 0px;"></i>
 								{{ sub.title }}
 								<span class="fa arrow" ng-if="sub.childs.length > 0"></span>
+								<img src="{{ sub.mark }}" ng-if="sub.mark">
 							</a>
 
 							<ul class="nav nav-third-level"  ng-class="activeCheck('{{sub.stateName}}')" ng-if="sub.childs.length > 0" >
