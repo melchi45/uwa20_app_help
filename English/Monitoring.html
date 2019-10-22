@@ -254,7 +254,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="!CamSpecialModel && BrowserBackup">
+                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>Record</p>
@@ -342,7 +342,7 @@
                 </ul>
                 <p>If image capture does not work in Windows 7 or later with the Internet Explorer browser, run the Internet Explorer browser as administrator. </p>
             </div>
-            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && BrowserBackup">
+            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
             <h4><a name="record"></a>To record video</h4>
                 <ul>
                     <li>Click the Record icon(<span class="tui tui-wn5-toolbar-record"></span>).</li>

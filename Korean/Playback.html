@@ -230,7 +230,7 @@
 		 <div class="wn5-online-help-action">
                 <h4>검색된 영상을 저장하려면</h4>
                 <ol>
-                    <li ng-if="BrowserBackup">재생 중 저장할 장면에서 <strong class="UI">[내보내기]</strong> 버튼을 클릭합니다. </li>
+                    <li ng-if="BrowserBackup == undefined || BrowserBackup">재생 중 저장할 장면에서 <strong class="UI">[내보내기]</strong> 버튼을 클릭합니다. </li>
                     <li>저장 시작 시간과 종료 시간을 설정합니다.</li>
                     <li>설정을 완료한 후 <strong class="UI">[적용]</strong> 버튼을 클릭합니다. </li>
                     <li>저장 창이 나타나면 저장 경로를 지정한 후 <strong class="UI">[저장]</strong> 버튼을 클릭합니다. </li>

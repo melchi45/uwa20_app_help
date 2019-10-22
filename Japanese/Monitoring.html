@@ -248,7 +248,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="!CamSpecialModel && BrowserBackup">
+                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>録画</p>
@@ -334,7 +334,7 @@
                 </ul>
                 <p>Windows 7以上のInternet Explorerブラウザでキャプチャーできない場合、Internet Explorerブラウザを管理者権限で実行してください。</p>
             </div>
-            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && BrowserBackup">
+            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
             <h4><a name="record"></a>映像を録画するには、</h4>
                 <ul>
                     <li>保存アイコン(<span class="tui tui-wn5-toolbar-record"></span>)をクリックします。</li>
