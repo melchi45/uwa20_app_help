@@ -49,14 +49,14 @@
 				<ul>
 					<li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
-					<li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
-					<li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caractères, il doit contenir au moins trois des règles suivantes : majuscules / minuscules, chiffres et symboles.</li>
 					<li>Il doit &ecirc;tre diff&eacute;rent de votre identifiant (ID).</li>
 					<li>Vous ne pouvez pas utiliser quatre lettres cons&eacute;cutives d&rsquo;un m&ecirc;me type. (Ex&nbsp;: 1234, abcd)</li>
 					<li>Vous ne pouvez pas r&eacute;p&eacute;ter la m&ecirc;me lettre quatre fois ou plus d&rsquo;affil&eacute;e. (Ex&nbsp;: ! !!!!, 1111, aaaaaa)</li>
 					<li ng-if="PasswordRule1">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
-					<li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
 					<li>Apr&egrave;s la r&eacute;initialisation d&rsquo;usine, les mots de passe administrateur et utilisateur seront r&eacute;initialis&eacute;s et vous devrez les cr&eacute;er &agrave; nouveau.</li>
 					<li>Lorsque vous acc&eacute;dez au Web Viewer de la cam&eacute;ra pour la premi&egrave;re fois, ou lorsque vous y acc&eacute;dez apr&egrave;s l&rsquo;initialisation, vous acc&eacute;dez au menu. Param&egrave;tres du mot de passe.</li>

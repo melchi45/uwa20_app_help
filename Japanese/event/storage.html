@@ -160,13 +160,13 @@
                 <ul>
                     <li ng-if="PasswordRule1">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
                     <li ng-if="PasswordRule1">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
                     <li ng-if="PasswordRule2">パスワードが9文字以上の場合、大文字/小文字、数字、記号のうち3以上の規則に従う必要があります。</li>
                     <li>連続された文字を4つ以上、使用できません。(例：1234、abcd)</li>
                     <li>同じ文字を4回以上、繰り返して使用できません。(例：!!!!、1111、aaaa)</li>
                     <li ng-if="PasswordRule1">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
                     <li ng-if="PasswordRule2">特殊文字は~`!@#$%^&amp;*()_-+=|{}[].?/のみ使用することができます。</li>
 
                 </ul>

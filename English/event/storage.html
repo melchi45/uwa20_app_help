@@ -155,13 +155,13 @@
                 <ul>
                     <li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li ng-if="PasswordRule1">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li ng-if="PasswordRule2">Password should be longer than 9 digits, and you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li>You cannot use four or more consecutive characters (e.g. 1234, abcd).</li>
                     <li>You cannot use the same character four or more times in a row (e.g. !!!!, 1111, aaaa).</li>
                     <li ng-if="PasswordRule1">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
 					<li ng-if="PasswordRule2">Only ~`!@#$%^&amp;*()_-+=|{}[].?/ are allowed for special characters.</li>
                 </ul>
             </ul>
