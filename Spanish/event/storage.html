@@ -153,13 +153,13 @@
                 <ul>
                     <li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
                     <li ng-if="PasswordRule1">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
                     <li ng-if="PasswordRule2">Si la contraseña tiene más de 9 caracteres, deberá contener al menos tres de las siguientes reglas: mayúsculas/minúsculas, números y símbolos.</li>
                     <li>No pueden utilizar cuatro o m&aacute;s caracteres consecutivos (por ej., 1234, abcd).</li>
                     <li>No se puede usar los mismos cuatro caracteres o m&aacute;s veces seguidas. (Por ejemplo: !!!!, 1111, aaaa).</li>
                     <li ng-if="PasswordRule1">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
-                    <li ng-if="PasswordRule1 == undefined || PasswordRule1 == undefined">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+                    <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
                     <li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
                 </ul>
             </ul>
