@@ -251,7 +251,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="!CamSpecialModel && BrowserBackup">
+                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>Grabar</p>
@@ -338,7 +338,7 @@
                 </ul>
                 <p>Si la captura de imagen no funciona en Windows 7 o posteriores con el navegador Internet Explorer, ejecute el buscador como administrador. </p>
             </div>
-            <div class="wn5-online-help-action"  ng-if="!CamSpecialModel && BrowserBackup">
+            <div class="wn5-online-help-action"  ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
             <h4><a name="record"></a>Para graba video</h4>
                 <ul>
                     <li>Haga clic en el icono Guardar <span class="tui tui-wn5-toolbar-record"></span> .</li>

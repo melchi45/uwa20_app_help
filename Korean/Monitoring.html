@@ -250,7 +250,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="!CamSpecialModel && BrowserBackup">
+                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>저장</p>
@@ -336,7 +336,7 @@
                 </ul>
                 <p>Windows 7 이상에서 Internet Explorer 브라우저로 캡쳐가 안 되는 경우,  Internet Explorer 브라우저를 관리자 권한으로 실행하십시오. </p>
             </div>
-            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && BrowserBackup">
+            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
             <h4><a name="record"></a>영상을 녹화하려면</h4>
                 <ul>
                     <li>저장 아이콘(<span class="tui tui-wn5-toolbar-record"></span>)을 클릭합니다.</li>
