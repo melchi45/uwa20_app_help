@@ -20,11 +20,11 @@
             <p>After you select a camera channel, you can specify the details of PTRZ (camera pan &amp; tilt location, rotating, and zooming) for each channel. </p>
             <p>Once you select a channel, only the video of the selected channel will be displayed on the screen, and you can specify the details of each individual PTRZ for each channel. </p>
             <p>If you select the Multi view icon, you can see the videos of every channel all at once, and apply the same values to all cameras. You can also apply the same values to only one or more cameras of your choice.  </p>
-            <p>Also, in the Multi view mode, a message that describes the status of each camera is displayed at the bottom of the preview screen of each channel. One of the following messages will be displayed: </p>
+            <p>At the bottom of the Preview screen of each channel, a message describing the status of each camera is displayed. One of the following messages will be displayed: </p>
             <ul>
                 <li>Initializing: This message is displayed when the camera initialization is in progress after <strong class="UI">[Initialize PTRZ]</strong> is clicked. Until initialization is complete, no other action can be made.</li>
                 <li>Initialization failed: This message is displayed due to several reasons such as camera stepping out of phase during the process of camera setup initialization. If initialization is incomplete, PTR control might not work properly. In that case, change the camera position and reinitialize.</li>
-                <li>Moving to preset: This message is displayed when camera is currently moving to a preset position you already set up upon clicking <strong class="UI">[360]</strong>, <strong class="UI">[200]</strong>, or <strong class="UI">[User preset]</strong>. Until the movement is complete, no other action can be made.</li>
+                <li>Moving to preset: This message is displayed when your camera moves to a user-defined preset location by clicking <strong class="UI">[360]</strong> or <strong class="UI">[User preset]</strong>. Until the movement is complete, no other action can be made.</li>
                 <li>Preset failed: This message is displayed when camera fails to move to a preset position due to problems such as out-of-phase issue. Change the camera position by adjusting the PTR of the camera, and retry the Goto preset operation.</li>
                 <li>Currently moving: This message is displayed when any one of the PTR (Pan / tilt / rotation) operations is in action.</li>
                 <li>Collided: This message is displayed when a camera is unable to move as it comes into contact with another camera that uses a different channel.</li>
@@ -44,12 +44,11 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>The information of lens location per channel is displayed. Each camera is displayed as a Channel number icon. After selecting a channel, change the PTR information to display the changed location of the selected camera.</p>
-            <p>Two preset options, [360] and [200], are provided so that camera can easily move to the set PTRZ. </p>
-            <p>If <strong class="UI">[360]</strong> is selected, as shown in the image below, the four cameras are panned and positioned to make the total angular field of view to be 360 degrees. Meanwhile, tilt value is set to 45 degrees, rotation to 0 degree, and zoom is located at the end of the wide. </p>
+            <p>It provides you with preset options to help your camera easily move to a set PTRZ. If <strong class="UI">[360]</strong> is selected, as shown in the image below, the four cameras are panned and positioned to make the total angular field of view to be 360 degrees. Meanwhile, tilt value is set to 45 degrees, rotation to 0 degree, and zoom is located at the end of the wide. </p>
             <p><img src="../../base/images/setup/ptrzSetup_360.png"></p>
-            <p>If <strong class="UI">[200]</strong> is selected, as shown in the image below, the three cameras (Channel no. 1, 2, and 4 cameras) are panned and positioned to make the total angular field of view to be 200 degrees. Meanwhile, tilt value is set to 45 degrees, rotation to 0 degree, and zoom is located at the end of the wide. </p>
-            <p><img src="../../base/images/setup/ptrzSetup_200.png"></p>
-            <p><a href="#set_preset">Users can customize the PTRZ preset position</a>. To move to the user-customized position, select <strong class="UI">[User preset]</strong>.</p>
+            <!-- <p>If <strong class="UI">[200]</strong> is selected, as shown in the image below, the three cameras (Channel no. 1, 2, and 4 cameras) are panned and positioned to make the total angular field of view to be 200 degrees. Meanwhile, tilt value is set to 45 degrees, rotation to 0 degree, and zoom is located at the end of the wide. </p>
+            <p><img src="../../base/images/setup/ptrzSetup_200.png"></p> -->
+            <p>Also, <a href="#set_preset">users can directly set the PTRZ preset location</a>. To move to the user-defined preset location, select <strong class="UI">[User preset]</strong>.</p>
         </div>
 		
         <div class="wn5-online-help-action">
@@ -80,9 +79,34 @@
             <p>You can also click the button <i class="tui tui-wn5-return"></i> to rotate the camera clockwise.The camera will continue to rotate clockwise until the button <i class="tui tui-wn5-return"></i> is released. Click the button <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> to rotate the camera counterclockwise.Continue to rotate it counterclockwise until the button <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> is released. </p>
             <p>Click the triangular icons on the screen movement pad&rsquo;s top, bottom, left, and right sides to fine adjust the camera&rsquo;s pan and tilt. If you press and hold the triangular icon, it moves the pan and tilt at a constant speed. </p>
         </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>If you select more than one channel in <strong class="UI">[<a href="#Lens_status">Lens status</a>]</strong>, the pan/tilt movement function will be deactivated in <strong class="UI">[PTR setup]</strong>. To simultaneously adjust pan and tilt of more than one channel, use <strong class="UI">[<a href="#pt_setup">Pan &amp; Tilt setup</a>]</strong> option.</li>
+            </ul>
+        </div>
 	</div>
 </div> 
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="pt_setup"></a>Pan &amp; Tilt setup</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can adjust pan and tilt of your camera to a desired angle.</p>
+            <p>Pan location setup value is represented by left/right arrow icons, while tilt location setup value is represented by up/down icons. For example, if you select [30] from the values displayed as left/right direction icons, the camera will pan by 30 degrees from the current camera location. If you select [30] from the values displayed as up/down direction icons, the camera will tilt by 30 degrees from the current camera location.</p>
+        </div>
+		<div class="wn5-online-help-info">
+    <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                
+                <li>If there is any camera that might come into conflict with other cameras selected in <strong class="UI">[<a href="#Lens_status">Lens status</a>]</strong>, only the camera that is safe to move will pan.</li>
+            </ul>
+        </div>
+	</div>
+</div> 
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
