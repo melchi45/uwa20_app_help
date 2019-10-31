@@ -57,15 +57,15 @@
                 <li>Seleccione un canal para establecer ajuste predeterminado en <strong class="UI"><a href="#Lens_status">[Estado de lente]</a></strong>. Para seleccionar m&aacute;s de un canal, seleccione el icono de Vista m&uacute;ltiple en <strong class="UI"><a href="#Channel">[Seleccionar canal]</a></strong>.    </li>
                 <li>Configure la informaci&oacute;n PTRZ como se muestra a continuaci&oacute;n.    </li>
                 <ul>
-                    <li>Use el icono <span class="tui tui-wn5-ptz-handle"></span> en <strong class="UI"><a href="#ptr_setup">[Configuración PTR]</a></strong> para ajustar la panor&aacute;mica e inclinaci&oacute;n de la c&aacute;mara y as&iacute; ajustar la vista de la c&aacute;mara, o use los botones <i class="tui tui-wn5-return"></i> o <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> para girar la c&aacute;mara.</li>
-                    <li> Establezca los valores de zoom y enfoque en <strong class="UI"><a href="#zoom_focus">[Configuraci&oacute;n del enfoque y del zoom]</a></strong>. </li>
+                    <li>Use el icono <span class="tui tui-wn5-ptz-handle"></span> para ajustar la panor&aacute;mica e inclinaci&oacute;n de la c&aacute;mara y as&iacute; ajustar la vista de la c&aacute;mara, o use los botones <i class="tui tui-wn5-return"></i> o <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> para girar la c&aacute;mara.</li>
+                    <li> Establezca los valores de zoom y enfoque en <strong class="UI"><a href="#zoom_focus">[Zoom y enfoque]</a></strong>. </li>
                 </ul>
                 <li>Haga clic en <strong class="UI">[Configurar predefinido]</strong>. </li>
             </ol>
             <p>Si hace clic en <strong class="UI">[Predefinido de usuario]</strong>, la c&aacute;mara se mover&aacute; a la &uacute;ltima posici&oacute;n de preajuste PTRZ que configur&oacute;. </p>
         </div>
 		
-	</div>
+	<!-- </div>
 </div> 
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
@@ -73,7 +73,7 @@
     <div class="wn5-setup-section-heading">
         <h2><a name="ptr_setup"></a>Configuraci&oacute;n PTR</h2>
     </div>
-    <div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article"> -->
         <div class="wn5-setup-section-article-content">
             <p>Para ajustar la vista de la c&aacute;mara, haga clic en el bot&oacute;n <span class="tui tui-wn5-ptz-handle"></span> con el rat&oacute;n y arr&aacute;strelo hacia arriba, abajo, izquierda o derecha. La posici&oacute;n de la c&aacute;mara gira y se inclina. </p>
             <p>Tambi&eacute;n puede hacer clic en el bot&oacute;n <i class="tui tui-wn5-return"></i> para girar la c&aacute;mara en el sentido de las agujas del reloj. La c&aacute;mara continuar&aacute; girando en sentido horario hasta que se suelte el bot&oacute;n <i class="tui tui-wn5-return"></i>. Haga clic en el bot&oacute;n <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> para girar la c&aacute;mara en sentido contrario. Continuar&aacute; girando en sentido contrario hasta que se suelte el bot&oacute;n <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>. </p>
@@ -82,13 +82,9 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
-                <li>Si selecciona m&aacute;s de un canal en <strong class="UI">[<a href="#Lens_status">Estado de lente</a>]</strong>, la funci&oacute;n de movimiento horizontal/vertical (pan/tilt) se desactivar&aacute; en <strong class="UI">[Configuraci&oacute;n PTR]</strong>. Para ajustar simult&aacute;neamente pan/tilt de m&aacute;s de un canal, use la opci&oacute;n <strong class="UI">[<a href="#pt_setup">Configuraci&oacute;n Pan/Tilt</a>]</strong>.</li>
-            </ul>
-        </div>
-        <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul>
-                <li>Si selecciona m&aacute;s de un canal en <strong class="UI">[<a href="#Lens_status">Estado de lente</a>]</strong>, la funci&oacute;n de movimiento horizontal/vertical (pan/tilt) se desactivar&aacute; en <strong class="UI">[Configuraci&oacute;n PTR]</strong>. Para ajustar simult&aacute;neamente pan/tilt de m&aacute;s de un canal, use la opci&oacute;n <strong class="UI">[<a href="#pt_setup">Configuraci&oacute;n Pan/Tilt</a>]</strong>.</li>
+                <li>
+                    <!-- Si selecciona m&aacute;s de un canal en <strong class="UI">[<a href="#Lens_status">Estado de lente</a>]</strong>, la funci&oacute;n de movimiento horizontal/vertical (pan/tilt) se desactivar&aacute; en <strong class="UI">[Configuraci&oacute;n PTR]</strong>.  -->
+                    Para ajustar simult&aacute;neamente pan/tilt de m&aacute;s de un canal, use la opci&oacute;n <strong class="UI">[<a href="#pt_setup">Panorámica e inclinación</a>]</strong>.</li>
             </ul>
         </div>
 	</div>
@@ -98,7 +94,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="pt_setup"></a>Configuraci&oacute;n Pan/Tilt</h2>
+        <h2><a name="pt_setup"></a>Panorámica e inclinación</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -119,7 +115,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="zoom_focus"></a>Configuración del enfoque y del zoom</h2>
+        <h2><a name="zoom_focus"></a>Zoom y enfoque</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -176,7 +172,8 @@
                 <p>Haga clic en el botón <strong class="UI">[Auto enrollar]</strong> para ajustar automáticamente la pantalla de vídeo horizontalmente.</p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>Configuración de zoom y enfoque automático</h3>
+                <!-- <h3>Configuración de zoom y enfoque automático</h3> -->
+                <h3>Zoom y enfoque</h3>
                 <p>Es posible ajustar y configurar el zoom y el enfoque de la cámara. </p>
                 <p>Para restablecer el enfoque, haga clic en el botón <strong class="UI">[Inicializar enfoque]</strong>. El enfoque se ajusta a la posición predeterminada.</p>
             </div>
