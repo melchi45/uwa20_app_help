@@ -57,15 +57,15 @@
                 <li>Select a channel to set up preset in <strong class="UI"><a href="#Lens_status">[Lens status]</a></strong>. To select more than one channels, select the Multi view icon in <strong class="UI"><a href="#Channel">[Select channel]</a></strong>.    </li>
                 <li>Set up the camera PTRZ information as below.    </li>
                 <ul>
-                    <li>Use the <span class="tui tui-wn5-ptz-handle"></span> icon in <strong class="UI"><a href="#ptr_setup">[PTR setup]</a></strong> to adjust the camera panning and tilting in order to adjust the camera view, or use the <i class="tui tui-wn5-return"></i> or <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> button to rotate the camera.</li>
-                    <li> Set Zoom &amp; Focus values you want in <strong class="UI"><a href="#zoom_focus">[Zoom &amp; focus setup]</a></strong>. </li>
+                    <li>Use the <span class="tui tui-wn5-ptz-handle"></span> icon to adjust the camera panning and tilting in order to adjust the camera view, or use the <i class="tui tui-wn5-return"></i> or <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> button to rotate the camera.</li>
+                    <li> Set Zoom &amp; Focus values you want in <strong class="UI"><a href="#zoom_focus">[Zoom &amp; Focus]</a></strong>. </li>
                 </ul>
                 <li>Click <strong class="UI">[Set preset]</strong>. </li>
             </ol>
             <p>If you click <strong class="UI">[User preset]</strong>, the camera moves to the last PTRZ preset location you set. </p>
         </div>
 		
-	</div>
+	<!-- </div>
 </div> 
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
@@ -73,7 +73,7 @@
     <div class="wn5-setup-section-heading">
         <h2><a name="ptr_setup"></a>PTR setup</h2>
     </div>
-    <div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article"> -->
         <div class="wn5-setup-section-article-content">
             <p>To adjust the camera view, click the button <span class="tui tui-wn5-ptz-handle"></span> using the mouse and drag it up, down, left, or right. The camera position moves by panning and tilting. </p>
             <p>You can also click the button <i class="tui tui-wn5-return"></i> to rotate the camera clockwise.The camera will continue to rotate clockwise until the button <i class="tui tui-wn5-return"></i> is released. Click the button <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> to rotate the camera counterclockwise.Continue to rotate it counterclockwise until the button <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> is released. </p>
@@ -82,7 +82,9 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>If you select more than one channel in <strong class="UI">[<a href="#Lens_status">Lens status</a>]</strong>, the pan/tilt movement function will be deactivated in <strong class="UI">[PTR setup]</strong>. To simultaneously adjust pan and tilt of more than one channel, use <strong class="UI">[<a href="#pt_setup">Pan &amp; Tilt setup</a>]</strong> option.</li>
+                <li>
+                    <!-- If you select more than one channel in <strong class="UI">[<a href="#Lens_status">Lens status</a>]</strong>, the pan/tilt movement function will be deactivated in <strong class="UI">[PTR setup]</strong>.  -->
+                To simultaneously adjust pan and tilt of more than one channel, use <strong class="UI">[<a href="#pt_setup">Pan &amp; Tilt</a>]</strong> option.</li>
             </ul>
         </div>
 	</div>
@@ -91,7 +93,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="pt_setup"></a>Pan &amp; Tilt setup</h2>
+        <h2><a name="pt_setup"></a>Pan &amp; Tilt</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -111,7 +113,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="zoom_focus"></a>Zoom &amp;&nbsp;focus setup</h2>
+        <h2><a name="zoom_focus"></a>Zoom &amp; Focus</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -166,7 +168,7 @@
                 <p>Click the <strong class="UI">[Auto roll]</strong>&nbsp;button to automatically adjust the video screen horizontally. </p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>Zoom &amp;&nbsp;focus setup</h3>
+                <h3>Zoom &amp; Focus</h3>
                 <p>It is possible to adjust and set the zoom and focus of the camera.</p>
                 <p>To reset the focus, click the <strong class="UI">[Initialize focus]</strong>&nbsp;button. The focus is adjusted to the default position.</p>
             </div>

@@ -57,15 +57,15 @@
                 <li>S&eacute;lectionnez un canal pour configurer le pr&eacute;r&eacute;glage dans <strong class="UI"><a href="#Lens_status">[&Eacute;tat de la lentille]</a></strong>. Pour s&eacute;lectionner plus d&rsquo;un canal, s&eacute;lectionnez l&rsquo;ic&ocirc;ne Multi-vues dans <strong class="UI"><a href="#Channel">[S&eacute;lectionner un canal]</a></strong>.    </li>
                 <li>Configurez les informations PTRZ de la cam&eacute;ra comme ci-dessous.    </li>
                 <ul>
-                    <li>Utilisez <span class="tui tui-wn5-ptz-handle"></span> l&rsquo;ic&ocirc;ne dans <strong class="UI"><a href="#ptr_setup">[Configuration de PTR]</a></strong> pour r&eacute;gler le panoramique et l&rsquo;inclinaison de la cam&eacute;ra afin d&rsquo;ajuster la vue de la cam&eacute;ra, ou utilisez le bouton <i class="tui tui-wn5-return"></i> ou <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> pour faire pivoter la cam&eacute;ra.</li>
-                    <li> D&eacute;finissez les valeurs de Zoom et de Mise au point que vous voulez dans <strong class="UI"><a href="#zoom_focus">[Configuration de la mise au point et du zoom]</a></strong>. </li>
+                    <li>Utilisez <span class="tui tui-wn5-ptz-handle"></span> l&rsquo;ic&ocirc;ne pour r&eacute;gler le panoramique et l&rsquo;inclinaison de la cam&eacute;ra afin d&rsquo;ajuster la vue de la cam&eacute;ra, ou utilisez le bouton <i class="tui tui-wn5-return"></i> ou <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> pour faire pivoter la cam&eacute;ra.</li>
+                    <li> D&eacute;finissez les valeurs de Zoom et de Mise au point que vous voulez dans <strong class="UI"><a href="#zoom_focus">[Zoom et focus]</a></strong>. </li>
                 </ul>
                 <li>Cliquez sur <strong class="UI">[Définissez un préréglage]</strong>. </li>
             </ol>
             <p>Si vous cliquez sur <strong class="UI">[Pr&eacute;r&eacute;glage utilisateur]</strong>, la cam&eacute;ra se d&eacute;place vers le dernier emplacement du pr&eacute;r&eacute;glage PTRZ que vous avez d&eacute;fini. </p>
         </div>
 		
-	</div>
+	<!-- </div>
 </div> 
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
@@ -73,7 +73,7 @@
     <div class="wn5-setup-section-heading">
         <h2><a name="ptr_setup"></a>Configuration de PTR</h2>
     </div>
-    <div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article"> -->
         <div class="wn5-setup-section-article-content">
             <p>Pour ajuster la vue de la cam&eacute;ra, cliquez sur le bouton <span class="tui tui-wn5-ptz-handle"></span> &agrave; l&rsquo;aide de la souris et faites-le glisser vers le haut, le bas, la gauche ou la droite. La position de la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison. </p>
             <p>Vous pouvez &eacute;galement cliquer sur le bouton <i class="tui tui-wn5-return"></i> pour faire pivoter la cam&eacute;ra vers la droite.La cam&eacute;ra continuera de tourner vers la droite jusqu&rsquo;&agrave; ce que le bouton <i class="tui tui-wn5-return"></i> soit rel&acirc;ch&eacute;. Cliquez sur le bouton <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> pour faire pivoter la cam&eacute;ra vers la gauche.Continuez &agrave; le faire tourner vers la gauche jusqu&rsquo;&agrave; ce que le bouton <i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i> soit rel&acirc;ch&eacute;. </p>
@@ -82,7 +82,9 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>Si vous s&eacute;lectionnez plus d&rsquo;un canal dans <strong class="UI">[<a href="#Lens_status">&Eacute;tat de la lentille</a>]</strong>, la fonction de mouvement pan/tilt sera d&eacute;sactiv&eacute;e dans <strong class="UI">[R&eacute;gl. PTR]</strong>. Pour le r&eacute;glage simultan&eacute; du pan et tilt de plus d&rsquo;un canal, utilisez l&rsquo;option <strong class="UI">[<a href="#pt_setup">R&eacute;gl. de Pan et Tilt</a>]</strong>.</li>
+                <li>
+                    <!-- Si vous s&eacute;lectionnez plus d&rsquo;un canal dans <strong class="UI">[<a href="#Lens_status">&Eacute;tat de la lentille</a>]</strong>, la fonction de mouvement pan/tilt sera d&eacute;sactiv&eacute;e dans <strong class="UI">[R&eacute;gl. PTR]</strong>.  -->
+                    Pour le r&eacute;glage simultan&eacute; du pan et tilt de plus d&rsquo;un canal, utilisez l&rsquo;option <strong class="UI">[<a href="#pt_setup">Pan & Inclinaison</a>]</strong>.</li>
             </ul>
         </div>
 	</div>
@@ -92,7 +94,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="pt_setup"></a>R&eacute;glage de Pan et Tilt</h2>
+        <h2><a name="pt_setup"></a>Pan & Inclinaison</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -113,7 +115,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="zoom_focus"></a>Configuration de la mise au point du zoom</h2>
+        <h2><a name="zoom_focus"></a>Zoom et focus</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -169,7 +171,7 @@
                 <p>Cliquez sur le bouton <strong class="UI">[Auto roll]</strong>&nbsp;pour ajuster automatiquement l&apos;&eacute;cran vid&eacute;o horizontalement.</p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>Configuration de la mise au point du zoom</h3>
+                <h3>Zoom et focus</h3>
                 <p>Il est possible d&apos;ajuster et de r&eacute;gler le zoom et la mise au point de la cam&eacute;ra.</p>
                 <p>Pour r&eacute;initialiser la mise au point, cliquez sur le bouton <strong class="UI">[Initialisation de la mise au point]</strong>. La mise au point est ajust&eacute;e &agrave; la position par d&eacute;faut.</p>
             </div>

@@ -57,15 +57,15 @@
                 <li><strong class="UI"><a href="#Lens_status">[レンズ状態]</a></strong>でプリセットを設定するチャンネルを選択します。1つのチャンネル以上の多数のチャンネルを選択するには、<strong class="UI"><a href="#Channel">[チャンネル選択]</a></strong>でマルチビューアイコンを選択します。    </li>
                 <li>下記のようにカメラPTRZ情報を設定します。    </li>
                 <ul>
-                    <li><strong class="UI"><a href="#ptr_setup">[PTR設定]</a></strong>で<span class="tui tui-wn5-ptz-handle"></span>アイコンを用いてカメラパンとチルトを調整し、カメラビューを調整したり、<i class="tui tui-wn5-return"></i>ボタンや<i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>ボタンを用いてカメラを回転します。</li>
-                    <li> <strong class="UI"><a href="#zoom_focus">[ズームとフォーカス設定]</a></strong>でズームとフォーカス値を設定します。 </li>
+                    <li><span class="tui tui-wn5-ptz-handle"></span>アイコンを用いてカメラパンとチルトを調整し、カメラビューを調整したり、<i class="tui tui-wn5-return"></i>ボタンや<i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>ボタンを用いてカメラを回転します。</li>
+                    <li> <strong class="UI"><a href="#zoom_focus">[ズーム&フォーカス]</a></strong>でズームとフォーカス値を設定します。 </li>
                 </ul>
                 <li><strong class="UI">[プリセット設定]</strong>をクリックします。 </li>
             </ol>
             <p><strong class="UI">[ユーザー指定プリセット]</strong>をクリックすると、最も最近に設定したPTRZプリセットの位置に移動します。 </p>
         </div>
 		
-	</div>
+	<!-- </div>
 </div> 
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
@@ -73,7 +73,7 @@
     <div class="wn5-setup-section-heading">
         <h2><a name="ptr_setup"></a>PTR設定</h2>
     </div>
-    <div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-article"> -->
         <div class="wn5-setup-section-article-content">
             <p>カメラビューを調整するには、<span class="tui tui-wn5-ptz-handle"></span>ボタンをマウスでクリックしてから上下左右にドラッグします。カメラの位置がパンとチルトに移動します。 </p>
             <p>またカメラを時計回りに回転させるためには、<i class="tui tui-wn5-return"></i>ボタンをクリックします。<i class="tui tui-wn5-return"></i>ボタンクリックを解除するまでカメラが時計回りに回転し続けます。カメラを反時計回りに回転させるためには、<i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>ボタンをクリックします。<i class="tui tui-wn5-return" style="transform: rotateY(180deg);"></i>ボタンクリックを解除するまで反時計回りに回転し続けます。 </p>
@@ -82,7 +82,9 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                <li><strong class="UI">[<a href="#Lens_status">レンズ状態</a>]</strong>で二つ以上のチャンネルを選択する場合、<strong class="UI">[PTR設定]</strong>でパン/チルト移動機能が無効になります。二つ以上のチャンネルのパンとチルトを同時に調整するには、<strong class="UI">[<a href="#pt_setup">パンとチルトの設定</a>]</strong>オプションを使用してください。</li>
+                <li>
+                    <!-- <strong class="UI">[<a href="#Lens_status">レンズ状態</a>]</strong>で二つ以上のチャンネルを選択する場合、<strong class="UI">[PTR設定]</strong>でパン/チルト移動機能が無効になります。 -->
+                    二つ以上のチャンネルのパンとチルトを同時に調整するには、<strong class="UI">[<a href="#pt_setup">平移&チルト</a>]</strong>オプションを使用してください。</li>
             </ul>
         </div>
 	</div>
@@ -92,7 +94,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="pt_setup"></a>パンとチルトの設定</h2>
+        <h2><a name="pt_setup"></a>平移&チルト</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -112,7 +114,7 @@
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
-        <h2><a name="zoom_focus"></a>ズームとフォーカス設定</h2>
+        <h2><a name="zoom_focus"></a>ズーム&フォーカス</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -168,7 +170,7 @@
                 <p>映像画面を自動で水平に合わせるには、<strong class="UI">[オートロール]</strong>ボタンをクリックします。</p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>ズームとフォーカス設定</h3>
+                <h3>ズーム&フォーカス</h3>
                 <p>カメラのズームとフォーカスを調整して設定することができます。</p>
                 <p>フォーカスを初期化するには、<strong class="UI">[フォーカス初期化]</strong>ボタンをクリックします。フォーカスが初期値位置(x1)に調整されます。</p>
             </div>
