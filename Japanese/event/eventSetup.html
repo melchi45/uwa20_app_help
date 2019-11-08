@@ -32,8 +32,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1"> 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature"> 
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2> 
     </div>
@@ -46,8 +46,8 @@
             <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[イベント設定]は、チャンネル1でのみ設定できます。</p>
             <p ng-if="SupportAutoImageAlignment">「IVA」はチャンネル1でしか設定できません。</p>
 
-            <p ng-if="SupportChannelEnabledFeature">チャンネル別のビューモードは、下記のどおりです。イベント動作はチャンネル1でのみ設定できます。</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。イベント動作はチャンネル1でのみ設定できます。</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                 <li>チャンネル1：魚眼カメラの映像をそのまま補正なしで見せます。</li>
                 <li>チャンネル2：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
                 <li>チャンネル3：360˚エリアを撮影した映像を歪み補正してパノラマタイプの上下分割モードに見せます。</li>
@@ -56,7 +56,7 @@
                 <li>チャンネル6：チャンネル4の4分割画面で右上の映像を見せます。</li>
                 <li>チャンネル7：チャンネル4の4分割画面で左下の映像を見せます。</li>
                 <li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
-            </ul>
+            </ul> -->
 
             <p ng-if="HandoverCalibration && SupportAutoImageAlignment">設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
             <p ng-if="!objectDetectionSupport"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>

@@ -3,8 +3,8 @@
     <p>L&apos;utilisateur peut ajouter ou supprimer un profil vid&eacute;o et modifier les propri&eacute;t&eacute;s du profil. D&eacute;finissez &agrave; l&apos;avance le profil vid&eacute;o, la fr&eacute;quence d&apos;images et le codec en tant que «&nbsp;Profil vid&eacute;o&nbsp;», puis modifiez le profil vid&eacute;o pour diffuser ou lire une image. Lorsque vous avez termin&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
             <div class="wn5-setup-section-heading">
                 <h2>Sélectionner un canal</h2>
             </div>
@@ -15,8 +15,8 @@
                     <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
                     <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
 
-                    <p ng-if="SupportChannelEnabledFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous.</p>
-                    <ul ng-if="SupportChannelEnabledFeature">
+                    <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous.</p>
+                    <ul ng-if="SupportChannelExpansionFeature">
                         <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
                         <li>Canal&nbsp;2&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique murale.</li>
                         <li>Canal&nbsp;3&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique fractionn&eacute;e haut/bas.</li>
@@ -26,8 +26,8 @@
                         <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
                         <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
                     </ul>
-                    <p ng-if="SupportChannelEnabledFeature">Pour utiliser un mode d&rsquo;affichage sp&eacute;cifique, s&eacute;lectionnez un num&eacute;ro de canal et s&eacute;lectionnez <strong class="UI">[Activer canal]</strong>. Par exemple, si seuls les canaux&nbsp;2 et 3 sont activ&eacute;s, la vid&eacute;o de la cam&eacute;ra sera affich&eacute;e en vue panoramique murale ou en vue fractionn&eacute;e haut/bas, et les autres affichages d&rsquo;&eacute;cran ne seront pas pris en charge.</p>
-                    
+                    <p ng-if="SupportChannelExpansionFeature">Pour utiliser un mode d&rsquo;affichage sp&eacute;cifique, s&eacute;lectionnez un num&eacute;ro de canal et s&eacute;lectionnez <strong class="UI">[Activer canal]</strong>. Par exemple, si seuls les canaux&nbsp;2 et 3 sont activ&eacute;s, la vid&eacute;o de la cam&eacute;ra sera affich&eacute;e en vue panoramique murale ou en vue fractionn&eacute;e haut/bas, et les autres affichages d&rsquo;&eacute;cran ne seront pas pris en charge.</p>
+                     -->
                     <p>Sur la page en direct ou la page de lecture, le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; s&rsquo;affiche automatiquement. Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher un r&eacute;sum&eacute; de la condition du canal.</p>
                     <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
                 </div>
@@ -198,7 +198,7 @@
 
 
 
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
                     <h3>Type d&apos;affichage Fisheye</h3>
                     <p>S&eacute;lectionne un type de vid&eacute;o de la cam&eacute;ra fisheye &agrave; afficher dans le profil.</p>
                     <ul>
@@ -206,7 +206,7 @@
                         <li>Vue redress&eacute;e&nbsp;: Corrige la vid&eacute;o &agrave; 360° captur&eacute;e par la cam&eacute;ra fisheye pour s&apos;adapter &agrave; l&rsquo;affichage. Le type de vid&eacute;o redress&eacute;e peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Affichage]</strong>.</li>
                     </ul>
                 </div>
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
                     <h3>Affichage</h3>
                     <p>S&eacute;lectionne le type de vid&eacute;o redress&eacute;e.</p>
                     <p>Il est activ&eacute; lorsque <strong class="UI">[Vue redress&eacute;e]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong>.</p>
@@ -225,16 +225,23 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Type de profil</h3>
             <p>S&eacute;lectionnez un type de profil &agrave; appliquer. Le type de profil s&eacute;lectionn&eacute; sera affich&eacute; dans la colonne <strong class="UI">[Type]</strong> de la liste des profils. Les &eacute;l&eacute;ments de configuration peuvent varier en fonction du type de codec s&eacute;lectionn&eacute;.</p>
-            <p ng-if="SupportAutoImageAlignment || SupportChannelEnabledFeature">Aussi, selon le canal sélectionné dans <a href="#channel">Sélectionner un canal</a>, le type de profil pouvant être configuré peut différer. Par exemple, « Enregistrer un profil » peut être configuré seulement si vous avez sélectionné CAN 1.</p>
+            <p ng-if="SupportAutoImageAlignment">Aussi, selon le canal sélectionné dans <a href="#channel">Sélectionner un canal</a>, le type de profil pouvant être configuré peut différer. Par exemple, « Enregistrer un profil » peut être configuré seulement si vous avez sélectionné CAN 1.</p>
             <ul>
                 <li><strong class="UI">Profil par d&eacute;faut</strong>&nbsp;: C&apos;est le profil par d&eacute;faut appliqu&eacute; pour diffuser une image de cam&eacute;ra en direct. «&nbsp;Default&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
                 <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. «&nbsp;&Eacute;v&eacute;nement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
                 <li><strong class="UI">Enregistrer profil</strong>&nbsp;: Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Enregistrement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
                 <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li>
-                <li style="list-style-type: none;" ng-if="FisheyeLens && !SupportChannelEnabledFeature">Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique.</li>
-                <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;:Il s&rsquo;agit d&rsquo;un profil appliqu&eacute; pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265].</li>
+                <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique.</li> -->
+                <li><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;:Il s&rsquo;agit d&rsquo;un profil appliqu&eacute; pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265]. </li>
             </ul>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+                <h3>Sensibilit&eacute;</h3>
+                <p>Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</p>
+
+            </div>
+
         <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Entr&eacute;e audio</h3>
             <p>Lorsque l&apos;appareil photo dispose d&apos;un microphone interne ou externe connect&eacute;, vous pouvez d&eacute;finir des sons externes &agrave; entrer dans l&apos;image.</p>

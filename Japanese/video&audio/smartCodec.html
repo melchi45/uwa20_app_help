@@ -4,8 +4,8 @@
 <div class="wn5-setup-section">
 	<p>Smart codecは、ユーザーが好む部分をROI領域に設定してROI領域の画質はユーザが設定したどおりに維持するが、その他のエリアは標準画質で管理して映像データサイズを減らす技術です。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>チャンネル選択</h2>
     </div>

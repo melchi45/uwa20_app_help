@@ -45,8 +45,8 @@
         </div>
     </div>
 </div>   -->
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>Select channel</h2> 
     </div>
@@ -59,8 +59,8 @@
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as 'PTZ'.</p>
             <p>What you have set in <strong class="UI">[Common event list]</strong> will be applied to all other channels.</p>
 
-            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. Event action can be set up on Channel 1 only.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below. Event action can be set up on Channel 1 only.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                     <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
                     <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
                     <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
@@ -69,7 +69,7 @@
                     <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
                     <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
                     <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
-            </ul>
+            </ul> -->
 
             <p ng-if="HandoverCalibration && SupportAutoImageAlignment">On the live page or play page, the last selected channel number is automatically displayed. </p>
             <p ng-if="!objectDetectionSupport">Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition. </p>

@@ -3,8 +3,8 @@
 <div class="wn5-setup-section">
     <p>ワイズストリームは、映像の複雑度を分析して画質は維持しながらデータのサイズを効果的に減らせる機能です。カメラが撮影中の映像にモーションが多く発生しない場合、圧縮率を上げ映像のサイズを減らして帯域幅を節約します。再度モーションが発生すると、元の状況に戻して映像情報が損失されないようにします。モーションが多い環境では、不適合で画面が割れることがあります。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2>
     </div>
@@ -13,9 +13,9 @@
             <p>カメラチャンネルを選択した後、チャンネル別にワイズストリーム関連の詳細を設定することができます。</p>
             <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[ワイズストリーム]は、チャンネル1でのみ設定できます。</p>
             <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
-
-            <p ng-if="SupportChannelEnabledFeature">チャンネル別のビューモードは、下記のどおりです。</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+<!-- 
+            <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                 <li>チャンネル1：魚眼カメラの映像をそのまま補正なしで見せます。</li>
                 <li>チャンネル2：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
                 <li>チャンネル3：360˚エリアを撮影した映像を歪み補正してパノラマタイプの上下分割モードに見せます。</li>
@@ -24,7 +24,7 @@
                 <li>チャンネル6：チャンネル4の4分割画面で右上の映像を見せます。</li>
                 <li>チャンネル7：チャンネル4の4分割画面で左下の映像を見せます。</li>
                 <li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
-            </ul>
+            </ul> -->
 
 
             <p>プロファイル設定を変更した後、保存しないまま他のチャンネルを選択する場合、通知メッセージが表示されます。</p>

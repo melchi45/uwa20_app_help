@@ -66,12 +66,12 @@
         <div class="wn5-setup-section-article-content">
             <p>Vous pouvez v&eacute;rifier la date et l&apos;heure ainsi que les informations d&eacute;taill&eacute;es relatives &agrave; un &eacute;v&eacute;nement survenu dans le syst&egrave;me.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
+        <div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
             <h3>S&eacute;lectionner un canal</h3>
             <p>Vous pouvez consultez le journal &eacute;v&eacute;nements de chaque canal en s&eacute;lectionnant le num&eacute;ro du canal.</p>
             <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Seul le journal du canal 1 peut être consulté.</p>
-            <p ng-if="SupportChannelEnabledFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. Seules les informations du journal du canal 1 peuvent être vérifiées.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. Seules les informations du journal du canal 1 peuvent être vérifiées.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction. </li>
                 <li>Canal&nbsp;2&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique murale.</li>
                 <li>Canal&nbsp;3&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique fractionn&eacute;e haut/bas.</li>
@@ -80,7 +80,7 @@
                 <li>Canal&nbsp;6&nbsp;: Affiche la vid&eacute;o en haut &agrave; droite de la vue Quad du canal&nbsp;4.</li>
                 <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
                 <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
-            </ul>
+            </ul> -->
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Type de journal</h3>

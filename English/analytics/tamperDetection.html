@@ -3,8 +3,8 @@
     <p>A tampering detection event can be created when the screen is blocked or the camera position is changed. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the tampering detection event applies to <strong class="UI">[Tampering detection]</strong>in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>Select channel</h2>
     </div>
@@ -17,8 +17,8 @@
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">&apos;Tampering detection&apos; can only be set on CH1.</p>
 
-            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. 'Tampering detection' can be set up on Channel 1 only.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below. 'Tampering detection' can be set up on Channel 1 only.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                     <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
                     <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
                     <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
@@ -27,7 +27,7 @@
                     <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
                     <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
                     <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
-            </ul>
+            </ul> -->
 
             <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p> -->
         </div>
