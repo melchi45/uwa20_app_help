@@ -39,8 +39,8 @@ class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>채널 선택</h2> 
     </div>
@@ -52,8 +52,8 @@ class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
             <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
             <p><strong class="UI">[공통 이벤트 목록]</strong>에서 설정한 내용은 전 채널에 동일하게 적용됩니다.</p>
 
-            <p ng-if="SupportChannelEnabledFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
+            <ul ng-if="SupportChannelExpansionFeature">
                     <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
                     <li>채널 2: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.</li>
                     <li>채널 3: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다.</li>
@@ -62,7 +62,7 @@ class="UI">[알람 출력]</strong></a>에서 할 수 있습니다. </li>
                     <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
                     <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                     <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
-            </ul>
+            </ul> -->
         
         <p ng-if="HandoverCalibration && SupportAutoImageAlignment">라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
         <p ng-if="!objectDetectionSupport"><strong class="UI">[상세정보]</strong> 버튼을 클릭하면 채널 전체 상태를 채널별로 요약하여 보여줍니다. </p>

@@ -5,8 +5,8 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>Select channel</h2>
     </div>
@@ -19,8 +19,8 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">&apos;Camera setup&apos; can only be set on CH1.</p>
 
-            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below. &apos;Camera setup&apos; can be enabled on Channel 1 only.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below. &apos;Camera setup&apos; can be enabled on Channel 1 only.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                     <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
                     <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
                     <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
@@ -29,7 +29,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
                     <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
                     <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
                     <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
-            </ul>
+            </ul> -->
 
             <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p> -->
         </div>

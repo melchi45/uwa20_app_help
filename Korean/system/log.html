@@ -66,14 +66,14 @@
         <div class="wn5-setup-section-article-content">
             <p>시스템에서 발생한 이벤트에 대하여 날짜 및 시간과 상세 정보를 확인할 수 있습니다.</p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1">
+		<div class="wn5-setup-section-article-content" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
             <h3>채널 선택</h3>
             <p>카메라 채널을 선택하면 채널별로 이벤트 로그를 확인할 수 있습니다.</p>
 
             <p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. 채널 1의 로그 정보만 확인할 수 있습니다.</p>
 
-            <p ng-if="SupportChannelEnabledFeature">채널별 뷰 모드는 다음과 같습니다. 채널 1의 로그 정보만 확인할 수 있습니다. </p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">채널별 뷰 모드는 다음과 같습니다. 채널 1의 로그 정보만 확인할 수 있습니다. </p>
+            <ul ng-if="SupportChannelExpansionFeature">
                     <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
                     <li>채널 2: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.</li>
                     <li>채널 3: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다.</li>
@@ -82,7 +82,7 @@
                     <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
                     <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                     <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
-            </ul>
+            </ul> -->
 
         </div>
         <div class="wn5-setup-section-article-content">

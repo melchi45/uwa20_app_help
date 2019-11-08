@@ -3,8 +3,8 @@
 <div class="wn5-setup-section">
     <p>WiseStream is a function that, by analyzing the complexity of an image, can effectively reduce the data size while still maintaining the quality. It reduces image size and saves on bandwidth by increasing the compression rate, if many motions are not created on the image being captured by the camera. If motion increases, the image returns to its previous status, preventing image information loss. This function is not suitable in an environment with much motion, as the screen may malfunction. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>Select channel</h2>
     </div>
@@ -13,8 +13,8 @@
             <p>After selecting your camera channel, you can set the details of WiseStream for each channel. </p>
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [WiseStream] can only be configured on channel 1.</p>
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
-            <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                     <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
                     <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
                     <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
@@ -23,7 +23,7 @@
                     <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
                     <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
                     <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
-            </ul>
+            </ul> -->
 
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
         </div>

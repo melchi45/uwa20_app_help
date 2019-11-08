@@ -4,8 +4,8 @@
     <p>La configuration de l&apos;&eacute;v&eacute;nement de d&eacute;tection de mouvement s&apos;applique &agrave; <strong class="UI">[D&eacute;tection de mouvement]</strong> sur les pages <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuration de l&apos;&eacute;v&eacute;nement]</strong></a> de la m&ecirc;me mani&egrave;re.</p>
 </div> 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel">S&eacute;lectionner un canal</a></h2>
     </div>
@@ -18,8 +18,8 @@
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">“&nbsp;D&eacute;tection de mouvement&nbsp;” peut seulement &ecirc;tre d&eacute;fini sur CAN1.</p>
 
-            <p ng-if="SupportChannelEnabledFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;D&eacute;tection de mouvement&nbsp;” peut être configuré sur le canal 1 uniquement.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;D&eacute;tection de mouvement&nbsp;” peut être configuré sur le canal 1 uniquement.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
                 <li>Canal&nbsp;2&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique murale.</li>
                 <li>Canal&nbsp;3&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique fractionn&eacute;e haut/bas.</li>
@@ -28,7 +28,7 @@
                 <li>Canal&nbsp;6&nbsp;: Affiche la vid&eacute;o en haut &agrave; droite de la vue Quad du canal&nbsp;4.</li>
                 <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
                 <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
-            </ul>
+            </ul> -->
 
             <!-- <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p> -->
         </div>

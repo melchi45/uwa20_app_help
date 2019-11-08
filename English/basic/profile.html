@@ -3,8 +3,8 @@
     <p>The user can add or delete a video profile, and change the profile properties. Set the video profile, frame rate and codec as ‘Video profile’ in advance and later change the video profile to stream or play back an image. When you finish the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
             <div class="wn5-setup-section-heading">
                 <h2>Select channel</h2>
             </div>
@@ -15,8 +15,8 @@
                     <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
                     <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
 
-                    <p ng-if="SupportChannelEnabledFeature">The view mode for each channel is described below.</p>
-                    <ul ng-if="SupportChannelEnabledFeature">
+                    <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below.</p>
+                    <ul ng-if="SupportChannelExpansionFeature">
                             <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
                             <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
                             <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
@@ -26,7 +26,7 @@
                             <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
                             <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
                     </ul>
-                    <p ng-if="SupportChannelEnabledFeature">To use a specific view mode, select a channel number and select <strong class="UI">[Enable channel]</strong>. For example, if only Channels 2 and 3 are enabled, the camera video will be displayed in a wall panoramic view or an up/down split view, and other screen views won&apos;t be supported.</p>
+                    <p ng-if="SupportChannelExpansionFeature">To use a specific view mode, select a channel number and select <strong class="UI">[Enable channel]</strong>. For example, if only Channels 2 and 3 are enabled, the camera video will be displayed in a wall panoramic view or an up/down split view, and other screen views won&apos;t be supported.</p> -->
                     
                     <p>On the live page or play page, the last selected channel number is automatically displayed. Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition. </p>
                     <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
@@ -202,7 +202,7 @@
 
 
 
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
                     <h3>Fisheye view type</h3>
                     <p>Selects a video type of the fisheye camera to be displayed in the profile.</p>
                     <ul>
@@ -210,7 +210,7 @@
                         <li>Dewarping view: Corrects the 360&deg; video captured by the fisheye camera to fit the view. The dewarping video type can be selected from the <strong class="UI">[View]</strong>. </li>
                     </ul>
                 </div>
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens && !SupportChannelEnabledFeature">
+                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
                     <h3>Views</h3>
                     <p>Selects the dewarping video type.</p>
                     <p>It is activated when <strong class="UI">[Dewarping view]</strong> is selected in <strong class="UI">[Fisheye view type]</strong>.</p>
@@ -229,18 +229,26 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Profile type</h3>
             <p>Select a profile type to apply. The selected profile type will be displayed in the <strong class="UI">[Type]</strong> column of the profile list. The setup items may vary according to the selected codec type.</p>
-            <p ng-if="SupportAutoImageAlignment || SupportChannelEnabledFeature">Also, depending on the channel you selected in <a href="#channel">Select channel</a>, the profile type that can be set may differ. For example, 'Record profile' can be set only if you’ve selected CH1.</p>
+            <p ng-if="SupportAutoImageAlignment">Also, depending on the channel you selected in <a href="#channel">Select channel</a>, the profile type that can be set may differ. For example, 'Record profile' can be set only if you’ve selected CH1.</p>
             <ul>
                 <li><strong class="UI">Default profile</strong>: This is the default profile applied for streaming a live camera image. ‘Default’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. ‘Event’ is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li>
                 <li ng-if="Recording && NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. ‘Record’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li ng-if="Recording && !NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card. ‘Record’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
                 <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. ‘DPTZ’ is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
-                <li style="list-style-type: none;" ng-if="FisheyeLens && !SupportChannelEnabledFeature">For the fisheye camera, when adding a new profile, select <strong class="UI">[Dewarping view]</strong> in <strong class="UI">[Fisheye view type]</strong> and select <strong class="UI">[Quad view]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.</li>
-                <li ng-if="!SupportChannelEnabledFeature"><strong class="UI">Frame Lock profile</strong>: This is a profile applied to guarantee a certain level of video frame rate. This ‘Frame Lock profile’ option appears only when <strong class="UI">[Codec]</strong> is set to [h.264] or [h.265].</li>
-                <li ng-if="SupportChannelEnabledFeature" style="list-style-type:none;">The maximum frame rate might not be guaranteed if you access multiple channels at the same time.</li>
+                <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">For the fisheye camera, when adding a new profile, select <strong class="UI">[Dewarping view]</strong> in <strong class="UI">[Fisheye view type]</strong> and select <strong class="UI">[Quad view]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile.</li> -->
+                <li><strong class="UI">Frame Lock profile</strong>: This is a profile applied to guarantee a certain level of video frame rate. This ‘Frame Lock profile’ option appears only when <strong class="UI">[Codec]</strong> is set to [h.264] or [h.265].</li>
+                <!-- <li ng-if="SupportChannelExpansionFeature" style="list-style-type:none;">The maximum frame rate might not be guaranteed if you access multiple channels at the same time.</li> -->
             </ul>
         </div>
+
+        <div class="wn5-online-help-info" ng-if="FisheyeLens">
+                <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                    <ul>
+                        <li>For the fisheye camera, when adding a new profile, select <strong class="UI">[Dewarping view]</strong> in <strong class="UI">[Fisheye view type]</strong> and select <strong class="UI">[Quad view]</strong> in <strong class="UI">[View]</strong> to automatically register the profile as a digital PTZ profile. And ‘DPTZ’ is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
+                    </ul>
+            </div>
+
         <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Audio in </h3>
             <p>When the camera has an internal microphone or an external microphone is connected, you can set external sounds to be inputted in the image.</p>

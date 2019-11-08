@@ -3,8 +3,8 @@
     <p>En el entorno en el que est&eacute; instalada una c&aacute;mara, puede modificar la configuraci&oacute;n de la c&aacute;mara para una calidad de grabaci&oacute;n &oacute;ptima. De forma predeterminada, se incluyen preajustes de imagen adecuados para varios entornos, y los usuarios pueden configurar sus c&aacute;maras por s&iacute; mismos. En la pantalla de vista previa de la c&aacute;mara, puede comprobar c&oacute;mo se ver&aacute; la imagen. Una vez completada la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. Si se produce un tiempo de espera (240 seg.) sin hacer clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> despu&eacute;s de cambiar la configuraci&oacute;n, &eacute;sta volver&aacute; a la configuraci&oacute;n anterior.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>Seleccionar canal</h2>
     </div>
@@ -17,8 +17,8 @@
             <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">La “Configuraci&oacute;n de c&aacute;mara” solo se puede configurar en Canal1.</p>
 
-            <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La “Configuración de la cámara” se puede habilitar solo en el canal 1.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La “Configuración de la cámara” se puede habilitar solo en el canal 1.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
                 <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
                 <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
@@ -27,7 +27,7 @@
                 <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
                 <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
                 <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
-            </ul>
+            </ul> -->
 
             <!-- <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p> -->
         </div>

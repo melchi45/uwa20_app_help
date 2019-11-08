@@ -3,8 +3,8 @@
 <div class="wn5-setup-section">
 	<p>스마트 코덱은 사용자가 원하는 부분을 관심 영역으로 설정하고 관심 영역의 화질은 사용자가 설정한 대로 유지하되 그 외 영역은 일반 화질로 관리하여 영상 데이터 크기를 줄이는 기술입니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>채널 선택</h2>
     </div>

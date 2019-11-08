@@ -100,7 +100,7 @@
                         <td width="235">
                             <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. </p>
                             <p ng-if="!FisheyeLens && !objectDetectionSupport">PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
-                            <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel_AI">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p>
+                            <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p>
                             <p> </p>                         
                     </td>
                     </tr>
@@ -108,7 +108,9 @@
                     <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
                     <td width="235">
-                            <p>Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra. Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi.</p>
+                            <p>Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra. 
+                                <!-- Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi. -->
+                            </p>
                             <p> </p>
                     </td>
                     </tr>
@@ -151,7 +153,7 @@
                             <td width="235">
                                 <p>Vous pouvez configurer le type d'objets qui apparaîtront à l'écran lorsque la caméra détecte des objets.</p>
                                 <p>Les objets détectés par une caméra IA ne sont affichés que lorsque l'algorithme d'analyse de la caméra IA est fonctionnel. Pour que l'algorithme IA soit fonctionnel, l'une des fonctions suivantes doit être activée : Détection d'objets, IVA, Comptage de personnes, Gestion des files d’attente ou Carte thermique.</p>
-                                <p>L'icône de superposition ne s'active que lorsque le canal 1 est sélectionné dans [<a href="Monitoring.html#channel_AI">Sélectionner un canal</a>].</p>
+                                <p>L'icône de superposition ne s'active que lorsque le canal 1 est sélectionné dans [<a href="#channel">Sélectionner un canal</a>].</p>
                                 <p>&nbsp;</p>
                             </td>
                         </tr>
@@ -163,33 +165,37 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr nng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
+                    <tr nng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
                         <td width="235">
                             <p><a href="#channel">S&eacute;lectionner un canal</a></p>
                         </td>
                         <td width="235">
-                            <p>Les num&eacute;ros des canaux de la cam&eacute;ra sont affich&eacute;s.</p>
+                                <p>Les canaux pris en charge par la caméra sont affichés.</p>
+
+                            <!-- <p>Les num&eacute;ros des canaux de la cam&eacute;ra sont affich&eacute;s.</p> -->
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Si vous s&eacute;lectionnez le num&eacute;ro d&rsquo;un canal, la vid&eacute;o du canal appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne Vue Quad, les vid&eacute;os des 4 canaux seront affich&eacute;es sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</p>  --> 
-                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Si vous sélectionnez l’icône Multi-vues, les vidéos de tous les canaux pris en charge par la caméra seront affichées sur le même écran. Pour revenir à la vue simple, cliquez sur le numéro de canal.</p>                           
+                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment &&!objectDetectionSupport">Si vous sélectionnez l’icône Multi-vues, les vidéos de tous les canaux pris en charge par la caméra seront affichées sur le même écran. Pour revenir à la vue simple, cliquez sur le numéro de canal.</p>                           
                             <p ng-if="HandoverCalibration">Si vous s&eacute;lectionnez le num&eacute;ro du canal de votre cam&eacute;ra fixe, la vid&eacute;o appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez [PTZ], la vid&eacute;o du canal unique PTZ appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne multi-canal, les vid&eacute;os de la cam&eacute;ra fixe et de la cam&eacute;ra PTZ appara&icirc;tront sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro du canal ou sur [PTZ].</p>
                             <p ng-if="SupportAutoImageAlignment">L’écran de la caméra de chaque canal s’affiche lorsque vous sélectionnez un canal de caméra CAN 2 à CAN 5. Si vous sélectionnez CAN 1, les écrans de caméra CAN 2 à CAN 5 seront alignés en ligne droite pour montrer une vue panoramique. Si vous sélectionnez CAN 6 et CAN 7, vous pouvez vérifier la vidéo du CAN 1 tout en <a href="#PTZ">ajustant PTZ de la caméra</a>.</p>
-                        </td>
+                        <!-- </td>
                     </tr>
 
                     <tr ng-if="MaxChannel > 1 && objectDetectionSupport">
                             <td width="235"><a name="channel_AI">Sélectionner un canal</a></td>
                             <td width="235">
-                                <p>Les canaux pris en charge par la caméra sont affichés.</p>
-                                <ul>
+                                <p>Les canaux pris en charge par la caméra sont affichés.</p> -->
+                                <ul ng-if="objectDetectionSupport">
                                     <li>Canal 1 : Affiche la vidéo Live (direct).</li>
-                                    <li>Canal 2 : Affiche la vidéo PTZ numérique. Sélectionner le canal 2 pour utiliser la fonction <a href="#PTZ">PTZ</a>.</li>
+                                    <li>Canal 2 : Affiche la vidéo PTZ numérique. 
+                                        <!-- Sélectionner le canal 2 pour utiliser la fonction <a href="#PTZ">PTZ</a>. -->
+                                    </li>
                                 </ul>
                                 <p>&nbsp;</p>
                             </td>
                         </tr>
 
 
-                    <tr ng-if="MaxChannel > 1 && SupportChannelEnabledFeature">
+                    <!-- <tr ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
                             <td width="235">
                                 <p>Type d&apos;affichage</p>
                             </td>
@@ -206,7 +212,7 @@
                                     <li>Q4&nbsp;: Affiche la vue en bas &agrave; droite dans la quadravision..</li>
                                 </ul>
                             </td>
-                    </tr>
+                    </tr> -->
 
                     <tr>
                         <td width="235">
@@ -250,7 +256,7 @@
                         <td width="235">
                             <p>Vous pouvez enregistrer et sauvegarder l&apos;&eacute;cran de direct sur un PC. Cliquez sur le bouton Enregistrer pour commencer l&apos;enregistrement&nbsp;; cliquez &agrave; nouveau sur le bouton pour arr&ecirc;ter l&apos;enregistrement. Les fichiers sont enregistr&eacute;s au format .avi et peuvent &ecirc;tre enregistr&eacute;s dans le chemin par d&eacute;faut du navigateur ou un chemin de fichier peut &ecirc;tre d&eacute;fini dans la fen&ecirc;tre «&nbsp;Enregistrer sous&nbsp;».</p>
                             <p>&nbsp;</p>
-                            <!-- <p>Pour protéger vos fichiers vidéo par un mot de passe, sélectionnez ZIP dans la liste du format de fichier d’enregistrement vidéo et entrez un mot de passe. Vous devez entrer le mot de passe pour lire les vidéos téléchargées.</p> -->
+                            <p>Pour protéger vos fichiers vidéo par un mot de passe, sélectionnez ZIP dans la liste du format de fichier d’enregistrement vidéo et entrez un mot de passe. Vous devez entrer le mot de passe pour lire les vidéos téléchargées.</p>
                         </td>
                     </tr>
                     <tr>
@@ -312,7 +318,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelEnabledFeature">
+        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
             <h4>Pour changer de canal</h4>
                 <ul>
                     <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
@@ -521,7 +527,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 
         <div class="wn5-setup-section-article-content">
             <h3>Contr&ocirc;le du mouvement de zoom</h3>
-            <p>Lorsque vous cliquez sur le bouton <strong class="UI">[+]</strong> dans la barre de zoom, l&apos;&eacute;cran effectue un zoom avant. Lorsque vous cliquez sur le bouton <strong class="UI">[-]</strong>, l&apos;&eacute;cran effectue un zoom arri&egrave;re.</p>
+            <p>Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-ptz-plus"></span> dans la barre de zoom, l&apos;&eacute;cran effectue un zoom avant. Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-ptz-minus"></span>, l&apos;&eacute;cran effectue un zoom arri&egrave;re.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Contr&ocirc;le des mouvements panoramique/inclinaison</h3>
@@ -566,7 +572,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Ajustement du zoom</h3>
-            <p>Lorsque vous cliquez sur le bouton <strong class="UI">[+]</strong> dans la zone de zoom, l&apos;&eacute;cran effectue un zoom avant. Lorsque vous cliquez sur le bouton <strong class="UI">[-]</strong>, l&apos;&eacute;cran effectue un zoom arri&egrave;re.</p>
+            <p>Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-ptz-plus"></span> dans la zone de zoom, l&apos;&eacute;cran effectue un zoom avant. Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-ptz-minus"></span>, l&apos;&eacute;cran effectue un zoom arri&egrave;re.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Ajustement de la mise au point</h3>
@@ -598,7 +604,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 
         </div>  -->
 
-        <div class="wn5-online-help-info" ng-if="SupportChannelEnabledFeature">
+        <!-- <div class="wn5-online-help-info" ng-if="SupportChannelExpansionFeature">
                 <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
                         <li>Si <strong class="UI">[Affichage Fisheye]</strong> est s&eacute;lectionn&eacute; dans la liste des modes d&rsquo;affichage, la fonction PTZ sera d&eacute;sactiv&eacute;e.</li>
@@ -606,22 +612,22 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
                         <li>Seulement lorsque <strong class="UI">[Panorama simple]</strong> ou <strong class="UI">[Panorama double]</strong> est s&eacute;lectionn&eacute; dans la liste des modes d&rsquo;affichage, les fonctions <strong class="UI">[Pan]</strong> et <strong class="UI">[Home]</strong> sont activ&eacute;es.</li>
                 </ul>
     
-        </div> 
+        </div>  -->
 
       <div class="wn5-setup-section-article-content">
             <h3>Comment s&eacute;lectionner un &eacute;cran divis&eacute;</h3>
             <p>S&eacute;lectionnez un num&eacute;ro pour une vid&eacute;o individuelle dans l&apos;affichage en mosa&iuml;que par 4. 1 correspond &agrave; la partie sup&eacute;rieure gauche de l&apos;affichage en mosa&iuml;que par 4, 2 correspond &agrave; la partie sup&eacute;rieure droite, 3 &agrave; la partie inf&eacute;rieure gauche et 4 &agrave; la partie inf&eacute;rieure droite.</p>
-            <p><span class="tui tui-wn5-ptz-handle"></span> Cliquez sur le bouton et faites le glisser afin d&rsquo;ajuster la vue de la cam&eacute;ra. Cliquez sur le bouton <strong class="UI">[+]</strong> de la barre de zoom pour faire un zoom avant sur l&apos;&eacute;cran, et sur le bouton <strong class="UI">[-]</strong> pour faire un zoom arri&egrave;re.</p>
+            <p><span class="tui tui-wn5-ptz-handle"></span> Cliquez sur le bouton et faites le glisser afin d&rsquo;ajuster la vue de la cam&eacute;ra. Cliquez sur le bouton <span class="tui tui-wn5-ptz-plus"></span> de la barre de zoom pour faire un zoom avant sur l&apos;&eacute;cran, et sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour faire un zoom arri&egrave;re.</p>
         </div> 
         <div class="wn5-setup-section-article-content">
             <h3>Pr&eacute;r&eacute;glage</h3>
             <p>Lorsque vous s&eacute;lectionnez un pr&eacute;r&eacute;glage souhait&eacute; dans la liste des pr&eacute;r&eacute;glages et cliquez sur le bouton <strong class="UI">[Aller]</strong>, il se d&eacute;place vers l&apos;emplacement pr&eacute;d&eacute;fini souhait&eacute;.</p>
-            <p>Pour d&eacute;finir une position pr&eacute;r&eacute;gl&eacute;e, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> sur l&rsquo;&eacute;cran de contr&ocirc;le PTZ, ajustez la position de la vue cam&eacute;ra puis cliquez sur le bouton <strong class="UI">[Régler]</strong>. D&eacute;finissez le nom pr&eacute;r&eacute;gl&eacute; et le num&eacute;ro dans les champs <strong class="UI">[Nom]</strong> et <strong class="UI">[Num&eacute;ro]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
-            <p>En cliquant sur le bouton <strong class="UI">[Home]</strong> la vue de la cam&eacute;ra passe en position initiale. La position initiale peut &ecirc;tre d&eacute;finie dans l&rsquo;onglet <strong class="UI">[Configurer]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
+            <p>Pour d&eacute;finir une position pr&eacute;r&eacute;gl&eacute;e, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> sur l&rsquo;&eacute;cran de contr&ocirc;le PTZ, ajustez la position de la vue cam&eacute;ra puis cliquez sur le bouton <strong class="UI">[Régler]</strong>. D&eacute;finissez le nom pr&eacute;r&eacute;gl&eacute; et le num&eacute;ro dans les champs <strong class="UI">[Nombre]</strong> et <strong class="UI">[Nom]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
+            <p>En cliquant sur le bouton <strong class="UI">[Acc]</strong> la vue de la cam&eacute;ra passe en position initiale. La position initiale peut &ecirc;tre d&eacute;finie dans l&rsquo;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Pr&eacute;r&eacute;glage]</strong>.</p>
         </div>
 		          <div class="wn5-setup-section-article-content">
                         <h3>Groupe</h3>
-            <p>S&eacute;lectionnez le num&eacute;ro de groupe souhait&eacute; dans la liste des groupes et cliquez sur le bouton <strong class="UI">[D&eacute;marrer]</strong> pour activer l&apos;op&eacute;ration de groupe. Pour arr&ecirc;ter l&apos;op&eacute;ration de groupe, cliquez sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. La liste des groupes peut &ecirc;tre ajout&eacute;e ou modifi&eacute;e dans l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Groupe]</strong>.</p>
+            <p>S&eacute;lectionnez le num&eacute;ro de groupe souhait&eacute; dans la liste des groupes et cliquez sur le bouton <strong class="UI">[D&eacute;marrer]</strong> pour activer l&apos;op&eacute;ration de groupe. Pour arr&ecirc;ter l&apos;op&eacute;ration de groupe, cliquez sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. La liste des groupes peut &ecirc;tre ajout&eacute;e ou modifi&eacute;e dans l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Groupe]</strong>.</p>
         </div>
     </div>
 </div>
@@ -640,10 +646,10 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-            <li ng-if="objectDetectionSupport">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[<a href="#channel_AI">Sélectionner un canal</a>]</strong>.</li>
+            <li ng-if="objectDetectionSupport">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>.</li>
             <li ng-if="!objectDetectionSupport">La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>  
-                <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
-                <li>Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
+            <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li  ng-if="!objectDetectionSupport">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
             </ul>
 
         </div>

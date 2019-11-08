@@ -33,8 +33,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>Seleccionar canal</h2> 
     </div>
@@ -46,8 +46,8 @@
 
             <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Configuración de eventos] solo puede configurarse en el canal 1.</p>
 
-            <p ng-if="SupportChannelEnabledFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La acción del evento se puede configurar solo en el canal 1.</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La acción del evento se puede configurar solo en el canal 1.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
                 <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
                 <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
@@ -56,7 +56,7 @@
                 <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
                 <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
                 <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
-            </ul>
+            </ul> -->
 
             <p ng-if="HandoverCalibration && SupportAutoImageAlignment">El número de canal seleccionado por última vez en la página en directo o en la página de reproducción se selecciona automáticamente. </p>
             <p ng-if="!objectDetectionSupport">Haga clic en el botón <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>

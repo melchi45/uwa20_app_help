@@ -4,8 +4,8 @@
 <div class="wn5-setup-section">
     <p>カメラレンズのフォーカスがぼけることが検知される場合、焦点ぼけ検知イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。焦点ぼけ検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[焦点ぼけ検知]</strong>に同じく適用されます。</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2>
     </div>
@@ -15,8 +15,8 @@
             <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[焦点ぼけ検知]は、チャンネル1でのみ設定できます。</p>
             <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され。</p>
 
-            <p ng-if="SupportChannelEnabledFeature">チャンネル別のビューモードは、下記のどおりです。</p>
-            <ul ng-if="SupportChannelEnabledFeature">
+            <!-- <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。</p>
+            <ul ng-if="SupportChannelExpansionFeature">
                 <li>チャンネル1：魚眼カメラの映像をそのまま補正なしで見せます。</li>
                 <li>チャンネル2：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
                 <li>チャンネル3：360˚エリアを撮影した映像を歪み補正してパノラマタイプの上下分割モードに見せます。</li>
@@ -25,7 +25,7 @@
                 <li>チャンネル6：チャンネル4の4分割画面で右上の映像を見せます。</li>
                 <li>チャンネル7：チャンネル4の4分割画面で左下の映像を見せます。</li>
                 <li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
-            </ul>
+            </ul> -->
 
             <!-- <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p> -->
         </div>
