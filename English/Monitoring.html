@@ -226,6 +226,17 @@
                         </td>
                     </tr> -->
 
+                    <tr ng-if="SupportChannelExpansionFeature">
+                        <td width="234">Select channel</td>
+                        <td width="236">
+                            <p>You can select a channel that shows only videos of the view type you selected.</p>
+                            <p>Select a channel view type in [Select channel] and click the <span class="tui tui-wn5-toolbar-setup"></span> (Video setup) icon to display a list of profiles that support the view type in <strong class="UI">[Profile]</strong>.</p>
+                            <p>Go to <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video channel]</strong> to add or change the list of view types displayed in [Select channel]</p>
+                            <p>The default is [Fisheye view] and up to 2 video channels can be added.</p>
+                            <p>&nbsp;</p>
+                        </td>
+                    </tr>
+
                     <tr>                       
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -674,14 +685,18 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
             <!--     <li>The PTZ function is available only when <strong class="UI">[Digital PTZ Profile]</strong> is selected in <strong class="UI">[Setup]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Profile type]</strong>.</li> --> 
-                <li>The Pan function can be used only when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
-                <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong>, and when <strong class="UI">[View]</strong> is set to [Guad view], [Q1], [Q2], [Q3], or [Q4]. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> is enabled when <strong class="UI">[View]</strong> is set to [Single panorama], or [Double panorama]. </li>
+                <li>The Pan function can be used only when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
+                
+                <!-- <li><strong class="UI">[Preset]</strong> and <strong class="UI">[Group] </strong>is enabled when <strong class="UI">[Fisheye view type] </strong> is set to 'Dewarp view' in <strong class="UI">[Setup] </strong>&gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Video profile]</strong> &gt; <strong class="UI">[Video profile]</strong>, and when <strong class="UI">[View]</strong> is set to [Guad view], [Q1], [Q2], [Q3], or [Q4]. <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> is enabled when <strong class="UI">[View]</strong> is set to [Single panorama], or [Double panorama]. </li> -->
+
+                <li>If the profile view type is [Quad view] or [Q1], [Q2], [Q3], [Q4], <strong class="UI">[Preset]</strong> and <strong class="UI">[Group]</strong> are supported; if the view type is [Single panorama] or [Double panorama], <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> are supported. To select a view type, go to <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Fisheye view type]</strong> and select [Dewarp view]. Then, select a view type from <strong class="UI">[Views]</strong>.</li>	
+
                 <!-- <li ng-if="SupportChannelExpansionFeature">If <strong class="UI">[Fisheye view]</strong> is selected from the view mode list, PTZ function will be disabled.</li>
                 <li ng-if="SupportChannelExpansionFeature">Only when <strong class="UI">[4-split view]</strong> or <strong class="UI">[Q1]</strong>/<strong class="UI">[Q2]</strong>/<strong class="UI">[Q3]</strong>/<strong class="UI">[Q4]</strong> is selected from the view mode list, Quadrant as well as Preset and Group functions can be used.</li>
                 <li ng-if="SupportChannelExpansionFeature">Only when <strong class="UI">[Single panorama]</strong> or <strong class="UI">[Double panorama]</strong> is selected from the view mode list, <strong class="UI">[Pan]</strong> and <strong class="UI">[Home]</strong> functions will be enabled.</li> -->
             </ul>
-
         </div>
+        
       <div class="wn5-setup-section-article-content">
             <h3>Quadrant</h3>
             <p>Select a number for an individual video in the 4-split view. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</p>

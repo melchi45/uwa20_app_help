@@ -220,6 +220,18 @@
                             </td>
                         </tr> -->
 
+                        <tr ng-if="SupportChannelExpansionFeature">
+                                <td width="234">チャンネル選択</td>
+                                <td width="236">
+                                    <p>選択したビュータイプの映像のみ存在するチャンネルを選択できます。</p>
+                                    <p>[チャンネル選択]でチャンネルビュータイプを選択した後、<span class="tui tui-wn5-toolbar-setup"></span>(ビデオ設定)アイコンをクリックすると、該当ビュータイプに対応するプロファイルリストが<strong class="UI">[プロファイル]</strong>に表示されます。</p>
+                                    <p>[チャンネル選択]に表示されるビュータイプリストは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオチャンネル]</strong>で追加したり、変更できます。</p>
+                                    <p>[魚眼ビュー]は基本チャンネルであり、最大2つまでビデオチャンネルを追加できます。</p>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
+
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -667,9 +679,10 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                 <!-- <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[魚眼ビュー]</strong>を選択すると、PTZ機能を使用できません。</li>
                 <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[クワドビュー]</strong>や<strong class="UI">[Q1]</strong>、<strong class="UI">[Q2]</strong>、<strong class="UI">[Q3]</strong>、<strong class="UI">[Q4]</strong>を選択した場合のみ、4分割選択とプリセット、グループ機能を使用できます。</li>
                 <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[シングルパノラマ]</strong>や<strong class="UI">[ダブルパノラマ]</strong>を選択した場合のみ、<strong class="UI">[ファン]</strong>と<strong class="UI">[ホーム]</strong>機能が有効になります。</li> -->
+                <li>プロファイルビュータイプが[クワドビュー]や[Q1]、[Q2]、[Q3]、[Q4]の場合、<strong class="UI">[プリセット]</strong>と<strong class="UI">[グループ]</strong>に対応し、ビュータイプが[シングルパノラマ]や[ダブルパノラマ]の場合には<strong class="UI">[パン]</strong>と<strong class="UI">[ホーム]</strong>機能に対応します。ビュータイプは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオプロファイル]</strong>&gt;<strong class="UI">[ビデオプロファイル]</strong>&gt;<strong class="UI">[魚眼ビュータイプ]</strong>で[歪み補正ビュー]を選択した後、<strong class="UI">[ビュー]</strong>で選択できます	</li>
             </ul>
-    
         </div>
+        
       <div class="wn5-setup-section-article-content">
             <h3>4分割選択</h3>
             <p>クワドビューで個別映像の番号を選択します。1はクワドビューの左上、2は右上、3は左下、4は右下の映像ビューです。 &nbsp;</p>
@@ -687,6 +700,10 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                         <h3>グループ</h3>
             <p>グループリストでグループNo.を選択した後、<strong class="UI">[開始]</strong>ボタンをクリックすると、設定したグループ動作を行います。グループ動作を中止するには、<strong class="UI">[中止]</strong>ボタンをクリックします。グループリストは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>&gt;<strong class="UI">[グループ]</strong>タブで追加したり変更することができます。</p>
         </div> 
+        <div class="wn5-setup-section-article-content">
+                <h3>平移/Home</h3>
+                <p><strong class="UI">[平移]</strong>でカメラの向きを調整した後、<strong class="UI">[ホームを設定する]</strong>ボタンをクリックすると、その場所がホーム位置に設定されます。<strong class="UI">[ホームへ戻る]</strong>ボタンをクリックすると、カメラビューがホーム位置に直接移動します。</p>
+            </div>
     </div>
 </div>
 
