@@ -4,8 +4,44 @@
     <p>The user can set to control the PTZ through the pan/tilt receiver which is connected to the RS-485 or RS-422 terminal. You can set a preset or the communication mode of the pan/tilt receiver connected to the camera.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ZoomOnlyModel">
-<div class="wn5-setup-section" ng-if="ZoomOnlyModel">
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2><a name="channel"></a>Select channel</h2>
+            </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+            <p>After selecting a camera channel, you can configure the details of external PTZ per channel.</p>
+            <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [External PTZ] can only be configured on channel 1.</p>
+            </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="GlobalPTZMode && MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="GlobalPTZMode && MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+        <h2>External PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		            <h3>Enable external PTZ</h3>
+            <p>To control PTZ with a pan/tilt receiver connected to the terminal of camera RS-485 or RS-422 in order to use external PTZ, select <strong class="UI">[Use external PTZ]</strong>.</p>
+        </div>
+		
+		    <div class="wn5-online-help-info">
+        <h4>Note</h4>
+            <ul>
+                <li>If [Enable external PTZ] is selected, only external PTZ function can be used. If [Use external PTZ] is selected, only digital PTZ function can be used.</li>
+                <li>If [Enable external PTZ] is selected, you can control PTZ after selecting channel 1 on the Live page.</li>
+                <li>If [Enable external PTZ] option is changed, the camera will reboot.</li>
+            </ul>
+            </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Adjusting the PTZ</h2>
     </div>

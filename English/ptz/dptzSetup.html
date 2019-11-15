@@ -44,8 +44,40 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
 
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Adjusting the PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4><a name="ptzcontrol"></a>Adjusting the PTZ</h4>
+            <ul>
+                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon  with the mouse, the camera moves to the pan and tilt.</li>
+                <li>Select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+            <h4>Enabling Auto tracking</h4>
+            <p>The Auto tracking function is used to automatically track the motion of detected objects. You can set AI cameras to detect and auto track only specified objects. </p>
+            <ol>
+                <li>Select the type of object to track from the <strong class="UI">[Object]</strong> column.</li>
+                <li>Click the icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> to have the camera automatically track the motion of the objects whose type is designated in <strong class="UI">[Object]</strong> when it detects them.</li>
+                <li>To stop Auto tracking, click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> again.</li>
+            </ol>
+        </div>  
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>Preset</h2>
@@ -111,15 +143,7 @@
             </ol>
         </div>
 
-        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
-            <h4>Enabling Auto tracking</h4>
-            <p>The Auto tracking function is used to automatically track the motion of detected objects.</p>
-            <ol>
-                <li>Select the type of object to track from the <strong class="UI">[Object]</strong> column.</li>
-                <li>Click the icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> to have the camera automatically track the motion of the objects whose type is designated in <strong class="UI">[Object]</strong> when it detects them.</li>
-                <li>To stop Auto tracking, click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> again.</li>
-            </ol>
-        </div>       
+     
 
     <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
         <h4>Enable Auto tracking</h4>

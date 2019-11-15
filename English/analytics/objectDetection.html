@@ -168,6 +168,14 @@
             <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
             <p>Depending on the number of output alarms supported by your camera, the display of Alarm output option will vary. For example, if there are 2 alarms for output, the option will display ‘Alarm output 1’ and ‘Alarm output 2’.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+                <h3>Goto preset</h3>
+                <p>You can configure your camera view position to move to a preset position when an object detection event has occurred. You can go to <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>&gt;<strong class="UI">[Preset]</strong> to configure your camera position preset.</p>
+    
+    
+                <p ng-if="GlobalPTZMode && MaxChannel > 1">If <strong class="UI">[Enable external PTZ]</strong> option is deselected in <strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>, [Goto preset] option is not displayed.</p>
+            </div>
     </div>
 </div>
 
@@ -178,7 +186,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>This sets the operation time of the IVA event action settings. Set the event action settings from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_iva?#action">Event action settings</a>]</strong> to always operate, or only at the set time.</p>
+            <p>This sets the operation time of the IVA event action settings. Set the event action settings from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_objectDetection?#action">Event action settings</a>]</strong> to always operate, or only at the set time.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

@@ -277,8 +277,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
             <h3>Zone exclue</h3>
-            <p>La caméra IA transfère les données d'analyse de chaque objet aux programmes auxquels elle est connectée afin qu'ils puissent s'en servir. Les données concernant les objets détectés dans la zone exclue ne sont pas transférées. Sélectionnez <strong class="UI">[Pour activer les données d’objet en provenance des zones exclues]</strong> pour transférer ces données. &nbsp;</p>
-            <p>Pour les informations d'objets détaillées transférées par la caméra, reportez-vous au document "Spécification des métadonnées des caméras IA".</p>
+            <p>La caméra AI transfère les données d'analyse de chaque objet aux programmes auxquels elle est connectée afin qu'ils puissent s'en servir. Les données concernant les objets détectés dans la zone exclue ne sont pas transférées. Sélectionnez <strong class="UI">[Pour activer les données d’objet en provenance des zones exclues]</strong> pour transférer ces données. &nbsp;</p>
+            <p>Pour les informations d'objets détaillées transférées par la caméra, reportez-vous au document "Spécification des métadonnées des caméras AI".</p>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
@@ -353,6 +353,9 @@
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
             <h3>Al à Prérég</h3>
                     <p>Vous pouvez r&eacute;gler la position de vue de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; un nombre pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
+                    
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se s&rsquo;affiche pas.</p>
+                    
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">

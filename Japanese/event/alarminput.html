@@ -71,6 +71,8 @@
         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
             <h3>プリセットに移動</h3>
                     <p>アラーム入力イベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラプリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
+
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択解除した場合、[プリセット移動]オプションが表示されません。</p>
         </div>
     
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">

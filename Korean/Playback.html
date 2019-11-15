@@ -215,27 +215,27 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-
-
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="BrowserBackup == undefined || BrowserBackup">
+<div class="wn5-setup-section" ng-if="BrowserBackup == undefined || BrowserBackup">
     <div class="wn5-setup-section-heading">
-        <h2>검색된 영상 저장하기</h2>
+        <h2>녹화 영상 저장하기</h2>
     </div>
     <div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
-                <p>녹화된 영상을 .avi 파일로 저장할 수 있습니다.</p>
+                <p>녹화된 영상을 파일로 저장할 수 있습니다.</p>
                 <!-- <p>녹화 영상을 백업하려면 녹화 영상을 선택한 후 <strong class="UI">[백업]</strong> 버튼을 클릭합니다. 아래에서 백업 시작 시간과 종료 시간을 설정할 수 있습니다. 설정을 완료한 후 <strong class="UI">[적용]</strong> 버튼을 클릭합니다. 저장 창이 나타나면 저장 경로를 지정한 후 <strong class="UI">[저장]</strong> 버튼을 클릭하면 해당 저장 경로에 영상이 백업됩니다.</p> -->
             </div>
 		 <div class="wn5-online-help-action">
-                <h4>검색된 영상을 저장하려면</h4>
+                <h4>영상을 저장하려면</h4>
                 <ol>
-                    <li ng-if="BrowserBackup == undefined || BrowserBackup">재생 중 저장할 장면에서 <strong class="UI">[내보내기]</strong> 버튼을 클릭합니다. </li>
-                    <li>저장 시작 시간과 종료 시간을 설정합니다.</li>
-                    <li>설정을 완료한 후 <strong class="UI">[적용]</strong> 버튼을 클릭합니다. </li>
-                    <li>저장 창이 나타나면 저장 경로를 지정한 후 <strong class="UI">[저장]</strong> 버튼을 클릭합니다. </li>
-                    <li>해당 구간의 영상 데이터가 저장됩니다.</li>
-                    <li>[적용] 버튼을 클릭합니다.</li>
+                    <li><strong class="UI">[내보내기]</strong> 버튼을 클릭합니다.  </li>
+                    <li><strong class="UI">[Time]</strong>에서 저장할 영상의 시작 시간과 종료 시간을 설정합니다.</li>
+                    <li><strong class="UI">[Type]</strong>에서 원하는 파일 형식을 선택합니다.  </li>
+                    <ul>
+                        <li>AVI: .avi 형식으로 저장합니다.</li>
+                        <li>ZIP: .zip 형식으로 저장하며, 비밀번호를 설정할 수 있습니다. 영상을 재생하기 위해 압축을 해제할 때 설정한 비밀번호를 입력해야 압축을 해제할 수 있습니다.  </li>
+                    </ul>
+                    <li><strong class="UI">[적용]</strong> 버튼을 클릭합니다.  </li>
                 </ol>
             </div>
     </div>

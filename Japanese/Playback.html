@@ -201,10 +201,9 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
 
-
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="BrowserBackup == undefined || BrowserBackup">
+<div class="wn5-setup-section" ng-if="BrowserBackup == undefined || BrowserBackup">
     <div class="wn5-setup-section-heading">
         <h2>検索された映像のバックアップ</h2>
     </div>
@@ -216,7 +215,7 @@
             <div class="wn5-online-help-action">
                 <h4>検索された映像をバックアップするには、</h4>
                 <ol>
-                    <li ng-if="BrowserBackup == undefined || BrowserBackup">再生中、バックアップするシーンで<strong class="UI">[エクスポート]</strong>&nbsp;ボタンをクリックします。</li>
+                    <li>再生中、バックアップするシーンで<strong class="UI">[エクスポート]</strong>&nbsp;ボタンをクリックします。</li>
                     <li>バックアップ開始時間と終了時間を設定します。</li>
                     <li>設定を完了した後、<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
                     <li>保存ポップアップが表示されたら保存パスを指定した後、<strong class="UI">[保存]</strong>ボタンをクリックします。</li>

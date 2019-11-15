@@ -46,6 +46,37 @@
 </div>
 
 <hr class="wn5-setup-hr">
+<div class="wn5-setup-section"> 
+    <div class="wn5-setup-section-heading">
+        <h2>Ajuste del PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Puede ajustar las acciones de panor&aacute;mica, mosaico y zoom de la c&aacute;mara.</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4><a name="ptzcontrol"></a>Ajuste del PTZ</h4>
+            <ul>
+                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el rat&oacute;n, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+            <h4>Activar seguimiento automático</h4>
+            <p>La función de seguimiento automático se utiliza para el seguimiento automático del movimiento de los objetos detectados. Puede configurar las cámaras AI para que detecten y rastreen automáticamente solo los objetos especificados.</p>
+            <ol>
+                <li>Seleccione el tipo de objeto del que quiere hacer un seguimiento en la columna <strong class="UI">[Objeto]</strong>.</li>
+                <li>Haga clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> para que la cámara siga automáticamente los objetos del tipo indicado en <strong class="UI">[Objeto]</strong> cuando los detecte.</li>
+                <li>Para detener el seguimiento automático, vuelva a hacer clic en el icono de seguimiento automático <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="preset"></a>Preajuste</h2>
@@ -79,15 +110,7 @@
     		</ol>
         </div>
 
-        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
-                <h4>Activar seguimiento automático</h4>
-                <p>La función de seguimiento automático se utiliza para el seguimiento automático del movimiento de los objetos detectados.</p>
-                <ol>
-                    <li>Seleccione el tipo de objeto del que quiere hacer un seguimiento en la columna <strong class="UI">[Objeto]</strong>.</li>
-                    <li>Haga clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> para que la cámara siga automáticamente los objetos del tipo indicado en <strong class="UI">[Objeto]</strong> cuando los detecte.</li>
-                    <li>Para detener el seguimiento automático, vuelva a hacer clic en el icono de seguimiento automático <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>.</li>
-                </ol>
-            </div>
+
             <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
                     <h4>Activar seguimiento automático</h4>
                     <p>La función de seguimiento automático se utiliza para el seguimiento automático de objetos detectados en la pantalla.</p>
