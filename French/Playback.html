@@ -204,10 +204,9 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
 
-
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="BrowserBackup == undefined || BrowserBackup">
+<div class="wn5-setup-section" ng-if="BrowserBackup == undefined || BrowserBackup">
     <div class="wn5-setup-section-heading">
         <h2>Sauvegarde d&apos;une image recherch&eacute;e</h2>
     </div>
@@ -218,7 +217,7 @@
             <div class="wn5-online-help-action">
                 <h4>Pour sauvegarder une vid&eacute;o recherch&eacute;e</h4>
                 <ol>
-                    <li ng-if="BrowserBackup == undefined || BrowserBackup">Cliquez sur le bouton <strong class="UI">[Exporter]</strong> sur une sc&egrave;ne en cours de lecture.</li>
+                    <li>Cliquez sur le bouton <strong class="UI">[Exporter]</strong> sur une sc&egrave;ne en cours de lecture.</li>
                     <li>D&eacute;finissez l&rsquo;heure de d&eacute;but et de fin de la sauvegarde.</li>
                     <li>Lorsque vous avez termin&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</li>
                     <li>Lorsque la fen&ecirc;tre d&rsquo;enregistrement s&rsquo;affiche, s&eacute;lectionnez un chemin d&rsquo;acc&egrave;s pour enregistrer la sauvegarde et cliquez sur le bouton <strong class="UI">[Enregistrer]</strong>.</li>

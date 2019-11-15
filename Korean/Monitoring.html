@@ -101,6 +101,8 @@
                     </td>
                     <td width="235">카메라의 팬/틸트 동작을 디지털로 제어할 수있습니다.</td>
                     </tr>
+
+
                 <tr ng-if="DPTZSetupPage">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
@@ -110,28 +112,37 @@
                     <td width="235">
                         <p>카메라의 팬/틸트/줌 동작을 디지털로 제어할 수 있습니다. </p>
                         <p ng-if="!FisheyeLens && !objectDetectionSupport">현재 라이브 화면에 적용된 비디오 프로파일이 디지털 PTZ를 지원하는 경우에만 작동합니다. 디지털 PTZ 제어 프로파일로 변경하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택합니다.</p>
-                        <!-- tnb9000 미지원 코드 추가해야 함 변경해야 함 -->
-                        <p ng-if="objectDetectionSupport"><strong class="UI">[<a href="#channel">채널 선택</a>]</strong>에서 채널 2를 선택한 경우에만 디지털 PTZ 기능이 활성화됩니다. </p>
-						<!-- tnb9000 미지원 코드 추가해야 함 변경해야 함 -->
-                        <p ng-if="objectDetectionSupport">PTZ 아이콘이 보이지 않으면 <strong class="UI">설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택 해제되어 있는지 확인하십시오. </p>
-                        <p ng-if="objectDetectionSupport">&nbsp;</p>
-                        <p>[채널 선택]에서 채널 1을 선택하면 외부 PTZ를 제어할 수 있으며, 채널 2를 선택하면 디지털 PTZ를 제어할 수 있습니다. </p>
-                        <!-- tnb9000 코드로 변경해야 함 -->
-                        <p ng-if="objectDetectionSupport">외부 PTZ를 사용하는 경우에는 채널 1을 선택해야 PTZ 아이콘이 나타나며, 외부 PTZ를 사용하지 않는 경우에는 채널 2를 선택해야 PTZ 아이콘이 나타납니다. &nbsp;외부 PTZ 사용 여부는&nbsp;<strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 이용하여 설정할 수 있습니다. </p>
+                        
+                        <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[<a href="#channel">채널 선택</a>]</strong>에서 채널 2를 선택한 경우에만 디지털 PTZ 기능이 활성화됩니다. </p>
+						
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ 아이콘이 보이지 않으면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택 해제되어 있는지 확인하십시오. </p>
+
                         <p>&nbsp;</p>
                         <p> </p>
                     </td>
                 </tr>
+
+                <!-- <tr ng-if="GlobalPTZMode && MaxChannel > 1">
+                        <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                        </td>
+                        <td width="235">
+                            <p>[채널 선택]에서 채널 1을 선택하면 외부 PTZ를 제어할 수 있으며, 채널 2를 선택하면 디지털 PTZ를 제어할 수 있습니다. </p>
+                            <p>외부 PTZ를 사용하는 경우에는 채널 1을 선택해야 PTZ 아이콘이 나타나며, 외부 PTZ를 사용하지 않는 경우에는 채널 2를 선택해야 PTZ 아이콘이 나타납니다. &nbsp;외부 PTZ 사용 여부는&nbsp;<strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 이용하여 설정할 수 있습니다. </p>
+                            <p> </p>
+                        </td>
+                </tr> -->
+
                 <tr ng-if="ExternalPTZPage">
                     <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
                     <td width="235">
                         <p>카메라 RS-485나 RS-422 단자에 연결된 팬/틸트 리시버를 통해 카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. </p>
                         <!-- <p><strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어, 추적 기능을 시작하고 중지할 수 있습니다. </p>  -->
-                        <!-- tnb9000 코드 추가해야 함 -->
-                        <p>[채널 선택]에서 채널 1을 선택한 경우에만 외부 PTZ 제어 기능이 동작합니다. PTZ 아이콘이 보이지 않으면 &nbsp;<strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택되어 있는지 확인하십시오. </p>
+                        
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1">[채널 선택]에서 채널 1을 선택한 경우에만 외부 PTZ 제어 기능이 동작합니다. </p>
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ 아이콘이 보이지 않으면 &nbsp;<strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택되어 있는지 확인하십시오. </p>
                         <p>&nbsp;</p>
-                        <p> </p>
                     </td>
                 </tr>
 					<tr ng-if="PTZSetupPage">
@@ -182,9 +193,10 @@
                 <tr ng-if="LensModelViewOptions">
                         <td width="235">렌즈 모델명</td>
                     <td width="235">
-                        <p>카메라에 장착된 렌즈 모델 이름이 표시됩니다. </p>
+                        <!-- <p>카메라에 장착된 렌즈 모델 이름이 표시됩니다. </p> -->
+                        <p>렌즈 종류가 표시됩니다.</p>
                         <p><a href="#channel">채널 선택</a>에서 채널을 선택하면 채널별로 장착된 렌즈 이름을 확인할 수 있습니다.</p>
-                        <!-- tnb9000 미지원 코드로 변경해야 함. 마지막 문장만 ㅣ 미지원 -->
+                        
                         <p> </p>
                     </td>
                 </tr>
@@ -519,8 +531,8 @@
         <div class="wn5-setup-section-article-content">
             <p>카메라의 줌이나 초점을 조절할 수 있습니다.</p>
         </div>
-        <!-- tnb9000 코드로 변경해야 함 -->
-        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+        
+        <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1" >
             <h4>알아두기</h4>
             <ul>
                 <li>외부 PTZ를 사용 중이며 채널 1을 선택한 경우에만 외부 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택합니다.</li>
@@ -623,8 +635,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <h3>영역 줌</h3>
                      
             <p>영역 줌은 특정 영역만 확대하여 볼 수 있는 기능입니다.</p>
-            <p><span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 클릭한 뒤 카메라 영상 화면에서 마우스를 드래그하여 영역을 선택하면, 선택한 영역을 기준으로 줌 기능이 작동하고 카메라 위치도 선택한 영역으로 이동합니다. <span class="tui tui-chi-live-ptz-areazoom-back"></span>아이콘을 클릭하여 이 전 선택 영역과 설정으로 이동할 수 있으며, 이 전으로 이동한 경우 이동 전 영역과 설정으로 다시 이동하려면 <span class="tui tui-chi-live-ptz-areazoom-pre"></span>아이콘을 클릭합니다. <span class="tui tui-chi-live-ptz-areazoom-1x"></span>아이콘을
-클릭하면 줌 배율이 1배로 변경되고 카메라 위치도 원래 위치로 이동합니다.  </p>
+            <p><span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 클릭한 뒤 카메라 영상 화면에서 마우스를 드래그하여 영역을 선택하면, 선택한 영역을 기준으로 줌 기능이 작동하고 카메라 위치도 선택한 영역으로 이동합니다. <span class="tui tui-chi-live-ptz-areazoom-back"></span>아이콘을 클릭하여 이 전 선택 영역과 설정으로 이동할 수 있으며, 이 전으로 이동한 경우 이동 전 영역과 설정으로 다시 이동하려면 <span class="tui tui-chi-live-ptz-areazoom-pre"></span>아이콘을 클릭합니다. <span class="tui tui-chi-live-ptz-areazoom-1x"></span>아이콘을 클릭하면 줌 배율이 1배로 변경되고 카메라 위치도 원래 위치로 이동합니다.  </p>
             <p>  </p>
             <p> 영역 줌 설정을 종료하려면 <span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 한 번 더 클릭합니다. 현재 설정한 영역 줌은 그대로 유지되고 영역 줌 설정 기능은 종료됩니다.</p>
         </div>
@@ -647,11 +658,10 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <h4>알아두기</h4>
             <ul>
              
-            <!-- tnb9000 미지원 코드로 변경해야 함 -->
-            <li ng-if="objectDetectionSupport"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 채널 2를 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>                
+            <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 채널 2를 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>                
 
-            <!-- tnb9000 코드로 변경해야 함 -->    
-                <li ng-if="objectDetectionSupport">외부 PTZ 기능을 사용하지 않고 채널 2를 선택한 경우에만 디지털 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하지 않으려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>&gt;<strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택하지 않습니다.</li>
+               
+                <li ng-if="GlobalPTZMode && MaxChannel > 1">외부 PTZ 기능을 사용하지 않고 <a href="#channel">[채널 선택]</a></strong>에서 채널 2를 선택한 경우에만 디지털 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하지 않으려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>&gt;<strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택하지 않습니다.</li>
  
              <li ng-if="!objectDetectionSupport"><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>  
 
@@ -659,10 +669,9 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 
                 <li ng-if="!objectDetectionSupport"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</li>
 
-                <li ng-if="objectDetectionSupport">IA 카메라에서는 지정한 개체만 감지하여 자동 추적하도록 설정할 수 있습니다. 자동 추적을 적용할 개체 타입은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>에서 선택할 수 있습니다. </li>
-                <!-- tnb9000 코드로 변경해야 함 -->
-                <li ng-if="objectDetectionSupport" style="list-style-type: none;"><strong class="UI">[디지털 PTZ]</strong> 메뉴가 보이지 않는 경우, <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용] </strong>옵션을
-선택 해제하십시오.</li>
+                <li ng-if="objectDetectionSupport">AI 카메라에서는 지정한 개체만 감지하여 자동 추적하도록 설정할 수 있습니다. 자동 추적을 적용할 개체 타입은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>에서 선택할 수 있습니다. </li>
+                
+                <li ng-if="GlobalPTZMode && MaxChannel > 1" style="list-style-type: none;"><strong class="UI">[디지털 PTZ]</strong> 메뉴가 보이지 않는 경우, <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용] </strong>옵션을 선택 해제하십시오.</li>
             </ul>
     </div>
     <div class="wn5-setup-section-article-content">

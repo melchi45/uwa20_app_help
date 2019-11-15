@@ -106,16 +106,34 @@
                     <td width="235">
                         <p>カメラのパン/チルト/ズーム動作をデジタルに制御することができます。</p>
                         <p ng-if="!FisheyeLens && !objectDetectionSupport">現在のライブ画面に適用されたビデオプロファイルがデジタルPTZに対応する場合のみ動作します。デジタルPTZ制御プロファイルに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
-                        <p ng-if="objectDetectionSupport"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合、PTZ機能が有効になります。
+                        <!-- <p ng-if="objectDetectionSupport"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合、PTZ機能が有効になります。</p> -->
+                        <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合のみ、デジタルPTZ機能が有効になります。</p>
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZアイコンが表示されない場合、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>の<strong class="UI">[外部PTZ有効化]</strong>オプションが選択解除になっているかをご確認ください。</p>
                     </td>
                     </tr>
+
+                <!-- <tr ng-if="GlobalPTZMode && MaxChannel > 1">
+                        <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                        </td>
+                        <td width="235">
+            <p>[チャンネル選択]でチャンネル1を選択すると、外部PTZを制御できます。チャンネル2を選択すると、デジタルPTZを制御できます。</p>
+            <p>外部PTZを使用する場合には、チャンネル1を選択してPTZアイコンを表示させ、外部PTZを使用しない場合には、チャンネル2を選択してPTZアイコンを表示させます。外部PTZ有効化の有無は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>の<strong class="UI">[外部PTZ有効化]</strong>オプションで設定できます。</p>
+                            <p> </p>
+                        </td>
+                </tr> -->
+
+
+
 					<tr ng-if="ExternalPTZPage">
                         <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
                                 <p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
                         <td width="235">
-                         <p>カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでカメラのパン/チルト/ズーム動作を制御することができます。
+                         <p>カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでカメラのパン/チルト/ズーム動作を制御することができます。</p>
                              <!-- <strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。 -->
-                            </p>
+                            
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1">[チャンネル選択]でチャンネル1を選択した場合のみ、外部PTZ制御機能が動作します。</p>
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZアイコンが表示されない場合、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>の<strong class="UI">[外部PTZ有効化]</strong>オプションが選択されているかをご確認ください。</p>
                         </td>
                     </tr>
 					<tr ng-if="PTZSetupPage">
@@ -166,7 +184,8 @@
                     <tr ng-if="LensModelViewOptions">
                         <td width="235">レンズモデル名</td>
                         <td width="235">
-                            <p>カメラに搭載されたレンズのモデル名が表示されます。<a href="#channel">チャンネル選択</a>でチャンネルを選択すると、チャンネル別に搭載されたレンズ名を確認することができます。</p>
+                            <p>レンズタイプが表示されます。</p>
+                            <p><a href="#channel">チャンネル選択</a>でチャンネルを選択すると、チャンネル別に搭載されたレンズ名を確認することができます。</p>
                             <p> </p>
                         </td>
                     </tr>
@@ -274,6 +293,7 @@
                         <td width="235">
                             <p>ライブ画面を手動で録画してPCに保存することができます。保存ボタンをクリックして録画を開始し、もう一度クリックすると録画を止めます。録画ファイルは.aviタイプで保存することができます。ブラウザによってブラウザのデフォルト保存パスに保存されるか別名で保存からファイルパスを設定することができます。</p>
                             <p>録画映像にパスワードを設定するには、録画映像ファイルタイプリストでZIPを選択した後、パスワードを入力します。ダウンロードした映像を再生するときに、設定したパスワードを入力してから映像を再生することができます。</p>
+                            <p>録画映像のパスワード設定機能は、一部カメラモデルでは対応していません。</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -360,11 +380,11 @@
                </ul>
                 <p>ユーザーPCに手動録画を.aviファイルで保存することができます。パスを指定して映像を保存してください。</p>
 
-                <!-- <p>録画した映像にパスワードを設定するには、</p>
+                <p>録画した映像にパスワードを設定するには、(録画映像のパスワード設定機能は、一部カメラモデルでは対応していません。)</p>
                 <ul>
                         <li>リストでZIPを選択した後、パスワードを入力します。</li>                     
                 </ul>    
-                <p>ユーザーPCに録画したファイルが.zipファイルに保存され、映像を再生するときに設定したパスワード入力する必要があります。</p>            -->
+                <p>ユーザーPCに録画したファイルが.zipファイルに保存され、映像を再生するときに設定したパスワード入力する必要があります。</p>            
                 <p ng-if="FisheyeLens">魚眼ビューモードで録画すると、ユーザーが見ている歪み補正ビューではなくオリジナル画像で保存されます。</p>
             </div>
 			
@@ -505,6 +525,13 @@
         <div class="wn5-setup-section-article-content">
             <p>カメラのズームやフォーカスを調整することができます。</p>
         </div>
+
+        <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
+                <h4>参考事項</h4>
+        <ul>
+            <li>外部PTZを有効にしてチャンネル1を選択した場合のみ、外部PTZ制御機能を使用できます。外部PTZを有効化にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択します。</li>
+            </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>ズーム調整</h3>
             <p>ズームエリアで<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックすると画面がズームイン、<span class="tui tui-wn5-ptz-minus"></span>ボタンをクリックするとズームアウトされます。</p>
@@ -618,10 +645,14 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     <div class="wn5-online-help-info">
         <h4>参考事項</h4>
             <ul>
-                <li ng-if="objectDetectionSupport"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>でチャンネル2を選択した場合のみ、PTZ機能を使用することができます。</li>
+                <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>でチャンネル2を選択した場合のみ、PTZ機能を使用することができます。</li>
+                <li ng-if="GlobalPTZMode && MaxChannel > 1">外部PTZ機能を無効にしてチャンネル2を選択した場合のみ、デジタルPTZ制御機能を使用できます。外部PTZを無効化にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>&gt;<strong class="UI">[外部PTZ有効化]</strong>オプションを選択しません。</li>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li> 
                 <li>PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
                 <li ng-if="!objectDetectionSupport"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</li>
+
+                <li ng-if="objectDetectionSupport">AIカメラでは、指定した対象物のみ検知してオートトラッキングするように設定できます。オートトラッキングを適用する対象物のタイプは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[デジタルPTZ]</strong>で選択できます。</li>
+                <li ng-if="GlobalPTZMode && MaxChannel > 1" style="list-style-type: none;"><strong class="UI">[デジタルPTZ]</strong>メニューが表示されない場合、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択解除してください。</li>
             </ul>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -679,7 +710,10 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                 <!-- <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[魚眼ビュー]</strong>を選択すると、PTZ機能を使用できません。</li>
                 <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[クワドビュー]</strong>や<strong class="UI">[Q1]</strong>、<strong class="UI">[Q2]</strong>、<strong class="UI">[Q3]</strong>、<strong class="UI">[Q4]</strong>を選択した場合のみ、4分割選択とプリセット、グループ機能を使用できます。</li>
                 <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[シングルパノラマ]</strong>や<strong class="UI">[ダブルパノラマ]</strong>を選択した場合のみ、<strong class="UI">[ファン]</strong>と<strong class="UI">[ホーム]</strong>機能が有効になります。</li> -->
-                <li>プロファイルビュータイプが[クワドビュー]や[Q1]、[Q2]、[Q3]、[Q4]の場合、<strong class="UI">[プリセット]</strong>と<strong class="UI">[グループ]</strong>に対応し、ビュータイプが[シングルパノラマ]や[ダブルパノラマ]の場合には<strong class="UI">[パン]</strong>と<strong class="UI">[ホーム]</strong>機能に対応します。ビュータイプは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオプロファイル]</strong>&gt;<strong class="UI">[ビデオプロファイル]</strong>&gt;<strong class="UI">[魚眼ビュータイプ]</strong>で[歪み補正ビュー]を選択した後、<strong class="UI">[ビュー]</strong>で選択できます	</li>
+
+                <li>プロファイルビュータイプが[クワドビュー]や[Q1]、[Q2]、[Q3]、[Q4]の場合、<strong class="UI">[プリセット]</strong>と<strong class="UI">[グループ]</strong>に対応し、ビュータイプが[シングルパノラマ]や[ダブルパノラマ]の場合には<strong class="UI">[パン]</strong>と<strong class="UI">[ホーム]</strong>機能に対応します。ビュータイプは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオプロファイル]</strong>&gt;<strong class="UI">[ビデオプロファイル]</strong>&gt;<strong class="UI">[魚眼ビュータイプ]</strong>で[歪み補正ビュー]を選択した後、<strong class="UI">[ビュー]</strong>で選択できます。</li>
+
+
             </ul>
         </div>
         
@@ -702,7 +736,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div> 
         <div class="wn5-setup-section-article-content">
                 <h3>平移/Home</h3>
-                <p><strong class="UI">[平移]</strong>でカメラの向きを調整した後、<strong class="UI">[ホームを設定する]</strong>ボタンをクリックすると、その場所がホーム位置に設定されます。<strong class="UI">[ホームへ戻る]</strong>ボタンをクリックすると、カメラビューがホーム位置に直接移動します。</p>
+                 <p><strong class="UI">[平移]</strong>でカメラ方向を調整した後、<strong class="UI">[ホームを設定する]</strong>ボタンをクリックすると、該当位置がホーム位置に設定されます。<strong class="UI">[ホームへ戻る]</strong>ボタンをクリックすると、カメラビューがホーム位置にすぐ移動します。</p>
             </div>
     </div>
 </div>

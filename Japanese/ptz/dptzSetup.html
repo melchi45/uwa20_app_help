@@ -46,6 +46,39 @@
     </div>
 </div>
 
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>PTZ調整</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4><a name="ptzcontrol"></a>PTZ調整</h4>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+                <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+            <h4>オートトラッキング機能を有効にする</h4>
+            <p>オートトラッキングは対象物を検知した場合、自動に対象物のモーションをトラッキングする機能です。AIカメラでは、指定した対象物のみ検知してオートトラッキングするように設定できます。</p>
+            <ol>
+                <li>モーションをトラッキングする対象物のタイプを<strong class="UI">[対象物]</strong>カラムで選択します。</li>
+                <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> アイコンをクリックすると、カメラが<strong class="UI">[対象物]</strong>で設定した対象物タイプを検知する場合、対象物のモーションを自動にトラッキングします。</li>
+                <li>オートトラッキングを中止するには、オートトラッキングアイコン<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>をもう一度クリックします。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -80,15 +113,7 @@
     		</ol>
         </div>
 
-        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
-                <h4>オートトラッキング機能を有効にする</h4>
-                <p>オートトラッキングは対象物を検知した場合、自動に対象物のモーションをトラッキングする機能です。</p>
-                <ol>
-                    <li>モーションをトラッキングする対象物のタイプを<strong class="UI">[対象物]</strong>カラムで選択します。</li>
-                    <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> アイコンをクリックすると、カメラが<strong class="UI">[対象物]</strong>で設定した対象物タイプを検知する場合、対象物のモーションを自動にトラッキングします。</li>
-                    <li>オートトラッキングを中止するには、オートトラッキングアイコン<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>をもう一度クリックします。</li>
-                </ol>
-            </div>
+
             <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
                     <h4>オートトラッキング機能を有効にする</h4>
                     <p>オートトラッキングは、画面でモーションを検知する場合、自動にモーションをトラッキングする機能です。</p>

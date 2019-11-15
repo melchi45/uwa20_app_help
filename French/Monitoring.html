@@ -100,17 +100,34 @@
                         <td width="235">
                             <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. </p>
                             <p ng-if="!FisheyeLens && !objectDetectionSupport">PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
-                            <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p>
+                            <!-- <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p> -->
+                            <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le canal 2 est s&eacute;lectionn&eacute; dans <strong class="UI">[<a href="#channel">S&eacute;lectionner le canal</a>]</strong>.</p>
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;ic&ocirc;ne PTZ n&rsquo;est pas affich&eacute;e, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;coch&eacute;e.</p>
+
                             <p> </p>                         
                     </td>
                     </tr>
+
+
+                <!-- <tr ng-if="GlobalPTZMode && MaxChannel > 1">
+                        <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
+                                <p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
+                        </td>
+                        <td width="235">
+            <p>Si le canal 1 est s&eacute;lectionn&eacute; dans [S&eacute;lectionner le canal], vous pouvez contr&ocirc;ler PTZ externe. Si le canal 2 est s&eacute;lectionn&eacute;, vous pouvez contr&ocirc;ler PTZ num&eacute;rique.</p>
+            <p>Si PTZ externe est utilis&eacute;, le canal 1 doit &ecirc;tre s&eacute;lectionn&eacute; pour afficher l&rsquo;ic&ocirc;ne PTZ. Si PTZ externe n&rsquo;est pas utilis&eacute;, le canal 2 doit &ecirc;tre s&eacute;lectionn&eacute; pour afficher l&rsquo;ic&ocirc;ne PTZ. Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> afin d&rsquo;utiliser PTZ externe.</p>
+                            <p> </p>
+                        </td>
+                </tr> -->
+
 					<tr ng-if="ExternalPTZPage">
                     <td width="235"><p><span class="tui tui-wn5-toolbar-ptz"></span></p>
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
                     <td width="235">
-                            <p>Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra. 
+                            <p>Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra.   </p>
                                 <!-- Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi. -->
-                            </p>
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ externe control n&rsquo;est activ&eacute; que lorsque le canal 1 est s&eacute;lectionn&eacute; dans [S&eacute;lectionner le canal].</p>
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;ic&ocirc;ne PTZ ne s&rsquo;affiche pas, allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est coch&eacute;e.</p>
                             <p> </p>
                     </td>
                     </tr>
@@ -152,7 +169,7 @@
                             </td>
                             <td width="235">
                                 <p>Vous pouvez configurer le type d'objets qui apparaîtront à l'écran lorsque la caméra détecte des objets.</p>
-                                <p>Les objets détectés par une caméra IA ne sont affichés que lorsque l'algorithme d'analyse de la caméra IA est fonctionnel. Pour que l'algorithme IA soit fonctionnel, l'une des fonctions suivantes doit être activée : Détection d'objets, IVA, Comptage de personnes, Gestion des files d’attente ou Carte thermique.</p>
+                                <p>Les objets détectés par une caméra AI ne sont affichés que lorsque l'algorithme d'analyse de la caméra AI est fonctionnel. Pour que l'algorithme AI soit fonctionnel, l'une des fonctions suivantes doit être activée : Détection d'objets, IVA, Comptage de personnes, Gestion des files d’attente ou Carte thermique.</p>
                                 <p>L'icône de superposition ne s'active que lorsque le canal 1 est sélectionné dans [<a href="#channel">Sélectionner un canal</a>].</p>
                                 <p>&nbsp;</p>
                             </td>
@@ -161,7 +178,9 @@
                     <tr ng-if="LensModelViewOptions">
                         <td width="235">Nom du mod&egrave;le de lentille</td>
                         <td width="235">
-                            <p>Le nom du mod&egrave;le de lentille install&eacute; dans la cam&eacute;ra est affich&eacute;. Si vous s&eacute;lectionnez un canal dans <a href="#channel">S&eacute;lectionner un canal</a>, vous voyez le nom de la lentille install&eacute;e pour chaque canal.</p>
+                            <!-- <p>Le nom du mod&egrave;le de lentille install&eacute; dans la cam&eacute;ra est affich&eacute;.</p>  -->
+                            <p>Les types de lentilles sont affich&eacute;s.</p>
+                            <p>Si vous s&eacute;lectionnez un canal dans <a href="#channel">S&eacute;lectionner un canal</a>, vous voyez le nom de la lentille install&eacute;e pour chaque canal.</p>
                             <p> </p>
                         </td>
                     </tr>
@@ -269,6 +288,7 @@
                             <p>Vous pouvez enregistrer et sauvegarder l&apos;&eacute;cran de direct sur un PC. Cliquez sur le bouton Enregistrer pour commencer l&apos;enregistrement&nbsp;; cliquez &agrave; nouveau sur le bouton pour arr&ecirc;ter l&apos;enregistrement. Les fichiers sont enregistr&eacute;s au format .avi et peuvent &ecirc;tre enregistr&eacute;s dans le chemin par d&eacute;faut du navigateur ou un chemin de fichier peut &ecirc;tre d&eacute;fini dans la fen&ecirc;tre «&nbsp;Enregistrer sous&nbsp;».</p>
                             <p>&nbsp;</p>
                             <p>Pour protéger vos fichiers vidéo par un mot de passe, sélectionnez ZIP dans la liste du format de fichier d’enregistrement vidéo et entrez un mot de passe. Vous devez entrer le mot de passe pour lire les vidéos téléchargées.</p>
+                            <p>La fonction de configuration du mot de passe pour les vid&eacute;os enregistr&eacute;es n&rsquo;est pas disponible sur tous les mod&egrave;les d&rsquo;appareils photo.</p>
                         </td>
                     </tr>
                     <tr>
@@ -354,11 +374,11 @@
                </ul>
                 <p>L&rsquo;enregistrement manuel peut &ecirc;tre sauvegard&eacute; sous forme de fichier.avi sur votre PC. Sp&eacute;cifiez le chemin d&rsquo;acc&egrave;s et enregistrez la vid&eacute;o.</p>
 
-                <!-- <p>Pour protéger les enregistrements vidéo par un mot de passe.</p>
+               <p>Pour protéger les enregistrements vidéo par un mot de passe. (La fonction de configuration du mot de passe pour les vid&eacute;os enregistr&eacute;es n&rsquo;est pas disponible sur tous les mod&egrave;les d&rsquo;appareils photo.>)</p>
                 <ul>
                     <li>Sélectionnez ZIP dans la liste et entrez un mot de passe.</li>
                 </ul>
-                <p>L’enregistrement manuel peut être sauvegardé sous forme de fichier .avi sur votre PC. Vous devez entrer le mot de passe pour lire les vidéos.</p> -->
+                <p>L’enregistrement manuel peut être sauvegardé sous forme de fichier .avi sur votre PC. Vous devez entrer le mot de passe pour lire les vidéos.</p> 
 
                 <p ng-if="FisheyeLens">Si vous enregistrez la vid&eacute;o en mode d&rsquo;affichage Fisheye, les images originales seront sauvegard&eacute;es &agrave; la place des images de la vue en cours d&rsquo;affichage.</p>
             </div>
@@ -582,6 +602,11 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content">
             <p>Vous pouvez ajuster le zoom ou la mise au point de la cam&eacute;ra.</p>
         </div>
+        <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
+                <h4>Remarque</h4>
+        <ul>
+            <li>La commande PTZ externe ne peut &ecirc;tre utilis&eacute;e que lorsque la fonction PTZ externe est activ&eacute;e et que le canal 1 est s&eacute;lectionn&eacute;. Pour utiliser PTZ externe, Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Ajustement du zoom</h3>
             <p>Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-ptz-plus"></span> dans la zone de zoom, l&apos;&eacute;cran effectue un zoom avant. Lorsque vous cliquez sur le bouton <span class="tui tui-wn5-ptz-minus"></span>, l&apos;&eacute;cran effectue un zoom arri&egrave;re.</p>
@@ -629,8 +654,10 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info" >
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>La fonction Pa ne peut être utilisée que lorsque [Plafond] est sélectionné dans <strong class="UI">[Vid&eacute;o & Audio]</strong>&gt;<strong class="UI">[Vid&eacute;o configuration ]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
-                <li>Si le type de vue du profil est [Quadravision] ou [Q1], [Q2], [Q3], [Q4], <strong class="UI">[Pr&eacute;r&eacute;gl.]</strong> et <strong class="UI">[Groupe]</strong> sont pris en charge&nbsp;; si le type de vue est [Panorama simple] ou [Double panorama], <strong class="UI">[Pan]</strong> et <strong class="UI">[Accueil]</strong> sont pris en charge. Pour s&eacute;lectionner un type de vue, allez &agrave; <strong class="UI">[R&eacute;gl.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type d&rsquo;affichage Fisheye]</strong> et s&eacute;lectionnez [Affichage de la correction de perspective]. Puis, s&eacute;lectionnez un type de vue dans <strong class="UI">[Vues]</strong>.</li>
+                <li>La fonction Pan peut &ecirc;tre utilis&eacute;e uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[Vid&eacute;o configuration]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
+
+                <!-- <li>La fonction Pa ne peut être utilisée que lorsque [Plafond] est sélectionné dans <strong class="UI">[Vid&eacute;o & Audio]</strong>&gt;<strong class="UI">[Vid&eacute;o configuration ]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li> -->
+                <li>Si le type de vue du profil est [Quadravision] ou [Q1], [Q2], [Q3], [Q4], <strong class="UI">[Pr&eacute;r&eacute;gl.]</strong> et <strong class="UI">[Groupe]</strong> sont pris en charge&nbsp;; si le type de vue est [Panorama simple] ou [Double panorama], <strong class="UI">[Pan]</strong> et <strong class="UI">[Accueil]</strong> sont pris en charge. Pour s&eacute;lectionner un type de vue, allez &agrave; <strong class="UI">[R&eacute;gl.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type d&rsquo;affichage Fisheye]</strong> et s&eacute;lectionnez [Affichage de la correction de perspective]. Puis, s&eacute;lectionnez un type de vue dans <strong class="UI">[Vues]</strong>.</li> 
             </ul>
         </div>
 
@@ -672,10 +699,14 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-            <li ng-if="objectDetectionSupport">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>.</li>
+            <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>.</li>
+            <li ng-if="GlobalPTZMode && MaxChannel > 1">La commande PTZ num&eacute;rique ne peut &ecirc;tre utilis&eacute;e que lorsque la fonction PTZ externe est d&eacute;sactiv&eacute;e et que le canal 2 est s&eacute;lectionn&eacute;. Pour ne pas utiliser PTZ externe, Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et d&eacute;s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
             <li ng-if="!objectDetectionSupport">La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>  
             <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
                 <li  ng-if="!objectDetectionSupport">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
+
+                <li ng-if="objectDetectionSupport">Vous pouvez configurer les cam&eacute;ras AI pour qu&rsquo;elles d&eacute;tectent et suivent automatiquement seuls les objets sp&eacute;cifi&eacute;s. Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ num&eacute;rique]</strong> pour s&eacute;lectionner les types d&rsquo;objets &agrave; suivre automatiquement.</li>
+                <li ng-if="GlobalPTZMode && MaxChannel > 1" style="list-style-type: none;">Si <strong class="UI">[PTZ num&eacute;rique]</strong> ne s&rsquo;affiche pas, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et d&eacute;s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
             </ul>
 
         </div>

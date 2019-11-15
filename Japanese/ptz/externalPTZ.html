@@ -2,8 +2,47 @@
 <div class="wn5-setup-section">
     <p>カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでPTZを制御するように設定することができます。プリセットを設定したり、カメラとアクセスされたパン/チルトレシーバーとの通信モードを設定することができます。</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="ZoomOnlyModel">
-<div class="wn5-setup-section" ng-if="ZoomOnlyModel">
+
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2><a name="channel"></a>チャンネル選択</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別に外部PTZの詳細を設定することができます。</p>
+            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[外部PTZ]は、チャンネル1でのみ設定できます。</p>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="GlobalPTZMode && MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="GlobalPTZMode && MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>外部PTZ</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		    <h3>外部PTZ有効化</h3>
+            <p>カメラRS-485かRS-422ポートに接続されたパン/チルトレシーバーでPTZを制御するように外部PTZを使用するには<strong class="UI">[外部PTZ有効化]</strong>を選択します。</p>
+        </div>
+		
+		<div class="wn5-online-help-info">
+        <h4>参考事項</h4>
+            <ul>
+                <li>[外部PTZ有効化]を選択すると、外部PTZ機能のみ使用できます。[外部PTZ有効化]を選択しない場合、デジタルPTZ機能のみ使用できます。</li>
+                <li>[外部PTZ有効化]を選択すると、ライブページでチャンネル1を選択した後、PTZを制御できます。</li>
+                <li>[外部PTZ有効化]オプションを変更すると、カメラが再起動されます。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>PTZ調整</h2>
     </div>

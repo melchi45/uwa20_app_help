@@ -309,8 +309,8 @@
 
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
                 <h3>Área excluida</h3>
-                <p>La cámara de IA transfiere los datos de analítica de cada objeto a los programas vinculados a la cámara para que estos los utilicen. Los datos de objetos detectados en el área excluida no se transferirán. Seleccione <strong class="UI">[Habilitar datos del objeto desde el área excluida]</strong> para transferir los datos. &nbsp;</p>
-                <p>Consulte el documento «Especificación de los metadatos de la cámara de IA» para más detalles acerca de la información de objeto transmitida por la cámara.</p>
+                <p>La cámara de AI transfiere los datos de analítica de cada objeto a los programas vinculados a la cámara para que estos los utilicen. Los datos de objetos detectados en el área excluida no se transferirán. Seleccione <strong class="UI">[Habilitar datos del objeto desde el área excluida]</strong> para transferir los datos. &nbsp;</p>
+                <p>Consulte el documento «Especificación de los metadatos de la cámara de AI» para más detalles acerca de la información de objeto transmitida por la cámara.</p>
             </div>
 
 
@@ -385,6 +385,8 @@
     <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+
+                <p ng-if="GlobalPTZMode && MaxChannel > 1">Si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; seleccionada en <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externo]</a></strong>, no se mostrar&aacute; la opci&oacute;n [Ir a predefinido].</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">

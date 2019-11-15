@@ -573,7 +573,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <p>SSNR 3D reduces noise on the image using the pixels of various frames. Set the SSNR 3D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
             <p>The higher the level, the less the noises, but then the video might lag.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="IrisSupport">
+        <div class="wn5-setup-section-article-content" ng-if="IrisSupport && !EFLensSupport">
             <h3>Iris</h3>
             <!-- <p>Select from DC (Auto), manual, P-Iris.</p>  --> 
             <p>Select the iris type</p>
@@ -584,11 +584,32 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-Iris</strong>:  Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.  </li> -->
             </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
+
+		<div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>Lens</h3>
+                <p>Lens types are displayed. The iris value varies by lenses.</p>
+            </div>
+            
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>Iris position</h3>
+                <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Manual]</strong>, and it sets the iris position value.</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>Max iris position</h3>
+                <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Auto]</strong>, and it sets the iris position value that will automatically open the iris to the maximum. It opens in a dark dim-lit environment.</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>User-preferred iris position</h3>
+                <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Auto]</strong>, and it sets the iris position value that is preferred in normal brightness. The range of this value is set to that lower than what was is in <strong class="UI">[Max iris position]</strong>.</p>
+            </div>
+
+		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
             <h3>Iris F-No </h3>
             <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Manual]</strong>, and it sets the iris f-number.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Lens">
+        <div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
             <h3>Lens</h3>
             <p>Select from DC (Auto), manual, and available P-Iris. </p>
             <ul>

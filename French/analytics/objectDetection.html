@@ -111,8 +111,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Zone exclue</h3>
-            <p>La caméra IA transfère les données d'analyse de chaque objet aux programmes auxquels elle est connectée afin qu'ils puissent s'en servir. Les données concernant les objets détectés dans la zone exclue ne sont pas transférées. Sélectionnez <strong class="UI">[Pour activer les données d’objet en provenance des zones exclues]</strong> pour transférer ces données. &nbsp;</p>
-            <p>Pour les informations d'objets détaillées transférées par la caméra, reportez-vous au document "Spécification des métadonnées des caméras IA".</p>
+            <p>La caméra AI transfère les données d'analyse de chaque objet aux programmes auxquels elle est connectée afin qu'ils puissent s'en servir. Les données concernant les objets détectés dans la zone exclue ne sont pas transférées. Sélectionnez <strong class="UI">[Pour activer les données d’objet en provenance des zones exclues]</strong> pour transférer ces données. &nbsp;</p>
+            <p>Pour les informations d'objets détaillées transférées par la caméra, reportez-vous au document "Spécification des métadonnées des caméras AI".</p>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
@@ -132,7 +132,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>BestShot est une image de l'objet le plus clairement visible parmi les objets (Personne, Visage, Véhicule, Plaque d'immatriculation) détectés par la caméra IA. L'image est au format JPEG et ne représente qu'une portion de la zone où les objets ciblés ont été détectés.</p>
+            <p>BestShot est une image de l'objet le plus clairement visible parmi les objets (Personne, Visage, Véhicule, Plaque d'immatriculation) détectés par la caméra AI. L'image est au format JPEG et ne représente qu'une portion de la zone où les objets ciblés ont été détectés.</p>
             <p>Les données d'image BestShot peuvent être transférées aux programmes liés à la caméra pour qu'ils puissent les utiliser.</p>
 			             
         </div>
@@ -165,6 +165,14 @@
             <h3>Enregistrer</h3>
             <p>Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+                <h3>Aller &agrave; pr&eacute;r&eacute;glage</h3>
+                <p>Vous pouvez configurer la position de vue de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&rsquo;un &eacute;v&eacute;nement de détection d'objets se produit. Vous pouvez aller &agrave; <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong> &gt; <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> pour configurer la position pr&eacute;d&eacute;finie de votre cam&eacute;ra.</p>
+                
+                <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se s&rsquo;affiche pas.</p>
+            </div>
+
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>&Eacute;mission d&apos;alerte</h3>
             <p>Il est possible de d&eacute;finir le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte pour une alarme pr&eacute;cise lorsqu&apos;un &eacute;v&eacute;nement IVA est cr&eacute;&eacute;.&nbsp;Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre une alarme. Vous pouvez d&eacute;finir une alarme continue jusqu&apos;&agrave; ce qu&apos;elle soit d&eacute;sactiv&eacute;e par l&apos;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong>, ou r&eacute;gler l&apos;alarme pour 5, 10 ou 15&nbsp;secondes. Les r&eacute;glages d&eacute;taill&eacute;s pour l&rsquo;&eacute;mission d&apos;alerte peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[&Eacute;mission d&apos;alerte]</strong></a>.</p>
@@ -180,7 +188,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Cela d&eacute;finit le temps de fonctionnement de la configurations des actions de l&apos;&eacute;v&eacute;nement IVA. D&eacute;finit la configuration des actions de l&apos;&eacute;v&eacute;nement dans <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_iva?#action">Config. action évén.</a>]</strong> afin qu&rsquo;elle fonctionne constamment, ou uniquement &agrave; l&apos;heure d&eacute;finie.</p>
+            <p>Cela d&eacute;finit le temps de fonctionnement de la configurations des actions de l&apos;&eacute;v&eacute;nement IVA. D&eacute;finit la configuration des actions de l&apos;&eacute;v&eacute;nement dans <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_objectDetection?#action">Config. action évén.</a>]</strong> afin qu&rsquo;elle fonctionne constamment, ou uniquement &agrave; l&apos;heure d&eacute;finie.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

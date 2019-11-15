@@ -4,8 +4,47 @@
     <p>L&apos;utilisateur peut choisir de contr&ocirc;ler le PTZ gr&acirc;ce au r&eacute;cepteur panoramique/inclinaison qui est connect&eacute; au terminal RS-485 ou RS-422. Vous pouvez d&eacute;finir un pr&eacute;r&eacute;glage ou le mode de communication du r&eacute;cepteur panoramique/inclinaison connect&eacute; &agrave; la cam&eacute;ra.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ZoomOnlyModel">
-<div class="wn5-setup-section" ng-if="ZoomOnlyModel">
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez configurer les d&eacute;tails de PTZ externe par canal.</p>
+            <p ng-if="objectDetectionSupport">Le canal 1 affiche le direct et le canal 2 affiche la vid&eacute;o PTZ num&eacute;rique. [PTZ externe] ne peut &ecirc;tre configur&eacute; que sur le canal 1.</p>
+        </div>           
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr" ng-if="GlobalPTZMode && MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="GlobalPTZMode && MaxChannel > 1">
+    <div class="wn5-setup-section-heading">
+            <h2>PTZ externe</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		    <h3>Utiliser PTZ externe</h3>
+            <p>Pour contr&ocirc;ler PTZ avec un r&eacute;cepteur panoramique/inclinaison connect&eacute; &agrave; la borne de la cam&eacute;ra RS-485 ou RS-422 afin d&rsquo;utiliser PTZ externe, s&eacute;lectionnez <strong class="UI">[Utiliser PTZ externe]</strong>.</p>
+        </div>
+		
+		<div class="wn5-online-help-info">
+        <h4>Remarque</h4>
+            <ul>
+                <li>Si [Utiliser PTZ externe] est s&eacute;lectionn&eacute;, seule la fonction PTZ externe peut &ecirc;tre utilis&eacute;e. Si [Utiliser PTZ externe] est s&eacute;lectionn&eacute;, seule la fonction PTZ num&eacute;rique peut &ecirc;tre utilis&eacute;e.</li>
+                <li>Si [Utiliser PTZ externe] est s&eacute;lectionn&eacute;, vous pouvez contr&ocirc;ler PTZ apr&egrave;s avoir s&eacute;lectionn&eacute; le canal 1 sur la page en direct.</li>
+                <li>Si l&rsquo;option [Utiliser PTZ externe] est modifi&eacute;e, la cam&eacute;ra red&eacute;marre.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Ajuster le PTZ</h2>
     </div>

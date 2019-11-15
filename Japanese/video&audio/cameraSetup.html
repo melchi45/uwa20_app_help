@@ -448,7 +448,7 @@
             <p>SSNR 3Dは、複数フレームのピクセルを使用して映像のノイズを低下させます。SSNR 3D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
             <p>レベルを上げるほど、ノイズは低減するが映像に残像が発生することがあります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="IrisSupport">
+        <div class="wn5-setup-section-article-content" ng-if="IrisSupport && !EFLensSupport">
             <h3>アイリス</h3>
             <p>DC(自動)、マニュアル、Pアイリスの中で選択することができます。</p>
             <ul>
@@ -457,11 +457,32 @@
                 <li><strong class="UI">Pアイリス</strong>：ステッピングモーターでアイリスを調整します。様々な距離にある複数の対象物を同時にフォーカスを合わせることができて深い深度を持つことができます。</li>
             </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions">
+
+        <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>レンズ</h3>
+                <p>レンズタイプが表示されます。選択したレンズによってアイリス値が異なります。</p>
+            </div>
+            
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>アイリス位置</h3>
+                <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[手動]</strong>の場合、有効になってアイリス位置値を設定します。</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>最大アイリス位置</h3>
+                <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[自動]</strong>の場合、有効になって自動で最大に開放されるアイリスの位置値を設定します。暗い低照度環境で開放されます。</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>アイリス優先位置</h3>
+                <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[自動]</strong>の場合、有効になって一般的な照度条件でアイリス優先の位置値を設定します。値の範囲は、<strong class="UI">[アイリス最大位置]</strong>で選択した値より低い値で自動に設定されます。</p>
+            </div>
+
+		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
             <h3>アイリスF-No</h3>
             <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[マニュアル]</strong>の場合、有効になってアイリスF値を設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Lens">
+        <div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
             <h3>レンズ</h3>
             <p>DC(自動)や手動、また使用できるPアイリス種類の中で選択することができます。</p>
             <ul>
