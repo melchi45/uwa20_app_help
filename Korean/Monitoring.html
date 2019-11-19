@@ -43,7 +43,7 @@
             <p>특정 브라우저 또는 코덱에서는 일부 기능이 동작하지 않을 수도 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <table class="table table-bordered wn5-setup-table" height="6066">
+            <table class="table table-bordered wn5-setup-table">
                 <thead>
                     <tr>
                         <th width="235">아이콘</th>
@@ -72,11 +72,11 @@
                         </td>
                     </tr>
                     <tr ng-if="spotTemperatureSupport">
-                        <td width="235" height="407">
+                        <td width="235">
                             <p><span class="tui tui-toolbar_temperature"></span></p>
                             <p>온도</p>
                         </td>
-                        <td width="235" height="407">
+                        <td width="235">
                             <p>온도 분석 관심 영역별로(A/B/C) 각 영역의 평균(Average), 최소(Maximum), 최대(Maximum) 온도를 보여줍니다.</p>
                             <p>온도 분석 관심 영역은  <strong class="UI">[설정]</strong>&gt;<strong class="UI">[분석]</strong>&gt;<strong class="UI">[온도 감지]</strong> 메뉴에서 설정할 수 있습니다.</p>
                             <p> <strong class="UI">[온도 단위]</strong>에서 화씨와 섭씨 중 온도 표시 단위를 선택하면 선택한 단위에 맞게 온도가 표시됩니다.</p>
@@ -529,13 +529,18 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라의 줌이나 초점을 조절할 수 있습니다.</p>
+            <!-- <p>카메라의 줌이나 초점을 조절할 수 있습니다.</p> -->
+            <p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다</p>    
         </div>
         
         <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1" >
             <h4>알아두기</h4>
             <ul>
                 <li>외부 PTZ를 사용 중이며 채널 1을 선택한 경우에만 외부 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택합니다.</li>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>팬/틸트 동작 제어하기</h3>
+            <p> 팬/틸트 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라의 방향을 이동합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>줌 조절하기</h3>

@@ -141,7 +141,7 @@
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
                     <td width="235">   
                         
-                        <p >カメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ設定]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
+                        <p>カメラのパン/チルト/ズーム動作を制御することができます。<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ設定]</strong>ページで設定したプリセットの位置に移動するか、スウィング、グループ、ツアー、トラッキングを開始して中止することができます。</p>
 						<p>&nbsp;</p>
                            
                     </td>
@@ -523,7 +523,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>カメラのズームやフォーカスを調整することができます。</p>
+            <!-- <p>カメラのズームやフォーカスを調整することができます。</p> -->
+            <p>カメラのパン/チルト/ズーム動作を制御することができます。</p>
         </div>
 
         <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
@@ -532,6 +533,10 @@
             <li>外部PTZを有効にしてチャンネル1を選択した場合のみ、外部PTZ制御機能を使用できます。外部PTZを有効化にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択します。</li>
             </div>
 
+            <div class="wn5-setup-section-article-content">
+                <h3>パン/チルト動作制御</h3>
+                <p>パン/チルトエリアで<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてカメラの方向を移動します。</p>
+            </div>            
         <div class="wn5-setup-section-article-content">
             <h3>ズーム調整</h3>
             <p>ズームエリアで<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックすると画面がズームイン、<span class="tui tui-wn5-ptz-minus"></span>ボタンをクリックするとズームアウトされます。</p>

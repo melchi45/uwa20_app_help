@@ -13,8 +13,8 @@
 </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
             <div class="wn5-setup-section-heading">
                 <h2>채널 선택</h2>
             </div>
@@ -126,13 +126,15 @@
                     <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 버튼을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 버튼을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.  </li>
                     <li><span class="tui tui-wn5-ptz-near"></span>버튼이나 <span class="tui tui-wn5-ptz-far"></span>버튼을 클릭하여 카메라 초점을 조절합니다.</li>
                 </ul>
-				<li>홈 포지션 설정 아이콘 <span class="tui tui-wn5-top-setup"></span>클릭합니다.</li>
+                <!-- <li>홈 포지션 설정 아이콘 <span class="tui tui-wn5-top-setup"></span>클릭합니다.</li> -->
+                <li><strong class="UI">[홈 설정]</strong> 버튼을 클릭합니다.</li>
             </ol>
         </div>
 				        <div class="wn5-online-help-action" ng-if="FisheyeLens">
 		    	   <h4>홈 위치로 이동하기</h4>
             <ol>
-                <li>홈으로 이동하기 아이콘 <span class="tui tui-wn5-ptz-home"></span>을을 클릭합니다.</li>
+                <!-- <li>홈으로 이동하기 아이콘 <span class="tui tui-wn5-ptz-home"></span>을을 클릭합니다.</li> -->
+                <li><strong class="UI">[홈 이동]</strong> 버튼을 클릭합니다.</li>
             </ol>
         </div>
 		
@@ -140,7 +142,7 @@
 		<div class="wn5-online-help-action" ng-if="FisheyeLens">
 		    	   <h4>분할 화면 선택하기</h4>
             <ol>
-                <li><strong class="UI">[분할 화면 선텍]</strong>에서 4분할 뷰의 개별 영상 번호를 선택합니다. 1은 4분할 뷰의 왼쪽 상단, 2는 오른쪽 상단, 3은 왼쪽 하단, 4는 오른쪽 하단의 영상 뷰입니다.</li>
+                <li><strong class="UI">[분할 화면 선택]</strong>에서 4분할 뷰의 개별 영상 번호를 선택합니다. 1은 4분할 뷰의 왼쪽 상단, 2는 오른쪽 상단, 3은 왼쪽 하단, 4는 오른쪽 하단의 영상 뷰입니다.</li>
             </ol>
         </div>
 

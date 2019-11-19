@@ -204,26 +204,28 @@
 </div>
 
 
-<hr class="wn5-setup-hr"   ng-if="BrowserBackup == undefined || BrowserBackup">
+<hr class="wn5-setup-hr" ng-if="BrowserBackup == undefined || BrowserBackup">
 <div class="wn5-setup-section"  ng-if="BrowserBackup == undefined || BrowserBackup">
     <div class="wn5-setup-section-heading">
-        <h2>Backing up a searched image</h2>
+        <h2>Recorded video save</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>To backup a recorded image, select a recorded image and click the <strong class="UI">[Export]</strong> button. </p>
+            <p>Recorded videos can be saved to files. </p>
         </div>
-		        <div class="wn5-online-help-action">
-            <h4>To backup a video searched</h4>
-            <ol>
-                <li>Click the <strong class="UI">[Export]</strong> button at the scene during playback. </li>
-                <li>Set the backup start and end time.</li>
-                <li>When you complete the setting, click the <strong class="UI">[Apply]</strong> button. </li>
-                <li>When the save window appears, select a path to save the backup and click the <strong class="UI">[Save]</strong> button. </li>
-                <li>The backup data of the selected time range will be created.</li>
-                <li>Click the [Apply] button.</li>
-            </ol>
-        </div>
+        <div class="wn5-online-help-action">
+                <h4>To save a video</h4>
+                <ol>
+                    <li>Click the <strong class="UI">[Export]</strong> button.</li>
+                    <li>In <strong class="UI">[Time]</strong>, set the Start time and End time for the video to save.</li>
+                    <li>From <strong class="UI">[Type]</strong>, select the file type you want.</li>
+                    <ul>
+                        <li>AVI: Saves in .avi.</li>
+                        <li>ZIP: Saves in .zip. You can set a password for your files. You need to enter this password to unzip those files in order to play videos.</li>
+                    </ul>
+                    <li>Click the <strong class="UI">[Apply]</strong> button.</li>
+                </ol>
+            </div>
     </div>
 </div>
 

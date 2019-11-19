@@ -12,8 +12,8 @@
 		<li ng-if="FixedProfileCodecChange">After installing the plugin, you can use the digital PTZ function without restriction only when the resolution of the web browser is 1024 or higher.</li> --></ul>
 </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
             <div class="wn5-setup-section-heading">
                 <h2>Sélectionner un canal</h2>
             </div>
@@ -58,7 +58,7 @@
     	   <h4><a name="ptzcontrol"></a>Ajuster le PTZ</h4>
             <ul>
                 <li>Lorsque vous faites glisser l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span>avec la souris, la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison.</li>
-                <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <strong class="UI">[+]</strong> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <strong class="UI">[-]</strong> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
+                <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
                 <li>D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
             </ul>
         </div>
@@ -88,7 +88,13 @@
     	   <h4>D&eacute;finir un pr&eacute;r&eacute;glage</h4>
     		<ol>
                 <li ng-if="!SupportAutoImageAlignment">Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
-                <li ng-if="SupportAutoImageAlignment">Sur l&apos;&eacute;cran de contr&ocirc;le PTZ, ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="SupportAutoImageAlignment">Sur l&apos;&eacute;cran de contr&ocirc;le PTZ,</li>
+                <ul>
+                        <li>Ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span></li>
+                        <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
+                    </ul>
+
+
     			<li>S&eacute;lectionnez un nombre pr&eacute;d&eacute;fini dans <strong class="UI">[Nombre]</strong>.</li>
     			<li>Entrez le nom de pr&eacute;r&eacute;glage appropri&eacute; dans <strong class="UI">[Nom]</strong>.</li>
                 <li>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong>.</li>
@@ -113,6 +119,32 @@
     		</ol>
         </div>
 
+
+             <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                <h4>R&eacute;glage de l&rsquo;accueil</h4>
+                 <ol>
+                     <li>R&eacute;glez la position de la cam&eacute;ra que vous souhaitez d&eacute;finir comme position d&rsquo;accueil comme suit.</li>
+                     <ul>
+                        <li>S&eacute;lectionnez l&apos;agrandissement de l&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour agrandir l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour agrandir l&apos;&eacute;cran depuis <strong class="UI">[Zoom]</strong>.</li>
+                        <li>R&eacute;glez la mise au point de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-near"></span> ou le bouton <span class="tui tui-wn5-ptz-far"></span> depuis Mise au point.</li>
+                     </ul>
+                     <li>Cliquez sur le bouton <strong class="UI">[D&eacute;finir l&rsquo;accueil]</strong>.</li>
+                 </ol>
+             </div>
+
+             <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                    <h4>Revenir &agrave; l&rsquo;accueil</h4>
+                     <ul>
+                         <li>Cliquez sur le bouton <strong class="UI">[Aller &agrave; l&rsquo;accueil]</strong>.</li>
+                     </ul>
+                 </div>
+
+                 <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                        <h4>Comment s&eacute;lectionner un &eacute;cran divis&eacute;</h4>
+                        <ol>
+                            <li>S&eacute;lectionnez un num&eacute;ro pour une vid&eacute;o individuelle dans l&apos;affichage en mosa&iuml;que par 4. 1 correspond &agrave; la partie sup&eacute;rieure gauche de l&apos;affichage en mosa&iuml;que par 4, 2 correspond &agrave; la partie sup&eacute;rieure droite, 3 &agrave; la partie inf&eacute;rieure gauche et 4 &agrave; la partie inf&eacute;rieure droite.</li>
+                        </ol>
+                    </div>
 
             <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
                     <h4>Activer le Suivi automatique</h4>

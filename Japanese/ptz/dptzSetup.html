@@ -15,8 +15,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
             <div class="wn5-setup-section-heading">
                 <h2>チャンネル選択</h2>
             </div>
@@ -113,6 +113,33 @@
     		</ol>
         </div>
 
+
+        <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                <h4>ホーム設定</h4>
+                <ol>
+                    <li>下記のようにホームに設定するカメラ位置を調整します。</li>
+                    <ul>
+                       <li><strong class="UI">ズーム</strong>で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックして画面をズームインしたり、<span class="tui tui-wn5-ptz-minus"></span>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                       <li><strong class="UI">[フォーカス]</strong>で<span class="tui tui-wn5-ptz-near"></span>ボタンや<span class="tui tui-wn5-ptz-far"></span>ボタンをクリックしてカメラのフォーカスを調整します。</li>
+                    </ul>
+                    <li><strong class="UI">[ホームを設定する]</strong>ボタンをクリックします。</li>
+                </ol>
+            </div>	
+
+            <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                    <h4>ホームへ戻る</h4>
+                     <ul>
+                         <li><strong class="UI">[ホームへ戻る]</strong>ボタンをクリックします。</li>
+                     </ul>
+                 </div>          
+
+                 <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                        <h4>4分割選択</h4>
+                        <ol>
+                            <li>クワドビューで個別映像の番号を選択します。1はクワドビューの左上、2は右上、3は左下、4は右下の映像ビューです。</li>
+                        </ol>
+                    </div>
+            
 
             <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
                     <h4>オートトラッキング機能を有効にする</h4>

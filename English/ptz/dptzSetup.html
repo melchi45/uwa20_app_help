@@ -14,8 +14,8 @@
 </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
             <div class="wn5-setup-section-heading">
                 <h2>Select channel</h2>
             </div>
@@ -59,8 +59,8 @@
         <div class="wn5-online-help-action">
     	   <h4><a name="ptzcontrol"></a>Adjusting the PTZ</h4>
             <ul>
-                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon  with the mouse, the camera moves to the pan and tilt.</li>
-                <li>Select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                <li>When you drag the icon <span class="tui tui-wn5-ptz-handle"></span>  with the mouse, the camera moves to the pan and tilt.</li>
+                <li>Select an image magnification by clicking the  icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
                 <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
             </ul>
         </div>
@@ -89,18 +89,18 @@
         <div class="wn5-online-help-action">
     	   <h4>Setting a preset</h4>
             <ol>
-                <li ng-if="!SupportAutoImageAlignment">Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen, and then</li>
+                <li ng-if="!SupportAutoImageAlignment">Expand the camera image by clicking the icon <span class="tui tui-wn5-ptz-plus"></span> on the PTZ control screen, and then</li>
                 <li ng-if="SupportAutoImageAlignment">On the PTZ control screen,</li>
                 <ul>
-                    <li>adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon.  </li>
-                    <li>select an image magnification by adjusting the zoom bar, or click the<span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or click the<span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
+                    <li>adjust the camera views by clicking and dragging the icon <span class="tui tui-wn5-ptz-handle"></span>.  </li>
+                    <li>select an image magnification by adjusting the zoom bar, or click the icon <span class="tui tui-wn5-ptz-plus"></span> to zoom the screen in or click the icon <span class="tui tui-wn5-ptz-minus"></span> to zoom the screen out.</li>
                 </ul>
                 <li>Select a preset number from <strong class="UI">[Number]</strong>.</li>
                 <li>Enter the relevant preset name in <strong class="UI">[Name]</strong>.</li>
                 <li>Click the <strong class="UI">[Add]</strong> button.</li>
             </ol>
             <p></p>
-            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">When you click the <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> icon, a moving object on the screen will be tracked automatically, and the icon turns into <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. When you click the button again, auto tracking will stop.</p>
+            <p ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">When you click the icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, a moving object on the screen will be tracked automatically, and the icon turns into <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>. When you click the button again, auto tracking will stop.</p>
     	</div>
         <div class="wn5-online-help-action">
     	   <h4>Moving to a preset</h4>
@@ -118,12 +118,13 @@
         <div class="wn5-online-help-action" ng-if="FisheyeLens">
             <h4>Setting the home position</h4>
             <ol>
-                <li>Expand the camera image by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon on the PTZ control screen,</li>
+                <li>Expand the camera image by clicking the icon  <span class="tui tui-wn5-ptz-plus"></span> on the PTZ control screen,</li>
                 <ul>
-                    <li>adjust the camera views by clicking and dragging the <span class="tui tui-wn5-ptz-handle"></span> icon.    </li>
-                    <li>select an image magnification by clicking the<span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the<span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                    <li>adjust the camera views by clicking and dragging the icon <span class="tui tui-wn5-ptz-handle"></span>.    </li>
+                    <li>select an image magnification by clicking the icon <span class="tui tui-wn5-ptz-plus"></span> to zoom the screen in or clicking the icon <span class="tui tui-wn5-ptz-minus"></span> to zoom the screen out from the zoom bar.</li>
                 </ul>
-                <li>Click Set home position<span class="tui tui-wn5-top-setup"></span> icon.</li>
+                <!-- <li>Click Set home position<span class="tui tui-wn5-top-setup"></span> icon.</li> -->
+                <li>Click the <strong class="UI">[Set home]</strong> button.</li>
             </ol>
         </div>
 
@@ -133,13 +134,14 @@
         <div class="wn5-online-help-action" ng-if="FisheyeLens">
             <h4>Navigating to the home position</h4>
             <ol>
-                <li>Click Go home position<span class="tui tui-wn5-ptz-home"></span> icon.</li>
+                <!-- <li>Click Go home position<span class="tui tui-wn5-ptz-home"></span> icon.</li> -->
+                <li>Click the <strong class="UI">[Go home]</strong> button.</li>
             </ol>
         </div>
         <div class="wn5-online-help-action" ng-if="FisheyeLens">
             <h4>Selecting a split screen</h4>
             <ol>
-                <li>Select a number in <strong class="UI">[Guadrant]</strong>. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</li>
+                <li>Select a number in <strong class="UI">[Quadrant]</strong>. 1 is the top left of the 4-split view, 2 is the top right, 3 is the bottom left, and 4 is the bottom right view.</li>
             </ol>
         </div>
 
