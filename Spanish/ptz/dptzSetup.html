@@ -60,7 +60,7 @@
             <ul>
                 <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el rat&oacute;n, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
                 <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
-                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
             </ul>
         </div>
         <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
@@ -88,10 +88,10 @@
         <div class="wn5-online-help-action">
     	   <h4>Configuraci&oacute;n de un preajuste</h4>
     		<ol>
-                <li ng-if="!SupportAutoImageAlignment">Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ, y ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="!SupportAutoImageAlignment">Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ,</li>
                 <li ng-if="SupportAutoImageAlignment">En la pantalla de control PTZ, </li>
                 <ul>
-                    <li>Ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                    <li>Ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n<span class="tui tui-wn5-ptz-handle"></span>.</li>
                     <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
                 </ul>
     			<li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
@@ -117,10 +117,12 @@
         <div class="wn5-online-help-action" ng-if="FisheyeLens">
                 <h4>Configuraci&oacute;n de inicio</h4>
                  <ol>
-                     <li>Ajuste la posici&oacute;n de la c&aacute;mara que desee configurar como inicio de la siguiente manera.</li>
+                     <!-- <li>Ajuste la posici&oacute;n de la c&aacute;mara que desee configurar como inicio de la siguiente manera.</li> -->
+                     <li>Expande la imagen de la cámara haciendo clic en el ícono <span class="tui tui-wn5-ptz-plus"></span>.</li>
                      <ul>
+                         <li>ajustar las vistas de la cámara haciendo clic y arrastrando el icono <span class="tui tui-wn5-ptz-handle"></span>. </li>
                          <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
-                         <li>Mueva el enfoque m&aacute;s cerca haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el enfoque m&aacute;s lejos haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+                         <!-- <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Mueva el enfoque m&aacute;s cerca haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el enfoque m&aacute;s lejos haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li> -->
                      </ul>
                      <li>Haga clic en el bot&oacute;n <strong class="UI">[Establecer inicio] </strong>.</li>
                  </ol>

@@ -60,8 +60,8 @@
     	   <h4><a name="ptzcontrol"></a>Adjusting the PTZ</h4>
             <ul>
                 <li>When you drag the icon <span class="tui tui-wn5-ptz-handle"></span>  with the mouse, the camera moves to the pan and tilt.</li>
-                <li>Select an image magnification by clicking the  icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
-                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li>Select an image magnification by clicking the icon <span class="tui tui-wn5-ptz-plus"></span> to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out from the zoom bar.</li>
+                <!-- <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li> -->
             </ul>
         </div>
         <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
@@ -118,10 +118,11 @@
         <div class="wn5-online-help-action" ng-if="FisheyeLens">
             <h4>Setting the home position</h4>
             <ol>
-                <li>Expand the camera image by clicking the icon  <span class="tui tui-wn5-ptz-plus"></span> on the PTZ control screen,</li>
+                <li>Expand the camera image by clicking the icon <span class="tui tui-wn5-ptz-plus"></span> on the PTZ control screen,</li>
                 <ul>
                     <li>adjust the camera views by clicking and dragging the icon <span class="tui tui-wn5-ptz-handle"></span>.    </li>
                     <li>select an image magnification by clicking the icon <span class="tui tui-wn5-ptz-plus"></span> to zoom the screen in or clicking the icon <span class="tui tui-wn5-ptz-minus"></span> to zoom the screen out from the zoom bar.</li>
+                     <!-- <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li> -->
                 </ul>
                 <!-- <li>Click Set home position<span class="tui tui-wn5-top-setup"></span> icon.</li> -->
                 <li>Click the <strong class="UI">[Set home]</strong> button.</li>

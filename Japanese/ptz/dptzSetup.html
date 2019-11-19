@@ -61,8 +61,8 @@
     	   <h4><a name="ptzcontrol"></a>PTZ調整</h4>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
-                <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
-                <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                <li>ズーム棒で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックして画面をズームインしたり、<span class="tui tui-wn5-ptz-minus"></span>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel"><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
             </ul>
         </div>
         <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
@@ -91,8 +91,12 @@
         <div class="wn5-online-help-action">
     	   <h4>プリセット設定</h4>
     		<ol>
-                <li ng-if="!SupportAutoImageAlignment">PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
-                <li ng-if="SupportAutoImageAlignment">PTZ制御画面で、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
+                <li ng-if="!SupportAutoImageAlignment">PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、</li>
+                <li ng-if="SupportAutoImageAlignment">PTZ制御画面で、</li>                
+                    <ul>
+                        <li><span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
+                        <li><strong class="UI">ズーム</strong>で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックして画面をズームインしたり、<span class="tui tui-wn5-ptz-minus"></span>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                    </ul>    
     			<li><strong class="UI">[No.]</strong>で設定したいプリセットNo.を選択します。</li>
     			<li><strong class="UI">[名前]</strong>に該当プリセット名を入力します。</li>
                 <li><strong class="UI">[追加]</strong>ボタンをクリックします。</li>
@@ -117,10 +121,12 @@
         <div class="wn5-online-help-action" ng-if="FisheyeLens">
                 <h4>ホーム設定</h4>
                 <ol>
-                    <li>下記のようにホームに設定するカメラ位置を調整します。</li>
+                    <!-- <li>下記のようにホームに設定するカメラ位置を調整します。</li> -->
+                    <li>PTZコントロール画面で<span class="tui tui-wn5-ptz-plus"></span>アイコンをクリックして、カメラ映像を拡大します。</li>
                     <ul>
+                        <li><span class="tui tui-wn5-ptz-handle"></span>のアイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
                        <li><strong class="UI">ズーム</strong>で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックして画面をズームインしたり、<span class="tui tui-wn5-ptz-minus"></span>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
-                       <li><strong class="UI">[フォーカス]</strong>で<span class="tui tui-wn5-ptz-near"></span>ボタンや<span class="tui tui-wn5-ptz-far"></span>ボタンをクリックしてカメラのフォーカスを調整します。</li>
+                       <!-- <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel"><strong class="UI">[フォーカス]</strong>で<span class="tui tui-wn5-ptz-near"></span>ボタンや<span class="tui tui-wn5-ptz-far"></span>ボタンをクリックしてカメラのフォーカスを調整します。</li> -->
                     </ul>
                     <li><strong class="UI">[ホームを設定する]</strong>ボタンをクリックします。</li>
                 </ol>
