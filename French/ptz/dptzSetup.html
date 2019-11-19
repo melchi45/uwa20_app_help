@@ -59,7 +59,7 @@
             <ul>
                 <li>Lorsque vous faites glisser l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span>avec la souris, la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison.</li>
                 <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
-                <li>D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
             </ul>
         </div>
         <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
@@ -87,10 +87,10 @@
         <div class="wn5-online-help-action">
     	   <h4>D&eacute;finir un pr&eacute;r&eacute;glage</h4>
     		<ol>
-                <li ng-if="!SupportAutoImageAlignment">Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="!SupportAutoImageAlignment">Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ</li>
                 <li ng-if="SupportAutoImageAlignment">Sur l&apos;&eacute;cran de contr&ocirc;le PTZ,</li>
                 <ul>
-                        <li>Ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span></li>
+                        <li>Ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
                         <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
                     </ul>
 
@@ -123,10 +123,12 @@
              <div class="wn5-online-help-action" ng-if="FisheyeLens">
                 <h4>R&eacute;glage de l&rsquo;accueil</h4>
                  <ol>
-                     <li>R&eacute;glez la position de la cam&eacute;ra que vous souhaitez d&eacute;finir comme position d&rsquo;accueil comme suit.</li>
+                     <!-- <li>R&eacute;glez la position de la cam&eacute;ra que vous souhaitez d&eacute;finir comme position d&rsquo;accueil comme suit.</li> -->
+                     <li>Développez l'image de la caméra en cliquant sur l'icône <span class="tui tui-wn5-ptz-plus"></span> </li>
                      <ul>
-                        <li>S&eacute;lectionnez l&apos;agrandissement de l&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour agrandir l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour agrandir l&apos;&eacute;cran depuis <strong class="UI">[Zoom]</strong>.</li>
-                        <li>R&eacute;glez la mise au point de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-near"></span> ou le bouton <span class="tui tui-wn5-ptz-far"></span> depuis Mise au point.</li>
+                         <li>Ajuster les vues de la caméra en cliquant sur l'icône <span class="tui tui-wn5-ptz-handle"></span> et en la faisant glisser. </li>
+                        <li>S&eacute;lectionnez l&apos;agrandissement de l&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour agrandir l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour agrandir l&apos;&eacute;cran depuis Zoom</li>
+                        <!-- <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">R&eacute;glez la mise au point de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-near"></span> ou le bouton <span class="tui tui-wn5-ptz-far"></span> depuis Mise au point.</li> -->
                      </ul>
                      <li>Cliquez sur le bouton <strong class="UI">[D&eacute;finir l&rsquo;accueil]</strong>.</li>
                  </ol>
