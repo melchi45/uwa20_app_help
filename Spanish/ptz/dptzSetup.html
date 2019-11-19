@@ -15,8 +15,8 @@
 </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
             <div class="wn5-setup-section-heading">
                 <h2>Seleccionar canal</h2>
             </div>
@@ -89,7 +89,11 @@
     	   <h4>Configuraci&oacute;n de un preajuste</h4>
     		<ol>
                 <li ng-if="!SupportAutoImageAlignment">Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ, y ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
-                <li ng-if="SupportAutoImageAlignment">En la pantalla de control PTZ, ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                <li ng-if="SupportAutoImageAlignment">En la pantalla de control PTZ, </li>
+                <ul>
+                    <li>Ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n <span class="tui tui-wn5-ptz-handle"></span>.</li>
+                    <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                </ul>
     			<li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
     			<li>Introduzca el nombre preajuste relevante en <strong class="UI">[Nombre]</strong>.</li>
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>.</li>
@@ -110,7 +114,32 @@
     		</ol>
         </div>
 
+        <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                <h4>Configuraci&oacute;n de inicio</h4>
+                 <ol>
+                     <li>Ajuste la posici&oacute;n de la c&aacute;mara que desee configurar como inicio de la siguiente manera.</li>
+                     <ul>
+                         <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                         <li>Mueva el enfoque m&aacute;s cerca haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el enfoque m&aacute;s lejos haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+                     </ul>
+                     <li>Haga clic en el bot&oacute;n <strong class="UI">[Establecer inicio] </strong>.</li>
+                 </ol>
+             </div>
 
+             <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                    <h4>Navegaci&oacute;n a inicio</h4>
+                     <ul>
+                         <li>Haga clic en el bot&oacute;n <strong class="UI">[Ir a inicio]</strong>.</li>
+                     </ul>
+                 </div>
+
+                 <div class="wn5-online-help-action" ng-if="FisheyeLens">
+                        <h4>C&oacute;mo seleccionar una pantalla dividida</h4>
+                        <ol>
+                            <li>Utilice un n&uacute;mero para seleccionar un v&iacute;deo individual en la vista de 4 divisiones. 1 es la parte superior izquierda de la vista dividida en 4, 2 es la parte superior derecha, 3 es la parte inferior izquierda y 4 la parte inferior derecha.</li>
+                        </ol>
+                    </div>
+            
             <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
                     <h4>Activar seguimiento automático</h4>
                     <p>La función de seguimiento automático se utiliza para el seguimiento automático de objetos detectados en la pantalla.</p>

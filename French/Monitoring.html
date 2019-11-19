@@ -239,7 +239,7 @@
             <p>Vous pouvez s&eacute;lectionner un canal qui affiche uniquement les vid&eacute;os du type de vue s&eacute;lectionn&eacute;.</p>
             <p>S&eacute;lectionnez un type de vue du canal dans [S&eacute;lectionner un canal] et cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-toolbar-setup"></span> (R&eacute;gl. vid&eacute;o) pour afficher une liste de profils qui prennent en charge le type de vue dans <strong class="UI">[Profil]</strong>.</p>
             <p>Allez &agrave; <strong class="UI">[R&eacute;gl.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Canal vid&eacute;o]</strong> pour ajouter ou modifier la liste de types de vue affich&eacute;e dans [S&eacute;lectionner un canal]</p>
-            <p>La vue par d&eacute;faut est [Fisheye View] et vous pouvez ajouter jusqu&rsquo;&agrave; 2&nbsp;canaux vid&eacute;o.</p>
+            <p>La vue par d&eacute;faut est [Affichage fisheye] et vous pouvez ajouter jusqu&rsquo;&agrave; 2&nbsp;canaux vid&eacute;o.</p>
             <p>&nbsp;</p>
         </td>
     </tr>
@@ -600,12 +600,18 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Vous pouvez ajuster le zoom ou la mise au point de la cam&eacute;ra.</p>
+            <!-- <p>Vous pouvez ajuster le zoom ou la mise au point de la cam&eacute;ra.</p> -->
+            <p>Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra.</p>
         </div>
         <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
                 <h4>Remarque</h4>
         <ul>
             <li>La commande PTZ externe ne peut &ecirc;tre utilis&eacute;e que lorsque la fonction PTZ externe est activ&eacute;e et que le canal 1 est s&eacute;lectionn&eacute;. Pour utiliser PTZ externe, Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Contr&ocirc;le des mouvements panoramique/inclinaison</h3>
+            <p>D&eacute;placez la direction de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-handle"></span> dans la zone Pan &amp; Inclinaison.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Ajustement du zoom</h3>

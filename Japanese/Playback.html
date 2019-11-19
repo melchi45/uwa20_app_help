@@ -202,7 +202,7 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="BrowserBackup == undefined || BrowserBackup">
+<!-- <hr class="wn5-setup-hr" ng-if="BrowserBackup == undefined || BrowserBackup">
 <div class="wn5-setup-section" ng-if="BrowserBackup == undefined || BrowserBackup">
     <div class="wn5-setup-section-heading">
         <h2>検索された映像のバックアップ</h2>
@@ -225,6 +225,32 @@
             </div>
 			<p></p>
     </div>
+</div> -->
+
+<hr class="wn5-setup-hr" ng-if="BrowserBackup == undefined || BrowserBackup">
+<div class="wn5-setup-section" ng-if="BrowserBackup == undefined || BrowserBackup">
+    <div class="wn5-setup-section-heading">
+        <h2>録画映像を保存する</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>録画された映像をファイルで保存することができます。</p>
+            </div>
+		 <div class="wn5-online-help-action">
+                <h4>映像を保存するには</h4>
+                <ol>
+                    <li><strong class="UI">[エクスポート]</strong>ボタンをクリックします。</li>
+                    <li><strong class="UI">[Time]</strong>で保存する映像の開始時刻と終了時刻を設定します。</li>
+                    <li><strong class="UI">[Type]</strong>でファイルタイプを選択します。</li>
+                    <ul>
+                        <li>AVI：.aviタイプに保存します。</li>
+                        <li>ZIP：.zipタイプに保存します。パスワードを設定できます。映像を再生するためには、圧縮を解除する時に設定したパスワードを入力しなければ、圧縮を解除することができません。</li>
+                    </ul>
+                    <li><strong class="UI">[適用]</strong>ボタンをクリックします。</li>
+                </ol>
+            </div>
+    </div>
 </div>
+
 
 <hr class="wn5-setup-hr">

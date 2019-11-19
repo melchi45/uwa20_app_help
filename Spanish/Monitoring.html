@@ -138,7 +138,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p >Puede controlar las acciones de panor&aacute;mica, inclinaci&oacute;n y zoom de la c&aacute;mara. Puede moverse hasta la ubicaci&oacute;n del preajuste definido en la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n PTZ]</strong> o iniciar/detener las funciones de oscilaci&oacute;n, grupo, tour y seguimiento. </p>
+                            <p>Puede controlar las acciones de panor&aacute;mica, inclinaci&oacute;n y zoom de la c&aacute;mara. Puede moverse hasta la ubicaci&oacute;n del preajuste definido en la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n PTZ]</strong> o iniciar/detener las funciones de oscilaci&oacute;n, grupo, tour y seguimiento. </p>
                           </td>
                       </tr>
 
@@ -244,7 +244,7 @@
                                         <p>Puede seleccionar un canal que solo muestre v&iacute;deos del tipo de vista seleccionado.</p>
                                         <p>Seleccione el tipo de vista del canal en [Seleccionar canal] y haga clic en el icono <span class="tui tui-wn5-toolbar-setup"></span> (Conf. de v&iacute;deo) para mostrar una lista de los perfiles que admiten el tipo de vista en el <strong class="UI">[Perfil]</strong>.</p>
                                         <p>Vaya a <strong class="UI">[Config.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Canal de v&iacute;deo]</strong> para a&ntilde;adir o cambiar la lista de los tipos de vista que se muestran en [Seleccionar canal]</p>
-                                        <p>El tipo de vista predeterminado es [Fisheye view] y se pueden a&ntilde;adir hasta 2 canales de v&iacute;deo.</p>
+                                        <p>El tipo de vista predeterminado es [vista de ojo de pez] y se pueden a&ntilde;adir hasta 2 canales de v&iacute;deo.</p>
                                         <p>&nbsp;</p>
                                     </td>
                                 </tr>
@@ -610,7 +610,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Puede ajustar el zoom o enfoque de la c&aacute;mara.</p>
+            <!-- <p>Puede ajustar el zoom o enfoque de la c&aacute;mara.</p> -->
+            <p>Puede controlar las acciones de panor&aacute;mica, inclinaci&oacute;n y zoom de la c&aacute;mara</p>
         </div>
 
         <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
@@ -619,6 +620,10 @@
             <li>El control de PTZ externo solo se puede usar cuando PTZ externo est&aacute; habilitado y el canal 1 est&aacute; seleccionado. Para usar PTZ externo, vaya a <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externo]</strong> y seleccione la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong>.</li>
             </div>
 
+            <div class="wn5-setup-section-article-content">
+                <h3>Control del movimiento de panor&aacute;mica/inclinaci&oacute;n</h3>
+                <p> Mueva la direcci&oacute;n de la c&aacute;mara haciendo clic en el icono <span class="tui tui-wn5-ptz-handle"></span> del &aacute;rea de Panor&aacute;mica e Inclinaci&oacute;n. </p>
+            </div>
         <div class="wn5-setup-section-article-content">
             <h3>Ajuste del zoom</h3>
             <p>Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en el &aacute;rea incluida de zoom, la pantalla acerca el zoom. Cuando se hace clic en el bot&oacute;n <span class="tui tui-wn5-ptz-minus"></span>, la pantalla aleja el zoom.</p>
@@ -733,7 +738,7 @@
 
                     <li>La funci&oacute;n Pan solo se puede utilizar cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Conf. de video]</strong> &gt; <strong class="UI">[Rotación de video]</strong> &gt; <strong class="UI">[Modo de montaje de la cámara]</strong>.</li>
 
-                    <li>Si el tipo de vista del perfil es [Vista de cuadrante] o [Q1], [Q2], [Q3], [Q4], se admiten <strong class="UI">[Predef.]</strong> y <strong class="UI">[Grupo]</strong>; si el tipo de vista es [Panor&aacute;mica &uacute;nica] o [Panor&aacute;mica doble], se admiten <strong class="UI">[Panor&aacute;mica]</strong> e <strong class="UI">[Inicio]</strong>. Para seleccionar un tipo de vista, vaya a <strong class="UI">[Config.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de Fisheye view]</strong> y seleccione [Vista correcci&oacute;n esf&eacute;rica]. A continuaci&oacute;n, seleccione un tipo de vista en <strong class="UI">[Vistas]</strong>.</li> 
+                    <li>Si el tipo de vista del perfil es [Vista de cuadrante] o [Q1], [Q2], [Q3], [Q4], se admiten <strong class="UI">[Predef.]</strong> y <strong class="UI">[Grupo]</strong>; si el tipo de vista es [Panor&aacute;mica &uacute;nica] o [Panor&aacute;mica doble], se admiten <strong class="UI">[Panor&aacute;mica]</strong> e <strong class="UI">[Inicio]</strong>. Para seleccionar un tipo de vista, vaya a <strong class="UI">[Config.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de vista de ojo de pez]</strong> y seleccione [Vista correcci&oacute;n esf&eacute;rica]. A continuaci&oacute;n, seleccione un tipo de vista en <strong class="UI">[Vistas]</strong>.</li> 
                 </ul>
             </div>
 

@@ -250,7 +250,13 @@
 	</div>
 </div> 
 <!-- 멀티 센터 카메라 변경점 진행할 때 [아날로그 비디오]는 삭제하고 [비디오 출력] 분기 코드는 삭제해야 함  
-2019-04-22 박종찬 선임님 코멘트에 따라 ng-if="!SupportAutoImageAlignment"를 VideoTypeOptions || UsbConfigEnable로 수정함. -->  
+2019-04-22 박종찬 선임님 코멘트에 따라 ng-if="!SupportAutoImageAlignment"를 VideoTypeOptions || UsbConfigEnable로 수정함. 
+
+TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1"
+인 경우 CVBS 내용이 보여지면 되고, ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1"
+인 경우 HDMI 내용이 보여지면 됩니다. 
+기존 ng-if="VideoTypeOptions || UsbConfigEnable" -> ng-if="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 || UsbConfigEnable" 로 수정함. 2019-11-15 -->  
+
 <hr class="wn5-setup-hr" ng-if="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 || UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 || UsbConfigEnable">
     <div class="wn5-setup-section-heading">
@@ -290,7 +296,7 @@
 	</div>
 </div>  
 
-
+<!-- TNB-9000에서 이재준 수석님 코멘트에 따라 ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1" 추가.  2019-11-15 -->  
 <hr class="wn5-setup-hr" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
 <div class="wn5-setup-section" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
     <div class="wn5-setup-section-heading">
@@ -306,15 +312,12 @@
 			<p>와이파이 동글과 한화테크윈에서 제공하는 스마트폰 애플리케이션을 통해, 와이파이 통신으로 카메라에 접속할 수 있습니다. 네트워크 카메라 최초 설치시나 화각이나 위치 등을 변경하려는 경우 별도의 설치용 모니터가 없어도 스마트폰으로 카메라의 영상을 확인할 수 있어 유용합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>비디오 출력&nbsp;</h3>
-
-	<!--		<h3>비디오 출력</h3>  -->
-			<p>아날로그 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다.</p>
+            <h3>비디오 출력 </h3>
+			<p>HDMI 단자에 케이블을 연결하여 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다. 카메라 설치 시 렌즈 위치나 포커스 등을 확인하면서 설정할 수 있어 유용합니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>방식 </h3>
-            <!--	<h3>타입</h3>-->
-            <p>영상을 출력할 방식을 선택합니다. </p>
+            <h3>타입 </h3>
+            <p>영상을 출력할 HDMI 해상도를 선택합니다. <strong class="UI">[비디오 출력]</strong>에서 [사용]을 선택한 후 타입을 선택할 수 있습니다.  </p>
         </div>
         <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
