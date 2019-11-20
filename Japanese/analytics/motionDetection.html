@@ -85,7 +85,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>ユーザーが指定するエリアをモーションエリアに設定します。</p>
-            <p>エリアにモーションが検知される場合、イベント信号が発生します。</p>
+            <!-- <p>エリアにモーションが検知される場合、イベント信号が発生します。</p> -->
         </div>
         <div class="wn5-online-help-action">
             <h4>エリア設定</h4>
@@ -131,6 +131,25 @@
             <h3>最短時間</h3>
             <p>最短時間(秒)：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>ハンドオーバ</h3>
+            <p>ハンドオーバは、固定カメラでモーション検知イベントが発生すると、PTZカメラが該当画面領域や既に設定したプリセット位置に移動する機能です。</p>
+            <ul>
+                <li><strong class="UI">オフ</strong>：ハンドオーバ機能を無効にします。</li>
+                <li><strong class="UI">スマートズーム</strong>：仮想領域でモーション検知イベントが発生すると、PTZカメラが仮想領域に移動して仮想領域の中央位置を中心に映像をズームインして表示します。固定カメラとPTZカメラが同期するためには、映像の位置座標値は既に設定する必要があります。<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[校正]</strong>メニューで設定できます。</li>
+                <li><strong class="UI">ハンドオーバNo.</strong>：仮想領域でモーション検知イベントが発生すると、PTZカメラがプリセット位置に移動します。プリセット情報のあるハンドオーバNo.をリストで選択します。リストは<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>メニューで追加したり、変更できます。</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                
+                <li>仮想領域別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想領域を先に設定してから使用できます。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
+            </ul>
+        </div>
+
         <!-- <div class="wn5-setup-section-article-content">
             <h3>핸드 오버</h3>
             <p>핸드 오버를 사용하려면 <strong class="UI">[사용]</strong>을 선택합니다. 핸드 오버 기능을 사용하면 설정한 관심 영역에서 움직임을 감지하면 특정 카메라가 특정 PTZ 프리셋 위치로 이동하도록 설정할 수 있습니다. 관심 영역별로 카메라를 지정합니다.</p>
