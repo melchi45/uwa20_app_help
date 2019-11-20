@@ -111,6 +111,25 @@
                 <li><strong class="UI">方向</strong>：対象物がバーチャルラインを通過する方向を設定します。</li>
             </ul>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>ハンドオーバ</h3>
+            <p>ハンドオーバは、固定カメラで仮想線を基準に動く対象物を検知すると、PTZカメラが既に設定した位置に移動する機能です。</p>
+            <ul>
+                <li><strong class="UI">オフ</strong>：ハンドオーバ機能を無効にします。</li>
+                <li><strong class="UI">スマートズーム</strong>：仮想線を通過する対象物を検知すると、PTZカメラが仮想線の中央位置を中心に映像をズームインして表示します。固定カメラとPTZカメラが同期するためには、映像の座標値は既に設定する必要があります。<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[校正]</strong>メニューで設定できます。</li>
+                <li><strong class="UI">ハンドオーバNo.</strong>：仮想線を通過する対象物を検知すると、PTZカメラがプリセット位置に移動します。プリセット情報のあるハンドオーバNo.をリストで選択します。リストは<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>で追加したり、変更できます。</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                
+                <li>仮想線別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想線を先に設定してから使用できます。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
+            </ul>
+        </div>
+
     </div>
 </div>
 <div class="wn5-setup-section">
@@ -202,6 +221,24 @@
                     <li>うろついている対象物が一定時間、動かない場合</li>
                     <li>うろついている対象物と近接領域に移動体がある複雑な環境が発生した場合<br> </li>
                 </ul>
+            </ul>
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>ハンドオーバ</h3>
+            <p>ハンドオーバは、固定カメラでIVAイベントが発生すると、PTZカメラが該当画面領域や既に設定したプリセット位置に移動する機能です。</p>
+            <ul>
+                <li><strong class="UI">オフ</strong>：ハンドオーバ機能を無効にします。</li>
+                <li><strong class="UI">スマートズーム</strong>：仮想領域でIVAイベントが発生すると、PTZカメラが仮想領域に移動して仮想領域の中央位置を中心に映像をズームインして表示します。固定カメラとPTZカメラが同期するためには、映像の位置座標値は既に設定する必要があります。<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[校正]</strong>メニューで設定できます。</li>
+                <li><strong class="UI">ハンドオーバNo.</strong>：仮想領域でIVAイベントが発生すると、PTZカメラがプリセット位置に移動します。プリセット情報のあるハンドオーバNo.をリストで選択します。リストは<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>メニューで追加したり、変更できます。</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                
+                <li>仮想領域別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想領域を先に設定してから使用できます。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
             </ul>
         </div>
     </div>
