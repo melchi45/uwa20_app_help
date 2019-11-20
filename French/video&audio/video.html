@@ -284,7 +284,40 @@
 				<li><strong class="UI">PAL</strong>&nbsp;: La m&eacute;thode PAL (Ligne d&rsquo;alternance de phase) a &eacute;t&eacute; propos&eacute;e par l&rsquo;Allemagne et elle est similaire &agrave; NTSC mais diff&egrave;re par la fa&ccedil;on dont elle traite les signaux de couleur. Il est surtout utilis&eacute; en Europe. Par rapport au NTSC, le nombre d&rsquo;images par seconde est plus faible, mais le nombre de faisceaux horizontaux est plus &eacute;lev&eacute; (625). Ainsi, la r&eacute;solution est plus &eacute;lev&eacute;e, la d&eacute;formation des couleurs est moindre et l&rsquo;installation de diffusion n&rsquo;exige pas de sp&eacute;cifications &eacute;lev&eacute;es.</li>
 			</ul>
 		</div>
-		      <div class="wn5-online-help-info" ng-if="FisheyeLens">
+		      <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Pour &eacute;viter la d&eacute;gradation des performances de la cam&eacute;ra, d&eacute;sactivez la fonction vid&eacute;o analogique apr&egrave;s l&rsquo;installation d&rsquo;une cam&eacute;ra.</li>
+                </ul>
+        </div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<div class="wn5-setup-section" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+	<div class="wn5-setup-section-heading">
+		<h2>Sortie vid&eacute;o</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Sélectionne la méthode d’affichage de la sortie vidéo de la caméra. </p>
+            <!-- <p>Ceci d&eacute;termine le type de sortie vid&eacute;o pour une sortie vid&eacute;o analogique. La sortie vid&eacute;o analogique est utile car vous pouvez la r&eacute;gler tout en v&eacute;rifiant l&rsquo;emplacement de l&rsquo;objectif et la mise au point de la cam&eacute;ra lors de l&rsquo;installation de la cam&eacute;ra.</p> --> 
+        </div>
+
+            <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
+                <h3>USB</h3>
+                <p>Pour afficher une vidéo de caméra à l’aide d’un USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
+                <p>En utilisant le dongle Wi-Fi et l’application pour smartphone de Hanwha Techwin, vous pouvez accéder à votre caméra via Wi-Fi. C’est utile lorsque vous essayez d’installer une caméra réseau pour la première fois ou de modifier le champ de vision angulaire ou la position de votre caméra, car vous pouvez voir l’écran de la caméra sur votre smartphone sans avoir à vous procurer un moniteur supplémentaire pour vérifier l’installation.</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>Sortie vid&eacute;o </h3>
+                <p>Pour afficher une vidéo en connectant un câble à la prise HDMI, cliquez sur [Activer]. C'est utile car vous pouvez le régler tout en vérifiant la position de l'objectif ou la mise au point lors de l'installation de l'appareil photo. </p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>Type</h3>
+                <p>Sélectionnez la résolution HDMI pour afficher la vidéo. Dans [Sortie vidéo, sélectionnez [Activer] pour pouvoir sélectionner le type souhaité.</p>
+            </div>
+		      <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
                     <li>Pour &eacute;viter la d&eacute;gradation des performances de la cam&eacute;ra, d&eacute;sactivez la fonction vid&eacute;o analogique apr&egrave;s l&rsquo;installation d&rsquo;une cam&eacute;ra.</li>
@@ -293,6 +326,7 @@
 	</div>
 
 </div>
+
 
 <hr class="wn5-setup-hr">
 

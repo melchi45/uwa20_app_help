@@ -360,7 +360,7 @@
             <h4>チャンネルを変更するには、</h4>
                 <ul>
                     <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
-                    <li ng-if="!SupportAutoImageAlignment">クワドビュー画面に表示するには、クワドビューのアイコンをクリックします。</li>
+                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">クワドビュー画面に表示するには、クワドビューのアイコンをクリックします。</li>
                     <li>シングル画面に戻すには、チャンネルNo.をクリックします。</li>
                 </ul>
             </div>
