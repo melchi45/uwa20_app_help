@@ -12,7 +12,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Después de seleccionar su canal de cámara, puede definir los detalles de WiseStream para cada canal.</p>
-            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [WiseStream] solo puede configurarse en el canal 1.</p>
+            <p ng-if="objectDetectionSupport && GlobalPTZMode  && MaxChannel > 1">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [WiseStream] solo puede configurarse en el canal 1.</p>
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n.</p>

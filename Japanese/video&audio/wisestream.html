@@ -11,7 +11,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラチャンネルを選択した後、チャンネル別にワイズストリーム関連の詳細を設定することができます。</p>
-            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[ワイズストリーム]は、チャンネル1でのみ設定できます。</p>
+            <p ng-if="objectDetectionSupport && GlobalPTZMode  && MaxChannel > 1">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[ワイズストリーム]は、チャンネル1でのみ設定できます。</p>
             <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
 <!-- 
             <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。</p>
