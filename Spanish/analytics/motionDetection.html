@@ -59,7 +59,8 @@
             <ul>
                 <li>El &aacute;rea de detecci&oacute;n de movimiento y el &aacute;rea de no detecci&oacute;n se fijan y se utilizan de acuerdo con el rango de tama&ntilde;o del movimiento.</li>
                 <li>En cualquiera de los casos siguientes, el rendimiento del evento de detecci&oacute;n de movimiento se puede reducir y un mal funcionamiento podr&iacute;a ocurrir: </li>
-                <ul>    
+                <ul>
+                    <li ng-if="SupportAutoImageAlignment">Si ocurre un movimiento en el &aacute;rea donde las im&aacute;genes de la c&aacute;mara se superponen</li>    
                     <li>Si un objeto es similar en brillo o color al fondo en la pantalla</li> 
                     <li>Si se produce un peque&ntilde;o movimiento cerca del borde de la pantalla </li>
                     <li>Si un cambio general en la pantalla se produce continuamente al azar debido a factores tales como cambios de escena y cambios de iluminaci&oacute;n repentinos </li>
