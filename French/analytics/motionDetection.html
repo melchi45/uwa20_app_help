@@ -57,6 +57,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
+                <li ng-if="SupportAutoImageAlignment">Si un mouvement se produit dans la zone où les images de la caméra se chevauchent</li>
                 <li>La zone de d&eacute;tection de mouvement et la zone exclue sont d&eacute;finies et utilis&eacute;es en fonction de la taille de la plage du mouvement.</li>
                 <li>Dans les cas suivants, les performances de l&apos;&eacute;v&eacute;nement de d&eacute;tection de mouvement peuvent se d&eacute;t&eacute;riorer et un dysfonctionnement peut se produire&nbsp;: </li>
             <ul>       
@@ -64,7 +65,7 @@
                 <li>Si un petit mouvement se produit pr&egrave;s du bord de l&apos;&eacute;cran </li>
                 <li>Si un changement global se produit sur l&apos;&eacute;cran de mani&egrave;re continue, al&eacute;atoirement, &agrave; cause de facteurs tels que les <li>changements de sc&egrave;ne et les changements d&apos;&eacute;clairage soudains </li>
                 <li>Si un objet en mouvement s&apos;approche trop pr&egrave;s de la cam&eacute;ra </li>
-                <li> Lorsqu&rsquo;un objet cache un autre objet </li>
+                <li>Lorsqu&rsquo;un objet cache un autre objet </li>
                 <li>Lorsque le mouvement d&apos;un objet est trop rapide </li>
                 <li>Lorsqu&rsquo;une lumi&egrave;re vive, telle que la lumi&egrave;re directe du soleil, un &eacute;clairage fort ou les phares d&apos;un v&eacute;hicule, cr&eacute;e des reflets, flou ou des ombres </li>
                 <li>En cas de forte neige, de pluie abondante ou de vents violents, ou de coucher ou lever de soleil.</li>
@@ -128,7 +129,25 @@
         <div class="wn5-setup-section-article-content">
             <h3>Sensibilit&eacute;</h3>
             <p>Cette fonction d&eacute;finit la sensibilit&eacute; de la d&eacute;tection de mouvement pour chaque zone. &Eacute;tablissez une sensibilit&eacute; plus faible pour un environnement o&ugrave; l&apos;arri&egrave;re-plan et un objet sont clairement visibles et une sensibilit&eacute; plus &eacute;lev&eacute;e pour un environnement o&ugrave; l&apos;arri&egrave;re-plan et un objet ne sont pas clairement visibles.</p>
-        </div><!-- <div class="wn5-setup-section-article-content">
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+                <h3>Transfert</h3>
+                <p>La fonction Transfert est une fonction qui d&eacute;place le focus de la cam&eacute;ra PTZ vers la zone d&eacute;sign&eacute;e &agrave; l&rsquo;&eacute;cran ou vers une zone pr&eacute;r&eacute;gl&eacute;e lors de la survenue d&rsquo;un &eacute;v&eacute;nement de détection de mouvement dans la cam&eacute;ra fixe.</p>
+                <ul>
+                    <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: D&eacute;sactive la fonction Transfert.</li>
+                    <li><strong class="UI">Zoom intelligent</strong>&nbsp;: Lors de la survenue d&rsquo;un &eacute;v&eacute;nement de détection de mouvement dans la zone ROI, le focus de la cam&eacute;ra PTZ est d&eacute;plac&eacute; vers la zone ROI et effectue un zoom avant avec son centre &eacute;tabli au centre de la zone ROI. Les coordonn&eacute;es de la zone &agrave; l&rsquo;&eacute;cran doivent &ecirc;tre d&eacute;finies pr&eacute;alablement afin que la cam&eacute;ra fixe et la cam&eacute;ra PTZ puissent &ecirc;tre connect&eacute;es. Allez &agrave; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[&Eacute;talonnage]</strong> pour d&eacute;finir les coordonn&eacute;es.</li>
+                    <li><strong class="UI">Transfert n°</strong>: Lors de la survenue d&rsquo;un &eacute;v&eacute;nement de détection de mouvement dans la zone ROI, le focus de la cam&eacute;ra PTZ est d&eacute;plac&eacute; vers la zone pr&eacute;r&eacute;gl&eacute;e. S&eacute;lectionnez un num&eacute;ro de transfert qui contient des donn&eacute;es pr&eacute;r&eacute;gl&eacute;es dans la liste. Allez &agrave; <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[Transfert]</strong> pour faire un ajout dans la liste ou la modifier.</li>
+                </ul>
+                </div>
+                <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+                        <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                        <ul>
+                            
+                            <li>Vous pouvez d&eacute;finir le transfert pour chaque zone ROI. La fonction de relais peut &ecirc;tre utilis&eacute;e apr&egrave;s avoir d&rsquo;abord d&eacute;fini la zone d&rsquo;int&eacute;r&ecirc;t.</li>
+                            <li>Le menu «&nbsp;Transfert&nbsp;» s&rsquo;affiche seulement lorsque le canal de la cam&eacute;ra fixe a &eacute;t&eacute; s&eacute;lectionn&eacute; dans le menu <strong class="UI"><a href="#channel">[S&eacute;lectionner un canal]</a></strong>. Le menu ne s&rsquo;affichera pas si le canal PTZ est s&eacute;lectionn&eacute;.</li>
+                        </ul>
+                </div>
+        <!-- <div class="wn5-setup-section-article-content">
             <h3>Hand over</h3>
             <p>To use the hand over, select <strong class="UI">[Enable]</strong>. When the hand over function is used, it is possible to set a specific camera to move to a specific PTZ preset position when a motion is detected in the set area. Assigns a camera for each area.</p>
         </div>
@@ -159,8 +178,11 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>The hand over can be used after first setting the motion detection area. </li>
             </ul>
-        </div> --></div>
+        </div> -->
+    
+    </div>
 </div>
+
 <div class="wn5-setup-section">
 
     <div class="wn5-setup-section-heading">
