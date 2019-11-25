@@ -257,8 +257,8 @@
 	</div>
 </div> 
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 || UsbConfigEnable">
-<div class="wn5-setup-section" ng-if="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 || UsbConfigEnable">
+<hr class="wn5-setup-hr" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Video output</h2>
     </div>

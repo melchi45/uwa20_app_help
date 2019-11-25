@@ -592,7 +592,8 @@
             <p>알람 센서의 열림/닫힘 상태에 따라 영상을 컬러나 흑백으로 설정할 수 있습니다. <strong class="UI">[주야간 모드]</strong>의 <strong class="UI">[모드]</strong>를 <strong class="UI">[외부 입력]</strong>으로 설정하면 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 입력]</strong> 기능이 비활성화되고 설정 페이지가 나타나지 않습니다. </p>
         </div>
         <!-- 분기 코드 DefocusDetectSimpleFocus에서 ExternalPTZModel로 변경함. Q시리즈. 박종찬 선임 4/15일 메일 참조 -->
-        <div class="wn5-setup-section-article-content" ng-if="ExternalPTZModel">
+        <!-- ExternalPTZModel -> SimpleFocusAfterDayNight로 변경함. 김영호 책임님. 메일 11/22일 참고.  --> 
+        <div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>주야간 모드 전환 후 심플 포커스</h3>
             <p>주야간 모드 전환 후 영상의 포커스를 자동으로 맞춰줍니다.</p>
         </div>
