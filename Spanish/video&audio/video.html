@@ -250,8 +250,8 @@
 </div>
 </div>
 <!-- 멀티 센서 변경점 이 후에는 분기 코드 삭제해야 함 --> 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 || UsbConfigEnable">
-<div class="wn5-setup-section" ng-if="VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 || UsbConfigEnable">
+<hr class="wn5-setup-hr" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Salida de v&iacute;deo</h2>
     </div>
