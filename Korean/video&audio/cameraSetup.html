@@ -490,7 +490,8 @@
 
             <!-- IrisModeOptions->IrisSupport로 수정. 고용수 책임님. PNO-A9081. 2019-10-11 </p>  
             !EFLensSupport  추가함. 이재준 수석님. TNB-9000. 2019-11-15 -->       
-        <div class="wn5-setup-section-article-content" ng-if="IrisSupport && !EFLensSupport">
+            <!-- IrisModeOptions-> IrisSupport -> IrisModeOptions으로 다시 수정  --> 
+        <div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
             <h3>조리개</h3>
             <!-- <p>DC(자동), 수동, P-조리개 중에 선택할 수 있습니다.</p>  --> 
             <p>조리개 타입을 선택합니다.</p>
@@ -507,8 +508,10 @@
             <h3>조리개 F-No </h3>
             <p><strong class="UI">[조리개]</strong> 모드가<strong class="UI">[수동]</strong>일 때 활성화되며, 조리개 F 값을 설정합니다.</p>
         </div>
+           
             <!-- !EFLensSupport  추가함. 이재준 수석님. TNB-9000. 2019-11-15 -->
-        <div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
+             <!-- Lens -> IrisFnoOptions -> Lens로 수정  --> 
+        <div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
             <h3>렌즈</h3>
             <p>DC(자동)이나 수동, 또는 사용할 수 있는 P-조리개 종류 중 선택할 수 있습니다. </p>
             <ul>
