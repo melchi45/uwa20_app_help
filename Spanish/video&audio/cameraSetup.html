@@ -456,6 +456,23 @@
             <p>Se muestran los tipos de lente. El valor del diafragma var&iacute;a seg&uacute;n las lentes.</p>
         </div>
         
+        
+
+        <div class="wn5-setup-section-article-content" ng-if="IrisSupport">
+            <h3>Iris</h3>
+            <p>Seleccione entre (Autom&aacute;tico), manual, e Iris P.</p>
+            <ul>
+                <li><strong class="UI">DC (Autom&aacute;tico)</strong>: Ajusta autom&aacute;ticamente el iris dependiendo de la intensidad &oacute;ptica del entorno.</li>
+                <li><strong class="UI">Manual</strong>: Ajusta manualmente el valor de F del iris.</li>
+                <li><strong class="UI">P-iris</strong>: El motor a presi&oacute;n es usado para ajustar el obturador. Una gran profundidad de campo se puede asegurar de manera que una serie de objetos a varias distancias se puedan poner en foco al mismo tiempo.</li>
+            </ul>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
+            <h3>Iris F-No</h3>
+            <p>Se activa cuando el modo <strong class="UI">[Iris]</strong> se ajusta a <strong class="UI">[Manual]</strong> y establece el n&uacute;mero de iris f.</p>
+        </div>
+
+
         <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
             <h3>Posición del iris</h3>
             <p>Se activa cuando el modo <strong class="UI">[Diafragma]</strong> est&aacute; configurado en <strong class="UI">[Manual]</strong> y establece el valor de la posici&oacute;n del diafragma.</p>
@@ -471,19 +488,7 @@
             <p>Se activa cuando el modo <strong class="UI">[Diafragma]</strong> est&aacute; configurado en <strong class="UI">[Auto]</strong>, y establece el valor preferido de la posici&oacute;n del diafragma con brillo normal. El rango de este valor se establece en un valor inferior al que estaba en <strong class="UI">[Posici&oacute;n m&aacute;xima del diafragma]</strong>.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
-            <h3>Iris</h3>
-            <p>Seleccione entre (Autom&aacute;tico), manual, e Iris P.</p>
-            <ul>
-                <li><strong class="UI">DC (Autom&aacute;tico)</strong>: Ajusta autom&aacute;ticamente el iris dependiendo de la intensidad &oacute;ptica del entorno.</li>
-                <li><strong class="UI">Manual</strong>: Ajusta manualmente el valor de F del iris.</li>
-                <li><strong class="UI">P-iris</strong>: El motor a presi&oacute;n es usado para ajustar el obturador. Una gran profundidad de campo se puede asegurar de manera que una serie de objetos a varias distancias se puedan poner en foco al mismo tiempo.</li>
-            </ul>
-        </div>
-		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
-            <h3>Iris F-No</h3>
-            <p>Se activa cuando el modo <strong class="UI">[Iris]</strong> se ajusta a <strong class="UI">[Manual]</strong> y establece el n&uacute;mero de iris f.</p>
-        </div>
+
         <div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
             <h3>Lente</h3>
             <p>Seleccione entre DC (autom&aacute;tico), manual, e Iris P disponibles.</p>
