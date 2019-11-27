@@ -448,6 +448,23 @@
             <p>Les types de lentilles sont affich&eacute;s. La valeur de l&rsquo;iris varie selon les lentilles.</p>
         </div>
         
+
+
+        <div class="wn5-setup-section-article-content" ng-if="IrisSupport">
+            <h3>Iris</h3>
+            <p>S&eacute;lectionnez (Auto), manuel, ou P-Iris.</p>
+            <ul>
+                <li><strong class="UI">DC (Auto)</strong>&nbsp;: Ajuste automatiquement l&rsquo;iris en fonction de l&rsquo;intensit&eacute; optique de l&rsquo;environnement.</li>
+                <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement la valeur F de l&rsquo;iris.</li>
+                <li><strong class="UI">P-iris</strong>&nbsp;: Le r&eacute;glage de l&rsquo;obturateur s&rsquo;effectue &agrave; l&rsquo;aide d&rsquo;un moteur &agrave; enclenchement. Une grande profondeur de champ peut &ecirc;tre s&eacute;curis&eacute;e de sorte qu&rsquo;un certain nombre d&rsquo;objets &agrave; diff&eacute;rentes distances peuvent &ecirc;tre mis au point en m&ecirc;me temps.</li>
+            </ul>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
+            <h3>Pas de F. Iris</h3>
+            <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Manuel]</strong>, et elle d&eacute;finit le num&eacute;ro F de l&rsquo;iris.</p>
+        </div>
+
+
         <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
             <h3>Position de l&rsquo;iris</h3>
             <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Manuel]</strong>, et elle d&eacute;finit la valeur de la position de l&rsquo;iris.</p>
@@ -462,20 +479,8 @@
             <h3>Iris favorite</h3>
             <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Auto]</strong>, il r&egrave;gle la valeur de la position de l&rsquo;iris qui est pr&eacute;f&eacute;r&eacute;e en luminosit&eacute; normale. La plage de cette valeur est r&eacute;gl&eacute;e &agrave; une valeur inf&eacute;rieure &agrave; ce qui &eacute;tait en <strong class="UI">[Position maximale de l&rsquo;iris]</strong>.</p>
         </div>
+        
 
-        <div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
-            <h3>Iris</h3>
-            <p>S&eacute;lectionnez (Auto), manuel, ou P-Iris.</p>
-            <ul>
-                <li><strong class="UI">DC (Auto)</strong>&nbsp;: Ajuste automatiquement l&rsquo;iris en fonction de l&rsquo;intensit&eacute; optique de l&rsquo;environnement.</li>
-                <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement la valeur F de l&rsquo;iris.</li>
-                <li><strong class="UI">P-iris</strong>&nbsp;: Le r&eacute;glage de l&rsquo;obturateur s&rsquo;effectue &agrave; l&rsquo;aide d&rsquo;un moteur &agrave; enclenchement. Une grande profondeur de champ peut &ecirc;tre s&eacute;curis&eacute;e de sorte qu&rsquo;un certain nombre d&rsquo;objets &agrave; diff&eacute;rentes distances peuvent &ecirc;tre mis au point en m&ecirc;me temps.</li>
-            </ul>
-        </div>
-		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
-            <h3>Pas de F. Iris</h3>
-            <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Manuel]</strong>, et elle d&eacute;finit le num&eacute;ro F de l&rsquo;iris.</p>
-        </div>
         <div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
             <h3>Objectif</h3>
             <p>S&eacute;lectionnez DC (Auto), manuel, ou tout P-Iris disponible.</p>
