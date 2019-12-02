@@ -472,10 +472,11 @@
             <p>렌즈 종류가 표시됩니다. 선택한 렌즈에 따라 조리개 값이 달라집니다.</p>
         </div>
         
-            <!-- IrisModeOptions->IrisSupport로 수정. 고용수 책임님. PNO-A9081. 2019-10-11 </p>  
-            !EFLensSupport  추가함. 이재준 수석님. TNB-9000. 2019-11-15 -->       
-            <!-- IrisModeOptions-> IrisSupport로 수정 IrisFnoOptions으로 수정해야할지...  --> 
-        <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions">
+            <!-- IrisModeOptions->IrisSupport로 수정. 고용수 책임님. PNO-A9081. 2019-10-11 -->     
+                <!--  IrisSupport -> IrisModeOptions로 롤백. QNB-8002 이슈 수정하면서 다시 롤백. TW. 2019-11-27 
+                      tnb-9000 이슈 수정하면서 IrisModeOptions || EFLensSupport로 최종 수정. TW. 2019-11-29 
+            <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> -->
+            <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
             <h3>조리개</h3>
             <!-- <p>DC(자동), 수동, P-조리개 중에 선택할 수 있습니다.</p>  --> 
             <p>조리개 타입을 선택합니다.</p>
@@ -512,8 +513,9 @@
 
 
             <!-- !EFLensSupport  추가함. 이재준 수석님. TNB-9000. 2019-11-15 -->
-             <!-- Lens -> IrisFnoOptions -> Lens로 수정  --> 
-        <div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
+            <!-- Lens -> IrisFnoOptions (PNO-A9081. 고용수 책임님. 2019-10-11) -> Lens로 재수정. TW. TNB-9000과 QNB-8002 동시 수정. 2019-11-27-->  
+                 
+            <div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport"> 
             <h3>렌즈</h3>
             <p>DC(자동)이나 수동, 또는 사용할 수 있는 P-조리개 종류 중 선택할 수 있습니다. </p>
             <ul>
