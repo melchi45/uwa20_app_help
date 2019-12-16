@@ -617,7 +617,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>팬/틸트 동작 제어하기</h3>
-            <p> 팬/틸트 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라의 방향을 이동합니다. </p>
+            <p> 팬/틸트 영역에서 <span ㅈ="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라의 방향을 이동합니다. </p>
         </div>
 		          <div class="wn5-setup-section-article-content">
                         <h3>초점 조절하기</h3>
@@ -672,7 +672,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 
              <li>PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 카메라 영상을 먼저 확대한 후, <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하고 드래그하여 카메라 뷰를 조정할 수 있습니다. </li>
 
-                <li ng-if="!objectDetectionSupport && isDigitalPTZ"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</li>
+                <li ng-if="DigitalAutoTracking"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</li>
 
                 <li ng-if="objectDetectionSupport">AI 카메라에서는 지정한 개체만 감지하여 자동 추적하도록 설정할 수 있습니다. 자동 추적을 적용할 개체 타입은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>에서 선택할 수 있습니다. </li>
                 
@@ -741,7 +741,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <div class="wn5-setup-section-article-content">
             <h3>분할 화면 선택</h3>
             <p>4분할 뷰에서 개별 영상의 번호를 선택합니다. 1은 4분할 뷰의 왼쪽 상단, 2는 오른쪽 상단, 3은 왼쪽 하단, 4는 오른쪽 하단의 영상 뷰입니다.  </p>
-            <p> 버튼을 클릭하고 드래그하여 카메라 영상 뷰를 조정합니다. 줌 막대에서 <span class="tui tui-wn5-ptz-plus"></span>  버튼을 클릭하면 화면이 확대되고 <span class="tui tui-wn5-ptz-minus"></span> 버튼을 클릭하면 화면이 축소됩니다.</p>
+            <p>버튼을 클릭하고 드래그하여 카메라 영상 뷰를 조정합니다. 줌 막대에서 <span class="tui tui-wn5-ptz-plus"></span>  버튼을 클릭하면 화면이 확대되고 <span class="tui tui-wn5-ptz-minus"></span> 버튼을 클릭하면 화면이 축소됩니다.</p>
             <p><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 '왜곡 보정 뷰'를 선택한 후 <strong class="UI">[뷰]</strong>에서 [4분할 뷰]를 선택한 경우에만 [분할 화면 선택] 옵션이 나타납니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">

@@ -12,7 +12,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>The detailed Focus setup for each channel can be configured after selecting a camera channel. </p>
-<p>Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Focus setup] can only be configured on channel 1.</p>
+            <p>Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Focus setup] can only be configured on channel 1.</p>
         </div>
 	</div>
 </div> 
@@ -39,7 +39,7 @@
             <p>Click the Focus button on the screen and adjust the focus manually. If auto focus control is not possible with simple focus, control the focus manually. The value displayed on the button refers to the focus moving interval. ‘1’ means moving the focus by a factor of 1, while ‘10’ means moving the focus by a factor of 10; ‘100’ means moving the focus by a factor of 100. ‘-‘moves the focus area nearer and ‘+’ moves the focus area farther away.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="Zoom">
+        <div class="wn5-setup-section-article-content" ng-if="Zoom || ZoomOptionsDefined">
             <h3>Zoom </h3>
             <p>Manually adjusts the zoom magnification. The value displayed on the button refers to the zoom moving interval. ‘1’ means moving the zoom by a factor of 1, ‘10’ means moving the zoom by a factor of 10, and ‘100’ means moving the zoom by a factor of 100. ‘-‘means zoom out (wider) and ‘+’ means zoom in (closer).</p>
         </div>
@@ -77,7 +77,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
 
-                                              <li>The temperature compensation &nbsp;function can be set only when the &quot;ICS&quot; lens is selected in <strong class="UI">[Video and Audio]</strong> &gt; <strong class="UI">[Camera Setup]</strong> &gt; <strong class="UI">[Exposure]</strong> &gt; <strong class="UI">[Lens]</strong>. </li>
+                <li>The temperature compensation &nbsp;function can be set only when the &quot;ICS&quot; lens is selected in <strong class="UI">[Video and Audio]</strong> &gt; <strong class="UI">[Camera Setup]</strong> &gt; <strong class="UI">[Exposure]</strong> &gt; <strong class="UI">[Lens]</strong>. </li>
 
             </ul>
         </div>
