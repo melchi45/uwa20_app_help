@@ -14,7 +14,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>カメラチャンネルを選択した後、チャンネル別にフォーカス設定関連の詳細を設定できます。</p>
-<p>チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[フォーカス設定]は、チャンネル1でのみ設定できます。</p>
+            <p>チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[フォーカス設定]は、チャンネル1でのみ設定できます。</p>
         </div>
 	</div>
 </div> 
@@ -58,7 +58,7 @@
           
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="Zoom">
+        <div class="wn5-setup-section-article-content" ng-if="Zoom || ZoomOptionsDefined">
             <h3>ズーム</h3>
             <p>ズーム倍率を手動に調整します。ボタンに表示された値は、ズーム移動間隔を意味します。1はズームを一度に1だけ移動、10はズームを10だけ移動、100はズームを100だけ移動させます。「-」値はズームアウト(Zoom out、wide)して「+」値はズームイン(Zoom in、tele)します。</p>
         </div>
@@ -99,7 +99,7 @@
         <div class="wn5-online-help-info" ng-if="ICS">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                              <li><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[露出補正]</strong> &gt; <strong class="UI">[レンズ]</strong>で「ICS」レンズを選択した場合のみ、温度補正機能を設定することができます。</li>
+               <li><strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[露出補正]</strong> &gt; <strong class="UI">[レンズ]</strong>で「ICS」レンズを選択した場合のみ、温度補正機能を設定することができます。</li>
 
             </ul>
         </div>
