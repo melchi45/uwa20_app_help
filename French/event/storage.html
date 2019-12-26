@@ -210,6 +210,7 @@
                     <li>V&eacute;rifiez que le type d&apos;adresse IP du NAS et le type d&apos;adresse IP de la cam&eacute;ra sont identiques. (par exemple&nbsp;: La valeur par d&eacute;faut de NAS et de la cam&eacute;ra est 255.255.255.0. Si l&apos;adresse IP est 192.168.20.32, l&apos;adresse IP du NAS doit &ecirc;tre comprise entre 192.168.20.1 et 192.168.20.255.)</li>
                     <li>Pour le dossier par d&eacute;faut NAS, un seul dossier doit &ecirc;tre utilis&eacute; dans une cam&eacute;ra, sans duplication.</li>
                     <li>V&eacute;rifiez que le p&eacute;riph&eacute;rique est un &eacute;quipement recommand&eacute; par NAS. Reportez-vous &agrave; «&nbsp;Sp&eacute;cifications recommand&eacute;es du NAS » dans le manuel de l&apos;utilisateur.</li>
+                    <li ng-if="SupportChannelExpansionFeature">Vérifier si la version SMB du NAS est réglée sur 3.0. </li>	
                 </ul>
                
 				<li>Si <strong class="UI">[R&eacute;&eacute;crire]</strong> dans la configuration de stockage pour NAS n&apos;est pas utilis&eacute; et que l&apos;espace libre pour NAS est inf&eacute;rieur &agrave; 20&nbsp;%, les images seront enregistr&eacute;es sur la carte SD.</li>

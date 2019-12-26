@@ -738,12 +738,18 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                         <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics and statistics settings so that you can analyze the video or accumulate the statistical data according to the changed video. These settings can be changed in the <strong class="UI">[Analytics]</strong> menu and <strong class="UI">[Statistics]</strong> menu.  </li>
                     </ul>
         </div>
-						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
+		<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics setting in the <strong class="UI">[Analytics]</strong> menu so that the video can be analyzed according to the changed video.   </li>
             </ul>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
+            <h3>Focal length</h3>
+            <p>Sets the focal length of lens so that DIS function can work. Only when <strong class="UI">[DIS]</strong> option is set to [On], [Focal length] value can be changed. </p>
+        </div>
+
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Sharpness</h3>
             <p>Adjust the overall sharpness of the image. </p>

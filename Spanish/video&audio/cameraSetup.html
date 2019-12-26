@@ -597,12 +597,18 @@
                         <li>Al cambiar el ajuste DIS, el v&iacute;deo se acercar&aacute; o alejar&aacute;. Para ayudarle a analizar el v&iacute;deo modificado y acumular las estad&iacute;sticas, cambie la configuraci&oacute;n de an&aacute;lisis y estad&iacute;sticas. Es posible cambiar los ajustes en los men&uacute;s <strong class="UI">[An&aacute;lisis]</strong> y <strong class="UI">[Estad&iacute;sticas]</strong>.</li>
                     </ul>
         </div>
-						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
+		<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>En caso de que cambie la configuraci&oacute;n de DIS, la pantalla de v&iacute;deo ampliar&aacute; o reducir&aacute; el zoom. Para ayudarle a analizar el v&iacute;deo modificado, cambie los ajustes de an&aacute;lisis en el men&uacute; <strong class="UI">[An&aacute;lisis]</strong>.</li>
             </ul>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
+            <h3>Distancia focal</h3>
+            <p>Defina la distancia focal de la lente para que la función DIS pueda funcionar correctamente. Solo cuando la opción <strong class="UI">[DIS]</strong> está definida en [Act.], el valor de [Distancia focal] se puede cambiar.</p>
+        </div>
+        
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Nitidez</h3>
             <p>Ajusta la nitidez general de una imagen.</p>
