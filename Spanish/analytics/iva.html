@@ -188,10 +188,10 @@
             <h3>Categor&iacute;as</h3>
             <p>Puede configurar la regla a aplicar para cada zona virtual.</p>
             <ul>
-                <li ng-if="!objectDetectionSupport"><strong class="UI">Allanamiento</strong>: Cuando un objeto se mueve dentro del &aacute;rea establecida, se crear&aacute; un evento.</li>
+                <li ng-if="IvaIntrusion && !objectDetectionSupport"><strong class="UI">Allanamiento</strong>: Cuando un objeto se mueve dentro del &aacute;rea establecida, se crear&aacute; un evento.</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">Allanamiento</strong>: Este evento se activa cuando la cámara detecta un objeto seleccionado en <strong class="UI">[Objeto]</strong> dentro del área definida.</li>
                 <ul>
-                    <li> <strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>: Configure la cantidad m&iacute;nima de tiempo para activar un evento despu&eacute;s de la detecci&oacute;n. Cuando el movimiento dura m&aacute;s que el tiempo configurado, el evento se activa. </li>
+                    <li ng-if="IvaIntrusion"><strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>: Configure la cantidad m&iacute;nima de tiempo para activar un evento despu&eacute;s de la detecci&oacute;n. Cuando el movimiento dura m&aacute;s que el tiempo configurado, el evento se activa. </li>
                 </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Entrada</strong>: Cuando un objeto entra en el &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">Entrada</strong>: Este evento se activa cuando la cámara detecta que un objeto seleccionado en <strong class="UI">[Objeto]</strong> ha entrado en el área definida.</li>

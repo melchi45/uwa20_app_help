@@ -207,6 +207,8 @@
                     <li>Check if the IP address type of NAS and the IP address type of the camera are identical. (e.g.: The default value of NAS and the camera is 255.255.255.0. If the IP address is 192.168.20.32, the NAS IP address should be between 192.168.20.1 and 192.168.20.255.)</li>
                     <li>For the NAS default folder, only one folder should be used in one camera, with no duplication.</li>
                     <li>Check if the device is recommended NAS equipment. Refer to ‘Recommended NAS specifications’ in the user's manual.</li>
+                    <li ng-if="SupportChannelExpansionFeature">Check if the SMB version of NAS is set to 3.0. </li>	
+
                 </ul>
                
 				<li>If <strong class="UI">[Overwrite]</strong> in the storage setup for NAS is not used and the free space for NAS is less than 20%, images will be recorded on the SD card.</li>

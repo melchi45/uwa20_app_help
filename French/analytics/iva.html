@@ -190,10 +190,10 @@
             <h3>Cat&eacute;gories</h3>
             <p>Vous pouvez d&eacute;finir la r&egrave;gle &agrave; appliquer pour chaque zone virtuelle.</p>
             <ul>
-                <li ng-if="!objectDetectionSupport"><strong class="UI">Intrusion</strong>&nbsp;: lorsqu&apos;un objet se d&eacute;placera dans la zone d&eacute;finie, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
+                <li ng-if="IvaIntrusion && !objectDetectionSupport"><strong class="UI">Intrusion</strong>&nbsp;: lorsqu&apos;un objet se d&eacute;placera dans la zone d&eacute;finie, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">Intrusion</strong>: L'événement se déclenche lorsque la caméra détecte l'objet sélectionné dans [Objet] à l'intérieur de la zone désignée.</li>
                 <ul>
-                    <li><strong class="UI">Dur&eacute;e minimum (s)</strong>&nbsp;:D&eacute;finit le temps minimum pour d&eacute;clencher un &eacute;v&eacute;nement apr&egrave;s la d&eacute;tection. Lorsque le mouvement dure plus longtemps que la p&eacute;riode d&eacute;finie, l&rsquo;&eacute;v&eacute;nement est d&eacute;clench&eacute;.</li>
+                    <li ng-if="IvaIntrusion"><strong class="UI">Dur&eacute;e minimum (s)</strong>&nbsp;:D&eacute;finit le temps minimum pour d&eacute;clencher un &eacute;v&eacute;nement apr&egrave;s la d&eacute;tection. Lorsque le mouvement dure plus longtemps que la p&eacute;riode d&eacute;finie, l&rsquo;&eacute;v&eacute;nement est d&eacute;clench&eacute;.</li>
                 </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Entrer</strong>&nbsp;: lorsqu&apos;un objet entrera dans la zone d&eacute;finie par l&apos;utilisateur, un &eacute;v&eacute;nement sera cr&eacute;&eacute;.</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">Entrer</strong> : L'événement se déclenche lorsque la caméra détecte l'entrée de l'objet sélectionné dans <strong class="UI">[Objet]</strong> dans la zone désignée.</li>

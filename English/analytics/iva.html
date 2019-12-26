@@ -193,10 +193,10 @@ pages equally.</p>
             <h3>Categories  </h3>
             <p>You can set the rule to apply for each virtual area.</p>
             <ul>
-                <li ng-if="!S1Features && !objectDetectionSupport"><strong class="UI">Intrusion</strong>: When an object moves inside the set area, an event will be created.</li>
-                <li ng-if="!S1Features && objectDetectionSupport"><strong class="UI">Intrusion</strong>: The event triggers when the camera detects the ojbect selected from <strong class="UI">[Ojbect]</strong> within the designated area.</li>
+                <li ng-if="IvaIntrusion && !S1Features && !objectDetectionSupport"><strong class="UI">Intrusion</strong>: When an object moves inside the set area, an event will be created.</li>
+                <li ng-if="IvaIntrusion && !S1Features && objectDetectionSupport"><strong class="UI">Intrusion</strong>: The event triggers when the camera detects the ojbect selected from <strong class="UI">[Ojbect]</strong> within the designated area.</li>
                 <ul>
-                        <li><strong class="UI">Minimum duration (s)</strong>: Sets the minimum amount of time to trigger an event after detection. When the movement lasts longer than the set period of time, the event is triggered..</li>
+                        <li ng-if="IvaIntrusion"><strong class="UI">Minimum duration (s)</strong>: Sets the minimum amount of time to trigger an event after detection. When the movement lasts longer than the set period of time, the event is triggered.</li>
                     </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Enter</strong>: When an object enters the area set by the user, an event will be created.</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">Enter</strong>: The event triggers when the camera detects the ojbect selected from <strong class="UI">[Ojbect]</strong> entering into the designated area.</li>

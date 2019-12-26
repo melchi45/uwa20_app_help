@@ -185,10 +185,10 @@
             <h3>カテゴリー</h3>
             <p>バーチャルエリア別に適用する規則を設定することができます。</p>
             <ul>
-                <li ng-if="!objectDetectionSupport"><strong class="UI">侵入する</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
+                <li ng-if="IvaIntrusion && !objectDetectionSupport"><strong class="UI">侵入する</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">侵入する</strong>：設定した領域内部に<strong class="UI">[対象物]</strong>で選択した対象物を検知すると、イベントを発生させます。</li>
                 <ul>
-                    <li><strong class="UI">最短時間(秒)</strong>：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます。 </li>
+                    <li ng-if="IvaIntrusion"><strong class="UI">最短時間(秒)</strong>：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます。 </li>
                 </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">進入</strong>：動く対象物がユーザーの指定したエリアの外部から内部に入る時、イベントを発生させます。</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">進入</strong>：<strong class="UI">[対象物]</strong>で選択した対象物がユーザーの指定した領域の外部から内部に入る時、イベントを発生させます。</li>

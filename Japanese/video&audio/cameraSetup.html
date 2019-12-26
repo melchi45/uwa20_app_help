@@ -606,12 +606,18 @@
                         <li>DIS設定を変更すると、映像画面がズームアウトされたりズームインされることがあります。変更された映像に合わせて映像を分析したり、統計データを蓄積するように分析と統計設定を変更してください。該当設定は<strong class="UI">[分析]</strong>メニューと<strong class="UI">[統計]</strong>メニューで変更することができます。</li>
                     </ul>
         </div>
-						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
+		<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>DIS設定を変更すると、映像画面がズームアウトされたりズームインされることがあります。変更された映像に合わせて映像を分析できるように<strong class="UI">[分析]</strong>メニューで分析設定を変更してください。</li>
             </ul>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
+            <h3>フォーカス距離</h3>
+            <p>DIS機能が正常に動作するようにレンズのフォーカス距離を設定します。<strong class="UI">[DIS]</strong>オプションを[有効]に設定した場合のみ、[フォーカス距離]値を変更できます。 </p>
+        </div>
+
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>シャープネス</h3>
             <p>映像の全判的なシャープを調整します。</p>

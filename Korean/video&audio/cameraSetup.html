@@ -268,6 +268,12 @@
             <p ng-if="HLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, HLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
             <p ng-if="!HLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
         </div>
+   <!-- <font color="red"><div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>[역광 보정]의 [WDR], [스페셜]의 [DIS]나 [LDC] 기능은 동시에 사용할 없습니다. 즉 세 기능 중 하나만 사용할 수 있습니다.</li>
+            </ul>
+        </div> </font> -->
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Back Light Compensation) 모드는 역광으로 어둡게 촬영된 영상 중 사용자가 특정 영역을 설정하여 선택 영역의 물체가 더욱 잘 보이도록 보정합니다. </p>
@@ -641,7 +647,10 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                     <ul>
                         <li>DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석하거나 통계 데이터를 축척할 수 있도록 분석과 통계 설정을 변경해 주십시오. 해당 설정은 <strong class="UI">[분석]</strong> 메뉴와 <strong class="UI">[통계]</strong> 메뉴에서 변경할 수 있습니다.  </li>
+                        <!-- <font color="red">
+                        <li>[역광 보정]의 [WDR], [스페셜]의 [DIS]나 [LDC] 기능은 동시에 사용할 없습니다. 즉 세 기능 중 하나만 사용할 수 있습니다.</li> </font> -->
                     </ul>
+
         </div>
 						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
@@ -649,6 +658,14 @@
                 <li>DIS 설정을 변경하면 영상 화면이 축소되거나 확대될 수 있습니다. 변경된 영상에 맞춰 영상을 분석할 수 있도록 <strong class="UI">[분석]</strong> 메뉴에서 분석 설정을 변경해 주십시오.   </li>
             </ul>
         </div>
+
+        <!--박스에만 있는 기능이며, 박스에는 다양한 렌즈가 장착될 수 있는데 DIS 성능이 나오기 위해서는 사용자가 본인이 사용하는 렌즈의 초점 거리를 수동(Manual)로 설정해야 합니다. 개발자 설명--> 
+        <!--고용수 책임님과 논의 후 DISFocalLength 코드 사용. PNB-A9000. 2019-12-26 -->         
+        <div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
+            <h3>초점 거리</h3>
+            <p>DIS기능이 정상적으로 작동하도록 렌즈 초점 거리를 설정합니다. <strong class="UI">[DIS]</strong> 옵션을 [사용함]으로 설정한 경우에만 [초점 거리] 값을 변경할 수 있습니다.  </p>
+        </div>
+
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>윤곽 조정</h3>
             <p>영상의 전반적인 윤곽을 조절합니다. </p>
@@ -705,6 +722,8 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[비디오 설정]</a></strong>에서 <strong class="UI">[프라이버시 영역 사용]</strong>을 선택한 경우, <strong class="UI">[LDC]</strong>와 <strong class="UI">[LDC 레벨] </strong>옵션이 모두 비활성화됩니다. 카메라 LDC 기능을 사용하려면, <strong class="UI">[프라이버시 영역 사용]</strong>을 선택 해제해야 합니다. </li>
+                <!-- <font color="red">
+                    <li>[역광 보정]의 [WDR], [스페셜]의 [DIS]나 [LDC] 기능은 동시에 사용할 없습니다. 즉 세 기능 중 하나만 사용할 수 있습니다.</li> </font> -->
             </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">

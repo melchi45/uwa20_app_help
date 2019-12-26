@@ -185,9 +185,11 @@
             <h3>카테고리  </h3>
             <p>가상 영역별로 적용할 규칙을 설정할 수 있습니다.</p>
             <ul>
-                <li ng-if="!S1Features && !objectDetectionSupport"><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
+                <!-- 김영호 책임님 가이드로 !S1Features && !objectDetectionSupport에서 IvaIntrusion 추가함. 2019-12-26  -->
+                <li ng-if="IvaIntrusion && !S1Features && !objectDetectionSupport"><strong class="UI">침입</strong>: 설정한 영역 내부에 움직이는 물체를 감지하면 이벤트를 발생시킵니다.  </li>
                 <li ng-if="!S1Features && objectDetectionSupport"><strong class="UI">침입</strong>: 설정한 영역 내부에 <strong class="UI">[개체]</strong>에서 선택한 개체를 감지하면 이벤트를 발생시킵니다.  </li>
-                <ul ng-if="!S1Features">
+                <!-- 김영호 책임님 가이드로 !S1Features에서 IvaIntrusion 추가함. 2019-12-26  -->
+                <ul ng-if="IvaIntrusion && !S1Features">
                     <li><strong class="UI">최소 관찰 시간(초)</strong>: 감지 후 이벤트를 발생하기 위한 최소 시간을 설정합니다. 설정한 시간보다 더 오래 움직임이 지속될 때 이벤트를 발생시킵니다.</li>
                 </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">들어감</strong>: 움직이는 물체가 사용자가 지정한 영역의 외부에서 내부로 들어올 때 이벤트를 발생시킵니다.</li>
