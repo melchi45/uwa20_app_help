@@ -257,8 +257,10 @@ TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('
 인 경우 HDMI 내용이 보여지면 됩니다. 
 기존 ng-if="VideoTypeOptions || UsbConfigEnable" -> ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable" 로 수정함. 2019-11-15 -->  
 
-<hr class="wn5-setup-hr" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
-<div class="wn5-setup-section" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<!-- 비디오 출력이 모두 노출되지 않아서 VideoTypeOptions ||을 추가함. TW 자체. 2019-12-27 -->
+
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>
     </div>
