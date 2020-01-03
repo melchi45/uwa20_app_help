@@ -5,8 +5,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !NotSupportMultiview">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !NotSupportMultiview">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
     </div>
@@ -41,7 +41,7 @@
             <p>Le nom de l&apos;application, la date d&apos;installation et la version sont affich&eacute;s.</p>
             <ul>
                 <li><strong class="UI">D&eacute;sinstaller</strong>&nbsp;: Supprime une application install&eacute;e.</li>
-                <li><strong class="UI">Aller App</strong>&nbsp;: Passe &agrave; l&apos;&eacute;cran fourni par chaque application.</li>
+                <li><strong class="UI">Application Go</strong>&nbsp;: Passe &agrave; l&apos;&eacute;cran fourni par chaque application.</li>
             </ul>  
         </div>
         <div class="wn5-setup-section-article-content">      

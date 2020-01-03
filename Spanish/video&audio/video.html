@@ -115,9 +115,9 @@
                     <h4>Configuraci&oacute;n de un &aacute;rea de privacidad</h4>
                     <ol>
                         
-                        <li>Seleccione <strong class="UI">[Habilitar &aacute;rea de privacidad]</strong>.</li>
+                        <li>Seleccione <strong class="UI">[Activar la zona de privacidad]</strong>.</li>
                         <li>Arrastre el rat&oacute;n sobre la pantalla de v&iacute;deo de la c&aacute;mara para configurar el &aacute;rea de privacidad.</li>
-                        <li>Ingrese el nombre del &aacute;rea de privacidad en <strong class="UI">[Nombre]</strong> debajo de <strong class="UI">[&Aacute;rea de privacidad]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
+                        <li>Ingrese el nombre del &aacute;rea de privacidad en <strong class="UI">[Nombre]</strong> debajo de <strong class="UI">[Área privada]</strong> y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
                         <li>La nueva &aacute;rea de privacidad se a&ntilde;adir&aacute; a la lista de &aacute;reas de privacidad.</li>
                         <li>Para aplicar un color al &aacute;rea de privacidad, vaya a <strong class="UI">[Color]</strong>, seleccione un color para pintar el &aacute;rea, y haga clic Clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El color seleccionado se aplicar&aacute; a cada &aacute;rea de privacidad.</li>
                     </ol>
@@ -266,7 +266,7 @@
                 <p>Para mostrar un vídeo de la cámara al usar el USB, haga clic en <strong class="UI">[Activar]</strong>.</p>
                 <p>Mediante el dongle de Wi-Fi y la aplicación para smartphone de Hanwha Techwin puede acceder a su cámara por Wi-Fi. Esto es útil cuando intenta instalar una cámara de red por primera vez o cambiar el campo de visión angular o la posición de su cámara, ya que puede ver la pantalla de la cámara en su smartphone sin preocuparse por tener un monitor adicional para comprobar la instalación.</p>
             </div>
-			<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
+			<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions && !VideooutputEnableHide">
                <h3>CVBS</h3> 
              <!--     <h3>Salida de v&iacute;deo</h3>  -->
                 <p>Para mostrar un video al conectar un cable a la terminal CVBS, haga clic en <strong class="UI">[Activar]</strong>.</p>
@@ -292,8 +292,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
-<div class="wn5-setup-section" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<hr class="wn5-setup-hr" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<div class="wn5-setup-section" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
 	<div class="wn5-setup-section-heading">
 		<h2>Salida de v&iacute;deo</h2>
     </div>
