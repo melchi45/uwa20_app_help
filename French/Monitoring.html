@@ -184,7 +184,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr nng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+                    <tr ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
                         <td width="235">
                             <p><a href="#channel">S&eacute;lectionner un canal</a></p>
                         </td>
@@ -239,7 +239,7 @@
             <p>Vous pouvez s&eacute;lectionner un canal qui affiche uniquement les vid&eacute;os du type de vue s&eacute;lectionn&eacute;.</p>
             <p>S&eacute;lectionnez un type de vue du canal dans [S&eacute;lectionner un canal] et cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-toolbar-setup"></span> (R&eacute;gl. vid&eacute;o) pour afficher une liste de profils qui prennent en charge le type de vue dans <strong class="UI">[Profil]</strong>.</p>
             <p>Allez &agrave; <strong class="UI">[R&eacute;gl.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Canal vid&eacute;o]</strong> pour ajouter ou modifier la liste de types de vue affich&eacute;e dans [S&eacute;lectionner un canal]</p>
-            <p>La vue par d&eacute;faut est [Affichage fisheye] et vous pouvez ajouter jusqu&rsquo;&agrave; 2&nbsp;canaux vid&eacute;o.</p>
+            <p>La vue par d&eacute;faut est [Fisheye view] et vous pouvez ajouter jusqu&rsquo;&agrave; 2&nbsp;canaux vid&eacute;o.</p>
             <p>&nbsp;</p>
         </td>
     </tr>
@@ -471,7 +471,7 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="settings"></a>Configuration vid&eacute;o</h2>
+        <h2><a class="wn5-online-help-link" name="settings"></a>Vid&eacute;o configuration</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -479,11 +479,11 @@
             <p>Le nom et les informations d&eacute;taill&eacute;es du profil vid&eacute;o appliqu&eacute; &agrave; l&apos;actuel &eacute;cran de direct seront affich&eacute;s. Lorsque vous appuyez sur le bouton d&eacute;roulant <strong class="UI">[Profil]</strong>, une liste de profils vid&eacute;o pouvant &ecirc;tre utilis&eacute;s dans la visionneuse web actuelle s&apos;affiche. Lorsque vous s&eacute;lectionnez le profil vid&eacute;o souhait&eacute;, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct. Vous pouvez v&eacute;rifier la r&eacute;solution, le codec, la vitesse d&apos;enregistrement et le d&eacute;bit binaire cible du profil vid&eacute;o s&eacute;lectionn&eacute;.</p><!--   <p ng-if="FisheyeLens">If you access the web viewer with Internet Explorer, the videos of profiles other than the MJPEG codec can be viewed only after installing the plugin. To install the plugin, click the plugin in the upper right corner.</p>  --></div>
         <div class="wn5-setup-section-article-content"  ng-if="IsAdmin && !spotTemperatureSupport">
             <h3>Affichage</h3>
-            <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; et le niveau des couleurs de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct.</p>
+            <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; et le niveau des couleurs de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct. Cliquez sur le bouton <span class="tui tui-wn5-return"></span> si vous souhaitez réinitialiser tous les paramètres d'affichage.</p>
         </div>
         <div class="wn5-setup-section-article-content"  ng-if="IsAdmin && spotTemperatureSupport">
             <h3>Affichage</h3>
-            <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct.</p>
+            <p>R&eacute;glez le contraste, la luminosit&eacute;, la nettet&eacute; de l&apos;&eacute;cran de direct. Lorsque vous validez le r&eacute;glage, celui-ci est imm&eacute;diatement appliqu&eacute; &agrave; l&apos;&eacute;cran de direct. Cliquez sur le bouton <span class="tui tui-wn5-return"></span> si vous souhaitez réinitialiser tous les paramètres d'affichage.</p>
         </div>
     </div>
 </div>
@@ -663,14 +663,16 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
                 <li>La fonction Pan peut &ecirc;tre utilis&eacute;e uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[Vid&eacute;o configuration]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
 
                 <!-- <li>La fonction Pa ne peut être utilisée que lorsque [Plafond] est sélectionné dans <strong class="UI">[Vid&eacute;o & Audio]</strong>&gt;<strong class="UI">[Vid&eacute;o configuration ]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li> -->
-                <li>Si le type de vue du profil est [Quadravision] ou [Q1], [Q2], [Q3], [Q4], <strong class="UI">[Pr&eacute;r&eacute;gl.]</strong> et <strong class="UI">[Groupe]</strong> sont pris en charge&nbsp;; si le type de vue est [Panorama simple] ou [Double panorama], <strong class="UI">[Pan]</strong> et <strong class="UI">[Accueil]</strong> sont pris en charge. Pour s&eacute;lectionner un type de vue, allez &agrave; <strong class="UI">[R&eacute;gl.]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type d&rsquo;affichage Fisheye]</strong> et s&eacute;lectionnez [Affichage de la correction de perspective]. Puis, s&eacute;lectionnez un type de vue dans <strong class="UI">[Vues]</strong>.</li> 
+                <li>Si le type de vue du profil est [Quadravision] ou [Q1], [Q2], [Q3], [Q4], <strong class="UI">[Préréglage]</strong> et <strong class="UI">[Groupe]</strong> sont pris en charge&nbsp;; si le type de vue est [Panorama simple] ou [Double panorama], <strong class="UI">[Pan]</strong> et <strong class="UI">[Acc]</strong> sont pris en charge. Pour s&eacute;lectionner un type de vue, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type d&rsquo;affichage Fisheye]</strong> et s&eacute;lectionnez [Affichage de la correction de perspective]. Puis, s&eacute;lectionnez un type de vue dans <strong class="UI">[Vues]</strong>.</li> 
             </ul>
         </div>
 
       <div class="wn5-setup-section-article-content">
-            <h3>Comment s&eacute;lectionner un &eacute;cran divis&eacute;</h3>
+            <h3>Quadrant</h3>
+            <!-- <h3>Comment s&eacute;lectionner un &eacute;cran divis&eacute;</h3> -->
             <p>S&eacute;lectionnez un num&eacute;ro pour une vid&eacute;o individuelle dans l&apos;affichage en mosa&iuml;que par 4. 1 correspond &agrave; la partie sup&eacute;rieure gauche de l&apos;affichage en mosa&iuml;que par 4, 2 correspond &agrave; la partie sup&eacute;rieure droite, 3 &agrave; la partie inf&eacute;rieure gauche et 4 &agrave; la partie inf&eacute;rieure droite.</p>
-            <p><span class="tui tui-wn5-ptz-handle"></span> Cliquez sur le bouton et faites le glisser afin d&rsquo;ajuster la vue de la cam&eacute;ra. Cliquez sur le bouton <span class="tui tui-wn5-ptz-plus"></span> de la barre de zoom pour faire un zoom avant sur l&apos;&eacute;cran, et sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour faire un zoom arri&egrave;re.</p>
+            <p>Cliquez sur le bouton <span class="tui tui-wn5-ptz-handle"></span> et faites le glisser afin d&rsquo;ajuster la vue de la cam&eacute;ra. Cliquez sur le bouton <span class="tui tui-wn5-ptz-plus"></span> de la barre de zoom pour faire un zoom avant sur l&apos;&eacute;cran, et sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour faire un zoom arri&egrave;re.</p>
+            <p>L'option [Quadrant] est activée lorsque <strong class="UI">[Type d'affichage Fisheye]</strong> est réglé sur [Affichage de la correction de perspective] dans <strong class="UI">[Configuration]</strong>> <strong class="UI">[Basic]</strong>> <strong class="UI">[Profil vidéo]</strong>> <strong class="UI">[Profil vidéo]</strong>> <strong class="UI">[Type d'affichage Fisheye]</strong> et <strong class="UI">[Vues]</strong> est défini. à [Quadravision].</p>
         </div> 
         <div class="wn5-setup-section-article-content">
             <h3>Pr&eacute;r&eacute;glage</h3>
@@ -680,7 +682,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         </div>
 		          <div class="wn5-setup-section-article-content">
                         <h3>Groupe</h3>
-            <p>S&eacute;lectionnez le num&eacute;ro de groupe souhait&eacute; dans la liste des groupes et cliquez sur le bouton <strong class="UI">[D&eacute;marrer]</strong> pour activer l&apos;op&eacute;ration de groupe. Pour arr&ecirc;ter l&apos;op&eacute;ration de groupe, cliquez sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. La liste des groupes peut &ecirc;tre ajout&eacute;e ou modifi&eacute;e dans l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Groupe]</strong>.</p>
+            <p>S&eacute;lectionnez le num&eacute;ro de groupe souhait&eacute; dans la liste des groupes et cliquez sur le bouton <strong class="UI">[Déb]</strong> pour activer l&apos;op&eacute;ration de groupe. Pour arr&ecirc;ter l&apos;op&eacute;ration de groupe, cliquez sur le bouton <strong class="UI">[Arr&ecirc;ter]</strong>. La liste des groupes peut &ecirc;tre ajout&eacute;e ou modifi&eacute;e dans l&apos;onglet <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ num&eacute;rique]</strong>&gt;<strong class="UI">[Groupe]</strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

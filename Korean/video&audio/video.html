@@ -273,7 +273,7 @@ TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('
 			<p>USB를 사용하여 카메라 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다.</p>
 			<p>와이파이 동글과 한화테크윈에서 제공하는 스마트폰 애플리케이션을 통해, 와이파이 통신으로 카메라에 접속할 수 있습니다. 네트워크 카메라 최초 설치시나 화각이나 위치 등을 변경하려는 경우 별도의 설치용 모니터가 없어도 스마트폰으로 카메라의 영상을 확인할 수 있어 유용합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
+        <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions && !VideooutputEnableHide">
             <h3>CVBS</h3>
 
 	<!--		<h3>비디오 출력</h3>  -->
@@ -299,8 +299,8 @@ TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('
 </div>  
 
 <!-- TNB-9000에서 이재준 수석님 코멘트에 따라 ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1" 추가.  2019-11-15 -->  
-<hr class="wn5-setup-hr" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
-<div class="wn5-setup-section" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<hr class="wn5-setup-hr" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<div class="wn5-setup-section" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>
     </div>
@@ -308,7 +308,7 @@ TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('
         <div class="wn5-setup-section-article-content">	
         <p>카메라 영상을 비디오로 출력할 방식을 선택합니다.</p>
 	</div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
             <h3>USB</h3>
 			<p>USB를 사용하여 카메라 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다.</p>
 			<p>와이파이 동글과 한화테크윈에서 제공하는 스마트폰 애플리케이션을 통해, 와이파이 통신으로 카메라에 접속할 수 있습니다. 네트워크 카메라 최초 설치시나 화각이나 위치 등을 변경하려는 경우 별도의 설치용 모니터가 없어도 스마트폰으로 카메라의 영상을 확인할 수 있어 유용합니다. </p>

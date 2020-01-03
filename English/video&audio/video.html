@@ -271,7 +271,7 @@
                 <p>To display a camera image by using the USB, click <strong class="UI">[Enable]</strong>.</p>
                 <p>Using the Wi-Fi dongle and smartphone app from Hanwha Techwin, you can access your camera over Wi-Fi. This is useful when you are trying to install a network camera for the first time or change the angular field of view or position of your camera, since you can see the camera screen on your smartphone without the hassle of getting an additional monitor to check the installation.</p>
             </div>
-		    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
+		    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions && !VideooutputEnableHide">
                  <h3>CVBS</h3>
              <!--   <h3>Video output</h3> -->
                 <p>To display a video by connecting a cable to the CVBS terminal, click <strong class="UI">[Enable]</strong>.</p>
@@ -297,8 +297,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
-<div class="wn5-setup-section" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<hr class="wn5-setup-hr" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<div class="wn5-setup-section" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
     <div class="wn5-setup-section-heading">
         <h2>Video output</h2>
     </div>
@@ -306,7 +306,7 @@
         <div class="wn5-setup-section-article-content">	
         <p>You can select the method of displaying camera video output.</p>
 	</div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
             <h3>USB</h3>
 			<p>To display a camera image by using the USB, click <strong class="UI">[Enable]</strong>.</p>
             <p>Using the Wi-Fi dongle and smartphone app from Hanwha Techwin, you can access your camera over Wi-Fi. This is useful when you are trying to install a network camera for the first time or change the angular field of view or position of your camera, since you can see the camera screen on your smartphone without the hassle of getting an additional monitor to check the installation.</p>

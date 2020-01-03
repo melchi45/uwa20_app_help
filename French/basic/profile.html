@@ -11,7 +11,7 @@
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
                     <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails du profil vid&eacute;o pour chaque canal.</p>
-                    <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2.</p>
+                    <p ng-if="objectDetectionSupport">La transmission Direct s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2.</p>
                     <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme “&nbsp;PTZ&nbsp;”.</p>
                     <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
 
@@ -202,18 +202,18 @@
                     <h3>Type d&apos;affichage Fisheye</h3>
                     <p>S&eacute;lectionne un type de vid&eacute;o de la cam&eacute;ra fisheye &agrave; afficher dans le profil.</p>
                     <ul>
-                        <li>Affichage Fisheye&nbsp;: Affiche la vid&eacute;o de la cam&eacute;ra fisheye sans correction.</li>
-                        <li>Vue redress&eacute;e&nbsp;: Corrige la vid&eacute;o &agrave; 360° captur&eacute;e par la cam&eacute;ra fisheye pour s&apos;adapter &agrave; l&rsquo;affichage. Le type de vid&eacute;o redress&eacute;e peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Affichage]</strong>.</li>
+                        <li>Fisheye view&nbsp;: Affiche la vid&eacute;o de la cam&eacute;ra fisheye sans correction.</li>
+                        <li>Affichage de la correction de perspective&nbsp;: Corrige la vid&eacute;o &agrave; 360° captur&eacute;e par la cam&eacute;ra fisheye pour s&apos;adapter &agrave; l&rsquo;affichage. Le type de vid&eacute;o redress&eacute;e peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Vues]</strong>.</li>
                     </ul>
                 </div>
                 <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
-                    <h3>Affichage</h3>
+                    <h3>Vues</h3>
                     <p>S&eacute;lectionne le type de vid&eacute;o redress&eacute;e.</p>
-                    <p>Il est activ&eacute; lorsque <strong class="UI">[Vue redress&eacute;e]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong>.</p>
+                    <p>Il est activ&eacute; lorsque <strong class="UI">[Affichage de la correction de perspective]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong>.</p>
                     <ul>
                         <li>Panorama simple&nbsp;: lisse une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama mural.    </li>
                         <li>Quadravision&nbsp;:lisse 4 &eacute;crans appropri&eacute;s &agrave; la vue humaine et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou le zoom avant/arri&egrave;re.  </li>
-                        <li>Double panorama&nbsp;: lisse une vid&eacute;o &agrave; 360˚  et l&rsquo;affiche sous forme de panorama partag&eacute; en haut/bas. L&apos;option Double panorama appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong> &gt; <strong class="UI">[Configuration vid&eacute;o]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
+                        <li>Double panorama&nbsp;: lisse une vid&eacute;o &agrave; 360˚  et l&rsquo;affiche sous forme de panorama partag&eacute; en haut/bas. L&apos;option Double panorama appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Video & Audio]</strong> &gt; <strong class="UI">[Vid&eacute;o configuration]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
                         <li>Q1&nbsp;: Affiche la vue en haut &agrave; gauche dans la quadravision.</li>
                         <li>Q2&nbsp;: Affiche la vue en haut &agrave; droite dans la quadravision.</li>
                         <li>Q3&nbsp;: Affiche la vue en bas &agrave; gauche dans la quadravision.</li>
@@ -228,17 +228,18 @@
             <p ng-if="SupportAutoImageAlignment">Aussi, selon le canal sélectionné dans <a href="#channel">Sélectionner un canal</a>, le type de profil pouvant être configuré peut différer. Par exemple, « Enregistrer un profil » peut être configuré seulement si vous avez sélectionné CAN 1.</p>
             <ul>
                 <li><strong class="UI">Profil par d&eacute;faut</strong>&nbsp;: C&apos;est le profil par d&eacute;faut appliqu&eacute; pour diffuser une image de cam&eacute;ra en direct. «&nbsp;Default&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
-                <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. «&nbsp;&Eacute;v&eacute;nement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
-                <li><strong class="UI">Enregistrer profil</strong>&nbsp;: Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Enregistrement&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
+                <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. « Event » s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
+                <li><strong class="UI">Enregistrer profil</strong>&nbsp;: Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
                 <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li>
                 <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique.</li> -->
                 <li><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;:Il s&rsquo;agit d&rsquo;un profil appliqu&eacute; pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265]. </li>
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
-                <h3>Sensibilit&eacute;</h3>
-                <p>Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</p>
+
+        <div class="wn5-online-help-info" ng-if="FisheyeLens">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <p>Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Affichage de la correction de perspective]</strong> dans <strong class="UI">[Type d'affichage Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Vues]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</p>
 
             </div>
 
@@ -253,16 +254,16 @@
             <p>Le mode ATC (Auto Transmit Control) ajuste la quantit&eacute; de donn&eacute;es envoy&eacute;es, en modifiant les propri&eacute;t&eacute;s de l&apos;image en fonction des changements de bande passante du r&eacute;seau. La m&eacute;thode d&apos;ajustement de la quantit&eacute; envoy&eacute;e varie en fonction du mode ATC.</p>
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: Une quantit&eacute; fixe de donn&eacute;es envoy&eacute;es est maintenue m&ecirc;me si la bande passante du r&eacute;seau change.</li>
-                <li><strong class="UI">Activer - Contr&ocirc;le de fr&eacute;quence d&rsquo;image</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant la vitesse d&apos;enregistrement.</li>
-                <li><strong class="UI">Activer - Contr&ocirc;ler la compression</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant le taux de compression des donn&eacute;es. Une modification du taux de compression peut d&eacute;grader la qualit&eacute; de l&rsquo;image.</li>
-                <li><strong class="UI">Activer - &Eacute;v&eacute;nement (MD)</strong>&nbsp;: Ce mode peut &ecirc;tre utilis&eacute; lorsqu&rsquo;un <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">&eacute;v&eacute;nement de d&eacute;tection de mouvement</a> est d&eacute;fini. Lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; et que la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es en modifiant la vitesse d&apos;enregistrement. Si aucun mouvement n&apos;est d&eacute;tect&eacute;, r&eacute;duisez l&apos;utilisation de la bande passante en produisant les images minimales.</li>
+                <li><strong class="UI">Activer - Contrôle de fréquence d'image</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant la vitesse d&apos;enregistrement.</li>
+                <li><strong class="UI">Active - Contr. compression</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant le taux de compression des donn&eacute;es. Une modification du taux de compression peut d&eacute;grader la qualit&eacute; de l&rsquo;image.</li>
+                <li><strong class="UI">Active - Événement(MD)</strong>&nbsp;: Ce mode peut &ecirc;tre utilis&eacute; lorsqu&rsquo;un <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">&eacute;v&eacute;nement de d&eacute;tection de mouvement</a> est d&eacute;fini. Lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; et que la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es en modifiant la vitesse d&apos;enregistrement. Si aucun mouvement n&apos;est d&eacute;tect&eacute;, r&eacute;duisez l&apos;utilisation de la bande passante en produisant les images minimales.</li>
             </ul>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Sensibilit&eacute;</h3>
             <p>Ajuster la vitesse de r&eacute;flexion des changements de bande passante r&eacute;seau. La vitesse de r&eacute;flexion est la plus rapide lorsque la sensibilit&eacute; ATC est tr&egrave;s &eacute;lev&eacute;e, tandis que la vitesse de r&eacute;flexion est la plus lente lorsqu&apos;elle est tr&egrave;s faible.</p>
-            <p>La sensibilit&eacute; ATC est activ&eacute;e uniquement lorsque <strong class="UI">[Activer - Contr&ocirc;le de fr&eacute;quence d&apos;image]</strong> ou <strong class="UI">[Activer - Contr&ocirc;le de la compression]</strong> est s&eacute;lectionn&eacute; pour le <strong class="UI">[Mode ATC]</strong>.</p>
+            <p>La sensibilit&eacute; ATC est activ&eacute;e uniquement lorsque <strong class="UI">[Activer - Contrôle de fréquence d'image]</strong> ou <strong class="UI">[Activer - Contr&ocirc;ler la compression]</strong> est s&eacute;lectionn&eacute; pour le <strong class="UI">[Mode ATC]</strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">

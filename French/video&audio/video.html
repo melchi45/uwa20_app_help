@@ -267,7 +267,7 @@
                 <p>Pour afficher une vidéo de caméra à l’aide d’un USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
                 <p>En utilisant le dongle Wi-Fi et l’application pour smartphone de Hanwha Techwin, vous pouvez accéder à votre caméra via Wi-Fi. C’est utile lorsque vous essayez d’installer une caméra réseau pour la première fois ou de modifier le champ de vision angulaire ou la position de votre caméra, car vous pouvez voir l’écran de la caméra sur votre smartphone sans avoir à vous procurer un moniteur supplémentaire pour vérifier l’installation.</p>
             </div>
-			            <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
+			<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions && !VideooutputEnableHide">
                 <h3>CVBS</h3>
              <!--    <h3>Sortie vid&eacute;o</h3>  -->
                 <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
@@ -293,8 +293,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
-<div class="wn5-setup-section" ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<hr class="wn5-setup-hr" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
+<div class="wn5-setup-section" ng-if ="VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
     </div>
