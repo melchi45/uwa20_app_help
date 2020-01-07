@@ -205,7 +205,7 @@
                       <p>Selecciona el tipo de vídeo de la cámara ojo de pez que se mostrará en el perfil.</p>
                       <ul>
                           <li>Vista de ojo de pez: Muestra el vídeo de cámara de ojo de pez sin corrección.</li>
-                          <li>Vista corrección esférica: Corrige el vídeo de 360​​° capturado por la cámara ojo de pez para ajustarse a la vista. El tipo de vídeo de corrección se puede seleccionar desde la opción <strong class="UI">[Vista]</strong> mostrada cuando se selecciona 'Vista corrección esférica'. </li>
+                          <li>Vista corrección esférica: Corrige el vídeo de 360​​° capturado por la cámara ojo de pez para ajustarse a la vista. El tipo de vídeo de corrección se puede seleccionar desde la opción <strong class="UI">[Vistas]</strong> mostrada cuando se selecciona 'Vista corrección esférica'. </li>
                       </ul>
                   </div>
                   <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
@@ -214,7 +214,7 @@
                       <p>Esto se activa cuando se selecciona <strong class="UI">[Vista corrección esférica]</strong> en <strong class="UI">[Tipo de vista ojo de pez]</strong>.</p>
                       <ul>
                           <li>Panorámica única:  Corrige un video de 360˚ y lo muestra como una panor&aacute;mica de pared.  </li>
-                          <li>Panorámica doble: Corrige un video de 360˚ y lo muestra como una panor&aacute;mica dividida/hacia abajo. La opción Panorama doble solo aparece cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[Vídeo y audio]</strong> > <strong class="UI">[Configuración de vídeo]</strong> > <strong class="UI">[Rotación de vídeo]</strong> > <strong class="UI">[Modo de montaje de la cámara]</strong>.</li>
+                          <li>Panorámica doble: Corrige un video de 360˚ y lo muestra como una panor&aacute;mica dividida/hacia abajo. La opción Panorama doble solo aparece cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[Vídeo y audio]</strong> > <strong class="UI">[Conf. de vídeo]</strong> > <strong class="UI">[Rotación de vídeo]</strong> > <strong class="UI">[Modo de montaje de la cámara]</strong>.</li>
                           <li>Vista de cuadrante: Corrige 4 pantallas apropiadas para la vista humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.  </li>
                           <li>Q1: Muestra la vista superior izquierda de la división en 4.   </li>
                           <li>Q2: Muestra la vista superior derecha de la división en 4. </li>
@@ -229,11 +229,11 @@
             <p>Seleccione un tipo de perfil para aplicar. El tipo de perfil seleccionado se muestra en la columna <strong class="UI">[Tipo]</strong> de la lista de perfiles. Los elementos de ajuste pueden variar seg&uacute;n el tipo de c&oacute;dec seleccionado.</p>
             <p ng-if="SupportAutoImageAlignment">Además, dependiendo del canal que haya seleccionado en <a href="#channel">Seleccionar canal</a>, el tipo de perfil a configurar puede variar. Por ejemplo, el “Perfil de grabación” solo se puede configurar si ha seleccionado Canal1.</p>
             <ul>
-                <li><strong class="UI">Perfil predet.</strong>: Este es el perfil predeterminado que se aplica para la transmisi&oacute;n de una imagen de la c&aacute;mara en vivo. &apos;Predeterminado&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
-                <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de v&iacute;deo se utiliza para el env&iacute;o de la pantalla capturada de una imagen cuando se crea un evento. &apos;Evento&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil E-mail/FTP aparecer&aacute; s&oacute;lo cuando MJPEG se establezca para el c&oacute;dec.</li>
-                <li ng-if="Recording && NAS"><strong class="UI">Perfil de grabaci&oacute;n</strong>: Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD o NAS. &apos;Grabar&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">Perfil de grabaci&oacute;n</strong>: Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD. &apos;Grabar&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
-                <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">Perfil PTZ digital</strong>: Este perfil se utiliza para controlar los movimientos PTZ. &apos;DPTZ&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil PTZ digital aparecer&aacute; s&oacute;lo cuando H.264 o H.265 se establezca para el c&oacute;dec.</li>
+                <li><strong class="UI">Perfil predet.</strong>: Este es el perfil predeterminado que se aplica para la transmisi&oacute;n de una imagen de la c&aacute;mara en vivo. «Predeterminado» se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
+                <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de v&iacute;deo se utiliza para el env&iacute;o de la pantalla capturada de una imagen cuando se crea un evento. «Evento» se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil E-mail/FTP aparecer&aacute; s&oacute;lo cuando MJPEG se establezca para el c&oacute;dec.</li>
+                <li ng-if="Recording && NAS"><strong class="UI">Perfil de grabaci&oacute;n</strong>: Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD o NAS. «Grabar» se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">Perfil de grabaci&oacute;n</strong>: Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD. «Grabar» se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
+                <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">Perfil PTZ digital</strong>: Este perfil se utiliza para controlar los movimientos PTZ. «DPTZ» se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles. La opci&oacute;n de perfil PTZ digital aparecer&aacute; s&oacute;lo cuando H.264 o H.265 se establezca para el c&oacute;dec.</li>
                 <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">Para la cámara de ojo de pez, al agregar un nuevo perfil, seleccione <strong class="UI">[Vista de corrección de distorsión]</strong> en <strong class="UI">[Tipo de vista de ojo de pez]</strong> y seleccione <strong class="UI">[Vista de división en 4]</strong> en <strong class="UI">[Vista]</strong> para registrar automáticamente el perfil como un perfil PTZ digital.
                 </li> -->
                 <li><strong class="UI">Perfil de bloqueo del cuadro</strong>: Este es un perfil aplicado para garantizar un determinado nivel de velocidad de cuadro del video. Esta opci&oacute;n de 'perfil de velocidad de cuadro fijo' solo aparece cuando se configura <strong class="UI">[Codec]</strong> a [H.264] o [H.265]. </li>
@@ -243,7 +243,7 @@
         <div class="wn5-online-help-info" ng-if="FisheyeLens">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
-                    <li>Para la cámara de ojo de pez, al agregar un nuevo perfil, seleccione <strong class="UI">[Vista corrección esférica]</strong> en <strong class="UI">[Tipo de vista de ojo de pez]</strong> y seleccione <strong class="UI">[Vista de división en 4]</strong> en <strong class="UI">[Vista]</strong> para registrar automáticamente el perfil como un perfil PTZ digital. &apos;DPTZ&apos; se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
+                    <li>Para la cámara de ojo de pez, al agregar un nuevo perfil, seleccione <strong class="UI">[Vista corrección esférica]</strong> en <strong class="UI">[Tipo de vista de ojo de pez]</strong> y seleccione <strong class="UI">[Vista de cuadrante]</strong> en <strong class="UI">[Vistas]</strong> para registrar automáticamente el perfil como un perfil PTZ digital. «DPTZ» se muestra en <strong class="UI">[Tipo]</strong> de la lista de perfiles.</li>
                 </ul>
         </div>
 

@@ -2,11 +2,11 @@
 
 <div class="wn5-setup-section">
 	<p>Puede configurar las vistas de c&aacute;mara para moverse despu&eacute;s de que se ejecute el zoom digital, en lugar de hacer que cambie la vista de la c&aacute;mara f&iacute;sicamente moviendo la c&aacute;mara hacia arriba y hacia abajo (inclinaci&oacute;n) o hacia la izquierda y la derecha (panor&aacute;mica). Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.  </p>
-    <div class="wn5-online-help-info" ng-if="!objectDetectionSupport">
+    <div class="wn5-online-help-info" ng-if="!objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
     <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
     <ul>
         
-		<li ng-if="!SupportChannelExpansionFeature && !SupportAutoImageAlignment">Se debe seleccionar <strong class="UI">[Perfil PTZ Digital]</strong> desde <strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Tipo de perfil]</strong></a> con el fin de establecer PTZ digital. </li>
+		<li>Se debe seleccionar <strong class="UI">[Perfil PTZ Digital]</strong> desde <strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Tipo de perfil]</strong></a> con el fin de establecer PTZ digital. </li>
 		<!-- <li>El campo de visi&oacute;n angular de Vista en vivo 3M es m&aacute;s amplio que el modificado en la pantalla de vista previa.</li> -->
        <!--  <li ng-if="FixedProfileCodecChange">Si est&aacute; conectado al visor web a trav&eacute;s de Internet Explorer, la funci&oacute;n PTZ digital, s&oacute;lo se puede utilizar despu&eacute;s de la instalaci&oacute;n de un plugin. Para instalar el plugin, haga clic en el bot&oacute;n de plugin en la parte superior derecha de la pantalla <strong class="UI">[En vivo]</strong> o en la pantalla <strong class="UI">[Grabar reproducci&oacute;n]</strong>. </li>
 		<li ng-if="FixedProfileCodecChange">Despu&eacute;s de la instalaci&oacute;n del plugin, se puede utilizar la funci&oacute;n PTZ digital sin restricci&oacute;n s&oacute;lo cuando la resoluci&oacute;n del navegador web sea 1024 o superior.</li> -->
