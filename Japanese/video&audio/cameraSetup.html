@@ -96,7 +96,7 @@
         <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
-                    <li>センサーモードのオプションを変更すると、[カメラ設定]で設定したすべての値が初期化されます。</li>
+                    <li ng-if="!SupportAutoImageAlignment">センサーモードのオプションを変更すると、[カメラ設定]で設定したすべての値が初期化されます。</li>
                     <li>センサーモード値は、画像プリセットごとにそれぞれ異なる設定ができません。フレームレートは、すべての画像プリセットに等しく適用されます。</li>
                     <li>センサーモードで設定したフレーム数に応じて、<strong class="UI">[Basic]</strong>＆gt;<strong class="UI">[ビデオprofile]</strong>＆gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。.</li>
                 </ul>

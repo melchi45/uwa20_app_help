@@ -13,8 +13,9 @@
 </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment">
+<!-- PNM-9030V에서 컨텐츠 보여야 하므로 TW 자체 수정. MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment -> MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment) 2020-01-16 -->
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
             <div class="wn5-setup-section-heading">
                 <h2>채널 선택</h2>
             </div>

@@ -95,7 +95,8 @@
        <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
-                    <li>센서 모드 옵션을 변경하면 [카메라 설정]에서 설정한 모든 값이 초기화됩니다.</li>
+                    <!-- PNM-9030V에서는 센서 모드를 변경해도 카메라 설정 값이 초기화되지 않으므로 분기 처리. TW 자체. 일분 초기화되는 모델이 있으므로 (예전 모델) 컨텐츠 분기 처리. 2020-01-16.  -->
+                    <li ng-if="!SupportAutoImageAlignment">센서 모드 옵션을 변경하면 [카메라 설정]에서 설정한 모든 값이 초기화됩니다.</li>
                     <li>센서 모드 값은 이미지 프리셋 별로 각각 다르게 설정할 수 없습니다. 프레임 레이트는 모든 이미지 프리셋에 동일하게 적용됩니다. </li>
                     <li>센서 모드에서 설정한 프레임 수에 따라 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프레임 레이트]</strong>의 최댓값이 달라집니다.</li>
                 </ul>

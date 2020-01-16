@@ -10,8 +10,9 @@
         </div>
         <div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
-    <p>Tras seleccionar un canal de cámara, puede definir la configuración detallada de la detección de choque de cada canal. </p>
-    <p>El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Clasificación de sonidos] solo puede configurarse en el canal 1.</p>
+            <p>Tras seleccionar un canal de cámara, puede definir la configuración detallada de la detección de choque de cada canal. </p>
+            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Clasificación de sonidos] solo puede configurarse en el canal 1.</p>
+            <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado. [Clasificación de sonidos] solo puede configurarse en el canal 1.</p>
             </div>
         </div>
     </div> 

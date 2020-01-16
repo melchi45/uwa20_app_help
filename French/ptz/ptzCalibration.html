@@ -1,0 +1,81 @@
+﻿
+<h1 class="wn5-setup-main-title">&Eacute;talonnage</h1>
+
+<div class="wn5-setup-section">
+    <p>Mappez la vid&eacute;o de la cam&eacute;ra fixe et la position de la cam&eacute;ra PTZ pour associer l&rsquo;&eacute;cran de la cam&eacute;ra fixe et l&rsquo;emplacement de la cam&eacute;ra PTZ.</p>
+    <p>&Agrave; partir du moment o&ugrave; vous avez fait correspondre les coordonn&eacute;es d&rsquo;&eacute;cran de chaque canal de la cam&eacute;ra fixe avec la position panoramique/inclinaison de la cam&eacute;ra PTZ, si vous s&eacute;lectionnez une zone &agrave; surveiller, la mise au point de la cam&eacute;ra PTZ se d&eacute;placera sans probl&egrave;me vers cette zone. De plus, si un &eacute;v&eacute;nement se produit en dehors de la zone d&rsquo;int&eacute;r&ecirc;t de la cam&eacute;ra fixe, vous pouvez r&eacute;gler l&rsquo;&eacute;cran de la cam&eacute;ra PTZ afin qu&rsquo;il bascule automatiquement sur la zone d&rsquo;int&eacute;r&ecirc;t.</p>
+</div>
+		<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>S&eacute;lectionner un canal</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez, apr&egrave;s la s&eacute;lection des canaux de la cam&eacute;ra fixe, effectuer l&rsquo;&eacute;talonnage des coordonn&eacute;es afin d&rsquo;associer chaque canal &agrave; la cam&eacute;ra PTZ.</p>
+            <p>Pour chaque canal, vous devez sp&eacute;cifier quatre points. Pour chacun des canaux &eacute;talonn&eacute;s, une coche verte sera affich&eacute;e au-dessus de son num&eacute;ro de canal. Pour chacun des canaux non &eacute;talonn&eacute;s, un point orange sera affich&eacute; au-dessus de son num&eacute;ro de canal.</p>
+        </div>
+            </div>
+</div>
+		
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Point d&rsquo;&eacute;talonnage</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>L&rsquo;&eacute;cran d&rsquo;aper&ccedil;u vid&eacute;o de la cam&eacute;ra fixe appara&icirc;t dans la fen&ecirc;tre <strong class="UI">[Affichage fixe]</strong>, tandis que l&rsquo;&eacute;cran d&rsquo;aper&ccedil;u vid&eacute;o de la cam&eacute;ra PTZ s&rsquo;affiche dans la fen&ecirc;tre <strong class="UI">[PTZ]</strong>.</p>
+            <p>Pour chaque canal, vous devez r&eacute;gler quatre points pour faire correspondre l&rsquo;affichage de la cam&eacute;ra fixe avec celui de la cam&eacute;ra PTZ.</p>
+        </div>
+        <div class="wn5-online-help-action">
+    	   <h4>R&eacute;glage du point d&rsquo;&eacute;talonnage</h4>
+            <ol>
+                <li>S&eacute;lectionnez le canal voulu dans <strong class="UI">[S&eacute;lectionner un canal]</strong>.</li>
+                <li>Cliquez sur la position voulue dans la fen&ecirc;tre <strong class="UI">[Affichage fixe]</strong>.</li>
+                <li><a href="#ptzcontrol">R&eacute;glez PTZ</a> afin que le m&ecirc;me point s&eacute;lectionn&eacute; dans la fen&ecirc;tre <strong class="UI">[Affichage fixe] </strong>soit plac&eacute; sur la marque + dans la fen&ecirc;tre <strong class="UI">[PTZ</strong><strong class="UI">]</strong>.</li>
+                <li>Cliquez sur le bouton <strong class="UI">[Enregistrer le point d&rsquo;&eacute;talonnage]</strong>. Vous verrez alors une coche dans le cercle sous <strong class="UI">[Point d&rsquo;&eacute;talonnage]</strong>.</li>
+                <li>R&eacute;p&eacute;tez les &eacute;tapes de 2 &agrave; 4. D&egrave;s que vous avez r&eacute;gl&eacute; les quatre points, une coche verte appara&icirc;t au-dessus du num&eacute;ro de canal s&eacute;lectionn&eacute;.</li>
+            </ol>
+    	</div>
+				
+        <div class="wn5-online-help-action">
+            <h4>R&eacute;initialisation de l&rsquo;&eacute;talonnage</h4>
+            <ul>
+                <li>Si vous cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>, tous les points d&rsquo;&eacute;talonnage r&eacute;gl&eacute;s dans le canal seront supprim&eacute;s.</li>
+            </ul>
+        </div>
+            <div class="wn5-online-help-action">
+                <h4><a name="ptzcontrol"></a>R&eacute;glage du PTZ</h4>
+                <ul>
+                    <li>Dans la fen&ecirc;tre <strong class="UI">[PTZ</strong><strong class="UI">]</strong></li>
+                    <ul>
+                        <li>Faites glisser votre souris pour r&eacute;gler le panoramique/inclinaison de la cam&eacute;ra.</li>
+                        <li>Utilisez la molette de la souris pour faire un zoom avant et arri&egrave;re.</li>
+                    </ul>
+                    <li>Dans le panneau Jog (&agrave;-coups) de PTZ</li>
+                    <ul>
+                        <li>Lorsque vous faites glisser <span class="tui tui-wn5-ptz-handle"></span> l&rsquo;ic&ocirc;ne avec la souris, la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison.</li>
+                        <li>S&eacute;lectionnez un grossissement d&rsquo;image en r&eacute;glant la barre &agrave; curseur de zoom ou en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span> pour agrandir l&rsquo;&eacute;cran ou en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span> pour r&eacute;duire l&rsquo;&eacute;cran.</li>
+                        <li>Rapprochez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-ptz-far"></span>.</li>
+                        <li>Pour ajuster la mise au point de la cam&eacute;ra pour une prise, cliquez sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-simple-focus"></span>.</li>
+                    </ul>
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+				
+                    <li>Pour un bon &eacute;talonnage, les conditions suivantes doivent &ecirc;tre r&eacute;unies&nbsp;:</li>
+                    <ul>
+                        <li>La cam&eacute;ra doit &ecirc;tre install&eacute;e horizontalement.</li>
+                        <li>Les &eacute;crans de toutes les cam&eacute;ras doivent &ecirc;tre parfaitement de niveau.</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">

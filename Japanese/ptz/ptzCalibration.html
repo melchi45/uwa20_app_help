@@ -1,0 +1,81 @@
+﻿
+<h1 class="wn5-setup-main-title">校正</h1>
+
+<div class="wn5-setup-section">
+    <p>固定カメラの画面とPTZカメラの座標系が同期するように、固定カメラ映像とPTZカメラの位置をマッピングします。</p>
+    <p>固定カメラのチャンネル別に画面の座標をPTZカメラのパン、チルト位置を合わせると、固定カメラの監視エリアを選択するとき、PTZカメラが該当エリアへ簡単に移動します。また、カメラ含有エリアでイベントが発生した場合、自動にPTZカメラの画面が該当含有エリアに移動するように応用できます。</p>
+</div>
+		<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+            <div class="wn5-setup-section-heading">
+                <h2>チャンネル選択</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>固定カメラのチャンネルを選択した後、各チャンネル別にPTZカメラと同期するように座標校正を行うことができます。</p>
+            <p>各チャンネル別に4カ所の位置を指定する必要があります。校正を完了したチャンネルは、チャンネル番号の上に緑色チェックが表示されます。校正を行ってないチャンネルは、チャンネル番号の上に行わないオレンジ色の点が表示されます。</p>
+        </div>
+            </div>
+</div>
+		
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>校正点</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[固定ビュー]</strong>では、固定カメラ映像のプレビュー画面が表示され、<strong class="UI">[PTZ]</strong>では、PTZカメラ映像のプレビュー画面が表示されます。</p>
+            <p>各チャンネル別に固定カメラのビューとPTZカメラのビューがマッチングするように、4カ所のポイントを指定する必要があります。</p>
+        </div>
+        <div class="wn5-online-help-action">
+    	   <h4>校正点設定</h4>
+            <ol>
+                <li><strong class="UI">[チャンネル選択]</strong>でチャンネルを選択します。</li>
+                <li><strong class="UI">[固定ビュー]</strong>で位置をクリックします。</li>
+                <li><strong class="UI">[固定ビュー]</strong>で選択した同一地点が<strong class="UI">[PTZ</strong><strong class="UI">]</strong>の「+」表示に位置するように<a href="#ptzcontrol">PTZを調整</a>します。</li>
+                <li><strong class="UI">[校正点保存]</strong>ボタンをクリックします。<strong class="UI">[校正点]</strong>下にある丸にチェックが表示されます。</li>
+                <li>2~4番の段階を繰り返します。合計4カ所の位置設定を完了すると、選択したチャンネル番号の上に緑色チェックが表示されます。</li>
+            </ol>
+    	</div>
+				
+        <div class="wn5-online-help-action">
+            <h4>校正初期化</h4>
+            <ul>
+                <li><strong class="UI">[初期化]</strong>ボタンをクリックすると、該当チャンネルで設定した校正点がすべて除去されます。</li>
+            </ul>
+        </div>
+            <div class="wn5-online-help-action">
+                <h4><a name="ptzcontrol"></a>PTZ調整</h4>
+                <ul>
+                    <li><strong class="UI">[PTZ</strong><strong class="UI">]</strong>で</li>
+                    <ul>
+                        <li>マウスをドラッグしてカメラのパンとチルトを調整します。</li>
+                        <li>マウスホイールを用いて画面をズームインしたりズームアウトします。</li>
+                    </ul>
+                    <li>PTZジョグパネルで</li>
+                    <ul>
+                        <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+                        <li>ズームバーを調整して映像の倍率を調整します。もしくは<span class="tui tui-wn5-ptz-plus"></span>アイコンをクリックして画面をズームインしたり、<span class="tui tui-wn5-ptz-minus"></span>アイコンをクリックして画面をズームアウトして映像の倍率を選択します。</li>
+                        <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                        <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
+                    </ul>
+                </ul>
+            </div>
+			
+            <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+				
+                    <li>下記の条件で正常に校正が行われます。</li>
+                    <ul>
+                        <li>カメラセットは、水平にマウントされる必要があります。</li>
+                        <li>すべてのカメラの画面が上下左右の水平状況である必要があります。</li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+</div>
+
+<hr class="wn5-setup-hr">

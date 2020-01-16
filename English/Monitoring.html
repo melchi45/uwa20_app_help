@@ -97,7 +97,7 @@
                         </td>
                         <td width="235">
                             <p>You can control the Pan/Tilt/Zoom motions of the camera. </p>
-                            <p ng-if="!FisheyeLens && !objectDetectionSupport">PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.</p> 
+                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">PTZ operates only if the Video profile applied to the current live screen supports digital PTZ. To change to a digital PTZ control profile, select <strong class="UI">[Digital PTZ profile]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Profile type]</strong>.</p> 
                             <!-- <p ng-if="objectDetectionSupport">If channel 2 is selected from <strong class="UI">[<a href="#channel">Select channel</a>]</strong>, the PTZ function is enabled.</p> -->
 
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">Digital PTZ is enabled only when channel 2 is selected in <strong class="UI">[<a href="#channel">Select channel</a>]</strong>.</p>
