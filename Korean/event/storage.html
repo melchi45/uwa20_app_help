@@ -93,8 +93,9 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature">
+<!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  -->
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>채널 선택</h2>
     </div>

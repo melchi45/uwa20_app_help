@@ -19,7 +19,7 @@
             <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1.</p> 
             <p ng-if="!SupportAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s.</p> 
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
-            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+            <p ng-if="SupportAutoImageAlignment">Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">Du fait qu&rsquo;une zone de confidentialit&eacute; est d&eacute;finie individuellement pour chaque canal, une zone de confidentialit&eacute; d&eacute;finie sur CAN1 sera seulement appliqu&eacute;e &agrave; CAN1 m&ecirc;me si la m&ecirc;me zone de confidentialit&eacute; existe sur CAN2.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;Configuration de la vidéo&nbsp;” peut être activé sur le canal 1 uniquement.</p>
@@ -227,7 +227,8 @@
 </div>
 
 <!-- 변경점 이 후 분기 코드 수정 --> 
-<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<!-- 삭제 -->
+<!-- <hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
 <div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
 	<div class="wn5-setup-section-heading">
 		<h2>Vid&eacute;o analogique</h2>
@@ -249,7 +250,7 @@
 			</ul>
 		</div>
 	</div>
-</div>
+</div> -->
 
 <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">

@@ -93,7 +93,7 @@
         <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
-                    <li>Changer le mode du capteur réinitialisera tout le réglage de la caméra.</li>
+                    <li ng-if="!SupportAutoImageAlignment">Changer le mode du capteur réinitialisera tout le réglage de la caméra.</li>
                     <li>Une fréquence d'images différente ne peut pas être définie pour chaque image prédéfinie et la fréquence d'images est appliquée de la même manière à chaque image prédéfinie.</li>
                     <li>Valeur maximale de <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vidéo]</strong>&gt;<strong class="UI">[Vitesse d'enregistrement]</strong> varie en fonction du nombre d'images défini pour le mode de capteur.</li>
                 </ul>

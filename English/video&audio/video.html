@@ -19,7 +19,7 @@
             <p ng-if="!SupportAutoImageAlignment">After selecting a camera channel, you can set the detailed video settings.</p> 
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Video setup] can only be configured on channel 1.</p> 
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
-            <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
+            <p ng-if="SupportAutoImageAlignment">[Video setup] can only be configured on channel 1. CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">Since a privacy area is individually set for each channel, a privacy area set on CH1 will only apply to CH1 even if the same privacy area exists on CH2.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below. &apos;Video setup&apos; can be enabled on Channel 1 only.</p>
@@ -232,7 +232,7 @@
 
 
 <!-- 멀티 센터 카메라 변경점 진행할 때 [아날로그 비디오]는 삭제하고 [비디오 출력] 분기 코드는 삭제해야 함  -->
-<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<!-- <hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
 <div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>Analog video</h2>
@@ -240,9 +240,9 @@
 	<div class="wn5-setup-section-article">	
 	<div class="wn5-setup-section-article-content">
 			
-			<h3>Video output</h3>
+			<h3>Video output</h3> -->
         <!-- 	<p>You can set whether or not to output analog video. Analog video output is useful since you can set it while checking the lens location or focus when installing the camera.</p> --> 
-        <p>This determines the output type of the video for an analog video output. Analog video output is useful since you can set it while checking the lens location and camera focus when installing the camera.</p>
+        <!-- <p>This determines the output type of the video for an analog video output. Analog video output is useful since you can set it while checking the lens location and camera focus when installing the camera.</p>
 		</div>
 	
 	<div class="wn5-setup-section-article-content">
@@ -255,7 +255,10 @@
 			</ul>
 		</div>
 	</div>
-</div> 
+</div>  -->
+
+
+
 
 <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">

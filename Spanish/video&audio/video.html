@@ -18,7 +18,7 @@
             <p ng-if="SupportAutoImageAlignment">Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados, como la rotaci&oacute;n de video, la salida anal&oacute;gica, etc.</p> 
             <p ng-if="!SupportAutoImageAlignment">Despu&eacute;s de seleccionar un canal de la c&aacute;mara, puede configurar un &aacute;rea privada para cada canal, o configurar los ajustes de video detallados.</p> 
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
-            <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
+            <p ng-if="SupportAutoImageAlignment">[Conf. de vídeo] solo puede configurarse en el canal 1. Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
             <p ng-if="SupportAutoImageAlignment">Debido a que se configura individualmente un &aacute;rea privada para cada canal, una configuraci&oacute;n de &aacute;rea privada en Canal1 aplicar&aacute; &uacute;nicamente a Canal1, incluso si la misma &aacute;rea privada existe en Canal2.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n.  La “Configuración de vídeo” se puede habilitar solo en el canal 1.</p>
@@ -227,7 +227,7 @@
 	</div>
 </div>
 <!-- 멀티 센터 변경점 이 후에는 분기 코드 삭제해야 함 --> 
-<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
+<!-- <hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
 <div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>v&iacute;deo analógico</h2>
@@ -248,7 +248,10 @@
         </ul>
     </div>
 </div>
-</div>
+</div> -->
+
+
+
 <!-- 멀티 센서 변경점 이 후에는 분기 코드 삭제해야 함 --> 
 <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">

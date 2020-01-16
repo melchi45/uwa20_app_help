@@ -11,7 +11,8 @@
         <div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
     <p>The detailed Shock detection setup for each channel can be configured after selecting a camera channel. </p>
-    <p>Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Sound classification] can only be configured on channel 1.</p>
+    <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Sound classification] can only be configured on channel 1.</p>
+    <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied. [Sound classification] can only be configured on channel 1.</p>
             </div>
         </div>
     </div> 

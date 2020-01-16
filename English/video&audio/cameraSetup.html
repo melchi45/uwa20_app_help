@@ -213,7 +213,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
        <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>Changing the sensor mode will reset the whole camera setting.</li>
+                <li ng-if="!SupportAutoImageAlignment">Changing the sensor mode will reset the whole camera setting.</li>
                 <li>A different frame rate can not be set to each image preset and the frame rate is applied in the same way to every image preset.</li>
                 <li>The maximum value of <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Frame rate]</strong> varies according to the number of frames set for the sensor mode. </li>
             </ul>

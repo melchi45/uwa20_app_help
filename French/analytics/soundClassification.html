@@ -10,8 +10,9 @@
         </div>
         <div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
-    <p>La détection de choc de chaque canal peut être configurée en détail une fois qu'un canal caméra a été sélectionné. </p>
-    <p>La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Classification sonore] que sur le canal 1.</p>
+            <p>La détection de choc de chaque canal peut être configurée en détail une fois qu'un canal caméra a été sélectionné. </p>
+            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Classification sonore] que sur le canal 1.</p>
+            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;. Vous ne pouvez configurer [Classification sonore] que sur le canal 1.</p>
             </div>
         </div>
     </div> 
