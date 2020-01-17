@@ -406,7 +406,7 @@
                 <li><strong class="UI">CAVLC</strong>: La proc&eacute;dure de traitement des donn&eacute;es pour CAVLC est plus simple que CABAC, de sorte qu&apos;elle utilise moins de ressources syst&egrave;me, mais le taux de compression est relativement faible.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">
+        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecAreaByChannel">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>Codec Smart</h3>
             <p>D&eacute;finissez si vous souhaitez ou non utiliser le codec Smart. Le Codec Smart est une technologie unique de Hanwha Techwin qui r&eacute;duit le taux de compression pour une zone d&apos;int&eacute;r&ecirc;t de l&apos;utilisateur (pour produire en haute qualit&eacute;), alors qu&apos;elle augmente le taux de compression pour d&apos;autres zones, (pour produire en qualit&eacute; normale), r&eacute;duisant ainsi la taille des donn&eacute;es de l&apos;image dans son ensemble. Le Codec Smart est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est <strong class="UI">[CBR]</strong>.</p>
 
@@ -436,7 +436,7 @@
             <h3>FPS dynamique</h3>
             <p>S&eacute;lectionnez <strong class="UI">[Activer]</strong> pour appliquer la fonction FPS dynamique au profil en cours de d&eacute;finition. FPS dynamique est une fonction qui change automatiquement les r&eacute;glages FPS, du r&eacute;glage minimum FPS au r&eacute;glage de la vitesse d&rsquo;enregistrement des images selon la situation de l&rsquo;&eacute;cran. Dans une vid&eacute;o presque immobile, FPS fonctionnera en utilisant le r&eacute;glage FPS minimum, ce qui &agrave; son tour r&eacute;duit le d&eacute;bit binaire global de l&rsquo;&eacute;cran. Lorsqu&rsquo;un mouvement est d&eacute;tect&eacute;, FPS utilisera une valeur FPS augment&eacute;e.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">           
+        <div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">           
             <h3>FPS minimale</h3>
                 <p>Entrez la valeur FPS minimale &agrave; appliquer lorsque FPS dynamique est activ&eacute;.</p>
                 <p>L&rsquo;option <strong class="UI">[Minimale FPS]</strong> n&rsquo;est pas affich&eacute;e si la valeur de Minimale FPS value est d&eacute;finie comme 1.</p>

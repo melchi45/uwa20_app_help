@@ -400,7 +400,7 @@
                 <li><strong class="UI">CAVLC</strong>：CABACに比べて圧縮率が低いが、データの処理過程がシンプルでシステムリソースを少なく使用します。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0">
+        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecAreaByChannel">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>Smart codec</h3>
             <p>Smart codecの使用有無を設定します。Smart codecは、映像でユーザーが好むエリアは圧縮率を減らして高画質で出力し、その他の部分は圧縮率を上げて標準画質に出力して全体の映像データサイズを減らすハンファテックウィンの独自技術です。Smart codecは<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[CBR]</strong>の時のみ有効になります。</p>
           
@@ -433,7 +433,7 @@
             <p>ダイナミックFPSは<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に選択して<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の時のみ有効になります。</p>
 			</div>
 			         
-        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">
+        <div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">
             <h3>最小FPS</h3>
             <p>ダイナミックFPSが動作する時、適用する最小FPS値を入力します。</p>
         </div>
