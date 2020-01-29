@@ -433,7 +433,7 @@
             <p>ダイナミックFPSは<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に選択して<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の時のみ有効になります。</p>
 			</div>
 			         
-        <div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">
+        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">
             <h3>最小FPS</h3>
             <p>ダイナミックFPSが動作する時、適用する最小FPS値を入力します。</p>
         </div>

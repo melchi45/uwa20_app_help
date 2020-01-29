@@ -35,7 +35,7 @@
 				<li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
 			</ul> -->
 
-            <p><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
+            <p ng-if="!SupportAutoImageAlignment"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p ng-if="!SupportAutoImageAlignment">
             <!-- <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p> -->
 
         </div>

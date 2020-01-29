@@ -456,8 +456,9 @@
             <p ng-if="SupportAutoImageAlignment">다이내믹 FPS(Dynamic FPS)는 영상 상황에 따라 1 FPS부터 프레임 레이트 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 1 FPS로 동작하게 되어 전체 영상의 비트레이트가 줄어들게 됩니다. 움직임을 감지하게 되면 FPS 값을 증가시켜서 동작합니다.</p>
         </div>
         <!-- PNM-9030V 모델에서만 최소 FPS 항목이 웹에서 보이지 않음. 웹팀에서 분기 코드를 생성하기 어려워 9030용 분기 코드를 적용해 둠. 참고할 것 --> 
-        <!-- PNM-9030V 변경점에서 최소 FPS 값은 1로 고정되나 최소 FPS 메뉴가 보임. !SupportAutoImageAlignment && DynamicFPSSupport ->DynamicFPSSupport로 수정함. TW 자체. 2010-01-17 참고할 것 -->    
-        <div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">
+        <!-- PNM-9030V 변경점에서 최소 FPS 값은 1로 고정되나 최소 FPS 메뉴가 보임. !SupportAutoImageAlignment && DynamicFPSSupport ->DynamicFPSSupport로 수정함. TW 자체. 2020-01-17 참고할 것.
+        재확인하니 minimum fps가 ui에서 제거되어 분기 코드 DynamicFPSSupport -> !SupportAutoImageAlignment && DynamicFPSSupport로 롤백함. 2020-01-29 -->    
+        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">
             <h3>최소 FPS</h3>
             <p>다이내믹 FPS가 작동할 때 적용할 최소 FPS 값을 입력합니다. </p>
             <p>최소 FPS 값이 1일 때는 <strong class="UI">[최소 FPS]</strong> 옵션이 보이지 않습니다. </p>
