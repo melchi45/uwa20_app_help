@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <meta http-equiv="Content-Security-Policy" content="img-src data: *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
-    <meta name="format-detection" content="telephone=no">
-    <link href="../../base/images/wisenet_icon.ico" rel="shortcut icon" type="image/x-icon">
-    <title>Wisenet WEBVIEWER</title>
-
-    <script>
-        /**
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,user-scalable=no"><meta http-equiv="Content-Security-Policy" content="img-src data: *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"><meta name="format-detection" content="telephone=no"><link href="../../base/images/wisenet_icon.ico" rel="shortcut icon" type="image/x-icon"><title>Wisenet WEBVIEWER</title><script>/**
          * AngluarJs does not support the IE 8 or lower than version 8.
          * So it should be redirect to Root URL.
          */
@@ -41,68 +29,4 @@
             })();
         } catch(e) {
             console.error("IE Detection Error in index.html", e);
-        }
-    </script>
-
-        <!-- build:css ../../styles/libraries.css -->
-    <link href="../../external-lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../external-lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../external-lib/jquery-ui/jquery-ui.css" rel="stylesheet">
-    <link href="../../external-lib/nvd3/build/nv.d3.min.css" rel="stylesheet">
-    <link href="../../external-lib/fullcalendar/fullcalendar.min.css" rel="stylesheet">
-        <!-- endbuild -->
-    
-        <!-- build:css ../../styles/customs.css -->
-    <link href="../../base/kind/common_modules/kind_client_cm_strm-display/display.css" rel="stylesheet">
-    <link href="../../external-lib/vis/vis.css" rel="stylesheet">
-    <link href="../../styles/fonts/notosans.css" rel="stylesheet">
-    <link href="../../styles/fonts/Techwin-Universal-Icon/icons.css" rel="stylesheet">
-    <link href="../../styles/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
-    <link href="../../styles/plugins/datapicker/angular-datapicker.css" rel="stylesheet">
-    
-    <link href="../../styles/animate.css" rel="stylesheet">
-    <link href="../../styles/style.css" rel="stylesheet">
-    <link href="../../styles/app.css" rel="stylesheet">
-        <!-- endbuild -->
-    <link href="../../styles/less/app.less" rel="stylesheet/less">
-</head>
-
-<body>
-    <div ui-view ng-controller="onlineHelpWrapperCtrl" id="wn5-online-help-wrapper"></div>
-
-    <!-- build:js ../../scripts/base_component.js -->
-    <script src="../../external-lib/jquery/jquery.js"></script>
-    <script src="../../external-lib/jquery-ui/jquery-ui.min.js"></script>
-    <script src="../../external-lib/jquery-ui/jquery.ui.touch-punch.min.js"></script>
-    <script src="../../external-lib/metisMenu/jquery.metisMenu.js"></script>
-    <script src="../../external-lib/angular/angular.js"></script>
-    <script src="../../external-lib/angular-sanitize/angular-sanitize.min.js"></script>
-    <script src="../../external-lib/angular-translate/angular-translate.min.js"></script>
-    <script src="../../external-lib/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
-    <script src="../../external-lib/ui-router/angular-ui-router.min.js"></script>
-    <script src="../../external-lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../../external-lib/fullcalendar/moment.min.js"></script>
-    <script src="../../external-lib/fullcalendar/fullcalendar.min.js"></script>
-    <!-- ui-bootstrap-tpls-0.14.3 is modified due to Datepicker Issue, so that is renamed. -->
-    <script src="../../external-lib/angular-bootstrap/ui-bootstrap-tpls-0.14.3-custom.js"></script>
-    <script src="../../external-lib/angular-animate/angular-animate.js"></script>
-    <script src="../../external-lib/angular-touch/angular-touch.min.js"></script>
-    <script src="../../external-lib/bower-angular-cookies-master/angular-cookies.js"></script>
-    <script src="../../external-lib/datapicker/angular-datepicker.js"></script>
-    <script src="../../external-lib/oclazyload/dist/ocLazyLoad.min.js"></script>
-    <script src="../../external-lib/hammer.js/hammer.js"></script>
-    <script src="../../external-lib/ng-pattern-restrict/ng-pattern-restrict.min.js"></script>
-    <script src="../../external-lib/d3/d3.min.js"></script>
-    <script src="../../external-lib/nvd3/build/nv.d3.min.js"></script>
-    <script src="../../external-lib/angular-nvd3/dist/angular-nvd3.min.js"></script>
-    <!-- endbuild -->
-    <script src="../../external-lib/less/dist/less.js"></script>
-
-    <!-- build:js ../../scripts/online_help.js -->
-    <script src="../../scripts/controllers/help/onlineHelpCtrl.js"></script>
-    <!-- endbuild -->
-    <script>
-        angular.bootstrap(document, ['wn5OnlineHelp']);
-    </script>
-</body>
-</html>
+        }</script><link href="../../styles/libraries.css" rel="stylesheet"><link href="../../styles/customs.css" rel="stylesheet"><link href="../../external-lib/vis/vis.css" rel="stylesheet"><link href="../../styles/style.css" rel="stylesheet"></head><body><div ui-view ng-controller="onlineHelpWrapperCtrl" id="wn5-online-help-wrapper"></div><script src="../../scripts/base_component.js"></script><script src="../../scripts/online_help.js"></script><script>angular.bootstrap(document, ['wn5OnlineHelp']);</script></body></html>
