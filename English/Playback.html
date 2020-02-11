@@ -1,15 +1,15 @@
 ﻿<h1 class="wn5-setup-main-title">Playback screen</h1>
 <div class="wn5-setup-section">
-    <p ng-if="NAS">You can import and playback a recorded image from an SD card or NAS. </p>
-    <p ng-if="!NAS">You can import and playback a recorded image from an SD card. </p>
+    <p ng-if="NAS">You can import and playback a recorded image from an SD card (or microSD card) or NAS. </p>
+    <p ng-if="!NAS">You can import and playback a recorded image from an SD card (or microSD card). </p>
     <p>When you click the <span class="tui tui-wn5-top-playback"></span> button on the screen, the recorded screen will appear. A time bar will appear at the bottom of the playback screen and an image recorded according to the set schedule or by an event is displayed on the time bar. You can search for a recorded image by event type or date, and capture or save it to a PC.</p>
 </div>
 <div class="wn5-setup-section">
     <div class="wn5-online-help-list">
     <p>You can move to the live screen, playback screen or setup screen by clicking the buttons at the top.</p>
         <ul><li><span class="tui tui-wn5-top-live"></span>(Live): Check the live image being captured by the camera and control various camera functions.</li>
-            <li ng-if="NAS"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card or NAS.  </li>
-            <li ng-if="!NAS"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card.  </li>
+            <li ng-if="NAS"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card (or microSD card) or NAS.  </li>
+            <li ng-if="!NAS"><span class="tui tui-wn5-top-playback"></span>(Playback): Search and playback a recorded image from an SD card (or microSD card).  </li>
             <li><span class="tui tui-wn5-top-setup"></span>(Setup): Change the camera settings.  </li>
         </ul>
     </div>
@@ -19,8 +19,8 @@
         <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>A video needs to be recorded first on the <strong class="UI">[Live]</strong> page before being able to play it.&nbsp;</li>
-                <li ng-if="NAS">If there is no connection to an SD card or NAS, the playback function cannot be used.  </li>
-                <li ng-if="!NAS">If there is no connection to an SD card, the playback function cannot be used.  </li>
+                <li ng-if="NAS">If there is no connection to an SD card (or microSD card) or NAS, the playback function cannot be used.  </li>
+                <li ng-if="!NAS">If there is no connection to an SD card (or microSD card), the playback function cannot be used.  </li>
                 <li>Connecting to the web viewer via Chrome, the record playback screen feature can be securely used.</li>
                 <!-- <li>When you connect to a web viewer through Internet Explorer or Safari, the backup function can be used only after a plugin has been installed. To install the plugin, click the <span class="tui tui-wn5-download"></span> button at the top right. </li>  -->
             </ul>
