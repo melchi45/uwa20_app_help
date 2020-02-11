@@ -51,11 +51,21 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-            <ul><li>La fonction de mise au point simple peut ne pas fonctionner correctement en cas de changement soudain (mouvement brusque, disparition) du sujet, en cas de brusque changement de luminosit&eacute;, si l&apos;image est faiblement contrast&eacute;e ou si la source de lumi&egrave;re est forte dans les environs.</li>
-
+            <ul>
+                <li>La fonction de mise au point simple peut ne pas fonctionner correctement 
+                    <ul>
+                        <li>en cas de changement soudain (mouvement brusque, disparition) du sujet</li>
+                        <li>s'il y a un changement soudain de luminance</li>
+                        <li>en cas de brusque changement de luminosit&eacute;</li>
+                        <li>si l&apos;image est faiblement contrast&eacute;e </li>
+                        <li>si la source de lumi&egrave;re est forte dans les environs</li>
+                    </ul>        
+                <li>Dans ce cas, s'il est flou après une simple mise au point, utilisez le bouton Zoom (-100, -10, -1, 1, 10 ou 100) pour régler manuellement la mise au point.</li>
+                <li>S'il est difficile d'effectuer une opération de mise au point simple dans l'environnement, il est recommandé de régler manuellement la mise au point.</li>
             </ul>
         </div>
-		
+
+        
         <div class="wn5-setup-section-article-content" ng-if="ICS">
             <h3>IR corrig&eacute;</h3>
             <p>Corrige automatiquement les erreurs de mise au point de la lumi&egrave;re visible et de la lumi&egrave;re IR lors de l&apos;utilisation de la source de lumi&egrave;re IR en mode nuit.</p>

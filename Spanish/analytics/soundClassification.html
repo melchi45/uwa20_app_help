@@ -86,8 +86,22 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
+                  <div class="wn5-setup-section-heading">
+                      <h2>Traspaso</h2>
+                  </div>
+                  <div class="wn5-setup-section-article">
+                      <div class="wn5-setup-section-article-content">
+                          <h3>Traspaso</h3>
+                          <p>Seleccione un número de cámara del receptor de traspaso. Seleccione <strong class="UI">[Des]</strong> si no desea utilizar la función de traspaso.</p>
+                          <p>Traspaso es una función en que la cámara del receptor se mueve a la posición preajustada PTZ cuando se produce un evento de clasificaci&oacute;n de sonidos. La cámara receptora de traspaso se puede configurar en el menú <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> menu. </p>
+                      </div>
+</div>
+</div>
 
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
@@ -135,19 +149,7 @@
 
           </div>
       </div>
-    <hr class="wn5-setup-hr" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
-    <div class="wn5-setup-section" ng-if="!HandoverCalibration && !SupportAutoImageAlignment">
-                      <div class="wn5-setup-section-heading">
-                          <h2>Traspaso</h2>
-                      </div>
-                      <div class="wn5-setup-section-article">
-                          <div class="wn5-setup-section-article-content">
-                              <h3>Traspaso</h3>
-                              <p>Seleccione un número de cámara del receptor de traspaso. Seleccione <strong class="UI">[Des]</strong> si no desea utilizar la función de traspaso.</p>
-                              <p>Traspaso es una función en que la cámara del receptor se mueve a la posición preajustada PTZ cuando se produce un evento de clasificaci&oacute;n de sonidos. La cámara receptora de traspaso se puede configurar en el menú <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> menu. </p>
-                          </div>
-</div>
-</div>
+
 
       <hr class="wn5-setup-hr">
       <div class="wn5-setup-section">
