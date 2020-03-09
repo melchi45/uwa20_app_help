@@ -223,6 +223,7 @@
                 <li><strong class="UI">基本プロファイル</strong>：カメラの映像をライブにストリームする時、適用される基本プロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオプロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。 <strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP プロファイルオプションが表示されます。</li>
                 <li li ng-if="Recording && NAS"><strong class="UI">録画Profile</strong>：SDカードまたはNASに映像を録画する時、適用するクワドビューアイです。クワドビューアイリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
+                <li li ng-if="Recording && !NAS"><strong class="UI">録画Profile</strong>：SDカードに映像を録画する時、適用するクワドビューアイです。クワドビューアイリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
                 <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">デジタルPTZ Profile</strong>：PTZモーションをデジタルに制御する時、使用するクワドビューアイです。クワドビューアイリストの<strong class="UI">[タイプ]</strong>カラムに「DPTZ」と表示されます。CodecをH.264もしくはH.265に設定したのみ、デジタルPTZ クワドビューアイオプションが表示されます。</li>
                 <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">魚眼カメラの場合、新しいクワドビューアイを追加する時に<strong class="UI">[魚眼ビュータイプ]</strong>で<strong class="UI">[歪み補正ビュー]</strong>を選択し、<strong class="UI">[ビュー]</strong>で<strong class="UI">[クワドビュー]</strong>を選択すると、該当クワドビューアイが自動でデジタルPTZ クワドビューアイに登録されます。</li> -->
                 <li><strong class="UI">フレームレート固定プロファイル</strong>：映像のフレームレートを一定レベルで保障する時、適用するクワドビューアイです。<strong class="UI">[Codec]</strong>を[H.264]または[H.265]に設定した場合のみ、「フレームレート固定プロファイル」オプションが表示されます。</li>
@@ -424,6 +425,7 @@
             <ul>
                 <li>ワイズストリーム機能を使用する場合、ダイナミックGOVとダイナミックFPS機能を使用するとワイズストリームの性能が最適化されます。ワイズストリームは<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ワイズストリーム]</strong>メニューで設定することができます。</li>
                 <li ng-if="ATCModes">ダイナミックGOVは、[ビットレート制御]が[VBR]または[ATCモード]を[未使用]に設定した場合にのみ有効になります。[プロファイルタイプ]が[録画PROFILE]に設定した場合は、ダイナミックGOVを使用することができません。</li>
+                <li ng-if="!ATCModes">ダイナミックGOVは、[ビットレート制御]が[VBR]に設定した場合にのみ有効になります。[プロファイルタイプ]が[録画PROFILE]に設定した場合は、ダイナミックGOVを使用することができません。</li>
             </ul>
 		</div>
 		    
@@ -445,6 +447,7 @@
             <ul>
                 <li>ワイズストリーム機能を使用する場合、ダイナミックGOVとダイナミックFPS機能を使用するとワイズストリームの性能が最適化されます。ワイズストリームは<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ワイズストリーム]</strong>メニューで設定することができます。</li>
                 <li ng-if="ATCModes">ダイナミックFPSは<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に選択して<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の時のみ有効になります。[ATCモード]を[未使用]に設定した場合にのみ有効になります。[プロファイルタイプ]が[録画PROFILE]に設定した場合は、ダイナミックGOVを使用することができません。</li>
+                <li ng-if="!ATCModes">ダイナミックFPSは<strong class="UI">[Codec]</strong>を<strong class="UI">[H.264]</strong>や<strong class="UI">[H.265]</strong>に選択して<strong class="UI">[ビットレート制御]</strong>が<strong class="UI">[VBR]</strong>の時のみ有効になります。[プロファイルタイプ]が[録画PROFILE]に設定した場合は、ダイナミックGOVを使用することができません。</li>
             </ul>
 		</div>
         <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport && DynamicFPSSupport">
@@ -473,7 +476,8 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>IPアドレス</h3>
-            <p>IPv4網でアクセスできるIPv4アドレスを入力します。マルチキャストアドレスを224.0.0.0～224.0.0.255に設定する場合、特定環境でマルチキャストができなくなる場合があります。問題が発生すると、マルチキャストアドレスを変更して使用してください。</p>
+            <!-- <p>IPv4網でアクセスできるIPv4アドレスを入力します。マルチキャストアドレスを224.0.0.0～224.0.0.255に設定する場合、特定環境でマルチキャストができなくなる場合があります。問題が発生すると、マルチキャストアドレスを変更して使用してください。</p> -->
+            <p>IPv4網でアクセスできるIPv4アドレスを入力します。マルチキャストIPアドレスの範囲は、224.0.0.0から239.255.255.254まで設定することができます。ただし、末尾に255を使用することができません。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>ポート</h3>
