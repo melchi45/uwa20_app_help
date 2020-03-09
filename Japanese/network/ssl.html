@@ -19,7 +19,7 @@
 		    <h3>HTTPS(自体認証保安接続モード)</h3>
             <p>カメラが提供する自体証明書を使用して保安接続します。<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
             <p><strong class="UI">[ホスト名の変更]</strong>オプションを選択すると、カメラホスト名を証明書の一般名(Common Name)と同じく変更します。カメラホスト名が証明書に設定された一般名(Common Name)と異なる場合、一部のセキュリティ検査ツールで製品の保安が弱いと判断されることがあります。</p>
-            <p>ホスト名は<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; ポート</a>]</strong>&gt;<strong class="UI">[IPアドレス]</strong>&gt;<strong class="UI">[IPv4 設定]</strong>&gt;<strong class="UI">[ホスト名]</strong>で確認することができます。</p>
+            <p ng-if="MaxChannel > 1">ホスト名は<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; ポート</a>]</strong>&gt;<strong class="UI">[IPアドレス]</strong>&gt;<strong class="UI">[IPv4 設定]</strong>&gt;<strong class="UI">[ホスト名]</strong>で確認することができます。</p ng-if="MaxChannel > 1">
             
             <!-- <p>カメラが提供する自体証明書を使用して保安接続します。<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
             <p>カメラに内蔵されたデバイス証明書を使用するか、外部で作成した自体署名証明書を使用するかを選択できます。</p>
