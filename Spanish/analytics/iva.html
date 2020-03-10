@@ -200,13 +200,13 @@
                 <li ng-if="IvaAppearDisappear"><strong class="UI">Aparici&oacute;n (desaparici&oacute;n)</strong>: Cuando un objeto que no existe dentro del &aacute;rea designada por el usuario aparece dentro del &aacute;rea sin pasar la l&iacute;nea del &aacute;rea y se mantiene durante un cierto per&iacute;odo de tiempo, o si un objeto que existe dentro del &aacute;rea desaparece, se crear&aacute; un evento.</li>
                 <li ng-if="objectDetectionSupport" style="list-style-type:none;">A diferencia de otras opciones, <strong class="UI">[Aparición (Desaparición)]</strong> detecta no solo el tipo de objeto seleccionado en <strong class="UI">[Objeto]</strong>, sino también el resto de los tipos de objetos móviles. </li>  
                 <ul ng-if="IvaAppearDisappear">
-                    <li><strong class="UI">Duraci&oacute;n m&iacute;nima</strong>:  Configura el tiempo mínimo para que un objeto sea detectado como que aparece (desaparece). Cuando un objeto que existía en el área de detección durante el tiempo establecido desaparece, se detecta como Desapareciendo, y cuando un objeto que no existía aparece durante la cantidad de tiempo establecida, se detecta como Apareciendo.</li>
+                    <li><strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>:  Configura el tiempo mínimo para que un objeto sea detectado como que aparece (desaparece). Cuando un objeto que existía en el área de detección durante el tiempo establecido desaparece, se detecta como Desapareciendo, y cuando un objeto que no existía aparece durante la cantidad de tiempo establecida, se detecta como Apareciendo.</li>
   
                 </ul>
                 <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">Merodeo</strong>: Cuando se detecta un objeto merodeando en el &aacute;rea de detecci&oacute;n establecida, se crear&aacute; un evento.</li>
                 <li ng-if="IvaLoitering && objectDetectionSupport"><strong class="UI">Merodeo</strong>: Este evento se activa cuando la cámara detecta que el objeto seleccionado en <strong class="UI">[Objeto]</strong> merodea dentro del área virtual definida.</li>
                 <ul ng-if="IvaLoitering && !objectDetectionSupport"> 
-                    <li><strong class="UI">Duraci&oacute;n m&iacute;nima</strong>: Esto establece el per&iacute;odo de tiempo m&iacute;nimo para un objeto que merodea sea detectado y se cree un evento. Cuando se detecta un objeto que merodea por m&aacute;s tiempo que el establecido, se crear&aacute; un evento.</li>
+                    <li><strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>: Esto establece el per&iacute;odo de tiempo m&iacute;nimo para un objeto que merodea sea detectado y se cree un evento. Cuando se detecta un objeto que merodea por m&aacute;s tiempo que el establecido, se crear&aacute; un evento.</li>
                 </ul>
                 <ul ng-if="IvaLoitering && objectDetectionSupport">
                         <li><strong class="UI">Duración mínima (s)</strong>: Establece la cantidad mínima de tiempo desde que la cámara detecta un objeto con movimiento de merodeo hasta que activa el evento. Cuando un objeto realice un movimiento de merodeo durante un tiempo superior a este umbral, se activará un evento.</li>
@@ -304,7 +304,7 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Tama&ntilde;o</h3>
-            <p>Esto establece el tama&ntilde;o m&iacute;nimo y m&aacute;ximo de un objeto a detectar que se aplicar&aacute; tanto a la l&iacute;nea virtual como la zona virtual. Se puede cambiar el tama&ntilde;o haciendo clic y arrastrando una esquina con el rat&oacute;n. Cuando se cambia el tama&ntilde;o, <strong class="UI">[M&iacute;nimo]</strong> y <strong class="UI">[M&aacute;ximo]</strong> en <strong class="UI">[Tama&ntilde;o]</strong> tambi&eacute;n cambian.</p>
+            <p>Esto establece el tama&ntilde;o m&iacute;nimo y m&aacute;ximo de un objeto a detectar que se aplicar&aacute; tanto a la l&iacute;nea virtual como la zona virtual. Se puede cambiar el tama&ntilde;o haciendo clic y arrastrando una esquina con el rat&oacute;n. Cuando se cambia el tama&ntilde;o, <strong class="UI">[Tama&ntilde;o m&iacute;nimo]</strong> y <strong class="UI">[Tama&ntilde;o m&aacute;ximo]</strong> en <strong class="UI">[Tama&ntilde;o]</strong> tambi&eacute;n cambian.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">

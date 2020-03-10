@@ -188,7 +188,7 @@
                 <li ng-if="IvaIntrusion && !objectDetectionSupport"><strong class="UI">侵入する</strong>：設定したエリア内部に動く対象物を検知すると、イベントを発生させます。</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">侵入する</strong>：設定した領域内部に<strong class="UI">[対象物]</strong>で選択した対象物を検知すると、イベントを発生させます。</li>
                 <ul>
-                    <li ng-if="IvaIntrusion"><strong class="UI">最短時間(秒)</strong>：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます。 </li>
+                    <li ng-if="IvaIntrusion"><strong class="UI">最短期間(秒)</strong>：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます。 </li>
                 </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">進入</strong>：動く対象物がユーザーの指定したエリアの外部から内部に入る時、イベントを発生させます。</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">進入</strong>：<strong class="UI">[対象物]</strong>で選択した対象物がユーザーの指定した領域の外部から内部に入る時、イベントを発生させます。</li>
@@ -199,15 +199,15 @@
                 <li ng-if="IvaAppearDisappear"><strong class="UI">出現(消滅)</strong>：ユーザーが指定したエリア内部に存在しなかった対象物がエリアラインを通過せずにエリア内部に現れ一定時間とどまったり、エリア内部に存在してた対象物が消えるとイベントを発生させます。</li>
                 <li ng-if="objectDetectionSupport" style="list-style-type:none;"><strong class="UI">[出現(消滅)]</strong>オプションの場合、他のオプションとは違って<strong class="UI">[対象物]</strong>で選択した対象物ではなく、動くすべての対象物を検知します。</li>
                 <ul ng-if="IvaAppearDisappear">
-                    <li><strong class="UI">最短時間(秒)</strong>：出現(消滅)を検知するための対象物の最短持続時間を設定します。検知エリアで実行時間の間、存在してた対象物が消えると消滅に検知し、実行時間の間に存在しなかった対象物が現れると出現と検知します。</li>
+                    <li><strong class="UI">最短期間(秒)</strong>：出現(消滅)を検知するための対象物の最短持続時間を設定します。検知エリアで実行時間の間、存在してた対象物が消えると消滅に検知し、実行時間の間に存在しなかった対象物が現れると出現と検知します。</li>
                 </ul>
                 <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">うろつく</strong>：設定した検知エリア内でうろつくモーションを検知すると、イベントを発生させます。</li>
                 <li ng-if="IvaLoitering && objectDetectionSupport"><strong class="UI">うろつく</strong>：設定したバーチャルエリア内で<strong class="UI">[対象物]</strong>で選択した対象物がうろつくことを検知すると、イベントを発生させます。</li>
                 <ul ng-if="IvaLoitering && !objectDetectionSupport">
-                    <li><strong class="UI">最短時間(秒)</strong>：うろつく対象物を検知してイベントを発生させるための最短時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
+                    <li><strong class="UI">最短期間(秒)</strong>：うろつく対象物を検知してイベントを発生させるための最短時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
                 </ul>
                 <ul ng-if="IvaLoitering && objectDetectionSupport">
-                        <li><strong class="UI">最短時間(秒)</strong>：うろつく対象物を検知してイベントを発生するための最小時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
+                        <li><strong class="UI">最短期間(秒)</strong>：うろつく対象物を検知してイベントを発生するための最小時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
                     </ul>
             </ul>
         </div>
@@ -297,7 +297,7 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>サイズ</h3>
-            <p>バーチャルラインとバーチャルエリアでモーションを検知する対象物の最小、最大サイズを設定します。頂点をクリックした後、マウスをドラッグしてサイズを変更することができます。サイズを変更すると、<strong class="UI">[サイズ]</strong>の<strong class="UI">[最小]</strong>値と<strong class="UI">[最大]</strong>値も変更されます。</p>
+            <p>バーチャルラインとバーチャルエリアでモーションを検知する対象物の最小、最大サイズを設定します。頂点をクリックした後、マウスをドラッグしてサイズを変更することができます。サイズを変更すると、<strong class="UI">[サイズ]</strong>の<strong class="UI">[最小サイズ]</strong>値と<strong class="UI">[最大サイズ]</strong>値も変更されます。</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
