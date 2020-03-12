@@ -55,7 +55,7 @@
 			<h3>Nom hôte</h3>
 			<p>Il est affich&eacute; lorsque <strong class="UI">[Manuel]</strong> est d&eacute;fini pour <strong class="UI">[Type d&rsquo;IP]</strong>. Le nom d&apos;h&ocirc;te est le nom qui r&eacute;cup&egrave;re le nom d&apos;h&ocirc;te utilis&eacute; dans la commande ONVIF GetHostname. Le premier caract&egrave;re doit &ecirc;tre alphab&eacute;tique et seuls les caract&egrave;res alphanum&eacute;riques peuvent &ecirc;tre saisis. Vous pouvez entrer jusqu&apos;&agrave; 63&nbsp;caract&egrave;res. Le nom de la cam&eacute;ra est entr&eacute; par d&eacute;faut, il n&apos;a pas besoin d&apos;&ecirc;tre d&eacute;fini car ce n&apos;est pas une valeur requise.</p>
 		</div>
-		<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="MaxChannel==0">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Si vous choisissez l&rsquo;option <strong class="UI">[Modifier le nom d’hôte]</strong> sous <strong class="UI">[R&eacute;seau]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../network/ssl.html" ng-href="#/help/network_ssl">HTTPS</a>]</strong>&gt;<strong class="UI">[Syst. de connexion s&eacute;cu.]</strong>&gt;<strong class="UI">[HTTPS (Mode de connexion s&eacute;curis&eacute;e avec certificat unique)]</strong>, le nom d&rsquo;h&ocirc;te sera remplac&eacute; par le nom commun d&eacute;fini dans le certificat.</li>

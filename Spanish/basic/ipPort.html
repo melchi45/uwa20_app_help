@@ -57,7 +57,7 @@
 			<h3>Nombre de host</h3>
 			<p>Es el nombre para recuperar el nombre de host que es utilizado en el comando GetHostname ONVIF. El primer car&aacute;cter debe ser alfab&eacute;tico y solo se pueden introducir caracteres alfanum&eacute;ricos. Se pueden introducir hasta 63 caracteres. El nombre de la c&aacute;mara se introduce como predeterminado; no necesita ser definido ya que no es un valor requerido. </p>
 		</div>
-		<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info" ng-if="MaxChannel==0">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Si elige la opci&oacute;n <strong class="UI">[Cambiar el nombre de host]</strong> <strong class="UI">[Red]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../network/ssl.html" ng-href="#/help/network_ssl">HTTPS</a>]</strong>&gt;<strong class="UI">[Sistema de conexi&oacute;n segura]</strong>&gt;<strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado &uacute;nico)]</strong>, el nombre de host se cambiar&aacute; al nombre de host com&uacute;n definido en el certificado.</li>
