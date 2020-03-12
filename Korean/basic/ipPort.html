@@ -59,8 +59,9 @@
 			<h3>호스트 이름</h3>
             <p>호스트 이름을 불러오기 위한 ONVIF GetHostname 명령에 사용되는 이름입니다. 첫 문자는 알파벳이어야 하며 알파벳과 숫자만 입력할 수 있습니다. 또한 최대 63자까지 입력할 수 있습니다. 카메라 장비 이름이 기본값으로 입력돼 있으며, 필수 입력 값이 아니므로 값을 설정하지 않아도 됩니다.</p>
 		</div>
-
-		<div class="wn5-online-help-info">
+		
+		<!-- pnm 모델에서는 호스트 이름 변경 기능을 지원하지 않으므로 tw 자체 ng-if="MaxChannel==0" 코드 추가함. https도 동일. 2020-03-12 -->
+		<div class="wn5-online-help-info" ng-if="MaxChannel==0">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li><strong class="UI">[네트워크]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../network/ssl.html" ng-href="#/help/network_ssl">HTTPS</a>]</strong>&gt;<strong class="UI">[보안 접속 방식]</strong>&gt;<strong class="UI">[HTTPS(자체 인증서 사용)]</strong>에서 <strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택한 경우, 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)으로 변경되어 표시됩니다. </li>

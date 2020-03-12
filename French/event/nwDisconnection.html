@@ -26,7 +26,8 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>Enregistrer</h3>
-            <p>Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="NAS">Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="!NAS">Pour enregistrer une image sur une carte SD lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;connexion r&eacute;seau est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>&Eacute;mission d&apos;alerte</h3>
