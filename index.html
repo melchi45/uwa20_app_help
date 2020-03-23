@@ -24,9 +24,9 @@
                 }
 
                 if(version <= VERSION_LIMIT && version !== false){
-                    location.href = 'views/login/compatible.htm';
+                    location.href = '../views/login/compatible.htm';
                 }
             })();
         } catch(e) {
             console.error("IE Detection Error in index.html", e);
-        }</script><link href="../../styles/libraries.css" rel="stylesheet"><link href="../../styles/customs.css" rel="stylesheet"><link href="../../external-lib/vis/vis.css" rel="stylesheet"><link href="../../styles/style.css" rel="stylesheet"></head><body><div ui-view ng-controller="onlineHelpWrapperCtrl" id="wn5-online-help-wrapper"></div><script src="../../scripts/base_component.js"></script><script src="../../scripts/online_help.js"></script><script>angular.bootstrap(document, ['wn5OnlineHelp']);</script></body></html>
+        }</script><link href="../../styles/libraries.css" rel="stylesheet"><link href="../../styles/customs.css" rel="stylesheet"><link href="../../external-lib/vis/vis.css" rel="stylesheet"><link href="../../styles/style.css" rel="stylesheet"></head><body><div ui-view ng-controller="onlineHelpWrapperCtrl" id="wn5-online-help-wrapper"></div><script src="../../scripts/base_component.js"></script><script src="scripts/onlineHelpCtrl.js"></script><script>angular.bootstrap(document, ['wn5OnlineHelp']);</script></body></html>
