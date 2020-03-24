@@ -56,7 +56,7 @@
                                     <p>&nbsp;</p>
                                 </td>
                             </tr>
-				    <tr>
+				    <tr ng-if="IsAdmin"> 
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
                             <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Conf. de v&iacute;deo</a></p>
@@ -472,10 +472,10 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="IsAdmin">
+<div class="wn5-setup-section" ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="settings"></a>Configuraci&oacute;n de v&iacute;deo</h2>
+        <h2><a class="wn5-online-help-link" name="settings"></a>Conf. de vídeo</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">

@@ -98,7 +98,7 @@
         <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
-                    <li ng-if="!SupportAutoImageAlignment">Changing the sensor mode will reset the whole camera setting.</li>
+                    <li ng-if="!SupportAutoImageAlignment">Cambiar el modo del sensor restablecerá toda la configuración de la cámara.</li>
                     <li>No se puede establecer una velocidad de cuadro diferente para cada ajuste preestablecido de imagen y la velocidad de cuadro se aplica de la misma manera a cada ajuste preestablecido de imagen.</li>
                     <li>El valor máximo de <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de vídeo]</strong>&gt;<strong class="UI">[Velocidad de cuadro] </strong> varía según la cantidad de cuadros configurados para el modo de sensor.</li>
                 </ul>
@@ -225,7 +225,7 @@
                 <li><strong class="UI">ATW</strong>: Corrige el color de la c&aacute;mara autom&aacute;ticamente.</li>
                 <li><strong class="UI">Exterior</strong>: Los colores de la c&aacute;mara se corrigen para ser optimizados para un entorno al aire libre.</li>
                 <li><strong class="UI">Interior</strong>: Los colores de la c&aacute;mara se corrigen para ser optimizados para un entorno en el interior.</li>
-                <li><strong class="UI">AWC</strong>: Ajuste la pantalla para optimizar el color de la c&aacute;mara al entorno de iluminaci&oacute;n actual. Ponga un papel blanco delante de la c&aacute;mara y presione el bot&oacute;n <strong class="UI">[Ajuste]</strong> para ajustar las ganancias de rojo/azul y aplicar los resultados al v&iacute;deo. El valor del balance de blancos sigue aplic&aacute;ndose al v&iacute;deo que se muestra actualmente y deber&aacute; ajustarlo de nuevo cuando cambie el entorno.</li>
+                <li><strong class="UI">AWC</strong>: Ajuste la pantalla para optimizar el color de la c&aacute;mara al entorno de iluminaci&oacute;n actual. Ponga un papel blanco delante de la c&aacute;mara y presione el bot&oacute;n <strong class="UI">[Definir]</strong> para ajustar las ganancias de rojo/azul y aplicar los resultados al v&iacute;deo. El valor del balance de blancos sigue aplic&aacute;ndose al v&iacute;deo que se muestra actualmente y deber&aacute; ajustarlo de nuevo cuando cambie el entorno.</li>
                 <li><strong class="UI">MERCURIO</strong>: La correcci&oacute;n de pantalla est&aacute; hecha para adaptar los colores a un entorno de iluminaci&oacute;n con l&aacute;mparas de mercurio.</li>
                 <li><strong class="UI">SODIO</strong>: La correcci&oacute;n de pantalla est&aacute; hecha para adaptar los colores a un entorno de iluminaci&oacute;n con l&aacute;mparas de sodio.</li>
             </ul>
@@ -431,23 +431,23 @@
             <h3>SSNR</h3>
             <p>Elimina el ruido de la imagen.</p>
             <ul>
-                <li><strong class="UI">Activar/Desactivar</strong>: Es posible activar o desactivar la funci&oacute;n SSNR. Si selecciona <strong class="UI">[Activar]</strong>, podr&aacute; ajustar el nivel de SSNR.</li>
+                <li><strong class="UI">Act/Des</strong>: Es posible activar o desactivar la funci&oacute;n SSNR. Si selecciona <strong class="UI">[Act]</strong>, podr&aacute; ajustar el nivel de SSNR.</li>
                 <li><strong class="UI">Wise NR</strong>: Cuando un objeto en movimiento est&aacute; en la imagen, el nivel de ruido reducido se ajusta autom&aacute;ticamente para mejorar la precisi&oacute;n de la identificaci&oacute;n del objeto.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
             <h3>Nivel de SSNR</h3>
-            <p>Ajuste el nivel SSNR. El ajuste puede utilizarse si ajusta <strong class="UI">[SSNR]</strong> a <strong class="UI">[Activar]</strong>.</p>
+            <p>Ajuste el nivel SSNR. El ajuste puede utilizarse si ajusta <strong class="UI">[SSNR]</strong> a <strong class="UI">[Act]</strong>.</p>
             <p>Mientras más alto sea el nivel, menor será el ruido, pero es posible que el vídeo quede rezagado y se vuelva borroso.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
             <h3>Nivel de SSNR 2D</h3>
-            <p>SSNR 2D utiliza p&iacute;xeles adyacentes en un solo cuadro para reducir el nivel de ruidos en una imagen. Ajuste el nivel SSNR 2D. El ajuste puede utilizarse si ajusta <strong class="UI">[SSNR]</strong> a <strong class="UI">[Activar]</strong> o <strong class="UI">[Wise NR]</strong>.</p>
+            <p>SSNR 2D utiliza p&iacute;xeles adyacentes en un solo cuadro para reducir el nivel de ruidos en una imagen. Ajuste el nivel SSNR 2D. El ajuste puede utilizarse si ajusta <strong class="UI">[SSNR]</strong> a <strong class="UI">[Act]</strong> o <strong class="UI">[Wise NR]</strong>.</p>
             <p>Mientras m&aacute;s alto sea el nivel, menos ruidos habr&aacute;, pero es posible que el v&iacute;deo se vuelva borroso.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
             <h3>Nivel de SSNR 3D</h3>
-            <p>SSNR 3D utiliza p&iacute;xeles en m&uacute;ltiples cuadros para reducir el nivel de ruido en una imagen. Ajuste el nivel de SSNR 3D. Para activarlo, ajuste <strong class="UI">[SSNR]</strong> a <strong class="UI">[Activar]</strong> o <strong class="UI">[Wise NR]</strong>.</p>
+            <p>SSNR 3D utiliza p&iacute;xeles en m&uacute;ltiples cuadros para reducir el nivel de ruido en una imagen. Ajuste el nivel de SSNR 3D. Para activarlo, ajuste <strong class="UI">[SSNR]</strong> a <strong class="UI">[Act]</strong> o <strong class="UI">[Wise NR]</strong>.</p>
             <p>Mientras m&aacute;s alto sea el nivel, menor ser&aacute; el ruido, pero es posible que el v&iacute;deo quede rezagado.</p>
         </div>
 
@@ -615,7 +615,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Nivel de nitidez</h3>
-            <p>Ajusta la nitidez general del v&iacute;deo. Se puede ajustar el nivel de nitidez fijando <strong class="UI">[Nitidez]</strong> to <strong class="UI">[Activado]</strong>.</p>
+            <p>Ajusta la nitidez general del v&iacute;deo. Se puede ajustar el nivel de nitidez fijando <strong class="UI">[Nitidez]</strong> to <strong class="UI">[Act]</strong>.</p>
             <p>Entre m&aacute;s alto sea el nivel de borde, m&aacute;s fuerte y claro ser&aacute; el borde del v&iacute;deo.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Gamma">
@@ -631,9 +631,9 @@
             <p>Ajusta la intensidad del color en la imagen.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
-            <h3>Filtro contra neblina</h3>
+            <h3>Filtro antineblina</h3>
             <p>Corrige la imagen cuando hay niebla o mal tiempo. Aj&uacute;stelo a <strong class="UI">[Autom&aacute;tico]</strong> para corregir autom&aacute;ticamente una imagen mediante la detecci&oacute;n del entorno que la rodea. Si lo ajusta a <strong class="UI">[Manual]</strong>, podr&aacute; observar el entorno circundante y ajustar la cantidad de correcci&oacute;n por su cuenta.</p>
-            <p>Se ha ajustado el valor inicial a <strong class="UI">[Desactivar]</strong>.</p>
+            <p>Se ha ajustado el valor inicial a <strong class="UI">[Des]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>Nivel de filtro antineblina</h3>
@@ -655,7 +655,7 @@
             <h3>LDC</h3>
             <p>LDC (Distorsi&oacute;n de lente de correcci&oacute;n) corrige la distorsi&oacute;n de imagen en el borde de una lente gran angular.</p>
             <ul>
-                <li><strong class="UI">Desactivar</strong>: No utilice la funci&oacute;n de correcci&oacute;n de la distorsi&oacute;n de la imagen.</li>
+                <li><strong class="UI">Des</strong>: No utilice la funci&oacute;n de correcci&oacute;n de la distorsi&oacute;n de la imagen.</li>
                 <li><strong class="UI">Manual</strong>: Ajusta el nivel de correcci&oacute;n de la distorsi&oacute;n de forma manual.</li>
                 <li><strong class="UI">Autom&aacute;tico</strong>: Ajusta la distorsi&oacute;n de la imagen autom&aacute;ticamente.</li>
             </ul>
@@ -667,7 +667,7 @@
             </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
-            <h3>Nivel LDC</h3>
+            <h3>LDC Nivel</h3>
             <p>Ajusta el nivel de correcci&oacute;n de la distorsi&oacute;n. Ajuste <strong class="UI">[LDC]</strong> a <strong class="UI">[Manual]</strong> para habilitarlo.</p>
         </div>
     </div>
@@ -972,7 +972,7 @@
             <h3>Solo tiempo programado</h3>
             <p>Puede definir si desea permitir que un usuario ejecute una imagen preajustada deseada en un momento espec&iacute;fico. Seleccione un preajuste de imagen y establezca la hora de inicio y de fin. Ajuste la imagen preajustada para cada hora de acuerdo con el uso de la c&aacute;mara.</p>
             <p>La fecha de domingo a s&aacute;bado, basada en la hora actual de la c&aacute;mara, se muestra en la tabla de horas que se muestra cuando se selecciona <strong class="UI">[Solo tiempo programado]</strong>. Puede definir la hora haciendo clic en esta o bien arrastrando la tabla de horas con el rat&oacute;n. La hora de activaci&oacute;n ajustada definida se ejecuta repetidamente en el d&iacute;a y la hora de la semana correspondientes.</p>
-            <p>Puede cambiar la unidad de la vista de la hora haciendo clic en el bot&oacute;n <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Cuando hace clic en el bot&oacute;n <strong class="UI">[Restablecer]</strong>, se borrar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, vaya a <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+            <p>Puede cambiar la unidad de la vista de la hora haciendo clic en el bot&oacute;n <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Cuando hace clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se borrar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, vaya a <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
         </div>
     </div>
 </div>
