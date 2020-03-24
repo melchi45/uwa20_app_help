@@ -95,7 +95,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Recording">
             <h3>録画</h3>
-            <p>焦点ぼけ検知イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+            <p ng-if="NAS">アラーム入力イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+            <p ng-if="!NAS">アラーム入力イベントが発生した時、SDカードに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>アラーム出力</h3>
