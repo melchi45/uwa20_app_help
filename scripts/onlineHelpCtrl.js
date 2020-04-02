@@ -190,7 +190,14 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.SupportAAC = attr.AudioInEncodingOptions && attr.AudioInEncodingOptions.indexOf("AAC") !== -1;
       $scope.EntropyCodingOptionCAVLC = attr.EntropyCoding && attr.EntropyCoding.H264 && attr.EntropyCoding.H264.indexOf("CAVLC") !== -1;
       $scope.PrivacyMaskRectangle = attr.PrivacyMaskRectangle > 0;
-
+      /* WN7에서 추가한 것 */
+      $scope.ConnectionMode = attr.ConnectionMode;
+      $scope.AdminRight = attr.AdminAccess;
+      $scope.MutualAuthentification = attr.ClientCertificateAuthenticationEnable;
+      $scope.AGCManual = attr.AGCLevel;
+      $scope.AGCMaxGain = attr.AGCMaxGainLevel;
+      $scope.XCELevel = attr.XCELevel;
+      $scope.GammaControl = attr.GammaControl;
       /*
         1. true values
           Object 인 값 : {},

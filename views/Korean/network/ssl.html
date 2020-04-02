@@ -18,20 +18,52 @@
 		<div class="wn5-setup-section-article-content">
                 <h3>HTTPS(자체 인증서 사용)</h3>
                 <p>카메라가 제공하는 자체 인증서를 사용하여 보안 접속을 합니다. <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을 선택한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하면 HTTPS 모드로 보안 접속됩니다.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
                 <!-- <p>카메라에 내장된 기기 인증서를 사용할지, 외부에서 생성한 자체 서명 인증서를 사용할지 선택할 수 있습니다. </p>
-                <p><strong class="UI">[기기 인증서]</strong>를 선택한 경우, <strong class="UI">[호스트 이름 변경]</strong> 옵션이 활성화되며, <strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택하면 카메라 호스트 이름을 인증서의 주체자 이름(Common Name)과 동일하게 변경합니다. 카메라 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)과 다른 경우, 일부 보안성 검사 툴에서 제품의 보안이 취약한 것으로 판단될 수 있습니다. 변경한 호스트 이름은 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</strong>&gt;<strong class="UI">[IP 주소]</strong>&gt;<strong class="UI">[IPv4 설정]</strong>&gt;<strong class="UI">[호스트 이름]</strong>에서 확인할 수 있습니다. </p>
+                <p><strong class="UI">[기기 인증서]</strong>를 선택한 경우, <strong class="UI">[호스트 이름 변경]</strong> 옵션이 활성화되며, <strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택하면 카메라 호스트 이름을 인증서의 주체자 이름(Common Name)과 동일하게 변경합니다. 카메라 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)과 다른 경우, 일부 보안성 검사 툴에서 제품의 보안이 취약한 것으로 판단될 수 있습니다. 변경한 호스트 이름은 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link"
+href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</strong>&gt;<strong class="UI">[IP 주소]</strong>&gt;<strong class="UI">[IPv4 설정]</strong>&gt;<strong class="UI">[호스트 이름]</strong>에서 확인할 수 있습니다. </p>
                 <p>외부에서 전달한 속성을 통해서 생성한 자체 서명 인증서가 있는 경우, <strong class="UI">[자체 서명 인증서]</strong>를 선택합니다. 자체 서명 인증서를 선택하면 인증서 이름이 표시됩니다. </p> -->
  
-                <!-- pnm 모델에서는 호스트 이름 변경 기능을 지원하지 않으므로 tw 자체 ng-if="MaxChannel==0" 코드 추가함. ipport도 동일. 2020-03-12 -->
-                <p ng-if="MaxChannel==0"><strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택하면, 카메라 호스트 이름을 인증서의 주체자 이름(Common Name)과 동일하게 변경합니다. 카메라 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)과 다른 경우, 일부 보안성 검사 툴에서 제품의 보안이 취약한 것으로 판단될 수 있습니다.</p>
-                <p ng-if="MaxChannel==0">호스트 이름은 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</strong>&gt;<strong class="UI">[IP 주소]</strong>&gt;<strong class="UI">[IPv4 설정]</strong>&gt;<strong class="UI">[호스트 이름]</strong>에서 확인할 수 있습니다. </p> 
+            <h4>호스트 이름 변경</h4>    
+                <p><strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택하면, 카메라 호스트 이름을 인증서의 주체자 이름(Common Name)과 동일하게 변경합니다. 카메라 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)과 다른 경우, 일부 보안성 검사 툴에서 제품의 보안이 취약한 것으로 판단될 수 있습니다.</p>
+                <p>호스트 이름은 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</strong>&gt;<strong class="UI">[IP 주소]</strong>&gt;<strong class="UI">[IPv4 설정]</strong>&gt;<strong class="UI">[호스트 이름]</strong>에서 확인할 수 있습니다. </p> 
         </div>
+		<div class="wn5-setup-section-article-content"  ng-if="MutualAuthentification">
+		    <h4>상호 인증</h4>
+            <p>보안 강화를 위해 상호 인증을 진행하려면 <strong class="UI">[상호 인증]</strong>을 선택합니다.</p>
+            <p>상호 인증 진행 후 접속 허용에 대한 옵션을 선택할 수 있습니다. <strong class="UI">[모든 연결&nbsp;허용]</strong>을 선택하면 상호 인증 성공 여부에 상관 없이 상호 인증을 시도한 모든 접속 시도에 대해 연결을 허용합니다. 즉 상호 인증이 되지 않더라도 카메라에 접속을 허용합니다. <strong class="UI">[상호 인증된 연결만 허용]</strong>을 선택하면 상호
+인증에 성공한 경우에만 카메라에 접속을 허용합니다. </p>
+		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>HTTPS(공인 인증서 사용)</h3>
 		    <p>공인 인증서를 사용하여 보안 접속을 합니다. 공인 인증서를 먼저 설치한 후 선택할 수 있습니다. <strong class="UI">[HTTPS(공인 인증서 사용)]</strong>을 선택한 후 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하면 HTTPS 모드로 보안 접속됩니다.</p>
 		</div>
 	</div>
 </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>TLS 설정</h2>
+    </div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>암호화 통신에 사용할 cipher 모드나 TLS 버전을 설정합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Cipher 모드</h3>
+            <p>키 교환, 인증, 암호화 등 TLS 암호화 통신에 사용할 여러 가지 알고리즘을 조합하여 암호 스위트(cipher suites)를 제공합니다. 보안성이 우수한 암호 스위트만 사용하려면 <strong class="UI">[안전한 암호화 스위트만 사용]</strong>를 선택합니다. 보안성이 다소 취약하더라도 하위 호환성을 위한 암호화 스위트를 사용하려면 <strong class="UI">[호환되는 모든 암호 스위트 사용]</strong>를 선택합니다. [호환되는 모든 암호 스위트 사용]을 선택하면 안전한 암호화 스위트와 안전하지 않은 암호화 스위트 모두를 포함합니다. </p>
+            <!-- <p>TLS 1.0과 TLS 1.1을 선택하면 [호환되는 모든 암호 스위트 사용]만 선택할 수 있으며, TLS 1.2이나 TLS 1.3을 선택하면 [안전한 암호 스위트만 사용]과 [호환되는 모든 암호 스위트 사용] 중 옵션을 선택할 수 있습니다. </p> -->
+        </div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>버전</h3>
+            <p>암호화 통신에 사용할 TLS 프로토콜 버전을 선택합니다.</p>
+            <p><strong class="UI">[Cipher 모드]</strong>에서 [안전한 암호 스위트만 사용]을 선택하면 TLS 1.2나 TLS 1.3만 선택할 수 있으며, [호환되는 모든 암호 스위트 사용]을 선택하면 TLS 모든 버전 중 원하는 옵션을 선택할 수 있습니다. </p>
+        </div>
+	</div>
+</div>
+
 
 <hr class="wn5-setup-hr" ng-if="!SSLOff">
 <div class="wn5-setup-section" ng-if="!SSLOff">
