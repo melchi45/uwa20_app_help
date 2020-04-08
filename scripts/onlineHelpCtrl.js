@@ -61,6 +61,9 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
     for (var featureName in supportFeatures) {
       attr[featureName] = supportFeatures[featureName];
     }
+    if (sessionStorage.languageClass) {
+      document.body.classList.add(sessionStorage.languageClass);
+    }
   } else {
     if ("supportMenu" in localStorage) {    //Old Version
       supportMenu = JSON.parse(localStorage.supportMenu);
