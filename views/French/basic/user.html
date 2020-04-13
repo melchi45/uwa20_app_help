@@ -1,4 +1,5 @@
-﻿<h1 class="wn5-setup-main-title">Utilisateur</h1>
+<meta charset="utf-8">
+<h1 class="wn5-setup-main-title">Utilisateur</h1>
 <div class="wn5-setup-section">
 	<p>G&egrave;re les comptes des utilisateurs se connectant &agrave; la cam&eacute;ra. La modification du mot de passe administrateur et la configuration invit&eacute;, la configuration de l&apos;authentification et le r&eacute;glage des utilisateurs actuels sont tous disponibles. Lorsque vous avez termin&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
@@ -6,28 +7,38 @@
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<div class="wn5-setup-section-heading">
-		<h2>Modification mot de passe administrateur</h2>
-	</div>
-	<div class="wn5-setup-section-article">		
+		<div class="wn5-setup-section-heading">
+				<h2>Modification mot de passe administrateur</h2>
+		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p ng-if="AdminID == undefined || AdminID">Vous pouvez modifier l&rsquo;ID du compte administrateur et le mot de passe. Pour renforcer la s&eacute;curit&eacute;, cr&eacute;ez un mot de passe en combinant de mani&egrave;re al&eacute;atoire des lettres anglaises majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</p>
 			<p ng-if="AdminID == undefined || !AdminID">Vous pouvez modifier le mot de passe administrateur. Pour renforcer la s&eacute;curit&eacute;, cr&eacute;ez un mot de passe en combinant de mani&egrave;re al&eacute;atoire des lettres anglaises majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="AdminID == undefined || AdminID">
-				<h3>ID</h3>
-				<p>Vous pouvez afficher ou modifier l&rsquo;ID administrateur qui est actuellement utilis&eacute;.</p>
-			</div>
-			<div class="wn5-online-help-info" ng-if="AdminID == undefined || AdminID">
-				<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-				<ul>
-					<li>L&rsquo;ID administrateur ne doit contenir que des caract&egrave;res alphanum&eacute;riques avec une longueur maximale de 8&nbsp;caract&egrave;res.</li>
-					<li>L&rsquo;ID d&rsquo;invit&eacute; par d&eacute;faut « guest » ou l&rsquo;ID d&rsquo;utilisateur par d&eacute;faut « user1 », « user2 »...« user10 » ne peut pas &ecirc;tre utilis&eacute; en tant qu&rsquo;ID administrateur.</li>
-				</ul>
-			</div>
-
-
+			<h3>ID</h3>
+	        <p>Vous pouvez afficher ou modifier l&rsquo;ID administrateur qui est actuellement utilis&eacute;.</p>
+	    </div>
+		<div class="wn5-online-help-info" ng-if="AdminID == undefined || AdminID">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>L&rsquo;ID administrateur ne doit contenir que des caract&egrave;res alphanum&eacute;riques avec une longueur maximale de 8&nbsp;caract&egrave;res.</li>
+                <li>L&rsquo;ID d&rsquo;invit&eacute; par d&eacute;faut « guest » ou l&rsquo;ID d&rsquo;utilisateur par d&eacute;faut « user1 », « user2 »...« user10 » ne peut pas &ecirc;tre utilis&eacute; en tant qu&rsquo;ID administrateur.</li>
+            </ul>
+		</div><!-- PNO-9081 이슈 수정 시 관리자 ID에 대한 분기 불가능하여 기존 분기 코드 주석 처리함. 2019-10-11
 		<div class="wn5-setup-section-article-content">
+			<p>관리자 계정의 ID와 비밀번호를 변경할 수 있습니다. 비밀번호를 변경하는 경우, 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>ID</h3>
+	        <p>현재 사용하고 있는 관리자 ID를 확인하거나 변경할 수 있습니다.</p>
+	    </div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>관리자 ID는 알파벳, 숫자만 사용할 수 있으며, 최대 8자까지 입력할 수 있습니다.</li>
+                <li>관리자 ID로 기본 게스트 ID인 'guest'나 기본 사용자 ID인 'user1', 'user2'...'user10'을 사용할 수 없습니다.</li>
+            </ul>
+		</div> --><div class="wn5-setup-section-article-content">
 			<h3>Mot de passe actuel</h3>
 	        <p>Entrez le mot de passe actuel. Pour emp&ecirc;cher tout modification du mot de passe par quelqu&apos;un d&apos;autre, le mot de passe administrateur ne peut &ecirc;tre modifi&eacute; qu&apos;apr&egrave;s avoir saisi l&rsquo;ancien mot de passe.</p>
 	    </div>
@@ -43,33 +54,76 @@
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-				<li>Pour plus de s&eacute;curit&eacute;, il est recommand&eacute; de cr&eacute;er un mot de passe qui combine des caract&egrave;res sp&eacute;ciaux, des chiffres, des majuscules et des minuscules.</li>
-				<li>Il est recommand&eacute; de changer le mot de passe tous les trois mois.</li>
-				<li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
-				<ul>
-					<li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                <li>Pour plus de s&eacute;curit&eacute;, il est recommand&eacute; de cr&eacute;er un mot de passe qui combine des caract&egrave;res sp&eacute;ciaux, des chiffres, des majuscules et des minuscules.</li>
+                <li>Il est recommand&eacute; de changer le mot de passe tous les trois mois.</li>
+                <li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
+                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
-					<li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caractères, il doit contenir au moins trois des règles suivantes : majuscules / minuscules, chiffres et symboles.</li>
-					<li>Il doit &ecirc;tre diff&eacute;rent de votre identifiant (ID).</li>
-					<li>Vous ne pouvez pas utiliser quatre lettres cons&eacute;cutives d&rsquo;un m&ecirc;me type. (Ex&nbsp;: 1234, abcd)</li>
-					<li>Vous ne pouvez pas r&eacute;p&eacute;ter la m&ecirc;me lettre quatre fois ou plus d&rsquo;affil&eacute;e. (Ex&nbsp;: ! !!!!, 1111, aaaaaa)</li>
+                    <li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caract&egrave;res, il doit contenir au moins trois des r&egrave;gles suivantes : majuscules / minuscules, chiffres et symboles.</li>					
+                    <li>Il doit &ecirc;tre diff&eacute;rent de votre identifiant (ID).</li>
+                    <li>Vous ne pouvez pas utiliser quatre lettres cons&eacute;cutives d&rsquo;un m&ecirc;me type. (p. ex. : 1234, abcd).</li>
+                    <li>Vous ne pouvez pas utiliser le m&ecirc;me caract&egrave;re quatre fois ou plus de suite (p.ex., !!!!, 1111, aaaa).</li>
 					<li ng-if="PasswordRule1">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
-					<li>Apr&egrave;s la r&eacute;initialisation d&rsquo;usine, les mots de passe administrateur et utilisateur seront r&eacute;initialis&eacute;s et vous devrez les cr&eacute;er &agrave; nouveau.</li>
-					<li>Lorsque vous acc&eacute;dez au Web Viewer de la cam&eacute;ra pour la premi&egrave;re fois, ou lorsque vous y acc&eacute;dez apr&egrave;s l&rsquo;initialisation, vous acc&eacute;dez au menu. Param&egrave;tres du mot de passe.</li>
-					<li>Pour utiliser le menu Web Viewer, vous devez d&eacute;finir le nouveau mot de passe dans le menu Changer MDP et vous connecter &agrave; nouveau &agrave; Web Viewer avec le mot de passe modifi&eacute;.</li>
-					<li>Lorsque vous modifiez le mot de passe de l&rsquo;admin, si le mot de passe actuel ne correspond pas, vous ne pouvez alors pas d&eacute;finir un nouveau mot de passe.</li>
-					<li>Apr&egrave;s avoir modifi&eacute; le mot de passe, si une cam&eacute;ra est connect&eacute;e &agrave; un client, tel que CMS ou NVR, vous devez alors enregistrer le mot de passe modifi&eacute; avant toute utilisation. Si vous conservez la m&ecirc;me connexion, le client utilisera le mot de passe pr&eacute;c&eacute;dent pour l&rsquo;authentification, de sorte que le compte peut &ecirc;tre verrouill&eacute;.</li>
-				</ul>
-				<li>Lors de la connexion &agrave; Web Viewer, si vous avez saisi un mot de passe incorrect plus de cinq fois, la connexion est bloqu&eacute;e pendant 30 secondes et il sera impossible d&rsquo;acc&eacute;der &agrave; Web Viewer.</li>
-				<li>Si la connexion est &eacute;tablie depuis plusieurs endroits avec le m&ecirc;me identificateur ou si le mot de passe est modifi&eacute; alors que plusieurs navigateurs Internet sont ouverts, les navigateurs Internet peuvent ne pas fonctionner correctement. Il est recommand&eacute; de modifier un mot de passe uniquement depuis un seul emplacement ou via un seul navigateur Internet.</li>
-			</ul>
+                    <li>Apr&egrave;s la r&eacute;initialisation d&rsquo;usine, les mots de passe administrateur et utilisateur seront r&eacute;initialis&eacute;s et vous devrez les cr&eacute;er &agrave; nouveau.</li>
+                    <li>Lorsque vous acc&eacute;dez au Web Viewer de la cam&eacute;ra pour la premi&egrave;re fois, ou lorsque vous y acc&eacute;dez apr&egrave;s l&rsquo;initialisation, vous acc&eacute;dez au menu. Param&egrave;tres du mot de passe.</li>
+                    <li>Pour utiliser le menu Web Viewer, vous devez d&eacute;finir le nouveau mot de passe dans le menu Changer MDP et vous connecter &agrave; nouveau &agrave; Web Viewer avec le mot de passe modifi&eacute;.</li>
+                    <li>Lorsque vous modifiez le mot de passe de l&rsquo;admin, si le mot de passe actuel ne correspond pas, vous ne pouvez alors pas d&eacute;finir un nouveau mot de passe.</li>
+                    <li>Apr&egrave;s avoir modifi&eacute; le mot de passe, si une cam&eacute;ra est connect&eacute;e &agrave; un client, tel que CMS ou NVR, vous devez alors enregistrer le mot de passe modifi&eacute; avant toute utilisation. Si vous conservez la m&ecirc;me connexion, le client utilisera le mot de passe pr&eacute;c&eacute;dent pour l&rsquo;authentification, de sorte que le compte peut &ecirc;tre verrouill&eacute;.</li>
+                </ul>
+                <li>Lors de la connexion &agrave; Web Viewer, si vous avez saisi un mot de passe incorrect plus de cinq fois, la connexion est bloqu&eacute;e pendant 30 secondes et il sera impossible d&rsquo;acc&eacute;der &agrave; Web Viewer.</li>
+                <li>Si la connexion est &eacute;tablie depuis plusieurs endroits avec le m&ecirc;me identificateur ou si le mot de passe est modifi&eacute; alors que plusieurs navigateurs Internet sont ouverts, les navigateurs Internet peuvent ne pas fonctionner correctement. Il est recommand&eacute; de modifier un mot de passe uniquement depuis un seul emplacement ou via un seul navigateur Internet.</li>
+            </ul>
 		</div>
 	</div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
+<div class="wn5-setup-section" ng-if="AdminFilterSupport">
+		<div class="wn5-setup-section-heading">
+				<h2>Adresse IP pour autoriser la connexion admin</h2>
+		</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>Seules les adresses IP enregistr&eacute;es peuvent &ecirc;tre d&eacute;finies pour acc&eacute;der au Web Viewer avec le compte administrateur.</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Ajout d&rsquo;adresses IP pour acc&egrave;s avec le compte administrateur</h4>
+			<ol>
+				<li>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong>. Un champ est cr&eacute;&eacute; pour saisir le type d&rsquo;adresse IP et l&rsquo;adresse IP.</li>
+				<li>Dans la colonne <strong class="UI">[Type d&rsquo;adresse IP]</strong>, s&eacute;lectionnez le type d&rsquo;adresse IP&nbsp;: IPv4 ou IPv6.</li>
+				<li>Dans la colonne <strong class="UI">[Type d&rsquo;adresse IP]</strong>, saisissez l&rsquo;adresse IP permettant l&rsquo;acc&egrave;s avec le compte administrateur.</li>
+			</ol>
+			<p>Vous devez cocher la case <strong class="UI">[Utiliser]</strong> pour acc&eacute;der au Web Viewer de la cam&eacute;ra dans l&rsquo;adresse IP correspondante avec le compte administrateur.</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Suppression d&rsquo;une adresse IPv4</h4>
+			<ol>
+				<li>S&eacute;lectionnez l&rsquo;adresse IP &agrave; supprimer.</li>
+				<li>Cliquez sur le bouton <strong class="UI">[Effacer]</strong>.</li>
+				<li>Cliquez sur le bouton <strong class="UI">[OK]</strong> dans la fen&ecirc;tre de confirmation supprimer. L&rsquo;adresse IPv4 est supprim&eacute;e.</li>
+			</ol>
+		
+		</div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="AdminTimeout">
+<div class="wn5-setup-section" ng-if="AdminTimeout">
+	<div class="wn5-setup-section-heading">
+			<h2>La connexion Administrateur se d&eacute;connecte automatiquement</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Si aucune activit&eacute; n&rsquo;est enregistr&eacute;e pendant un certain temps apr&egrave;s avoir acc&eacute;der au Web Viewer de la cam&eacute;ra avec le compte administrateur, la connexion du Web Viewer sera coup&eacute;e. Saisissez l&rsquo;heureen minutespour d&eacute;connecter automatiquement la connexion admin, si l&rsquo;administrateur est inactif.</p>
+        </div>
+	</div>
+</div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -78,21 +132,95 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Lorsque vous s&eacute;lectionnez <strong class="UI">[Activer acc&egrave;s invit&eacute;]</strong>, un invit&eacute; peut se connecter &agrave; un &eacute;cran Web. Lorsque vous vous connectez avec un compte invit&eacute;, vous pouvez uniquement voir l&apos;&eacute;cran en direct sur l&rsquo;&eacute;cran Web. L&apos;identifiant et le mot de passe de l&apos;invit&eacute; sont «&nbsp;guest/guest&nbsp;» et ils ne peuvent pas &ecirc;tre modifi&eacute;s.</p>
+			<p>Lorsque vous s&eacute;lectionnez <strong class="UI">[Activer acc&egrave;s invit&eacute;]</strong>, un invit&eacute; peut se connecter &agrave; un &eacute;cran Web. Lorsque vous vous connectez avec un compte invit&eacute;, vous pouvez uniquement voir l&apos;&eacute;cran en direct sur l&rsquo;&eacute;cran Web. L&rsquo;identifiant et le mot de passe de l&rsquo;invit&eacute; sont «&nbsp;guest/guest&nbsp;» et ils ne peuvent pas &ecirc;tre modifi&eacute;s.</p>
 		</div>
 	</div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <div class="wn5-setup-section-heading">
+		<h2>Configuration RTSP</h2>
+	</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Lorsque vous s&eacute;lectionnez <strong class="UI">[Activer la conn. RTSP sans cryptage]</strong>, vous pouvez lire la vid&eacute;o en format RTSP, m&ecirc;me si le programme ne prend pas en charge le protocole de cryptage de vid&eacute;o S1.</p>
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
-		<h2>Config. de l’authentification</h2>
+		<h2>Config. de l&rsquo;authentification</h2>
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Lorsque vous s&eacute;lectionnez <strong class="UI">[Activer la connexion RTSP sans authentification]</strong>, vous pouvez vous connecter &agrave; l&apos;image de la cam&eacute;ra via le protocole RTSP (Diffusion en continu en temps r&eacute;el) sans authentification de connexion.</p>
+			<p>Lorsque vous s&eacute;lectionnez <strong class="UI">[Activer la conn. RTSP sans authentification]</strong>, vous pouvez vous connecter &agrave; l&apos;image de la cam&eacute;ra via le protocole RTSP (Diffusion en continu en temps r&eacute;el) sans authentification de connexion.</p>
 		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
+<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+	<div class="wn5-setup-section-heading">
+		<h2>Authentification de synth&egrave;se</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>S&eacute;lectionne l&rsquo;option d&rsquo;algorythme pour l&rsquo;authentification de synth&egrave;se.</p>
+		</div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
+<div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
+	<div class="wn5-setup-section-heading">
+		<h2>Gestionnaire de p&eacute;riph&eacute;rique</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>S&eacute;lectionnez <strong class="UI">[Utiliser]</strong> pour contr&ocirc;ler la cam&eacute;ra dans «&nbsp;Gestionnaire de p&eacute;riph&eacute;rique Wisenet&nbsp;» fourni par Hanwha Techwin.</p>
+                <p>La valeur par d&eacute;faut est l&rsquo;option <strong class="UI">[Utiliser]</strong> d&eacute;s&eacute;lectionn&eacute;e. Nous recommandons de conserver la valeur par d&eacute;faut pour des raisons de s&eacute;curit&eacute;.</p>
+            </div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <div class="wn5-setup-section-heading">
+		<h2>Configuration TTA</h2>
+	</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Si vous s&eacute;lectionnez <strong class="UI">[Utiliser l&rsquo;authentification ONVIF TTA]</strong>, la m&eacute;thode d&rsquo;authentification de synth&egrave;se du message est utilis&eacute; &agrave; la place de la m&eacute;thode d&rsquo;authentification par texte brut qui n&rsquo;est pas crypt&eacute;e dnas l&rsquo;authentification ONVIF TTA.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<div class="wn5-setup-section-heading">
+		<h2>Rechercher votre mot de passe</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Si vous s&eacute;lectionnez <strong class="UI">[Utilier la recherche de mot de passe]</strong>, vous pouvez retrouver votre mot de passe via l&rsquo;e-mail d&eacute;fini dans la page de connexion.</p>
+        </div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<div class="wn5-setup-section-heading">
+		<h2>Cycle de modification du mot de passe</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>D&eacute;finissez le cycle d&rsquo;exposition du message pour inciter &agrave; modifier le mot de passe de l&rsquo;administrateur. Apr&egrave;s &eacute;coulement de la p&eacute;riode d&eacute;finie, vous serez invit&eacute; &agrave; modifier votre mot de passe.</p>
+        </div>
 	</div>
 </div>
 
@@ -104,19 +232,19 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation, y compris l&apos;entr&eacute;e audio, la sortie audio, l&rsquo;&eacute;mission d&apos;alerte et le profil. </p>	
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation. </p>
-			<p>Lorsqu&apos;un utilisateur enregistr&eacute; se connecte, seules les fonctions d&eacute;finies pour cet utilisateur sont activ&eacute;es. 10&nbsp;comptes utilisateurs actuels sont d&eacute;finis par d&eacute;faut. Vous pouvez ajouter ou supprimer un compte. Il est possible d&apos;utiliser jusqu&apos;&agrave; 10&nbsp;comptes d&apos;utilisateur IP actuels.</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation, y compris l&apos;entr&eacute;e audio, la sortie audio, l&rsquo;&eacute;mission d&apos;alerte et le profil.</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Vous pouvez d&eacute;finir les informations de connexion pour les comptes des utilisateurs autres que l&apos;administrateur et d&eacute;finir les autorisations d&apos;utilisation.</p>				
+			<p>Lorsqu&apos;un utilisateur enregistr&eacute; se connecte, seules les fonctions d&eacute;finies pour cet utilisateur sont activ&eacute;es. 10&nbsp;comptes utilisateurs actuels sont d&eacute;finis par d&eacute;faut. Vous pouvez ajouter ou supprimer un compte. Il est possible d&rsquo;utiliser jusqu&rsquo;&agrave; 10&nbsp;comptes d&rsquo;utilisateur IP actuels.</p>
 		</div>
 		<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-			<ul>
-			<li>Si vous souhaitez s&eacute;lectionner l&rsquo;utilisateur configur&eacute; qui peut utiliser ONVIF, l&rsquo;utilisation de la fonction peut &ecirc;tre restreinte, en fonction du niveau de permission d&eacute;fini.</li>
-			</ul>
+	        <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Si vous souhaitez s&eacute;lectionner l&rsquo;utilisateur configur&eacute; qui peut utiliser ONVIF, l&rsquo;utilisation de la fonction peut &ecirc;tre restreinte, en fonction du niveau de permission d&eacute;fini.</li>
+                </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Utillsation</h3>
-			<p>Cochez la case pour activer le compte d'utilisateur sélectionné.</p>
+			<p>Cochez la case pour activer le compte d&apos;utilisateur s&eacute;lectionn&eacute;.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Nom</h3>
@@ -125,6 +253,10 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>Mot de passe</h3>
 			<p>Entrez le mot de passe. La r&egrave;gle de d&eacute;finition du mot de passe est la m&ecirc;me que pour le mot de passe administrateur.</p>
+		</div>
+				<div class="wn5-setup-section-article-content" ng-if="AdminAccess">
+			<h3>Privil&egrave;ge d&rsquo;admin.</h3>
+            <p>Autorise les utilisateurs s&eacute;lectionn&eacute;s avec des privil&egrave;ges d&rsquo;administrateur. Les utilisateurs normaux ne peuvent utiliser que les fonctions autoris&eacute;es par l&rsquo;administrateur, mais les administrateurs peuvent acc&eacute;der &agrave;, et d&eacute;finir toutes les fonctions qu&rsquo;ils souhaitent. Toutefois, m&ecirc;me si des privil&egrave;ges d&rsquo;administrateur sont donn&eacute;es aux utilisateurs, ils ne peuvent pas modifier leur ID ou leur mot de passe admin.</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
 			<h3>Entr&eacute;e audio</h3>
@@ -137,18 +269,12 @@
 		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
 			<h3>&Eacute;mission d&apos;alerte</h3>
 			<p>R&eacute;glez les autorisations d&rsquo;&eacute;mission d&apos;alarme. Lorsqu&apos;une alarme a &eacute;t&eacute; r&eacute;gl&eacute;e, un utilisateur qui se connecte &agrave; un compte appropri&eacute; peut &eacute;mettre l&apos;alarme.</p>
-
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
-
-						<h3>PTZ</h3>
-			            <p>R&egrave;gle l&apos;autorisation de contr&ocirc;ler le PTZ en mode <strong class="UI">[Direct]</strong> .</p>
-					</div>
-
-
-
+				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
+			<h3>PTZ</h3>
+            <p>R&egrave;gle l&apos;autorisation de contr&ocirc;ler le PTZ en mode <strong class="UI">[Direct]</strong> .</p>
+		</div>
 		<div class="wn5-setup-section-article-content">
-
 			<h3>Profil</h3>
 			<p>Lorsque <strong class="UI">[Par defaut]</strong> est d&eacute;fini, l&apos;utilisateur peut regarder l&apos;image uniquement en mode par d&eacute;faut. Lorsque <strong class="UI">[Tout]</strong> est d&eacute;fini, l&apos;utilisateur peut regarder l&apos;image dans tous les profils.</p>
 		</div>
@@ -158,9 +284,9 @@
 			<ol>
 				<li>S&eacute;lectionnez le bouton radio du compte d&apos;utilisateur actuel que vous souhaitez utiliser. Le compte utilisateur actuel est remplac&eacute; par un &eacute;tat o&ugrave; l&apos;entr&eacute;e est disponible.</li>
 				<li>Cochez la case dans la colonne <strong class="UI">[Utillsation]</strong>.</li>
-				<li>Saisissez l&apos;identifiant et le mot de passe dans les colonnes <strong class="UI">[Nom]</strong> et <strong class="UI">[Mot de passe]</strong>.</li>
-				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">S&eacute;lectionnez une fonction &agrave; autoriser dans les colonnes <strong class="UI">[Entr&eacute;e audio]</strong>, <strong class="UI">[Sortie audio]</strong> et <strong class="UI">[&Eacute;mission alerte]</strong> respectivement, puis s&eacute;lectionnez le type de profil &agrave; autoriser dans la colonne <strong class="UI">[Profil]</strong>.</li>
-				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">S&eacute;lectionnez le type de profil &agrave; autoriser dans la colonne <strong class="UI">[Profil]</strong>.</li>
+				<li>Saisissez l&apos;identifiant et le mot de passe dans les colonnes <strong class="UI">[Nom]</strong> et <strong class="UI">[Mot de passe]</strong>.</li><!-- <li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> --><li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">S&eacute;lectionnez une fonction &agrave; autoriser dans les colonnes <strong class="UI">[Entr&eacute;e audio]</strong>, <strong class="UI">[Sortie audio]</strong> et <strong class="UI">[&Eacute;mission alerte]</strong> respectivement, puis s&eacute;lectionnez le type de profil &agrave; autoriser dans la colonne <strong class="UI">[Profil]</strong>.</li>
+                <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">S&eacute;lectionnez le type de profil &agrave; autoriser dans la colonne <strong class="UI">[Profil]</strong>.</li> 
+				
 				<li>Lorsque l&apos;entr&eacute;e du compte utilisateur actuel est termin&eacute;e, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</li>
 				<li>Lorsque la fen&ecirc;tre de confirmation appara&icirc;t, cliquez sur le bouton <strong class="UI">[OK]</strong>.</li>
 			</ol>

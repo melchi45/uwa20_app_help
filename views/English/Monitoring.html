@@ -58,7 +58,7 @@
                         </td>
                     </tr>
 
-                    <tr>
+                    <tr ng-if="IsAdmin">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
                             <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Video setup</a></p>
@@ -169,7 +169,7 @@
                       <p>It can be viewed only after you install the plugin in Internet Explorer and select the 'FisheyeView' profile on the [Viedo Setup] tab. </p>
   <p>&nbsp;</p>    </td>
              </tr>  -->
-                    <tr>
+                    <tr  ng-if="IsAdmin">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
                             <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">Status</a></p>
@@ -336,7 +336,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>When you click a desired alarm output number, the alarm will be outputted as previously set. The alarm can be set from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm output]</strong> page. The number of alarm outputs varies depending on the camera.</p>
+                            <p>When you click a desired alarm output number, the alarm will be outputted as previously set. The alarm can be set from the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong> page. The number of alarm outputs varies depending on the camera.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -481,8 +481,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="IsAdmin">
+<div class="wn5-setup-section" ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="settings"></a>Video setup</h2>
     </div>
@@ -792,8 +792,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>  -->
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr"  ng-if="IsAdmin">
+<div class="wn5-setup-section"  ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="status"></a>Status</h2>
     </div>

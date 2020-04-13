@@ -56,7 +56,7 @@
                                     <p>&nbsp;</p>
                                 </td>
                             </tr>
-				    <tr>
+				    <tr ng-if="IsAdmin"> 
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
                             <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Conf. de v&iacute;deo</a></p>
@@ -97,7 +97,7 @@
                         </td>
                         <td width="235">
                             <p >Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n/Zoom de la c&aacute;mara. </p>
-                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital. Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
+                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital. Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
                             <!-- <p ng-if="objectDetectionSupport">Al seleccionar el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>, se activará la función PTZ.</p> -->
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ digital se habilita solo cuando se selecciona el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>.</p>
                             <p ng-if="GlobalPTZMode && MaxChannel > 1">Si no se muestra el icono PTZ, vaya a <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externo]</strong> y f&iacute;jese si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; marcada.</p>
@@ -154,7 +154,7 @@
     <p>&nbsp;</p>
                             </td>
                     </tr>  -->
-                      <tr>
+                      <tr  ng-if="IsAdmin">
                           <td width="235">
                               <p><span class="tui tui-wn5-toolbar-status"></span></p>
                               <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">Estado</a></p>
@@ -314,7 +314,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Utilice la funci&oacute;n del micr&oacute;fono. Para utilizar la funci&oacute;n de micr&oacute;fono, la funci&oacute;n <strong class="UI">[Entrada de audio]</strong> debe ser activada para el perfil correspondiente. Para activar la funci&oacute;n de entrada de v&iacute;deo, seleccione <strong class="UI">[Activar]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>.</p>
+                            <p>Utilice la funci&oacute;n del micr&oacute;fono. Para utilizar la funci&oacute;n de micr&oacute;fono, la funci&oacute;n <strong class="UI">[Entrada de audio]</strong> debe ser activada para el perfil correspondiente. Para activar la funci&oacute;n de entrada de v&iacute;deo, seleccione <strong class="UI">[Activar]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>.</p>
                             <p ng-if="SupportAutoImageAlignment">La función del micrófono solo está disponible si ha seleccionado Canal1.</p>
                             <p>&nbsp;</p>
                         </td>
@@ -326,7 +326,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Al hacer clic en un n&uacute;mero de salida de alarma deseado, la alarma se emite seg&uacute;n lo establecido anteriormente. La alarma puede configurarse desde la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Evento]</strong>&gt;<strong class="UI">[Salida de alarma]</strong>. El n&uacute;mero de salidas de alarma var&iacute;a en funci&oacute;n de la c&aacute;mara.</p>
+                            <p>Al hacer clic en un n&uacute;mero de salida de alarma deseado, la alarma se emite seg&uacute;n lo establecido anteriormente. La alarma puede configurarse desde la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Evento]</strong>&gt;<strong class="UI">[Alarma E/S]</strong>. El n&uacute;mero de salidas de alarma var&iacute;a en funci&oacute;n de la c&aacute;mara.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr >
@@ -472,10 +472,10 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="IsAdmin">
+<div class="wn5-setup-section" ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="settings"></a>Configuraci&oacute;n de v&iacute;deo</h2>
+        <h2><a class="wn5-online-help-link" name="settings"></a>Conf. de vídeo</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -505,7 +505,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Se pueden controlar movimientos de panor&aacute;mica/inclinaci&oacute;n/zoom de la c&aacute;mara o utilizar la funci&oacute;n de seguimiento autom&aacute;tico digital. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-toolbar-ptz"></span> de la parte inferior de la pantalla principal, la pantalla donde se pueden cambiar panor&aacute;mica/inclinaci&oacute;n/zoom aparecer&aacute; en la parte inferior. Para utilizar PTZ, <strong class="UI">[Perfil PTZ digital]</strong> deber&iacute;a estar seleccionado desde <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. DPTZ s&oacute;lo se puede aplicar a los perfiles que utilizan los c&oacute;decs H.264 y H.265.</p>
+            <p>Se pueden controlar movimientos de panor&aacute;mica/inclinaci&oacute;n/zoom de la c&aacute;mara o utilizar la funci&oacute;n de seguimiento autom&aacute;tico digital. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-toolbar-ptz"></span> de la parte inferior de la pantalla principal, la pantalla donde se pueden cambiar panor&aacute;mica/inclinaci&oacute;n/zoom aparecer&aacute; en la parte inferior. Para utilizar PTZ, <strong class="UI">[Perfil PTZ digital]</strong> deber&iacute;a estar seleccionado desde <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. DPTZ s&oacute;lo se puede aplicar a los perfiles que utilizan los c&oacute;decs H.264 y H.265.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -797,8 +797,8 @@
 </div>  -->
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr"  ng-if="IsAdmin">
+<div class="wn5-setup-section"  ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="status"></a>Estado</h2>
     </div>

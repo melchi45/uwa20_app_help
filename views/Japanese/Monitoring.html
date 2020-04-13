@@ -65,7 +65,7 @@
                         <p>&nbsp;</p>
                     </td>
                 </tr>  --> 
-                    <tr>
+                    <tr ng-if="IsAdmin">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
                             <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">ビデオ設定</a></p>
@@ -157,7 +157,7 @@
 						<p>&nbsp;</p>
                     </td>
                     </tr>  -->
-                    <tr>
+                    <tr  ng-if="IsAdmin">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
                             <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">状況</a></p>
@@ -327,7 +327,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>選択したいアラーム出力No.をクリックすると、設定した情報でアラームを出力します。アラームは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム出力]</strong>ページで設定することができます。アラーム出力数は、カメラごとに異なります。</p>
+                            <p>選択したいアラーム出力No.をクリックすると、設定した情報でアラームを出力します。アラームは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>ページで設定することができます。アラーム出力数は、カメラごとに異なります。</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -470,8 +470,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="IsAdmin">
+<div class="wn5-setup-section" ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="settings"></a>ビデオ設定</h2>
     </div>
@@ -783,8 +783,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 </div> --> 
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr"  ng-if="IsAdmin">
+<div class="wn5-setup-section"  ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="status"></a>状況</h2>
     </div>

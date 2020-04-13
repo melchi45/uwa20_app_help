@@ -1,4 +1,5 @@
-﻿<h1 class="wn5-setup-main-title">Usuario</h1>
+<meta charset="utf-8">
+<h1 class="wn5-setup-main-title">Usuario</h1>
 <div class="wn5-setup-section">
 	<p>Gestiona las cuentas de usuario que se conectan a la c&aacute;mara. El cambio de la contrase&ntilde;a de administrador y configuraci&oacute;n de invitados, la configuraci&oacute;n de la autenticaci&oacute;n y la configuraci&oacute;n de los usuarios actuales est&aacute;n todos disponibles. Cuando haya finalizado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
 </div>
@@ -6,8 +7,9 @@
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">Cambiar contrase&ntilde;a de administrador</h2>
-	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-heading">
+				<h2>Cambiar contrase&ntilde;a de administrador</h2>
+		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p ng-if="AdminID == undefined || AdminID">Puede cambiar el ID de la cuenta de administrador y la contrase&ntilde;a. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
 			<p ng-if="AdminID == undefined || !AdminID">Puede cambiar la contrase&ntilde;a de administrador. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
@@ -19,14 +21,24 @@
 		<div class="wn5-online-help-info" ng-if="AdminID == undefined || AdminID">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
-                <li>El ID de administrador solo debe contener caracteres alfanum&eacute;ricos, con una longitud m&aacute;xima total de 8&nbsp;caracteres.</li>
-                <li>El ID predeterminado de invitado para «guest» o el ID predeterminado de usuario para «user1», «user2»...«user10» no pueden utilizarse como el ID de administrador.</li>
+                <li>El ID de administrador solo debe contener caracteres alfanum&eacute;ricos, con una longitud m&aacute;xima total de 8 caracteres.</li>
+                <li>El ID predeterminado de invitado para «guest» o el ID predeterminado de usuario para «user1», «user2»... «user10» no pueden utilizarse como el ID de administrador.</li>
             </ul>
-		</div>
-
-
-
+		</div><!-- PNO-9081 이슈 수정 시 관리자 ID에 대한 분기 불가능하여 기존 분기 코드 주석 처리함. 2019-10-11
 		<div class="wn5-setup-section-article-content">
+			<p>관리자 계정의 ID와 비밀번호를 변경할 수 있습니다. 비밀번호를 변경하는 경우, 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>ID</h3>
+	        <p>현재 사용하고 있는 관리자 ID를 확인하거나 변경할 수 있습니다.</p>
+	    </div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>관리자 ID는 알파벳, 숫자만 사용할 수 있으며, 최대 8자까지 입력할 수 있습니다.</li>
+                <li>관리자 ID로 기본 게스트 ID인 'guest'나 기본 사용자 ID인 'user1', 'user2'...'user10'을 사용할 수 없습니다.</li>
+            </ul>
+		</div> --><div class="wn5-setup-section-article-content">
 			<h3>Contrase&ntilde;a actual</h3>
 	        <p>Introduzca la contrase&ntilde;a actual. Para evitar que la contrase&ntilde;a sea cambiada por otra persona, la contrase&ntilde;a de administrador s&oacute;lo puede cambiarse despu&eacute;s de introducir la contrase&ntilde;a anterior.</p>
 	    </div>
@@ -42,82 +54,209 @@
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
-					<li>Para una mayor seguridad, se recomienda crear una contrase&ntilde;a que combine caracteres especiales, n&uacute;meros y letras may&uacute;sculas y min&uacute;sculas.</li>
-					<li>Se recomienda cambiar la contrase&ntilde;a cada tres meses.</li>
-					<li>La longitud y restricciones de la contrase&ntilde;a son las siguientes:</li>
-					<ul>
-						<li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-						<li ng-if="PasswordRule1">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-						<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-						<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-						<li ng-if="PasswordRule2">Si la contraseña tiene más de 9 caracteres, deberá contener al menos tres de las siguientes reglas: mayúsculas/minúsculas, números y símbolos.</li>
-						<li>Debe ser diferente de su identificaci&oacute;n.</li>
-						<li>No se pueden utilizar cuatro letras consecutivas de un tipo (Por ejemplo: 1234, abcd)</li>
-						<li>No se puede repetir la misma letra cuatro o m&aacute;s veces seguidas. (Por ejemplo: !!!!, 1111, aaaa)</li>
-						<li ng-if="PasswordRule1">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
-						<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
-						<li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
-						<li>Despu&eacute;s del restablecimiento de f&aacute;brica, se restablecer&aacute;n las contrase&ntilde;as de administrador y de usuario y deber&aacute; crearlas nuevamente.</li>
-						<li>Cuando acceda al visor web de la c&aacute;mara por primera vez o acceda a &eacute;l despu&eacute;s de la inicializaci&oacute;n, se lo llevar&aacute; al men&uacute; de configuraci&oacute;n de la contrase&ntilde;a.</li>
-						<li>Para utilizar el men&uacute; del visor web, se debe configurar la nueva contrase&ntilde;a en el men&uacute; de cambio de contrase&ntilde;a e iniciar sesi&oacute;n nuevamente en el visor web con la nueva contrase&ntilde;a.</li>
-						<li>Cuando cambie la contrase&ntilde;a del administrador, si la contrase&ntilde;a actual no coincide, no podr&aacute; establecer la nueva contrase&ntilde;a.</li>
-						<li>Despu&eacute;s de cambiar la contrase&ntilde;a, si hay una c&aacute;mara conectada a un cliente, tales como CMS o NVR, debe registrar la nueva contrase&ntilde;a antes de usarla. Si mantiene la misma conexi&oacute;n, el cliente utilizar&aacute; la contrase&ntilde;a anterior para la autenticaci&oacute;n, para que la cuenta se pueda bloquear.</li>
-					</ul>
-					 <li>Cuando inicie sesi&oacute;n en el visor web, si ingres&oacute; la contrase&ntilde;a incorrecta m&aacute;s de cinco veces, se bloquear&aacute; durante 30 segundos y no podr&aacute; acceder al visor web.</li>
-					 <li>Si la conexi&oacute;n se realiza desde varios lugares con el mismo ID, o se cambia la contrase&ntilde;a mientras que un n&uacute;mero de navegadores de Internet est&aacute;n abiertos, los navegadores de Internet pueden no funcionar correctamente. Se recomienda que una contrase&ntilde;a se cambie s&oacute;lo desde un lugar o s&oacute;lo a trav&eacute;s de un navegador de Internet.</li>
-				</ul>
+                <li>Para una mayor seguridad, se recomienda crear una contrase&ntilde;a que combine caracteres especiales, n&uacute;meros y letras may&uacute;sculas y min&uacute;sculas.</li>
+                <li>Se recomienda cambiar la contrase&ntilde;a cada tres meses.</li>
+                <li>La longitud y restricciones de la contrase&ntilde;a son las siguientes:</li>
+                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+					<li ng-if="PasswordRule1">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+                    <li ng-if="PasswordRule2">La contrase&ntilde;a deber&aacute; tener m&aacute;s de 9 caracteres, y usted deber&aacute; combinar al menos tres de los siguientes tipos: may&uacute;sculas/min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>					
+                    <li>Deber&iacute;a ser diferente de su ID.</li>
+                    <li>No pueden utilizar cuatro o m&aacute;s caracteres consecutivos (por ej., 1234, abcd).</li>
+                    <li>No se puede usar los mismos cuatro caracteres o m&aacute;s veces seguidas. (Por ejemplo: !!!!, 1111, aaaa).</li>
+					<li ng-if="PasswordRule1">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+					<li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+                    <li>Despu&eacute;s del restablecimiento de f&aacute;brica, se restablecer&aacute;n las contrase&ntilde;as de administrador y de usuario y deber&aacute; crearlas nuevamente.</li>
+                    <li>Cuando acceda al visor web de la c&aacute;mara por primera vez o acceda a &eacute;l despu&eacute;s de la inicializaci&oacute;n, se lo llevar&aacute; al men&uacute; de configuraci&oacute;n de la contrase&ntilde;a.</li>
+                    <li>Para utilizar el men&uacute; del visor web, se debe configurar la nueva contrase&ntilde;a en el men&uacute; de cambio de contrase&ntilde;a e iniciar sesi&oacute;n nuevamente en el visor web con la nueva contrase&ntilde;a.</li>
+                    <li>Cuando cambie la contrase&ntilde;a del administrador, si la contrase&ntilde;a actual no coincide, no podr&aacute; establecer la nueva contrase&ntilde;a.</li>
+                    <li>Despu&eacute;s de cambiar la contrase&ntilde;a, si hay una c&aacute;mara conectada a un cliente, tales como CMS o NVR, debe registrar la nueva contrase&ntilde;a antes de usarla. Si mantiene la misma conexi&oacute;n, el cliente utilizar&aacute; la contrase&ntilde;a anterior para la autenticaci&oacute;n, para que la cuenta se pueda bloquear.</li>
+                </ul>
+                <li>Cuando inicie sesi&oacute;n en el visor web, si ingres&oacute; la contrase&ntilde;a incorrecta m&aacute;s de cinco veces, se bloquear&aacute; durante 30 segundos y no podr&aacute; acceder al visor web.</li>
+                <li>Si la conexi&oacute;n se realiza desde varios lugares con el mismo ID, o se cambia la contrase&ntilde;a mientras que un n&uacute;mero de navegadores de Internet est&aacute;n abiertos, los navegadores de Internet pueden no funcionar correctamente. Se recomienda que una contrase&ntilde;a se cambie s&oacute;lo desde un lugar o s&oacute;lo a trav&eacute;s de un navegador de Internet.</li>
+            </ul>
 		</div>
 	</div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
+<div class="wn5-setup-section" ng-if="AdminFilterSupport">
+		<div class="wn5-setup-section-heading">
+				<h2>Direcci&oacute;n IP para permitir el inicio de sesi&oacute;n de administrador</h2>
+		</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>Solo las direcciones IP registradas pueden ser configuradas para acceder al visor web de la c&aacute;mara desde la cuenta de administrador.</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Adici&oacute;n de direcciones IP a las que se puede acceder con la cuenta de administrador</h4>
+			<ol>
+				<li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>. Se crear&aacute; un campo para introducir el tipo de direcci&oacute;n IP y la direcci&oacute;n IP.</li>
+				<li>En la columna <strong class="UI">[Tipo de direcci&oacute;n IP]</strong>, seleccione el tipo de direcci&oacute;n IP, ya sea IPv4 o IPv6.</li>
+				<li>En la columna <strong class="UI">[Tipo de direcci&oacute;n IP</strong>], introduzca la direcci&oacute;n IP a la que desea permitir el acceso con la cuenta de administrador.</li>
+			</ol>
+			<p>Debe marcar la casilla de verificaci&oacute;n <strong class="UI">[Usar]</strong> para acceder al visor web de la c&aacute;mara en la correspondiente direcci&oacute;n IP con la cuenta de administrador.</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>Eliminaci&oacute;n de una direcci&oacute;n IPv4</h4>
+			<ol>
+				<li>Seleccione la direcci&oacute;n IP que desea eliminar.</li>
+				<li>Haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>.</li>
+				<li>Haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> en la ventana de confirmaci&oacute;n de la eliminaci&oacute;n. La direcci&oacute;n IPv4 se ha eliminado.</li>
+			</ol>
+		
+		</div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="AdminTimeout">
+<div class="wn5-setup-section" ng-if="AdminTimeout">
+	<div class="wn5-setup-section-heading">
+			<h2>Desconexi&oacute;n autom&aacute;tica de inicio de sesi&oacute;n del administrador</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Si no hay actividades durante un cierto periodo de tiempo despu&eacute;s de acceder al visor web de la c&aacute;mara con la cuenta de administrador, el inicio de sesi&oacute;n del visor web se desconectar&aacute;. Introduzca la horaen minutospara desconectar autom&aacute;ticamente el inicio de sesi&oacute;n de administrador cuando &eacute;ste no est&eacute; activo.</p>
+        </div>
+	</div>
+</div>
+
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">Configurar invitado</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>Configurar invitado</h2>
+	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Cuando se selecciona <strong class="UI">[Habilitar acceso de invitado]</strong>, un cliente se puede conectar a una pantalla de visor web. Los usuarios que se conectan con una cuenta de invitado s&oacute;lo pueden ver la pantalla en vivo en el visor web. La ID de invitado y la contrase&ntilde;a son «invitado / invitado» y &eacute;stos no se pueden cambiar. </p>
+			<p>Si selecciona <strong class="UI">[Habilitar acceso de invitados]</strong>, un invitado podr&aacute; conectarse a una pantalla del visor web. Cuando usted se conecte con una cuenta de invitado, solo podr&aacute; ver la pantalla en vivo en el visor web. La ID de invitado y la contrase&ntilde;a son «invitado/invitado» &eacute;stos no se pueden cambiar.</p>
 		</div>
 	</div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <div class="wn5-setup-section-heading">
+		<h2>Ajustes del RTSP</h2>
+	</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Cuando se selecciona <strong class="UI">[Habilitar conexi&oacute;n de RTSP sin cifrado]</strong>, se puede ver el v&iacute;deo en formato RTSP aunque el programa no sea compatible con el protocolo de cifrado de v&iacute;deo S1.</p>
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">Configurar autenticaci&oacute;n</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>Configuraci&oacute;n de autenticaci&oacute;n</h2>
+	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Cuando se selecciona <strong class="UI">[Habilitar conexi&oacute;n RTSP sin autenticaci&oacute;n]</strong> se puede conectar a la imagen de la c&aacute;mara usando RTSP (Real Time Streaming Protocol) sin necesidad de autenticaci&oacute;n de inicio de sesi&oacute;n.</p>
+			<p>Cuando se selecciona <strong class="UI">[Habilitar conexi&oacute;n RTSP sin autenticaci&oacute;n]</strong>, usted puede acceder a la imagen de la c&aacute;mara usando RTSP (Protocolo de transmisi&oacute;n en tiempo rea) sin necesidad de autenticaci&oacute;n de inicio de sesi&oacute;n.</p>
 		</div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
+<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+	<div class="wn5-setup-section-heading">
+		<h2>Autenticaci&oacute;n Digest</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>Seleccione la opci&oacute;n de algoritmo para la autenticaci&oacute;n Digest.</p>
+		</div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
+<div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
+	<div class="wn5-setup-section-heading">
+		<h2>Device Manager</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Seleccione <strong class="UI">[Usar]</strong> para controlar la c&aacute;mara en «Wisenet device manager» proporcionado por Hanwha Techwin.</p>
+                <p>El valor por defecto es la opci&oacute;n <strong class="UI">[Usar]</strong> no seleccionada. Recomendamos conservar el valor por defecto por razones de seguridad.</p>
+            </div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+    <div class="wn5-setup-section-heading">
+		<h2>Ajustes del TTA</h2>
+	</div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Cuando seleccione <strong class="UI">[Usar autenticaci&oacute;n ONVIF TTA]</strong>, se utilizar&aacute; el m&eacute;todo de autenticaci&oacute;n Digest con resumen en lugar del m&eacute;todo de autenticaci&oacute;n de texto plano no cifrado en la autenticaci&oacute;n ONVIF TTA.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<div class="wn5-setup-section-heading">
+		<h2>B&uacute;squeda de su contrase&ntilde;a</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Cuando seleccione <strong class="UI">[Usar b&uacute;squeda de contrase&ntilde;a]</strong>, podr&aacute; encontrar su contrase&ntilde;a a trav&eacute;s del correo electr&oacute;nico configur&oacute; en la p&aacute;gina de inicio de sesi&oacute;n.</p>
+        </div>
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
+<div class="wn5-setup-section" ng-if="CamSpecialModel">
+	<div class="wn5-setup-section-heading">
+		<h2>Ciclo de cambio de contrase&ntilde;a</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Configure el ciclo de exposici&oacute;n de mensajes para introducir el cambio de contrase&ntilde;a del administrador. Una vez transcurrido el per&iacute;odo establecido, se le pedir&aacute; que cambie su contrase&ntilde;a.</p>
+        </div>
 	</div>
 </div>
 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">Usuario actual</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>Usuario actual</h2>
+	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso, incluyendo audio, salida de audio, salida de alarma y el perfil.</p>
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso.</p>	
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso.</p>				
 			<p>Cuando un usuario registrado inicie la sesi&oacute;n, s&oacute;lo las funciones establecidas para ese usuario est&aacute;n habilitadas. 10 cuentas de usuario actuales se establecen de forma predeterminada; se puede a&ntilde;adir o eliminar una cuenta. Hasta 10 cuentas de usuario actuales IP se pueden utilizar.</p>
 		</div>
 		<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-			<ul>
-			<li>Si desea seleccionar el usuario configurado que puede usar ONVIF, el uso de la funci&oacute;n puede estar restringido seg&uacute;n el nivel de permisos establecidos.</li>
-			</ul>
+	        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+                    <li>Si desea seleccionar un usuario configurado con derecho a utilizar el ONVIF, el uso de la funci&oacute;n puede estar restringido en funci&oacute;n del nivel de permiso definido.</li>
+                </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Uso</h3>
-			<p>Seleccione la casilla de verificación para habilitar la cuenta de usuario seleccionada.</p>
+			<p>Seleccione la casilla de verificaci&oacute;n para habilitar la cuenta de usuario seleccionada.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Nombre</h3>
-			<p>Introduzca el ID.</p>
+			<p>Introduzca el ID</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Contrase&ntilde;a</h3>
 			<p>Introduzca la contrase&ntilde;a. La regla de ajuste de la contrase&ntilde;a es la misma que la regla de ajuste de la contrase&ntilde;a de administrador.</p>
+		</div>
+				<div class="wn5-setup-section-article-content" ng-if="AdminAccess">
+			<h3>Privilegio de administrador</h3>
+            <p>Autorizar a los usuarios seleccionados con privilegios de administrador. Los usuarios normales solo pueden utilizar las funciones que su administrador les ha permitido, pero los administradores pueden acceder y definir las funciones que deseen. Sin embargo, incluso si se conceden privilegios de administrador a los usuarios, &eacute;stos no pueden cambiar su ID o la contrase&ntilde;a de administrador.</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
 			<h3>Entrada de audio</h3>
@@ -131,15 +270,10 @@
 			<h3>Salida de alarma</h3>
 			<p>Establecimiento de permisos de salida de alarma. Cuando una alarma se ha fijado, un usuario que se conecta a una cuenta relevante puede emitir la alarma.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
-
+				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
-			<p>Establece el permiso para controlar la PTZ en el modo <strong class="UI">[En vivo]</strong>. </p>
+            <p>Establece el permiso para controlar la PTZ en el modo <strong class="UI">[En vivo]</strong>.</p>
 		</div>
-
-
-
-
 		<div class="wn5-setup-section-article-content">
 			<h3>Perfil</h3>
 			<p>Cuando <strong class="UI">[Predeterminado]</strong> est&aacute; configurado, el usuario puede ver la imagen s&oacute;lo en el modo por defecto; cuando <strong class="UI">[Todo]</strong> est&aacute; establecido, el usuario puede ver la imagen en todos los perfiles.</p>
@@ -150,9 +284,9 @@
 			<ol>
 				<li>Seleccione el bot&oacute;n de radio de la cuenta de usuario actual que desee utilizar. La cuenta de usuario actual se cambia a un estado donde la entrada est&eacute; disponible.</li>
 				<li>Seleccione la casilla de verificaci&oacute;n en la columna de <strong class="UI">[Uso]</strong>.</li>
-				<li>Introduzca el ID y la contrase&ntilde;a en las columnas <strong class="UI">[Nombre]</strong> y <strong class="UI">[Contrase&ntilde;a]</strong>.</li>
-				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">Seleccione una funci&oacute;n para habilitar las columnas <strong class="UI">[Entrada de audio]</strong>, <strong class="UI">[Salida de audio]</strong> y <strong class="UI">[Salida de alarma]</strong> respectivamente, y seleccione el tipo de perfil para habilitar la columna <strong class="UI">[Perfil]</strong>.</li>
-				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">Seleccione el tipo de perfil para habilitar la columna <strong class="UI">[Perfil]</strong>.</li>
+				<li>Introduzca el ID y la contrase&ntilde;a en las columnas <strong class="UI">[Nombre]</strong> y <strong class="UI">[Contrase&ntilde;a]</strong>.</li><!-- <li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> --><li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0">Seleccione una funci&oacute;n para habilitar las columnas <strong class="UI">[Entrada de audio]</strong>, <strong class="UI">[Salida de audio]</strong> y <strong class="UI">[Salida de alarma]</strong> respectivamente, y seleccione el tipo de perfil para habilitar la columna <strong class="UI">[Perfil]</strong>.</li>
+                <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0">Seleccione el tipo de perfil para habilitar la columna <strong class="UI">[Perfil]</strong>.</li> 
+				
 				<li>Cuando se haya completado la entrada de la cuenta de usuario actual, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
 				<li>Cuando aparezca la ventana de confirmaci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
 			</ol>
@@ -168,7 +302,7 @@
 		<div class="wn5-online-help-action">
 			<h4>Modificaci&oacute;n de un usuario actual</h4>
 			<ol>
-				<li>Seleccione el bot&oacute;n de radio de la cuenta de usuario actual que se desea modificar. </li>
+				<li>Seleccione el bot&oacute;n de radio de la cuenta de usuario actual que se desea modificar.</li>
 				<li>Cambie los ajustes de la funci&oacute;n y haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
 				<li>Cuando aparezca la ventana de confirmaci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong>. La informaci&oacute;n del usuario cambiar&aacute;.</li>
 			</ol>

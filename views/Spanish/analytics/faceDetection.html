@@ -1,7 +1,7 @@
-﻿<h1 class="wn5-setup-main-title">Detecci&oacute;n facial</h1>
+﻿<h1 class="wn5-setup-main-title">Detección facial o de la parte superior del cuerpo</h1>
 
 <div class="wn5-setup-section">
-    <p>Un evento de detecci&oacute;n facial puede ser creado cuando se detecta una cara dentro del &aacute;rea designada por el usuario, mientras que la c&aacute;mara est&aacute; capturando una imagen. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste en el caso de detecci&oacute;n facial se aplica a <strong class="UI">[Detecci&oacute;n facial]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
+    <p>Si durante la vigilancia realizada por la cámara se detecta un rostro humano o la parte superior del cuerpo dentro del ROI establecido por el usuario, se inicia un evento de detección facial o de la parte superior del cuerpo. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste en el caso de detecci&oacute;n facial o de la parte superior del cuerpo se aplica a <strong class="UI">[Detección facial o de la parte superior del cuerpo]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1">
@@ -10,7 +10,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Después de seleccionar su canal de cámara, puede configurar los detalles de Detección facial para cada canal. </p>
+            <p>Después de seleccionar su canal de cámara, puede configurar los detalles de Detección facial o de la parte superior del cuerpo para cada canal. </p>
             <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
             <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
@@ -19,13 +19,13 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Detecci&oacute;n facial</h2>
+        <h2>Detección facial o de la parte superior del cuerpo</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             
-            <h3>Activar la detecci&oacute;n facial</h3>
-            <p>Para utilizar el evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar la detecci&oacute;n facial]</strong>.</p>
+            <h3>Activar la detección de rostro/parte superior del cuerpo</h3>
+            <p>Para utilizar el evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar la detección de rostro/parte superior del cuerpo]</strong>.</p>
         </div>
     </div>
 </div>
@@ -37,7 +37,7 @@
         <div class="wn5-setup-section-article">
             <div class="wn5-online-help-action">
 			<h5>Configuraci&oacute;n de un &aacute;rea</h5>
-            <p>De toda la pantalla, un &aacute;rea seleccionada por el usuario puede ser definida como el &aacute;rea. El tamaño mínimo de detección facial se muestra como un icono de rostroen el área de detección. Cualquier cara que sea mayor que un icono de rostroen que se detecta en el área de detección.</p>
+            <p>De toda la pantalla, un &aacute;rea seleccionada por el usuario puede ser definida como el &aacute;rea. El tamaño mínimo de detección facial o de la parte superior del cuerpo se muestra como un icono de rostroen el área de detección. Cualquier cara que sea mayor que un icono de rostroen que se detecta en el área de detección.</p>
             </div>
             <div class="wn5-online-help-action">
 			<h5>Cambio de un &aacute;rea</h5>
@@ -58,7 +58,7 @@
         <div class="wn5-setup-section-article-content">
             
             <h5>Sensibilidad</h5>
-            <p>Esto ajusta la sensibilidad del evento de detecci&oacute;n facial. Cuanto mayor sea la sensibilidad, m&aacute;s detallada ser&aacute; la detecci&oacute;n facial posible.</p>
+            <p>Esto ajusta la sensibilidad del evento de detecci&oacute;n facial. Cuanto mayor sea la sensibilidad, m&aacute;s detallada ser&aacute; la detecci&oacute;n facial o de la parte superior del cuerpo posible.</p>
           </div>
         <div class="wn5-setup-section-article-content">
               <h3>Área dinámica basada en el movimiento</h3>
@@ -143,8 +143,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>Salida de alarma</h3>
-            <p>Es posible establecer una direcci&oacute;n de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n facial.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
-            <p>La pantalla de opción de salida de alarma variará según la cantidad de alarmas de salida que tenga la cámara. Por ejemplo, si hay 2 alarmas para la salida, la opción mostrará «Salida de alarma 1» y «Salida de alarma 2». </p>
+            <p>Es posible establecer una direcci&oacute;n de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n facial.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. </p>
+            <p>Dependiendo de la configuraci&oacute;n de la salida de alarma, las opciones de <strong class="UI"><strong class="UI">[Salida de alarma]</strong> pueden variar. Si no hay una salida de alarma, las opciones de <strong class="UI"><strong class="UI">[Salida de alarma]</strong> no se visualizar&aacute;n. Si hay m&aacute;s de una salida de alarma, se visualizar&aacute;n como <strong class="UI"><strong class="UI">«Salida de alarma 1»</strong>, <strong class="UI"><strong class="UI">«Salida de alarma 2»</strong>, y as&iacute; sucesivamente. Seleccione <strong class="UI"><strong class="UI">[Evento]</strong> &gt; <strong class="UI"><strong class="UI">[Alarma E/S]</strong> para ajustar la E/S de la alarma.</p>
         </div>
 
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
@@ -186,7 +186,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>S&oacute;lo tiempo programado</h3>
             <p>La configuraci&oacute;n de acciones de eventos se ejecutan cuando se crea un evento de detecci&oacute;n facial durante el tiempo establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se muestra en la tabla de tiempos que aparece cuando <strong class="UI">[S&oacute;lo tiempo programado]</strong> se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n de evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
-			<p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+			<p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
         </div>
     </div>
 </div>

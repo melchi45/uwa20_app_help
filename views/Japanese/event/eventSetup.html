@@ -11,57 +11,56 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <ul><li><strong class="UI">使用</strong>：<strong class="UI">[使用]</strong>カラムでチェックボックスを選択すると、選択したイベントのみ動作します。</li>
+            <ul>
+                
+                <li><strong class="UI">有効</strong>：<strong class="UI">[有効]</strong>カラムでチェックボックスを選択すると、選択したイベントのみ動作します。</li>
                 <li><strong class="UI">タイプ</strong>：<strong class="UI">[タイプ]</strong>カラムでイベント名を選択すると、該当イベントの詳細設定ページに移動します。</li>
                 <li><strong class="UI">イベントアクション</strong>：イベントが発生した時、カメラがどのイベントアクションを行うか設定します。</li>
-                        <ul>
-                            <li><strong class="UI">FTP</strong>：映像画面をキャプチャーしてFTPサーバーに伝送するには、<strong class="UI">[FTP]</strong>カラムのチェックボックスを選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</li>
-                            <li><strong class="UI">E-mail</strong>：映像画面をキャプチャーしてE-mailに伝送するには、<strong class="UI">[E-mail]</strong>カラムのチェックボックスを選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</li>
-                            <li ng-if="Recording"><strong class="UI">録画</strong>：映像を保存するには、<strong class="UI">[録画]</strong>カラムのチェックボックスを選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</li>
-                            <li ng-if="MaxAlarmOutput>0"><strong class="UI">アラーム出力</strong>：イベントが発生した時、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</li>
+                    <ul>
+                        <li><strong class="UI">FTP</strong>：映像画面をキャプチャーしてFTPサーバーに伝送するには、<strong class="UI">[FTP]</strong>カラムのチェックボックスを選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</li>
+                        <li><strong class="UI">E-mail</strong>：映像画面をキャプチャーしてE-mailに伝送するには、<strong class="UI">[E-mail]</strong>カラムのチェックボックスを選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</li>
+                        <li ng-if="Recording"><strong class="UI">録画</strong>：映像を保存するには、<strong class="UI">[録画]</strong>カラムのチェックボックスを選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</li>
+                        <li ng-if="MaxAlarmOutput>0"><strong class="UI">アラーム出力</strong>：イベントが発生した時、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で行うことができます。</li>
+
                         <li ng-if="PresetAction"><strong class="UI">プリセットに移動</strong>：カメラが指定したPTZプリセット位置に移動します。</li>
-                        <li ng-if="AudioClipCountRange !== undefined"><strong class="UI">オーディオクリップ</strong>：イベントが発生する時、再生するオーディオクリップを選択します。イベントタイプ別にオーディオクリップをそれぞれ設定することができます。オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>で登録することができます。</li>
+                        <li ng-if="AudioClipCountRange !== undefined"><strong class="UI">オーディオクリップ</strong>：イベントが発生する時、再生するオーディオクリップを選択します。イベントタイプ別にオーディオクリップをそれぞれ設定することができます。オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</li>
+                    </ul>
             </ul>
-        </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-            <ul><li>カメラが対応するアラーム個数によって、アラーム出力カラムの表示が異なります。例えば、出力されるアラームが2つである場合「アラーム出力1」「アラーム出力2」のカラムが表示され、イベント別にアラーム出力を設定することができます。</li>
+            <ul>
+            
+                <li>アラーム出力設定によって<strong class="UI">[アラーム出力]</strong>カラムの表示が異なります。アラーム出力がない場合、[アラーム出力]カラムは表示されません。アラーム出力が複数の場合、[アラーム出力1]、[アラーム出力2]のようにカラムが表示されます。アラーム入・出力は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で設定できます。</li>
             </ul>
         </div>
     </div>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature"> 
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2> 
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
                 
-            <p>カメラチャンネルを選択した後、<strong class="UI">[チャンネルイベントリスト]</strong>でチャンネル別にイベントアクションを管理して設定することができます。</p>
+            <p>カメラチャンネルを選択した後、<strong class="UI">[チャンネルイベントリスト]</strong>でチャンネル別にイベントアクションを管理して設定することができます。</p> 
 
-            <p><strong class="UI">[共通イベントリスト]</strong>で設定した内容は全チャンネルに同じく適用されます。</p>
             <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[イベント設定]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="SupportAutoImageAlignment">「IVA」はチャンネル1でしか設定できません。</p>
+            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
 
-            <!-- <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。イベント動作はチャンネル1でのみ設定できます。</p>
+            <p><strong class="UI">[共通イベントリスト]</strong>で設定した内容は全チャンネルに同じく適用されます。</p><!-- <p ng-if="SupportChannelExpansionFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">
-                <li>チャンネル1：魚眼カメラの映像をそのまま補正なしで見せます。</li>
-                <li>チャンネル2：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
-                <li>チャンネル3：360˚エリアを撮影した映像を歪み補正してパノラマタイプの上下分割モードに見せます。</li>
-                <li>チャンネル4：人の視野に適合するように歪み補正した特定画面4つを同時に見せます。4分割画面を選択して、ビューを上下左右に移動したり、ズーム機能を使用できます。</li>
-                <li>チャンネル5：チャンネル4の4分割画面で左上の映像を見せます。</li>
-                <li>チャンネル6：チャンネル4の4分割画面で右上の映像を見せます。</li>
-                <li>チャンネル7：チャンネル4の4分割画面で左下の映像を見せます。</li>
-                <li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
-            </ul> -->
-
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
-            <p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
-            <!-- <p>設定を変更した後、保存しないまま他のチャンネルを選択する場合、通知メッセージが表示されます。</p> -->
-        </div>
+                    <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
+                    <li>채널 2: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.</li>
+                    <li>채널 3: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다.</li>
+                    <li>채널 4: 사람의 시야에 적합하도록 왜곡 보정한 특정 화면 4개를 동시에 보여줍니다. 분할 화면을 선택하여 뷰를 상하좌우로 이동하거나 줌 기능을 사용할 수 있습니다.</li>
+                    <li>채널 5: 채널 4의 4분할 화면에서 왼쪽 상단의 영상을 보여줍니다.</li>
+                    <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
+                    <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
+                    <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
+            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p><!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
     </div>
 </div>
 

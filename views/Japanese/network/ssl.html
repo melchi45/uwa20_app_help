@@ -16,25 +16,48 @@
 		    <p>暗号化せずにデータを伝送する時に選択します。</p>
 	    </div>
 		<div class="wn5-setup-section-article-content">
-		    <h3>HTTPS(自体認証保安接続モード)</h3>
-            <p>カメラが提供する自体証明書を使用して保安接続します。<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
-            <p ng-if="MaxChannel==0"><strong class="UI">[ホスト名の変更]</strong>オプションを選択すると、カメラホスト名を証明書の一般名(Common Name)と同じく変更します。カメラホスト名が証明書に設定された一般名(Common Name)と異なる場合、一部のセキュリティ検査ツールで製品の保安が弱いと判断されることがあります。</p>
-            <p ng-if="MaxChannel==0">ホスト名は<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; ポート</a>]</strong>&gt;<strong class="UI">[IPアドレス]</strong>&gt;<strong class="UI">[IPv4 設定]</strong>&gt;<strong class="UI">[ホスト名]</strong>で確認することができます。</p>
-            
-            <!-- <p>カメラが提供する自体証明書を使用して保安接続します。<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
-            <p>カメラに内蔵されたデバイス証明書を使用するか、外部で作成した自体署名証明書を使用するかを選択できます。</p>
-            <p><strong class="UI">[デバイス証明書]</strong>を選択した場合、<strong class="UI">[ホスト名の変更]</strong>オプションが有効となり、<strong class="UI">[ホスト名の変更]</strong>オプションを選択すると、カメラのホスト名を証明書の一般名(Common Name)と同じく変更します。カメラのホスト名が証明書に設定された一般名(Common Name)と異なる場合、一部のセキュリティ検査ツールで製品のセキュリティが弱いと判断されることがあります。変更したホスト名は、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP＆ポート</a>]</strong>&gt;<strong class="UI">[IPアドレス]</strong>&gt;<strong class="UI">[IPv4 設定]</strong>&gt;<strong class="UI">[ホスト名]</strong>で確認することができます。</p>
-            <p>外部から伝達した設定で作成した自体署名証明書がある場合、<strong class="UI">[自体署名証明書]</strong>を選択します。自体署名証明書を選択すると、証明書名が表示されます。</p> -->
-
-           </div>
-           
-
+                <h3>HTTPS(自体認証保安接続モード)</h3>
+                <p>カメラが提供する自体証明書を使用して保安接続します。<strong class="UI">[HTTPS(自体認証保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
+		</div>
+		<div class="wn5-setup-section-article-content"><!-- <p>카메라에 내장된 기기 인증서를 사용할지, 외부에서 생성한 자체 서명 인증서를 사용할지 선택할 수 있습니다. </p>
+                <p><strong class="UI">[기기 인증서]</strong>를 선택한 경우, <strong class="UI">[호스트 이름 변경]</strong> 옵션이 활성화되며, <strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택하면 카메라 호스트 이름을 인증서의 주체자 이름(Common Name)과 동일하게 변경합니다. 카메라 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)과 다른 경우, 일부 보안성 검사 툴에서 제품의 보안이 취약한 것으로 판단될 수 있습니다. 변경한 호스트 이름은 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link"
+href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</strong>&gt;<strong class="UI">[IP 주소]</strong>&gt;<strong class="UI">[IPv4 설정]</strong>&gt;<strong class="UI">[호스트 이름]</strong>에서 확인할 수 있습니다. </p>
+                <p>외부에서 전달한 속성을 통해서 생성한 자체 서명 인증서가 있는 경우, <strong class="UI">[자체 서명 인증서]</strong>를 선택합니다. 자체 서명 인증서를 선택하면 인증서 이름이 표시됩니다. </p> --><h4>ホスト名の変更</h4>    
+                <p><strong class="UI">[ホスト名の変更]</strong>オプションを選択すると、カメラホスト名を証明書の一般名(Common Name)と同じく変更します。カメラホスト名が証明書に設定された一般名(Common Name)と異なる場合、一部のセキュリティ検査ツールで製品の保安が弱いと判断されることがあります。</p>
+                <p>ホスト名は<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; ポート</a>]</strong>&gt;<strong class="UI">[IPアドレス]</strong>&gt;<strong class="UI">[IPv4 設定]</strong>&gt;<strong class="UI">[ホスト名]</strong>で確認することができます。</p> 
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="ClientCertificateAuthenticationEnable">
+		    <h4>相互認証</h4>
+            <p>保安強化のために相互認証を行うには、<strong class="UI">[相互認証]</strong>を選択します。</p>
+            <p>相互認証を行ってから、アクセス許可に対するオプションを選択できます。<strong class="UI">[全接続許可]</strong>を選択すると、相互認証の成功有無に関係なく相互認証を試したすべてのアクセスに対して接続を許可します。つまり、相互認証されなくてもカメラへのアクセスを許可します。<strong class="UI">[相互認証の接続のみ許可]</strong>を選択すると、相互認証に成功した場合のみカメラへのアクセスを許可します。</p>
+		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>HTTPS(公認保安接続モード)</h3>
 		    <p>公認証明書を使用して保安接続します。先に公認証明書をインストールした後、選択することができます。<strong class="UI">[HTTPS(公認保安接続モード)]</strong>を選択した後、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックすると、HTTPSモードに保安接続します。</p>
 		</div>
 	</div>
 </div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>TLS設定</h2>
+    </div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>暗号化通信に使用するcipherモードやTLSバージョンを設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Cipherモード</h3>
+            <p>キー交換、認証、暗号化など、TLS暗号化通信に使用する様々なアルゴリズムを組み合わせて暗号スイート(cipher suites)を提供します。保安に優れている暗号スイートのみ使用するには、<strong class="UI">[安全な暗号スイートのみ使用]</strong>を選択します。保安に多少弱くても下位互換性のための暗号化スイートを使用するには、<strong class="UI">[互換される全暗号スイート使用]</strong>を選択します。[互換される全暗号スイート使用]を選択すると、安全な暗号化スイートと不安全な暗号化スイートをすべて含みます。</p><!-- <p>TLS 1.0과 TLS 1.1을 선택하면 [호환되는 모든 암호 스위트 사용]만 선택할 수 있으며, TLS 1.2이나 TLS 1.3을 선택하면 [안전한 암호 스위트만 사용]과 [호환되는 모든 암호 스위트 사용] 중 옵션을 선택할 수 있습니다. </p> --></div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>バージョン</h3>
+            <p>暗号化通信に使用するTLSプロトコルバージョンを選択します。</p>
+            <p><strong class="UI">[Cipherモード]</strong>で[安全な暗号スイートのみ使用]を選択すると、TLS 1.2やTLS 1.3だけを選択することができます。[互換される全暗号スイート使用]を選択すると、TLSのすべてのバージョンでお望みのオプションを選択することができます。</p>
+        </div>
+	</div>
+</div>
+
 
 <hr class="wn5-setup-hr" ng-if="!SSLOff">
 <div class="wn5-setup-section" ng-if="!SSLOff">
@@ -69,8 +92,7 @@
 
 	<div class="wn5-online-help-action">
 		<h4>公認証削除</h4>
-                <p><strong class="UI">[公認証設定]</strong>の下にある<strong class="UI">[削除]</strong>ボタンをクリックします。</p><!-- <p>'HTTPS(공인 인증서 사용)' 모드가 적용된 상태라면 <strong class="UI">[삭제]</strong> 버튼이 비활성화되어 나타납니다.&nbsp;<strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을&nbsp;선택하여 보안 접속
-방식 옵션을 변경하면, <strong class="UI">[공인 인증서 설치] </strong>하단에 <strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p>  --></div>
+                <p><strong class="UI">[公認証設定]</strong>の下にある<strong class="UI">[削除]</strong>ボタンをクリックします。</p><!-- <p>'HTTPS(공인 인증서 사용)' 모드가 적용된 상태라면 <strong class="UI">[삭제]</strong> 버튼이 비활성화되어 나타납니다. <strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을 선택하여 보안 접속 방식 옵션을 변경하면, <strong class="UI">[공인 인증서 설치] </strong>하단에 <strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p>  --></div>
 </div>
 </div>
 <hr class="wn5-setup-hr" ng-if="SSLOff">
@@ -113,10 +135,12 @@
 <div class="wn5-setup-section" ng-if="SSLOff">
     <div class="wn5-setup-section-heading">
         <h2>証明書タイプ</h2>
-        <p>保安モードの時に使用する証明書タイプを選択します。</p>
-        <p>本オプションは<strong class="UI">[保安接続方式]</strong>で<strong class="UI">[HTTPS使用/HTTP使用]</strong>や<strong class="UI">[HTTPS使用/HTTP未使用]</strong>を選択した場合のみ表示されます。</p>
     </div>
 	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>保安モードの時に使用する証明書タイプを選択します。</p>
+        <p>本オプションは<strong class="UI">[保安接続方式]</strong>で<strong class="UI">[HTTPS使用/HTTP使用]</strong>や<strong class="UI">[HTTPS使用/HTTP未使用]</strong>を選択した場合のみ表示されます。</p>
+        </div>
         <div class="wn5-setup-section-article-content">
 		    <h3>自体証明書</h3>
             <p>ハンファテックウィンから提供する自体証明書を使用します。</p>

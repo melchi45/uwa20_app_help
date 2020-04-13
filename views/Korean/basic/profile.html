@@ -32,6 +32,21 @@
         </div>
             </div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
+<div class="wn5-setup-section" ng-if="SensorCaptureSize">
+            <div class="wn5-setup-section-heading">
+                <h2>최대 해상도 모드</h2>
+            </div>
+            <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>최대 해상도를 선택합니다. 선택한 최대 해상도에 따라 각 프로파일에서 설정할 수 있는 카메라 해상도 범위와 최대 프레임 레이트가 달라집니다.</p>
+            <p>최대 해상도 모드를 변경하면 비디오 설정, 카메라 설정, 코덱 설정 및 이벤트와 AI 설정이 초기화됩니다. 단 사용자 설정, 날짜 및 시간, 네트워크 설정은 그대로 유지됩니다. </p>
+        </div>
+            </div>
+        </div>
+
+
 <hr class="wn5-setup-hr" ng-if="PTZMode">
 <div class="wn5-setup-section" ng-if="PTZMode">
             <div class="wn5-setup-section-heading">
@@ -52,7 +67,7 @@
     <div class="wn5-setup-section-article">
     <div class="wn5-setup-section-article-content">
         <p>프로파일 속성이 변경됐을 때 기존 프로파일로 계속 영상을 출력할지 혹은 변경된 프로파일로 영상을 출력할지를 설정할 수 있습니다. </p>
-        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 주황색 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이
+        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이
 출력됩니다. </p>
     </div>
     </div>
@@ -431,7 +446,7 @@
         </div>
 
         <!-- MaxSmartCodecArea > 0 -> MaxSmartCodecAreaByChannel로 수정. 김주희 선임님 가이드. PNM-9030V.  2010-01-17 -->
-        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecAreaByChannel">
+        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0 || MaxSmartCodecAreaByChannel">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>스마트 코덱 </h3>
             <p>스마트 코덱 사용 여부를 설정합니다. 스마트 코덱은 영상에서 사용자가 관심 있는 영역은 압축율을 낮춰 고화질로 출력하고 그 외 부분은 압축율을 높여 일반 화질로 출력하여, 전체 영상 데이터 크기를 줄이는 한화테크윈의 고유 기술입니다. 스마트 코덱은 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[CBR]</strong>일 때만 활성화됩니다.</p>
           

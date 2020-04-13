@@ -2,77 +2,187 @@
 <div class="wn5-setup-section">
 	<p>Vous pouvez s&eacute;lectionner un syst&egrave;me de connexion s&eacute;curis&eacute; ou installer un certificat public. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton [Appliquer] en bas de la page.</p>
 </div>
-
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!SSLOff">
+<div class="wn5-setup-section" ng-if="!SSLOff">
 	<div class="wn5-setup-section-heading">
 		<h2>Syst&egrave;me de connexion s&eacute;curis&eacute;</h2>
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Le syst&egrave;me de connexion s&eacute;curis&eacute; est s&eacute;lectionn&eacute; en fonction de l&apos;environnement de service en tenant compte du niveau de s&eacute;curit&eacute;. HTTPS (protocole de transfert hypertexte sur couche des sockets s&eacute;curis&eacute;s) &eacute;change des donn&eacute;es via le cryptage et le d&eacute;cryptage de la demande de page de l&apos;utilisateur au niveau de la sous-couche SSL en dessous de la couche de protocole de transfert hypertexte. Par cons&eacute;quent, il est consid&eacute;r&eacute; comme plus s&eacute;curis&eacute; que le mode HTTP. Vous pouvez choisir si un certificat unique ou public est utilis&eacute; pour une connexion s&eacute;curis&eacute;e en mode HTTPS.</p>
+			<p>S&eacute;lectionnez un syst&egrave;me de connexion s&eacute;curis&eacute; en se fondant sur le niveau de s&eacute;curit&eacute;. HTTPS (Protocole de transfert hypertextuel s&eacute;curis&eacute;) envoie et re&ccedil;oit des donn&eacute;es via le processus d&rsquo;encodage et de d&eacute;codage des demandes de page des utilisateurs sur la sous-couche SSL, sous la couche de protocole de transfert hypertext. Par cons&eacute;quent, ce mode est plus s&ucirc;r que le mode HTTP en termes de s&eacute;curit&eacute;. En mode HTTPS s&eacute;curis&eacute;, vous pouvez utiliser le Certificat exclusif ou le Certificat public.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
-		    <h3>HTTP (Ne pas util. connex. sécu.)</h3>
+		    <h3>HTTP (Ne pas util. connex. s&eacute;cu.)</h3>
 		    <p>S&eacute;lectionnez lors de l&apos;envoi de donn&eacute;es sans cryptage</p>
 	    </div>
 		<div class="wn5-setup-section-article-content">
-		    <h3>HTTPS (Mode de connex. sécurisée avec certificat unique)</h3>
-			<p>&Eacute;tablit une connexion s&eacute;curis&eacute;e en utilisant un certificat unique fourni par la cam&eacute;ra. Lorsque vous s&eacute;lectionnez <strong class="UI">[HTTPS (mode de connexion s&eacute;curis&eacute;e &agrave; l&apos;aide d&apos;un certificat unique)]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page, une connexion s&eacute;curis&eacute;e s&rsquo;&eacute;tablit en mode HTTPS.</p>
-			<p ng-if="MaxChannel==0">La s&eacute;lection de l&rsquo;option <strong class="UI">[Modifier le nom d’hôte]</strong> remplace le nom d&rsquo;h&ocirc;te de la cam&eacute;ra en nom commun dans le certificat. Certains outils de contr&ocirc;le de la s&eacute;curit&eacute; peuvent constater que la s&eacute;curit&eacute; du produit est vuln&eacute;rable, si le nom d&rsquo;h&ocirc;te de la cam&eacute;ra est diff&eacute;rent du nom commun d&eacute;fini dans le certificat.</p>
-			<p ng-if="MaxChannel==0">Vous pouvez afficher le nom d&rsquo;h&ocirc;te sous <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; Port</a>]</strong>&gt;<strong class="UI">[Adresse IP]</strong>&gt;<strong class="UI">[Configuration IPv4]</strong>&gt;<strong class="UI">[Nom h&ocirc;te]</strong>.</p>
-			
-			<!-- <p>&Eacute;tablit une connexion s&eacute;curis&eacute;e en utilisant un certificat unique fourni par la cam&eacute;ra. Lorsque vous s&eacute;lectionnez <strong class="UI">[HTTPS (mode de connexion s&eacute;curis&eacute;e &agrave; l&rsquo;aide d&rsquo;un certificat unique)]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page, une connexion s&eacute;curis&eacute;e s&rsquo;&eacute;tablit en mode HTTPS.</p>
-			<p>Vous pouvez choisir d&rsquo;utiliser le certificat du p&eacute;riph&eacute;rique int&eacute;gr&eacute; de la cam&eacute;ra ou un certificat auto-sign&eacute; g&eacute;n&eacute;r&eacute; en externe.</p>
-			<p>Si vous s&eacute;lectionnez <strong class="UI">[Certificat du p&eacute;riph&eacute;rique]</strong>, l&rsquo;option <strong class="UI">[Modifier le nom h&ocirc;te]</strong> est activ&eacute;e. Si vous s&eacute;lectionnez l&rsquo;option <strong class="UI">[Modifier le nom h&ocirc;te]</strong>, le nom d&rsquo;h&ocirc;te de la cam&eacute;ra devient le nom commun du certificat. Si le nom d&rsquo;h&ocirc;te de la cam&eacute;ra diff&egrave;re du nom commun d&eacute;fini dans le certificat, certains outils de test de s&eacute;curit&eacute; peuvent d&eacute;terminer que la s&eacute;curit&eacute; de votre produit est vuln&eacute;rable. Le nom d&rsquo;h&ocirc;te modifi&eacute; est disponible dans <strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI"> [<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; Port</a>]</strong>&gt;<strong class="UI"> [Adresse IP]</strong>&gt;<strong class="UI"> [Configuration IPv4]</strong>&gt;<strong class="UI"> [Nom h&ocirc;te]</strong>.</p>
-			<p>Si vous avez un certificat auto-sign&eacute; g&eacute;n&eacute;r&eacute; &agrave; partir d&rsquo;un attribut externe, s&eacute;lectionnez <strong class="UI">[Certificat auto-sign&eacute;]</strong>. Lorsque vous s&eacute;lectionnez un certificat auto-sign&eacute;, le nom du certificat est affich&eacute;.</p> -->
-
-
-	   	</div>
+                <h3>HTTPS (Mode de connex. s&eacute;curis&eacute;e avec certificat unique)</h3>
+                <p>&Eacute;tablit une connexion s&eacute;curis&eacute;e en utilisant un certificat unique fourni par la cam&eacute;ra. Lorsque vous s&eacute;lectionnez <strong class="UI">[HTTPS (mode de connexion s&eacute;curis&eacute;e &agrave; l&apos;aide d&apos;un certificat unique)]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page, une connexion s&eacute;curis&eacute;e s&rsquo;&eacute;tablit en mode HTTPS.</p>
+		</div>
+		<div class="wn5-setup-section-article-content"><!-- <p>카메라에 내장된 기기 인증서를 사용할지, 외부에서 생성한 자체 서명 인증서를 사용할지 선택할 수 있습니다. </p>
+                <p><strong class="UI">[기기 인증서]</strong>를 선택한 경우, <strong class="UI">[호스트 이름 변경]</strong> 옵션이 활성화되며, <strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택하면 카메라 호스트 이름을 인증서의 주체자 이름(Common Name)과 동일하게 변경합니다. 카메라 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)과 다른 경우, 일부 보안성 검사 툴에서 제품의 보안이 취약한 것으로 판단될 수 있습니다. 변경한 호스트 이름은 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link"
+href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</strong>&gt;<strong class="UI">[IP 주소]</strong>&gt;<strong class="UI">[IPv4 설정]</strong>&gt;<strong class="UI">[호스트 이름]</strong>에서 확인할 수 있습니다. </p>
+                <p>외부에서 전달한 속성을 통해서 생성한 자체 서명 인증서가 있는 경우, <strong class="UI">[자체 서명 인증서]</strong>를 선택합니다. 자체 서명 인증서를 선택하면 인증서 이름이 표시됩니다. </p> --><h4>Changer de nom de h&ocirc;te</h4>    
+                <p>La s&eacute;lection de l&rsquo;option <strong class="UI">[Modifier le nom d&rsquo;h&ocirc;te]</strong> remplace le nom d&rsquo;h&ocirc;te de la cam&eacute;ra en nom commun dans le certificat. Certains outils de contr&ocirc;le de la s&eacute;curit&eacute; peuvent constater que la s&eacute;curit&eacute; du produit est vuln&eacute;rable, si le nom d&rsquo;h&ocirc;te de la cam&eacute;ra est diff&eacute;rent du nom commun d&eacute;fini dans le certificat.</p>
+                <p>Vous pouvez afficher le nom d&rsquo;h&ocirc;te sous <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; Port</a>]</strong>&gt;<strong class="UI">[Adresse IP]</strong>&gt;<strong class="UI">[Configuration IPv4]</strong>&gt;<strong class="UI">[Nom h&ocirc;te]</strong>.</p> 
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="ClientCertificateAuthenticationEnable">
+		    <h4>Authentification mutuelle</h4>
+            <p>Pour continuer l&rsquo;authentification mutuelle pour une meilleure s&eacute;curit&eacute;, s&eacute;lectionnez [Authentification mutuelle].<strong class="UI"></strong></p>
+            <p>En d&eacute;finissant l&rsquo;authentification mutuelle, vous pouvez choisir une option autorisant l&rsquo;acc&egrave;s.<strong class="UI">Si [Autoriser toutes les connexions] est s&eacute;lectionn&eacute;, toutes les tentatives d&rsquo;acc&egrave;s avec la connexion par authentification mutuelle sont autoris&eacute;es, que l&rsquo;authentification mutuelle ait r&eacute;ussi ou &eacute;chou&eacute;.</strong> Cela signifie que m&ecirc;me sans authentification mutuelle, l&rsquo;acc&egrave;s &agrave; la cam&eacute;ra est conc&eacute;d&eacute;. Si <strong class="UI">[Autoriser uniquement les connexions authentifi&eacute;es mutuellement]</strong> est s&eacute;lectionn&eacute;, l&rsquo;acc&egrave;s &agrave; la cam&eacute;ra est conc&eacute;d&eacute; en cas de succ&egrave;s de l&rsquo;authentification mutuelle uniquement.</p>
+		</div>
 		<div class="wn5-setup-section-article-content">
-		    <h3>HTTPS (Mode de connex. sécurisée avec certificat public)</h3>
+		    <h3>HTTPS (Mode de connex. s&eacute;curis&eacute;e avec certificat public)</h3>
 		    <p>&Eacute;tablit une connexion s&eacute;curis&eacute;e &agrave; l&apos;aide du certificat public. Vous pouvez s&eacute;lectionner ceci apr&egrave;s l&apos;installation du certificat public. Lorsque vous s&eacute;lectionnez <strong class="UI">[HTTPS (mode de connexion s&eacute;curis&eacute;e &agrave; l&apos;aide du certificat public)]</strong> et cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page, une connexion s&eacute;curis&eacute;e s&rsquo;&eacute;tablit en mode HTTPS.</p>
 		</div>
 	</div>
 </div>
 
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Param&egrave;tres TLS</h2>
+    </div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>D&eacute;finit le Mode de codage ou la version TLS &agrave; utiliser pour la communication crypt&eacute;e.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode de codage</h3>
+            <p>Fournit des suites de chiffrements en combinant diff&eacute;rents algorithmes &agrave; utiliser pour les communications crypt&eacute;es TLS, comme l&rsquo;&eacute;change de cl&eacute;s, l&rsquo;authentification et le cryptage. S&eacute;lectionnez <strong class="UI">[Uniquement les suites de code s&eacute;curis&eacute;es]</strong> pour utiliser uniquement les suites de chiffrement avec un niveau de s&eacute;curit&eacute; &eacute;lev&eacute;. S&eacute;lectionnez <strong class="UI">[Toutes les suites de code compatibles]</strong> pour utiliser les suites de chiffrement &agrave; compatibilit&eacute; descendante. [Toutes les suites de code compatibles] inclut les suites de chiffrement s&eacute;curis&eacute;es et non s&eacute;curis&eacute;es.</p><!-- <p>TLS 1.0과 TLS 1.1을 선택하면 [호환되는 모든 암호 스위트 사용]만 선택할 수 있으며, TLS 1.2이나 TLS 1.3을 선택하면 [안전한 암호 스위트만 사용]과 [호환되는 모든 암호 스위트 사용] 중 옵션을 선택할 수 있습니다. </p> --></div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>Version</h3>
+            <p>S&eacute;lectionne la version du protocole TLS &agrave; utiliser pour la communication crypt&eacute;e.</p>
+            <p>Si [Uniquement les suites de code s&eacute;curis&eacute;es] est s&eacute;lectionn&eacute; pour <strong class="UI">[Mode de codage]</strong>, vous ne pouvez s&eacute;lectionner que TLS 1.2 ou TLS 1.3. Si [Toutes les suites de code compatibles] est s&eacute;lectionn&eacute;, vous pouvez s&eacute;lectionner toutes les options que vous souhaitez dans toutes les versions TLS.</p>
+        </div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="!SSLOff">
+<div class="wn5-setup-section" ng-if="!SSLOff">
 <div class="wn5-setup-section-heading">
 	<h2>Installer un certificat public</h2>
 </div>
 <div class="wn5-setup-section-article">
-	<div class="wn5-setup-section-article-content">
-		<p>Pour s&eacute;lectionner <strong class="UI">[HTTPS (Certificat public utilis&eacute;)]</strong> dans <strong class="UI">[Syst&egrave;me de connexion s&eacute;curis&eacute;e]</strong>, vous devez d&apos;abord installer un certificat public.</p>
-
-		<ul>
-			<li><strong class="UI">Nom du certificat</strong>&nbsp;: Saisissez le nom du certificat &agrave; installer.</li>
-			<li><strong class="UI">fichier certificat</strong>&nbsp;: S&eacute;lectionnez le r&eacute;pertoire d&rsquo;installation du certificat.</li>
-			<li><strong class="UI">Fichier cl&eacute;</strong>&nbsp;: S&eacute;lectionnez le r&eacute;pertoire d&rsquo;installation du fichier cl&eacute;.</li>
-</ul>
-</div>
-			<div class="wn5-online-help-info">
-							<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+        <div class="wn5-setup-section-article-content">
+            <p>Pour s&eacute;lectionner <strong class="UI">[HTTPS (Certificat public utilis&eacute;)]</strong> dans <strong class="UI">[Syst&egrave;me de connexion s&eacute;curis&eacute;e]</strong>, vous devez d&apos;abord installer un certificat public.</p>
+            <ul>
+                <li><strong class="UI">Nom du certificat</strong>&nbsp;: Saisissez le nom du certificat &agrave; installer.</li>
+                <li><strong class="UI">Fichier certificat</strong>&nbsp;: Saisissez le chemin du certificat &agrave; installer.</li>
+                <li><strong class="UI">Fichier cl&eacute;</strong>&nbsp;: S&eacute;lectionnez le chemin du fichier cl&eacute; &agrave; installer.</li>
+            </ul>
+        </div>
+				<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
-							
                     <li>Vous ne pouvez ni installer ni supprimer de certificat public lorsque le mode <strong class="UI">[HTTPS (Certificat public en cours d&apos;utilisation)]</strong> est activ&eacute;. Apr&egrave;s &ecirc;tre pass&eacute; en mode <strong class="UI">[HTTP (acc&egrave;s s&eacute;curis&eacute; non utilis&eacute;)]</strong> ou <strong class="UI">[HTTPS (certificat priv&eacute; en cours d&apos;utilisation)]</strong>, assurez-vous d&apos;installer ou de supprimer le certificat.</li>
-                		</ul>
+                </ul>
 	</div>
-
-		<div class="wn5-online-help-action">
+			
+	<div class="wn5-online-help-action">
 		<h4>Installation d&apos;un certificat public</h4>
-		<ol>
-			<li>Saisissez le nom du certificat &agrave; installer dans <strong class="UI">[Nom du certificat]</strong>.</li>
-			<li>Cliquez sur le bouton <strong class="UI">[...]</strong> dans <strong class="UI">[Fichier certificat]</strong>, s&eacute;lectionnez un fichier de certificat dans la fen&ecirc;tre ouverte et cliquez sur le bouton <strong class="UI">[Ouvrir]</strong>.</li>
-			<li>Cliquez sur le bouton <strong class="UI">[...]</strong> dans le fichier cl&eacute;, s&eacute;lectionnez un fichier cl&eacute; dans la fen&ecirc;tre ouverte et cliquez sur le bouton <strong class="UI">[Ouvrir]</strong>.</li>
-			<li>Cliquez sur le bouton <strong class="UI">[Installer]</strong>. L&apos;installation du certificat est termin&eacute;e.</li>
-		</ol>
+                <ol>
+                    <li>Saisissez le nom du certificat &agrave; installer dans <strong class="UI">[Nom du certificat]</strong>.</li>
+                    <li>Cliquez sur le bouton [...] dans [Fichier certificat], s&eacute;lectionnez un fichier de certificat dans la fen&ecirc;tre Ouvrir, puis cliquez sur le bouton <strong class="UI">[Ouvrir]</strong>.</li>
+                    <li>Cliquez sur le bouton [...] dans Fichier cl&eacute;, s&eacute;lectionnez un fichier cl&eacute; dans la fen&ecirc;tre Ouvrir, puis cliquez sur le bouton <strong class="UI">[Ouvrir]</strong>.</li>
+                    <li>Cliquez sur le bouton <strong class="UI">[Installer]</strong>. L&apos;installation du certificat est termin&eacute;e.</li>
+                </ol>
 	</div>
 
 	<div class="wn5-online-help-action">
 		<h4>Suppression d&apos;un certificat public</h4>
-		<p>Cliquez sur le bouton <strong class="UI">[Supprimer]</strong> en bas de <strong class="UI">[Installer un certif. public]</strong>.</p>
+                <p>Cliquez sur le bouton <strong class="UI">[Effacer]</strong> sous <strong class="UI">[Installer un certif. public]</strong>.</p><!-- <p>'HTTPS(공인 인증서 사용)' 모드가 적용된 상태라면 <strong class="UI">[삭제]</strong> 버튼이 비활성화되어 나타납니다. <strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을 선택하여 보안 접속 방식 옵션을 변경하면, <strong class="UI">[공인 인증서 설치] </strong>하단에 <strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p>  --></div>
+</div>
+</div>
+<hr class="wn5-setup-hr" ng-if="SSLOff">
+<div class="wn5-setup-section" ng-if="SSLOff">
+	<div class="wn5-setup-section-heading">
+		<h2>Syst&egrave;me de connexion s&eacute;curis&eacute;</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>S&eacute;lectionnez un syst&egrave;me de connexion s&eacute;curis&eacute; en se fondant sur le niveau de s&eacute;curit&eacute;. HTTPS (Protocole de transfert hypertextuel s&eacute;curis&eacute;) envoie et re&ccedil;oit des donn&eacute;es via le processus d&rsquo;encodage et de d&eacute;codage des demandes de page des utilisateurs sur la sous-couche SSL, sous la couche de protocole de transfert hypertext. Par cons&eacute;quent, ce mode est plus s&ucirc;r que le mode HTTP en termes de s&eacute;curit&eacute;. En mode HTTPS s&eacute;curis&eacute;, vous pouvez utiliser le Certificat exclusif ou le Certificat public.</p>
+		</div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>Utiliser HTTPS/Utiliser HTTP</h3>
+            <p>Vous pouvez acc&eacute;der au Web Viewer de la cam&eacute;ra en mode HTTPS ou HTTP. Vous pouvez saisir soit https://&lt;adresse IP cam&eacute;ra &gt; ou http://&lt;adresse IP cam&eacute;ra &gt; pour d&eacute;finir l&rsquo;adresse IP de la cam&eacute;ra. S&eacute;lectionnez un type de certificat &agrave; utiliser en mode s&eacute;curis&eacute; dans <strong class="UI">[Type de certificat]</strong>.</p>
+        </div>
+		<div class="wn5-setup-section-article-content">
+		    <h3>Utiliser HTTPS/D&eacute;sactiver HTTP</h3>
+            <p>Vous pouvez acc&eacute;der au Web Viewer de la cam&eacute;ra en mode s&eacute;curis&eacute; HTTPS. S&eacute;lectionnez un type de certificat &agrave; utiliser en mode s&eacute;curis&eacute; dans <strong class="UI">[Type de certificat]</strong>.</p>
+	   	</div>
+        <div class="wn5-setup-section-article-content">
+            <h3>D&eacute;sactiver HTTPS/Utiliser HTTP</h3>
+            <p>Vous pouvez acc&eacute;der au Web Viewer de la cam&eacute;ra en mode HTTP uniquement.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>D&eacute;sactiver HTTPS/D&eacute;sactiver HTTP</h3>
+            <p>Vous ne pouvez pas acc&eacute;der au Web Viewer de la cam&eacute;ra en mode HTTPS ou HTTP.</p>
+        </div>
+			<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Si <strong class="UI">[D&eacute;sactiver HTTPS/D&eacute;sactiver HTTP]</strong> est s&eacute;lectionn&eacute;, vous ne pouvez plus acc&eacute;der au Web Viewer de la cam&eacute;ra &agrave; l&rsquo;aide d&rsquo;un navigateur Web.</li>
+            </ul>
+	</div>		
+	
+
+	</div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="SSLOff">
+<div class="wn5-setup-section" ng-if="SSLOff">
+    <div class="wn5-setup-section-heading">
+        <h2>Type de certificat</h2>
+    </div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>S&eacute;lectionnez un type de certificat &agrave; utiliser en mode s&eacute;curis&eacute;.</p>
+        <p>Cette option n&rsquo;appara&icirc;t que si <strong class="UI">[Utiliser HTTPS/Utiliser HTTP]</strong> ou <strong class="UI">[Utiliser HTTPS/D&eacute;sactiver HTTP]</strong> est s&eacute;lectionn&eacute; pour <strong class="UI">[Syst. de connexion s&eacute;cu.]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>Certificat exclusif</h3>
+            <p>Utilise un certificat exclusif fourni par Hanwha Techwin.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Certificat public</h3>
+            <p>Utilise un certificat public qui a d&eacute;j&agrave; &eacute;t&eacute; install&eacute; &agrave; l&rsquo;&eacute;tape <strong class="UI">[Installer un certif. public]</strong>.</p>
+        </div>
+	</div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="SSLOff">
+<div class="wn5-setup-section" ng-if="SSLOff">
+<div class="wn5-setup-section-heading">
+	<h2>Installer un certificat public</h2>
+</div>
+<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Pour s&eacute;lectionner <strong class="UI">[Certificat public]</strong> dans <strong class="UI">[Type de certificat]</strong>, un certificat public doit d&rsquo;abord &ecirc;tre install&eacute;.</p>
+            <ul>
+                <li><strong class="UI">Nom du certificat</strong>&nbsp;: Saisissez le nom du certificat &agrave; installer.</li>
+                <li><strong class="UI">Fichier du certificat</strong>&nbsp;: Saisissez le chemin du certificat &agrave; installer.</li>
+                <li><strong class="UI">Fichier cl&eacute;</strong>&nbsp;: S&eacute;lectionnez le chemin du fichier cl&eacute; &agrave; installer.</li>
+            </ul>
+        </div>
+
+			
+	<div class="wn5-online-help-action">
+		<h4>Installation d&apos;un certificat public</h4>
+                <ol>
+                    <li>Saisissez le nom du certificat &agrave; installer dans <strong class="UI">[Nom du certificat]</strong>.</li>
+                    <li>Cliquez sur le bouton [...] dans [Fichier du certificat], s&eacute;lectionnez un fichier de certificat dans la fen&ecirc;tre Ouvrir, puis cliquez sur le bouton <strong class="UI">[Ouvrir]</strong>.</li>
+                    <li>Cliquez sur le bouton [...] dans Fichier cl&eacute;, s&eacute;lectionnez un fichier cl&eacute; dans la fen&ecirc;tre Ouvrir, puis cliquez sur le bouton <strong class="UI">[Ouvrir]</strong>.</li>
+                    <li>Cliquez sur le bouton <strong class="UI">[Installer]</strong>. L&apos;installation du certificat est termin&eacute;e.</li>
+                </ol>
+	</div>
+
+	<div class="wn5-online-help-action">
+		<h4>Suppression d&apos;un certificat public</h4>
+                <p>Cliquez sur le bouton <strong class="UI">[Effacer]</strong> sous <strong class="UI">[Installer un certif. public]</strong>.</p>
+
 		</div>
 	</div>
 </div>
