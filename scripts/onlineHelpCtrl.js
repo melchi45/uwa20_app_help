@@ -195,12 +195,16 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.PrivacyMaskRectangle = attr.PrivacyMaskRectangle > 0;
       /* WN7에서 추가한 것 */
       $scope.ConnectionMode = attr.ConnectionMode;
-      $scope.AdminRight = attr.AdminAccess;
-      $scope.MutualAuthentification = attr.ClientCertificateAuthenticationEnable;
-      $scope.AGCManual = attr.AGCLevel;
-      $scope.AGCMaxGain = attr.AGCMaxGainLevel;
+      $scope.AdminAccess = attr.AdminAccess;
+      $scope.ClientCertificateAuthenticationEnable = attr.ClientCertificateAuthenticationEnable;
+      $scope.AGCLevel = attr.AGCLevel;
+      $scope.AGCMaxGainLevel = attr.AGCMaxGainLevel;
       $scope.XCELevel = attr.XCELevel;
       $scope.GammaControl = attr.GammaControl;
+      $scope.SensorCaptureSize = (
+        typeof attr.SensorCaptureSize !== 'undefined' && attr.SensorCaptureSize.length > 0
+);
+
       /*
         1. true values
           Object 인 값 : {},
