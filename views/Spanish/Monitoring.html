@@ -56,7 +56,7 @@
                                     <p>&nbsp;</p>
                                 </td>
                             </tr>
-				    <tr ng-if="IsAdmin"> 
+				    <tr> 
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
                             <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Conf. de v&iacute;deo</a></p>
@@ -188,7 +188,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+                    <tr ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
                             <td width="235">
                                 <p>Seleccionar canal</p>
                             </td>
@@ -355,7 +355,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+        <div class="wn5-online-help-action" ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
             <h4>Para cambiar el canal</h4>
                 <ul>
                     <li>Seleccione el n&uacute;mero del canal que desea. El video del canal aparecer&aacute; en el visor.</li>
@@ -472,8 +472,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="IsAdmin">
-<div class="wn5-setup-section" ng-if="IsAdmin">
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="settings"></a>Conf. de vídeo</h2>
     </div>
@@ -734,7 +734,7 @@
         <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
-                    <!-- <li>La función Panorámica solo se puede usar cuando se selecciona [Techo] en [Video y audio]> [Conf. de video]> [Rotación de video]> [Modo de montaje de la cámara].</li> -->
+                    <!-- <li>La función Panorámica solo se puede usar cuando se selecciona [Techo] en [V&iacute;deo y audio]> [Conf. de video]> [Rotación de video]> [Modo de montaje de la cámara].</li> -->
 
                     <li>La funci&oacute;n Pan solo se puede utilizar cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Conf. de video]</strong> &gt; <strong class="UI">[Rotación de video]</strong> &gt; <strong class="UI">[Modo de montaje de la cámara]</strong>.</li>
 
@@ -786,7 +786,7 @@
                         <li>Panorama + 2PTZ (<span class="tui tui-wn5-panorama-2ptz"></span>): Deforma un panorama y 2 &aacute;reas de ROI y los muestra en la pantalla dividida.</li>
                         <li>Ojo de pez + 8PTZ (<span class="tui tui-wn5-fisheye-8ptz"></span>): Deforma un panorama de pared y 8 &aacute;reas de ROI y los muestra en la pantalla dividida. Esta vista solo se admite cuando est&aacute; montada en la pared.</li>
                     </ul>
-                    <p>Si el modo de montaje de la c&aacute;mara se cambia en <strong class="UI">[Video y audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de video]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de video]</strong> &gt; <strong class="UI">[Modo de montaje de c&aacute;mara]</strong>, la direcci&oacute;n de instalaci&oacute;n del modo de vista de ojo de pez tambi&eacute;n cambiar&aacute; en el modo En vivo.</p>
+                    <p>Si el modo de montaje de la c&aacute;mara se cambia en <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de video]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de video]</strong> &gt; <strong class="UI">[Modo de montaje de c&aacute;mara]</strong>, la direcci&oacute;n de instalaci&oacute;n del modo de vista de ojo de pez tambi&eacute;n cambiar&aacute; en el modo En vivo.</p>
                 </div>
         <div class="wn5-setup-section-article-content">
             <h3>Restablecer/Restablecer todo  </h3>

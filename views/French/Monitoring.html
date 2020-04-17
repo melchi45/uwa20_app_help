@@ -58,7 +58,7 @@
                                 </td>
                  </tr>
 
-                    <tr ng-if="IsAdmin">
+                    <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
                             <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Vidéo configuration</a></p>
@@ -184,7 +184,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+                    <tr ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
                         <td width="235">
                             <p><a href="#channel">S&eacute;lectionner un canal</a></p>
                         </td>
@@ -350,7 +350,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+        <div class="wn5-online-help-action" ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
             <h4>Pour changer de canal</h4>
                 <ul>
                     <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
@@ -468,8 +468,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="IsAdmin">
-<div class="wn5-setup-section" ng-if="IsAdmin">
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="settings"></a>Vid&eacute;o configuration</h2>
     </div>
@@ -770,7 +770,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
                 <div class="wn5-setup-section-article-content">
             <h3>Plafond/Mur</h3>
                     <p>Affiche le mode de montage de la cam&eacute;ra. Le type de vue diff&egrave;re en fonction du mode de montage.</p>
-                    <p>Le mode de montage peut &ecirc;tre r&eacute;gl&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration vid&eacute;o]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>. Le type de vue «&nbsp;Double panorama&nbsp;» appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute;. Les autres types vues sont les m&ecirc;mes pour «&nbsp;Plafond&nbsp;» et «&nbsp;Mur&nbsp;».</p>
+                    <p>Le mode de montage peut &ecirc;tre r&eacute;gl&eacute; dans <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Configuration vid&eacute;o]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>. Le type de vue «&nbsp;Double panorama&nbsp;» appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute;. Les autres types vues sont les m&ecirc;mes pour «&nbsp;Plafond&nbsp;» et «&nbsp;Mur&nbsp;».</p>
                     <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; l&rsquo;ic&ocirc;ne de type de vue souhait&eacute;, vous pouvez changer l&rsquo;affichage de la cam&eacute;ra en faisant glisser la souris sur l&apos;&eacute;cran vid&eacute;o en direct.</p>
                     <ul>
                         <li>Fisheye (<span class="tui tui-wn5-fisheye"></span>)&nbsp;: Affiche la vue fisheye originale qui n&rsquo;est pas liss&eacute;e.</li>
