@@ -20,6 +20,8 @@
 		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
         <ul>
+            <li>고해상도의 영상을 라이브 화면에서 재생하는 경우, 고해상도 영상을 최적화하여 보여줄 수 있는 [PLUGINFREE 프로파일]이 자동으로 생성됩니다. 생성된 PLUGINFREE 프로파일은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 확인할 수 있습니다. </li>
+            <li>라이브 페이지 오른쪽 상단에서 <img src="../../images/ic-top-cert-nor.svg">아이콘을 클릭하면,접속한&nbsp;IP 주소와 인증 상태를 확인할 수 있습니다. 인증에 성공한 경우 초록색 아이콘으로, 실패한 경우 빨간색 아이콘으로 표시됩니다. 또한 HTTP로 접속하여 해당 사항이 없는 경우&nbsp;경우는 대시(-)로 표시됩니다. </li>
             <li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
             <li>라이브 페이지에서 영상을 재생할 때 아래와 같은 조건에서 화면에 잔상이 표시될 수 있습니다.</li>
             <ul>
@@ -78,7 +80,7 @@
                         </td>
                         <td width="235">
                             <p>온도 분석 관심 영역별로(A/B/C) 각 영역의 평균(Average), 최소(Maximum), 최대(Maximum) 온도를 보여줍니다.</p>
-                            <p>온도 분석 관심 영역은  <strong class="UI">[설정]</strong>&gt;<strong class="UI">[분석]</strong>&gt;<strong class="UI">[온도 감지]</strong> 메뉴에서 설정할 수 있습니다.</p>
+                            <p>온도 분석 관심 영역은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[분석]</strong>&gt;<strong class="UI">[온도 감지]</strong> 메뉴에서 설정할 수 있습니다.</p>
                             <p> <strong class="UI">[온도 단위]</strong>에서 화씨와 섭씨 중 온도 표시 단위를 선택하면 선택한 단위에 맞게 온도가 표시됩니다.</p>
                             <p> <strong class="UI">[스폿 방사율]</strong>에서 방사율 정보를 입력할 수 있습니다.  <strong class="UI">[설정]</strong>&gt;<strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[온도 설정]</strong>&gt;<strong class="UI">[스폿 방사율]</strong>에서 입력한 방사율이 <strong class="UI">[스폿 방사율]</strong>에 기본값으로 표시됩니다.</p>
                             <p>&nbsp;</p>
@@ -533,7 +535,7 @@
             <p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다</p>    
         </div>
         
-        <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1" >
+        <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
             <h4>알아두기</h4>
             <ul>
                 <li>외부 PTZ를 사용 중이며 채널 1을 선택한 경우에만 외부 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택합니다.</li>
@@ -640,7 +642,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <h3>영역 줌</h3>
                      
             <p>영역 줌은 특정 영역만 확대하여 볼 수 있는 기능입니다.</p>
-            <p><span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 클릭한 뒤 카메라 영상 화면에서 마우스를 드래그하여 영역을 선택하면, 선택한 영역을 기준으로 줌 기능이 작동하고 카메라 위치도 선택한 영역으로 이동합니다. <span class="tui tui-chi-live-ptz-areazoom-back"></span>아이콘을 클릭하여 이 전 선택 영역과 설정으로 이동할 수 있으며, 이 전으로 이동한 경우 이동 전 영역과 설정으로 다시 이동하려면 <span class="tui tui-chi-live-ptz-areazoom-pre"></span>아이콘을 클릭합니다. <span class="tui tui-chi-live-ptz-areazoom-1x"></span>아이콘을 클릭하면 줌 배율이 1배로 변경되고 카메라 위치도 원래 위치로 이동합니다.  </p>
+            <p><span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 클릭한 뒤 카메라 영상 화면에서 마우스를 드래그하여 영역을 선택하면, 선택한 영역을 기준으로 줌 기능이 작동하고 카메라 위치도 선택한 영역으로 이동합니다. <span class="tui tui-chi-live-ptz-areazoom-back"></span>아이콘을 클릭하여 이 전 선택 영역과 설정으로 이동할 수 있으며, 이 전으로 이동한 경우 이동 전 영역과 설정으로 다시 이동하려면 <span class="tui tui-chi-live-ptz-areazoom-pre"></span>아이콘을 클릭합니다. <span class="tui tui-chi-live-ptz-areazoom-1x"></span>아이콘을
+클릭하면 줌 배율이 1배로 변경되고 카메라 위치도 원래 위치로 이동합니다.  </p>
             <p>  </p>
             <p> 영역 줌 설정을 종료하려면 <span class="tui tui-chi-live-ptz-areazoom"></span>아이콘을 한 번 더 클릭합니다. 현재 설정한 영역 줌은 그대로 유지되고 영역 줌 설정 기능은 종료됩니다.</p>
         </div>
@@ -731,8 +734,10 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <ul>
              <!--   <li><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li> -->
                 <li><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[비디오 설정]</strong>&gt;<strong class="UI">[비디오 회전]</strong>&gt;<strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 팬 기능을 사용할 수 있습니다. </li>
-           <!--     <li><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 [왜곡 보정 뷰]를 선택한 후 <strong class="UI">[뷰]</strong>에서 [4분할 뷰]나 [Q1], [Q2], [Q3], [Q4]를 선택한 경우&nbsp;<strong class="UI">[프리셋]</strong>과 <strong class="UI">[그룹]</strong>이 나타납니다. <strong class="UI">[뷰]</strong>에서[싱글 파노라마]나 [더블 파노라마]를 선택한 경우에는 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈]</strong>이 나타납니다.</li>  -->
-                <li>프로파일 뷰 타입이 [4분할 뷰]나 [Q1], [Q2], [Q3], [Q4]인 경우 <strong class="UI">[프리셋]</strong>과 <strong class="UI">[그룹]</strong>을 지원하며, 뷰 타입이 [싱글 파노라마]나 [더블 파노라마]인 경우에는 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈] </strong>기능을 지원합니다. 뷰 타입은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 [왜곡 보정 뷰]를 선택한 후 <strong class="UI">[뷰]</strong>에서 선택할 수 있습니다.   </li>
+           <!--     <li><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 [왜곡 보정 뷰]를 선택한 후 <strong class="UI">[뷰]</strong>에서 [4분할 뷰]나 [Q1], [Q2], [Q3], [Q4]를 선택한 경우&nbsp;<strong class="UI">[프리셋]</strong>과 <strong class="UI">[그룹]</strong>이 나타납니다. <strong class="UI">[뷰]</strong>에서[싱글 파노라마]나 [더블
+파노라마]를 선택한 경우에는 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈]</strong>이 나타납니다.</li>  -->
+                <li>프로파일 뷰 타입이 [4분할 뷰]나 [Q1], [Q2], [Q3], [Q4]인 경우 <strong class="UI">[프리셋]</strong>과 <strong class="UI">[그룹]</strong>을 지원하며, 뷰 타입이 [싱글 파노라마]나 [더블 파노라마]인 경우에는 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈] </strong>기능을 지원합니다. 뷰 타입은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이
+뷰 타입]</strong>에서 [왜곡 보정 뷰]를 선택한 후 <strong class="UI">[뷰]</strong>에서 선택할 수 있습니다.   </li>
       <!--          <li ng-if="SupportChannelExpansionFeature">뷰 모드 목록에서 <strong class="UI">[피쉬아이 뷰]</strong>를 선택하면 PTZ 기능을 사용할 수 없습니다.</li>
                 <li ng-if="SupportChannelExpansionFeature">뷰 모드 목록에서 <strong class="UI">[4분할 뷰]</strong> 나 <strong class="UI">[Q1]</strong>, <strong class="UI">[Q2]</strong>, <strong class="UI">[Q3]</strong>, <strong class="UI">[Q4]</strong> 선택한 경우에만 분할 화면 선택과 프리셋, 그룹 기능을 사용할 수 있습니다.     </li>
                 <li ng-if="SupportChannelExpansionFeature">뷰 모드 목록에서 <strong class="UI">[싱글 파노라마]</strong>나 <strong class="UI">[더블 파노라마]</strong>를 선택한 경우에만 <strong class="UI">[팬]</strong>과 <strong class="UI">[홈]</strong> 기능이 활성화됩니다. </li>  -->

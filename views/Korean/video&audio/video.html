@@ -306,8 +306,9 @@ TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('
 
 <!-- TNB-9000에서 이재준 수석님 코멘트에 따라 ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1" 추가.  2019-11-15 -->  
 <!-- pnm-9030v에서 !SupportAutoImageAlignment 추가함. tw 자체 2020-02-11-->
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment">
+<!-- WN7 XNV-9082에서 hide돼야 하므로 !XCELevel 추가함. tw 자체. 2020-05-06 -->
+<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>
     </div>

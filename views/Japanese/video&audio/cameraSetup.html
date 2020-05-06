@@ -336,7 +336,7 @@
             <p>画面の強い光エリアを検知して明るさを調整しながら、飽和エリアを減少させます。</p>
         </div>
   
-        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="(HLC && !PTZModel) && !XCELevel">
             <h5>エリア設定</h5>
             <p>遮断エリアのサイズ&amp;位置を設定します。</p>
             <ul>
@@ -599,7 +599,9 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
             <h3>アラーム入力</h3>
-            <p>アラームセンサーの開/閉状況によって映像をカラーやB/Wに設定することができます。<strong class="UI">[デイ/ナイト]</strong>の<strong class="UI">[モード]</strong>を<strong class="UI">[外部]</strong>に設定すると、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入力]</strong>機能が無効になり設定ページが表示されません。</p>
+            <p>アラームセンサーの開/閉状況によって映像をカラーやB/Wに設定することができます。
+                <!-- <strong class="UI">[デイ/ナイト]</strong>の<strong class="UI">[モード]</strong>を<strong class="UI">[外部]</strong>に設定すると、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入力]</strong>機能が無効になり設定ページが表示されません。 -->
+            </p>
         </div><!-- ?? ?? DefocusDetectSimpleFocus?? ExternalPTZModel? ???. Q???. ??? ?? 4/15? ?? ?? --> <!-- ExternalPTZModel -> SimpleFocusAfterDayNight? ???. ??? ???. ?? 11/22? ??.  --><div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>デイ/ナイト切替後の単一フォーカス</h3>
             <p>デイ/ナイト切替後、映像のフォーカスを自動に合わせます。</p>

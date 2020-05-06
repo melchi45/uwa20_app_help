@@ -336,7 +336,7 @@
             <p>D&eacute;tecte la zone fortement &eacute;clair&eacute;e de l&rsquo;&eacute;cran et ajuste la luminosit&eacute; pour r&eacute;duire la taille des zones satur&eacute;es.</p>
         </div>
   
-        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="(HLC && !PTZModel) && !XCELevel">
             <h5>Configuration de la zone</h5>
             <p>D&eacute;finit la taille et l&rsquo;emplacement de la zone bloqu&eacute;e.</p>
             <ul>
@@ -599,7 +599,9 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
             <h3>Entr&eacute;e d&rsquo;alerte</h3>
-            <p>R&egrave;gle la vid&eacute;o en couleur ou N/B en fonction de l&rsquo;ouverture ou de la fermeture du capteur d&rsquo;alarme. Lorsque <strong class="UI">[Externe]</strong> est d&eacute;fini pour <strong class="UI">[Mode]</strong> de <strong class="UI">[Jour/Nuit]</strong>, la fonction <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[Entr&eacute;e d&rsquo;alerte]</strong> est alors d&eacute;sactiv&eacute;e et la page de configuration ne s&rsquo;affiche pas.</p>
+            <p>R&egrave;gle la vid&eacute;o en couleur ou N/B en fonction de l&rsquo;ouverture ou de la fermeture du capteur d&rsquo;alarme. 
+                <!-- Lorsque <strong class="UI">[Externe]</strong> est d&eacute;fini pour <strong class="UI">[Mode]</strong> de <strong class="UI">[Jour/Nuit]</strong>, la fonction <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[Entr&eacute;e d&rsquo;alerte]</strong> est alors d&eacute;sactiv&eacute;e et la page de configuration ne s&rsquo;affiche pas. -->
+            </p>
         </div><!-- ?? ?? DefocusDetectSimpleFocus?? ExternalPTZModel? ???. Q???. ??? ?? 4/15? ?? ?? --> <!-- ExternalPTZModel -> SimpleFocusAfterDayNight? ???. ??? ???. ?? 11/22? ??.  --><div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>Mise au point simple apr&egrave;s Jour/Nuit</h3>
             <p>R&egrave;gle automatiquement la mise au point de l&rsquo;image apr&egrave;s un passage au Jour/Nuit.</p>

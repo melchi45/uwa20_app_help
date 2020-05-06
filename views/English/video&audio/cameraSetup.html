@@ -336,7 +336,7 @@
             <p>Detects the strongly illuminated area on the screen and adjusts brightness to reduce the size of the saturated areas.</p>
         </div>
   
-        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel">
+        <div class="wn5-setup-section-article-content" ng-if="(HLC && !PTZModel) && !XCELevel">
             <h5>Area setting</h5>
             <p>Set the blocked area&rsquo;s size and location.</p>
             <ul>
@@ -599,7 +599,9 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
             <h3>Alarm input</h3>
-            <p>Set the image to color or b/w according to the opening and closing status of the alarm sensor. When <strong class="UI">[External]</strong> is set for <strong class="UI">[Mode]</strong> of <strong class="UI">[Day/Night]</strong>, the <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm input]</strong> function will be deactivated and the setup page will not appear.</p>
+            <p>Set the image to color or b/w according to the opening and closing status of the alarm sensor. 
+                <!-- When <strong class="UI">[External]</strong> is set for <strong class="UI">[Mode]</strong> of <strong class="UI">[Day/Night]</strong>, the <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm input]</strong> function will be deactivated and the setup page will not appear. -->
+            </p>
         </div><!-- ?? ?? DefocusDetectSimpleFocus?? ExternalPTZModel? ???. Q???. ??? ?? 4/15? ?? ?? --> <!-- ExternalPTZModel -> SimpleFocusAfterDayNight? ???. ??? ???. ?? 11/22? ??.  --><div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>Simple focus after D/N</h3>
             <p>Adjusts the focus of the image automatically after a Day/Night switch.</p>
