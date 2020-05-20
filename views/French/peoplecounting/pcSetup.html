@@ -206,7 +206,7 @@
                 <li>Si un objet en mouvement est proche de la r&egrave;gle d&eacute;finie,</li>
                 <li>Si la r&egrave;gle est d&eacute;finie sur le bord ext&eacute;rieur de l&rsquo;image pour une cam&eacute;ra Fisheye (Figure 4)</li>
             </ul>
-            <li ng-if="objectDetectionSupport">Une cam&eacute;ra pour effectuer le comptage de personnes n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 5)</li>
+            <li ng-if="!objectDetectionSupport">Une cam&eacute;ra pour effectuer le comptage de personnes n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 5)</li>
             <li>Si vous r&eacute;glez la taille de l&rsquo;objet &agrave; une valeur sup&eacute;rieure &agrave; la taille r&eacute;elle dans l&rsquo;&eacute;talonnage, les r&eacute;sultats de la mesure peuvent donner un nombre de personnes inf&eacute;rieur au nombre r&eacute;el&nbsp;; au contraire, si vous le r&eacute;glez &agrave; un nombre inf&eacute;rieur, il peut donner un nombre de personnes sup&eacute;rieur au nombre r&eacute;el.</li>
         </ul>
 
@@ -220,8 +220,8 @@
         <p><img src="./images/pcSetup_4-3.png"></p>
         <p>Figure 4</p>
         <p><img src="./images/pcSetup_5.png"></p>	
-        <p ng-if="objectDetectionSupport">Figure 5</p>
-        <p ng-if="objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>
+        <p ng-if="!objectDetectionSupport">Figure 5</p>
+        <p ng-if="!objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>
     </div>
     <hr class="wn5-setup-hr">
   <hr class="wn5-setup-hr">

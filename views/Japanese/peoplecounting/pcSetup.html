@@ -206,7 +206,7 @@
             <li>移動体が設定したルール周囲にとどまる場合</li>
             <li>魚眼カメラの場合、映像外郭部分にルールを設定した場合(図5参照)</li>
         </ul>
-        <li ng-if="objectDetectionSupport">人数カウントを駆動するためのカメラは、レンズを地面に直下式で設置する必要があります。(図1参照)</li>
+        <li ng-if="!objectDetectionSupport">人数カウントを駆動するためのカメラは、レンズを地面に直下式で設置する必要があります。(図1参照)</li>
         <li>校正で対象物のサイズを実際のサイズより大きく指定する場合、実際の人数より少なく測定されることがあります。逆に実際のサイズより小さく指定する場合、実際の人数より多く測定されることがあります。</li>
     </ul>
     <p>図1</p>
@@ -219,7 +219,7 @@
     <p><img src="./images/pcSetup_4-3.png" ></p>
     <p>図4</p>
     <p><img src="./images/pcSetup_5.png" ></p>	
-    <p ng-if="objectDetectionSupport">図5</p>
-    <p ng-if="objectDetectionSupport"><img src="./images/pcSetup_1.png" ></p>
+    <p ng-if="!objectDetectionSupport">図5</p>
+    <p ng-if="!objectDetectionSupport"><img src="./images/pcSetup_1.png" ></p>
 </div>
 <hr class="wn5-setup-hr">

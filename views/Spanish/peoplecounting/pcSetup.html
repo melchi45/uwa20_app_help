@@ -210,7 +210,7 @@
             <li>Si el objeto en movimiento est&aacute; cerca de la regla establecida,</li>
             <li>Si la regla se establece en el extremo exterior de la imagen para lograr una c&aacute;mara ojo de pez (Figura 4)</li>
         </ul>
-        <li ng-if="objectDetectionSupport">Una c&aacute;mara para realizar el conteo de personas requiere que la lente se instale en el suelo en una ca&iacute;da directa. (Figura 5)</li>
+        <li ng-if="!objectDetectionSupport">Una c&aacute;mara para realizar el conteo de personas requiere que la lente se instale en el suelo en una ca&iacute;da directa. (Figura 5)</li>
         <li>Si configura el tama&ntilde;o del objeto a un valor mayor que el tama&ntilde;o real en la calibraci&oacute;n de tama&ntilde;o, los resultados de la medici&oacute;n pueden producir un n&uacute;mero de personas menor que el real. Por el contrario, si lo configura en un n&uacute;mero menor, puede producir un mayor n&uacute;mero de personas que las reales.</li>
     </ul>
 
@@ -224,7 +224,7 @@
     <p><img src="./images/pcSetup_4-3.png"></p>
     <p>Figura 4</p>
     <p><img src="./images/pcSetup_5.png"></p>	
-    <p ng-if="objectDetectionSupport">Figura 5</p>
-    <p ng-if="objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>
+    <p ng-if="!objectDetectionSupport">Figura 5</p>
+    <p ng-if="!objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>
 </div>
 <hr class="wn5-setup-hr">
