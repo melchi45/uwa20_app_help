@@ -199,30 +199,32 @@
     <ul>
         <li>La funci&oacute;n Conteo de personas tiene como objetivo proporcionar datos estad&iacute;sticos, pero no datos con precisi&oacute;n en tiempo real y puede incluir objetos en movimiento o animales en el n&uacute;mero total de unidades medidas.</li>
         <li>Despu&eacute;s de instalar la c&aacute;mara, puede continuar funcionando mal hasta que se estabilice. El tiempo de estabilizaci&oacute;n puede tomar de 50 a 60 minutos.</li>
-        <li>Una c&aacute;mara para realizar el conteo de personas requiere que la lente se instale en el suelo en una ca&iacute;da directa. (Figura 1)</li>
+
         <li>En cualquiera de los siguientes casos, es probable que aumenten los errores en los datos medidos:</li>
         <ul>
             <li>Si est&aacute; instalada en un espacio sin suficiente visi&oacute;n</li>
-            <li>Noche o bajo brillo (Figura 2)</li>
-            <li>En un entorno con un cambio de luz repentino o en caso de exposici&oacute;n a una luz fuerte, como luz solar directa, puesta de sol, salida del sol, iluminaci&oacute;n directa, etc. (Figura 3)</li>
-            <li>Si hay un movimiento constante en la ubicaci&oacute;n fija, tales como cerca de la puerta (Figura 4)</li>
+            <li>Noche o bajo brillo (Figura 1)</li>
+            <li>En un entorno con un cambio de luz repentino o en caso de exposici&oacute;n a una luz fuerte, como luz solar directa, puesta de sol, salida del sol, iluminaci&oacute;n directa, etc. (Figura 2)</li>
+            <li>Si hay un movimiento constante en la ubicaci&oacute;n fija, tales como cerca de la puerta (Figura 3)</li>
             <li>Si muchas personas se mueven en grupo</li>
             <li>Si el objeto en movimiento est&aacute; cerca de la regla establecida,</li>
-            <li>Si la regla se establece en el extremo exterior de la imagen para lograr una c&aacute;mara ojo de pez (Figura 5)</li>
+            <li>Si la regla se establece en el extremo exterior de la imagen para lograr una c&aacute;mara ojo de pez (Figura 4)</li>
         </ul>
+        <li ng-if="objectDetectionSupport">Una c&aacute;mara para realizar el conteo de personas requiere que la lente se instale en el suelo en una ca&iacute;da directa. (Figura 5)</li>
         <li>Si configura el tama&ntilde;o del objeto a un valor mayor que el tama&ntilde;o real en la calibraci&oacute;n de tama&ntilde;o, los resultados de la medici&oacute;n pueden producir un n&uacute;mero de personas menor que el real. Por el contrario, si lo configura en un n&uacute;mero menor, puede producir un mayor n&uacute;mero de personas que las reales.</li>
     </ul>
+
     <p>Figura 1</p>
-    <p><img src="./images/pcSetup_1.png"></p>
-    <p>Figura 2</p>
     <p><img src="./images/pcSetup_2.png"></p>
-	<p>Figura 3</p>
+	<p>Figura 2</p>
     <p><img src="./images/pcSetup_3.png"></p>
-	<p>Figura 4</p>
+	<p>Figura 3</p>
     <p><img src="./images/pcSetup_4-1.png"></p>
     <p><img src="./images/pcSetup_4-2.png"></p>
     <p><img src="./images/pcSetup_4-3.png"></p>
-    <p>Figura 5</p>
+    <p>Figura 4</p>
     <p><img src="./images/pcSetup_5.png"></p>	
+    <p ng-if="objectDetectionSupport">Figura 5</p>
+    <p ng-if="objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>
 </div>
 <hr class="wn5-setup-hr">

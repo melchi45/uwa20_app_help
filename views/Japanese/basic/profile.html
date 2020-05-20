@@ -28,6 +28,21 @@
         </div>
             </div>
 </div>
+
+
+<hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
+<div class="wn5-setup-section" ng-if="SensorCaptureSize">
+            <div class="wn5-setup-section-heading">
+                <h2>最大解像度モード</h2>
+            </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>最大解像度を選択します。選択した最大解像度によって各プロファイルで設定できるカメラ解像度範囲や最大フレームレートが異なります。</p> 
+            <p>最大解像度モードを変更するとビデオ設定、カメラ設定、コーデック設定&イベントやAI設定が初期化されます。但しユーザー設定、日付＆時間、ネットワーク設定はそのまま維持されます。 </p>
+        </div>
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZMode">
 <div class="wn5-setup-section" ng-if="PTZMode">
             <div class="wn5-setup-section-heading">
@@ -146,7 +161,7 @@
                     
                     <li><strong class="UI">[追加]</strong>ボタンをクリックします。プロファイルリストで新しい項目が追加されます。</li>
                     <li><strong class="UI">[名前]</strong>フィールドにプロファイル名を入力します。プロファイルリストに入力した名前が表示されます。</li>
-                    <li><strong class="UI">[Codec]</strong>、<strong class="UI">[Profileタイプ]</strong>、<strong class="UI">[解像度]</strong>など、プロファイルの詳細を設定します。</li>
+                    <li><strong class="UI">[Codec]</strong>、<strong class="UI">[プロファイルタイプ]</strong>、<strong class="UI">[解像度]</strong>など、プロファイルの詳細を設定します。</li>
                     <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
                     <li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。新しいプロファイルが追加されます。</li>
                 </ol>
