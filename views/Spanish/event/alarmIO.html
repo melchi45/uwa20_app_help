@@ -1,0 +1,176 @@
+﻿<h1 class="wn5-setup-main-title">Alarma E/S</h1>
+<div class="wn5-setup-section">
+    <p>El puerto E/S de una c&aacute;mara se puede configurar como un puerto de entrada o de salida, seg&uacute;n se desee.</p>
+    <p>Despu&eacute;s de seleccionarlo para que sea un puerto de entrada o de salida, puede configurar los detalles de cada Alarma E/S.</p>
+    <p>Cuando haya completado el ajuste, haga clic en el bot&oacute;n [Aplicar] en la parte inferior de la p&aacute;gina.</p>
+</div>
+
+				 <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+    <ul>
+        <li>Si utiliza todos los puertos de alarma como salida, se desactivar&aacute; el modo [Externo] de [D&iacute;a/Noche]. Si ya est&aacute; definido a [Externo], se cambiar&aacute; al modo [Autom&aacute;tico]. Puede seleccionar <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de c&aacute;mara]</strong> &gt; <strong class="UI">[D&iacute;a/Noche]</strong> para comprobar el modo externo de D&iacute;a/Noche.</li>
+    </ul>
+			</div> 
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Alarma E/S</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Despu&eacute;s de seleccionar el n&uacute;mero de puerto, decida si utilizar&aacute; el puerto como puerto de entrada o de salida. Despu&eacute;s de seleccionar la entrada o la salida, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>.</p>
+            <p>Si se selecciona [Entrada], se puede definir la [Conf. de dispositivo de entrada], la [Conf. de acciones de evento] y el [Tiempo de activaci&oacute;n de evento]. Si se selecciona [Salida], se puede definir la [Salida de alarma].</p>
+            <p>La cantidad de entradas/salidas de alarma soportadas puede variar seg&uacute;n la c&aacute;mara.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Conf. de dispositivo de entrada</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		<p>Establece si se debe utilizar o no un dispositivo de entrada de alarma y el tipo para activar un evento de alarma cuando se produce una entrada de alarma.</p>
+    </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Conf. de dispositivo de entrada</h3>
+            <p>Para usar un dispositivo de entrada de alarma, seleccione <strong class="UI">[Activar</strong>].</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Tipo</h3>
+            <p>Seleccione el tipo de entrada de alarma.</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 입력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 입력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmInputNormalOpen"><strong class="UI">N.A. (Normal abierto)</strong>: El sensor de entrada de alarma est&aacute; abierto de forma predeterminada; cuando est&aacute; cerrado, se crea un evento de entrada de alarma.</li>
+                <li ng-if="AlarmInputNormalClose"><strong class="UI">N.C. (Normal cerrado)</strong>: El sensor de entrada de alarma est&aacute; cerrado de forma predeterminada y cuando est&aacute; abierto, se crea un evento de entrada de alarma.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>Establece el comportamiento de su c&aacute;mara cuando se produce un evento de entrada de alarma.</p>
+    </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de entrada de alarma, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Para enviar una imagen por e-mail cuando se crea un evento de entrada de alarma, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
+            <h3>Almacenamiento</h3>
+            <p ng-if="NAS">Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de entrada de alarma, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+            <p ng-if="!NAS">Para guardar una imagen en una tarjeta SD cuando se crea un evento de entrada de alarma, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+            <h3>Salida de alarma</h3>
+            <p>Puede configurar la salida de alarma para un n&uacute;mero espec&iacute;fico de alarma cuando se crea un evento de entrada de alarma. Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos.</p>
+            <p>La pantalla de opci&oacute;n de salida de alarma variar&aacute; seg&uacute;n la cantidad de alarmas de salida que tenga la c&aacute;mara. Por ejemplo, si hay 2 alarmas para la salida, la opci&oacute;n mostrar&aacute; «Salida de alarma 1» y «Salida de alarma 2».</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+            <h3>Ir a preajuste</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de entrada de alarma. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ digital]</strong> o <strong class="UI">[Preajustes]</strong> de <strong class="UI">[PTZ externa]</strong>.</p>
+
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1">Si la opci&oacute;n <strong class="UI">[Usar PTZ externa]</strong> no est&aacute; seleccionada en <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>, no se mostrar&aacute; la opci&oacute;n [Ir a preajuste].</p>
+        </div>
+    
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Ir a preajuste</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a una posici&oacute;n predefinida cuando se cree un evento de entrada de alarma. El valor predefinido de c&aacute;mara puede definirse en la secci&oacute;n <strong class="UI">[Configuraci&oacute;n de preajustes]</strong> de <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuraci&oacute;n de preajustes]</strong></a>.</p>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Ir a preajuste</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de entrada de alarma. El valor predefinido de c&aacute;mara puede definirse en la pesta&ntilde;a <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+            <h3>Ir a preajuste</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a una posici&oacute;n predefinida cuando se cree un evento de entrada de alarma. El valor predefinido de c&aacute;mara puede definirse en la pesta&ntilde;a <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">[Configuraci&oacute;n PTZ]</a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+        <h3>Clip de audio</h3>
+        <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento de entrada de alarma. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[Apagado]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
+        <p>Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong> &gt; <strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Tiempo de activaci&oacute;n de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Esto establece la configuraci&oacute;n de acciones de eventos de <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/event_alarminput?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a la hora establecida cuando se crea un evento de entrada de alarma.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Siempre</h3>
+            <p>Los valores de acciones evento siempre se ejecutan cuando se crea un evento de entrada de alarma.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Solo tiempo programado</h3>
+            <p>Los ajustes de acciones de eventos se ejecutan cuando se crea un evento de entrada de alarma durante el tiempo establecido. La fecha de domingo a s&aacute;bado, basada en la hora actual de la c&aacute;mara, se muestra en la tabla de horas que se muestra cuando se selecciona <strong class="UI">[Solo tiempo programado]</strong>. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n de evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
+			<p>Puede cambiar la unidad de la vista de la hora haciendo clic en el bot&oacute;n <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Fecha y hora]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Salida de alarma</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>Establece c&oacute;mo controlar una alarma cuando es emitida por el usuario o cuando se crea un evento.</p>
+        <p>La configuraci&oacute;n del evento de salida de alarma se aplica igualmente a la <strong class="UI">[Salida de alarma]</strong> en las p&aacute;ginas <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a>.</p>
+        <p>Cuando se cambia el tipo de salida de la alarma, se cambiar&aacute; el bot&oacute;n de salida de alarma en la p&aacute;gina En vivo y el tipo de salida de alarma en la configuraci&oacute;n de eventos.</p>
+    </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Tipo</h3>
+            <p>Selecciona el tipo de salida de alarma.</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 출력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람을 출력합니다.  </li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 출력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람을 출력합니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">N.A. (Normal abierto)</strong>: El sensor de salida de alarma est&aacute; abierto por defecto y cuando est&aacute; cerrado, se emite una alarma.</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">N.C. (Normal cerrado)</strong>: El sensor de salida de alarma est&aacute; cerrado de forma predeterminada y cuando est&aacute; abierto, se emite una alarma.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Modo</h3>
+            <p>Establece el tipo de control cuando se emite una alarma.</p>
+            <ul>
+                <li><strong class="UI">Pulso</strong>: Una alarma se emite durante el tiempo establecido en <strong class="UI">[Duraci&oacute;n]</strong> y la alarma se apaga autom&aacute;ticamente.</li>
+                <li><strong class="UI">Activo/Inactivo</strong>: Cuando se pulsa el bot&oacute;n de salida de alarma en la pantalla en vivo, una alarma se encender&aacute;; cuando se pulsa el bot&oacute;n de nuevo, la alarma se apagar&aacute;.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Duraci&oacute;n</h3>
+            <p>Establece el tiempo de salida de alarma cuando <strong class="UI">[Pulso]</strong> est&aacute; seleccionado en <strong class="UI">[Modo]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

@@ -17,6 +17,8 @@
 		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
+                <li>Si une vidéo haute résolution est lue sur l’écran Direct, un PLUGINFREE est automatiquement généré, ce qui optimise la vidéo haute résolution. Le profil PLUGINFREE généré est disponible dans <strong class="UI">[Configuration]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[Profil vidéo]</strong>.  </li>
+                <li>Si vous cliquez sur l’icône <img src="./images/ic-top-cert-nor.svg"> en haut à droite de la page Direct, l’adresse IP connectée et l’état d’authentification sont affichés. Dans le cas d’une authentification réussie, l’icône est en vert. Dans le cas d’un échec d’authentification, l’icône est en rouge. Si l’authentification n’a pas lieu d’être effectuée du fait de l’utilisation d’une connexion HTTP, un tiret (-) sera affiché.   </li>
                 <li>En vous connectant &agrave; la visionneuse web via Chrome, la fonction d&apos;&eacute;cran de lecture d&apos;enregistrement peut &ecirc;tre utilis&eacute;e en toute s&eacute;curit&eacute;.</li>
                 <li>Lors de la lecture d’une vidéo sur la page en direct, un fantôme peut se produire dans l’un des cas suivants :</li>
                 <ul>
@@ -99,7 +101,7 @@
                         </td>
                         <td width="235">
                             <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. </p>
-                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
+                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
                             <!-- <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p> -->
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le canal 2 est s&eacute;lectionn&eacute; dans <strong class="UI">[<a href="#channel">S&eacute;lectionner le canal</a>]</strong>.</p>
                             <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;ic&ocirc;ne PTZ n&rsquo;est pas affich&eacute;e, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;coch&eacute;e.</p>
@@ -149,7 +151,7 @@
   <p>&nbsp;</p>
                 </td>
         </tr>  -->
-                    <tr>
+                    <tr  ng-if="IsAdmin">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
                             <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">&Eacute;tat</a></p>
@@ -184,7 +186,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+                    <tr ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
                         <td width="235">
                             <p><a href="#channel">S&eacute;lectionner un canal</a></p>
                         </td>
@@ -309,7 +311,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Utilisez la fonction microphone. Pour utiliser la fonction microphone, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p>
+                            <p>Utilisez la fonction microphone. Pour utiliser la fonction microphone, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p>
                             <p ng-if="SupportAutoImageAlignment">La fonction de microphone est disponible seulement si vous avez sélectionné CAN 1. </p>
                             <p>&nbsp;</p>
                         </td>
@@ -321,7 +323,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Lorsque vous cliquez sur le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte souhait&eacute;, l&rsquo;alarme sera &eacute;mise comme pr&eacute;c&eacute;demment d&eacute;fini. L&apos;alarme peut &ecirc;tre r&eacute;gl&eacute;e depuis la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<strong class="UI">[&Eacute;mission d&rsquo;alerte]</strong>. Le nombre d&rsquo;&eacute;missions d&rsquo;alerte varie en fonction de la cam&eacute;ra.</p>
+                            <p>Lorsque vous cliquez sur le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte souhait&eacute;, l&rsquo;alarme sera &eacute;mise comme pr&eacute;c&eacute;demment d&eacute;fini. L&apos;alarme peut &ecirc;tre r&eacute;gl&eacute;e depuis la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<strong class="UI">[E/S de l’alarme]</strong>. Le nombre d&rsquo;&eacute;missions d&rsquo;alerte varie en fonction de la cam&eacute;ra.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -350,7 +352,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+        <div class="wn5-online-help-action" ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
             <h4>Pour changer de canal</h4>
                 <ul>
                     <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
@@ -642,7 +644,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
    <!--   <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>
+                <li>La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>
             </ul>
 
         </div>  -->
@@ -709,7 +711,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <ul>
             <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>.</li>
             <li ng-if="GlobalPTZMode && MaxChannel > 1">La commande PTZ num&eacute;rique ne peut &ecirc;tre utilis&eacute;e que lorsque la fonction PTZ externe est d&eacute;sactiv&eacute;e et que le canal 2 est s&eacute;lectionn&eacute;. Pour ne pas utiliser PTZ externe, Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et d&eacute;s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
-            <li ng-if="!objectDetectionSupport">La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>  
+            <li ng-if="!objectDetectionSupport">La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>  
             <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
                 <li  ng-if="DigitalAutoTracking">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
 
@@ -770,7 +772,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
                 <div class="wn5-setup-section-article-content">
             <h3>Plafond/Mur</h3>
                     <p>Affiche le mode de montage de la cam&eacute;ra. Le type de vue diff&egrave;re en fonction du mode de montage.</p>
-                    <p>Le mode de montage peut &ecirc;tre r&eacute;gl&eacute; dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[Configuration vid&eacute;o]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>. Le type de vue «&nbsp;Double panorama&nbsp;» appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute;. Les autres types vues sont les m&ecirc;mes pour «&nbsp;Plafond&nbsp;» et «&nbsp;Mur&nbsp;».</p>
+                    <p>Le mode de montage peut &ecirc;tre r&eacute;gl&eacute; dans <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Configuration vid&eacute;o]</strong>&gt;<strong class="UI">[Rotation vid&eacute;o]</strong>&gt;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>. Le type de vue «&nbsp;Double panorama&nbsp;» appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute;. Les autres types vues sont les m&ecirc;mes pour «&nbsp;Plafond&nbsp;» et «&nbsp;Mur&nbsp;».</p>
                     <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; l&rsquo;ic&ocirc;ne de type de vue souhait&eacute;, vous pouvez changer l&rsquo;affichage de la cam&eacute;ra en faisant glisser la souris sur l&apos;&eacute;cran vid&eacute;o en direct.</p>
                     <ul>
                         <li>Fisheye (<span class="tui tui-wn5-fisheye"></span>)&nbsp;: Affiche la vue fisheye originale qui n&rsquo;est pas liss&eacute;e.</li>
@@ -792,8 +794,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>  --> 
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr"  ng-if="IsAdmin">
+<div class="wn5-setup-section"  ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="status"></a>&Eacute;tat</h2>
     </div>

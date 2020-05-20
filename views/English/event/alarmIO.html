@@ -1,0 +1,176 @@
+﻿<h1 class="wn5-setup-main-title">Alarm I/O</h1>
+<div class="wn5-setup-section">
+    <p>The I/O port of a camera can be set either as an input or output port as desired.</p>
+    <p>After selecting it to be either an input or output port, you can set the details of each Alarm I/O.</p>
+    <p>When you complete the setting, click the [Apply] button at the bottom of the page.</p>
+</div>
+
+				 <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+    <ul>
+        <li>If you use all alarm ports as output, the [External] mode of [Day/Night] will be disabled. If it is already set to [External], it will be changed to the [Auto] mode. You can select <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<strong class="UI">[Day/Night]</strong> to check the External mode of Day/Night.</li>
+    </ul>
+			</div> 
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Alarm I/O</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting a port number, decide whether to use the port as an input or output port. After selecting input or output, click the <strong class="UI">[Apply]</strong> button.</p>
+            <p>If [Input] is selected, [Input device setup], [Event action settings], and [Event schedule] can be set. If [Output] is selected, [Alarm output] can be set.</p>
+            <p>The number of supported alarm inputs/outputs may differ by camera.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Input device setup</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">    
+		<p>Sets whether or not to use an alarm input device and the type to activate an alarm event when an alarm input is given.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">    
+            <h3>Input device setup</h3>
+            <p>To use an alarm input device, select <strong class="UI">[Use]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Type</h3>
+            <p>Select the alarm input type.</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 입력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 입력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmInputNormalOpen"><strong class="UI">N.O. (Normal Open)</strong>: The alarm input sensor is open by default; when it is closed, an alarm input event is created.</li>
+                <li ng-if="AlarmInputNormalClose"><strong class="UI">N.C. (Normal Close)</strong>: The alarm input sensor is closed by default and when it is open, an alarm input event is created.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Event action settings</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">    
+        <p>Sets your camera&apos;s behavior when an alarm input event occurs.</p>
+    </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>To save an image on an FTP server when an alarm input event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>To send an image by e-mail when an alarm input event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
+            <h3>Record</h3>
+            <p ng-if="NAS">To save an image on an SD card or NAS when an alarm input event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Record]</strong></a>.</p>
+            <p ng-if="!NAS">To save an image on an SD card when an alarm input event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Record]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+            <h3>Alarm output</h3>
+            <p>You can set the alarm output for a specific alarm number when an alarm input event is created. After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds.</p>
+            <p>Depending on the number of output alarms supported by your camera, the display of Alarm output option will vary. For example, if there are 2 alarms for output, the option will display &lsquo;Alarm output 1&rsquo; and &lsquo;Alarm output 2&rsquo;.</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera view to move to a preset number when an alram input event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong> or <strong class="UI">[Preset]</strong> of <strong class="UI">[External PTZ]</strong>.</p>
+
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1">If <strong class="UI">[Enable external PTZ]</strong> option is deselected in <strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>, [Goto preset] option is not displayed.</p>
+        </div>
+    
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera view to a preset position when an alarm input event is created. The camera preset can be set in <strong class="UI">[Preset setup]</strong> section of <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Preset setup]</strong></a>.</p>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera to move to a preset position when an alarm input event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+            <h3>Goto preset</h3>
+                    <p>You can set the position of camera view to a preset position when an alarm input event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">[PTZ setup]</a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+        <h3>Audio clip</h3>
+        <p>This enables playback of a specific audio clip when an alarm input event occurs. Once you select a file from your audio clip list, the clip will start to play when the event occurs. To disable the audio clip from playing when an event occurs, select <strong class="UI">[Off]</strong>. Clicking the Play button (<span class="tui tui-wn5-toolbar-play"></span>) allows you to play and preview an audio file.</p>
+        <p>Go to <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Audio setup]</a></strong>&gt;<strong class="UI">[Audio clip]</strong> to register an audio clip.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Event activation time</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>This sets the event action settings from <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/event_alarminput?#action">Event action settings</a>]</strong> to always operate, or only at the set time when an alarm input event is created.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Always</h3>
+            <p>The event action settings are always executed when an alarm input event is created.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Only scheduled time</h3>
+            <p>The event action settings are executed when an alarm input event is created during the set time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event action settings by clicking or dragging on the time table with the mouse. The set event activation time is executed repeatedly on the relevant weekday and time.</p>
+			<p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Alarm output</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>Sets how to control an alarm when an alarm is outputted by the user or when an event is created.</p>
+        <p>The setting on the alarm output event applies to <strong class="UI">[Alarm output]</strong> in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
+        <p>When changing the type of alarm output, the Alarm output button on the Live page and the type of alarm output in the Event setup are changed.</p>
+    </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Type</h3>
+            <p>Selects the alarm output type.</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 출력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람을 출력합니다.  </li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 출력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람을 출력합니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">N.O. (Normal Open)</strong>: The alarm output sensor is open by default and when it is closed, an alarm is outputted.</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">N.C. (Normal Close)</strong>: The alarm output sensor is closed by default and when it is open, an alarm is outputted.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>Sets the control type when an alarm is outputted.</p>
+            <ul>
+                <li><strong class="UI">Pulse</strong>: An alarm is outputted for the time set in <strong class="UI">[Duration]</strong> and the alarm turns off automatically.</li>
+                <li><strong class="UI">Active/Inactive</strong>: When you press the alarm output button on the monitoring screen, an alarm will turn on; when you press the button again, the alarm will turn off.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Duration</h3>
+            <p>Sets the alarm output time when <strong class="UI">[Pulse]</strong> is selected in <strong class="UI">[Mode]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

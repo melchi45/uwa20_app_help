@@ -18,6 +18,8 @@
     <div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
         <ul>
+            <li>高解像度の映像をライブ画面で再生する場合、高解像度の映像を最適化して表示するPLUGINFREEプロファイルが自動に作成されます。作成されたPLUGINFREEプロファイルは、<strong class="UI">[設定]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[ビデオprofile]</strong>にて確認できます。  </li>
+            <li>ライブページの右上にあるアイコン<img src="./images/ic-top-cert-nor.svg">をクリックすると、接続したIPアドレスや認証状況を確認することができます。認証に成功した場合には緑のアイコン、失敗した場合には赤のアイコンに表示されます。また、HTTPに接続して該当事項がない場合にはダーシ(-)に表示されます。   </li>
             <li>Chromeでウェブビューアに接続すると、再生画面の機能を最も安定した状態で使用することができます。</li>
             <li>ライブページで映像を再生する場合、下記の条件で画面に残像が表示されることがあります。</li>
             <ul>
@@ -105,7 +107,7 @@
                         </td>
                     <td width="235">
                         <p>カメラのパン/チルト/ズーム動作をデジタルに制御することができます。</p>
-                        <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">現在のライブ画面に適用されたビデオプロファイルがデジタルPTZに対応する場合のみ動作します。デジタルPTZ制御プロファイルに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[Profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
+                        <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">現在のライブ画面に適用されたビデオプロファイルがデジタルPTZに対応する場合のみ動作します。デジタルPTZ制御プロファイルに変更するには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[プロファイルタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択します。</p>
                         <!-- <p ng-if="objectDetectionSupport"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合、PTZ機能が有効になります。</p> -->
                         <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合のみ、デジタルPTZ機能が有効になります。</p>
                         <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZアイコンが表示されない場合、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>の<strong class="UI">[外部PTZ有効化]</strong>オプションが選択解除になっているかをご確認ください。</p>
@@ -157,7 +159,7 @@
 						<p>&nbsp;</p>
                     </td>
                     </tr>  -->
-                    <tr>
+                    <tr  ng-if="IsAdmin">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-status"></span></p>
                             <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">状況</a></p>
@@ -189,7 +191,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+                    <tr ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
                         <td width="235">
                             <p><a href="#channel">チャンネル選択</a></p>
                         </td>
@@ -327,7 +329,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>選択したいアラーム出力No.をクリックすると、設定した情報でアラームを出力します。アラームは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム出力]</strong>ページで設定することができます。アラーム出力数は、カメラごとに異なります。</p>
+                            <p>選択したいアラーム出力No.をクリックすると、設定した情報でアラームを出力します。アラームは、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>ページで設定することができます。アラーム出力数は、カメラごとに異なります。</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
@@ -356,7 +358,7 @@
                 </tbody>
             </table>
         </div>
-            <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+            <div class="wn5-online-help-action" ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
             <h4>チャンネルを変更するには、</h4>
                 <ul>
                     <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
@@ -652,7 +654,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <ul>
                 <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>でチャンネル2を選択した場合のみ、PTZ機能を使用することができます。</li>
                 <li ng-if="GlobalPTZMode && MaxChannel > 1">外部PTZ機能を無効にしてチャンネル2を選択した場合のみ、デジタルPTZ制御機能を使用できます。外部PTZを無効化にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>&gt;<strong class="UI">[外部PTZ有効化]</strong>オプションを選択しません。</li>
-                <li ng-if="!objectDetectionSupport"><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li> 
+                <li ng-if="!objectDetectionSupport"><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[プロファイルタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li> 
                 <li>PTZ制御画面で<span class="tui tui-wn5-ptz-plus"></span>ボタンをクリックしてカメラの映像をズームインした後、<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてからドラッグしてカメラビューを調整します。</li>
                 <li ng-if="DigitalAutoTracking"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> ボタンをクリックすると、画面で移動する対象物をオートトラッキングします。もう一度クリックすると、オートトラッキングが中止されます。</li>
 
@@ -710,7 +712,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-            <!--     <li><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[profileタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li> --> 
+            <!--     <li><strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[プロファイルタイプ]</strong>で<strong class="UI">[デジタルPTZ profile]</strong>を選択した場合のみ、PTZ機能を使用することができます。</li> --> 
                 <li><strong class="UI">[映像&amp;音声]</strong>&gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で<strong class="UI">[天井]</strong>を選択した場合のみ、パン機能を使用することができます。</li>
                 <!-- <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[魚眼ビュー]</strong>を選択すると、PTZ機能を使用できません。</li>
                 <li ng-if="SupportChannelExpansionFeature">ビューモードリストで<strong class="UI">[クワドビュー]</strong>や<strong class="UI">[Q1]</strong>、<strong class="UI">[Q2]</strong>、<strong class="UI">[Q3]</strong>、<strong class="UI">[Q4]</strong>を選択した場合のみ、4分割選択とプリセット、グループ機能を使用できます。</li>
@@ -783,8 +785,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 </div> --> 
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr"  ng-if="IsAdmin">
+<div class="wn5-setup-section"  ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="status"></a>状況</h2>
     </div>

@@ -66,7 +66,7 @@ pages equally.</p>
 
         <div class="wn5-setup-section-article-content">
             <!-- <p>The motion of an object is detected based on the virtual line and direction set by the user. </p> -->
-            <p>Detects passing ojbects based on the virtual line and its direction configured by the user.</p>
+            <p>Detects passing objects based on the virtual line and its direction configured by the user.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Setting a virtual line  </h4>
@@ -103,14 +103,14 @@ pages equally.</p>
             <p>View or change the name of the virtual line selected in <strong class="UI">[Line]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
-            <h3>Ojbect</h3>
-            <p>Select the ojbect type to trigger an IVA event.</p>
-            <p>For example, if 'Person' is selected as the ojbect type, an IVA event occurs when people cross the virtual line. An event can be configured to either trigger a <a href="#handover">Handover</a> or execute the <a href="#action">Event action settings</a> when it occurs.</p>
+            <h3>Object</h3>
+            <p>Select the object type to trigger an IVA event.</p>
+            <p>For example, if 'Person' is selected as the object type, an IVA event occurs when people cross the virtual line. An event can be configured to either trigger a <a href="#handover">Handover</a> or execute the <a href="#action">Event action settings</a> when it occurs.</p>
         </div>
         <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>If an ojbect is selected, the camera detects only the selected ojbects. If no ojbect is selected, the camera detects any&nbsp;movements. For example, if no option is selected in <strong class="UI">[Ojbect]</strong>, an IVA event occurs when the moving ojbect that satisfies the IVA event rule conditions.</li>
+                <li>If an object is selected, the camera detects only the selected objects. If no object is selected, the camera detects any&nbsp;movements. For example, if no option is selected in <strong class="UI">[Object]</strong>, an IVA event occurs when the moving object that satisfies the IVA event rule conditions.</li>
             </ul>
         </div>
 
@@ -178,14 +178,14 @@ pages equally.</p>
             <p>View or change the name of the virtual area selected in <strong class="UI">[Area]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
-            <h3>Ojbect</h3>
-            <p>Select the ojbect type to trigger an IVA event.</p>
+            <h3>Object</h3>
+            <p>Select the object type to trigger an IVA event.</p>
             <p>For example, if 'Person' is selected, an IVA event occurs only when people are detected in the virtual area. An event can be configured to either trigger a <a href="iva.html#handover">Handover</a> or execute the <a href="iva.html#action">Event action settings</a> when it occurs.</p>
         </div>	
 		        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>If an ojbect is selected, the camera detects only the selected ojbects. If no ojbect is selected, the camera detects any&nbsp;movements. For example, if no option is selected in <strong class="UI">[Ojbect]</strong>, an IVA event occurs when the moving ojbect that satisfies the IVA event rule conditions.</li>
+                <li>If an object is selected, the camera detects only the selected objects. If no object is selected, the camera detects any&nbsp;movements. For example, if no option is selected in <strong class="UI">[Object]</strong>, an IVA event occurs when the moving object that satisfies the IVA event rule conditions.</li>
             </ul>
         </div>	
 
@@ -194,17 +194,17 @@ pages equally.</p>
             <p>You can set the rule to apply for each virtual area.</p>
             <ul>
                 <li ng-if="IvaIntrusion && !S1Features && !objectDetectionSupport"><strong class="UI">Intrusion</strong>: When an object moves inside the set area, an event will be created.</li>
-                <li ng-if="IvaIntrusion && !S1Features && objectDetectionSupport"><strong class="UI">Intrusion</strong>: The event triggers when the camera detects the ojbect selected from <strong class="UI">[Ojbect]</strong> within the designated area.</li>
+                <li ng-if="IvaIntrusion && !S1Features && objectDetectionSupport"><strong class="UI">Intrusion</strong>: The event triggers when the camera detects the object selected from <strong class="UI">[Object]</strong> within the designated area.</li>
                 <ul>
                         <li ng-if="IvaIntrusion"><strong class="UI">Minimum duration (s)</strong>: Sets the minimum amount of time to trigger an event after detection. When the movement lasts longer than the set period of time, the event is triggered.</li>
                     </ul>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Enter</strong>: When an object enters the area set by the user, an event will be created.</li>
-                <li ng-if="objectDetectionSupport"><strong class="UI">Enter</strong>: The event triggers when the camera detects the ojbect selected from <strong class="UI">[Ojbect]</strong> entering into the designated area.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Enter</strong>: The event triggers when the camera detects the object selected from <strong class="UI">[Object]</strong> entering into the designated area.</li>
 
 
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Exit</strong>: When a moving object exits the area set by the user, an event will be created.</li>
 
-                <li ng-if="objectDetectionSupport"><strong class="UI">Exit</strong>: The event triggers when the camera detects the ojbect selected from <strong class="UI">[Ojbect]</strong> leaving the designated area.</li>
+                <li ng-if="objectDetectionSupport"><strong class="UI">Exit</strong>: The event triggers when the camera detects the object selected from <strong class="UI">[Object]</strong> leaving the designated area.</li>
 
                 <li ng-if="IvaAppearDisappear"><strong class="UI">Appear (Disappear)</strong>: When an object which does not exist inside the area designated by the user appears inside the area without passing the area line and remains for a certain period of time, or if an object which exists inside the area disappears, an event will be created.</li>
 				<li ng-if="objectDetectionSupport" style="list-style-type:none;"> Unlike the other options, the <strong class="UI">[Appear (Disappear)]</strong> option detects not only the object type selected in <strong class="UI">[Object]</strong> but also all the other types of moving objects.</li>
@@ -212,12 +212,12 @@ pages equally.</p>
                     <li><strong class="UI">Minimum duration (s)</strong>: This sets the minimum timeframe for an object to be detected as appearing (disappearing). When an object which exists in the detection area for the set time disappears, it is detected as disappearing, and when an object which does not exist appears for the set amount of time, it is detected as appearing.</li>
                 </ul>
                 <li ng-if="IvaLoitering && !S1Features && !objectDetectionSupport"><strong class="UI">Loitering</strong>: When a loitering object in the set detection area is detected, an event will be created.</li>
-                <li ng-if="IvaLoitering && !S1Features && objectDetectionSupport"><strong class="UI">Loitering</strong>: The event triggers when the camera detects the ojbect selected from <strong class="UI">[Ojbect]</strong> loiters within the designated virtual area.</li>
+                <li ng-if="IvaLoitering && !S1Features && objectDetectionSupport"><strong class="UI">Loitering</strong>: The event triggers when the camera detects the object selected from <strong class="UI">[Object]</strong> loiters within the designated virtual area.</li>
                 <ul ng-if="IvaLoitering && !S1Features && !objectDetectionSupport">
                     <li><strong class="UI">Minimum duration (s)</strong>: This sets the minimum length of time for a loitering object to be detected and an event created. When an object which loiters longer than the set time is detected, an event will be created.</li>
                 </ul>
 			    <ul ng-if="IvaLoitering && !S1Features && objectDetectionSupport">
-                        <li><strong class="UI">Minimum duration (s)</strong>: Sets the minimum amount of time for the camera to detect a loitering ojbect and trigger the event. Any ojbect that loiters longer than the set minimum duration triggers the event.</li>
+                        <li><strong class="UI">Minimum duration (s)</strong>: Sets the minimum amount of time for the camera to detect a loitering object and trigger the event. Any object that loiters longer than the set minimum duration triggers the event.</li>
                     </ul>                
             </ul>
         </div>
@@ -226,11 +226,11 @@ pages equally.</p>
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>When loitering detection is used together with other IVA event detection, the performance may deteriorate to a certain degree in comparison with separate use of loitering detection.</li>
-                <li>In the cases below, the loitering detection function may not work as the camera considers the ojbect disappeared.</li>
+                <li>In the cases below, the loitering detection function may not work as the camera considers the object disappeared.</li>
                 <ul>
-                    <li>When a loitering ojbect overlaps with another ojbect</li>
-                    <li>When an ojbect that was loitering stops in a place for some time</li>
-                    <li>When the environment is complex and there is a moving ojbect in proximity to the loitering ojbect<br> </li>
+                    <li>When a loitering object overlaps with another object</li>
+                    <li>When an object that was loitering stops in a place for some time</li>
+                    <li>When the environment is complex and there is a moving object in proximity to the loitering object<br> </li>
             </ul>
         </div>
 
@@ -289,7 +289,7 @@ pages equally.</p>
         <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
                 <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>The value configured on the <strong class="UI">[Exclude area]</strong> tab of <strong class="UI">[IVA]</strong> is linked to the <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Ojbect detection</a>]</strong>&gt;<strong class="UI">[Exclude area] </strong>value. In other words, if an excluded area is designated on the <strong class="UI">[Exclude area] </strong>tab of <strong class="UI">[IVA]</strong>, an identical exclude area is also created in <strong class="UI">[Ojbect detection]</strong>&gt;<strong class="UI">[Exclude area]</strong>.</li>
+                <li>The value configured on the <strong class="UI">[Exclude area]</strong> tab of <strong class="UI">[IVA]</strong> is linked to the <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Object detection</a>]</strong>&gt;<strong class="UI">[Exclude area] </strong>value. In other words, if an excluded area is designated on the <strong class="UI">[Exclude area] </strong>tab of <strong class="UI">[IVA]</strong>, an identical exclude area is also created in <strong class="UI">[Object detection]</strong>&gt;<strong class="UI">[Exclude area]</strong>.</li>
             </ul>
             </div> 
     </div>
@@ -317,8 +317,8 @@ pages equally.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
                 <h3>Exclude area</h3>
-                <p>The AI camera transfers the analytics data of each ojbect to the programs that are linked to the camera so that they can utilize the data. The data of ojbects detected in excluded area are not transferred. Select <strong class="UI">[</strong><strong>Enable object data from the excluded area</strong><strong class="UI">]</strong> to transfer the data. &nbsp;</p>
-                <p>For the detailed Ojbect information transferred by the camera, refer to the &quot;AI Camera Metadata Specification&quot; document.</p>
+                <p>The AI camera transfers the analytics data of each object to the programs that are linked to the camera so that they can utilize the data. The data of objects detected in excluded area are not transferred. Select <strong class="UI">[</strong><strong>Enable object data from the excluded area</strong><strong class="UI">]</strong> to transfer the data. &nbsp;</p>
+                <p>For the detailed Object information transferred by the camera, refer to the &quot;AI Camera Metadata Specification&quot; document.</p>
             </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
@@ -326,7 +326,7 @@ pages equally.</p>
               <li ng-if="objectDetectionSupport">The value configured on the <strong class="UI">[Common]</strong> tab of <strong class="UI">[IVA]</strong> is linked to the <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Object detection</a>]</strong>><strong class="UI">[Common]</strong> value. In other words, if the value on the <strong class="UI">[Common]</strong> tab of <strong class="UI">[IVA]</strong> changes, the <strong class="UI">[Object detection]</strong>><strong class="UI">[Common]</strong> value is also changed.</li>
                 <li>If the detection area and the exclude area are identical or overlap, the exclude area has priority.</li>
                 <li ng-if="!objectDetectionSupport">Any movement smaller than the specified minimum size or larger than the specified maximum size will not be detected. please determine the best values for the minimum/maximum detection sizes that are appropriate for the installation environment in order to avoid any false detection arising out of small and/or large noises. Remember that the same movement in the same spot does not always result in the same detection size. Therefore, it is recommended to allow small/big enough rooms for your minimum/maximum size limits in consideration of the deviation in detected sizes.</li>
-                <li ng-if="objectDetectionSupport">The camera doesn't detect ojbects that are smaller than the minimum size or larger than the maximum size. To avoid false detection caused by noises large and small, set the optimal minimum/maximum detection size appropriate for the installation environment. However, the minimum/maximum detection size needs to have some room for toleration because even the same motion detected in the same area could vary in size.</li>
+                <li ng-if="objectDetectionSupport">The camera doesn't detect objects that are smaller than the minimum size or larger than the maximum size. To avoid false detection caused by noises large and small, set the optimal minimum/maximum detection size appropriate for the installation environment. However, the minimum/maximum detection size needs to have some room for toleration because even the same motion detected in the same area could vary in size.</li>
             </ul>
         </div>
     </div>
@@ -385,8 +385,8 @@ pages equally.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>Alarm output</h3>
-            <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Alarm output]</strong></a>.</p>
-            <p>Depending on the number of output alarms supported by your camera, the display of Alarm output option will vary. For example, if there are 2 alarms for output, the option will display ‘Alarm output 1’ and ‘Alarm output 2’.</p>
+            <p>It is possible to set the alarm output number for a specific alarm when an IVA event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. </p>
+            <p>Depending on the alarm output setup, <strong class="UI">[Alarm output]</strong> options may look different. If there is no alarm output, <strong class="UI">[Alarm output]</strong> options are not displayed. If there is more than one alarm output, they are displayed as <strong class="UI">[Alarm output 1]</strong>, <strong class="UI">[Alarm output 2]</strong>, and so on. Select <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong> to set the alarm I/O.</p>
         </div>
 
       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">

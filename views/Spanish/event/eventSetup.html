@@ -1,6 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">Configuraci&oacute;n de eventos</h1>
 <div class="wn5-setup-section">
-    <p>Puede gestionar eventos y la configuraci&oacute;n de las acciones de eventos soportados por la c&aacute;mara en un solo lugar. Cuando cambia la configuraci&oacute;n de acciones de eventos en la p&aacute;gina actual, tambi&eacute;n se cambiar&aacute; la configuraci&oacute;n de acciones de eventos en la p&aacute;gina de configuraci&oacute;n detallada para cada evento. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
+    <p>Puede gestionar eventos y la configuraci&oacute;n de las acciones de eventos soportados por la c&aacute;mara en un solo lugar. Cuando cambia la configuraci&oacute;n de acciones de eventos en la p&aacute;gina actual, tambi&eacute;n se cambiar&aacute; la configuraci&oacute;n de acciones de eventos en la p&aacute;gina de configuraci&oacute;n detallada para cada evento. Cuando haya completado el ajuste, haga clic en el bot&oacute;n [Aplicar] en la parte inferior de la p&aacute;gina.</p>
 </div>
 
 <hr class="wn5-setup-hr">
@@ -12,22 +12,25 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <ul>
+                
                 <li><strong class="UI">Uso</strong>: Cuando se seleccionan las casillas de verificaci&oacute;n en la columna <strong class="UI">[Uso]</strong>, s&oacute;lo el evento (s) seleccionado funcionar&aacute;.</li>
                 <li><strong class="UI">Tipo</strong>: Seleccionar un nombre de evento en la columna <strong class="UI">[Tipo]</strong> le llevar&aacute; a la p&aacute;gina de configuraci&oacute;n detallada para el evento en cuesti&oacute;n.</li>
                 <li><strong class="UI">Conf. de acciones de evento</strong>: Determina qu&eacute; configuraciones de acciones de evento ser&aacute;n llevadas a cabo por la c&aacute;mara cuando se cree un evento.</li>
                     <ul>
-                        <li><strong class="UI">FTP</strong>: Para capturar y enviar una pantalla de imagen a un servidor FTP, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[FTP]</strong>. &nbsp;Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>. </li>
-                        <li><strong class="UI">E-mail</strong>: Para capturar y enviar una pantalla de imagen por correo electr&oacute;nico, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[E-mail]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.            </li>
-                        <li><strong class="UI" ng-if="Recording">Grabar</strong>: Para grabar una imagen, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[Grabar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.            </li>
-                        <li ng-if="MaxAlarmOutput>0"><strong class="UI">Salida de alarma</strong>: Seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma cuando se crea un evento; seleccione el momento apropiado si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>. </li>
+                        <li><strong class="UI">FTP</strong>: Para capturar y enviar una pantalla de imagen a un servidor FTP, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[FTP]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</li>
+                        <li><strong class="UI">E-mail</strong>: Para capturar y enviar una pantalla de imagen por correo electr&oacute;nico, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[E-mail]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</li>
+                        <li ng-if="Recording"><strong class="UI">Grabar</strong>: Para grabar una imagen, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[Grabar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</li>
+                        <li ng-if="MaxAlarmOutput>0"><strong class="UI">Salida de alarma</strong>: Seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma cuando se crea un evento; seleccione el momento apropiado si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Alarma E/S]</strong>.</li>
                         <li ng-if="PresetAction"><strong class="UI">Ir a preajuste.</strong>: Se mueve a la posici&oacute;n predefinida PTZ designada por la c&aacute;mara.</li>
-                        <li ng-if="AudioClipCountRange !== undefined"><strong class="UI">Clip de audio</strong>: Seleccione un clip de audio para reproducir cuando ocurra un evento. Puede definir una programaci&oacute;n distinta para cada tipo de evento. Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong>&gt;<strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</li>
+                        <li ng-if="AudioClipCountRange !== undefined"><strong class="UI">Clip de audio</strong>: Seleccione un clip de audio para reproducir cuando ocurra un evento. Puede definir una programaci&oacute;n distinta para cada tipo de evento. Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong> &gt; <strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</li>
+                    </ul>
             </ul>
-        </ul>
         </div>
         <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul><li>La columna de salida de alarma se muestra de forma diferente de acuerdo con el n&uacute;mero de alarmas con el apoyo de la c&aacute;mara. Por ejemplo, si el n&uacute;mero de alarmas para emitir es 2, las columnas de &apos;salida de alarma 1&apos; y &apos;salida de alarma 2&apos; se muestran y la salida de alarma para cada evento puede ajustarse.  </li>
+            <ul>
+            
+                <li>Dependiendo de la configuraci&oacute;n de la salida de alarma, las columnas de <strong class="UI">[Salida de alarma]</strong> pueden variar. Si no hay una salida de alarma, las columnas de [salida de alarma] no se visualizar&aacute;n. Si hay m&aacute;s de una salida de alarma, las columnas se visualizar&aacute;n como [Salida de alarma 1], [Salida de alarma 2], y as&iacute; sucesivamente. Seleccione <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Alarma E/S]</strong> para ajustar la E/S de la alarma.</li>
             </ul>
         </div>
     </div>
@@ -39,29 +42,24 @@
         <h2>Seleccionar canal</h2> 
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">                
-            <p>Después de seleccionar su canal de cámara, puede gestionar y definir la Configuración de acciones de evento para cada canal en <strong class="UI">[Lista de eventos del canal]</strong>.</p>
-            <p ng-if="HandoverCalibration">El canal de la cámara fija se muestra como un número y el canal PTZ se muestra como «PTZ».</p>
-            <p>Los ajustes definidos en <strong class="UI">[Lista de eventos comunes]</strong> se aplicará a todos los demás canales.</p>
+        <div class="wn5-setup-section-article-content">
+                
+            <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede gestionar y definir la Configuraci&oacute;n de acciones de evento para cada canal en <strong class="UI">[Lista de eventos del canal]</strong>.</p> 
 
-            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Configuración de eventos] solo puede configurarse en el canal 1.</p>
+            <p ng-if="objectDetectionSupport">El canal 1 muestra im&aacute;genes en directo y el canal 2, v&iacute;deo PTZ digital. [Configuraci&oacute;n de eventos] solo puede configurarse en el canal 1.</p>
+            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como «PTZ».</p>
 
-            <!-- <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La acción del evento se puede configurar solo en el canal 1.</p>
+            <p>Los ajustes definidos en <strong class="UI">[Lista de eventos comunes]</strong> se aplicar&aacute; a todos los dem&aacute;s canales.</p><!-- <p ng-if="SupportChannelExpansionFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">
-                <li>Canal 1: Muestra la imagen de v&iacute;deo de la c&aacute;mara de ojo de pez tal como est&aacute;, sin ninguna correcci&oacute;n.</li>
-                <li>Canal 2: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica.</li>
-                <li>Canal 3: Corrige la distorsi&oacute;n del v&iacute;deo de 360˚ y lo muestra en una vista panor&aacute;mica dividida arriba/abajo.</li>
-                <li>Canal 4: Corrige la distorsi&oacute;n de 4 pantallas similares a la percepci&oacute;n visual humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.</li>
-                <li>Canal 5: Muestra el v&iacute;deo superior izquierdo desde la vista de cuadrante del canal 4.</li>
-                <li>Canal 6: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
-                <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
-                <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
-            </ul> -->
-
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">El número de canal seleccionado por última vez en la página en directo o en la página de reproducción se selecciona automáticamente. </p>
-            <p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment">Haga clic en el botón <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
-            <!-- <p>Si selecciona otro canal sin aplicar los cambios en la configuración, aparecerá un mensaje de alarma.</p> -->
-        </div>
+                    <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
+                    <li>채널 2: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.</li>
+                    <li>채널 3: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다.</li>
+                    <li>채널 4: 사람의 시야에 적합하도록 왜곡 보정한 특정 화면 4개를 동시에 보여줍니다. 분할 화면을 선택하여 뷰를 상하좌우로 이동하거나 줌 기능을 사용할 수 있습니다.</li>
+                    <li>채널 5: 채널 4의 4분할 화면에서 왼쪽 상단의 영상을 보여줍니다.</li>
+                    <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
+                    <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
+                    <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
+            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment">El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en directo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment">Haga clic en el bot&oacute;n <strong class="UI">[Informaci&oacute;n del producto]</strong> para ver un resumen general de cada canal.</p><!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
     </div>
 </div>
 

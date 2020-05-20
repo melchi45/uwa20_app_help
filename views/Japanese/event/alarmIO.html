@@ -1,0 +1,178 @@
+﻿<h1 class="wn5-setup-main-title">アラーム入・出力</h1>
+<div class="wn5-setup-section">
+    <p>カメラの入・出力ポートをユーザーが直接入力ポートや出力ポートに設定できます。</p>
+    <p>入力ポートで使用するか、出力ポートで使用するかを選択した後、各アラーム入・出力に対する詳細項目を設定できます。</p>
+    <p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+
+				 <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+    <ul>
+        <li>すべてのアラームポートを出力で使用する場合、デイ/ナイトの[外部]モードは無効となり、[外部]モードですでに設定されている場合には[自動]モードに変更されます。デイ/ナイトの外部モードは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[カメラ設定]</strong>&gt;<strong class="UI">[デイ/ナイト]</strong>にて確認できます。</li>
+    </ul>
+			</div> 
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>アラーム入・出力</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>ポート番号を選択した後、該当ポートを入力ポートで使用するか出力ポートで使用するかを選択します。選択した後、<strong class="UI">[適用]</strong>ボタンをクリックします。</p>
+            <p>[入力]を選択した場合、[入力デバイス設定]、[イベントアクション]、[タイマーイベント設定]を設定でき、[出力]を選択した場合、[アラーム出力]を設定できます。</p>
+            <p>カメラごとに対応するアラーム入力/出力数が異なります。</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>入力デバイス設定</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		<p>アラーム入力デバイスの使用有無とアラーム入力時、アラームイベントを発生するためのタイプなどを設定します。</p>
+    </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>入力デバイス設定</h3>
+            <p>アラーム入力デバイスを使用するには、<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>タイプ</h3>
+            <p>アラーム入力タイプを選択します。</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 입력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 입력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmInputNormalOpen"><strong class="UI">ノーマルオープン</strong>：アラーム入力センサーが基本的に開いた状態で、閉じられた状態になるとアラームに認識してアラーム入力イベントを発生させます。</li>
+                <li ng-if="AlarmInputNormalClose"><strong class="UI">ノーマルクローズ</strong>：アラーム入力センサーが基本的に閉じられた状態で、開いた状態になるとアラームに認識してアラーム入力イベントを発生させます。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>イベントアクション</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>アラーム入力イベント発生時、カメラがどんな動作をするか設定します。</p>
+    </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>アラーム入力イベントが発生した時、映像の画像をFTPサーバーに保存するには<strong class="UI">[有効]</strong>を選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>アラーム入力イベントが発生した時、映像の画像をE-mailに伝送するには<strong class="UI">[有効]</strong>を選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
+            <h3>録画</h3>
+            <p ng-if="NAS">アラーム入力イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</p>
+            <p ng-if="!NAS">アラーム入力イベントが発生した時、(micro)SDカードに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+            <h3>アラーム出力</h3>
+            <p>アラーム入力イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。</p>
+            <p>カメラが対応する出力アラーム個数によって、アラーム出力オプションの表示が異なります。例えば出力されるアラームが2つなら、「アラーム出力1」、「アラーム出力2」とオプションが表示されます。</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+            <h3>プリセットに移動</h3>
+                    <p>アラーム入力イベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラプリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_dptzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
+
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択解除した場合、[プリセット移動]オプションが表示されません。</p>
+        </div>
+    
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>アラーム入力イベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[プリセット設定]</strong></a>の<strong class="UI">[プリセット設定]</strong>エリアで設定することができます。</p>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>プリセットに移動</h3>
+                    <p>アラーム入力イベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+            <h3>プリセットに移動</h3>
+                    <p>アラーム入力イベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[PT設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+        <h3>オーディオクリップ</h3>
+        <p>アラーム入力イベントが発生した時、特定のオーディオクリップが再生されるように設定することができます。オーディオクリップリストでファイルを選択すると、イベントが発生する時に該当のクリップが再生されます。イベントが発生してもオーディオクリップが再生されないように設定するためには、<strong class="UI">[Off]</strong>を選択します。再生ボタン(<span class="tui tui-wn5-toolbar-play"></span>)をクリックすると、該当オーディオファイルを再生してプレビューを聞くことができます。</p>
+        <p>オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>イベント動作時間</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>アラーム入力イベントが発生した時、<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/event_alarminput?#action">イベントアクション</a>]</strong>で設定したイベントアクションが常時動作するように設定したり、スケジュール動作するように設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>常時動作</h3>
+            <p>アラーム入力イベントが発生した時、設定したイベントアクションを常に実行します。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>スケジュール動作</h3>
+            <p>設定した時間にアラーム入力イベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベント動作時間は、該当曜日と時間に繰り返して実行されます。</p>
+			<p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベント動作時間がすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>アラーム出力</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>ユーザーがアラームを出力したり、イベントが発生してアラームに出力される時、アラームをどう制御するかを設定します。</p>
+        <p>アラーム出力イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[アラーム出力]</strong>に同じく適用されます。</p>
+        <p>アラーム出力タイプの設定変更時、ライブページのアラーム出力ボタンとイベント設定のアラーム出力のタイプが変更されます。</p>
+    </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>タイプ</h3>
+            <p>アラーム出力タイプを選択します。</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 출력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람을 출력합니다.  </li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 출력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람을 출력합니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">ノーマルオープン</strong>：アラーム出力センサーが基本的に開いた状態で、閉じられた状態になるとアラームを出力します。</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">ノーマルクローズ</strong>：アラーム出力センサーが基本的に閉じられた状態で、開いた状態になるとアラームを出力します。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>モード</h3>
+            <p>アラームを出力する時、制御タイプを設定します。</p>
+            <ul>
+                <li><strong class="UI">パルス</strong>：<strong class="UI">[継続時間]</strong>で設定した時間の間、アラームが出力され自動にアラームがオフになります。</li>
+                <li><strong class="UI">有効/無効</strong>：ライブ画面でアラーム出力ボタンを押すと、アラームが出力され再度押すとアラームがオフになります。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>継続時間</h3>
+            <p><strong class="UI">[モード]</strong>で<strong class="UI">[パルス]</strong>を選択した時、アラーム出力時間を設定します。</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

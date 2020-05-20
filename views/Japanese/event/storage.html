@@ -1,14 +1,14 @@
-﻿<h1 class="wn5-setup-main-title">ストレージ</h1>
+﻿<h1 class="wn5-setup-main-title">保存</h1>
 <div class="wn5-setup-section">
     <p>カメラ映像を保存するデバイスを選択して保存条件を設定することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
 <div class="wn5-online-help-info" ng-if="SupportAutoImageAlignment">
-    <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
     <ul>
-        <li>チャンネルの映像のみ保存することができます。</li>
+        <li>チャンネル1の映像のみ保存することができます。</li>
     </ul>
-</div>
-
+        </div>
+        
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -16,32 +16,28 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>ストレージ用デバイスの種類を選択して<strong class="UI">[使用]</strong>を選択すると、該当デバイスに対する設定を変更することができます。</p>
+            <p ng-if="NAS">ストレージ用デバイスの種類を選択して<strong class="UI">[使用]</strong>を選択すると、該当デバイスに対する設定を変更することができます。</p>
+	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport"><strong class="UI">[インフォメーション]</strong>ボタンをクリックすると、チャンネル別にSDカード(もしくはマイクロSDカード)の状況を確認することができます。</p> 
             <p>デバイスにデータが正常的に保存されている場合、デバイスリストの<strong class="UI">[状況]</strong>に「保存中」と表示されます。<strong class="UI">[状況]</strong>に「エラー」と表示されると、ストレージ用デバイスが正しく接続されているか確認してください。</p>
+            <!-- <p>また<strong class="UI">[性能状況]</strong>でSDカードの使用性能状況を確認することができます。「良くない」が表示される場合、SDカードを交換することをお勧めします。</p> -->
             <p ng-if="NAS">SDカードとNASを同時に<strong class="UI">[使用]</strong>と設定すると、NASを優先に処理します。</p>
             <ul>
-                <li><strong class="UI">SDカード</strong>：SDカードの使用有無を設定することができます。SDカードが認識されると使用可能容量、全体容量、状況が表示されます。SDカードをフォーマットするには、<strong class="UI">[フォーマット]</strong>ボタンをクリックします。</li>
+                <li><strong class="UI">SDカード</strong>：SDカード(もしくはマイクロSDカード)の使用有無を設定することができます。SDカードが認識されると使用可能容量、全体容量、状況が表示されます。SDカードをフォーマットするには、<strong class="UI">[フォーマット]</strong>ボタンをクリックします。</li>
                 <li ng-if="NAS"><strong class="UI">NAS</strong>：NAS (Network Attached Storage)の使用有無を設定することができます。NASに接続したら使用可能容量、全体容量、状況が表示されます。NASの設定上のデフォルトフォルダをフォーマットするには、<strong class="UI">[フォーマット]</strong>ボタンをクリックします。</li>
             </ul>
+        </div><!-- <div class="wn5-setup-section-article-content">
+            <h3>오픈 플랫폼에서 사용</h3>
+            <p>오픈 플랫폼에서 개발된 다양한 애플리케이션을 카메라에 설치하여 사용할 수 있습니다. 이 때&nbsp;<strong class="UI">[사용]</strong>을 선택하면 SD 슬롯 2번의 SD 카드는 카메라 영상 녹화용으로 사용되지 않고 카메라에 설치된 애플리케이션이 사용합니다. </p>
         </div>
-       <div class="wn5-setup-section-article-content">
+		 --><div class="wn5-setup-section-article-content">
             <h3>オーバーライト</h3>
             <p ng-if="NAS">SDカードまたはNASのオーバーライト機能使用有無を設定します。デバイスの容量がフルの場合、一番古いデータを削除して新しいデータを保存します。デバイスの容量がフルになると、デバイスリストの<strong class="UI">[状況]</strong>に「フル」というメッセージが表示されます。</p>
-            <p ng-if="!NAS">SDカードまのオーバーライト機能使用有無を設定します。デバイスの容量がフルの場合、一番古いデータを削除して新しいデータを保存します。デバイスの容量がフルになると、デバイスリストの<strong class="UI">[状況]</strong>に「フル」というメッセージが表示されます。</p>
+			<p ng-if="!NAS">SDカードまのオーバーライト機能使用有無を設定します。デバイスの容量がフルの場合、一番古いデータを削除して新しいデータを保存します。デバイスの容量がフルになると、デバイスリストの<strong class="UI">[状況]</strong>に「フル」というメッセージが表示されます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>自動削除</h3>
             <p>自動削除機能の使用有無を設定します。現在の時間を基準に設定した自動削除日数だけのデータを残して過去のデータは自動に削除します。自動削除日は、最小1日から最大180日まで設定することができます。<strong class="UI">[自動削除]</strong>機能は<strong class="UI">[オーバーライト]</strong>を<strong class="UI">[有効]</strong>に設定した時のみ有効になります。</p>
         </div>
-    <!--     <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-            <ul>
-               
-                <li>削除されたデータは復旧できません。</li>
-                <li>NASを使用する場合、NASの容量が推奨仕様以上の場合のみ自動削除することができます。</li>
-            </ul>
-        </div>  --> 
-
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
@@ -49,13 +45,14 @@
                 <li ng-if="NAS">NAS使用時、一時的なネットワーク切断によって映像データが保存されない場合があるため、SDカードと共に使用することをお勧めします。</li>
                 <li>高解像度、高いビットレート、高いフレームレートなどを設定すると、映像データ量が増加します。データ量が増加すると、フルフレームに設定してもフレームスキップが発生することがあります。フレームスキップが発生すると、最小1秒当たり1枚以上の映像に保存します。</li>
                 <li>Micro SDカードを除去する時には、<strong class="UI">[off]</strong>に変更してからカードを除去してください。<strong class="UI">[off]</strong>に変更せずに任意で除去したり不安定な電源にカメラを接続させるとMicro SDカードが損傷される場合があります。</li>
-                <li>推奨速度以下のMicro SDメモリカードを使用する場合、フレームスキップが発生することがあります。 &nbsp;容量が大きいMicro SDメモリカードを使用する場合、フォーマット速度が遅くなることがあります。</li>
+                <li>推奨速度以下のMicro SDメモリカードを使用する場合、フレームスキップが発生することがあります。容量が大きいMicro SDメモリカードを使用する場合、フォーマット速度が遅くなることがあります。</li>
                 <li ng-if="NAS">NASを使用する場合、NASの容量が推奨仕様を超えている場合にのみ、自動削除がサポートされます。</li>
                 <li>削除されたデータは復元できません。</li>
             </ul>
         </div>
-	</div>
+    </div>
 </div>
+
 
 
 <hr class="wn5-setup-hr">
@@ -71,19 +68,19 @@
            
             <h3>タイプ</h3>
             <p>SDカードのファイルシステムをVFATまたはEXT4の中で選択します。設定を変更する時、既存のデータはフォーマットされるため、設定を変更する前には必ずデータをエクスポートします。</p>
-        </div>
-		
-		<div class="wn5-online-help-info">
+        </div><!-- <div class="wn5-setup-section-article-content">   
+            <h3>암호화</h3>
+            <p><strong class="UI">[사용]</strong>을 선택하면 (마이크로) SD 카드에 카메라 영상을 저장할 때 영상을 암호화하여 저장합니다. 이는 (마이크로) SD 카드를 분실한 경우라도 영상에 대한 보안을 유지할 수 있도록 해줍니다.</p>
+            <p>영상 암호화를 위한 비밀번호를 변경할 수 있습니다.</p>
+        </div> --><div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-    
                 <li>SDカードはHigh Endurance SD Cardの使用をお勧めします。詳細は、ハンファテックウィンのウェブサイトを参照してください。</li>
                 <li>EXT4ファイルシステムでSDカードをフォーマットする時、最大10分ほどかかります。</li>
             </ul>
         </div>
     </div>
 </div>
-
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
@@ -95,9 +92,7 @@
             <p></p>
         </div>
     </div>
-</div>
-
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
+</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  --><hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2>
@@ -107,7 +102,7 @@
             <p>カメラチャンネルを選択した後、チャンネル別に保存関連の詳細を設定することができます。</p>
         </div>
     </div>
-</div> 
+</div>
 
 
 
@@ -140,13 +135,17 @@
                 <li><strong class="UI">[新しいパスワード]</strong>入力フィールドにパスワードを入力してから、同じパスワードを<strong class="UI">[新しいパスワードを確認する]</strong>にもう一度入力します。</li>
                 <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
                 <li>SDカードの暗号化機能が正常に動作中の場合、「暗号化」メッセージが表示されます。</li>
-            </ol></div>
+            </ol>
+
+        </div>
         <div class="wn5-online-help-action">
             <h4>SDカードの暗号化を選択削除する</h4>
             <ol>
                 <li><strong class="UI">[暗号化]</strong>で<strong class="UI">[有効]</strong>を選択解除します。</li>
                 <li>ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。SDカードの暗号化機能が選択解除され、SDカードのデータが暗号化されない場合、「暗号化されない」メッセージが表示されます。</li>
-            </ol></div>
+            </ol>
+
+        </div>
          <div class="wn5-online-help-action">
             <h4>パスワードを変更する</h4>
             <p>SDカードの暗号化のためのパスワードを変更することができます。</p>
@@ -163,8 +162,7 @@
             <ul>
                 <li>パスワードを忘れたり失う場合、復旧できません。パスワードを再設定すると、SDカードがフォーマットされSDカードに保存されたデータが削除されます。</li>
                 <li>パスワード長さ&amp;上限は下記のどおりです。</li>
-                <ul>
-                    <li ng-if="PasswordRule1">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
+                <ul><!-- TTA용 XNO-6085RG 이슈 수정. 김선미 책임님. 2019-10-18. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음   --><li ng-if="PasswordRule1">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
                     <li ng-if="PasswordRule1">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
@@ -173,29 +171,12 @@
                     <li>同じ文字を4回以上、繰り返して使用できません。(例：!!!!、1111、aaaa)</li>
                     <li ng-if="PasswordRule1">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
-                    <li ng-if="PasswordRule2">特殊文字は~`!@#$%^&amp;*()_-+=|{}[].?/のみ使用することができます。</li>
-
+					<li ng-if="PasswordRule2">特殊文字は~`!@#$%^&amp;*()_-+=|{}[].?/のみ使用することができます。</li>
                 </ul>
             </ul>
         </div>
     </div>
-</div>
-
-
-<!-- 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
-    <div class="wn5-setup-section-heading">
-        <h2>チャンネル選択</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>カメラチャンネルを選択した後、チャンネル別に<strong class="UI">[録画設定]</strong>の詳細を設定することができます。</p>
-        </div>
-
-    </div>
-</div>		  --> 
-
+</div> 
 
 <hr class="wn5-setup-hr" ng-if="NAS">
 <div class="wn5-setup-section" ng-if="NAS">
@@ -208,7 +189,6 @@
         </div>
     
         <div class="wn5-setup-section-article-content">
-
             <h3>IPアドレス</h3>
             <p>NASのIPアドレスを入力します。</p>
         </div>
@@ -227,25 +207,26 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-            <ul><li>NAS情報を入力した後、テストして失敗メッセージが表示されたら下記の事項を確認します。</li>
+            <ul>  
+                <li>NAS情報を入力した後、テストして失敗メッセージが表示されたら下記の事項を確認します。</li>
                 <ul>
                     <li>NASのIPアドレス、ID、パスワード、デフォルトフォルダが正しく入力されているか確認します。</li>
                     <li>NAS IPアドレスとカメラIPアドレスのタイプが同一なのか確認します。(例：NAS&amp;カメラサブネットマスクの初期値は255.255.255.0です。IPアドレスが192.168.20.32の場合、NAS IPアドレスは192.168.20.1～192.168.20.255の間である必要があります。</li>
                     <li>NASデフォルトフォルダは重複なく一台のカメラで1つのフォルダ使用を原則とします。</li>
                     <li>推奨するNASデバイスか確認します。ユーザーマニュアルの「NAS推奨仕様」を参照します。</li>
-                    <li ng-if="SupportChannelExpansionFeature">NASのSMBバージョンが3.0に設定されているかを確認します。（一部のカメラモデルには適用されません。） </li>
+                    <li ng-if="SupportChannelExpansionFeature">NASのSMBバージョンが3.0に設定されているかを確認します。（一部のカメラモデルには適用されません。）</li>
                 </ul>
                 <li>NASの録画設定中、<strong class="UI">[オーバーライト]</strong>機能を使用せずにNAS使用可能容量が20%以下の場合、録画映像がSDカードに保存されます。</li>
                 <li>NASにデータを保存中の場合、他のカメラで使用したSDカードを挿入すると録画映像が保存されないことがあります。</li>
                 <li>NASにデータを保存している間には、NAS設定を変更してもすぐ反映されません。</li>
                 <li>NASにデータを保存している間にNASデバイスを任意に除去したり、ネットワークが切断されるとNASストレージアクションは異常に終了されることがあります。</li>
-                <li>高解像度、高いビットレート、高いフレームレートなどを設定すると、映像データ量が増加します。データ量が増加すると、フルフレームに設定してもフレームスキップが発生することがあります。フレームスキップが発生すると、最小1秒当たり1枚以上の映像に保存します。 </li>
-                <li>すでに録画中なのか使用したデフォルトフォルダをフォーマットせずに他のユーザーとして接続しようとしたのか確認してください。 </li>
+                <li>高解像度、高いビットレート、高いフレームレートなどを設定すると、映像データ量が増加します。データ量が増加すると、フルフレームに設定してもフレームスキップが発生することがあります。フレームスキップが発生すると、最小1秒当たり1枚以上の映像に保存します。</li>
+                <li>すでに録画中なのか使用したデフォルトフォルダをフォーマットせずに他のユーザーとして接続しようとしたのか確認してください。</li>
+
             </ul>
         </div>
     </div>
 </div>
-
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -254,19 +235,22 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <h3>録画Profile</h3>
-            <p>録画する時に使用されるビデオプロファイル名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Profileタイプ]</strong></a>で「録画Profile」に設定したプロファイルが表示されます。</p>
+        <h3>エッジ録画PROFILE</h3>
+            <p>録画する時に使用されるビデオプロファイル名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[プロファイルタイプ]</strong></a>で「録画Profile」に設定したプロファイルが表示されます。</p>
         </div>
+
         <div class="wn5-setup-section-article-content">
-            <h3>通常録画</h3>
+            <h3>連続保存</h3>
             <p>イベントがない一般的な状況でいつも一定なフレームレートで映像を録画するタイプを設定します。</p>
             <ul>
         
                     <li><strong class="UI">無し</strong>：カメラ映像を録画しません。</li>
-                    <li><strong class="UI">Iフレーム</strong>：通常録画時、Iフレームだけを録画します。</li>
-                    <li><strong class="UI">フルフレーム</strong>：通常録画時、フルフレームを録画します。</li>
+                    <li><strong class="UI">Iフレーム</strong>：連続保存時、Iフレームだけを録画します。
+                    </li>
+                    <li><strong class="UI">フルフレーム</strong>：連続保存時、フルフレームを録画します。</li>
                 </ul>
         </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>イベント録画</h3>
             <p>イベントが発生した時に録画するタイプを設定します。</p>
@@ -288,28 +272,27 @@
             <p>映像を保存するファイルタイプを設定します。保存ファイルタイプを変更すると、既存のデータがフォーマットされます。</p>
             <ul>
                 <li><strong class="UI">STW</strong>：ハンファテックウィン独自のファイルタイプです。</li>
-                <li><strong class="UI">AVI</strong>：一般のAVIファイルタイプです。</li>
+                <li><strong class="UI">AVI</strong>: 一般のAVIファイルタイプです。</li>
             </ul>
         </div>
 
-</div>
-</div>
 
-
+    </div>
+</div>
 
 
 <hr class="wn5-setup-hr">
+
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>通常録画設定</h2>
+        <h2>連続保存スケジュール</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>映像をストレージ用デバイスに録画する時間を設定することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
-
-            <h3>常時動作</h3>
+            <h3>常時録画</h3>
             <p>映像をストレージ用デバイスに常時録画します。</p>
         </div>
         <div class="wn5-setup-section-article-content">

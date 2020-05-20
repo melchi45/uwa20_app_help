@@ -1,4 +1,5 @@
-﻿<h1 class="wn5-setup-main-title">ユーザー</h1>
+<meta charset="UTF-8">
+<h1 class="wn5-setup-main-title">ユーザー</h1>
 <div class="wn5-setup-section">
 	<p>カメラにアクセスするユーザーのアカウントを管理します。マネージャのパスワードを変更することができ、ゲスト設定、認証設定、現在のユーザー設定が可能です。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
@@ -6,8 +7,9 @@
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">Admin Password変更</h2>
-	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-heading">
+				<h2>管理者の情報変更</h2>
+		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p ng-if="AdminID == undefined || AdminID">マネージャアカウントのIDとパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
 			<p ng-if="AdminID == undefined || !AdminID">マネージャのパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
@@ -22,10 +24,21 @@
                 <li>マネージャIDは、英数字のみ入力することができます。また、最大8文字まで入力できます。</li>
                 <li>マネージャIDで基本ゲストIDの「guest」や基本ユーザーIDの「user1」、「user2」…「user10」は使用できません。</li>
             </ul>
-		</div>
-
-
+		</div><!-- PNO-9081 이슈 수정 시 관리자 ID에 대한 분기 불가능하여 기존 분기 코드 주석 처리함. 2019-10-11
 		<div class="wn5-setup-section-article-content">
+			<p>관리자 계정의 ID와 비밀번호를 변경할 수 있습니다. 비밀번호를 변경하는 경우, 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>ID</h3>
+	        <p>현재 사용하고 있는 관리자 ID를 확인하거나 변경할 수 있습니다.</p>
+	    </div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>관리자 ID는 알파벳, 숫자만 사용할 수 있으며, 최대 8자까지 입력할 수 있습니다.</li>
+                <li>관리자 ID로 기본 게스트 ID인 'guest'나 기본 사용자 ID인 'user1', 'user2'...'user10'을 사용할 수 없습니다.</li>
+            </ul>
+		</div> --><div class="wn5-setup-section-article-content">
 			<h3>現在のパスワード</h3>
 	        <p>現在、使用中のパスワードを入力します。誰かが任意にパスワードを変更することを防止するために既存のパスワードを入力してからマネージャのパスワードを変更することができます。</p>
 	    </div>
@@ -44,13 +57,12 @@
                 <li>保安強化のために特殊文字、数字、ローマ字の大文字、小文字を組み合わせてパスワードを設定することをお勧めします。</li>
                 <li>パスワードは3カ月周期で変更することをお勧めします。</li>
                 <li>パスワード長さ&amp;上限は下記のどおりです。</li>
-                <ul>
-                    <li ng-if="PasswordRule1">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
+                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
 					<li ng-if="PasswordRule1">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
-					<li ng-if="PasswordRule2">パスワードが9文字以上の場合、大文字/小文字、数字、記号のうち3以上の規則に従う必要があります。</li>
-                    <li>IDと同一にしてはいけません。</li>
+                    <li ng-if="PasswordRule2">パスワードが9文字以上の場合、大文字/小文字、数字、記号のうち3以上の規則に従う必要があります。</li>					
+                    <li>パスワードはIDと異なる必要があります。また、パスワードにID文字列を含まないことをお勧めします。   </li>
                     <li>連続された文字を4つ以上、使用できません。(例：1234、abcd)</li>
                     <li>同じ文字を4回以上、繰り返して使用できません。(例：!!!!、1111、aaaa)</li>
 					<li ng-if="PasswordRule1">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
@@ -71,39 +83,43 @@
 
 <hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
 <div class="wn5-setup-section" ng-if="AdminFilterSupport">
-	<h2 class="wn5-setup-section-heading">マネージャログイン許可IP</h2>
+		<div class="wn5-setup-section-heading">
+				<h2>マネージャログイン許可IP</h2>
+		</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>登録されたIPでのみ、マネージャのアカウントでカメラ・ウェブビューアーにアクセスできるように設定することができます。</p>
 		</div>
-            <div class="wn5-online-help-action">
-                <h4>マネージャアカウントでアクセスできるIPアドレス追加</h4>
-                <ol>
-                    <li><strong class="UI">[追加]</strong>ボタンをクリックします。IPタイプとIPアドレスを入力できるフィールドが生成されます。</li>
-                    <li><strong class="UI">[IPタイプ]</strong>カラムでIPv4とIPv6の中、IPタイプを選択します。</li>
-                    <li><strong class="UI">[IPタイプ]</strong>カラムでマネージャアカウントにアクセスを許可するIPアドレスを入力します。</li>
-                </ol>
-                <p><strong class="UI">[使用]</strong>チェックボックスをチェックすると、該当IPからマネージャアカウントでカメラ・ウェブビューアーにアクセスすることができます。</p>
-            </div>
-            <div class="wn5-online-help-action">
-                <h4>IPv4アドレス削除</h4>
-                <ol>
-                    <li>削除するIPアドレスを選択します。</li>
-                    <li><strong class="UI">[削除]</strong>ボタンをクリックします。</li>
-                    <li>削除確認ポップアップで<strong class="UI">[OK]</strong>ボタンをクリックします。IPv4アドレスが削除されます。</li>
-                </ol>
-            
-            </div>
-        </div>
+		<div class="wn5-online-help-action">
+			<h4>マネージャアカウントでアクセスできるIPアドレス追加</h4>
+			<ol>
+				<li><strong class="UI">[追加]</strong>ボタンをクリックします。IPタイプとIPアドレスを入力できるフィールドが生成されます。</li>
+				<li><strong class="UI">[IPタイプ]</strong>カラムでIPv4とIPv6の中、IPタイプを選択します。</li>
+				<li><strong class="UI">[IPタイプ]</strong>カラムでマネージャアカウントにアクセスを許可するIPアドレスを入力します。</li>
+			</ol>
+			<p><strong class="UI">[使用]</strong>チェックボックスをチェックすると、該当IPからマネージャアカウントでカメラ・ウェブビューアーにアクセスすることができます。</p>
+		</div>
+		<div class="wn5-online-help-action">
+			<h4>IPv4アドレス削除</h4>
+			<ol>
+				<li>削除するIPアドレスを選択します。</li>
+				<li><strong class="UI">[削除]</strong>ボタンをクリックします。</li>
+				<li>削除確認ポップアップで<strong class="UI">[OK]</strong>ボタンをクリックします。IPv4アドレスが削除されます。</li>
+			</ol>
+		
+		</div>
+    </div>
 </div>
 
 
 <hr class="wn5-setup-hr" ng-if="AdminTimeout">
 <div class="wn5-setup-section" ng-if="AdminTimeout">
-	<h2 class="wn5-setup-section-heading">マネージャログイン自動解除</h2>
+	<div class="wn5-setup-section-heading">
+			<h2>マネージャログイン自動解除</h2>
+	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>マネージャアカウントでカメラ・ウェブビューアーにアクセスした後、一定時間活動がない場合にはウェブビューアーのログインが解除されます。マネージャが未活動時、ログインを自動に解除するための時間を入力します。</p>
+            <p>マネージャアカウントでカメラ・ウェブビューアーにアクセスした後、一定時間活動がない場合にはウェブビューアーのログインが解除されます。マネージャが未活動時、ログインを自動に解除するための時間を分単位で入力します。</p>
         </div>
 	</div>
 </div>
@@ -111,7 +127,9 @@
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">ゲスト設定</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>ゲスト設定</h2>
+	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p><strong class="UI">[ゲストアクセス許可]</strong>を選択すると、ウェブビューアー画面にゲストにアクセスすることができます。ゲストアカウントにアクセスすると、ウェブビューアーでライブ画面しか確認することができません。ゲストIDとパスワードは「guest/guest」で変更できません。</p>
@@ -121,7 +139,9 @@
 
 <hr class="wn5-setup-hr" ng-if="CamSpecialModel">
 <div class="wn5-setup-section" ng-if="CamSpecialModel">
-    <h2 class="wn5-setup-section-heading">RTSP設定</h2>
+    <div class="wn5-setup-section-heading">
+		<h2>RTSP設定</h2>
+	</div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p><strong class="UI">[暗号化なしでRTSPへの接続許可]</strong>を選択すると、S1映像の暗号化プロトコルに対応しないプログラムからでもRTSPタイプで映像を見ることができます。</p>
@@ -131,7 +151,9 @@
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">認証設定</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>認証設定</h2>
+	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p><strong class="UI">[認証されていないRTSPへの接続許可]</strong>を選択すると、RTSP (Real Time Streaming Protocol)を用いてカメラ映像にアクセスする時、認証なしでアクセスすることができます。</p>
@@ -139,11 +161,24 @@
 	</div>
 </div>
 
+<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
+<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+	<div class="wn5-setup-section-heading">
+		<h2>ダイジェスト認証</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>ダイジェスト認証のためのアルゴリズムオプションを選択します。</p>
+		</div>
+	</div>
+</div>
+
 
 <hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
-
 <div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
-	<h2 class="wn5-setup-section-heading">デバイスマネージャ</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>デバイスマネージャ</h2>
+	</div>
 	<div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
                 <p>ハンファテックウィンから提供する「Wisenetデバイスマネージャ」でカメラを制御するには、<strong class="UI">[使用]</strong>を選択します。</p>
@@ -152,29 +187,24 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
-
-<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
-	<h2 class="wn5-setup-section-heading">ダイジェスト認証</h2>
-	<div class="wn5-setup-section-article">
-		<div class="wn5-setup-section-article-content">
-			<p>ダイジェスト認証のためのアルゴリズムオプションを選択します。</p>
-		</div>
-	</div>
-</div>
 
 <hr class="wn5-setup-hr" ng-if="CamSpecialModel">
 <div class="wn5-setup-section" ng-if="CamSpecialModel">
-    <h2 class="wn5-setup-section-heading">TTA設定</h2>
+    <div class="wn5-setup-section-heading">
+		<h2>TTA設定</h2>
+	</div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p><strong class="UI">[ONVIF TTA認証を有効にする]</strong>を選択すると、ONVIF TTA認証をするときに暗号化されない平文(plain text)認証タイプではなくダイジェスト認証タイプを使用します。</p>
         </div>
     </div>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="CamSpecialModel">
 <div class="wn5-setup-section" ng-if="CamSpecialModel">
-	<h2 class="wn5-setup-section-heading">パスワード検索</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>パスワード検索</h2>
+	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p><strong class="UI">[パスワード検索を有効にする]</strong>を選択すると、ログインページで設定したE-mailでパスワードを探すことができます。</p>
@@ -184,7 +214,9 @@
 
 <hr class="wn5-setup-hr" ng-if="CamSpecialModel">
 <div class="wn5-setup-section" ng-if="CamSpecialModel">
-	<h2 class="wn5-setup-section-heading">パスワード変更周期</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>パスワード変更周期</h2>
+	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>マネージャのパスワード変更を誘導するためのメッセージ表示周期を設定します。設定した期間が過ぎると、パスワード変更を推奨するメッセージが表示されます。</p>
@@ -195,14 +227,16 @@
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<h2 class="wn5-setup-section-heading">現在のユーザー</h2>
+	<div class="wn5-setup-section-heading">
+		<h2>現在のユーザー</h2>
+	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、プロファイルなどの使用権限を設定することができます。</p>
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">マネージャの他にユーザーアカウントのアクセス情報を設定して、プロファイルなどの使用権限を設定することができます。</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">マネージャの他にユーザーアカウントのアクセス情報を設定して、プロファイルなどの使用権限を設定することができます。</p>				
 			<p>登録したユーザーがログインした時、ユーザーごとに設定された機能のみ有効になります。初期値に10つの現在のユーザーアカウントが設定されており、アカウントを追加したり削除することができます。現在のユーザーアカウントは最大10つまで使用することができます。</p>
 		</div>
-				<div class="wn5-online-help-info">
+		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
                     <li>設定されたユーザーの中でONVIFを使用するためのアカウントに設定したい場合、設定された権限によって機能使用が制限されます。</li>
@@ -220,6 +254,10 @@
 			<h3>Password</h3>
 			<p>パスワードを入力します。パスワード設定規則は、マネージャパスワードの設定規則と同一です。</p>
 		</div>
+				<div class="wn5-setup-section-article-content" ng-if="AdminAccess">
+			<h3>管理者権限</h3>
+            <p>選択したユーザーに管理者権限を与えます。一般ユーザーは、管理者が許可した機能のみ有効になるが、管理者はすべての機能を使用して設定する権限があります。但し、ユーザーが管理者権限を与えられても管理者IDとパスワードを変更することはできません。</p>
+		</div>
 		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
 			<h3>音声入力</h3>
 			<p>入力されたオーディオにアクセスできる権限を設定します。音声入力を選択すると、該当アカウントにアクセスしたユーザーは映像で画面と音声を同時に聞くことができ、音声入力を選択しないと映像の画面のみ確認できます。</p>
@@ -234,7 +272,7 @@
 		</div>
 				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
-            <p><strong class="UI">[ライブ]</strong>モードでPTZを制御できる権限を設定します。&nbsp;</p>
+            <p><strong class="UI">[ライブ]</strong>モードでPTZを制御できる権限を設定します。</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Profile</h3>
@@ -246,9 +284,9 @@
 			<ol>
 				<li>使用する現在のユーザーアカウントのラジオボタンを選択します。現在のユーザーアカウントが入力できる状況に変更されます。</li>
 				<li><strong class="UI">[使用]</strong>カラムでチェックボックスをチェックします。</li>
-				<li><strong class="UI">[名前]</strong>と<strong class="UI">[Password]</strong>カラムにIDとパスワードを入力します。</li>
-				<li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0"><strong class="UI">[音声入力]</strong>、<strong class="UI">[音声出力]</strong>、<strong class="UI">[アラーム出力]</strong>カラムで許可する機能をそれぞれ選択して<strong class="UI">[Profile]</strong>カラムで許可するプロファイルタイプを選択します。</li>
-				<li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI"><strong class="UI">[Profile]</strong>カラムで許可するプロファイルタイプを選択します。</li>
+				<li><strong class="UI">[名前]</strong>と<strong class="UI">[Password]</strong>カラムにIDとパスワードを入力します。</li><!-- <li><strong class="UI">[오디오 입력]</strong>, <strong class="UI">[오디오 출력]</strong>, <strong class="UI">[알람 출력]</strong> 컬럼에서 허용할 기능을 각각 선택하고, <strong class="UI">[프로파일]</strong> 컬럼에서 허용할 프로파일 종류를 선택합니다.</li> --><li ng-if="MaxAudioInput > 0 && MaxAudioOutput > 0 && MaxAlarmOutput >0"><strong class="UI">[音声入力]</strong>、<strong class="UI">[音声出力]</strong>、<strong class="UI">[アラーム出力]</strong>カラムで許可する機能をそれぞれ選択して<strong class="UI">[Profile]</strong>カラムで許可するプロファイルタイプを選択します。</li>
+                <li ng-if="MaxAudioInput === 0 && MaxAudioOutput === 0 && MaxAlarmOutput === 0"><strong class="UI">[Profile]</strong>カラムで許可するプロファイルタイプを選択します。</li> 
+				
 				<li>現在のユーザーアカウントの入力を完了したら、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックします。</li>
 				<li>確認ポップアップが表示されたら、<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
 			</ol>

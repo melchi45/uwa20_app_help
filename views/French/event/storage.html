@@ -1,47 +1,50 @@
 ﻿<h1 class="wn5-setup-main-title">Stockage</h1>
 <div class="wn5-setup-section">
-    <p>Vous pouvez s&eacute;lectionner un p&eacute;riph&eacute;rique pour capturer une image de cam&eacute;ra et d&eacute;finir les conditions d&apos;enregistrement. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+    <p>Vous pouvez s&eacute;lectionner un p&eacute;riph&eacute;rique pour capturer une image de cam&eacute;ra et d&eacute;finir les conditions d&apos;enregistrement. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton [Appliquer] en bas de la page.</p>
 </div>
 <div class="wn5-online-help-info" ng-if="SupportAutoImageAlignment">
-    <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
     <ul>
-        <li>Seulement les vidéos du CAN 1 peuvent être enregistrées.</li>
+        <li>Seulement les vid&eacute;os du CAN 1 peuvent &ecirc;tre enregistr&eacute;es.</li>
     </ul>
-</div>
+        </div>
+        
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Config. action stockage</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>La s&eacute;lection d&apos;un p&eacute;riph&eacute;rique d&apos;enregistrement et la s&eacute;lection de <strong class="UI">[Activ&eacute;]</strong> vous permettent de modifier les param&egrave;tres de l&apos;appareil concern&eacute;.</p>
-            <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport">Cliquez sur <strong class="UI">[Info]</strong> pour v&eacute;rifier l&rsquo;&eacute;tat de la carte SD par canal.</p>	
-            <p>Si des donn&eacute;es sont en cours d&apos;enregistrement sur l&apos;appareil, «&nbsp;Enregistrement&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils. Lorsque «&nbsp;Erreur&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong>, v&eacute;rifiez que le p&eacute;riph&eacute;rique d&apos;enregistrement est correctement connect&eacute;. </p> 
-                <p ng-if="NAS">Lorsque <strong class="UI">[Activ&eacute;]</strong> est d&eacute;fini pour une carte SD et un NAS en m&ecirc;me temps, le NAS est trait&eacute; en priorit&eacute;.</p>
+            <p ng-if="NAS">La s&eacute;lection d&apos;un p&eacute;riph&eacute;rique d&apos;enregistrement et la s&eacute;lection de <strong class="UI">[Activ&eacute;]</strong> vous permettent de modifier les param&egrave;tres de l&apos;appareil concern&eacute;.</p>
+	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport">Cliquez sur <strong class="UI">[Info]</strong> pour v&eacute;rifier l&rsquo;&eacute;tat de la carte SD par canal.</p> 
+            <p>Si des donn&eacute;es sont en cours d&rsquo;enregistrement sur l&rsquo;appareil, «&nbsp;Enregistrement&nbsp;» s&rsquo;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils. Lorsque «&nbsp;Erreur&nbsp;» s&rsquo;affiche dans <strong class="UI">[&Eacute;tat]</strong>, v&eacute;rifiez que le p&eacute;riph&eacute;rique d&rsquo;enregistrement est correctement connect&eacute;.</p>
+            <!-- <p>Par ailleurs, en consultant<strong class="UI">[&Eacute;tat de sant&eacute;],</strong>vous pouvez v&eacute;rifier l&rsquo;&eacute;tat de sant&eacute; inscrit sur votre carte SD. Si l&rsquo;&eacute;tat est «&nbsp;Mauvais&nbsp;», il est recommand&eacute; de remplacer votre carte SD.</p> -->
+            <p ng-if="NAS">Lorsque <strong class="UI">[Activ&eacute;]</strong> est d&eacute;fini pour une carte SD et un NAS en m&ecirc;me temps, le NAS est trait&eacute; en priorit&eacute;.</p>
             <ul>
-                <li><strong class="UI">SD</strong>: Vous pouvez choisir d&apos;utiliser ou non une carte SD. Lorsqu&apos;une carte SD est reconnue, l&apos;espace libre, la capacit&eacute; totale et l&apos;&eacute;tat sont affich&eacute;s. Pour formater la carte SD, cliquez sur le bouton <strong class="UI">[Formater]</strong>.</li>
+                <li><strong class="UI">Carte SD</strong>: Vous pouvez choisir d&apos;utiliser ou non une carte SD. Lorsqu&apos;une carte SD est reconnue, l&apos;espace libre, la capacit&eacute; totale et l&apos;&eacute;tat sont affich&eacute;s. Pour formater la carte SD, cliquez sur le bouton <strong class="UI">[Formater]</strong>.</li>
                 <li ng-if="NAS"><strong class="UI">NAS</strong>: Vous pouvez choisir d&apos;utiliser le NAS (Network Attached Storage - stockage li&eacute; au r&eacute;seau) ou non. Lorsqu&apos;une connexion au NAS est &eacute;tablie, l&apos;espace libre, la capacit&eacute; totale et l&apos;&eacute;tat sont affich&eacute;s. Pour formater le dossier par d&eacute;faut sur le NAS, cliquez sur le bouton <strong class="UI">[Formater]</strong>.</li>
             </ul>
+        </div><!-- <div class="wn5-setup-section-article-content">
+            <h3>오픈 플랫폼에서 사용</h3>
+            <p>오픈 플랫폼에서 개발된 다양한 애플리케이션을 카메라에 설치하여 사용할 수 있습니다. 이 때&nbsp;<strong class="UI">[사용]</strong>을 선택하면 SD 슬롯 2번의 SD 카드는 카메라 영상 녹화용으로 사용되지 않고 카메라에 설치된 애플리케이션이 사용합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content">
+		 --><div class="wn5-setup-section-article-content">
             <h3>R&eacute;&eacute;crire</h3>
-            <p ng-if="NAS">D&eacute;finit s&apos;il faut ou non utiliser la fonction de r&eacute;&eacute;criture d&apos;une carte SD ou d&apos;un NAS. Lorsque la capacit&eacute; du p&eacute;riph&eacute;rique a &eacute;t&eacute; atteinte, de nouvelles donn&eacute;es seront enregistr&eacute;es sur les donn&eacute;es les plus anciennes. Lorsque la capacit&eacute; de l&apos;appareil est atteinte, un message indiquant «&nbsp;Plein&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils.</p>
-            <p ng-if="!NAS">D&eacute;finit s&apos;il faut ou non utiliser la fonction de r&eacute;&eacute;criture d&apos;une carte SD. Lorsque la capacit&eacute; du p&eacute;riph&eacute;rique a &eacute;t&eacute; atteinte, de nouvelles donn&eacute;es seront enregistr&eacute;es sur les donn&eacute;es les plus anciennes. Lorsque la capacit&eacute; de l&apos;appareil est atteinte, un message indiquant «&nbsp;Plein&nbsp;» s&apos;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils.</p>
+            <p ng-if="NAS">D&eacute;finit s&apos;il faut ou non utiliser la fonction de r&eacute;&eacute;criture d&apos;une carte SD ou d&apos;un NAS. Lorsque la capacit&eacute; du p&eacute;riph&eacute;rique a &eacute;t&eacute; atteinte, de nouvelles donn&eacute;es seront enregistr&eacute;es sur les donn&eacute;es les plus anciennes. Lorsque la capacit&eacute; de l&rsquo;appareil est atteinte, un message indiquant «&nbsp;Plein&nbsp;» s&rsquo;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils.</p>
+			<p ng-if="!NAS">D&eacute;finit s&apos;il faut ou non utiliser la fonction de r&eacute;&eacute;criture d&apos;une carte SD. Lorsque la capacit&eacute; du p&eacute;riph&eacute;rique a &eacute;t&eacute; atteinte, de nouvelles donn&eacute;es seront enregistr&eacute;es sur les donn&eacute;es les plus anciennes. Lorsque la capacit&eacute; de l&rsquo;appareil est atteinte, un message indiquant «&nbsp;Plein&nbsp;» s&rsquo;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Suppression automatique</h3>
             <p>D&eacute;finit s&apos;il faut ou non utiliser la fonction de suppression automatique. Les donn&eacute;es les plus r&eacute;centes pour le nombre de jours d&eacute;fini sont conserv&eacute;es et le reste sera supprim&eacute;. Le nombre de jours de suppression automatique peut &ecirc;tre d&eacute;fini entre 1 et 180. La fonction <strong class="UI">[Suppression automatique]</strong> est activ&eacute;e uniquement lorsque <strong class="UI">[Activer]</strong> est d&eacute;fini pour <strong class="UI">[R&eacute;&eacute;crire]</strong>.</p>
         </div>
-
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>Lorsque «&nbsp;Erreur&nbsp;» s&rsquo;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils, v&eacute;rifiez que l&apos;appareil d&apos;enregistrement est correctement connect&eacute;, que le syst&egrave;me de fichiers de l&apos;appareil d&apos;enregistrement n&rsquo;est pas endommag&eacute; et que l&apos;appareil d&apos;enregistrement n&rsquo;est pas physiquement endommag&eacute;. Si le message «&nbsp;Erreur&nbsp;» persiste apr&egrave;s v&eacute;rification de l&apos;appareil d&apos;enregistrement, formatez ou remplacez l&apos;appareil.</li>
+                <li>Lorsque «&nbsp;Erreur&nbsp;» s&rsquo;affiche dans <strong class="UI">[&Eacute;tat]</strong> dans la liste des appareils, v&eacute;rifiez que l&rsquo;appareil d&rsquo;enregistrement est correctement connect&eacute;, que le syst&egrave;me de fichiers de l&rsquo;appareil d&rsquo;enregistrement n&rsquo;est pas endommag&eacute; et que l&rsquo;appareil d&rsquo;enregistrement n&rsquo;est pas physiquement endommag&eacute;. Si le message «&nbsp;Erreur&nbsp;» persiste apr&egrave;s v&eacute;rification de l&rsquo;appareil d&rsquo;enregistrement, formatez ou remplacez l&rsquo;appareil.</li>
                 <li ng-if="NAS">L&apos;enregistrement peut ne pas &ecirc;tre possible en raison d&apos;une d&eacute;connexion temporaire du r&eacute;seau lorsque le NAS est utilis&eacute;, il est donc recommand&eacute; d&apos;utiliser &eacute;galement une carte SD.</li>
-                <li>Lorsque la r&eacute;solution, le d&eacute;bit binaire et la fr&eacute;quence d&apos;images sont &eacute;lev&eacute;s, la quantit&eacute; de donn&eacute;es d&apos;image augmente &eacute;galement. Si la quantit&eacute; de donn&eacute;es augmente, un saut d&apos;image peut se produire m&ecirc;me en mode image compl&egrave;te. En cas de saut d&apos;image, l&rsquo;image est enregistr&eacute;e &agrave; un taux minimum d&apos;une image par seconde.</li>
-                <li>Avant de retirer la carte micro SD, cliquez d&rsquo;abord sur <strong class="UI">[D&eacute;sactiver]</strong>. Si vous la retirez de vous m&ecirc;me ou si vous mettez la cam&eacute;ra sous tension alors que la source d&rsquo;&eacute;lectricit&eacute; est instable, sans cliquer sur <strong class="UI">[D&eacute;sactiver]</strong>, la carte micro SD risque d&rsquo;&ecirc;tre endommag&eacute;e.</li>
+                <li>Lorsque la r&eacute;solution, le d&eacute;bit binaire et la fr&eacute;quence d&apos;images sont &eacute;lev&eacute;s, la quantit&eacute; de donn&eacute;es d&apos;image augmente &eacute;galement. Si la quantit&eacute; de donn&eacute;es augmente, un saut d&apos;image peut se produire m&ecirc;me en mode image compl&egrave;te. En cas de saut d&rsquo;image, au moins une image est sauvegard&eacute;e par seconde.</li>
+                <li>Avant de retirer la carte micro SD, cliquez d&rsquo;abord sur <strong class="UI">[D&eacute;sactiv&eacute;]</strong>. Si vous la retirez de vous m&ecirc;me ou si vous mettez la cam&eacute;ra sous tension alors que la source d&rsquo;&eacute;lectricit&eacute; est instable, sans cliquer sur <strong class="UI">[D&eacute;sactiv&eacute;]</strong>, la carte micro SD risque d&rsquo;&ecirc;tre endommag&eacute;e.</li>
                 <li>Si vous utilisez la carte m&eacute;moire micro SD en dessous de la vitesse recommand&eacute;e, cela peut provoquer un saut d&rsquo;image. Si vous utilisez la carte m&eacute;moire micro SD avec une trop grande capacit&eacute;, cela peut ralentir la vitesse du format.</li>
                 <li ng-if="NAS">Si vous utilisez un NAS, la suppression automatique n&rsquo;est prise en charge que lorsque la capacit&eacute; du NAS est sup&eacute;rieure aux sp&eacute;cifications recommand&eacute;es.</li>
                 <li>Les donn&eacute;es supprim&eacute;es ne peuvent pas &ecirc;tre restaur&eacute;es.</li>
@@ -49,6 +52,8 @@
         </div>
     </div>
 </div>
+
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -60,22 +65,22 @@
             <p>Ce menu s&apos;affiche uniquement lorsque <strong class="UI">[Carte SD]</strong> est s&eacute;lectionn&eacute; dans la colonne<strong class="UI">[P&eacute;riph&eacute;rique]</strong> de <strong class="UI">[Config. action stockage]</strong>, ce qui vous permet de s&eacute;lectionner le syst&egrave;me de fichiers sur la carte SD. Les cartes SD prennent en charge les syst&egrave;mes de fichiers VFAT et EXT4.S&eacute;lectionnez le syst&egrave;me de fichiers en fonction de la carte SD de la cam&eacute;ra que vous utilisez. Si le syst&egrave;me de fichiers de la carte SD est EXT4, Windows ne peut le reconna&icirc;tre que lorsqu&apos;une application distincte est install&eacute;e.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            
+           
             <h3>Type</h3>
             <p>S&eacute;lectionnez VFAT ou EXT4 pour le syst&egrave;me de fichiers de la carte SD. Lorsque la configuration est modifi&eacute;e, toutes les donn&eacute;es existantes seront format&eacute;es. Veillez &agrave; sauvegarder les donn&eacute;es avant de modifier la configuration.</p>
-        </div>
-		<div class="wn5-online-help-info">
+        </div><!-- <div class="wn5-setup-section-article-content">   
+            <h3>암호화</h3>
+            <p><strong class="UI">[사용]</strong>을 선택하면 (마이크로) SD 카드에 카메라 영상을 저장할 때 영상을 암호화하여 저장합니다. 이는 (마이크로) SD 카드를 분실한 경우라도 영상에 대한 보안을 유지할 수 있도록 해줍니다.</p>
+            <p>영상 암호화를 위한 비밀번호를 변경할 수 있습니다.</p>
+        </div> --><div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Les cartes SD &agrave; haute endurance sont recommand&eacute;es. Pour plus d&apos;informations, reportez-vous au site Web de Hanwha Techwin.</li>
-                <li>Le formatage de la carte micro SD avec le système de fichiers EXT4 peut prendre jusqu’à 10 minutes.</li>
+                <li>Le formatage de la carte micro SD avec le syst&egrave;me de fichiers EXT4 peut prendre jusqu&rsquo;&agrave; 10 minutes.</li>
             </ul>
         </div>
     </div>
 </div>
-
-
-
 
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
@@ -87,16 +92,14 @@
             <p></p>
         </div>
     </div>
-</div>
-
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
+</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  --><hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>S&eacute;lectionner un canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails pour chaque canal. </p>
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails pour chaque canal.</p>
         </div>
     </div>
 </div>
@@ -129,20 +132,24 @@
             <h4>Crypter la carte SD</h4>
             <ol>
                 <li>S&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Cryptage]</strong>.</li>
-                <li>Entrez votre nouveau mot de passe dans le champ <strong class="UI">[Nouveau mot de passe]</strong> et entrez le m&ecirc;me mot de passe une nouvelle fois dans le champ&nbsp;<strong class="UI">[Confirmer nouveau mot de passe]</strong>.</li>
+                <li>Entrez votre nouveau mot de passe dans le champ <strong class="UI">[Nouveau mot de passe]</strong> et entrez le m&ecirc;me mot de passe une nouvelle fois dans le champ <strong class="UI">[Confirmer nouveau mot de passe]</strong>.</li>
                 <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran.</li>
                 <li>Si le cryptage de la carte SD fonctionne correctement, le message «&nbsp;Crypt&eacute;&nbsp;» s&rsquo;affiche.</li>
-            </ol></div>
+            </ol>
+
+        </div>
         <div class="wn5-online-help-action">
             <h4>D&eacute;crypter la carte SD</h4>
             <ol>
                 <li>D&eacute;cochez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Cryptage]</strong>.</li>
                 <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de l&rsquo;&eacute;cran. Si le cryptage de la carte SD est d&eacute;sactiv&eacute; et si en cons&eacute;quence, les donn&eacute;es de la carte SD ne sont pas crypt&eacute;es, le message «&nbsp;Non crypt&eacute;&nbsp;» s&rsquo;affiche.</li>
-            </ol></div>
+            </ol>
+
+        </div>
          <div class="wn5-online-help-action">
             <h4>Modifier le mot de passe</h4>
             <p>Vous pouvez modifier le mot de passe utilis&eacute; pour le cryptage de la carte SD.</p>
-            <p>Si le mot de passe de la carte SD crypt&eacute;e et le mot de passe de passe entr&eacute; par l&rsquo;utilisateur ne correspondent pas, le message «&nbsp;Erreur Mot de passe&nbsp;» s&rsquo;affiche dans la colonne <strong class="UI">[&Eacute;tat]</strong> de <strong class="UI">[Config. action de stockage]</strong>.</p>
+            <p>Si le mot de passe de la carte SD crypt&eacute;e et le mot de passe de passe entr&eacute; par l&rsquo;utilisateur ne correspondent pas, le message «&nbsp;Erreur Mot de passe&nbsp;» s&rsquo;affiche dans la colonne <strong class="UI">[&Eacute;tat]</strong> de <strong class="UI">[Config. action stockage]</strong>.</p>
             <ol>
                 <li>Cliquez sur le bouton <strong class="UI">[Modifier le mot de passe]</strong>.</li>
                 <li>Entrez le mot de passe actuel dans le champ <strong class="UI">[Mot de passe actuel]</strong>.</li>
@@ -155,23 +162,21 @@
             <ul>
                 <li>Si le mot de passe est oubli&eacute; ou perdu, il ne peut pas &ecirc;tre r&eacute;cup&eacute;r&eacute;. &Agrave; la place, vous pouvez r&eacute;initialiser votre mot de passe, mais la carte SD sera alors format&eacute;e et toutes ses donn&eacute;es seront supprim&eacute;es.</li>
                 <li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
-                <ul>
-                    <li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                <ul><!-- TTA용 XNO-6085RG 이슈 수정. 김선미 책임님. 2019-10-18. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음   --><li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
-					<li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caractères, il doit contenir au moins trois des règles suivantes : majuscules / minuscules, chiffres et symboles.</li>
-                    <li>Vous ne pouvez pas utiliser 4&nbsp;caract&egrave;res cons&eacute;cutifs ou plus (p.ex., 1234, abcd).</li>
+                    <li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caract&egrave;res, il doit contenir au moins trois des r&egrave;gles suivantes : majuscules / minuscules, chiffres et symboles.</li>
+                    <li>Vous ne pouvez pas utiliser quatre lettres cons&eacute;cutives d&rsquo;un m&ecirc;me type. (p. ex. : 1234, abcd).</li>
                     <li>Vous ne pouvez pas utiliser le m&ecirc;me caract&egrave;re quatre fois ou plus de suite (p.ex., !!!!, 1111, aaaa).</li>
                     <li ng-if="PasswordRule1">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
-                    <li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+					<li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
                 </ul>
             </ul>
         </div>
     </div>
 </div> 
-
 
 <hr class="wn5-setup-hr" ng-if="NAS">
 <div class="wn5-setup-section" ng-if="NAS">
@@ -180,11 +185,10 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Ce menu s&apos;affiche uniquement lorsque <strong class="UI">[NAS]</strong> est s&eacute;lectionn&eacute; dans la colonne<strong class="UI">[P&eacute;riph&eacute;rique]</strong> de <strong class="UI">[Config. action stockage]</strong> et que les informations d&apos;acc&egrave;s au NAS sont saisies. Entrez les informations NAS et cliquez sur le bouton <strong class="UI">[Test]</strong> pour voir si la connexion au NAS est &eacute;tablie. Si une connexion est &eacute;tablie, le message «&nbsp;Succ&egrave;s&nbsp;» s&apos;affiche. Si aucune connexion n&apos;est &eacute;tablie, le message «&nbsp;&Eacute;chec&nbsp;» s&apos;affiche.</p>
+            <p>Ce menu s&apos;affiche uniquement lorsque <strong class="UI">[NAS]</strong> est s&eacute;lectionn&eacute; dans la colonne<strong class="UI">[P&eacute;riph&eacute;rique]</strong> de <strong class="UI">[Config. action stockage]</strong> et que les informations d&apos;acc&egrave;s au NAS sont saisies. Entrez les informations NAS et cliquez sur le bouton <strong class="UI">[Test]</strong> pour voir si la connexion au NAS est &eacute;tablie. Si une connexion est &eacute;tablie, le message «&nbsp;Succ&egrave;s&nbsp;» s&rsquo;affiche. Si aucune connexion n&rsquo;est &eacute;tablie, le message «&nbsp;&Eacute;chec&nbsp;» s&rsquo;affiche.</p>
         </div>
     
         <div class="wn5-setup-section-article-content">
-            
             <h3>Adresse IP</h3>
             <p>Entrez l&apos;adresse IP du NAS.</p>
         </div>
@@ -203,22 +207,22 @@
 
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-            <ul>
-                <li>Si un message d&apos;erreur s&apos;affiche lorsque vous testez apr&egrave;s avoir saisi les informations NAS, v&eacute;rifiez les &eacute;l&eacute;ments suivants&nbsp;:</li>
+            <ul>  
+                <li>Si un message d&rsquo;erreur s&rsquo;affiche lorsque vous testez apr&egrave;s avoir saisi les informations NAS, v&eacute;rifiez les &eacute;l&eacute;ments suivants&nbsp;:</li>
                 <ul>
                     <li>V&eacute;rifiez que l&apos;adresse IP, l&apos;identifiant, le mot de passe et le dossier NAS par d&eacute;faut sont correctement saisis.</li>
-                    <li>V&eacute;rifiez que le type d&apos;adresse IP du NAS et le type d&apos;adresse IP de la cam&eacute;ra sont identiques. (par exemple&nbsp;: La valeur par d&eacute;faut de NAS et de la cam&eacute;ra est 255.255.255.0. Si l&apos;adresse IP est 192.168.20.32, l&apos;adresse IP du NAS doit &ecirc;tre comprise entre 192.168.20.1 et 192.168.20.255.)</li>
+                    <li>V&eacute;rifiez que le type d&rsquo;adresse IP du NAS et le type d&rsquo;adresse IP de la cam&eacute;ra sont identiques. (p. ex.&nbsp;: La valeur par d&eacute;faut de NAS et de la cam&eacute;ra est 255.255.255.0. Si l&apos;adresse IP est 192.168.20.32, l&apos;adresse IP du NAS doit &ecirc;tre comprise entre 192.168.20.1 et 192.168.20.255.)</li>
                     <li>Pour le dossier par d&eacute;faut NAS, un seul dossier doit &ecirc;tre utilis&eacute; dans une cam&eacute;ra, sans duplication.</li>
-                    <li>V&eacute;rifiez que le p&eacute;riph&eacute;rique est un &eacute;quipement recommand&eacute; par NAS. Reportez-vous &agrave; «&nbsp;Sp&eacute;cifications recommand&eacute;es du NAS » dans le manuel de l&apos;utilisateur.</li>
-                    <li ng-if="SupportChannelExpansionFeature">Vérifier si la version SMB du NAS est réglée sur 3.0. (Ne s'applique pas à certains modèles d'appareils photo.)</li>	
+                    <li>V&eacute;rifiez que le p&eacute;riph&eacute;rique est un &eacute;quipement recommand&eacute; par NAS. Reportez-vous &agrave; «&nbsp;Sp&eacute;cifications recommand&eacute;es du NAS&nbsp;» dans le manuel de l&rsquo;utilisateur.</li>
+                    <li ng-if="SupportChannelExpansionFeature">V&eacute;rifier si la version SMB du NAS est r&eacute;gl&eacute;e sur 3.0. (Ne s&apos;applique pas &agrave; certains mod&egrave;les d&apos;appareils photo.)</li>
                 </ul>
-               
-				<li>Si <strong class="UI">[R&eacute;&eacute;crire]</strong> dans la configuration de stockage pour NAS n&apos;est pas utilis&eacute; et que l&apos;espace libre pour NAS est inf&eacute;rieur &agrave; 20&nbsp;%, les images seront enregistr&eacute;es sur la carte SD.</li>
+                <li>Si <strong class="UI">[R&eacute;&eacute;crire]</strong> dans la configuration de stockage pour NAS n&rsquo;est pas utilis&eacute; et que l&rsquo;espace libre pour NAS est inf&eacute;rieur &agrave; 20&nbsp;%, les images seront enregistr&eacute;es sur la carte SD.</li>
                 <li>Si une carte SD utilis&eacute;e dans un autre appareil photo est ins&eacute;r&eacute;e alors que des donn&eacute;es sont en cours d&apos;enregistrement sur le NAS, les images risquent de ne pas &ecirc;tre enregistr&eacute;es.</li>
                 <li>Si la configuration du NAS est modifi&eacute;e pendant l&apos;enregistrement des donn&eacute;es sur le NAS, la modification ne s&apos;applique pas imm&eacute;diatement.</li>
                 <li>Si l&apos;&eacute;quipement NAS est retir&eacute; ou si la connexion r&eacute;seau est interrompue alors que des donn&eacute;es sont en cours d&apos;enregistrement sur le NAS, l&apos;action d&apos;enregistrement NAS peut &ecirc;tre interrompue.</li>
-                <li>Lorsque la résolution, le débit binaire et le débit d’images sont réglés à un niveau élevé, la quantité de données d’image augmente également. Si la quantité de données augmente, un saut d’images peut se produire même si la vitesse d’enregistrement est réglée sur la vitesse d’enregistrement maximale. En cas de saut d’image, au moins une image est sauvegardée par seconde.</li>
-                <li>Vérifiez si vous essayez d’accéder en tant qu’autre utilisateur sans formater le dossier par défaut qui est déjà enregistré ou utilisé.</li>
+                <li>Lorsque la r&eacute;solution, le d&eacute;bit binaire et le d&eacute;bit d&rsquo;images sont r&eacute;gl&eacute;s &agrave; un niveau &eacute;lev&eacute;, la quantit&eacute; de donn&eacute;es d&rsquo;image augmente &eacute;galement. Si la quantit&eacute; de donn&eacute;es augmente, un saut d&rsquo;images peut se produire m&ecirc;me si la vitesse d&rsquo;enregistrement est r&eacute;gl&eacute;e sur la vitesse d&rsquo;enregistrement maximale. En cas de saut d&rsquo;image, au moins une image est sauvegard&eacute;e par seconde.</li>
+                <li>V&eacute;rifiez si vous essayez d&rsquo;acc&eacute;der en tant qu&rsquo;autre utilisateur sans formater le dossier par d&eacute;faut qui est d&eacute;j&agrave; enregistr&eacute; ou utilis&eacute;.</li>
+
             </ul>
         </div>
     </div>
@@ -227,22 +231,23 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Paramètres d'enregistrement</h2>
+        <h2>Param&egrave;tres d&apos;enregistrement</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <h3>Enregistrer le profil</h3>
-            <p>Le nom du profil vid&eacute;o qui sera utilis&eacute; pour l&apos;enregistrement s&apos;affiche. Le profil d&eacute;fini comme «&nbsp;Profil d&apos;enregistrement&nbsp;» dans <strong class="UI">[Base]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Type de profil]</strong></a> s&apos;affiche.</p>
+        <h3>Profil d&rsquo;enregistrement Edge</h3>
+            <p>Le nom du profil vid&eacute;o qui sera utilis&eacute; pour l&apos;enregistrement s&apos;affiche. Le profil d&eacute;fini comme «Profil d&rsquo;enregistrement Edge&nbsp;» dans <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Type de profil]</strong></a> s&rsquo;affiche.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3>Enregistrement normal</h3>
-			<p>Ceci d&eacute;finit l&apos;enregistrement normal sans &eacute;v&eacute;nement.</p>
+            <h3>Enregistrement continu</h3>
+            <p>Ceci d&eacute;finit l&apos;enregistrement normal sans &eacute;v&eacute;nement.</p>
             <ul>
         
                     <li><strong class="UI">Aucun</strong>&nbsp;: Aucune image de cam&eacute;ra n&apos;est enregistr&eacute;e.</li>
-                    <li><strong class="UI">Image-I</strong>&nbsp;: Enregistre une image-I uniquement pour l&apos;enregistrement normal.</li>
-                    <li><strong class="UI">Plein format</strong>&nbsp;: Enregistre une image compl&egrave;te en enregistrement normal.</li>
+                    <li><strong class="UI">Image-I</strong>: Enregistre une image-I uniquement pour l&rsquo;enregistrement continu.
+                    </li>
+                    <li><strong class="UI">Plein format</strong>: Enregistre un plein format uniquement pour l&rsquo;enregistrement continu.</li>
                 </ul>
         </div>
 
@@ -263,7 +268,7 @@
             <p>D&eacute;finit la dur&eacute;e d&apos;enregistrement de l&apos;image apr&egrave;s un &eacute;v&eacute;nement. Une image peut &ecirc;tre enregistr&eacute;e pendant 5 secondes, 10 secondes, 30 secondes, 60 secondes ou 120 secondes apr&egrave;s l&apos;occurrence d&apos;un &eacute;v&eacute;nement.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Type de fichier enregistré</h3>
+            <h3>Type de fichier enregistr&eacute;</h3>
             <p>D&eacute;finit le format de fichier pour l&apos;enregistrement d&apos;une image. Lorsque le format d&apos;enregistrement de fichier est modifi&eacute;, les donn&eacute;es existantes sont effac&eacute;es.</p>
             <ul>
                 <li><strong class="UI">STW</strong>: C&apos;est le type de fichier unique pour Hanwha Techwin.</li>
@@ -271,30 +276,29 @@
             </ul>
         </div>
 
+
     </div>
 </div>
-
 
 
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Config. enreg. normal</h2>
+        <h2>Enregistrement continuCalendrier</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Vous pouvez d&eacute;finir l&apos;heure d&apos;enregistrement d&apos;une image sur l&apos;appareil d&apos;enregistrement.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            
             <h3>Toujours</h3>
             <p>Toujours enregistrer une image sur l&apos;appareil d&apos;enregistrement.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Heure programm&eacute;e uniquement</h3>
-            <p>Enregistre une image uniquement &agrave; l&apos;heure programm&eacute;e. La date, allant du dimanche au samedi en fonction de l&apos;horaire actuel de la cam&eacute;ra, est affich&eacute;e sur le calendrier visible lorsque l&rsquo;option <strong class="UI">[Heure programm&eacute;e uniquement]</strong> est s&eacute;lectionn&eacute;e. Vous pouvez d&eacute;finir l&apos;heure de configuration des actions de l&apos;&eacute;v&eacute;nement en cliquant ou en faisant glisser la souris sur le calendrier. L&apos;heure d&apos;activation de l&apos;&eacute;v&eacute;nement d&eacute;finie est r&eacute;alis&eacute;e plusieurs fois le jour de la semaine et &agrave; l&apos;heure concern&eacute;s.</p>
-			<p>Vous pouvez changer l&apos;unit&eacute; d&apos;affichage de l&apos;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Lorsque vous cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>, toutes les heures d&apos;activation des &eacute;v&eacute;nements d&eacute;finies seront supprim&eacute;es. Pour confirmer ou modifier l&apos;heure de la cam&eacute;ra, reportez-vous &agrave; la section <strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
+            <p>Enregistre une image uniquement &agrave; l&apos;heure programm&eacute;e. La date, allant du dimanche au samedi en fonction de l&rsquo;horaire actuel de la cam&eacute;ra, est affich&eacute;e sur le calendrier visible lorsque l&rsquo;option <strong class="UI">[Heure programm&eacute;e uniquement]</strong> est s&eacute;lectionn&eacute;e. Vous pouvez d&eacute;finir l&apos;heure de configuration des actions de l&apos;&eacute;v&eacute;nement en cliquant ou en faisant glisser la souris sur le calendrier. L&apos;heure d&apos;activation de l&apos;&eacute;v&eacute;nement d&eacute;finie est r&eacute;alis&eacute;e plusieurs fois le jour de la semaine et &agrave; l&apos;heure concern&eacute;s.</p>
+			<p>Vous pouvez changer l&rsquo;unit&eacute; d&rsquo;affichage de l&rsquo;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Lorsque vous cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>, toutes les heures d&apos;activation des &eacute;v&eacute;nements d&eacute;finies seront supprim&eacute;es. Pour confirmer ou modifier l&apos;heure de la cam&eacute;ra, reportez-vous &agrave; la section <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
         </div>
 
     </div>

@@ -1,7 +1,20 @@
-﻿<h1 class="wn5-setup-main-title">Camera setup</h1>
+<h1 class="wn5-setup-main-title">Camera setup</h1>
 <div class="wn5-setup-section">
-    <p>You can change the camera settings to capture the best image in the environment where the camera is installed. Image presets suitable for various environments are provided by default; the user can also specify camera settings directly. You can check on the camera preview screen how the camera image is displayed according to the settings. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. If the time-out time (240 seconds) has passed without clicking
-the <strong class="UI">[Apply]</strong> button after changing the setting, the previous setting will be restored.</p>
+    <p>You can change the camera settings to capture the best image in the environment where the camera is installed. Image presets suitable for various environments are provided by default; the user can also specify camera settings directly. You can check on the camera preview screen how the camera image is displayed according to the settings. When you complete the setting, click the [Apply] button at the bottom of the page. If the time-out time (240 seconds) has passed without clicking the <strong class="UI">[Apply]</strong> button after changing the setting, the previous setting will be restored.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Comparison view</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can see the videos of before and after changing camera video setting values all at once in the <strong class="UI">[Before]</strong> and <strong class="UI">[After]</strong> panels.</p>
+            <p>In the case of PTZ camera, if you click <strong class="UI">[PTZ control]</strong>, a PTZ adjustment panel rather than camera video screen is shown in the place of the [Before] panel. Also, if you click <strong class="UI">[Refresh]</strong>, it updates the source video in the [Before] panel with values most recently applied.</p>
+        </div>
+      
+    </div>
 </div>
 
 
@@ -12,27 +25,22 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting a camera channel, you can set the details of each channel. </p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">The channel number last selected on the Live or Playback page is automatically selected.</p>
+            <p>After selecting a camera channel, you can set the details of each channel.</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">On the live page or play page, the last selected channel number is automatically displayed.</p>
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Camera setup] can only be configured on channel 1.</p>
             <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
-            <p ng-if="SupportAutoImageAlignment">&apos;Camera setup&apos; can only be set on CH1.</p>
-
-            <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below. &apos;Camera setup&apos; can be enabled on Channel 1 only.</p>
+            <p ng-if="SupportAutoImageAlignment">&apos;Camera setup&apos; can only be set on CH1.</p><!-- <p ng-if="SupportChannelExpansionFeature">??? ? ??? ??? ????. '??? ??'? ?? 1?? ??????.  </p>
             <ul ng-if="SupportChannelExpansionFeature">
-                    <li>Channel 1: Displays a video of the fisheye camera as is without correction.</li>
-                    <li>Channel 2: Dewarps a 360˚ video and displays it in a wall panoramic view.</li>
-                    <li>Channel 3: Dewarps a 360˚ video and displays it in a panoramic up/down-split view.</li>
-                    <li>Channel 4: Dewarps 4 screens similar to human visual perception and displays them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
-                    <li>Channel 5: Displays the top left video from the 4-split view of Channel 4.</li>
-                    <li>Channel 6: Displays the top right video from the 4-split view of Channel 4.</li>
-                    <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
-                    <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
-            </ul> -->
-
-            <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p> -->
-        </div>
+                <li>?? 1: ???? ???? ??? ?? ?? ??? ?????.</li>
+                <li>?? 2: 360� ??? ??? ??? ?? ???? ??? ???? ???? ?????.</li>
+                <li>?? 3: 360� ??? ??? ??? ?? ???? ???? ??? ?? ?? ???? ?????.</li>
+                <li>?? 4: ??? ??? ????? ?? ??? ?? ?? 4?? ??? ?????. ?? ??? ???? ?? ????? ????? ? ??? ??? ? ????.</li>
+                <li>?? 5: ?? 4? 4?? ???? ?? ??? ??? ?????.</li>
+                <li>?? 6: ?? 4? 4?? ???? ??? ??? ??? ?????.</li>
+                <li>?? 7: ?? 4? 4?? ???? ?? ??? ??? ?????.</li>
+                <li>?? 8: ?? 4? 4?? ???? ??? ??? ??? ?????.</li>
+            </ul> --> <!-- <p>??? ??? ? ???? ?? ?? ??? ??? ?? ?? ???? ?????. </p> --></div>
 	</div>
 </div> 
 
@@ -43,16 +51,16 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>You can adjust the pan, tilt, and zoom actions of the camera. </p>
+            <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the PTZ jog panel will appear.</p>
         </div>
 			
         <div class="wn5-online-help-action">
     	   <h4>Adjusting the PTZ</h4>
             <ul>
-                <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse, the camera moves to the pan and tilt.  </li>
+                <li><span class="tui tui-wn5-ptz-handle"></span> When you drag the  icon with the mouse, the camera moves to the pan and tilt.</li>
                 <li>By using the zoom bar, you can adjust the video zooming ratio. Or select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom in or the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom out.</li>
-                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span>  icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li><span class="tui tui-wn5-ptz-near"></span> Move the focus near by clicking the  icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically once, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
                 <li>Place the screen center toward the north, and click the <span class="tui tui-wn5-north"></span> (Set North) button to change the location to the north. (The Set North button displays when you click the <strong class="UI">[OSD]</strong> tab.)</li>
             </ul>
@@ -67,7 +75,7 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each preset, then you may not set some of the items in the detailed camera settings.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the 'Type' function can be set.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the &apos;Type&apos; function can be set.</p>
         </div>
 </div>
 </div>
@@ -78,129 +86,14 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each pan/tilt preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each preset, then you may not set some of the items in the detailed camera settings.</p>
+            <p>To apply the same camera setup for every preset, select <strong class="UI">[Global]</strong>. To apply a different setup for each pan/tilt preset, select <strong class="UI">[Preset]</strong>.</p>
+            <p>The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT setup</a> page. If you select <strong class="UI">[Preset]</strong> and set the camera setting for each preset, then you may not set some of the items in the detailed camera settings.</p>
         </div>
 </div>
 </div>
-<!-- 
-<hr class="wn5-setup-hr" ng-if="ImagePresetMode">
-<div class="wn5-setup-section" ng-if="ImagePresetMode">
-    <div class="wn5-setup-section-heading">
-        <h2>이미지 프리셋 모드</h2>
-    </div>
-    <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>이미지 프리셋이 목적 별로 다양하게 제공됩니다. 카메라를 사용하는 환경에 맞춰 이미지 프리셋을 선택합니다. </p>
-            <ul>
-                <li><strong class="UI">화질</strong>: 카메라 출하 시 기본 모드입니다. </li>
-                <li><strong class="UI">움직임</strong>: 움직이는 피사체를 선명하게 촬영하고자 할 때 주로 사용합니다. 도로, 박물관과 같이 움직이는 피사체가 많을 경우에 선택합니다. 저조도 환경일 때는 노이즈가 증가할 수 있고, 감도가 낮아질 수 있습니다.</li>
-                <li><strong class="UI">노이즈 감쇄</strong>: 저조도 환경에서도 노이즈가 적도록 촬영하고자 할 때 주로 사용합니다. </li>
-                <li><strong class="UI">밝은 영상</strong>: 영상에서 어두운 영역이 잘 보이도록 영상 전체를 밝게 보이도록 촬영할때 사용합니다. 대신 영상의 대비 효과가 낮아질 수 있습니다.</li>
-                <li><strong class="UI">움직임 및 노이즈 감쇄</strong>: 도로, 박물관과 같이 움직이는 피사체가 많고, 저조도 환경에서도 노이즈가 적은 영상이 필요할 때 사용합니다.</li>
-                <li><strong class="UI">움직임 및 밝은 영상</strong>: 도로, 박물관과 같이 움직이는 피사체가 많고, 전체 영상에서 어두운 영역을 밝게 보이게 할 때 사용합니다.    </li>
-                <li><strong class="UI">선명한 색상</strong>: 전체 영상을 밝고 선명하게 보이도록 할 때 사용합니다. 영상의 대비 효과가 낮아지고 색 재현성이 낮아질 수 있습니다.</li>
-                <li><strong class="UI">사용자 프리셋</strong>: 사용자가 설정한 대로 영상이 보이도록 할 때 사용합니다.</li>
-            </ul>
-        </div>
-        <div class="wn5-setup-section-article-content">
-            <h3>이미지 프리셋별 기본값</h3>
-            <p>제공되는 이미지 프리셋을 선택하면 해당 이미지 프리셋의 초깃값으로 변경됩니다, 초깃값은 다음과 같으며 이 초깃값은 수정할 수 없습니다. 이미지 프리셋 별 상세 항목들 중 수정할 수 있는 항목들은 상황에 맞게 변경할 수 있습니다. </p>
-            <table class="table table-bordered wn5-setup-table">
-                <thead>
-                
-                <tr>
-                    <td>이미지 프리셋</td>
-                    <td>셔터 최소</td>
-                    <td>셔터 최대</td>
-                    <td>AGC</td>
-                    <td>SSDR</td>
-                    <td>SSNR</td>
-                    <td>COLOR</td>
-                </tr>
-                </thead>
-                <tbody>
-               
-                <tr>
-                                
-                                            
-                    <td>화질</td>
-                    <td>1/5</td>
-                    <td>1/12000</td>
-                    <td>높음</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>움직임</td>
-                    <td>1/30</td>
-                    <td>1/12000</td>
-                    <td>높음</td>
-                    <td>12</td>
-                    <td>4</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>노이즈 감쇄</td>
-                    <td>1/15</td>
-                    <td>1/12000</td>
-                    <td>중간</td>
-                    <td>12</td>
-                    <td>12</td>
-                    <td>50</td>
-                </tr>
-                    
-                <tr>
-                    <td>밝은 영상</td>
-                    <td>1/5</td>
-                    <td>1/12000</td>
-                    <td>높음</td>
-                    <td>18</td>
-                    <td>12</td>
-                    <td>50</td>
-                </tr>
-                    
-                <tr>
-                    <td>움직임 및 노이즈 감쇄</td>
-                    <td>1/30</td>
-                    <td>1/12000</td>
-                    <td>중간</td>
-                    <td>12</td>
-                    <td>4</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>움직임 및 밝은 영상</td>
-                    <td>1/30</td>
-                    <td>1/12000</td>
-                    <td>높음</td>
-                    <td>18</td>
-                    <td>4</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td>선명한 색상</td>
-                    <td>1/5</td>
-                    <td>1/12000</td>
-                    <td>높음</td>
-                    <td>18</td>
-                    <td>12</td>
-                    <td>90</td>
-                </tr>
-                <tr>
-                    <td>사용자 프리셋</td>
-                    <td>수동</td>
-                    <td>수동</td>
-                    <td>수동</td>
-                    <td>수동</td>
-                    <td>수동</td>
-                    <td>수동</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div> --> 
+
+
+
 <hr class="wn5-setup-hr" ng-if="Sensor">
 <div class="wn5-setup-section" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
@@ -211,15 +104,15 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
             <p>Set how many frames per second the CMOS sensor of the camera will capture.</p>
         </div>
        <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul>
-                <li ng-if="!SupportAutoImageAlignment">Changing the sensor mode will reset the whole camera setting.</li>
-                <li>A different frame rate can not be set to each image preset and the frame rate is applied in the same way to every image preset.</li>
-                <li>The maximum value of <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Frame rate]</strong> varies according to the number of frames set for the sensor mode. </li>
-            </ul>
-        </div>  
+                <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                <ul><!-- PNM-9030V??? ?? ??? ???? ??? ?? ?? ????? ???? ?? ??. TW ??. ?? ????? ??? ???? (?? ??) ??? ?? ??. 2020-01-16.  --><li ng-if="!SupportAutoImageAlignment">Changing the sensor mode will reset the whole camera setting.</li>
+                    <li>Sensor mode value cannot be set differently for each image preset. Frame rate applies identical to all image presets.</li>
+                    <li>The maximum value of <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Frame rate]</strong> varies according to the number of frames set for the sensor mode.</li>
+                </ul>
+            </div>  
     </div>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="ImagePresetMode && !BoxTemperatureDetection">
 <div class="wn5-setup-section" ng-if="ImagePresetMode && !BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
@@ -227,10 +120,10 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Various image presets are provided for specific purposes. Select an image preset according to the environment where the camera will be used.</p>
+            <p>Various image presets are provided for specific purposes. Select an image preset that best suits your camera environment.</p>
             <ul>
-                <li><strong class="UI">User-defined preset 1</strong>: Used for displaying the image as set by the user.  </li>
-                <li><strong class="UI">User-defined preset 2</strong>: Used for displaying the image as set by the user.  </li>
+                <li><strong class="UI">User-defined preset 1</strong>: Used for displaying the image as set by the user.</li>
+                <li><strong class="UI">User-defined preset 2</strong>: Used for displaying the image as set by the user.</li>
                 <li><strong class="UI">Outdoor daytime</strong>: Used to display a clear and smooth video taken outdoor in daytime.</li>
                 <li><strong class="UI">Outdoor night time</strong>: Used to reduce the level of noises for video taken outdoor at night with low brightness and lighten up dark areas.</li>
                 <li><strong class="UI">Indoor backlight</strong>: Used to display a video where indoor and outdoor are both identifiable with indoor backlight.</li>
@@ -243,11 +136,12 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>After selecting an image preset mode, change the detailed settings of camera image, such as white balance and night/day modes, and click <strong class="UI">[Apply]</strong> to save the changed value as the image preset value. To reset it to the default value, click the <strong class="UI">[Reset]</strong> button. </li>
+                <li>After selecting an image preset mode, change the detailed settings of camera image, such as white balance and night/day modes, and click <strong class="UI">[Apply]</strong> to save the changed value as the image preset value. To reset it to default, click the <strong class="UI">[Reset]</strong> button.</li>
             </ul>
         </div>
     </div>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="ImagePresetIndoor">
 <div class="wn5-setup-section" ng-if="ImagePresetIndoor">
     <div class="wn5-setup-section-heading">
@@ -278,22 +172,23 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>SSDR increases the brightness of a dark area to reveal an image in an environment where there is a significant difference between a dark area and a bright area. </p>
+            <p>SSDR increases the brightness of a dark area to reveal an image in an environment where there is a significant difference between a dark area and a bright area. <!-- ????? ???? ??? ????? ???? ???? ???? ??? ??? ? ????. ??? ???? ??? ???? ????? ??? ???? ???? ???.--></p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>SSDR </h3>
-            <p>To use SSDR, select <strong class="UI">[Enable]</strong>. </p>
+            <h3>SSDR</h3>
+            <p>To use SSDR, select <strong class="UI">[Enable]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Level </h3>
+            <h3>Level</h3>
             <p>Adjust the level of dynamic range. As the level goes higher, a dark area becomes brighter.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>D-Range </h3>
-            <p>Select the amplitude area of the dynamic range. </p>
+            <h3>D-Range</h3>
+            <p>Select the amplitude area of the dynamic range.</p>
         </div>
     </div>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection">
 <div class="wn5-setup-section" ng-if="BoxTemperatureDetection">
     <div class="wn5-setup-section-heading">
@@ -312,9 +207,9 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>If <strong class="UI">[Flip]</strong> is set to <strong class="UI">[On]</strong> in <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[Video setup]</strong>&gt;<strong class="UI">[Video rotation]</strong>, the <strong class="UI">[Sky]</strong> and <strong class="UI">[Ground]</strong> modes of <strong class="UI">[LCE]</strong> will be reversed. This means that a green box will be displayed at the bottom of the screen in the <strong class="UI">[Sky]</strong> mode, and at the top of the screen in the <strong class="UI">[Ground]</strong> mode, and the contrast in the box area will be enhanced.</li>
+                <li>If <strong class="UI">[Flip]</strong> is set to <strong class="UI">[On]</strong> in <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Video setup]</strong>&gt;<strong class="UI">[Video rotation]</strong>, the <strong class="UI">[Sky]</strong> and <strong class="UI">[Ground]</strong> modes of <strong class="UI">[LCE]</strong> will be reversed. This means that a green box will be displayed at the bottom of the screen in the <strong class="UI">[Sky]</strong> mode, and at the top of the screen in the <strong class="UI">[Ground]</strong> mode, and the contrast in the box area will be enhanced.</li>
             </ul>
-        </div>       
+        </div>
     </div>
 </div>
 
@@ -325,29 +220,25 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>You can make corrections to show the color white correctly and other colors normally, in any lighting environment. </p>
+            <p>You can make corrections to show the color white correctly and other colors normally, in any lighting environment. <!-- ??? ???? ???? ??? ? ????. --></p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Mode </h3>
+            <h3>Mode</h3>
             <p>Select the white balance mode according to the environment where the camera is being used.</p>
             <ul>
-                <li><strong class="UI">Manual</strong>: You can adjust red gain and blue gain manually. If more red color is shown, lower the red gain, and if more blue color is shown, lower the blue gain. If more green color is shown, raise both the red and the blue values.
-                </li>
-                <li><strong class="UI">ATW</strong>: Corrects the camera color automatically. </li>
-                <li><strong class="UI">Outdoor</strong>: The colors of the camera are corrected to be optimized for an outdoor environment. 
-                </li>
-                <li><strong class="UI">Indoor</strong>: Correction is made to optimize colors for an indoor environment. 
-                </li>
-                <li><strong class="UI">AWC</strong>: Screen correction is made to optimize the colors for the current lighting environment. When you aim the camera at white paper and press the <strong class="UI">[Set]</strong> button, the red gain and blue gain will be adjusted and applied to the image. The white balance value continues to be applied to the currently displayed video. If the environment changes, this should be adjusted again. </li>
+                <li><strong class="UI">Manual</strong>: You can adjust red gain and blue gain manually. If more red color is shown, lower the red gain, and if more blue color is shown, lower the blue gain. If more green color is shown, raise both the red and the blue values.</li>
+                <li><strong class="UI">ATW</strong>: Corrects the camera color automatically.</li>
+                <li><strong class="UI">Outdoor</strong>: The colors of the camera are corrected to be optimized for an outdoor environment.</li>
+                <li><strong class="UI">Indoor</strong>: Correction is made to optimize colors for an indoor environment.</li>
+                <li><strong class="UI">AWC</strong>: Screen correction is made to optimize the colors for the current lighting environment. When you aim the camera at white paper and press the <strong class="UI">[Set]</strong> button, the red gain and blue gain will be adjusted and applied to the image. The white balance value continues to be applied to the currently displayed video. If the environment changes, this should be adjusted again.</li>
+                <li><strong class="UI">Narrow ATW</strong>: Auto-corrects camera color in 2800 K ~ 9000 K environment.<strong class="UI">[ATW]</strong>The color temperature range is narrower than Mode.</li>
                 <li><strong class="UI">MERCURY</strong>: Screen correction is made to optimize the colors for the mercury&nbsp;lighting environment.</li>
-                <li><strong class="UI">SODIUM</strong>: Screen correction is made to optimize the colors for the sodium&nbsp;lighting environment.</li>
-                <!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: Screen correction is made to optimize the colors for the mercury&nbsp;lighting environment.</li>
-                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: Screen correction is made to optimize the colors for the sodium&nbsp;lighting environment.</li> -->
-            </ul>
+                <li><strong class="UI">SODIUM</strong>: Screen correction is made to optimize the colors for the sodium&nbsp;lighting environment.</li><!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: ??? ??? ??? ?? ??? ?????? ?? ?????.</li>
+                <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: ??? ??? ???? ?? ??? ?????? ?? ?????.</li> --></ul>
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3>Red gain </h3>
+            <h3>Red gain</h3>
             <p>Adjust the red gain. If the red gain is high, more red color is shown on the screen. If too much red is shown, lower the red gain.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -357,13 +248,10 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>In any of the following cases, white balance may not operate normally. In such case, adjust the white balance through the <strong class="UI">[AWC]</strong> mode.
-                </li>
+                <li>In any of the following cases, white balance may not operate normally. In such case, adjust the white balance through the <strong class="UI">[AWC]</strong> mode.</li>
                 <ul>
-                    <li>If the surrounding environment exceeds the color temperature correction range, such as a clear sky or sunset
-                    </li>
-                    <li>If the surrounding environment is dark 
-                    </li>
+                    <li>If the surrounding environment exceeds the color temperature correction range, such as a clear sky or sunset</li>
+                    <li>If the surrounding environment is dark</li>
                     <li>If the camera faces directly toward a fluorescent light or if there is a significant illumination change.</li>
                 </ul>
             </ul>
@@ -379,135 +267,152 @@ the <strong class="UI">[Apply]</strong> button after changing the setting, the p
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="HLC">An image captured against the light can be corrected. Select from among Off, BLC, HLC, or WDR in <strong class="UI">[Mode]</strong> and change the setting according to the selected backlight mode. </p>
-            <p ng-if="!HLC">An image captured against the light can be corrected. Select from among Off, BLC, or WDR in <strong class="UI">[Mode]</strong> and change the setting according to the selected backlight mode. </p>
-
-        </div>
-        <div class="wn5-setup-section-article-content" >
+            <p ng-if="HLC">An image captured against the light can be corrected. Select from among Off, BLC, HLC, or WDR in <strong class="UI">[Mode]</strong> and change the setting according to the selected backlight mode.</p>
+            <p ng-if="!HLC">An image captured against the light can be corrected. Select from among Off, BLC, or WDR in <strong class="UI">[Mode]</strong> and change the setting according to the selected backlight mode.</p>
+        </div><!-- <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>????</h4>
+            <ul>
+                <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>
+            </ul>
+        </div>  --><div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
-            <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly. </p>
-            <p ng-if="PTZModel">Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
+            <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly.</p>
+            <p ng-if="PTZModel">If you select BLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLC level</h5>
-            <p>You can select a level from low, middle or high. The higher the level, the brighter the set area. </p>
+            <p>You can select a level from low, middle or high. The higher the level, the brighter the set area.</p>
         </div>
-        
         <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
             <h5>BLC level</h5>
             <p>Move the slide bar to adjust the BLC level. The higher the level, the brighter the set area.</p>
         </div>
-
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Area setting</h5>
             <ul>
-                <li><strong class="UI">Top</strong>: Set how far the top surface is away from the top of the screen. </li>
-                <li><strong class="UI">Bottom</strong>: Set how far the bottom surface is away from the bottom of the screen. </li>
-                <li><strong class="UI">Left</strong>: Set how far the left surface is away from the left side of the screen. </li>
-                <li><strong class="UI">Right</strong>: Set how far the right surface is away from the right side of the screen. </li>
+                <li><strong class="UI">Top</strong>: Set how far the top surface is away from the top of the screen.</li>
+                <li><strong class="UI">Bottom</strong>: Set how far the bottom surface is away from the bottom of the screen.</li>
+                <li><strong class="UI">Left</strong>: Set how far the left surface is away from the left side of the screen.</li>
+                <li><strong class="UI">Right</strong>: Set how far the right surface is away from the right side of the screen.</li>
             </ul>
-        </div> 
-		        <div class="wn5-online-help-info" ng-if="!NormalizedBLCLevel">
+        </div>
+        <div class="wn5-online-help-info" ng-if="!NormalizedBLCLevel">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>The green box that displays the menu to apply weights to the brightness setting of BLC will appear for about 15 seconds before disappearing. </li>
-                <li>To prevent malfunctions while setting the BLC, the vertical interval of the BLC is limited to max 60 / min 40 and the horizontal interval is limited to max 60 / min 30.  </li>
+                <li>The green box that displays the menu to apply weights to the brightness setting of BLC will appear for about 15 seconds before disappearing.</li>
+                <li>To prevent malfunctions while setting the BLC, the vertical interval of the BLC is limited to max 60 / min 40 and the horizontal interval is limited to max 60 / min 30.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
-            <p>The HLC (High Light Compensation) mode blocks strong lighting such as a streetlight or the headlights of a vehicle,<strike> </strike>to prevent failures to detect a neighboring object, such as a car license plate, due to saturation of strong lights. </p>
-            <p ng-if="PTZModel">Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons. </p>
+            <p>The HLC (High Light Compensation) mode blocks strong lighting such as a streetlight or the headlights of a vehicle,<strike></strike>to prevent failures to detect a neighboring object, such as a car license plate, due to saturation of strong lights.</p>
+            <p ng-if="PTZModel">If you select HLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
-            <h5>HLC level </h5>
-            <p>Set the level of exposures and adjust the highlight areas. </p>
-            <p>You can select a level from low, middle or high. The higher the level, the higher the correction and the bigger the difference is for highlight-blocked area.</p>
+            <h5>HLC level</h5>
+            <p>Set the level of exposures and adjust the highlight areas.</p>
+            <p>The higher the level, the higher the correction and the bigger the difference is for highlight-blocked area.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Mask</h5>
             <p>Select whether or not to apply the mask.</p>
             <ul>
-                <li> <strong class="UI">Off</strong>: Does not create blocked area.</li>
-                <li> <strong class="UI">On</strong>: Always blocks areas of brightness above a certain level.</li>
-                <li> <strong class="UI">All day</strong>: Blocks areas except during very bright or dark time.</li>
-                <li> <strong class="UI">Night only</strong>: Blocks areas until it gets really dark.</li>
+                <li><strong class="UI">Off</strong>: Does not create blocked area.</li>
+                <li><strong class="UI">On</strong>: Always blocks areas of brightness above a certain level.</li>
+                <li><strong class="UI">All day</strong>: Blocks areas except during very bright or dark time.</li>
+                <li><strong class="UI">Night only</strong>: Blocks areas until it gets really dark.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
-            <h5>Mask color    </h5>
-            <p>Sets the color of the blocked area. </p>
+            <h5>Mask color</h5>
+            <p>Sets the color of the blocked area.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
-            <h5>Mask tone </h5>
-            <p>Sets the tone of the blocked area. </p>
+            <h5>Mask tone</h5>
+            <p>Sets the tone of the blocked area.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
-            <h5>Dimming </h5>
+            <h5>Dimming</h5>
             <p>Detects the strongly illuminated area on the screen and adjusts brightness to reduce the size of the saturated areas.</p>
         </div>
   
-        <div class="wn5-setup-section-article-content" ng-if="HLC && !PTZModel"> 
+        <div class="wn5-setup-section-article-content" ng-if="(HLC && !PTZModel) && !XCELevel">
             <h5>Area setting</h5>
-            <p>Set the blocked area’s size and location. </p>
+            <p>Set the blocked area&rsquo;s size and location.</p>
             <ul>
-                <li><strong class="UI">Top</strong>: Set how far the top surface is away from the top of the screen.  </li>
-                <li><strong class="UI">Bottom</strong>: Set how far the bottom surface is away from the bottom of the screen.  </li>
-                <li><strong class="UI">Left</strong>: Set how far the left surface is away from the left side of the screen.  </li>
-                <li><strong class="UI">Right</strong>: Set how far the right surface is away from the right side of the screen.  </li>
+                <li><strong class="UI">Top</strong>: Set how far the top surface is away from the top of the screen.</li>
+                <li><strong class="UI">Bottom</strong>: Set how far the bottom surface is away from the bottom of the screen.</li>
+                <li><strong class="UI">Left</strong>: Set how far the left surface is away from the left side of the screen.</li>
+                <li><strong class="UI">Right</strong>: Set how far the right surface is away from the right side of the screen.</li>
             </ul>
-        </div>  
+        </div>
         <div class="wn5-online-help-info" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>At night, it only operates when the size of a highlight goes over the threshold in a dark environment.</li>
                 <li>At night, HLC does not operate when it is overall too bright or dark. In daytime, HLC does not operate when it is too dark.</li>
-                <li>The green box that displays the menu to apply weights to the brightness setting of initial HLC will appear for about 15 seconds before disappearing.  </li>
-                <li>To prevent malfunctions while setting the HLC, the vertical interval of the HLC are is limited to max 60 / min 40 and the horizontal interval is limited to max 60 / min 30. </li>
+                <li>When setting up HLC, there are minimum and maximum sizes to prevent malfunction of HLC.</li>
             </ul>
         </div>
 			
             <div class="wn5-setup-section-article-content">
                 <h3><a class="wn5-online-help-link" name="WDR"></a>WDR</h3>
-            <p>The WDR (Wide Dynamic Range) mode shows both a dark area and a bright area clearly in a backlight environment. This method captures once with a fast shutter to show a bright area clearly and again with a slow shutter to show a dark area clearly, using the dual shutters of the camera, and then combines only the parts shown clearly from the two images into one image. If the WDR mode is used, noise may occur between the bright area and the dark area. </p>
-            <p><img src="./images/cameraSetup_WDR_1.png">  <img src="./images/cameraSetup_WDR_2.png"><br>
-WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WDR mode on&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-            </div>
-					    
-        <div class="wn5-setup-section-article-content">
+            <p>The WDR (Wide Dynamic Range) mode shows both a dark area and a bright area clearly in a backlight environment. This method captures once with a fast shutter to show a bright area clearly and again with a slow shutter to show a dark area clearly, using the dual shutters of the camera, and then combines only the parts shown clearly from the two images into one image. If the WDR mode is used, noise may occur between the bright area and the dark area.</p>
+
+            <table border="0">
+                <tr>
+                    <td><img src="./images/cameraSetup_WDR_1.png"></td>
+                    <td><img src="./images/cameraSetup_WDR_2.png"></td>
+                </tr>
+                <tr>
+                    <td>WDR mode off</td>
+                    <td>WDR mode on</td>
+                </tr>
+            </table><!-- <p><img src="./images/cameraSetup_WDR_1.png" width="230" height="186">  <img src="./images/cameraSetup_WDR_2.png" width="230" height="186"><br>WDR ?? ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WDR ?? ?</p>
+            </div> --><div class="wn5-setup-section-article-content">
             <h5>WDR level</h5>
             <p>Adjusts the intensity of backlight correction.</p>
         </div>
+            <div class="wn5-setup-section-article-content" ng-if="WDRControlModeOptions">
+            <h5>WDR control</h5>
+                <p>Sets the WDR action option.</p>
+                <ul>
+                    <li><strong class="UI">Always use</strong>: the WDR mode is enabled at all times.</li>
+                    <li><strong class="UI">Auto</strong>: Video is analyzed and WDR mode is automatically turned on when backlight correction is necessary.</li>
+                    <li><strong class="UI">Turn off in low light</strong>: The WDR mode is automatically turned off in a low-light environment.</li>
+                    <li><strong class="UI">Turn off in B/W</strong>: The WDR mode is automatically turned off when the B/W mode operates.</li>
+                </ul>
+            </div>
         <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
             <h5>Auto</h5>
-            <p>If <strong class="UI">[Enable]</strong> is selected, the image is analyzed and WDR mode is activated automatically when backlight correction is necessary. </p>
+            <p>If <strong class="UI">[Enable]</strong> is selected, the image is analyzed and WDR mode is activated automatically when backlight correction is necessary.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="WDRLowLightOptions">
-            <h5>Turn off in low light </h5>
-            <p>If <strong class="UI">[Enable]</strong> is selected, the WDR mode is turned off automatically in a low-light environment. </p>
+            <h5>Turn off in low light</h5>
+            <p>If <strong class="UI">[Enable]</strong> is selected, the WDR mode is turned off automatically in a low-light environment.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="WDRIRLEDEnableOptions">
             <h5>Turn off in B/W</h5>
-            <p>If <strong class="UI">[Enable]</strong> is selected, the WDR mode is turned off automatically when the B/W mode operates. </p>
+            <p>If <strong class="UI">[Enable]</strong> is selected, the WDR mode is turned off automatically when the B/W mode operates.</p>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
 
             <ul>
-                <li>When WDR mode is selected, the shutter value will be reset. The screen will become bright and then become dark.  </li>
-                <li ng-if="PIrisModeOptions && AFLKModeOptions">When the P-Iris lens is used manually or the anti flicker shutter is used, the performance of WDR mode becomes limited.  </li>
-                <li>When WDR mode is used, the frame rate is reduced by half.  </li>
+                <li>When WDR mode is selected, the shutter value will be reset. The screen will become bright and then become dark.</li>
+                <li ng-if="PIrisModeOptions && AFLKModeOptions">When the P-Iris lens is used manually or the anti flicker shutter is used, the performance of WDR mode becomes limited.</li>
+                <li>When WDR mode is used, the frame rate is reduced by half.</li>
                 <li>It is recommended to use the WDR mode when a camera is installed indoor and there is very strong backlight.</li>
                 <li>If the WDR mode is used, noise may occur between the bright area and the dark area.</li>
-                <li>If the WDR mode is used, noise may occur in the motion detection area. </li>
-                <li>Please turn off the WDR mode because, depending on the lighting condition in WDR mode, the following problems could occur: </li>
+                <li>If the WDR mode is used, noise may occur in the motion detection area.</li>
+                <li>Please turn off the WDR mode because, depending on the lighting condition in WDR mode, the following problems could occur:</li>
                 <ul>
                     <li>When there are unnatural color changes and/or unnatural symptoms on the screen.</li>
                     <li>When there is noise on the bright part of the screen.</li>
                 </ul>
-                <li>&nbsp;The WDR performance may vary depending on the size of bright areas on the screen, so adjust the installation angle properly for the best WDR performance.</li>
+                <li>The WDR performance may vary depending on the size of bright areas on the screen, so adjust the installation angle properly for the best WDR performance.</li>
                 <li>If you set the WDR level too high, the screen may exhibit unnatural symptoms.</li>
-                <li>&nbsp;For the best WDR performance, it is recommended to set the exposure iris to <strong class="UI">[Auto]</strong>.</li>
+                <li>For the best WDR performance, it is recommended to set the exposure iris to <strong class="UI">[Auto]</strong>.</li>
             </ul>
         </div>
     </div>
@@ -520,139 +425,139 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Change the exposure according to the environment of the camera. If the background is darker than the subject, the subject will be shown normally only when the exposure is decreased. Conversely, if the background is brighter than the subject, the subject will be shown normally only when the exposure is increased.  </p> 
+            <p>Change the exposure according to the environment of the camera. If the background is darker than the subject, the subject will be shown normally only when the exposure is decreased. Conversely, if the background is brighter than the subject, the subject will be shown normally only when the exposure is increased. <!-- ??? ??? ?? ?? ??? ???? ??? ??? ? ????. ?, ??? ?? ??? ?????? ??? ? ????. --></p> 
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Brightness  </h3>
+            <h3>Brightness</h3>
             <p>The brightness of the screen can be adjusted. The higher the number, the brighter the screen.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MinShutterOptions">
-            <h3>Minimum shutter  </h3>
+            <h3>Minimum shutter</h3>
             <p>The shutter can set the sensor exposure automatically according to the environment; the electronic shutter operates at a range of between minimum shutter and maximum shutter. Minimum shutter means the minimum value of the possible range for exposure time and sets a long exposure time.</p>
             <p>If the selected minimum shutter value is smaller than the fps value of <strong class="UI"><a href="#sensor">[Sensor]</a></strong> mode, the frame rate can be reduced in the dark.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxShutterOptions">
-            <h3>Maximum shutter  </h3>
-            <p>Maximum shutter means the maximum value of the possible range for exposure time and sets a short exposure time. </p>
+            <h3>Maximum shutter</h3>
+            <p>Maximum shutter means the maximum value of the possible range for exposure time and sets a short exposure time.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PreferShutterOptions">
-            <h3>Prefer shutter  </h3>
+            <h3>Prefer shutter</h3>
             <p>Set the proper exposure time that has a high priority in operation within the range of exposure time.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AFLKModeOptions">
-            <h3>Anti flicker  </h3>
-            <p>Prevents screen flickering that occurs due to inconsistency in the lighting in the capturing environment. </p>
+            <h3>Anti flicker</h3>
+            <p>Prevents screen flickering that occurs due to inconsistency in the lighting in the capturing environment.</p>
         </div>
-		       <div class="wn5-setup-section-article-content" ng-if="ExposureControlSpeed">
-            <h3>Control speed</h3>
-            <p>Select <strong class="UI">[High]</strong> to quickly apply screen exposure when the level of illumination changes rapidly, such as when entering or exiting a tunnel. It is recommended to set it to <strong class="UI">[Normal]</strong> when the screen brightness changes continuously, as it reacts highly sensitively to the change in illumination.</p>
-        </div>
+            <div class="wn5-setup-section-article-content" ng-if="ExposureControlSpeed">
+                <h3>Control speed</h3>
+                <p>Select <strong class="UI">[High]</strong> to quickly apply screen exposure when the level of illumination changes rapidly, such as when entering or exiting a tunnel. It is recommended to set it to <strong class="UI">[Normal]</strong> when the screen brightness changes continuously, as it reacts highly sensitively to the change in illumination.</p>
+            </div>
 		
         <div class="wn5-setup-section-article-content" ng-if="SSNRModeOptions">
             <h3>SSNR</h3>
             <p>Remove noise from the image.</p>
             <ul>
-                <li><strong class="UI">On/Off</strong>: Sets whether or not to use the SSNR function. When <strong class="UI">[On]</strong> is selected, the SSNR level can be adjusted. 
-                </li>
-                <li><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.  </li>
-                <!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.  </li> -->
-            </ul>
+                <li><strong class="UI">On/Off</strong>: Sets whether or not to use the SSNR function. When <strong class="UI">[On]</strong> is selected, the SSNR level can be adjusted.</li>
+                <li><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.</li><!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">??? NR</strong>: ?? ?? ???? ??? ??? ???? ??? ?? ??? ???? ??? ???? ??????.  </li> --></ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
-            <h3>SSNR level </h3>
+            <h3>SSNR level</h3>
             <p>Set the SSNR level. The level can be set when <strong class="UI">[On]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
-            <p>The higher the level, the less the noises, but then the video might lag and become fuzzy.</p>
+            <p>The higher the level, the less the noises, but then the video might become fuzzy.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
-            <h3>SSNR 2D Level </h3>
+            <h3>SSNR 2D Level</h3>
             <p>SSNR 2D reduces noise on the image using adjacent pixels in one frame. Set the SSNR 2D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
             <p>The higher the level, the less the noises, but then the video might become fuzzy.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
-            <h3>SSNR 3D Level </h3>
+            <h3>SSNR 3D Level</h3>
             <p>SSNR 3D reduces noise on the image using the pixels of various frames. Set the SSNR 3D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
             <p>The higher the level, the less the noises, but then the video might lag.</p>
         </div>
 
-		<div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
-            <h3>Lens</h3>
-            <p>Lens types are displayed. The iris value varies by lenses.</p>
-        </div>
-        
-
-
-        <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
-            <h3>Iris</h3>
-            <!-- <p>Select from DC (Auto), manual, P-Iris.</p>  --> 
-            <p>Select the iris type</p>
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>Lens</h3>
+                <p>Lens types are displayed. The iris value varies by lenses.</p>
+            </div><!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
+                      tnb-9000 ?? ????? IrisModeOptions || EFLensSupport? ?? ??. TW. 2019-11-29 
+            <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> --><div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
+                <p>Iris</p><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>Select the iris type</p>
             <ul>
                 <li><strong class="UI">DC (Auto)</strong>: Automatically adjusts the iris depending on the optical intensity of the surroundings.</li>
-                <li><strong class="UI">Manual</strong>: Manually adjusts the iris’s F number.</li>
-                <li><strong class="UI">P-Iris</strong>:  Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.  </li>
-                <!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-Iris</strong>:  Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.  </li> -->
-            </ul>
-        </div>
-		<div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
-            <h3>Iris F-No </h3>
+                <li><strong class="UI">Manual</strong>: Manually adjusts the iris&rsquo;s F number.</li><!-- PIrisModeOptions ??? ??? ???? XNV-6081? ?? ???? PIrisInIrisList? ???. ??? ??? ?? ?? --><li><strong class="UI">P-Iris</strong>: Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.</li><!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-???</strong>:  ?? ??? ?? ???? ?????. ??? ??? ?? ?? ??? ??? ???? ?? ? ?? ?? ??? ?? ? ????.  </li> --></ul>
+            </div><!-- !EFLensSupport  ???. ??? ???. TNB-9000. 2019-11-15 --><div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
+            <h3>Iris F-No</h3>
             <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Manual]</strong>, and it sets the iris f-number.</p>
         </div>
+           
 
-        <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
-            <h3>Iris position</h3>
-            <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Manual]</strong>, and it sets the iris position value.</p>
-        </div>
-
-        <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
-            <h3>Maximum iris</h3>
-            <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Auto]</strong>, and it sets the iris position value that will automatically open the iris to the maximum. It opens in a dark dim-lit environment.</p>
-        </div>
-
-        <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
-            <h3>Prefer iris</h3>
-            <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Auto]</strong>, and it sets the iris position value that is preferred in normal brightness. The range of this value is set to that lower than what was is in <strong class="UI">[Max iris position]</strong>.</p>
-        </div>
-
-
-        <div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
-            <h3>Lens</h3>
-            <p>Select from DC (Auto), manual, and available P-Iris. </p>
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>Iris position</h3>
+                <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Manual]</strong>, and it sets the iris position value.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>Maximum iris</h3>
+                <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Auto]</strong>, and it sets the iris position value that will automatically open the iris to the maximum. It opens in a dark dim-lit environment.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+                <h3>Prefer iris.</h3>
+                <p>Activated when <strong class="UI">[Iris]</strong> mode is set to <strong class="UI">[Auto]</strong>, and it sets the iris position value that is preferred in normal brightness. The range of this value is set to that lower than what was is in <strong class="UI">[Max iris position]</strong>.</p>
+            </div><!-- !EFLensSupport  ???. ??? ???. TNB-9000. 2019-11-15 --> <!-- Lens -> IrisFnoOptions (PNO-A9081. ??? ???. 2019-10-11) -> Lens? ???. TW. TNB-9000? QNB-8002 ?? ??. 2019-11-27--><div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
+                <h3>Lens.</h3>
+            <p>Select from DC (Auto), manual, and available P-Iris.</p>
             <ul>
-                <li><strong class="UI">DC (Auto)</strong>: Adjusts the iris by determining the amount of incoming light. </li>
+                <li><strong class="UI">DC (Auto)</strong>: Adjusts the iris by determining the amount of incoming light.</li>
                 <li><strong class="UI">Manual</strong>: Adjusts the iris manually.</li>
                 <li><strong class="UI">P-Iris</strong>: Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time. Select from among the types of iris available.</li>
             </ul>
-        </div>
+            </div>
         
-        <div class="wn5-setup-section-article-content" ng-if="PIrisModeOptions">
-            <h3>P-Iris </h3>
-            <p> Activated when P-Iris is selected from <strong class="UI">[Lens]</strong>. When <strong class="UI">[Auto]</strong> is selected, the iris is adjusted automatically according to the brightness. When <strong class="UI">[Manual]</strong> is selected, the user sets the position of iris directly. </p>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="PIrisPosition">
-            <h3>P-Iris position </h3>
-            <p>It is activated when <strong class="UI">[Manual]</strong> is selected for <strong class="UI">[P-Iris]</strong>. The P-Iris position can be adjusted. </p>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
+            <div class="wn5-setup-section-article-content" ng-if="PIrisModeOptions">
+                <h3>P-Iris</h3>
+                <p>Activated when P-Iris is selected from <strong class="UI">[Lens]</strong>. When <strong class="UI">[Auto]</strong> is selected, the iris is adjusted automatically according to the brightness. When <strong class="UI">[Manual]</strong> is selected, the user sets the position of iris directly.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="PIrisPosition">
+                <h3>P-Iris position</h3>
+                <p>It is activated when <strong class="UI">[Manual]</strong> is selected for <strong class="UI">[P-Iris]</strong>. The P-Iris position can be adjusted.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
             <h3>AGC</h3>
-            <p>AGC (Auto Gain Control) adjusts the brightness by controlling the sensitivity of image gain when capturing an object in dim light. </p>
-        </div>
-		
-						        <div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul>
-                <li>The screen exposure can be saturated depending on the max/min range of shutter settings.</li>
-                <li>It may take a while until the effect is applied or canceled after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li>The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li>In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
-                <li>Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>. </li>
-            </ul>
-            <!-- <ul>
-                <li>The screen exposure can be saturated depending on the max/min range of shutter settings.</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">It may take a while until the effect is applied or canceled after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
-                <li ng-if="SSNR2DLevel && SSNR3DLevel">Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>. </li>
-            </ul> -->
-			</div> 
+                <p>AGC (Auto Gain Control) adjusts the brightness by controlling the sensitivity of image gain when capturing an object in dim light.</p>
+                <ul>
+                    <li><strong class="UI">Off</strong>: Disables the AGC function that brightens dark image by amplifying gain from video signal.When this option is selected, [SSNR] and [Day/Night] do not work.</li>
+                    <li><strong class="UI">Manual:</strong>: Manually adjusts the AGC value.</li>
+                    <li><strong class="UI">Max gain</strong>: Sets the max gain that can be auto-controlled depending on the brightness of the surrounding.</li>
+                </ul>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
+                <h3>Level (manual)</h3>
+                <p>Sets the AGC level value manually as desired. The higher the level value, the higher the gain value, which results in a brighter screen even in a dark environment.</p>
+                <p>If [Manual] is selected under [AGC], [Level (manual)] is enabled.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
+            <h3>Level (max gain)</h3>
+                <p>Sets the max gain value. : Controls the max gain that is set based on the brightness of the surrounding. The higher the level value, the higher the max gain.</p>
+                <p>If [Max gain] is selected under [AGC], [Level (max gain)] is enabled.</p>
+            </div>
+            <div class="wn5-online-help-info" ng-if="MinShutterOptions || SSNR2DLevel || AGCModeOptions">
+                <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                <ul>
+                    <li ng-if="MinShutterOptions">The screen exposure can be saturated depending on the max/min range of shutter settings.</li>
+                    <li ng-if="SSNR2DLevel">It may take a while until the effect is applied or canceled after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
+                    <li ng-if="SSNR2DLevel">The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
+                    <li ng-if="SSNR2DLevel">In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
+                    <li ng-if="SSNR2DLevel">Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>.</li>
+                    <li ng-if="AGCModeOptions">As the usage of AGC increases, the SSNR 3D value for SSNR also increases, which could lead to stuttering in the video.</li>
+                    <li ng-if="AGCModeOptions">AGC action increases screen noise.</li>
+                    <li ng-if="AGCModeOptions">If AGC mode option is set to [Off] or [Manual], or if [Max gain] value is set to below 30 db, [Day/Night] cannot be set to [Auto].</li>
+                </ul><!-- <ul>
+                <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ??? ??? ???? ???? ?? ???? ??? ? ????.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">???? ?? ?? ????? ??? NR(SSNR 2D ? SSNR 3D)? ??? ?? ?? ? ????.</li>
+                <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ? ??? ??? ??? ????? ??? ?? ??? ????? ??? ?? ???? ?? ??? ????. ??? ?? ?? ??? <strong class="UI">[??]</strong> &gt; <strong class="UI">[??? ??]</strong>?? ??? ? ????. </li>
+            </ul> --></div>
     </div>
 </div>
 
@@ -663,56 +568,55 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Change the image to color or b/w according to the camera’s environment. When the dwell time is set, the image can be changed to color or b/w according to preference. When switching to Day/Night, a motion detection event or image analysis event cannot be detected. </p> 
+            <p>Change the image to color or b/w according to the camera&rsquo;s environment. When the dwell time is set, the image can be changed to color or b/w according to preference. When switching to Day/Night, a motion detection event or image analysis event cannot be detected.</p> 
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Mode </h3>
+            <h3>Mode</h3>
             <p>Selects the mode which changes the camera to color or b/w.</p>
             <ul>
-                <li><strong class="UI">Color</strong>: Outputs an image in color. 
-                </li>
-                <li><strong class="UI">B/W</strong>: Outputs an image in b/w.
-                </li>
-                <li><strong class="UI">Auto</strong>: Switch to color mode during the daytime and b/w at night or in low light. If <strong class="UI">[Off]</strong> is set for <strong class="UI">[AGC]</strong> of <strong class="UI">[Exposure]</strong>, Day/Night cannot be set automatically. 
-                </li>
-                <li><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.
-                </li>
-                <!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.
-                </li> -->
-                <li><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li>
-           <!-- <li ng-if="DayNightSchedule"><strong class="UI">스케줄(컬러)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 컬러로 출력합니다.</li>
-                <li ng-if="DayNightSchedule"><strong class="UI">스케줄(흑백)</strong>: <strong class="UI">[동작 스케줄]</strong>에서 설정한 스케줄에 따라 카메라 영상을 흑백으로 출력합니다.</li>  -->
-            </ul>
+                <li><strong class="UI">Color</strong>: Outputs an image in color.</li>
+                <li><strong class="UI">B/W</strong>: Outputs an image in b/w.</li>
+                    <li><strong class="UI">Auto</strong>: Switch to color mode during the daytime and b/w at night or in low light.However, if <strong class="UI">[AGC]</strong> under <strong class="UI">[Exposure]</strong> is set to <strong class="UI">[Off]</strong> or <strong class="UI">[Manual]</strong>, or if <strong class="UI">[Max gain]</strong> is set below &quot;below 30 dB&quot;, [Day/Night] cannot be set to [Auto].</li>
+                <li><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
+                </li> --><li><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ??? ?????.</li>
+                <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ???? ?????.</li>  --></ul>
         </div>
+		
+				 <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                <ul>
+                    <li><strong class="UI">[External]</strong>Options can be set when there is more than one alarm inputs. Select <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong> to set the alarm I/O.</li>
+                </ul>
+			</div> 
+			
         <div class="wn5-setup-section-article-content">
-            <h3>Dwell time </h3>
+            <h3>Dwell time</h3>
             <p>Changes to color or b/w when <strong class="UI">[Auto]</strong> is selected for Day/Night and the brightness condition is maintained for the set dwell time.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Duration</h3>
-            <p>Sets the time interval when switching to color or b/w occurs.</p>
+            <p>Sets the time interval when switching to color or b/w occurs.Selecting [Customize] allows you to manually set the duration.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
             <h3>Alarm input</h3>
-            <p>Set the image to color or b/w according to the opening and closing status of the alarm sensor. When <strong class="UI">[External]</strong> is set for <strong class="UI">[Mode]</strong> of <strong class="UI">[Day/Night]</strong>, the <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm input]</strong> function will be deactivated and the setup page will not appear. </p>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+            <p>Set the image to color or b/w according to the opening and closing status of the alarm sensor. 
+                <!-- When <strong class="UI">[External]</strong> is set for <strong class="UI">[Mode]</strong> of <strong class="UI">[Day/Night]</strong>, the <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm input]</strong> function will be deactivated and the setup page will not appear. -->
+            </p>
+        </div><!-- ?? ?? DefocusDetectSimpleFocus?? ExternalPTZModel? ???. Q???. ??? ?? 4/15? ?? ?? --> <!-- ExternalPTZModel -> SimpleFocusAfterDayNight? ???. ??? ???. ?? 11/22? ??.  --><div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
             <h3>Simple focus after D/N</h3>
             <p>Adjusts the focus of the image automatically after a Day/Night switch.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Activation time (Color)</h3>
-            <p>Sets the schedule for operation in color mode. When <strong class="UI">[Everyday]</strong> is selected and the time is set, color mode is activated at the relevant time every day, and b/w mode is activated at all other times. If you wish to not have color mode set for the same time every day, you can deselect <strong class="UI">[Everyday]</strong> and set the activation time to Mon., Tue., Wed., Thu., Fri., Sat. or Sun., respectively. </p>
-        </div>
-  <!--  <div class="wn5-setup-section-article-content" ng-if="DayNightSchedule">
-            <h3>동작 스케줄</h3>
-            <p>카메라 영상을 컬러나 흑백으로 출력하는 스케줄을 설정합니다. <strong class="UI">[모드]</strong>에서 <strong class="UI">[스케줄(컬러)]</strong>나 <strong class="UI">[스케줄(흑백)]</strong>를 선택하면 동작 스케줄 옵션이 활성화됩니다. </p>
-            <p>예를 들어 <strong class="UI">[모드]</strong>에서&nbsp;<strong class="UI">[스케줄(컬러)]</strong>를 선택한 후, <strong class="UI">[매일]</strong>을 선택하고 시간을 설정하면 매일 해당 시간에 컬러 모드로 작동이 되고 해당 시간을 제외한 나머지 시간은 흑백 모드로 작동됩니다. <strong class="UI">[매일]</strong>을 선택 해제하고 월, 화, 수, 목, 금, 토, 일요일에 각각 컬러 모드의 작동 시간을 설정할 수 있습니다. </p>
-        </div>  --> 
-		 <div class="wn5-online-help-info">
+            <p>Sets the schedule for operation in color mode. When <strong class="UI">[Everyday]</strong> is selected and the time is set, color mode is activated at the relevant time every day, and b/w mode is activated at all other times. If you wish to not have color mode set for the same time every day, you can deselect <strong class="UI">[Everyday]</strong> and set the activation time to Mon., Tue., Wed., Thu., Fri., Sat. or Sun., respectively.</p>
+        </div><!--  <div class="wn5-setup-section-article-content" ng-if="DayNightSchedule">
+            <h3>?? ???</h3>
+            <p>??? ??? ??? ???? ???? ???? ?????. <strong class="UI">[??]</strong>?? <strong class="UI">[???(??)]</strong>? <strong class="UI">[???(??)]</strong>? ???? ?? ??? ??? ??????. </p>
+            <p>?? ?? <strong class="UI">[??]</strong>?? <strong class="UI">[???(??)]</strong>? ??? ?, <strong class="UI">[??]</strong>? ???? ??? ???? ?? ?? ??? ?? ??? ??? ?? ?? ??? ??? ??? ??? ?? ??? ?????. <strong class="UI">[??]</strong>? ?? ???? ?, ?, ?, ?, ?, ?, ???? ?? ?? ??? ?? ??? ??? ? ????. </p>
+        </div>  --><div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>When switching between night and day modes, the motion detection event will not take place. In other words, even if you ‘Enable’ the motion detection event, it will not detect when switching between night and day modes occurs. You can enable or disable the motion detection event in <strong class="UI">[Analytics]</strong> &gt; <strong class="UI">[Motion Detection]</strong>. &nbsp;</li>
+                <li>When switching between night and day modes, the motion detection event will not take place. In other words, even if you &lsquo;Enable&rsquo; the motion detection event, it will not detect when switching between night and day modes occurs. You can enable or disable the motion detection event in <strong class="UI">[Analytics]</strong> &gt; <strong class="UI">[Motion Detection]</strong>.</li>
             </ul>
 			</div> 
 		
@@ -725,92 +629,104 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         <h2>Special</h2>
     </div>
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>You can adjust an image for sharpness, contrast, and color level.</p> 
+        <div class="wn5-setup-section-article-content"><!-- <p>??? ??? ????? ??, ???, ?? ?? ?? ? ? ????.</p>  --><p>You can adjust an image for sharpness, contrast, and color level.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DIS">
-            <h3>DIS </h3>
-            <p>When the camera is shaking due to external impacts, such as wind, DIS (Digital Image Stabilization) corrects the video automatically and stabilizes the screen. </p>
+            <h3>DIS</h3>
+            <p>When the camera is shaking due to external impacts, such as wind, DIS (Digital Image Stabilization) corrects the video automatically and stabilizes the screen.</p>
         </div>
 		<div class="wn5-online-help-info" ng-if="DIS && Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                     <ul>
-                        <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics and statistics settings so that you can analyze the video or accumulate the statistical data according to the changed video. These settings can be changed in the <strong class="UI">[Analytics]</strong> menu and <strong class="UI">[Statistics]</strong> menu.  </li>
-                    </ul>
+                        <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics and statistics settings so that you can analyze the video or accumulate the statistical data according to the changed video. These settings can be changed in the <strong class="UI">[Analytics]</strong> menu and <strong class="UI">[Statistics]</strong> menu.</li><!-- 
+                        <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  --></ul>
+
         </div>
-		<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
+						<div class="wn5-online-help-info" ng-if="DIS && !Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics setting in the <strong class="UI">[Analytics]</strong> menu so that the video can be analyzed according to the changed video.   </li>
+                <li>If you change the DIS setting, the video screen may be reduced or enlarged. Change the analytics setting in the <strong class="UI">[Analytics]</strong> menu so that the video can be analyzed according to the changed video.</li>
             </ul>
-        </div>
-
-        <div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
+        </div><!--???? ?? ????, ???? ??? ??? ??? ? ??? DIS ??? ??? ???? ???? ??? ???? ??? ?? ??? ??(Manual)? ???? ???. ??? ??--> <!--??? ???? ?? ? DISFocalLength ?? ??. PNB-A9000. 2019-12-26 --><div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
             <h3>Focal length</h3>
-            <p>Sets the focal length of lens so that DIS function can work. Only when <strong class="UI">[DIS]</strong> option is set to [On], [Focal length] value can be changed. </p>
+            <p>Sets the focal length of lens so that DIS function can work. Only when <strong class="UI">[DIS]</strong> option is set to [On], [Focal length] value can be changed.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Sharpness</h3>
-            <p>Adjust the overall sharpness of the image. </p>
+            <p>Adjust the overall sharpness of the image.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
             <h3>Sharpness level</h3>
-            <p>Adjust the overall sharpness of the image. You can set the sharpness level by setting <strong class="UI">[On]</strong> for <strong class="UI">[Sharpness]</strong>. </p>
-            <p>The higher the edge level is, the stronger and clearer the video edge is.</p>
+            <p>Adjust the overall sharpness of the image. You can set the sharpness level by setting <strong class="UI">[On]</strong> for <strong class="UI">[Sharpness]</strong>.</p>
+            <p>The higher the sharpness level is, the stronger and clearer the video sharpness is.</p>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="GammaControl">
+            <h3>Gamma control</h3>
+                <p><strong class="UI">When set to [On],</strong>the brightness distribution of video is analyzed and its brightness level is adjusted.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Gamma">
             <h3>Gamma</h3>
-            <p>Adjust the contrast of the image. This means the gap between the brightest part and the darkest part in an image; a higher gamma value means a clearer display of the difference in brightness. </p>
+            <p>Adjust the contrast of the image. This means the gap between the brightest part and the darkest part in an image; a higher gamma value means a clearer display of the difference in brightness.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="Contrast">
-            <h3>Contrast </h3>
-            <p>Adjust the shade contrast of the image. </p>
+            <h3>Contrast</h3>
+            <p>Adjust the shade contrast of the image.</p>
         </div>
+		<div class="wn5-setup-section-article-content" ng-if="XCELevel">
+            <h3>Local contrast</h3>
+                <p>Local contrast more clearly shows the subtle difference in brightness of video.</p>
+        </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>Local contrastLevel</h3>
+                <p>This is enabled by setting [Local contrast] to [Enable].&nbsp;The higher the level value, the higher the contrast of video, which means a clearer image. However, this also increase the level of noise on the screen, and a warped form of the duplicated image might be more visible around the edges.</p>
+            </div>
         <div class="wn5-setup-section-article-content" ng-if="Saturation">
-            <h3>Color level </h3>
-            <p>Adjust the intensity of color in the image. </p>
+            <h3>Color level</h3>
+            <p>Adjust the intensity of color in the image.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
             <h3>Defog</h3>
-            <p>Correct the image when it is foggy or cloudy. When <strong class="UI">[Auto]</strong> is set, the surrounding environment is detected and the image is corrected automatically. When <strong class="UI">[Manual]</strong> is set, the user can see the surrounding environment and set the correction level directly. </p>
+            <p>Correct the image when it is foggy or cloudy. When <strong class="UI">[Auto]</strong> is set, the surrounding environment is detected and the image is corrected automatically. When <strong class="UI">[Manual]</strong> is set, the user can see the surrounding environment and set the correction level directly.</p>
             <p>The default value is set to <strong class="UI">[Off]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
             <h3>Defog level</h3>
-            <p>Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[Defog]</strong>; it adjusts the defog level. A higher defog level displays the image more clearly. If the fog level is low and a high defog level is set, the screen may look darker. </p>
+            <p>Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[Defog]</strong>; it adjusts the defog level. A higher defog level displays the image more clearly. If the fog level is low and a high defog level is set, the screen may look darker.</p>
         </div>
 		
 		<div class="wn5-online-help-info" ng-if="DefogModeOptions">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>If you set the Defog mode to <strong class="UI">[Auto]</strong>, as the amount of fog decreases, the level of defog function is also lowered. If you want to maintain the same effect of the function despite a decrease in the fog, then set the Defog mode to <strong class="UI">[Manual]</strong>.  </li>
+                <li>If you set the Defog mode to <strong class="UI">[Auto]</strong>, as the amount of fog decreases, the level of defog function is also lowered. If you want to maintain the same effect of the function despite a decrease in the fog, then set the Defog mode to <strong class="UI">[Manual]</strong>.</li>
                 <li>If the fog level is low and a manual high defog level is high, the screen may look darker.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
             <h3>Optical defog filter</h3>
             <p>Selects whether or not to use the optical defog correction to camera video. Only after <strong class="UI">[Defog]</strong> is set to <strong class="UI">[Manual]</strong>, the optical defog filter can be enabled.</p>
-        </div>	
+        </div>		
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC</h3>
-            <p> LDC (Lens Distortion Correction) corrects image distortion at the edge of a wide angle lens. </p>
+            <p>LDC (Lens Distortion Correction) corrects image distortion at the edge of a wide angle lens.</p>
             <ul>
-                <li><strong class="UI">Off</strong>: The image distortion correction function is not used.</li>
+                <li><strong class="UI">Off</strong>: LDC (image distortion correction) function is not used.</li>
                 <li><strong class="UI">Manual</strong>: Adjusts the distortion correction level manually.</li>
-                <li><strong class="UI">Auto</strong>: Adjusts the image distortion automatically.  </li>
-                <!-- <li ng-if="LDCAuto"><strong class="UI">Auto</strong>: Adjusts the image distortion automatically.  </li> -->
-            </ul>
+                    <li><strong class="UI">Auto</strong>Adjusts the image distortion automatically.</li>
+                    <li><strong class="UI">Fill (Manual)</strong>: Corrects the video using the Fill mode. The correction values can be manually adjusted in [LDC level].</li>
+                    <li><strong class="UI">Fill (Auto)</strong>: Corrects the video using the Fill mode. The correction values are automatically set. Since Fill mode maintains the screen&apos;s top and bottom angular fields of view, the left and right end of the video could be cropped.</li>
+                    <li><strong class="UI">Stretch (Manual)</strong>: Corrects the video using the Stretch mode. The correction values can be manually adjusted in [LDC level].</li>
+                    <li><strong class="UI">Stretch (Auto)</strong>: Corrects the video using the Stretch mode. The correction values are automatically set. Since Stretch mode maintains the screen&apos;s top/bottom/left/right angular fields of view, none of the areas in the original video recording is lost, but the aspect ratio of the video is not maintained.</li><!-- <li ng-if="LDCAuto"><strong class="UI">??</strong>: ???? ?? ??? ?????.  </li> --></ul>
         </div>
         <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul>
-                <li>When <strong class="UI">[Enable privacy area]</strong> is selected in <strong class="UI">[Vidoe & Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Video setup]</a></strong>, both <strong class="UI">[LDC]</strong> and <strong class="UI">[LDC level]</strong> options are disabled. Uncheck <strong class="UI">[Enable privacy area]</strong> to use the LDC function. </li>
-            </ul>
+                <ul>
+                    <li>When <strong class="UI">[Enable privacy area]</strong> is selected in <strong class="UI">[Vidoe &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Video setup]</a></strong>, both <strong class="UI">[LDC]</strong> and <strong class="UI">[LDC level]</strong> options are disabled. Uncheck <strong class="UI">[Enable privacy area]</strong> to use the LDC function.</li><!-- 
+                    <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  --></ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC Level</h3>
-            <p>Adjusts the distortion correction level. Activated when <strong class="UI">[Manual]</strong> is set for <strong class="UI">[LDC]</strong>. </p>
+                <p>Adjusts the distortion correction level. It is enabled by setting <strong class="UI">[LDC]</strong> to <strong class="UI">[Manual]</strong>, or setting <strong class="UI">[Manual]</strong> to <strong class="UI">[Manual]</strong>.The higher the level value, the flatter the curved corners. The lower the level value, the less the changes to the curved corners.</p>
         </div>
     </div>
 </div>
@@ -829,16 +745,17 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         <div class="wn5-setup-section-article-content">
 
             <h3>Camera title</h3>
-            <p>Sets whether or not to display the camera title. When <strong class="UI">[Enable]</strong> is selected, the <strong class="UI">[Add]</strong>/<strong class="UI">[Delete]</strong> buttons will be activated. </p>
-            <p>When you click the <strong class="UI">[Add]</strong> button, a field where a camera title can be entered will be added to the list. Enter the camera title and set the location by moving the X and Y coordinates. Up to 5 camera titles can be added. </p>
-            <p>To delete a camera title, select the title to delete and click the <strong class="UI">[Delete]</strong> button. To preview how the camera title is displayed on the screen after entering it, enter the camera title and click the <strong class="UI">[Preview]</strong> button. </p>
+            <p>Sets whether or not to display the camera title. When <strong class="UI">[Enable]</strong> is selected, the <strong class="UI">[Add]</strong>/<strong class="UI">[Delete]</strong> buttons will be activated.</p>
+            <p>When you click the <strong class="UI">[Add]</strong> button, a field where a camera title can be entered will be added to the list.Enter the title of your camera, and move the cursor to set its location.Up to 5 camera titles can be added.</p>
+                <p>To delete a camera title, select the title to delete and click the <strong class="UI">[Delete]</strong> button. To preview how the camera title is displayed on the screen after entering it, enter the camera title and click the <strong class="UI">[Preview]</strong> button.</p>
+                <p><strong class="UI">In the [Position]</strong>column,<strong class="UI">click the [Move]</strong>button. Then, OSD position is displayed as a triangular shaped icon on the preview video screen. You can move the icon to adjust the position of the OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Date &amp; Time </h3>
-            <p>To display the date and time on the screen, select <strong class="UI">[Enable]</strong>. Select the date display type and set the position to display the date and time by moving the X and Y coordinates.</p>
+            <h3>Date &amp; Time</h3>
+            <p>To display the date and time on the screen, select <strong class="UI">[Enable]</strong>. Select the date display type and set the position to display the date and time by moving the cursor.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="FontSizeOptions">
-            <h3>Size </h3>
+            <h3>Size</h3>
             <p>Adjust the size of OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -851,39 +768,33 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">
             <h3>Overlay</h3>
-            <p>Display the camera’s PTZ coordinates, or preset names on the screen.</p>
+            <p>Display the camera&rsquo;s PTZ coordinates, or preset names on the screen.</p>
             <ul>
                 <li><strong class="UI">PTZ position</strong>: Sets whether to display the PTZ location on the screen or not.</li>
                 <li><strong class="UI">Preset name</strong>: Sets whether to display the preset name on the screen or not.</li>
-                <li><strong class="UI">Camera ID</strong>: Sets whether to display the camera number on the screen or not.</li>
-                <!-- <li ng-if="RS485Support"><strong class="UI">Camera ID</strong>: Sets whether to display the camera number on the screen or not.</li> -->
-                <li><strong class="UI">Azimuth</strong>: The function is used to display the azimuth of the area that you are looking at on the screen currently. When the function is enabled, the 8 directions of E(East)/W(West)/S(South)/N(North)/NE(Northeast)/NW(Northwest)/SE(Southeast)/SW(Southwest) are displayed at the bottom right of the screen.</li>
+                <li><strong class="UI">Camera ID</strong>: Sets whether to display the camera number on the screen or not.</li><!-- <li ng-if="RS485Support"><strong class="UI">??? ID</strong>: ??? ??? ID ?? ?? ??? ?????.</li> --><li><strong class="UI">Azimuth</strong>: The function is used to display the azimuth of the area that you are looking at on the screen currently. When the function is enabled, the 8 directions of E(East)/W(West)/S(South)/N(North)/NE(Northeast)/NW(Northwest)/SE(Southeast)/SW(Southwest) are displayed at the bottom right of the screen.</li>
             </ul>
         </div>
-
         <div class="wn5-setup-section-article-content" ng-if="ZoomOnlyModel">
             <h3>Overlay</h3>
-            <p>Set whether to display the camera's zoom maginification info or preset names on the screen.</p>
-            <!-- <p>The user can display the camera's zoom magnification or preset names on the screen.</p>  -->
+            <p>Set whether to display the camera&apos;s zoom maginification info or preset names on the screen.</p>
         </div>
 		
-        <!--<div class="wn5-setup-section-article-content">
-            <h3>오버레이 이미지 </h3>
-            <p>사용자가 원하는 이미지를 화면 좌측 상단에 표시할 수 있습니다. <strong class="UI">[이미지 업로드]</strong> 메뉴에서 이미지를 업로드할 수 있습니다.</p>
+        <div class="wn5-setup-section-article-content">
+            <h3>Overlay image</h3>
+            <p>The image you want can be displayed at the top left of the screen. <strong class="UI">[Upload image]</strong> menu allows you to upload images.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>이미지 업로드</h3>
-            <p><strong class="UI">[…]</strong> 버튼을 클릭하여 비트맵 형식의 파일을 검색합니다. <strong class="UI">[업로드]</strong> 버튼을 클릭하여 이미지 파일을 업로드합니다. 화면에 적용한 이미지 파일을 삭제하려면 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다. 적용 가능한 이미지의 사양은 16 bit (RGB565 지원 안 함) 또는 24 bit 비트맵 파일, 가로/세로 128 PX(고정), 파일 크기 52 KB 이하여야 합니다.</p>
-        </div> -->
+            <h3>Upload image</h3>
+            <p><strong class="UI">[...]</strong>button can be clicked to search files in bitmap format. Click the <strong class="UI">[Upload]</strong> button to upload image files. To delete image files applied to the screen, click the <strong class="UI">[Delete]</strong> button. The allowed image spec is 16-bit (RGB565 not supported) or 24-bit bitmap file. Its size should be a fixed 128x128 pixels, and the file size should be 52 KB or less.</p>
+        </div>
 		
 		
 								<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>In case of the item with a location that can be adjusted(camera title, date &amp; time), if it overlaps with other fixed OSD items, the screen may fail to display it properly.</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">The 'camera ID' in [Overlay] is displayed at the left top of screen while the 'PTZ position' is displayed at the left bottom of screen; The locations cannot be changed.</li>
-                <!-- <li>Only Korean, English, numbers, and symbols are allowed. </li> -->
-            </ul>
+                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">The &apos;camera ID&apos; in [Overlay] is displayed at the left top of screen while the &apos;PTZ position&apos; is displayed at the left bottom of screen; The locations cannot be changed.</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
         </div>
     </div>
 </div>
@@ -895,14 +806,14 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>The user can choose the color palette you want, so that he can visually analyze the thermal camera images. </p>
+            <p>The user can choose the color palette you want, so that he can visually analyze the thermal camera images.</p>
 
         </div>
         <div class="wn5-setup-section-article-content">
            
             <h3>Color Palette</h3>
-            <p>Select the color palette you want from the options. The options you select are apply to the <strong class="UI">[Live page]</strong> as well. </p>
-            <p>The color representation scheme for each color palette option is as follows. </p>
+            <p>Select the color palette you want from the options. The options you select are apply to the <strong class="UI">[Live page]</strong> as well.</p>
+            <p>The color representation scheme for each color palette option is as follows.</p>
             <ul>
                 <li><strong class="UI">White hot</strong>: At high temperature, low temperatures are expressed in white to black.</li>
                 <li><strong class="UI">Black hot</strong>: At high temperature, low temperatures are expressed in black to white.</li>
@@ -911,7 +822,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <li><strong class="UI">Custom</strong>: At high temperature, low temperatures are expressed in orange to black.</li>
                 <li><strong class="UI">Sepia</strong>: At high temperature, low temperatures are expressed in yellow to black.</li>
                 <li><strong class="UI">Red</strong>: At high temperature, low temperatures are expressed in black to red.</li>
-                <li><strong class="UI">Iron</strong>: At high temperature, low temperatures are expressed in yellow to purple.  </li>
+                <li><strong class="UI">Iron</strong>: At high temperature, low temperatures are expressed in yellow to purple.</li>
             </ul>
         </div>
 	</div>
@@ -935,12 +846,12 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <li>One shot AF: In case of a user event (Auto Focus or Zoom Action), the focus will be automatically adjusted one time.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="globalAutoFocusRange">
+		<div class="wn5-setup-section-article-content" ng-if="globalAutoFocusRange">
             <h3>Range</h3>
             <p>Sets the applicable range when automatically adjusting the camera focus.</p>
             <p>To automatically adjust the focus in consideration of the whole supported range for the camera, select <strong class="UI">[Wide]</strong>. To automatically adjust the focus in consideration of only partial range from the current location, select <strong class="UI">[Narrow]</strong>.</p>
             <p>If you select <strong class="UI">[Wide]</strong>, the camera motion might be mildly shaky during the process of automatic focusing. If you select <strong class="UI">[Narrow]</strong>, there will be no such shaky motion, but the focusing might fail if the subject is located exceptionally close or far.</p>
-        </div>	
+        </div>		
 		<div class="wn5-setup-section-article-content">
             <h3>Digital zoom</h3>
             <p>To use digital zoom, select <strong class="UI">[On]</strong>.</p>
@@ -953,7 +864,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <h3>Zoom mode</h3>
             <p>Set the method to synchronize the camera focus when the zoom is operating.</p>
             <ul>
-                <li>Auto: Even if the zoom magnification is changed, the zoom operates while maintaining the focus by continuously appraising and modifying the condition in focus.   </li>
+                <li>Auto: Even if the zoom magnification is changed, the zoom operates while maintaining the focus by continuously appraising and modifying the condition in focus.</li>
                 <li>Manual: The zoom operates according to the set focus track. The image may be out of focus if the zoom magnification is changed.</li>
             </ul>
         </div>
@@ -972,7 +883,7 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
                 <li>Since the automatic focusing function adjusts the focus based on a subject in the middle of the screen, subjects on the periphery of the screen may be out of focus.</li>
                 <li>The automatic focusing function may not operate normally under the following conditions.</li>
                 <ul>
-                    <li>If there is a bright light or flashing light, such as a neon sign </li>
+                    <li>If there is a bright light or flashing light, such as a neon sign</li>
                     <li>If the illumination in the monitoring area is low</li>
                     <li>If the illumination in the monitoring area is excessively high</li>
                     <li>If the camera operates with a slow shutter</li>
@@ -996,15 +907,13 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
         <div class="wn5-setup-section-article-content">
             <h3>One time act</h3>
             <p>If frost is present and you would like to defrost by operating the heater, click the <span class="tui tui-ch-playback-reset"></span> button once.</p>
-        </div>
-		
-<!--	<div class="wn5-online-help-info">
-			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+        </div><!--TNO-6010M ????? ?????. 2019-04-23 ??? ??? ?? ??. 
+    	<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>????</h4>
             <ul>
-                <li>In low temperature regions with frosts, the heater is always on. In high temperature regions that may affect the product, it will not operate even if a user turn on the setting.</li>
+                <li>??? ???? ?? ???? ??? ?? ?? ???, ??? ??? ?? ? ?? ?? ????? ??? ?? ????? ?? ??? ??? ???? ????.</li>
             </ul>
-        </div> -->
-    </div>
+        </div> --></div>
 </div>
 
  <hr class="wn5-setup-hr" ng-if="Fan">
@@ -1040,33 +949,27 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
             <p>In the B/W mode when the IR LED is turned on, the saturation at the center of screen is prevented, so it is possible to identify a nearby object.</p>
             <ul>
                 <li><strong class="UI">Off</strong>: Disables the IR mode.</li>
-                <li ><strong class="UI">Auto</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
+                <li><strong class="UI">Auto</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
                 <li><strong class="UI">Auto 1</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
                 <li><strong class="UI">Auto 2</strong>: Automatically adjusts the IR brightness depending on the brightness of object at and around the center of screen.</li>
                 <li><strong class="UI">Manual</strong>: Manually adjusts the IR brightness.</li>
-            </ul>
-            <!-- <ul>
-                <li><strong class="UI">Off</strong>: Disables the IR mode.</li>
-                <li ng-if="!IRModeOptionAuto2"><strong class="UI">Auto</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
-                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 1</strong>: Automatically adjusts the IR brightness depending on the brightness of object at the center of screen.</li>
-                <li ng-if="IRModeOptionAuto2"><strong class="UI">Auto 2</strong>: Automatically adjusts the IR brightness depending on the brightness of object at and around the center of screen.</li>
-                <li ng-if="IRModeOptionManual"><strong class="UI">Manual</strong>: Manually adjusts the IR brightness.</li>
-            </ul> -->
-        </div>
+            </ul><!-- <ul>
+                <li><strong class="UI">?? ? ?</strong>: IR ??? ???? ????.</li>
+                <li ng-if="!IRModeOptionAuto2"><strong class="UI">??</strong>: ?? ???? ?? ???? ??? ?? ???? IR? ??? ?????.</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">?? 1</strong>: ?? ???? ?? ???? ??? ?? ???? IR? ??? ?????.</li>
+                <li ng-if="IRModeOptionAuto2"><strong class="UI">?? 2</strong>: ?? ??? ? ???? ?? ???? ??? ?? ???? IR? ??? ?????.</li>
+                <li ng-if="IRModeOptionManual"><strong class="UI">??</strong>: ???? IR? ??? ?????.</li>
+            </ul> --></div>
         <div class="wn5-setup-section-article-content">
             <h3>Level</h3>
             <p>Set the IR level.</p>
             <p>The IR level is enabled when <strong class="UI">[Manual]</strong> is selected in <strong class="UI">[Mode]</strong>.</p>
-        </div>
-        <!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
-            <h3>Level</h3>
-            <p>Set the IR level.</p>
-            <p>The IR level is enabled when <strong class="UI">[Manual]</strong> is selected in <strong class="UI">[Mode]</strong>.</p>
-        </div> -->
-    </div>
-</div>
-
-<hr class="wn5-setup-hr" ng-if="PTZModel && IR">
+        </div><!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+            <h3>??</h3>
+            <p>IR ??? ?????.</p>
+            <p>IR ??? <strong class="UI">[??]</strong>?? <strong class="UI">[??]</strong>? ???? ??????.</p>
+        </div> --></div>
+</div><!-- PTZModel -> PTZModel && IR?? ??. x??? ??? ??. ??? ??? ???. 2019-08-12  --><hr class="wn5-setup-hr" ng-if="PTZModel && IR">
 <div class="wn5-setup-section" ng-if="PTZModel && IR">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>
@@ -1074,18 +977,16 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Enables the identification of objects at a close distance by preventing overt brightness of proximate objects on screen when IR LED is turned on.</p>
-        </div>	
+        </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Mode</h3>
-         <!--    <p>The infrared LED is controlled by brightness sensor.</p>  
-            <p>The IR mode allows the identification of objects at a close distance by preventing overt brightness of proximate objects on screen when IR LED is turned on.</p>  --> 
-            <p>In the B/W mode when the IR LED is turned on, the saturation at the center of screen is prevented, so it is possible to identify a nearby object.</p>
+            <h3>Mode</h3><!--         <p>?? ??? ?? ???? ??? LED </p> 
+            <p>IR LED? ?? ?? IR ?? ?? ???? ??? ?? ?? ??? ??? ?? ?????? ??? ??????? ???.</p>  --><p>In the B/W mode when the IR LED is turned on, the saturation at the center of screen is prevented, so it is possible to identify a nearby object.</p>
             <ul>
-                <li><strong class="UI">Off</strong>: Turns off IR LED.</li>
-                <li><strong class="UI">On</strong>: Turns on IR LED. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>. &nbsp;</li>
+                <li><strong class="UI">Disable</strong>: Turns off IR LED.</li>
+                <li><strong class="UI">On</strong>: Turns on IR LED. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>.</li>
                 <li><strong class="UI">Day/Night</strong>: Turns on/off IR according to Day/Night. It means that, after the activation of Day/Night, LED is turned off when the video is in color mode and turned on when video is in B/W mode. If this mode is selected, <strong class="UI"><a href="#daynight">[Day/Night]</a></strong> is automatically set to [Auto] and the setting cannot be changed.</li>
                 <li><strong class="UI">Sensor</strong>: IR and Day/Night changes depending on the amount of light detected by the optical sensor. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>.</li>
-                <li><strong class="UI">Timed</strong>: Sets the IR On time. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>. &nbsp;</li>
+                <li><strong class="UI">Timed</strong>: Sets the IR On time. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -1126,17 +1027,17 @@ WDR mode off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>The camera always operates at a specific preset time. Set and use a desired image preset at the desired time. </p> 
+            <p>The camera always operates at a specific preset time. Set and use a desired image preset at the desired time.<!-- ?? ??? ???? ???? ??? ????? ???? ??? ??? ???? ?????. ???? ??? ??? ??? ?? ????? ??? ?????. --></p> 
         </div>
 
         <div class="wn5-setup-section-article-content">
-            <h3>Off </h3>
+            <h3>Off</h3>
             <p>The camera operates at the time selected in the image preset.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Only scheduled time</h3>
-            <p>You can set to allow a user to execute a desired image preset at a specific time. Select an image preset and set the start and end time. Set the image preset for each hour according to the usage of the camera.</p>               
-            </p>The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time by clicking or dragging on the time table with the mouse. The set activation time is executed repeatedly on the relevant weekday and time.</p> 
+            <p>You can set to allow a user to execute a desired image preset at a specific time.<!-- ??? ???? --> Select an image preset and set the start and end time. Set the image preset for each hour according to the usage of the camera.</p>
+            <p>The date from Sunday to Saturday, based on the current camera time, is displayed on the time table shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time by clicking or dragging on the time table with the mouse. The set activation time is executed repeatedly on the relevant weekday and time.</p>
             <p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp; Time]</strong>.</p>
         </div>
     </div>

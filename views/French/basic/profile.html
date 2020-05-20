@@ -1,37 +1,45 @@
 ﻿<h1 class="wn5-setup-main-title">Profil vid&eacute;o</h1>
 <div class="wn5-setup-section">
-    <p>L&apos;utilisateur peut ajouter ou supprimer un profil vid&eacute;o et modifier les propri&eacute;t&eacute;s du profil. D&eacute;finissez &agrave; l&apos;avance le profil vid&eacute;o, la fr&eacute;quence d&apos;images et le codec en tant que «&nbsp;Profil vid&eacute;o&nbsp;», puis modifiez le profil vid&eacute;o pour diffuser ou lire une image. Lorsque vous avez termin&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+    <p>L&apos;utilisateur peut ajouter ou supprimer un profil vid&eacute;o et modifier les propri&eacute;t&eacute;s du profil. D&eacute;finissez &agrave; l&rsquo;avance le profil vid&eacute;o, la fr&eacute;quence d&rsquo;images et le codec en tant que «&nbsp;Profil vid&eacute;o&nbsp;», puis modifiez le profil vid&eacute;o pour diffuser ou lire une image. Lorsque vous avez termin&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
-
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
             <div class="wn5-setup-section-heading">
-                <h2>Sélectionner un canal</h2>
+                <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
             </div>
             <div class="wn5-setup-section-article">
-                <div class="wn5-setup-section-article-content">
-                    <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails du profil vid&eacute;o pour chaque canal.</p>
-                    <p ng-if="objectDetectionSupport">La transmission Direct s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2.</p>
-                    <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
-                    <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
-
-                    <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous.</p>
-                    <ul ng-if="SupportChannelExpansionFeature">
-                        <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
-                        <li>Canal&nbsp;2&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique murale.</li>
-                        <li>Canal&nbsp;3&nbsp;: Lisse une vid&eacute;o &agrave; 360° et l&rsquo;affiche sous forme de vue panoramique fractionn&eacute;e haut/bas.</li>
-                        <li>Canal&nbsp;4&nbsp;: Lisse 4 &eacute;crans pour les rendre similaires &agrave; la vision humaines et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou pour un zoom avant/arri&egrave;re.</li>
-                        <li>Canal&nbsp;5&nbsp;: Affiche la vid&eacute;o en haut &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
-                        <li>Canal&nbsp;6&nbsp;: Affiche la vid&eacute;o en haut &agrave; droite de la vue Quad du canal&nbsp;4.</li>
-                        <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
-                        <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
-                    </ul>
-                    <p ng-if="SupportChannelExpansionFeature">Pour utiliser un mode d&rsquo;affichage sp&eacute;cifique, s&eacute;lectionnez un num&eacute;ro de canal et s&eacute;lectionnez <strong class="UI">[Activer canal]</strong>. Par exemple, si seuls les canaux&nbsp;2 et 3 sont activ&eacute;s, la vid&eacute;o de la cam&eacute;ra sera affich&eacute;e en vue panoramique murale ou en vue fractionn&eacute;e haut/bas, et les autres affichages d&rsquo;&eacute;cran ne seront pas pris en charge.</p>
-                     -->
-                    <p>Sur la page en direct ou la page de lecture, le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; s&rsquo;affiche automatiquement. Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher un r&eacute;sum&eacute; de la condition du canal.</p>
-                    <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
-                </div>
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails du profil vid&eacute;o pour chaque canal.</p>
+            <p ng-if="objectDetectionSupport">La transmission Direct s&rsquo;affiche sur le canal 1 tandis que la vid&eacute;o PTZ num&eacute;rique s&rsquo;affiche sur le canal&nbsp;2.</p>
+            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme «&nbsp;PTZ&nbsp;».</p>
+            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p><!-- <p ng-if="SupportChannelExpansionFeature">채널별 뷰 모드는 다음과 같습니다.</p>
+            <ul ng-if="SupportChannelExpansionFeature">
+                <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
+                <li>채널 2: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.</li>
+                <li>채널 3: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다.</li>
+                <li>채널 4: 사람의 시야에 적합하도록 왜곡 보정한 특정 화면 4개를 동시에 보여줍니다. 분할 화면을 선택하여 뷰를 상하좌우로 이동하거나 줌 기능을 사용할 수 있습니다.</li>
+                <li>채널 5: 채널 4의 4분할 화면에서 왼쪽 상단의 영상을 보여줍니다.</li>
+                <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
+                <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
+                <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
+            </ul>
+            <p ng-if="SupportChannelExpansionFeature">특정 뷰 모드만 사용하려면 채널 번호를 선택한 후 <strong class="UI">[채널 활성화]</strong>를 선택합니다. 예를 들어 채널 2번과 3번만 활성화하면 카메라 영상을 벽면형 파노라마 형식으로 보거나 상항 분할 화면으로만 볼 수 있으며, 그 외 영상 화면은 지원하지 않습니다. </p> --><p>Sur la page en direct ou la page de lecture, le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; s&rsquo;affiche automatiquement. Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher un r&eacute;sum&eacute; de la condition du canal.</p>
+            <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
+        </div>
             </div>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
+<div class="wn5-setup-section" ng-if="SensorCaptureSize">
+            <div class="wn5-setup-section-heading">
+                <h2>Mode de résolution optimale</h2>
+            </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Sélectionne la résolution optimale disponible. La plage de résolution de la caméra et la vitesse d’enregistrement maximale qui peuvent être définies pour chaque profil varient en fonction de la résolution optimale sélectionnée.</p> 
+            <p>Le changement du mode de résolution optimale réinitialise la configuration vidéo, la configuration de la caméra, la configuration du codec et la configuration des événements et de l’IA. Toutefois, la configuration de l’utilisateur, de la date et de l’heure ainsi que la configuration du réseau restent inchangées.  </p>
+        </div>
+    </div>
 </div>
 
 <hr class="wn5-setup-hr" ng-if="PTZMode">
@@ -41,121 +49,117 @@
             </div>
             <div class="wn5-setup-section-article">
                 <div class="wn5-setup-section-article-content">
-
-					<p>Lorsque <strong class="UI">[PTZ externe]</strong> est s&eacute;lectionn&eacute;, l&apos;utilisateur peut contr&ocirc;ler la cam&eacute;ra PTZ via le r&eacute;cepteur connect&eacute; au terminal RS-485 ou RS-422. Le menu <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong> est cr&eacute;&eacute; dans l&apos;arborescence du menu de gauche de l&rsquo;&eacute;cran Web.</p>
-					<p>Lorsque <strong class="UI">[Digital PTZ]</strong> est s&eacute;lectionn&eacute;, l&apos;appareil photo PTZ sera contr&ocirc;l&eacute; num&eacute;riquement. Le menu <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong> est cr&eacute;&eacute; dans l&apos;arborescence du menu de gauche de l&rsquo;&eacute;cran Web. Le mode PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le profil PTZ num&eacute;rique est appliqu&eacute;. Lorsque cette option est activ&eacute;e, la r&eacute;solution et le d&eacute;bit binaire sont limit&eacute;s.</p>
+                    <p>Lorsque <strong class="UI">[PTZ externe]</strong> est s&eacute;lectionn&eacute;, l&apos;utilisateur peut contr&ocirc;ler la cam&eacute;ra PTZ via le r&eacute;cepteur connect&eacute; au terminal RS-485 ou RS-422. Le menu <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong> est cr&eacute;&eacute; dans l&apos;arborescence du menu de gauche de l&rsquo;&eacute;cran Web.</p>
+            <p>Lorsque <strong class="UI">[Digital PTZ]</strong> est s&eacute;lectionn&eacute;, l&apos;appareil photo PTZ sera contr&ocirc;l&eacute; num&eacute;riquement. Le menu <strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Digital PTZ]</strong> est cr&eacute;&eacute; dans l&apos;arborescence du menu de gauche de l&rsquo;&eacute;cran Web. Le mode PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le profil PTZ num&eacute;rique est appliqu&eacute;. Lorsque cette option est activ&eacute;e, la r&eacute;solution et le d&eacute;bit binaire sont limit&eacute;s.</p>
                 </div>
             </div>
         </div>
-
 <hr class="wn5-setup-hr" ng-if="ProfileSessionPolicy">
-
 <div class="wn5-setup-section" ng-if="ProfileSessionPolicy">
-    <div class="wn5-setup-section-heading">
-        <h2>Politique de connexion du profil vidéo</h2>
-    </div>
+        <div class="wn5-setup-section-heading">
+            <h2>Politique de connexion du profil vid&eacute;o</h2>
+        </div>    
     <div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-            <p>Une fois le r&eacute;glage profil est modifi&eacute;, vous pouvez d&eacute;finir la sortie d&apos;une image avec le profil pr&eacute;c&eacute;dent ou avec le profil modifi&eacute;.</p>
-            <p>Lorsque <strong class="UI">[Reste connecté en cas de modification du réglage du profil]</strong> est s&eacute;lectionn&eacute;, l&apos;image est d&eacute;livr&eacute;e conform&eacute;ment au r&eacute;glage de profil pr&eacute;c&eacute;dent m&ecirc;me si le r&eacute;glage du profil a &eacute;t&eacute; modifi&eacute;. Lorsque l&rsquo;&eacute;cran Web est reconnect&eacute;, l&apos;image est d&eacute;livr&eacute;e avec le profil modifi&eacute;. Lorsque <strong class="UI">[Reste connecté en cas de modification du réglage du profil]</strong> n&apos;est pas s&eacute;lectionn&eacute;, l&apos;image est d&eacute;livr&eacute;e avec le profil modifi&eacute; imm&eacute;diatement lorsque le r&eacute;glage profil est modifi&eacute;. Les bordures orange apparaitront sur le bord de la vue en direct de l&apos;&eacute;cran [Surveillance] jusqu&apos;&agrave; ce que vous vous connectiez &agrave; nouveau &agrave; l&rsquo;&eacute;cran Web apr&egrave;s avoir modifi&eacute; le r&eacute;glage profil.</p>
-        </div>
+    <div class="wn5-setup-section-article-content">
+        <p>Une fois le r&eacute;glage profil est modifi&eacute;, vous pouvez d&eacute;finir la sortie d&apos;une image avec le profil pr&eacute;c&eacute;dent ou avec le profil modifi&eacute;.</p>
+        <p>Si <strong class="UI">[Reste connect&eacute; en cas de modification du r&eacute;glage du profil]</strong> est s&eacute;lectionn&eacute;, l&rsquo;image est &eacute;mise selon les propri&eacute;t&eacute;s du profil pr&eacute;c&eacute;dentes, m&ecirc;me si les propri&eacute;t&eacute;s du profil ont &eacute;t&eacute; chang&eacute;es&nbsp;; lors de la reconnexion du Web Viewer, l&rsquo;image est &eacute;mise avec le nouveau profil. Les bordures apparaitront sur le bord de la vue en direct de l&apos;&eacute;cran [Direct] jusqu&apos;&agrave; ce que vous vous connectiez &agrave; nouveau &agrave; l&rsquo;&eacute;cran Web apr&egrave;s avoir modifi&eacute; le r&eacute;glage profil. <strong class="UI">Si [Reste connect&eacute; en cas de modification du r&eacute;glage du profil]</strong> n&rsquo;est pas s&eacute;lectionn&eacute;, l&rsquo;image est &eacute;mise avec le nouveau profil, imm&eacute;diatement apr&egrave;s la modification des propri&eacute;t&eacute;s du profil.</p>
+    </div>
     </div>
 </div>
-
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Profil vid&eacute;o</h2>
     </div>
-    <div class="wn5-setup-section-article">
-    <!-- <div class="wn5-setup-section-article-content">
-            <p>L&apos;utilisateur peut s&eacute;lectionner un profil vid&eacute;o en fonction de l&apos;environnement de service et des circonstances d&apos;utilisation du produit. En plus des profils fournis par d&eacute;faut, l&apos;utilisateur peut ajouter un nouveau profil ou en supprimer un existant. Vous pouvez d&eacute;finir le codec, le type de profil, l&apos;entr&eacute;e audio, le mode ATC, la sensibilit&eacute; ATC, la limite ATC, la r&eacute;solution, la fr&eacute;quence d&apos;images, le d&eacute;bit binaire maximal, le d&eacute;bit binaire cible, le contr&ocirc;le de d&eacute;bit binaire et la multidiffusion pour chaque profil.</p>
-        </div> -->
-        <div class="wn5-setup-section-article-content">
+    <div class="wn5-setup-section-article"><!-- <div class="wn5-setup-section-article-content">
+            <p>제품의 사용 환경과 상황에 따라 비디오의 프로파일을 선택할 수 있습니다. 기본으로 제공되는 프로파일 외에 새로운 프로파일을 추가하거나 삭제할 수 있습니다. 프로파일 별로 코덱, 프로파일 타입, 오디오 입력, ATC 모드, ATC 민감도, ATC 제한, 해상도, 프레임 레이트, 최대 비트 레이트, 목표 비트 레이트, 비트 레이트 제어, 멀티캐스트 등을 설정할 수 있습니다.</p> 
+        </div>  --><div class="wn5-setup-section-article-content">
             <p>L&apos;utilisateur peut s&eacute;lectionner un profil vid&eacute;o en fonction de l&apos;environnement de service et des circonstances d&apos;utilisation du produit. En plus des profils fournis par d&eacute;faut, l&apos;utilisateur peut ajouter un nouveau profil ou en supprimer un existant. Vous pouvez d&eacute;finir le codec, le type de profil, la r&eacute;solution, la fr&eacute;quence d&apos;images, le d&eacute;bit binaire maximal, le d&eacute;bit binaire cible, le contr&ocirc;le de d&eacute;bit binaire et la multidiffusion pour chaque profil.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
             <h3>Liste des profils</h3>
-            <p>La liste des profils est fournie par d&eacute;faut. Tous les profils ajout&eacute;s par l&apos;utilisateur seront &eacute;galement affich&eacute;s.</p>
-
-        <!--     <p ng-if="!FixedProfileCodecChange">Les profils par d&eacute;faut fournis lors de l&apos;installation de la cam&eacute;ra sont les suivants (le nom et le codec des profils par d&eacute;faut fournis ne peuvent &ecirc;tre modifi&eacute;s, d&apos;autres param&egrave;tres peuvent &ecirc;tre modifi&eacute;s par l&apos;utilisateur comme il le souhaite)&nbsp;:</p>
-            <p ng-if="FixedProfileCodecChange">Les profils par d&eacute;faut fournis lors de l&apos;installation de la cam&eacute;ra sont les suivants&nbsp;:</p>            
-            <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens" >
+            <p>La liste des profils est fournie par d&eacute;faut. Tous les profils ajout&eacute;s par l&apos;utilisateur seront &eacute;galement affich&eacute;s.</p><!--      <p ng-if="!FixedProfileCodecChange">카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. 기본으로 제공하는 프로파일 이름과 코덱은 변경할 수 없으며 그 외 설정은 사용자가 원하는 대로 변경할 수 있습니다.</p>
+            <p ng-if="FixedProfileCodecChange">카메라를 설치하면 기본으로 제공되는 프로파일은 다음과 같습니다. </p>
+            <table class="table table-bordered wn5-setup-table" ng-if="!FisheyeLens">
                 <thead>
                 <tr>
-                    <td>Nom de profil</td>
-                    <td>Codec</td>
-                    <td>La description</td>
+                    <td>프로파일 이름</td>
+                    <td>코덱 </td>
+                    <td>설명</td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>MJPEG</td>
                     <td>MJPEG</td>
-                    <td>Utilis&eacute; comme profil appropri&eacute; pour le codec MJPEG, le profil d&apos;&eacute;v&eacute;nement et le profil d&apos;enregistrement</td>
+                    <td>MJPEG 코덱에 적합한 프로파일, 이벤트 프로파일과 저장 프로파일로 사용됨</td>
                 </tr>
                 <tr>
                     <td>H.264</td>
                     <td>H.264</td>
-                    <td>Utilis&eacute; comme profil appropri&eacute; pour le codec H.264 et est le profil par d&eacute;faut pour la diffusion en continu d&apos;images en direct</td>
+                    <td>H.264 코덱에 적합한 프로파일, 라이브 영상 스트림 기본 프로파일로 사용됨</td>
                 </tr>
                 <tr>
                     <td>H.265</td>
                     <td>H.265</td>
-                    <td>Profil appropri&eacute; pour le codec H.265</td>
+                    <td>H.265 코덱에 적합한 프로파일</td>
                 </tr>
-              <tr>
+                <tr>
                     <td>WISENET</td>
-                    <td>H.265</td>
-                    <td>Profil par défaut prêt à l'emploi pour le client ONVIF. Ce profil peut être modifié mais ne peut pas être supprimé.</td>
-                </tr>  
+                    <td>H.264</td>
+                    <td>ONVIF 클라이언트용으로 제공되는 기본 프로파일, 설정 값은 수정할 수 있으나 프로파일을 삭제할 수 없음.</td>
+                </tr>
                 <tr>
                     <td>MOBILE</td>
-                    <td>MJPEG</td>
-                    <td>Profil appropri&eacute; pour le mobile</td>
+                    <td>MJPEG/H.264 </td>
+                    <td>모바일에 적합한 프로파일</td>
                 </tr>
                 </tbody>
-            </table>
-
-
-        <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
-      <thead>
-      <tr>
-          <td>Nom de profil</td>
-          <td>Codec</td>
-          <td>La description</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-          <td>MJPEG</td>
-          <td>MJPEG</td>
-          <td>
-              <p>Un profil appropri&eacute; pour le codec MJPEG. Utilis&eacute; comme profil d&apos;&eacute;v&eacute;nement et profil d&apos;enregistrement</p>
-          </td>
-      </tr>
-      <tr>
-          <td>Affichage fisheye</td>
-          <td>H.264</td>
-          <td>Un profil qui montre la vid&eacute;o de la cam&eacute;ra fisheye sans d&eacute;formation. Utilis&eacute; comme profil par d&eacute;faut</td>
-      </tr>
-          <td>MOBILE</td>
-          <td>MJPEG</td>
-          <td>Un profil appropri&eacute; au mobile</td>
-      </tr>
-      </tbody>
-  </table>  --> 
-</div>
-
+            </table>  --> <!-- <p ng-if="FisheyeLens">피쉬아이 카메라의 경우 기본 프로파일은 다음과 같습니다.</p> --> <!--             <table class="table table-bordered wn5-setup-table" ng-if="FisheyeLens">
+                <thead>
+                <tr>
+                    <td>프로파일 이름</td>
+                    <td>코덱 </td>
+                    <td>설명</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>MJPEG</td>
+                    <td>MJPEG</td>
+                    <td>
+                        <p>MJPEG 코덱에 적합한 프로파일, 이벤트 프로파일과 저장 프로파일로 사용됨</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fisheyeview</td>
+                    <td>H.264</td>
+                    <td>왜곡 보정을 하지 않은 피쉬아이 카마라 영상을 그대로 보여주는 프로파일. 기본 프로파일로 사용됨</td>
+                </tr>  --> <!--  <tr>
+                    <td>Dewarp1</td>
+                    <td>H.264</td>
+                    <td>피쉬아이 카메라의 왜곡을 보정하여 왜곡 보정 영상을 보여주는 프로파일</td>
+                </tr> --> <!--      <tr>
+                        <td>WISENET</td>
+                        <td>H.264</td>
+                        <td>ONVIF 클라이언트용으로 제공되는 기본 프로파일, 설정 값은 수정할 수 있으나 프로파일을 삭제할 수 없음.</td>
+                </tr>
+                <tr>
+                    <td>MOBILE</td>
+                    <td>H.264</td>
+                    <td>모바일에 적합한 프로파일</td>
+                </tr>
+                </tbody>
+            </table>  --></div>
 
         <div class="wn5-online-help-action">
             <h4>Ajouter un profil vid&eacute;o</h4>
             <div>
                 <ol>
+                    
                     <li>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong>. Un nouvel &eacute;l&eacute;ment sera ajout&eacute; &agrave; la liste des profils.</li>
-                    <li>Entrez le nom du profil dans le champ <strong class="UI">[Nom]</strong> . Le nom saisi appara&icirc;tra dans la liste des profils. </li>
+                    <li>Entrez le nom du profil dans le champ <strong class="UI">[Nom]</strong> . Le nom saisi appara&icirc;tra dans la liste des profils.</li>
                     <li>D&eacute;finissez les &eacute;l&eacute;ments de profil, y compris le <strong class="UI">[Codec]</strong>, le <strong class="UI">[Type de profil]</strong> et la <strong class="UI">[R&eacute;solution]</strong>.</li>
                     <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page.</li>
                     <li>Lorsque la fen&ecirc;tre de confirmation appara&icirc;t, cliquez sur le bouton <strong class="UI">[OK]</strong>. Le nouveau profil sera ajout&eacute;.</li>
@@ -167,6 +171,7 @@
             <h4>Modification d&apos;une propri&eacute;t&eacute; de profil vid&eacute;o</h4>
             <div>
                 <ol>
+                    
                     <li>S&eacute;lectionnez le profil que vous souhaitez modifier dans la liste des profils.</li>
                     <li>Modifiez les param&egrave;tres relatifs, y compris le <strong class="UI">[Codec]</strong>, le <strong class="UI">[Type de profil]</strong> et la <strong class="UI">[R&eacute;solution]</strong>.</li>
                     <li>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> au bas de la page.</li>
@@ -179,6 +184,7 @@
             <h4>Suppression d&apos;un profil vid&eacute;o</h4>
             <div>
                 <ol>
+                    
                     <li>S&eacute;lectionnez le profil que vous souhaitez supprimer de la liste des profils.</li>
                     <li>Cliquez sur le bouton <strong class="UI">[Effacer]</strong>.</li>
                     <li>Lorsque la fen&ecirc;tre de confirmation appara&icirc;t, cliquez sur le bouton <strong class="UI">[OK]</strong>. Le profil s&eacute;lectionn&eacute; sera supprim&eacute;.</li>
@@ -192,56 +198,48 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Codec</h3>
-            <p>S&eacute;lectionnez le codec que vous souhaitez appliquer au profil. Le r&eacute;glage profil peut varier en fonction du type de codec s&eacute;lectionn&eacute;.</p>
-            <!-- <p ng-if="SupportAutoImageAlignment">Le codec pour le profil par défaut ne peut pas être modifié. Seulement le codec pour un profil nouvellement ajouté par l’utilisateur peut être modifié. </p> -->
+            <p>S&eacute;lectionnez le codec que vous souhaitez appliquer au profil. Le r&eacute;glage profil peut varier en fonction du type de codec s&eacute;lectionn&eacute;.</p><!-- <p ng-if="SupportAutoImageAlignment">기본 프로파일의 코덱은 수정할 수 없고, 사용자가 새로 추가한 프로파일의 코덱은 수정할 수 있습니다. </p> --></div>
+
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+            <h3>Type d&apos;affichage Fisheye</h3>
+            <p>S&eacute;lectionne un type de vid&eacute;o de la cam&eacute;ra fisheye &agrave; afficher dans le profil.</p>
+            <ul>
+                <li>Fisheye view&nbsp: Affiche la vid&eacute;o de la cam&eacute;ra fisheye sans correction.</li>
+                <li>Affichage de la correction de perspective&nbsp;: Corrige la vid&eacute;o &agrave; 360&deg; captur&eacute;e par la cam&eacute;ra fisheye pour s&rsquo;adapter &agrave; l&rsquo;affichage. Le type de vid&eacute;o redress&eacute;e peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Vues]</strong>.</li>
+            </ul>
         </div>
-
-
-
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
-                    <h3>Type d&apos;affichage Fisheye</h3>
-                    <p>S&eacute;lectionne un type de vid&eacute;o de la cam&eacute;ra fisheye &agrave; afficher dans le profil.</p>
-                    <ul>
-                        <li>Fisheye view&nbsp;: Affiche la vid&eacute;o de la cam&eacute;ra fisheye sans correction.</li>
-                        <li>Affichage de la correction de perspective&nbsp;: Corrige la vid&eacute;o &agrave; 360° captur&eacute;e par la cam&eacute;ra fisheye pour s&apos;adapter &agrave; l&rsquo;affichage. Le type de vid&eacute;o redress&eacute;e peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Vues]</strong>.</li>
-                    </ul>
-                </div>
-                <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
-                    <h3>Vues</h3>
-                    <p>S&eacute;lectionne le type de vid&eacute;o redress&eacute;e.</p>
-                    <p>Il est activ&eacute; lorsque <strong class="UI">[Affichage de la correction de perspective]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong>.</p>
-                    <ul>
-                        <li>Panorama simple&nbsp;: lisse une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama mural.    </li>
-                        <li>Quadravision&nbsp;:lisse 4 &eacute;crans appropri&eacute;s &agrave; la vue humaine et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou le zoom avant/arri&egrave;re.  </li>
-                        <li>Double panorama&nbsp;: lisse une vid&eacute;o &agrave; 360˚  et l&rsquo;affiche sous forme de panorama partag&eacute; en haut/bas. L&apos;option Double panorama appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Video & Audio]</strong> &gt; <strong class="UI">[Vid&eacute;o configuration]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
-                        <li>Q1&nbsp;: Affiche la vue en haut &agrave; gauche dans la quadravision.</li>
-                        <li>Q2&nbsp;: Affiche la vue en haut &agrave; droite dans la quadravision.</li>
-                        <li>Q3&nbsp;: Affiche la vue en bas &agrave; gauche dans la quadravision.</li>
-                        <li>Q4&nbsp;: Affiche la vue en bas &agrave; droite dans la quadravision.</li>
-                    </ul>
-                </div>
-
+        <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+            <h3>Vues</h3>
+            <p>S&eacute;lectionne le type de vid&eacute;o redress&eacute;e.</p>
+            <p>Il est activ&eacute; lorsque <strong class="UI">[Affichage de la correction de perspective]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong>.</p>
+            <ul>
+                <li>Panorama simple&nbsp;: Lisse une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama mural.</li>
+                <li>Quadravision&nbsp;: Lisse 4 &eacute;crans appropri&eacute;s &agrave; la vue humaine et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou le zoom avant/arri&egrave;re.</li>
+                <li>Double panorama&nbsp;: Lisse une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama partag&eacute; en haut/bas. L&apos;option Double panorama appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Vid&eacute;o configuration]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
+                <li>Q1&nbsp;: Affiche la vue en haut &agrave; gauche dans la quadravision.</li>
+                <li>Q2&nbsp;: Affiche la vue en haut &agrave; droite dans la quadravision.</li>
+                <li>Q3&nbsp;: Affiche la vue en bas &agrave; gauche dans la quadravision.</li>
+                <li>Q4&nbsp;: Affiche la vue en bas &agrave; droite dans la quadravision.</li>
+            </ul>
+        </div>
 
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>Type de profil</h3>
             <p>S&eacute;lectionnez un type de profil &agrave; appliquer. Le type de profil s&eacute;lectionn&eacute; sera affich&eacute; dans la colonne <strong class="UI">[Type]</strong> de la liste des profils. Les &eacute;l&eacute;ments de configuration peuvent varier en fonction du type de codec s&eacute;lectionn&eacute;.</p>
-            <p ng-if="SupportAutoImageAlignment">Aussi, selon le canal sélectionné dans <a href="#channel">Sélectionner un canal</a>, le type de profil pouvant être configuré peut différer. Par exemple, « Enregistrer un profil » peut être configuré seulement si vous avez sélectionné CAN 1.</p>
+            <p ng-if="SupportAutoImageAlignment">Ils varient aussi en fonction du canal s&eacute;lectionn&eacute;<a href="#channel">S&eacute;lectionner un canal</a>, un type de profil diff&eacute;rent peut &ecirc;tre d&eacute;fini. Par exemple, «&nbsp;Profil d&rsquo;enregistrement Edge&nbsp;» peut &ecirc;tre configur&eacute; seulement si vous avez s&eacute;lectionn&eacute; CAN1.</p>
             <ul>
                 <li><strong class="UI">Profil par d&eacute;faut</strong>&nbsp;: C&apos;est le profil par d&eacute;faut appliqu&eacute; pour diffuser une image de cam&eacute;ra en direct. «&nbsp;Default&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
-                <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. « Event » s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
-                <li><strong class="UI">Enregistrer profil</strong>&nbsp;: Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
-                <li ng-if="(DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li>
-                <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Vue redress&eacute;e]</strong> dans <strong class="UI">[Type de vue Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Affichage]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique.</li> -->
-                <li><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;:Il s&rsquo;agit d&rsquo;un profil appliqu&eacute; pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265]. </li>
+                <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. « Event » s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li><!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> --><li ng-if="Recording && NAS"><strong class="UI">Profil d&rsquo;enregistrement Edge</strong>Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">Profil d&rsquo;enregistrement Edge</strong>Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li><!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   --><li ng-if="isDigitalPTZ"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li><!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> --><li><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;: Ce profil s&rsquo;applique pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. «&nbsp;FrameLock&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265].</li>
             </ul>
         </div>
 
-
         <div class="wn5-online-help-info" ng-if="FisheyeLens">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-                <p>Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Affichage de la correction de perspective]</strong> dans <strong class="UI">[Type d'affichage Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Vues]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</p>
-
-            </div>
+            <ul>
+            <li>Pour la cam&eacute;ra fisheye, lors de l&apos;ajout d&apos;un nouveau profil, s&eacute;lectionnez <strong class="UI">[Affichage de la correction de perspective]</strong> dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong> et s&eacute;lectionnez <strong class="UI">[Quadravision]</strong> dans <strong class="UI">[Vues]</strong> pour enregistrer automatiquement le profil en tant que profil PTZ num&eacute;rique. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
+            </ul>
+        </div>
 
         <div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
             <h3><a class="wn5-online-help-link" name="audioin"></a>Entr&eacute;e audio</h3>
@@ -254,38 +252,36 @@
             <p>Le mode ATC (Auto Transmit Control) ajuste la quantit&eacute; de donn&eacute;es envoy&eacute;es, en modifiant les propri&eacute;t&eacute;s de l&apos;image en fonction des changements de bande passante du r&eacute;seau. La m&eacute;thode d&apos;ajustement de la quantit&eacute; envoy&eacute;e varie en fonction du mode ATC.</p>
             <ul>
                 <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: Une quantit&eacute; fixe de donn&eacute;es envoy&eacute;es est maintenue m&ecirc;me si la bande passante du r&eacute;seau change.</li>
-                <li><strong class="UI">Activer - Contrôle de fréquence d'image</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant la vitesse d&apos;enregistrement.</li>
-                <li><strong class="UI">Active - Contr. compression</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant le taux de compression des donn&eacute;es. Une modification du taux de compression peut d&eacute;grader la qualit&eacute; de l&rsquo;image.</li>
-                <li><strong class="UI">Active - Événement(MD)</strong>&nbsp;: Ce mode peut &ecirc;tre utilis&eacute; lorsqu&rsquo;un <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">&eacute;v&eacute;nement de d&eacute;tection de mouvement</a> est d&eacute;fini. Lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; et que la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es en modifiant la vitesse d&apos;enregistrement. Si aucun mouvement n&apos;est d&eacute;tect&eacute;, r&eacute;duisez l&apos;utilisation de la bande passante en produisant les images minimales.</li>
+                <li><strong class="UI">Activer &mdash; Contr&ocirc;le de fr&eacute;quence d&rsquo;image</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant la vitesse d&apos;enregistrement.</li>
+                <li><strong class="UI">Active &mdash; Contr. compression</strong>&nbsp;: Si la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es &agrave; envoyer en modifiant le taux de compression des donn&eacute;es. Une modification du taux de compression peut d&eacute;grader la qualit&eacute; de l&rsquo;image.</li>
+                <li><strong class="UI">Active &mdash; &Eacute;v&eacute;nement(MD)</strong>&nbsp;: Ce mode peut &ecirc;tre utilis&eacute; lorsqu&rsquo;un <a class="wn5-online-help-link" href="../analytics/motionDetection.html" ng-href="#/help/analytics_motionDetection/v2?">&eacute;v&eacute;nement de d&eacute;tection de mouvement</a> est d&eacute;fini. Lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute; et que la bande passante du r&eacute;seau change, vous pouvez ajuster la quantit&eacute; de donn&eacute;es en modifiant la vitesse d&apos;enregistrement. Si aucun mouvement n&apos;est d&eacute;tect&eacute;, r&eacute;duisez l&apos;utilisation de la bande passante en produisant les images minimales.</li>
             </ul>
         </div>
-
+            
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Sensibilit&eacute;</h3>
             <p>Ajuster la vitesse de r&eacute;flexion des changements de bande passante r&eacute;seau. La vitesse de r&eacute;flexion est la plus rapide lorsque la sensibilit&eacute; ATC est tr&egrave;s &eacute;lev&eacute;e, tandis que la vitesse de r&eacute;flexion est la plus lente lorsqu&apos;elle est tr&egrave;s faible.</p>
-            <p>La sensibilit&eacute; ATC est activ&eacute;e uniquement lorsque <strong class="UI">[Activer - Contrôle de fréquence d'image]</strong> ou <strong class="UI">[Active - Contr. compression]</strong> est s&eacute;lectionn&eacute; pour le <strong class="UI">[Mode ATC]</strong>.</p>
+            <p>La sensibilit&eacute; ATC est activ&eacute;e uniquement lorsque <strong class="UI">[Activer - Contr&ocirc;le de fr&eacute;quence d&apos;image]</strong> ou <strong class="UI">[Active - Contr. compression]</strong> est s&eacute;lectionn&eacute; pour le <strong class="UI">[Mode ATC]</strong>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="ATCModes">
             <h3>Limite</h3>
-            <p>Lorsque laquantit&eacute; de transfert de donn&eacute;es vid&eacute;ochange en fonction de la quantit&eacute; de changement de bande passante du r&eacute;seau, d&eacute;finissez la limite du mode ATC en fonction de l&rsquo;amplitude de changement que vous autoriserez pour la propri&eacute;t&eacute;. En supposant que le mode ATC n&rsquo;est pas utilis&eacute; &agrave; 100%, cette valeur peut se situer entre de 10 &agrave; 50&nbsp;%&nbsp;; laquantit&eacute; de transfert de donn&eacute;es vid&eacute;one tombera pas en dessous de cette valeur.</p>
+            <p>Lorsque laquantit&eacute; de transfert de donn&eacute;es vid&eacute;ochange en fonction de la quantit&eacute; de changement de bande passante du r&eacute;seau, d&eacute;finissez la limite du mode ATC en fonction de l&rsquo;amplitude de changement que vous autoriserez pour la propri&eacute;t&eacute;. En supposant que le mode ATC n&rsquo;est pas utilis&eacute; &agrave; 100%, cette valeur peut se situer entre de 10 &agrave; 50&nbsp;%&nbsp;; la quantit&eacute; de transfert de donn&eacute;es vid&eacute;o ne tombera pas en dessous de cette valeur.</p>
             <p>Dans ce cas, une diminution trop importante de cette valeur peut provoquer le clignotement de l&rsquo;&eacute;cran. Par cons&eacute;quent, vous devez ajuster le r&eacute;glage de la limite en ajustant ce r&eacute;glage.</p>
             <p>La limite ATC est activ&eacute;e uniquement lorsque <strong class="UI">[Activer - Contr&ocirc;le de fr&eacute;quence d&apos;image]</strong> ou <strong class="UI">[Active - Contr. compression]</strong> est s&eacute;lectionn&eacute; pour le <strong class="UI">[Mode ATC]</strong>.</p>
         </div>
-        <div class="wn5-online-help-info" ng-if="ATCModes">
-                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-                <ul>
-                    <li>Il est recommand&eacute; de n&rsquo;utiliser le mode ATC que dans un environnement o&ugrave; toutes les cam&eacute;ras prennent en charge le mode ATC.</li>
-                    <li>Dans un environnement o&ugrave; la quantit&eacute; de changement de bande passante du r&eacute;seau est drastique, r&eacute;glez la sensibilit&eacute; ATC sur<strong class="UI">[Tr&egrave;s basse]</strong>.</li>
-                    <li>Un environnement r&eacute;seau instable peut provoquer un scintillement de l&rsquo;&eacute;cran.</li>
-                </ul>
-                </div>
+		
+	<div class="wn5-online-help-info" ng-if="ATCModes">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+
+    <ul>
+        <li>Il est recommand&eacute; de n&rsquo;utiliser le mode ATC que dans un environnement o&ugrave; toutes les cam&eacute;ras prennent en charge le mode ATC.</li>
+        <li>Dans un environnement o&ugrave; la quantit&eacute; de changement de bande passante du r&eacute;seau est drastique, r&eacute;glez la sensibilit&eacute; ATC sur<strong class="UI">[Tr&egrave;s basse]</strong>.</li>
+        <li>Un environnement r&eacute;seau instable peut provoquer un scintillement de l&rsquo;&eacute;cran.</li>
+    </ul>
+		</div>
     </div>
-</div>
-
-
-<hr class="wn5-setup-hr" ng-if="Crop">
-
+</div>  <hr class="wn5-setup-hr" ng-if="Crop">
 <div class="wn5-setup-section" ng-if="Crop">
     <div class="wn5-setup-section-heading">
         <h2>Encodage recadr&eacute;</h2>
@@ -294,27 +290,28 @@
         <div class="wn5-setup-section-article-content">
             <p>L&rsquo;encodage recadr&eacute; ne codant qu&rsquo;une partie s&eacute;lectionn&eacute;e du plein &eacute;cran et l&rsquo;affiche selon la r&eacute;solution d&eacute;finie dans le fichier <strong class="UI">[Param&egrave;tres du profil]</strong>. Seule une taille de r&eacute;solution inf&eacute;rieure &agrave; la zone de r&eacute;glage de l&rsquo;encodage recadr&eacute; peut &ecirc;tre d&eacute;finie. Pour appliquer l&rsquo;encodage recadr&eacute; au profil actuel, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
         </div>
-
         <div class="wn5-online-help-action">
             <h4>D&eacute;finir une zone de recadrage</h4>
+            <div>
                 <ol>
-                    <li>D&eacute;finissez <strong class="UI">[Activer]</strong> pour l&apos;encodage recadr&eacute; et cliquez sur le bouton <strong class="UI">[D&eacute;finir zone]</strong>.</li>
-                    <li>D&eacute;finissez la zone en faisant glisser la souris sur l&apos;&eacute;cran d&apos;aper&ccedil;u <strong class="UI">[D&eacute;finir la zone de recadrage]</strong>. Pour r&eacute;gler la zone sur un rapport 16:9 ou 4:3, s&eacute;lectionnez <strong class="UI">[16:9]</strong> ou <strong class="UI">[4:3]</strong>. Pour d&eacute;finir une zone souhait&eacute;e ind&eacute;pendamment du rapport, s&eacute;lectionnez <strong class="UI">[Manuel]</strong>.</li>
+                    <li>D&eacute;finissez <strong class="UI">[Activer]</strong> pour l&apos;encodage recadr&eacute; et cliquez sur le bouton <strong class="UI">[Zone d&eacute;finie]</strong>.</li>
+                    <li>D&eacute;finissez la zone en faisant glisser la souris sur l&apos;&eacute;cran d&apos;aper&ccedil;u <strong class="UI">[Zone de recadrage]</strong>. <!-- <strike>Pour r&eacute;gler la zone sur un rapport 16:9 ou 4:3, s&eacute;lectionnez <strong class="UI">[16:9]</strong> ou <strong class="UI">[4:3]</strong>. Pour d&eacute;finir une zone souhait&eacute;e ind&eacute;pendamment du rapport, s&eacute;lectionnez <strong class="UI">[Manuel]</strong>.</strike> -->
+                        Apr&egrave;s avoir s&eacute;lectionn&eacute; <strong class="UI">[Manuel]</strong>, s&eacute;lectionner la zone souhait&eacute;e.</li>
                     <li>Pour terminer le r&eacute;glage de zone, cliquez sur le bouton <strong class="UI">[OK]</strong> .</li>
                 </ol>
             </div>
-            <div class="wn5-online-help-info">
-                    <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-                    <ul>
-                        <li>Si <strong class="UI">[Param&egrave;tres de zone d&rsquo;encodage]</strong>est r&eacute;gl&eacute; sur la plage d&eacute;sir&eacute;e, la r&eacute;solution la plus proche de la r&eacute;solution de sortie dans la plage que vous avez d&eacute;finie sera affich&eacute;e.</li>
-                        <li>Si vous modifiez le param&egrave;tre sous <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Réglage caméra]</strong>&gt;<strong class="UI">[Sp&eacute;cial]</strong>&gt;<strong class="UI">[DIS]</strong>, la zone de recadrage peut changer. Si vous avez modifi&eacute; le r&eacute;glage du DIS, r&eacute;glez &agrave; nouveau la zone d&rsquo;encodage recadr&eacute;.</li>
-                    </ul>
-            </div>     
+        </div>
+<div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+
+                <ul>
+                    <li>Si <strong class="UI">[Param&egrave;tres de zone d&rsquo;encodage]</strong>est r&eacute;gl&eacute; sur la plage d&eacute;sir&eacute;e, la r&eacute;solution la plus proche de la r&eacute;solution de sortie dans la plage que vous avez d&eacute;finie sera affich&eacute;e.</li>
+                    <li>Si vous modifiez le param&egrave;tre sous <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<strong class="UI">[Sp&eacute;cial]</strong>&gt;<strong class="UI">[DIS]</strong>, la zone de recadrage peut changer. Si vous avez modifi&eacute; le r&eacute;glage du DIS, r&eacute;glez &agrave; nouveau la zone d&rsquo;encodage recadr&eacute;.</li>
+                </ul>
+            </div>
     </div>
 </div>
-
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>R&eacute;glages profil</h2>
@@ -326,42 +323,37 @@
         <div class="wn5-setup-section-article-content">
             <h3>R&eacute;solution</h3>
             <p>D&eacute;finissez la r&eacute;solution de l&apos;image de la cam&eacute;ra.</p>
-        </div>
-
-		<div class="wn5-online-help-info">
+        </div><!-- 	!FixedProfileCodecChange 분기 코드 삭제. 2019-05-08  --><div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 
-			<ul>
-				<li>Pour diffuser une image haute r&eacute;solution en continu, il est recommand&eacute; de se connecter &agrave; l&rsquo;&eacute;cran visionneuse Web &agrave; l&apos;aide de Google Chrome.</li><!-- <li>High resolution is not supported by Chrome, Edge or Firefox web browsers. High resolution images can be streamed in Internet Explorer and Safari after installation of a plugin. To install the plugin, click the <span class="tui tui-wn5-download"></span> button on the top right of the <strong class="UI">[Monitoring]</strong> screen or the <strong class="UI">[Playback]</strong> screen. </li> --></ul>
+            <ul>
+                <li>Pour diffuser une image haute r&eacute;solution en continu, il est recommand&eacute; de se connecter &agrave; l&rsquo;&eacute;cran visionneuse Web &agrave; l&apos;aide de Google Chrome.</li><!-- <li>고해상도는 Edge, Firefox  웹브라우저에서 지원되지 않습니다. Internet Explorer와 Safari에서는 플러그인을 설치하면 고해상도 영상도 스트림할 수 있습니다. 플러그인을 설치하려면 <strong class="UI">[라이브]</strong> 화면이나 <strong class="UI">[재생]</strong> 화면에서 오른쪽 상단의 플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> --></ul>
 		</div>
-
-
+		
+            
         <div class="wn5-setup-section-article-content">
             <h3>Vitesse d&apos;enregistrement</h3>
-            <p>D&eacute;finissez le nombre d&apos;images par seconde. </p>
-            <p ng-if="Sensor">La plage des vitesses d&apos;enregistrement disponibles varie en fonction de la valeur de la vitesse d&apos;enregistrement s&eacute;lectionn&eacute;e dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Capteur]</strong></a>.</p>
+            <p>D&eacute;finissez le nombre d&apos;images par seconde.</p>
+            <p ng-if="Sensor">La plage des vitesses d&apos;enregistrement disponibles varie en fonction de la valeur de la vitesse d&apos;enregistrement s&eacute;lectionn&eacute;e dans <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Capteur]</strong></a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>Compression</h3>
             <p>Vous pouvez configurer le taux de compression.</p>
         </div>
-		<div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">
             <h3>D&eacute;bit binaire maximal</h3>
             <p>R&eacute;glez le d&eacute;bit binaire maximal de l&apos;image lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est <strong class="UI">[VBR]</strong>.</p>
         </div>
-
         <div class="wn5-setup-section-article-content">
             <h3>D&eacute;bit binaire cible</h3>
             <p>Fixez la quantit&eacute; de donn&eacute;es d&apos;image &agrave; envoyer si <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est <strong class="UI">[CBR]</strong>.</p>
         </div>
-    </div>
+    </div>  
 </div>
-
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Avancé</h2>
+        <h2>Avanc&eacute;</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -375,91 +367,102 @@
                 <li><strong class="UI">VBR</strong>: Le d&eacute;bit binaire variable Bitrate permet d&rsquo;envoyer une image en respectant le d&eacute;bit binaire maximal, sans fixer la taille des donn&eacute;es de l&rsquo;image. VBR peut utiliser efficacement la capacit&eacute; de l&apos;espace de stockage ou la bande passante tout en conservant la qualit&eacute;, mais si une image devient soudainement plus complexe, cela peut provoquer une tension sur le r&eacute;seau.</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info">
-                <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-                <ul>
-                    <li>Lorsque le Contr&ocirc;le de d&eacute;bit binaire est r&eacute;gl&eacute; sur « CBR (D&eacute;bit Binaire fixe) » et que le mode Priorit&eacute; sur la qualit&eacute; d&rsquo;image est s&eacute;lectionn&eacute;, la vitesse d&rsquo;enregistrement effectivement des images transf&eacute;r&eacute;es peut &ecirc;tre diff&eacute;rente de la vitesse d&rsquo;enregistrement des images d&eacute;finie, afin de garantir la meilleure qualit&eacute; d&rsquo;image sous le d&eacute;bit binaire d&eacute;fini, compte tenu de la complexit&eacute; &agrave; l&rsquo;&eacute;cran.</li>
-                </ul>
+	<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Lorsque le Contr&ocirc;le de d&eacute;bit binaire est r&eacute;gl&eacute; sur « CBR (D&eacute;bit Binaire fixe) » et que le mode Priorit&eacute; sur la qualit&eacute; d&rsquo;image est s&eacute;lectionn&eacute;, la vitesse d&rsquo;enregistrement effectivement des images transf&eacute;r&eacute;es peut &ecirc;tre diff&eacute;rente de la vitesse d&rsquo;enregistrement des images d&eacute;finie, afin de garantir la meilleure qualit&eacute; d&rsquo;image sous le d&eacute;bit binaire d&eacute;fini, compte tenu de la complexit&eacute; &agrave; l&rsquo;&eacute;cran.</li>
+            </ul>
+		</div>	
+		
+        <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
+            <h3>Compression vid&eacute;o</h3>
+            <p>Vous pouvez configurer le taux de compression vid&eacute;o.<strong class="UI">[R&eacute;glages profil]</strong>a l&rsquo;option d&rsquo;une<strong class="UI">[Compression]</strong>CBR. Cette fonction d&eacute;finit la priorit&eacute; de l&rsquo;encodage, qui affecte le volume de transmission des donn&eacute;es et la qualit&eacute; de la vid&eacute;o, en fonction du taux de compression vid&eacute;o pour l&rsquo;action VBR.</p>
+            <p>Plus la valeur de la [Compression vid&eacute;o] est &eacute;lev&eacute;e, meilleur est le taux de compression vid&eacute;o. Lorsque le taux de compression vid&eacute;o augmente, le volume de la transmission des donn&eacute;es vid&eacute;o diminue, mais la qualit&eacute; de la vid&eacute;o peut aussi &ecirc;tre d&eacute;grad&eacute;e. Si le taux de compression vid&eacute;o est r&eacute;duit par la d&eacute;finition d&rsquo;une valeur faible de [Compression vid&eacute;o], la qualit&eacute; de la vid&eacute;o s&rsquo;am&eacute;liorera, mais le volume de transmission de donn&eacute;es peut augmenter.</p>
+            <p>Si <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> est s&eacute;lectionn&eacute; comme <strong class="UI">[Codec]</strong> pour le profil, <strong class="UI">[Compression vid&eacute;o]</strong> est activ&eacute;e uniquement lorsque <strong class="UI">[VBR]</strong> est r&eacute;gl&eacute; pour <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong>.</p>
         </div>
+		
         <div class="wn5-setup-section-article-content">
             <h3>Priorit&eacute; d&apos;encodage</h3>
             <p>D&eacute;finissez la priorit&eacute; entre vitesse d&apos;enregistrement et qualit&eacute; d&apos;image si la quantit&eacute; de donn&eacute;es d&apos;image d&eacute;passe le d&eacute;bit binaire cible.</p>
 			<p>Si <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> est s&eacute;lectionn&eacute; comme <strong class="UI">[Codec]</strong> pour le profil, l&apos;utilisateur peut choisir entre <strong class="UI">[Vitesse d&apos;enregistrement]</strong> et <strong class="UI">[Compression]</strong>. Si <strong class="UI">[Vitesse d&apos;enregistrement]</strong> est d&eacute;fini comme une haute priorit&eacute;, la vitesse d&apos;enregistrement maximale est s&eacute;curis&eacute;e, mais la qualit&eacute; de l&apos;image peut &ecirc;tre r&eacute;duite. D&apos;autre part, lorsque <strong class="UI">[Compression]</strong> est d&eacute;finie comme haute priorit&eacute;, la qualit&eacute; d&apos;image est s&eacute;curis&eacute;e, mais certaines images peuvent &ecirc;tre omises, de sorte que l&apos;image peut &ecirc;tre d&eacute;connect&eacute;e ou ne pas sembler naturelle. Si <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> est s&eacute;lectionn&eacute; comme <strong class="UI">[Codec]</strong> pour le profil, <strong class="UI">[Priorit&eacute; d&apos;encodage]</strong> est activ&eacute;e uniquement lorsque <strong class="UI">[CBR]</strong> est r&eacute;gl&eacute; pour <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong>.</p>
-
-			<p ng-if="!objectDetectionSupport">Si le <strong class="UI">[Codec]</strong> du profil est <strong class="UI">[MJPEG]</strong>, vous pouvez choisir entre <strong class="UI">[Vitesse d&apos;enregistrement]</strong> et  <strong class="UI">[D&eacute;bit binaire]</strong>.</p>
+			
+			<p ng-if="!objectDetectionSupport">Si le <strong class="UI">[Codec]</strong> du profil est <strong class="UI">[MJPEG]</strong>, vous pouvez choisir entre <strong class="UI">[Vitesse d&apos;enregistrement]</strong> et <strong class="UI">[D&eacute;bit binaire]</strong>.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
-            <h3><a class="wn5-online-help-link" name="GOV"></a>Longueur de GOV</h3>
-            <p>GOV (Group of Vid&eacute;o) est un groupe de cadres d&apos;image pour la compression vid&eacute;o H.264 / H.265. Cela signifie le groupe de trames d&apos;une image I &agrave; l&apos;image I suivante. GOV contient &agrave; la fois image-I et image-P. Image-I est l&rsquo;image qui devient la base de la compression (aussi appel&eacute;e image cl&eacute;). Ses donn&eacute;es pour une image sont compl&egrave;tes. Image P contient uniquement des informations sur la zone modifi&eacute;e, en fonction de l&rsquo;image pr&eacute;c&eacute;dente. Pour cette raison, le nombre d&rsquo;images-I s&apos;amoindrit autant que la longueur de GOV s&apos;allonge, ce qui r&eacute;duit la taille de l&apos;image, alors que le nombre d&rsquo;images-I augmente autant que la longueur de GOV se raccourcit, ce qui agrandit la taille de l&rsquo;image. La valeur maximale de la longueur de GOV varie en fonction de <strong class="UI">[Vitesse d&apos;enregistrement]</strong> dans <strong class="UI">[R&eacute;glages profil]</strong>.</p>
+        <div class="wn5-setup-section-article-content">    
+            <h3><a class="wn5-online-help-link" name="GOV"></a>Longueur de GOV</h3><!--    <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가
+짧을수록 I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p> --><p>GOV (Group of Vid&eacute;o) est un groupe de cadres d&apos;image pour la compression vid&eacute;o H.264 / H.265. Cela signifie le groupe de trames d&apos;une image I &agrave; l&apos;image I suivante. GOV contient &agrave; la fois image-I et image-P. Image-I est l&rsquo;image qui devient la base de la compression (aussi appel&eacute;e image cl&eacute;). Ses donn&eacute;es pour une image sont compl&egrave;tes. Image P contient uniquement des informations sur la zone modifi&eacute;e, en fonction de l&rsquo;image pr&eacute;c&eacute;dente. Pour cette raison, le nombre d&rsquo;images-I s&apos;amoindrit autant que la longueur de GOV s&apos;allonge, ce qui r&eacute;duit la taille de l&apos;image, alors que le nombre d&rsquo;images-I augmente autant que la longueur de GOV se raccourcit, ce qui agrandit la taille de l&rsquo;image. La valeur maximale de la longueur de GOV varie en fonction de <strong class="UI">[Vitesse d&apos;enregistrement]</strong> dans <strong class="UI">[R&eacute;glages profil]</strong>.</p>
+            <p>Si le codec H.264 ou H.265 est s&eacute;lectionn&eacute; pour le fichier d&rsquo;enregistrement, la longueur de GOV devient fr&eacute;quence d&rsquo;images/2.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
             <h3>Profil</h3>
-            <p>Ce menu devient actif uniquement lorsque le codec du profil est H.264. Le profil peut &ecirc;tre consid&eacute;r&eacute; comme un ensemble de diverses technologies de compression. Les profils pris en charge dans les cam&eacute;ras Hanwha Techwin incluent <strong class="UI">[Ligne de r&eacute;f&eacute;rence]</strong>, <strong class="UI">[Principal]</strong> et <strong class="UI">[&Eacute;lev&eacute;e]</strong>. Les performances de compression deviennent plus &eacute;lev&eacute;es et la qualit&eacute; s&apos;am&eacute;liore lorsque vous passez de Ligne de r&eacute;f&eacute;rence &agrave; &Eacute;lev&eacute;e, mais beaucoup de ressources syst&egrave;me sont utilis&eacute;es pour la compression et la d&eacute;compression et peuvent cr&eacute;er des tensions sur l&apos;&eacute;quipement de lecture.</p>
+            <p>Ce menu devient actif uniquement lorsque le codec du profil est H.264. Le profil peut &ecirc;tre consid&eacute;r&eacute; comme un ensemble de diverses technologies de compression. Les profils pris en charge dans les cam&eacute;ras Hanwha Techwin incluent <strong class="UI">[BaseLine]</strong>, <strong class="UI">[Main]</strong> et <strong class="UI">[High]</strong>. Les performances de compression deviennent plus &eacute;lev&eacute;es et la qualit&eacute; s&apos;am&eacute;liore lorsque vous passez de Ligne de r&eacute;f&eacute;rence &agrave; &Eacute;lev&eacute;e, mais beaucoup de ressources syst&egrave;me sont utilis&eacute;es pour la compression et la d&eacute;compression et peuvent cr&eacute;er des tensions sur l&apos;&eacute;quipement de lecture.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Codage entropique</h3>
-            <p>D&eacute;finissez le type pour r&eacute;duire la perte de compression. </p>
-            <p>Deux types de codage entropique, CAVLC (codage adaptatif de longueur variable de contexte) et CABAC (codage arithm&eacute;tique binaire adaptatif de contexte), sont fournis.</p>
-            <ul>
-                <li><strong class="UI">CABAC</strong>: La proc&eacute;dure de traitement de donn&eacute;es CABAC est plus compliqu&eacute;e que celle de CAVLC, de sorte qu&apos;elle utilise davantage de ressources syst&egrave;me, mais son taux de compression est excellent.</li>
-                <li><strong class="UI">CAVLC</strong>: La proc&eacute;dure de traitement des donn&eacute;es pour CAVLC est plus simple que CABAC, de sorte qu&apos;elle utilise moins de ressources syst&egrave;me, mais le taux de compression est relativement faible.</li>
-            </ul>
-        </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecAreaByChannel">
+            <p>D&eacute;finissez le type pour r&eacute;duire la perte de compression.</p>
+            <p>Deux types de codage entropique, CAVLC (codage adaptatif de longueur variable de contexte) et CABAC (codage arithm&eacute;tique binaire adaptatif de contexte), sont fournis. Toutefois, seul le type de codage CAVLC est disponible pour le profil Baseline.</p><!-- <p ng-if="EntropyCodingOptionCAVLC">CAVLC(Context Adaptive Variable Length Coding)와 CABAC(Context Adaptive Binary Arithmetic Coding)의 두 가지 방식을 제공합니다. 단, Baseline 프로파일 일 때는 CAVLC 방식만 사용가능 합니다.</p> --><ul>
+                <li><strong class="UI">CABAC</strong>: <!-- 데이터 처리과정이 복잡하여 시스템 리소스를 많이 사용하지만 압축률이 높습니다. -->La proc&eacute;dure de traitement de donn&eacute;es CABAC est plus compliqu&eacute;e que celle de CAVLC, de sorte qu&apos;elle utilise davantage de ressources syst&egrave;me, mais son taux de compression est excellent.</li>
+                <li><strong class="UI">CAVLC</strong>: <!-- 데이터 처리과정이 CABAC에 비해 단순하여 시스템 리소스를 적게 사용하지만 압축률이 상대적으로 낮습니다. -->La proc&eacute;dure de traitement des donn&eacute;es pour CAVLC est plus simple que CABAC, de sorte qu&apos;elle utilise moins de ressources syst&egrave;me, mais le taux de compression est relativement faible.</li><!-- <li ng-if="EntropyCodingOptionCAVLC"><strong class="UI">CAVLC</strong>: CABAC에 비해 압축률이 낮지만, 데이터 처리과정이 단순하여 시스템 리소스를 적게 사용합니다.</li> --></ul>
+        </div><!-- MaxSmartCodecArea > 0 -> MaxSmartCodecAreaByChannel로 수정. 김주희 선임님 가이드. PNM-9030V.  2010-01-17 --><div class="wn5-setup-section-article-content" ng-if="MaxSmartCodecArea > 0 || MaxSmartCodecAreaByChannel">
             <h3><a class="wn5-online-help-link" name="smartcodec"></a>Codec Smart</h3>
             <p>D&eacute;finissez si vous souhaitez ou non utiliser le codec Smart. Le Codec Smart est une technologie unique de Hanwha Techwin qui r&eacute;duit le taux de compression pour une zone d&apos;int&eacute;r&ecirc;t de l&apos;utilisateur (pour produire en haute qualit&eacute;), alors qu&apos;elle augmente le taux de compression pour d&apos;autres zones, (pour produire en qualit&eacute; normale), r&eacute;duisant ainsi la taille des donn&eacute;es de l&apos;image dans son ensemble. Le Codec Smart est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est <strong class="UI">[CBR]</strong>.</p>
-
-            <p>La zone du Codec Smart peut &ecirc;tre d&eacute;finie dans <strong class="UI">[Vid&eacute;o et audio]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Codec Smart]</strong></a>.</p>
+          
+            <p>La zone du Codec Smart peut &ecirc;tre d&eacute;finie dans <strong class="UI">[Video & Audio]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/smartCodec.html" ng-href="#/help/videoAudio_smartCodec"><strong class="UI">[Smart codec]</strong></a>.</p>
         </div>
-
+            
         <div class="wn5-setup-section-article-content" ng-if="DynamicGOVSupport">
             <h3>GOV dynamique</h3>
-                <p>Pour appliquer la fonction GOV dynamique au profil actuel, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. GOV dynamique est la fonction par laquelle la longueur de GOV est automatiquement modifi&eacute;e en fonction de la situation de l&apos;image. En d&apos;autres termes, dans une image ne pr&eacute;sentant quasiment aucun mouvement, la longueur de GOV d&eacute;finie par l&apos;utilisateur dans <strong class="UI">[GOV dynamique]</strong> augmente au maximum et lorsqu&apos;un mouvement est d&eacute;tect&eacute;, elle est r&eacute;duit &agrave; la longueur d&eacute;finie dans <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[longueur de GOV]</strong></a> pour sortir l&rsquo;image. GOV dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>.</p>
-
+            <p>Pour appliquer la fonction GOV dynamique au profil actuel, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+            <p>GOV dynamique est la fonction par laquelle la longueur de GOV est automatiquement modifi&eacute;e en fonction de la situation de l&apos;image. Sans une vid&eacute;o o&ugrave; peu ou pas de d&eacute;placements sont d&eacute;tect&eacute;s, GOV fonctionne sur la base de la valeur d&eacute;finie pour <strong class="UI">[GOV dynamique]</strong> par l&rsquo;utilisateur, r&eacute;duisant le d&eacute;bit binaire de la vid&eacute;o totale. Une fois le mouvement d&eacute;tect&eacute;, Image-I s&rsquo;affiche imm&eacute;diatement. Ensuite, tant que le mouvement est d&eacute;tect&eacute;, GOV fonctionne sur la base de la valeur d&eacute;finie pour la <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[Longueur de GOV]</strong></a>.</p>
             <ul>
                 <li>Saisissez la longueur maximale de GOV &agrave; appliquer lorsqu&apos;il n&apos;y a pas de mouvement dans l&apos;image. La plage de la valeur d&apos;entr&eacute;e est affich&eacute;e &agrave; c&ocirc;t&eacute; de <strong class="UI">[longueur de GOV]</strong>. La valeur d&apos;entr&eacute;e dans <strong class="UI">[longueur de GOV]</strong> devient la valeur minimale, tandis que la valeur maximale est 480. Elle varie en fonction de <strong class="UI">[Vitesse d&apos;enregistrement]</strong> dans <strong class="UI">[R&eacute;glage profil]</strong>.</li>
             </ul>
-          </div>
+        </div>
 
-          <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
-          			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+        <div class="wn5-online-help-info" ng-if="DynamicGOVSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 
-                      <ul>
-                          <li>Lorsque la fonction WiseStream est utilis&eacute;e, si les fonctions GOV dynamique et FPS dynamique sont utilis&eacute;es, les performances de WiseStream sont optimis&eacute;es. Le WiseStream peut &ecirc;tre d&eacute;fini dans le menu <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong>.</li>
-                <li ng-if="ATCModes">GOV dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong> et que <strong class="UI">[Mode ATC]</strong>&nbsp;est r&eacute;gl&eacute; sur&nbsp;<strong class="UI">[D&eacute;sactiver]</strong>. Si <strong class="UI">[Type de profil] </strong>est r&eacute;gl&eacute; sur&nbsp;<strong class="UI">[Enregistrer profil]</strong>, GOV dynamique est d&eacute;sactiv&eacute;.</li>
-                <li ng-if="!ATCModes">GOV dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>. Si <strong class="UI">[Type de profil] </strong>est r&eacute;gl&eacute; sur&nbsp;<strong class="UI">[Enregistrer profil]</strong>, GOV dynamique est d&eacute;sactiv&eacute;.</li>
-                      </ul>
-          		</div>
-
-		<div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">
+            <ul>
+                <li>Lorsque la fonction WiseStream est utilis&eacute;e, si les fonctions GOV dynamique et FPS dynamique sont utilis&eacute;es, les performances de WiseStream sont optimis&eacute;es. Le WiseStream peut &ecirc;tre d&eacute;fini dans le menu <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong>.</li>
+                <li ng-if="ATCModes">GOV dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le de d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong> et que <strong class="UI">[Mode ATC]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[D&eacute;sactiver]</strong>. Si <strong class="UI">[Type de profil]</strong> est d&eacute;fini sur <strong class="UI">[Profil d&rsquo;enregistrement Edge],</strong>Le GOV dynamique ne peut pas &ecirc;tre utilis&eacute;.</li>
+                <li ng-if="!ATCModes">GOV dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>. Si <strong class="UI">[Type de profil]</strong> est d&eacute;fini sur <strong class="UI">[Profil d&rsquo;enregistrement Edge],</strong>Le GOV dynamique ne peut pas &ecirc;tre utilis&eacute;.</li>
+            </ul>
+		</div>
+		    
+        <div class="wn5-setup-section-article-content" ng-if="DynamicFPSSupport">
             <h3>FPS dynamique</h3>
-            <p>S&eacute;lectionnez <strong class="UI">[Activer]</strong> pour appliquer la fonction FPS dynamique au profil en cours de d&eacute;finition. FPS dynamique est une fonction qui change automatiquement les r&eacute;glages FPS, du r&eacute;glage minimum FPS au r&eacute;glage de la vitesse d&rsquo;enregistrement des images selon la situation de l&rsquo;&eacute;cran. Dans une vid&eacute;o presque immobile, FPS fonctionnera en utilisant le r&eacute;glage FPS minimum, ce qui &agrave; son tour r&eacute;duit le d&eacute;bit binaire global de l&rsquo;&eacute;cran. Lorsqu&rsquo;un mouvement est d&eacute;tect&eacute;, FPS utilisera une valeur FPS augment&eacute;e.</p>
+            <p>S&eacute;lectionnez <strong class="UI">[Activer]</strong> pour appliquer la fonction FPS dynamique au profil en cours de d&eacute;finition.</p>
+            <p ng-if="!SupportAutoImageAlignment">FPS dynamique est une fonction qui change automatiquement les r&eacute;glages FPS, du r&eacute;glage minimum FPS au r&eacute;glage de la vitesse d&rsquo;enregistrement des images selon la situation de l&rsquo;&eacute;cran. Dans une vid&eacute;o presque immobile, FPS fonctionnera en utilisant le r&eacute;glage FPS minimum, ce qui &agrave; son tour r&eacute;duit le d&eacute;bit binaire global de l&rsquo;&eacute;cran. Lorsqu&rsquo;un mouvement est d&eacute;tect&eacute;, FPS utilisera une valeur FPS augment&eacute;e.</p>
+            <p ng-if="SupportAutoImageAlignment">FPS dynamique est une fonction qui change automatiquement les r&eacute;glages FPS, du r&eacute;glage minimum FPS (1&nbsp;FPS) au r&eacute;glage de la vitesse d&rsquo;enregistrement des images selon la situation de l&rsquo;&eacute;cran. Dans une vid&eacute;o presque immobile, FPS fonctionnera en utilisant le r&eacute;glage FPS minimum, ce qui &agrave; son tour r&eacute;duit le d&eacute;bit binaire global de l&rsquo;&eacute;cran. Lorsqu&rsquo;un mouvement est d&eacute;tect&eacute;, FPS utilisera une valeur FPS augment&eacute;e.</p>
+        </div><!-- PNM-9030V 모델에서만 최소 FPS 항목이 웹에서 보이지 않음. 웹팀에서 분기 코드를 생성하기 어려워 9030용 분기 코드를 적용해 둠. 참고할 것 --> <!-- PNM-9030V 변경점에서 최소 FPS 값은 1로 고정되나 최소 FPS 메뉴가 보임. !SupportAutoImageAlignment && DynamicFPSSupport ->DynamicFPSSupport로 수정함. TW 자체. 2020-01-17 참고할 것.
+        재확인하니 minimum fps가 ui에서 제거되어 분기 코드 DynamicFPSSupport -> !SupportAutoImageAlignment && DynamicFPSSupport로 롤백함. 2020-01-29 --><div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">
+            <h3>Minimale FPS</h3>
+            <p>Entrez la valeur FPS minimale &agrave; appliquer lorsque FPS dynamique est activ&eacute;.</p>
+            <p>L&rsquo;option <strong class="UI">[Minimale FPS]</strong> n&rsquo;est pas affich&eacute;e si la valeur de Minimale FPS value est d&eacute;finie comme 1.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!SupportAutoImageAlignment && DynamicFPSSupport">           
-            <h3>FPS minimale</h3>
-                <p>Entrez la valeur FPS minimale &agrave; appliquer lorsque FPS dynamique est activ&eacute;.</p>
-                <p>L&rsquo;option <strong class="UI">[Minimale FPS]</strong> n&rsquo;est pas affich&eacute;e si la valeur de Minimale FPS value est d&eacute;finie comme 1.</p>
-        </div>
+
         <div class="wn5-online-help-info" ng-if="DynamicGOVSupport && DynamicFPSSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 
             <ul>
                 <li>Lorsque la fonction WiseStream est utilis&eacute;e, si les fonctions GOV dynamique et FPS dynamique sont utilis&eacute;es, les performances de WiseStream sont optimis&eacute;es. Le WiseStream peut &ecirc;tre d&eacute;fini dans le menu <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong>.</li>
-                <li ng-if="ATCModes">FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contrôle du débit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>. FPS dynamique est &eacute;galement activ&eacute; lorsque <strong class="UI">[Mode ATC]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[D&eacute;sactiver]</strong> alors que FPS dynamique est d&eacute;sactiv&eacute; lorsque <strong class="UI">[Type de profil]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Enregistrer profil]</strong>.</li>
-                <li ng-if="!ATCModes">FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contrôle du débit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>.</li>
+                <li ng-if="ATCModes">FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>. Il est aussi activ&eacute; uniquement lorsque <strong class="UI">[Mode ATC]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[D&eacute;sactiver]</strong>. Si <strong class="UI">[Type de profil]</strong> est d&eacute;fini sur<strong class="UI">[Profil d&rsquo;enregistrement Edge],</strong>Le GOV dynamique ne peut pas &ecirc;tre utilis&eacute;.</li>
+                <li ng-if="!ATCModes">FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>. Si <strong class="UI">[Type de profil]</strong> est d&eacute;fini sur<strong class="UI">[Profil d&rsquo;enregistrement Edge],</strong>Le GOV dynamique ne peut pas &ecirc;tre utilis&eacute;.</li>
             </ul>
-                </div>
+		</div>
         <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport && DynamicFPSSupport">
-                    <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-        
-                    <ul>
-                        <li>Lorsque la fonction WiseStream est utilis&eacute;e, si les fonctions FPS dynamique sont utilis&eacute;es, les performances de WiseStream sont optimis&eacute;es. Le WiseStream peut &ecirc;tre d&eacute;fini dans le menu <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong>.</li>
-                    </ul>
-        </div>
-    </div>
-</div>
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 
+            <ul>
+                <li>Lorsque la fonction WiseStream est utilis&eacute;e, si les fonctions FPS dynamique sont utilis&eacute;es, les performances de WiseStream sont optimis&eacute;es. Le WiseStream peut &ecirc;tre d&eacute;fini dans le menu <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[WiseStream]</strong>.</li>
+                <li>FPS dynamique est activ&eacute; uniquement lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[H.264]</strong> ou <strong class="UI">[H.265]</strong> et que <strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[VBR]</strong>.</li>
+            </ul>
+		</div>
+	
+	</div>
+</div>
+            
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -474,9 +477,7 @@
             <p>Pour envoyer une image avec le RTSP, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Adresse IP</h3>
-            <!-- <p>Saisissez une adresse IPv4 pouvant &ecirc;tre connect&eacute;e &agrave; partir du r&eacute;seau IPv4. La multidiffusion peut ne pas &ecirc;tre disponible dans un environnement sp&eacute;cifique si 224.0.0.0 ~ 234.255.255.254 sont d&eacute;finis pour l&apos;adresse de multidiffusion. Si un probl&egrave;me survient, changez l&apos;adresse de multidiffusion.</p> -->
-            <p>Saisissez une adresse IPv4 pouvant &ecirc;tre connect&eacute;e &agrave; partir du r&eacute;seau IPv4. La plage d'adresses IP de multidiffusion disponible est comprise entre 224.0.0.0 et 239.255.255.254, mais 255 pour les trois derniers chiffres ne peut pas être utilisé. </p>
+            <h3>Adresse IP</h3><!-- 수정.  2019-01-14. XNO-L6120R       <p>IPv4망에서 접속 가능한 IPv4 주소를 입력합니다. 멀티캐스트 주소를 224.0.0.0 ~ 224.0.0.255 로 설정하는 경우 특정 환경에서 멀티캐스트가 되지 않을 수 있습니다. 문제 발생 시 멀티캐스트 주소를 변경하여 사용하세요.</p>  --><p>Saisissez une adresse IPv4 pouvant &ecirc;tre connect&eacute;e &agrave; partir du r&eacute;seau IPv4. La plage d&rsquo;adresses IP multidiffusion se situe entre 224.0.0.0 et 239.255.255.254. Toutefois, 255 ne peut pas &ecirc;tre utilis&eacute; comme valeur extr&ecirc;me.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Port</h3>

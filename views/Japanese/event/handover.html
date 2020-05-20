@@ -1,10 +1,10 @@
-﻿<h1 class="wn5-setup-main-title">ハンドオーバ</h1>
-<div class="wn5-setup-section">
+﻿<h1 class="wn5-setup-main-title" ng-if="!HandoverCalibration">ハンドオーバ</h1>
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <p>ハンドオーバはイベントが発生した時、PTZカメラに設定しておいたPTZプリセット位置に移動する機能です。このページではプリセット位置に移動するカメラとプリセット位置を設定することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="!HandoverCalibration">
 
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="!HandoverCalibration">
     <div class="wn5-setup-section-heading">
         <h2>レシーバカメラ</h2>
 	</div>
@@ -22,6 +22,7 @@
                 <ul>
                     <li><strong class="UI">番号</strong>：レシーバカメラNo.を設定します。<strong class="UI">[アナリティクス]</strong>下位メニューでハンドオーバのレシーバカメラを設定する時、レシーバカメラNo.を利用します。</li>
                     <li><strong class="UI">IPタイプ</strong>：IPv4とIPv6の中でIPアドレスタイプを設定します。</li>
+                    <li ng-if="ConnectionMode"><strong class="UI">HTTP/HTTPS</strong>：HTTPとHTTPSの中で使用する通信タイプを選択します。</li>
                     <li><strong class="UI">IPアドレス</strong>：レシーバカメラのIPアドレスを入力します。</li>
                     <li><strong class="UI">ポート</strong>：レシーバカメラのポートNo.を入力します。</li>
                     <li><strong class="UI">ユーザー</strong>：レシーバカメラに接続するための接続IDを入力します。</li>
@@ -34,8 +35,61 @@
 
         <div class="wn5-online-help-action">
             <h4>レシーバカメラ削除</h4>
-            <ol><li>レシーバカメラリストでチェックボックスをクリックして削除するカメラを選択します。</li>
+            <ol>
+
+                <li>レシーバカメラリストでチェックボックスをクリックして削除するカメラを選択します。</li>
                 <li><strong class="UI">[削除]</strong>ボタンをクリックした後、確認ポップアップが表示されたら<strong class="UI">[ok]</strong>をクリックします。</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+
+<h1 class="wn5-setup-main-title" ng-if="HandoverCalibration">ハンドオーバ</h1>
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <p>固定カメラにイベントが発生すると、PTZカメラがすでに設定しておいたプリセット位置に移動するようにハンドオーバNo.を設定できます。</p>
+    <p>プリセットはPTZカメラのパン、チルト位置とズーム倍率をすでに設定しておくことで、PTZプリセットは<strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ設定]</strong> &gt; <strong class="UI">[プリセット] </strong>タブ &gt; <strong class="UI">[プリセット設定]</strong>メニューで設定できます。</p>
+    <p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+		<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+        <ul>
+            <li>このページで設定したハンドオーバNo.は「ハンドオーバNo.」リストで表示されます。ハンドオーバNo.リストは、<strong class="UI">[分析]</strong>下位メニューの<strong class="UI">[モーション検知]</strong>、<strong class="UI">[IVA]</strong>&amp;<strong class="UI">[タンパリング]</strong>各ページにて確認できます。</li>
+
+        </ul>
+    
+        </div>
+</div>
+<hr class="wn5-setup-hr" ng-if="HandoverCalibration">
+
+<div class="wn5-setup-section" ng-if="HandoverCalibration">
+    <div class="wn5-setup-section-heading">
+        <h2>ハンドオーバNo.設定</h2>
+	</div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>ハンドオーバNo.を追加し、各番号別にプリセット情報を設定できます。</p>
+        </div>
+		
+			        <div class="wn5-online-help-action">
+            <h4>ハンドオーバNo.追加</h4>
+            <ol>
+                <li><strong class="UI">[追加]</strong>ボタンをクリックします。</li>
+                <li><strong class="UI">[追加]</strong>で次の項目を設定します。</li>
+                <ul>
+                    <li><strong class="UI">番号</strong>：ハンドオーバNo.を選択します。「番号」項目で指定した番号は、<strong class="UI">[分析]</strong>下位メニューの<strong class="UI">[モーション検知]</strong>、<strong class="UI">[IVA]</strong>、<strong class="UI">[タンパリング検知]</strong>各ページにて<strong class="UI">[ハンドオーバ] </strong>&gt; <strong class="UI">[ハンドオーバNo.]</strong>リストで表示されます。</li>
+                    <li><strong class="UI">チャンネル</strong>：PTZカメラのチャンネル番号は自動表記され、修正できません。</li>
+                    <li><strong class="UI">プリセットNo.</strong>：プリセットNo.を入力します。プリセットNo.は、<strong class="UI">[PTZ] </strong>&gt; <strong class="UI">[PTZ設定]</strong> &gt; <strong class="UI">[プリセット]</strong>タブ &gt; <strong class="UI">[プリセット設定]</strong>で先に設定しておく必要があります。</li>
+                </ul>
+                <li><strong class="UI">[適用]</strong>をクリックします。</li>
+            </ol>
+        </div>
+
+        <div class="wn5-online-help-action">
+            <h4>ハンドオーバNo.削除</h4>
+            <ol>
+                <li>ハンドオーバNo.リストでチェックボックスをクリックして削除項目を選択します。</li>
+                <li><strong class="UI">[削除]</strong>ボタンをクリックした後、確認ポップアップが表示されたら<strong class="UI">[ok]</strong>をクリックします。</li>
+                <li><strong class="UI">[適用]</strong>をクリックします。</li>
             </ol>
         </div>
     </div>

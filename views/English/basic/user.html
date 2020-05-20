@@ -1,4 +1,5 @@
-﻿<h1 class="wn5-setup-main-title">User</h1>
+<meta charset="UTF-8">
+<h1 class="wn5-setup-main-title">User</h1>
 <div class="wn5-setup-section">
 	<p>Manages the user accounts connecting to the camera. Changing of the administrator password and guest settings, authentication setup and setting of current users are all available. When you finish the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
@@ -6,13 +7,12 @@
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
-	<div class="wn5-setup-section-heading">
-		<h2>Change administrator password</h2>
-	</div>
-	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-heading">
+				<h2>Change administrator info</h2>
+		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p ng-if="AdminID == undefined || AdminID">You can change the administrator account ID and password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
-			<p ng-if="AdminID == undefined || !AdminID">You can change the administrator password.  To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
+			<p ng-if="AdminID == undefined || !AdminID">You can change the administrator password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
 		</div>
 		<div class="wn5-setup-section-article-content" ng-if="AdminID == undefined || AdminID">
 			<h3>ID</h3>
@@ -22,12 +22,23 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>Administrator ID must contain only alphanumeric characters with a maximum length of 8 characters.</li>
-                <li>The default guest ID “guest” or the default user ID “user1”, “user2”...“user10” cannot be used as the administrator ID.</li>
+                <li>The default guest ID &ldquo;guest&rdquo; or the default user ID &ldquo;user1&rdquo;, &ldquo;user2&rdquo;...&ldquo;user10&rdquo; cannot be used as the administrator ID.</li>
             </ul>
-		</div>
-
-
+		</div><!-- PNO-9081 이슈 수정 시 관리자 ID에 대한 분기 불가능하여 기존 분기 코드 주석 처리함. 2019-10-11
 		<div class="wn5-setup-section-article-content">
+			<p>관리자 계정의 ID와 비밀번호를 변경할 수 있습니다. 비밀번호를 변경하는 경우, 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
+		</div>
+		<div class="wn5-setup-section-article-content">
+			<h3>ID</h3>
+	        <p>현재 사용하고 있는 관리자 ID를 확인하거나 변경할 수 있습니다.</p>
+	    </div>
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>관리자 ID는 알파벳, 숫자만 사용할 수 있으며, 최대 8자까지 입력할 수 있습니다.</li>
+                <li>관리자 ID로 기본 게스트 ID인 'guest'나 기본 사용자 ID인 'user1', 'user2'...'user10'을 사용할 수 없습니다.</li>
+            </ul>
+		</div> --><div class="wn5-setup-section-article-content">
 			<h3>Current password</h3>
 	        <p>Enter the current password. To prevent the password from being changed by someone else, the administrator password can be changed only after entering the previous password.</p>
 	    </div>
@@ -46,15 +57,14 @@
                 <li>To reinforce security, it is recommended to create a password by combining special characters, numbers, and uppercase and lowercase letters.</li>
                 <li>It is recommended to change the password every three months.</li>
                 <li>The password length and restrictions are as follows:</li>
-                <ul>
-                    <li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
-					<li ng-if="PasswordRule2">Password should be longer than 9 digits, and you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
-                    <li>It should be different from your ID.</li>
-                    <li>You cannot use four or more consecutive characters (e.g. 1234, abcd)</li>
-                    <li>You cannot use the same character four or more times in a row (e.g. !!!!, 1111, aaaa)</li>
+                    <li ng-if="PasswordRule2">Password should be longer than 9 digits, and you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>					
+                    <li>Password must be different from your ID. Also, we recommend not to use your ID string as part of the password.   </li>
+                    <li>You cannot use four or more consecutive characters (e.g. 1234, abcd).</li>
+                    <li>You cannot use the same character four or more times in a row (e.g. !!!!, 1111, aaaa).</li>
 					<li ng-if="PasswordRule1">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
 					<li ng-if="PasswordRule2">Only ~`!@#$%^&amp;*()_-+=|{}[].?/ are allowed for special characters.</li>
@@ -62,10 +72,10 @@
                     <li>When you access the camera web viewer for the first time, or access it after the initialization, you will be moved to the password setting menu.</li>
                     <li>To use the web viewer menu, you need to set the new password in the password change menu and log in to the web viewer again with the changed password.</li>
                     <li>When changing the admin password, if the current password is not matched, then you cannot set the new password.</li>
-                    <li>After changing the password, if there is a camera connected to a client, such as CMS or NVR, then you need to register the changed password before use.  If you maintain the same connection, the client will use the previous password for authentication, so the account can be locked.</li>
+                    <li>After changing the password, if there is a camera connected to a client, such as CMS or NVR, then you need to register the changed password before use. If you maintain the same connection, the client will use the previous password for authentication, so the account can be locked.</li>
                 </ul>
-                <li>When logging in to the web viewer, if you entered incorrect password more than five times, it will be locked for 30 seconds and you won&rsquo;t be able to access the web viewer. </li>
-                <li>If connection is made from various places with the same ID, or the password is changed while a number of Internet browsers are open, the Internet browsers may malfunction.  It is recommended that a password be changed only from one location or only through one Internet browser.</li>
+                <li>When logging in to the web viewer, if you entered incorrect password more than five times, it will be locked for 30 seconds and you won&rsquo;t be able to access the web viewer.</li>
+                <li>If connection is made from various places with the same ID, or the password is changed while a number of Internet browsers are open, the Internet browsers may malfunction. It is recommended that a password be changed only from one location or only through one Internet browser.</li>
             </ul>
 		</div>
 	</div>
@@ -78,16 +88,16 @@
 		</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-			<p>Only registered IP addresses can be set to access the camera web viewer with the administrator account. </p>
+			<p>Only registered IP addresses can be set to access the camera web viewer with the administrator account.</p>
 		</div>
 		<div class="wn5-online-help-action">
 			<h4>Adding IP addresses that can access with the administrator account</h4>
 			<ol>
 				<li>Click the <strong class="UI">[Add]</strong> button. A field is created to enter the IP address type and the IP address.</li>
-				<li>In the <strong class="UI">[IP Address Type]</strong> column, select the IP address type, either IPv4 or IPv6.  </li>
+				<li>In the <strong class="UI">[IP Address Type]</strong> column, select the IP address type, either IPv4 or IPv6.</li>
 				<li>In the <strong class="UI">[IP Address Type]</strong> column, enter the IP address that you want to allow access with the administrator account.</li>
 			</ol>
-			<p>You have to check the <strong class="UI">[Use]</strong> check box to access the camera web viewer in the corresponding IP address with the administrator account. </p>
+			<p>You have to check the <strong class="UI">[Use]</strong> check box to access the camera web viewer in the corresponding IP address with the administrator account.</p>
 		</div>
 		<div class="wn5-online-help-action">
 			<h4>Deleting an IPv4 address</h4>
@@ -109,7 +119,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>If there are no activities for a certain period of time after accessing the camera web viewer with the administrator account, the web viewer login will be disconnected. Enter the time to automatically disconnect the login when the administrator is not active. </p>
+            <p>If there are no activities for a certain period of time after accessing the camera web viewer with the administrator account, the web viewer login will be disconnected. Enter the timein minutesto automatically disconnect the admin login when the administrator is not active.</p>
         </div>
 	</div>
 </div>
@@ -122,7 +132,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>When you select <strong class="UI">[Allow guest access]</strong>, a guest can connect to a web viewer screen. When you connect with a guest account, you can see only the live screen on the web viewer. Guest ID and password are &apos;guest/guest&apos; and these cannot be changed. </p>
+			<p>When you select <strong class="UI">[Allow guest access]</strong>, a guest can connect to a web viewer screen. When you connect with a guest account, you can see only the live screen on the web viewer. Guest ID and password are &apos;guest/guest&apos; and these cannot be changed.</p>
 		</div>
 	</div>
 </div>
@@ -158,10 +168,11 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>Select the algorithm option for digest authentication. </p>
+			<p>Select the algorithm option for digest authentication.</p>
 		</div>
 	</div>
 </div>
+
 
 <hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
 <div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
@@ -170,22 +181,21 @@
 	</div>
 	<div class="wn5-setup-section-article">
             <div class="wn5-setup-section-article-content">
-                <p>Select <strong class="UI">[Use]</strong> to control the camera in &lsquo;Wisenet device manager&rsquo; provided by Hanwha Techwin. </p>
+                <p>Select <strong class="UI">[Use]</strong> to control the camera in &lsquo;Wisenet device manager&rsquo; provided by Hanwha Techwin.</p>
                 <p>Default value is the <strong class="UI">[Use]</strong> option deselected. We recommend keeping the default value for security reasons.</p>
             </div>
 	</div>
 </div>
 
 
-
 <hr class="wn5-setup-hr" ng-if="CamSpecialModel">
 <div class="wn5-setup-section" ng-if="CamSpecialModel">
     <div class="wn5-setup-section-heading">
-		<h2>TTA settings </h2>
+		<h2>TTA settings</h2>
 	</div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>When you select <strong class="UI">[Use ONVIF TTA authentication]</strong>, the message digest authentication method is used instead of the plain text authentication method that is not encrypted in ONVIF TTA authentication. </p>
+            <p>When you select <strong class="UI">[Use ONVIF TTA authentication]</strong>, the message digest authentication method is used instead of the plain text authentication method that is not encrypted in ONVIF TTA authentication.</p>
         </div>
     </div>
 </div>
@@ -197,7 +207,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>When you select <strong class="UI">[Use password search]</strong>, you can find your password through the email you set up on the login page. </p>
+            <p>When you select <strong class="UI">[Use password search]</strong>, you can find your password through the email you set up on the login page.</p>
         </div>
 	</div>
 </div>
@@ -209,7 +219,7 @@
 	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Set the message exposure cycle to induce administrator password change. After the set period has lapsed, you will be prompted to change your password. </p>
+            <p>Set the message exposure cycle to induce administrator password change. After the set period has lapsed, you will be prompted to change your password.</p>
         </div>
 	</div>
 </div>
@@ -222,9 +232,9 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile. </p>
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">You can set the connection information for user accounts other than the administrator, and set use permissions. </p>				
-			<p>When a registered user logs in, only the functions set for that user are enabled.  10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p>
+			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile.</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">You can set the connection information for user accounts other than the administrator, and set use permissions.</p>				
+			<p>When a registered user logs in, only the functions set for that user are enabled. 10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p>
 		</div>
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
@@ -244,6 +254,10 @@
 			<h3>Password</h3>
 			<p>Enter the password. The password setting rule is same as the administrator password setting rule.</p>
 		</div>
+				<div class="wn5-setup-section-article-content" ng-if="AdminAccess">
+			<h3>Admin privilege</h3>
+            <p>Authorize the selected users with admin privileges. Normal users can use only functions that their administrator allowed, but administrators can access and set any functions they want. However, even if admin privileges are given to users, they cannot change their admin ID or password.</p>
+		</div>
 		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
 			<h3>Audio in</h3>
 			<p>Set the permission for accessing the inputted audio. If audio in is selected, a user who connects to the relevant account can watch the screen and listen to audio at the same time; if audio in is not selected, the user can watch only the image screen.</p>
@@ -258,7 +272,7 @@
 		</div>
 				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
-            <p>Sets the permission to control the PTZ in <strong class="UI">[Live]</strong> mode. </p>
+            <p>Sets the permission to control the PTZ in <strong class="UI">[Live]</strong> mode.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
 			<h3>Profile</h3>
@@ -288,7 +302,7 @@
 		<div class="wn5-online-help-action">
 			<h4>Modifying a current user</h4>
 			<ol>
-				<li>Select the radio button of the current user account you wish to modify. </li>
+				<li>Select the radio button of the current user account you wish to modify.</li>
 				<li>Change the function settings and click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</li>
 				<li>When the confirm window appears, click the <strong class="UI">[OK]</strong> button. The information of the user will be changed.</li>
 			</ol>

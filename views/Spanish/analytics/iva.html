@@ -66,7 +66,7 @@
             <h4>Configuraci&oacute;n de una l&iacute;nea virtual</h4>
             <p>Al hacer clic en el punto inicial y el punto final de la l&iacute;nea en cada posici&oacute;n deseada de la pantalla de imagen de la c&aacute;mara, la l&iacute;nea virtual se define y el color del bot&oacute;n num&eacute;rico en <strong class="UI">[L&iacute;nea]</strong> cambiar&aacute;. </p>
             <p ng-if="objectDetectionSupport">Puede introducir el nombre de la línea virtual en el campo <strong class="UI">[Nombre]</strong> tras configurar esta.</p>     
-            <p>Puede cambiar la direcci&oacute;n de A a B, B a A o ambas direcciones haciendo clic en la flecha del medio de la l&iacute;nea virtual, o puede seleccionar la direcci&oacute;n que desee desde <strong class="UI">[Direcciones]</strong> en <strong class="UI">[Categor&iacute;as]</strong>. Se pueden configurar hasta 8 l&iacute;neas virtuales.</p>
+            <p>Puede cambiar la direcci&oacute;n de A a B, B a A o ambas direcciones haciendo clic en la flecha del medio de la l&iacute;nea virtual, o puede seleccionar la direcci&oacute;n que desee desde <strong class="UI">[Dirección]</strong> en <strong class="UI">[Categor&iacute;as]</strong>. Se pueden configurar hasta 8 l&iacute;neas virtuales.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Cambiar una l&iacute;nea virtual</h4>
@@ -334,7 +334,7 @@
                       <div class="wn5-setup-section-article-content">
                           <h3>Traspaso</h3>
                           <p>Seleccione un número de cámara del receptor de traspaso. Seleccione <strong class="UI">[Des]</strong> si no quiere utilizar la función de traspaso.</p>
-                          <p>Traspaso es una función en que la cámara del receptor se mueve a la posición preestablecida de PTZ cuando ocurre un evento IVA. La cámara receptora de traspaso se puede configurar en el menú <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Transferir]</strong>. </p>
+                          <p>Traspaso es una función en que la cámara del receptor se mueve a la posición preestablecida de PTZ cuando ocurre un evento IVA. La cámara receptora de traspaso se puede configurar en el menú <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong>. </p>
                 </div>
                 <div class="wn5-online-help-info">
                     <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
@@ -378,8 +378,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
             <h3>Salida de alarma</h3>
-            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento IVA.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
-            <p>La pantalla de opción de salida de alarma variará según la cantidad de alarmas de salida que tenga la cámara. Por ejemplo, si hay 2 alarmas para la salida, la opción mostrará «Salida de alarma 1» y «Salida de alarma 2». </p>
+            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento IVA.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. </p>
+            <p>Dependiendo de la configuraci&oacute;n de la salida de alarma, las opciones de <strong class="UI"><strong class="UI">[Salida de alarma]</strong> pueden variar. Si no hay una salida de alarma, las opciones de <strong class="UI"><strong class="UI">[Salida de alarma]</strong> no se visualizar&aacute;n. Si hay m&aacute;s de una salida de alarma, se visualizar&aacute;n como <strong class="UI"><strong class="UI">«Salida de alarma 1»</strong>, <strong class="UI"><strong class="UI">«Salida de alarma 2»</strong>, y as&iacute; sucesivamente. Seleccione <strong class="UI"><strong class="UI">[Evento]</strong> &gt; <strong class="UI"><strong class="UI">[Alarma E/S]</strong> para ajustar la E/S de la alarma.</p>
         </div>
 
     <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
@@ -428,7 +428,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>S&oacute;lo tiempo programado</h3>
             <p>Los ajustes de acciones de eventos se ejecutan solo cuando se crea un evento IVA durante el tiempo establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se muestra en la tabla de tiempos que aparece cuando <strong class="UI">[Sólo tiempo programado]</strong> se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n del evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
-			<p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+			<p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
         </div>
     </div>
 </div>

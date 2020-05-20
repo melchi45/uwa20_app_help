@@ -1,0 +1,177 @@
+﻿<h1 class="wn5-setup-main-title">E/S de l&rsquo;alarme</h1>
+<div class="wn5-setup-section">
+    <p>Le port E/&Eacute; d&rsquo;une cam&eacute;ra peut &ecirc;tre d&eacute;fini comme port d&rsquo;entr&eacute;e ou d&rsquo;&eacute;mission.</p>
+    <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le port entr&eacute;e ou d&rsquo;&eacute;mission, vous pouvez d&eacute;finir les d&eacute;tails de chaque E/S de l&rsquo;alarme.</p>
+    <p>Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton [Appliquer] en bas de la page.</p>
+</div>
+
+				 <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+    <ul>
+        <li>Si vous utilisez tous les ports d&rsquo;alerte en tant qu&rsquo;&eacute;mission, le mode [Externe] de [Diurne/Nocturne] sera d&eacute;sactiv&eacute;. S&rsquo;il est d&eacute;j&agrave; d&eacute;fini sur [Externe], il passera en mode [Automatique]. Vous pouvez s&eacute;lectionner <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[R&eacute;glage cam&eacute;ra]</strong> &gt; <strong class="UI">[Diurne/Nocturne]</strong> pour v&eacute;rifier le mode Externe de Diurne/Nocturne.</li>
+    </ul>
+			</div> 
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>E/S de l&rsquo;alarme</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro de port, d&eacute;finissez le type entr&eacute;e ou &eacute;mission du port. Apr&egrave;s avoir s&eacute;lectionn&eacute; entr&eacute;e ou sortie, cliquez sur le bouton <strong class="UI">[Appliquer]</strong>.</p>
+            <p>Si [Entr&eacute;e] est s&eacute;lectionn&eacute;, [Configuration du p&eacute;riph&eacute;rique d&rsquo;entr&eacute;e], [Config. action &eacute;v&eacute;n.], et [Temps d&rsquo;activation d&rsquo;&eacute;v&egrave;nement] peuvent &ecirc;tre d&eacute;finis. Si [Sortie] est s&eacute;lectionn&eacute;, [&Eacute;mission d&rsquo;alerte] peut &ecirc;tre d&eacute;fini.</p>
+            <p>Le nombre d&rsquo;entr&eacute;es et d&rsquo;&eacute;missions d&rsquo;alerte pris en charge peut diff&eacute;rer selon la cam&eacute;ra.</p>
+        </div>
+    </div>
+</div>
+
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Configuration du p&eacute;riph&eacute;rique d&apos;entr&eacute;e</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		<p>D&eacute;finit si un p&eacute;riph&eacute;rique d&rsquo;entr&eacute;e d&rsquo;alerte doit &ecirc;tre utilis&eacute; ou non, ainsi que le type pour activer un &eacute;v&eacute;nement d&rsquo;alerte lorsqu&rsquo;une entr&eacute;e d&rsquo;alerte est donn&eacute;e.</p>
+    </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Configuration du p&eacute;riph&eacute;rique d&apos;entr&eacute;e</h3>
+            <p>Pour utiliser un p&eacute;riph&eacute;rique d&rsquo;entr&eacute;e d&rsquo;alerte, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Type</h3>
+            <p>S&eacute;lectionnez le type d&apos;entr&eacute;e d&apos;alerte.</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 입력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 입력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmInputNormalOpen"><strong class="UI">N.O. (Ouverture normale)</strong>&nbsp;: Le capteur d&rsquo;entr&eacute;e d&rsquo;alerte est ouvert par d&eacute;faut&nbsp;; lorsqu&rsquo;il est ferm&eacute;, un &eacute;v&eacute;nement d&rsquo;entr&eacute;e d&rsquo;alerte est cr&eacute;&eacute;.</li>
+                <li ng-if="AlarmInputNormalClose"><strong class="UI">N.C. (Fermeture normale)</strong>&nbsp;: Le capteur d&apos;entr&eacute;e d&apos;alerte est ferm&eacute; par d&eacute;faut et lorsqu&apos;il est ouvert, un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Config. action &eacute;v&eacute;n.</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>D&eacute;finit le comportement de votre cam&eacute;ra en cas de survenance d&rsquo;un &eacute;v&eacute;nement d&rsquo;entr&eacute;e d&rsquo;alerte.</p>
+    </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>Pour enregistrer une image sur un serveur FTP lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le FTP peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Pour envoyer une image par e-mail lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour l&apos;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="Recording">
+            <h3>Stockage</h3>
+            <p ng-if="NAS">Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="!NAS">Pour enregistrer une image sur une carte SD lorsqu&rsquo;un &eacute;v&eacute;nement d&rsquo;entr&eacute;e d&rsquo;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+            <h3>&Eacute;mission d&apos;alerte</h3>
+            <p>Vous pouvez r&eacute;gler l&rsquo;&eacute;mission d&rsquo;alerte sur un num&eacute;ro d&apos;alarme sp&eacute;cifique lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre une alarme. Vous pouvez d&eacute;finir une alarme continue jusqu&rsquo;&agrave; ce qu&rsquo;elle soit d&eacute;sactiv&eacute;e par l&rsquo;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong>, ou r&eacute;gler l&rsquo;alarme pour 5, 10 ou 15&nbsp;secondes.</p>
+            <p>En fonction du nombre d&rsquo;&eacute;missions d&rsquo;alerte prises en charge par votre cam&eacute;ra, l&rsquo;affichage de l&rsquo;option d&rsquo;&eacute;mission d&rsquo;alerte variera. Par exemple, s&rsquo;il y a 2 &eacute;missions d&rsquo;alerte, l&rsquo;option affichera « &eacute;mission d&rsquo;alerte 1 » et « &eacute;mission d&rsquo;alerte 2 ».</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+            <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
+                    <p>Vous pouvez r&eacute;gler la position de la vue cam&eacute;ra afin qu&rsquo;elle passe &agrave; un nombre pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ num&eacute;rique]</strong> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ externe]</strong>.</p>
+
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se s&rsquo;affiche pas.</p>
+        </div>
+    
+        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+            <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
+                    <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la section <strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong> dans <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong></a>.</p>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+            <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
+                    <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+            <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
+                    <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">[Configuration PTZ]</a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+        <h3>Clip audio</h3>
+        <p>Cela permet la lecture d&rsquo;un clip audio sp&eacute;cifique lorsqu&rsquo;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte. Une fois que vous avez s&eacute;lectionn&eacute; un fichier dans votre liste de clips audio, la lecture du clip commence lorsque l&apos;&eacute;v&eacute;nement se produit. Pour d&eacute;sactiver la lecture du clip audio lorsqu&apos;un &eacute;v&eacute;nement se produit, s&eacute;lectionner <strong class="UI">[D&eacute;sactiv&eacute;]</strong>. Cliquer sur le bouton Lecture (<span class="tui tui-wn5-toolbar-play"></span>) pour lire et pr&eacute;visualiser un fichier audio.</p>
+        <p>Aller &agrave; <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Audio configuration]</a></strong>&gt;<strong class="UI">[Clip audio]</strong> pour enregistrer un clip audio.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Temps d&apos;activation d&apos;&eacute;v&egrave;nement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Ceci d&eacute;finit la configuration des actions de l&apos;&eacute;v&eacute;nement de <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/event_alarminput?#action">Configuration des actions de l&apos;&eacute;v&eacute;nement</a>]</strong> pour qu&rsquo;elle fonctionne toujours, ou uniquement &agrave; l&apos;heure d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Toujours</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement est toujours ex&eacute;cut&eacute;e lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Heure programm&eacute;e uniquement</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement est ex&eacute;cut&eacute;e lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute; pendant l&apos;heure d&eacute;finie. La date, allant du dimanche au samedi en fonction de l&rsquo;horaire actuel de la cam&eacute;ra, est affich&eacute;e sur le calendrier visible lorsque l&rsquo;option <strong class="UI">[Heure programm&eacute;e uniquement]</strong> est s&eacute;lectionn&eacute;e. Vous pouvez d&eacute;finir l&apos;heure de configuration des actions de l&apos;&eacute;v&eacute;nement en cliquant ou en faisant glisser la souris sur le calendrier. L&apos;heure d&apos;activation de l&apos;&eacute;v&eacute;nement d&eacute;finie est r&eacute;alis&eacute;e plusieurs fois le jour de la semaine et &agrave; l&apos;heure concern&eacute;s.</p>
+			<p>Vous pouvez changer l&rsquo;unit&eacute; d&rsquo;affichage de l&rsquo;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Lorsque vous cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>, toutes les heures d&apos;activation des &eacute;v&eacute;nements d&eacute;finies seront supprim&eacute;es. Pour confirmer ou modifier l&apos;heure de la cam&eacute;ra, reportez-vous &agrave; la section <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>&Eacute;mission d&apos;alerte</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>D&eacute;finit comment contr&ocirc;ler une alarme lorsqu&apos;une alarme est &eacute;mise par l&apos;utilisateur ou lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;.</p>
+        <p>La configuration de l&apos;&eacute;v&eacute;nement d&rsquo;&eacute;mission d&apos;alerte s&apos;applique &agrave; <strong class="UI">[&Eacute;mission d&apos;alerte]</strong> sur les pages <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Config. évén.]</strong></a> de la m&ecirc;me mani&egrave;re.</p>
+        <p>Lorsque le type d&rsquo;&eacute;mission d&rsquo;alerte est chang&eacute;, le bouton d&rsquo;&eacute;mission d&rsquo;alerte sur la page Direct et le type d&rsquo;&eacute;mission d&rsquo;alerte dans Config. &Eacute;v&eacute;n. sont chang&eacute;s.</p>
+    </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Type</h3>
+            <p>S&eacute;lectionne le type d&rsquo;&eacute;mission d&apos;alerte.</p><!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 출력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람을 출력합니다.  </li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 출력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람을 출력합니다.</li>
+            </ul> --><ul>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">N.O. (Ouverture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ouvert par d&eacute;faut et lorsqu&apos;il est ferm&eacute;, une alarme est &eacute;mise.</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">N.C. (Fermeture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ferm&eacute; par d&eacute;faut et lorsqu&apos;il est ouvert, une alarme est &eacute;mise.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>D&eacute;finit le type de contr&ocirc;le lorsqu&apos;une alarme est &eacute;mise.</p>
+            <ul>
+                <li><strong class="UI">Impulsion</strong>&nbsp;: Une alarme est &eacute;mise pendant la dur&eacute;e d&eacute;finie dans <strong class="UI">[Dur&eacute;e]</strong> et l&apos;alarme s&rsquo;&eacute;teint automatiquement.</li>
+                <li><strong class="UI">Actif/Inactif</strong>&nbsp;: Lorsque vous appuyez sur le bouton d&rsquo;&eacute;mission d&rsquo;alerte sur l&rsquo;&eacute;cran de contr&ocirc;le, une alarme s&rsquo;enclenche&nbsp;; lorsque vous appuyez &agrave; nouveau sur le bouton, l&rsquo;alarme s&rsquo;&eacute;teint.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Dur&eacute;e</h3>
+            <p>D&eacute;finit l&rsquo;heure d&rsquo;&eacute;mission de l&rsquo;alerte lorsque <strong class="UI">[Impulsion]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Mode]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

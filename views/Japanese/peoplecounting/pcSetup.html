@@ -144,7 +144,7 @@
 </div>
 
 
-<!-- <hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>イベント動作時間</h2>
@@ -164,7 +164,7 @@
             <p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、時間表示単位を変更できます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたスケジュールがすべて削除されます。カメラ時間を確認したり変更するには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
         </div>
     </div>
-</div>  -->
+</div> 
 
 
 <hr class="wn5-setup-hr">
@@ -195,7 +195,7 @@
     <ul>
         <li>人数カウント機能は、リアルタイムの正確度ではなく統計的なデータ提供を目的とし、移動する物事や動物も測定人数に含まれます。</li>
         <li>カメラを設置した直後に安定化される間には、誤動作する場合があります。安定化時間は、最大50～60分までかかることがあります。</li>
-        <li>人数カウントを駆動するためのカメラは、レンズを地面に直下式で設置する必要があります。(図1参照)</li>
+
         <li>下記の場合には、測定されたデータの誤差が大きくなることがあります。</li>
         <ul>
             <li>十分に視野が確保されないスペースに設置した場合</li>
@@ -206,19 +206,20 @@
             <li>移動体が設定したルール周囲にとどまる場合</li>
             <li>魚眼カメラの場合、映像外郭部分にルールを設定した場合(図5参照)</li>
         </ul>
+        <li ng-if="objectDetectionSupport">人数カウントを駆動するためのカメラは、レンズを地面に直下式で設置する必要があります。(図1参照)</li>
         <li>校正で対象物のサイズを実際のサイズより大きく指定する場合、実際の人数より少なく測定されることがあります。逆に実際のサイズより小さく指定する場合、実際の人数より多く測定されることがあります。</li>
     </ul>
     <p>図1</p>
-    <p><img src="./images/pcSetup_1.png" ></p>
-    <p>図2</p>
     <p><img src="./images/pcSetup_2.png" ></p>
-	<p>図3</p>
+	<p>図2</p>
     <p><img src="./images/pcSetup_3.png" ></p>
-	<p>図4</p>
+	<p>図3</p>
     <p><img src="./images/pcSetup_4-1.png" ></p>
     <p><img src="./images/pcSetup_4-2.png" ></p>
     <p><img src="./images/pcSetup_4-3.png" ></p>
-    <p>図5</p>
+    <p>図4</p>
     <p><img src="./images/pcSetup_5.png" ></p>	
+    <p ng-if="objectDetectionSupport">図5</p>
+    <p ng-if="objectDetectionSupport"><img src="./images/pcSetup_1.png" ></p>
 </div>
 <hr class="wn5-setup-hr">

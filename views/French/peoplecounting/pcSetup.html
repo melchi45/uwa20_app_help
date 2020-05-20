@@ -145,7 +145,7 @@
 </div>
 
 
-<!-- <hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Calendrier actions de l&rsquo;&eacute;v&eacute;nement</h2>
@@ -162,10 +162,10 @@
         <div class="wn5-setup-section-article-content">
             <h3>Heure programm&eacute;e uniquement</h3>
             <p>Le comptage de personnes est activ&eacute; &agrave; l&rsquo;heure programm&eacute;e uniquement. Si vous s&eacute;lectionnez <strong class="UI">[Heure programm&eacute;e uniquement]</strong>, le calendrier affichera les dates du dimanche au samedi sur la base de l&rsquo;heure actuelle de la cam&eacute;ra. Vous pouvez r&eacute;gler l&rsquo;heure de l&rsquo;action de comptage de personnes en cliquant ou en faisant glisser la souris sur le calendrier. Le calendrier configur&eacute; fonctionne de fa&ccedil;on r&eacute;p&eacute;t&eacute;e au jour et &agrave; l&rsquo;heure configur&eacute;s.</p>
-            <p>Vous pouvez changer l&rsquo;unit&eacute; d&rsquo;affichage de l&rsquo;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Le fait de cliquer sur le bouton <strong class="UI">[R&eacute;initialiser]</strong> supprime tous les calendriers configur&eacute;s. Pour v&eacute;rifier ou modifier l&rsquo;heure de la cam&eacute;ra, consultez la section <strong class="UI">[G&eacute;n&eacute;ral]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
+            <p>Vous pouvez changer l&rsquo;unit&eacute; d&rsquo;affichage de l&rsquo;heure en cliquant sur les boutons <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong class="UI">[1&nbsp;h]</strong>. Le fait de cliquer sur le bouton <strong class="UI">[R&eacute;initialiser]</strong> supprime tous les calendriers configur&eacute;s. Pour v&eacute;rifier ou modifier l&rsquo;heure de la cam&eacute;ra, consultez la section <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
         </div>
     </div>
-</div>  -->
+</div> 
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -182,8 +182,8 @@
             <ul>
                   <li>Dans les cas suivants, il est recommand&eacute; de r&eacute;initialiser la r&egrave;gle pour qu&apos;elle corresponde au nouvel &eacute;cran vid&eacute;o et de cliquer sur <strong class="UI">[Supprimez les donnees]</strong> pour supprimer les anciennes donn&eacute;es utilis&eacute;es pour des recherches sur le comptage de personnes.</li>
                   <ul>
-                      <li>Si vous avez modifi&eacute; les param&egrave;tres dans <strong class="UI">[Vid&eacute;o et audio]</strong> &gt; <strong class="UI">[Configuration vid&eacute;o]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong></li>
-                      <li ng-if="DIS">Si vous modifiez les param&egrave;tres dans <strong class="UI">[Vid&eacute;o et audio]</strong> &gt; <strong class="UI">[R&eacute;glage cam&eacute;ra]</strong> &gt; <strong class="UI">[Sp&eacute;cial]</strong> &gt; <strong class="UI">[DIS]</strong></li>
+                      <li>Si vous avez modifi&eacute; les param&egrave;tres dans <strong class="UI">[Video & Audio]</strong> &gt; <strong class="UI">[Configuration vid&eacute;o]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong></li>
+                      <li ng-if="DIS">Si vous modifiez les param&egrave;tres dans <strong class="UI">[Video & Audio]</strong> &gt; <strong class="UI">[R&eacute;glage cam&eacute;ra]</strong> &gt; <strong class="UI">[Sp&eacute;cial]</strong> &gt; <strong class="UI">[DIS]</strong></li>
                   </ul>
               </ul>
           </div>
@@ -195,31 +195,33 @@
         <ul>
             <li>La fonction Comptage de personnes vise &agrave; fournir des donn&eacute;es statistiques, et non des donn&eacute;es en temps r&eacute;el, et peut inclure des objets en mouvement ou des animaux dans le nombre total d&rsquo;unit&eacute;s mesur&eacute;es.</li>
             <li>Apr&egrave;s l&rsquo;installation de la cam&eacute;ra, il se peut qu&rsquo;elle continue &agrave; ne pas fonctionner correctement jusqu&rsquo;&agrave; ce qu&rsquo;elle soit stabilis&eacute;e. Le temps de stabilisation peut prendre de 50 &agrave; 60 minutes.</li>
-            <li>Une cam&eacute;ra pour effectuer le comptage de personnes n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 1)</li>
+
             <li>Dans les cas suivants, les erreurs dans les donn&eacute;es mesur&eacute;es sont susceptibles d&rsquo;augmenter&nbsp;:</li>
             <ul>
                 <li>Si elle est install&eacute;e dans un espace dont le champ de vision est insuffisant</li>
-                <li>Heures de nuit ou faible luminosit&eacute; (Figure 2)</li>
-                <li>Dans un environnement dont la lumi&egrave;re change soudainement, ou en cas d&rsquo;exposition &agrave; une lumi&egrave;re forte, comme la lumi&egrave;re directe du soleil, le coucher ou le lever du soleil, l&rsquo;&eacute;clairage direct, etc (Figure 3)</li>
-                <li>En cas de mouvements incessants &agrave; l&rsquo;emplacement fixe, par exemple &agrave; proximit&eacute; de la porte (Figure 4)</li>
+                <li>Heures de nuit ou faible luminosit&eacute; (Figure 1)</li>
+                <li>Dans un environnement dont la lumi&egrave;re change soudainement, ou en cas d&rsquo;exposition &agrave; une lumi&egrave;re forte, comme la lumi&egrave;re directe du soleil, le coucher ou le lever du soleil, l&rsquo;&eacute;clairage direct, etc (Figure 2)</li>
+                <li>En cas de mouvements incessants &agrave; l&rsquo;emplacement fixe, par exemple &agrave; proximit&eacute; de la porte (Figure 3)</li>
                 <li>Si plusieurs personnes se d&eacute;placent dans un groupe</li>
                 <li>Si un objet en mouvement est proche de la r&egrave;gle d&eacute;finie,</li>
-                <li>Si la r&egrave;gle est d&eacute;finie sur le bord ext&eacute;rieur de l&rsquo;image pour une cam&eacute;ra Fisheye (Figure 5)</li>
+                <li>Si la r&egrave;gle est d&eacute;finie sur le bord ext&eacute;rieur de l&rsquo;image pour une cam&eacute;ra Fisheye (Figure 4)</li>
             </ul>
+            <li ng-if="objectDetectionSupport">Une cam&eacute;ra pour effectuer le comptage de personnes n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 5)</li>
             <li>Si vous r&eacute;glez la taille de l&rsquo;objet &agrave; une valeur sup&eacute;rieure &agrave; la taille r&eacute;elle dans l&rsquo;&eacute;talonnage, les r&eacute;sultats de la mesure peuvent donner un nombre de personnes inf&eacute;rieur au nombre r&eacute;el&nbsp;; au contraire, si vous le r&eacute;glez &agrave; un nombre inf&eacute;rieur, il peut donner un nombre de personnes sup&eacute;rieur au nombre r&eacute;el.</li>
         </ul>
+
         <p>Figure 1</p>
-        <p><img src="./images/pcSetup_1.png"></p>
-        <p>Figure 2</p>
         <p><img src="./images/pcSetup_2.png"></p>
-        <p>Figure 3</p>
+        <p>Figure 2</p>
         <p><img src="./images/pcSetup_3.png"></p>
-        <p>Figure 4</p>
+        <p>Figure 3</p>
         <p><img src="./images/pcSetup_4-1.png"></p>
         <p><img src="./images/pcSetup_4-2.png"></p>
         <p><img src="./images/pcSetup_4-3.png"></p>
-        <p>Figure 5</p>
+        <p>Figure 4</p>
         <p><img src="./images/pcSetup_5.png"></p>	
+        <p ng-if="objectDetectionSupport">Figure 5</p>
+        <p ng-if="objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>
     </div>
     <hr class="wn5-setup-hr">
   <hr class="wn5-setup-hr">

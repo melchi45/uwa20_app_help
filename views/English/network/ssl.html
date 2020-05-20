@@ -2,7 +2,6 @@
 <div class="wn5-setup-section">
 	<p>You can select a secure connection system or install a public certificate. When you complete the setting, click the [Apply] button at the bottom of the page.</p>
 </div>
-
 <hr class="wn5-setup-hr" ng-if="!SSLOff">
 <div class="wn5-setup-section" ng-if="!SSLOff">
 	<div class="wn5-setup-section-heading">
@@ -10,24 +9,28 @@
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p>The secure connection system is selected according to the service environment in consideration of the security level. HTTPS (HyperText Transfer Protocol over Secure Socket Layer) exchanges data through the encryption and decryption of the user's page request at the SSL sub layer below the hypertext transfer protocol layer. Therefore, it is considered to be more secure than HTTP mode. You can select whether a unique or public certificate is used for secure connection in HTTPS mode.</p>
+			<p>Select an appropriate secure connection system in consideration of the security level. HTTPS (Hypertext Transfer Protocol over Secure Socket Layer) sends and receives data through the process of encoding/decoding users&apos; page requests over SSL sub layer under hypertext transport agreement layer. Therefore, this mode is safer than HTTP mode in terms of security. In the secure HTTPS mode, you can select to use either Proprietary certificate or Public certificate.</p>
 		</div>
 		<div class="wn5-setup-section-article-content">
-		    <h3>HTTP (Do not use a secure connection)  </h3>
+		    <h3>HTTP (Do not use a secure connection)</h3>
 		    <p>Select when sending data without encryption</p>
 	    </div>
 		<div class="wn5-setup-section-article-content">
-		    <h3>HTTPS (Secure connection mode using a unique certificate)</h3>
-			<p>Establishes a secure connection by using a unique certificate provided by the camera. When you select <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page, a secure connection will be made in HTTPS mode.</p>
-			<p ng-if="MaxChannel==0">Selecting <strong class="UI">[Change host name]</strong> option changes the camera’s host name to the common name in the certificate. Some security check tools may see that the product&amp;apos;s security is vulnerable if the camera’s host name is different from the common name set in the certificate.
-			<p ng-if="MaxChannel==0">You can view the host name under <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; Port</a>]</strong>&gt;<strong class="UI">[IP address]</strong>&gt;<strong class="UI">[IPv4 setup]</strong>&gt;<strong class="UI">[Host name]</strong>.</p>
-			
-			<!-- <p>Establishes a secure connection by using a unique certificate provided by the camera. When you select <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page, a secure connection will be made in HTTPS mode.</p>
-			<p>You can choose whether to use the camera&apos;s built-in Device Certificate or an externally generated self-signed certificate.</p>
-			<p>If you select <strong class="UI">[Device certificate]</strong>, the <strong class="UI">[Change host name]</strong> option is enabled. If you select the <strong class="UI">[Change host name]</strong> option, the camera host name changes to the certificate&apos;s Common Name. If the camera host name differs from the Common Name set in the certificate, some security testing tools may determine that your product&rsquo;s security is vulnerable. The changed host name can be found in <strong class="UI">[Basic]</strong>&gt;<strong class="UI"> [<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; Port</a>]</strong>&gt;<strong class="UI"> [IP address]</strong>&gt;<strong class="UI"> [IPv4 setup]</strong>&gt;<strong class="UI"> [Host name]</strong>.</p>
-			<p>If you have a self-signed certificate generated from an external attribute, select <strong class="UI">[Self-signed certificate]</strong>. When you select a self-signed certificate, the certificate name is displayed.</p> -->
-
-	   	</div>
+                <h3>HTTPS (Secure connection mode using a unique certificate)</h3>
+                <p>Establishes a secure connection by using a unique certificate provided by the camera. When you select <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page, a secure connection will be made in HTTPS mode.</p>
+		</div>
+		<div class="wn5-setup-section-article-content"><!-- <p>카메라에 내장된 기기 인증서를 사용할지, 외부에서 생성한 자체 서명 인증서를 사용할지 선택할 수 있습니다. </p>
+                <p><strong class="UI">[기기 인증서]</strong>를 선택한 경우, <strong class="UI">[호스트 이름 변경]</strong> 옵션이 활성화되며, <strong class="UI">[호스트 이름 변경]</strong> 옵션을 선택하면 카메라 호스트 이름을 인증서의 주체자 이름(Common Name)과 동일하게 변경합니다. 카메라 호스트 이름이 인증서에 설정된 주체자 이름(Common Name)과 다른 경우, 일부 보안성 검사 툴에서 제품의 보안이 취약한 것으로 판단될 수 있습니다. 변경한 호스트 이름은 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link"
+href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</strong>&gt;<strong class="UI">[IP 주소]</strong>&gt;<strong class="UI">[IPv4 설정]</strong>&gt;<strong class="UI">[호스트 이름]</strong>에서 확인할 수 있습니다. </p>
+                <p>외부에서 전달한 속성을 통해서 생성한 자체 서명 인증서가 있는 경우, <strong class="UI">[자체 서명 인증서]</strong>를 선택합니다. 자체 서명 인증서를 선택하면 인증서 이름이 표시됩니다. </p> --><h4>Change host name</h4>    
+                <p>Selecting <strong class="UI">[Change host name]</strong> option changes the camera&rsquo;s host name to the common name in the certificate. Some security check tools may see that the product&amp;apos;s security is vulnerable if the camera&rsquo;s host name is different from the common name set in the certificate.</p>
+                <p>You can view the host name under <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP &amp; Port</a>]</strong>&gt;<strong class="UI">[IP address]</strong>&gt;<strong class="UI">[IPv4 setup]</strong>&gt;<strong class="UI">[Host name]</strong>.</p> 
+        </div>
+		<div class="wn5-setup-section-article-content" ng-if="ClientCertificateAuthenticationEnable">
+		    <h4>Mutual authentication</h4>
+            <p>To proceed with mutual authentication for enhanced security, select<strong class="UI">[Mutual authentication]</strong>.</p>
+            <p>As you proceed with mutual authentication, you can choose an option for allowing access.<strong class="UI">If [Allow all connections]</strong>is selected, all access attempts that tried mutual authentication are allowed for connection regardless of the success/failure of mutual authentication. This means that even without mutual authentication, camera access is granted. If <strong class="UI">[Allow only mutually authenticated connections]</strong> is selected, camera access is granted upon the success of mutual authentication only.</p>
+		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>HTTPS (Secure connection mode using the public certificate)</h3>
 		    <p>Establishes a secure connection using the public certificate. You can select this after installing the public certificate. When you select <strong class="UI">[HTTPS (Secure connection mode using the public certificate)]</strong> and click the <strong class="UI">[Apply]</strong> button at the bottom of the page, a secure connection will be made in HTTPS mode.</p>
@@ -35,46 +38,63 @@
 	</div>
 </div>
 
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>TLS settings</h2>
+    </div>
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+        <p>Sets Cipher mode or TLS version to use for encrypted communication.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Cipher mode</h3>
+            <p>Provides cipher suites by combining various algorithms to use for TLS-encrypted communications, such as key exchange, authentication, and encryption. To use only cipher suites with a high level of security, select <strong class="UI">[Secure cipher suites only]</strong>. To use cipher suites with backward compatibility although less secure, select <strong class="UI">[All compatible cipher suites]</strong>. [All compatible cipher suites] includes both secure and not secure cipher suites.</p><!-- <p>TLS 1.0과 TLS 1.1을 선택하면 [호환되는 모든 암호 스위트 사용]만 선택할 수 있으며, TLS 1.2이나 TLS 1.3을 선택하면 [안전한 암호 스위트만 사용]과 [호환되는 모든 암호 스위트 사용] 중 옵션을 선택할 수 있습니다. </p> --></div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>Version</h3>
+            <p>Selects the TLS protocol version to use for encrypted communication.</p>
+            <p>If [Secure cipher suites only] is selected for <strong class="UI">[Cipher mode]</strong>, you can select only TLS 1.2 or TLS 1.3. If [All compatible cipher suites] is selected, you can select any option you want out of all TLS versions.</p>
+        </div>
+	</div>
+</div>
+
+
 <hr class="wn5-setup-hr" ng-if="!SSLOff">
 <div class="wn5-setup-section" ng-if="!SSLOff">
 <div class="wn5-setup-section-heading">
 	<h2>Install a public certificate</h2>
 </div>
 <div class="wn5-setup-section-article">
-	<div class="wn5-setup-section-article-content">
-		<p>To select <strong class="UI">[HTTPS (Public Certificate in use)]</strong> in <strong class="UI">[Secure connection system]</strong>, you need to install a public certificate first.</p>
-
-		<ul>
-			<li><strong class="UI">Name for the certificate</strong>: Enter the name of the certificate to install.</li>
-			<li><strong class="UI">Certificate file</strong>: Select the path of the certificate to install.  </li>
-			<li><strong class="UI">Key file</strong>: Select the path of the key file to install.</li>
-</ul>
-</div>
-			<div class="wn5-online-help-info">
-							<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+        <div class="wn5-setup-section-article-content">
+            <p>To select <strong class="UI">[HTTPS (Public Certificate in use)]</strong> in <strong class="UI">[Secure connection system]</strong>, you need to install a public certificate first.</p>
+            <ul>
+                <li><strong class="UI">Name for the certificate</strong>: Enter the name of the certificate to install.</li>
+                <li><strong class="UI">Certificate file</strong>: Select the path to the certificate to install.</li>
+                <li><strong class="UI">Key file</strong>: Select the path to the key file to install.</li>
+            </ul>
+        </div>
+				<div class="wn5-online-help-info">
+		<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                 <ul>
-							
                     <li>You cannot install or delete a public certificate when <strong class="UI">[HTTPS (Public Certificate in use)]</strong> mode is in effect. After changing to <strong class="UI">[HTTP (Secure Access not in use)]</strong> or <strong class="UI">[HTTPS (Private Certificate in use)]</strong> mode, be sure to install or delete the certificate.</li>
-                		</ul>
+                </ul>
 	</div>
-
-		<div class="wn5-online-help-action">
+			
+	<div class="wn5-online-help-action">
 		<h4>Installing a public certificate</h4>
-		<ol>
-			<li>Enter the name of the certificate to install in <strong class="UI">[Name for the certificate]</strong>. </li>
-			<li>Click the <strong class="UI">[...]</strong> button in <strong class="UI">[Certificate file]</strong>, select a certificate file from the open window and click the <strong class="UI">[Open]</strong> button.</li>
-			<li>Click the <strong class="UI">[...]</strong> button in Key file, select a key file from the open window and click the <strong class="UI">[Open]</strong> button.</li>
-			<li>Click the <strong class="UI">[Install]</strong> button. Installation of the certificate is complete.</li>
-		</ol>
+                <ol>
+                    <li>Enter the name of the certificate to install in <strong class="UI">[Name for the certificate]</strong>.</li>
+                    <li>Click the [...] button in [Certificate file], select a certificate file in the Open window, and then click the <strong class="UI">[Open]</strong> button.</li>
+                    <li>Click the [...] button in Key file, select a key file from the open window and click the <strong class="UI">[Open]</strong> button.</li>
+                    <li>Click the <strong class="UI">[Install]</strong> button. Installation of the certificate is complete.</li>
+                </ol>
 	</div>
 
 	<div class="wn5-online-help-action">
 		<h4>Deleting a public certificate</h4>
-		<p>Click the <strong class="UI">[Delete]</strong> button on the bottom of <strong class="UI">[Public Certificate installation]</strong>. </p>
-		</div>
-	</div>
+                <p>Click the <strong class="UI">[Delete]</strong> button under <strong class="UI">[Install a public certificate]</strong>.</p><!-- <p>'HTTPS(공인 인증서 사용)' 모드가 적용된 상태라면 <strong class="UI">[삭제]</strong> 버튼이 비활성화되어 나타납니다. <strong class="UI">[보안 접속 방식]</strong>에서 <strong class="UI">[HTTP(보안 접속 사용 안 함)]</strong>이나 <strong class="UI">[HTTPS(자체 인증서 사용)]</strong>을 선택하여 보안 접속 방식 옵션을 변경하면, <strong class="UI">[공인 인증서 설치] </strong>하단에 <strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p>  --></div>
 </div>
-
+</div>
 <hr class="wn5-setup-hr" ng-if="SSLOff">
 <div class="wn5-setup-section" ng-if="SSLOff">
 	<div class="wn5-setup-section-heading">
@@ -114,13 +134,13 @@
 <hr class="wn5-setup-hr" ng-if="SSLOff">
 <div class="wn5-setup-section" ng-if="SSLOff">
     <div class="wn5-setup-section-heading">
-		<h2>Certificate type</h2>
-	</div>
+        <h2>Certificate type</h2>
+    </div>
 	<div class="wn5-setup-section-article">
-	<div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content">
         <p>Select a certificate type to use in secure mode.</p>
         <p>This option shows up only when <strong class="UI">[Use HTTPS/Use HTTP]</strong> or <strong class="UI">[Use HTTPS/Disable HTTP]</strong> is selected for <strong class="UI">[Secure connection system]</strong>.</p>
-	</div>
+        </div>
         <div class="wn5-setup-section-article-content">
 		    <h3>Proprietary certificate</h3>
             <p>Uses a proprietary certificate provided by Hanwha Techwin.</p>
@@ -153,9 +173,9 @@
 		<h4>Installing a public certificate</h4>
                 <ol>
                     <li>Enter the name of the certificate to install in <strong class="UI">[Certificate name]</strong>.</li>
-                    <li>Click the <strong class="UI">[...]</strong> button in <strong class="UI">[Certificate file]</strong>, select a certificate file in the Open window, and then click the <strong class="UI">[Open]</strong> button.</li>
-                    <li>Click the <strong class="UI">[...]</strong> button in Key file, select a key file in the Open window, and then click the <strong class="UI">[Open]</strong> button.</li>
-                    <li>Click the <strong class="UI">[Install]</strong> button to complete the installation of the certificate.</li>
+                    <li>Click the [...] button in [Certificate file], select a certificate file in the Open window, and then click the <strong class="UI">[Open]</strong> button.</li>
+                    <li>Click the [...] button in Key file, select a key file from the open window and click the <strong class="UI">[Open]</strong> button.</li>
+                    <li>Click the <strong class="UI">[Install]</strong> button. Installation of the certificate is complete.</li>
                 </ol>
 	</div>
 

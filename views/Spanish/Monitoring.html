@@ -16,6 +16,8 @@
 		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
+                <li>Si se reproduce un vídeo de alta resolución en la pantalla en vivo, se genera automáticamente un PLUGINFREE, que optimiza el vídeo de alta resolución. El perfil de PLUGINFREE generado se puede encontrar en <strong class="UI">[Configuración]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[Perfil de vídeo]</strong>.  </li>
+                <li>Si hace clic en el icono <img src="./images/ic-top-cert-nor.svg"> de la parte superior derecha de la página en vivo, podrá ver la dirección IP conectada y el estado de autenticación. Si la autenticación se realiza correctamente, el icono se coloreará de color verde. Si la autenticación falla, se coloreará de color rojo. Si la autenticación es irrelevante debido al uso de una conexión HTTP, se mostrará un guión (-).   </li>
                 <li>Si se conecta al visor web a trav&eacute;s de Chrome, la funci&oacute;n de pantalla de grabar reproducci&oacute;n puede ser utilizada con seguridad.</li>
                 <li>Cuando se reproduce un video en la p&aacute;gina en vivo, es posible que se produzca un efecto fantasma en uno de los siguientes casos:</li>
                 <ul>
@@ -56,7 +58,7 @@
                                     <p>&nbsp;</p>
                                 </td>
                             </tr>
-				    <tr>
+				    <tr> 
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-setup"></span></p>
                             <p><a class="wn5-online-help-link" href="#settings" ng-href="#/help/monitoring?#settings">Conf. de v&iacute;deo</a></p>
@@ -97,7 +99,7 @@
                         </td>
                         <td width="235">
                             <p >Puede controlar los movimientos de Panor&aacute;mica/Inclinaci&oacute;n/Zoom de la c&aacute;mara. </p>
-                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital. Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
+                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment">PTZ s&oacute;lo funciona si el perfil de v&iacute;deo aplicado a la pantalla en vivo actual soporta PTZ digital. Para cambiar a un perfil de control PTZ digital, seleccione <strong class="UI">[Perfil PTZ digital]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. </p>
                             <!-- <p ng-if="objectDetectionSupport">Al seleccionar el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>, se activará la función PTZ.</p> -->
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ digital se habilita solo cuando se selecciona el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>.</p>
                             <p ng-if="GlobalPTZMode && MaxChannel > 1">Si no se muestra el icono PTZ, vaya a <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externo]</strong> y f&iacute;jese si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; marcada.</p>
@@ -154,7 +156,7 @@
     <p>&nbsp;</p>
                             </td>
                     </tr>  -->
-                      <tr>
+                      <tr  ng-if="IsAdmin">
                           <td width="235">
                               <p><span class="tui tui-wn5-toolbar-status"></span></p>
                               <p><a class="wn5-online-help-link" href="#status" ng-href="#/help/monitoring?#status">Estado</a></p>
@@ -188,7 +190,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+                    <tr ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
                             <td width="235">
                                 <p>Seleccionar canal</p>
                             </td>
@@ -314,7 +316,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Utilice la funci&oacute;n del micr&oacute;fono. Para utilizar la funci&oacute;n de micr&oacute;fono, la funci&oacute;n <strong class="UI">[Entrada de audio]</strong> debe ser activada para el perfil correspondiente. Para activar la funci&oacute;n de entrada de v&iacute;deo, seleccione <strong class="UI">[Activar]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>.</p>
+                            <p>Utilice la funci&oacute;n del micr&oacute;fono. Para utilizar la funci&oacute;n de micr&oacute;fono, la funci&oacute;n <strong class="UI">[Entrada de audio]</strong> debe ser activada para el perfil correspondiente. Para activar la funci&oacute;n de entrada de v&iacute;deo, seleccione <strong class="UI">[Activar]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>.</p>
                             <p ng-if="SupportAutoImageAlignment">La función del micrófono solo está disponible si ha seleccionado Canal1.</p>
                             <p>&nbsp;</p>
                         </td>
@@ -326,7 +328,7 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Al hacer clic en un n&uacute;mero de salida de alarma deseado, la alarma se emite seg&uacute;n lo establecido anteriormente. La alarma puede configurarse desde la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Evento]</strong>&gt;<strong class="UI">[Salida de alarma]</strong>. El n&uacute;mero de salidas de alarma var&iacute;a en funci&oacute;n de la c&aacute;mara.</p>
+                            <p>Al hacer clic en un n&uacute;mero de salida de alarma deseado, la alarma se emite seg&uacute;n lo establecido anteriormente. La alarma puede configurarse desde la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Evento]</strong>&gt;<strong class="UI">[Alarma E/S]</strong>. El n&uacute;mero de salidas de alarma var&iacute;a en funci&oacute;n de la c&aacute;mara.</p>
                             <p>&nbsp;</p>
                         </td>
                     </tr >
@@ -355,7 +357,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+        <div class="wn5-online-help-action" ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
             <h4>Para cambiar el canal</h4>
                 <ul>
                     <li>Seleccione el n&uacute;mero del canal que desea. El video del canal aparecer&aacute; en el visor.</li>
@@ -475,7 +477,7 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="settings"></a>Configuraci&oacute;n de v&iacute;deo</h2>
+        <h2><a class="wn5-online-help-link" name="settings"></a>Conf. de vídeo</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -505,7 +507,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Se pueden controlar movimientos de panor&aacute;mica/inclinaci&oacute;n/zoom de la c&aacute;mara o utilizar la funci&oacute;n de seguimiento autom&aacute;tico digital. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-toolbar-ptz"></span> de la parte inferior de la pantalla principal, la pantalla donde se pueden cambiar panor&aacute;mica/inclinaci&oacute;n/zoom aparecer&aacute; en la parte inferior. Para utilizar PTZ, <strong class="UI">[Perfil PTZ digital]</strong> deber&iacute;a estar seleccionado desde <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[B&aacute;sico]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. DPTZ s&oacute;lo se puede aplicar a los perfiles que utilizan los c&oacute;decs H.264 y H.265.</p>
+            <p>Se pueden controlar movimientos de panor&aacute;mica/inclinaci&oacute;n/zoom de la c&aacute;mara o utilizar la funci&oacute;n de seguimiento autom&aacute;tico digital. Al hacer clic en el bot&oacute;n <span class="tui tui-wn5-toolbar-ptz"></span> de la parte inferior de la pantalla principal, la pantalla donde se pueden cambiar panor&aacute;mica/inclinaci&oacute;n/zoom aparecer&aacute; en la parte inferior. Para utilizar PTZ, <strong class="UI">[Perfil PTZ digital]</strong> deber&iacute;a estar seleccionado desde <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Tipo de perfil]</strong>. DPTZ s&oacute;lo se puede aplicar a los perfiles que utilizan los c&oacute;decs H.264 y H.265.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -734,7 +736,7 @@
         <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
-                    <!-- <li>La función Panorámica solo se puede usar cuando se selecciona [Techo] en [Video y audio]> [Conf. de video]> [Rotación de video]> [Modo de montaje de la cámara].</li> -->
+                    <!-- <li>La función Panorámica solo se puede usar cuando se selecciona [Techo] en [V&iacute;deo y audio]> [Conf. de video]> [Rotación de video]> [Modo de montaje de la cámara].</li> -->
 
                     <li>La funci&oacute;n Pan solo se puede utilizar cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Conf. de video]</strong> &gt; <strong class="UI">[Rotación de video]</strong> &gt; <strong class="UI">[Modo de montaje de la cámara]</strong>.</li>
 
@@ -786,7 +788,7 @@
                         <li>Panorama + 2PTZ (<span class="tui tui-wn5-panorama-2ptz"></span>): Deforma un panorama y 2 &aacute;reas de ROI y los muestra en la pantalla dividida.</li>
                         <li>Ojo de pez + 8PTZ (<span class="tui tui-wn5-fisheye-8ptz"></span>): Deforma un panorama de pared y 8 &aacute;reas de ROI y los muestra en la pantalla dividida. Esta vista solo se admite cuando est&aacute; montada en la pared.</li>
                     </ul>
-                    <p>Si el modo de montaje de la c&aacute;mara se cambia en <strong class="UI">[Video y audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de video]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de video]</strong> &gt; <strong class="UI">[Modo de montaje de c&aacute;mara]</strong>, la direcci&oacute;n de instalaci&oacute;n del modo de vista de ojo de pez tambi&eacute;n cambiar&aacute; en el modo En vivo.</p>
+                    <p>Si el modo de montaje de la c&aacute;mara se cambia en <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de video]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de video]</strong> &gt; <strong class="UI">[Modo de montaje de c&aacute;mara]</strong>, la direcci&oacute;n de instalaci&oacute;n del modo de vista de ojo de pez tambi&eacute;n cambiar&aacute; en el modo En vivo.</p>
                 </div>
         <div class="wn5-setup-section-article-content">
             <h3>Restablecer/Restablecer todo  </h3>
@@ -797,8 +799,8 @@
 </div>  -->
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr"  ng-if="IsAdmin">
+<div class="wn5-setup-section"  ng-if="IsAdmin">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="status"></a>Estado</h2>
     </div>
