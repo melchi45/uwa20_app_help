@@ -188,29 +188,31 @@
         <li>The queue management function aims at supplying statistical data, not data with real time accuracy, and it may include moving objects or animals as the total number of measured units.</li>
         <li>After installing the camera, it may continue to malfunction until it is stabilized. The time for stabilization may take up to 50 to 60 minutes.</li>
         <li>If you use the queue function in an environment with short waiting time, it can generated a lot of events.</li>
-        <li>A camera to operate queue management requires that the lens to be installed on the ground in a direct drop. (Figure 1)</li>
+
         <li>In any of the following cases, errors in the measured data are likely to increase:</li>
         <ul>
             <li>If installed in a space with no sufficient visions</li>
-            <li>Night time or low brightness (Figure 2)</li>
-            <li>In an environment with a sudden change in light, or in case of exposure to strong light, such as direct sunlight, sunset, sunrise, direct lighting, etc. (Figure 3)</li>
-            <li>If there is consistent movement at the fixed location such as near the door (Figure 4)</li>
+            <li>Night time or low brightness (Figure 1)</li>
+            <li>In an environment with a sudden change in light, or in case of exposure to strong light, such as direct sunlight, sunset, sunrise, direct lighting, etc. (Figure 2)</li>
+            <li>If there is consistent movement at the fixed location such as near the door (Figure 3)</li>
             <li>If many people move in a group</li>
             <li>If moving object is close to the set rule,</li>
-            <li>If the rule is set at the outer edge of image for a fisheye camera (Figure 5)</li>
+            <li>If the rule is set at the outer edge of image for a fisheye camera (Figure 4)</li>
         </ul>
+        <li ng-if="!objectDetectionSupport">A camera to operate queue management requires that the lens to be installed on the ground in a direct drop. (Figure 5)</li>
     </ul>
+
     <p>Figure 1</p>
-    <p><img src="./images/pcSetup_1.png"></p>
-    <p>Figure 2</p>
     <p><img src="./images/pcSetup_2.png"> </p>
-	<p>Figure 3</p>
+	<p>Figure 2</p>
     <p><img src="./images/pcSetup_3.png"> </p>
-	<p>Figure 4</p>
+	<p>Figure 3</p>
     <p><img src="./images/pcSetup_4-1.png"> </p>
     <p><img src="./images/pcSetup_4-2.png"> </p>
     <p><img src="./images/pcSetup_4-3.png"> </p>
-    <p>Figure 5</p>
-    <p><img src="./images/pcSetup_5.png"> </p>	
+    <p>Figure 4</p>
+    <p><img src="./images/pcSetup_5.png"> </p>
+    <p ng-if="!objectDetectionSupport">Figure 5</p>
+    <p ng-if="!objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>	
 </div>
 <hr class="wn5-setup-hr">

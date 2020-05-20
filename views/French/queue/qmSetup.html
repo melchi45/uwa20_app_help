@@ -183,29 +183,31 @@
             <li>La fonction Gestion des files d&rsquo;attente vise &agrave; fournir des donn&eacute;es statistiques, et non des donn&eacute;es en temps r&eacute;el, et peut inclure des objets en mouvement ou des animaux dans le nombre total d&rsquo;unit&eacute;s mesur&eacute;es.</li>
             <li>Apr&egrave;s l&rsquo;installation de la cam&eacute;ra, il se peut qu&rsquo;elle continue &agrave; ne pas fonctionner correctement jusqu&rsquo;&agrave; ce qu&rsquo;elle soit stabilis&eacute;e. Le temps de stabilisation peut prendre de 50 &agrave; 60 minutes.</li>
             <li>Si vous utilisez la fonction Gestion des files d&rsquo;attente dans un environnement avec un temps d&rsquo;attente court, elle peut g&eacute;n&eacute;rer un grand nombre d&rsquo;&eacute;v&eacute;nements.</li>
-            <li>Une cam&eacute;ra pour effectuer la gestion des files d&rsquo;attente n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 1)</li>
+
             <li>Dans les cas suivants, les erreurs dans les donn&eacute;es mesur&eacute;es sont susceptibles d&rsquo;augmenter&nbsp;:</li>
             <ul>
                 <li>Si elle est install&eacute;e dans un espace dont le champ de vision est insuffisant</li>
-                <li>Heures de nuit ou faible luminosit&eacute; (Figure 2)</li>
-                <li>Dans un environnement dont la lumi&egrave;re change soudainement, ou en cas d&rsquo;exposition &agrave; une lumi&egrave;re forte, comme la lumi&egrave;re directe du soleil, le coucher ou le lever du soleil, l&rsquo;&eacute;clairage direct, etc (Figure 3)</li>
-                <li>En cas de mouvements incessants &agrave; l&rsquo;emplacement fixe, par exemple &agrave; proximit&eacute; de la porte (Figure 4)</li>
+                <li>Heures de nuit ou faible luminosit&eacute; (Figure 1)</li>
+                <li>Dans un environnement dont la lumi&egrave;re change soudainement, ou en cas d&rsquo;exposition &agrave; une lumi&egrave;re forte, comme la lumi&egrave;re directe du soleil, le coucher ou le lever du soleil, l&rsquo;&eacute;clairage direct, etc (Figure 2)</li>
+                <li>En cas de mouvements incessants &agrave; l&rsquo;emplacement fixe, par exemple &agrave; proximit&eacute; de la porte (Figure 3)</li>
                 <li>Si plusieurs personnes se d&eacute;placent dans un groupe</li>
                 <li>Si un objet en mouvement est proche de la r&egrave;gle d&eacute;finie,</li>
-                <li>Si la r&egrave;gle est d&eacute;finie sur le bord ext&eacute;rieur de l&rsquo;image pour une cam&eacute;ra Fisheye (Figure 5)</li>
+                <li>Si la r&egrave;gle est d&eacute;finie sur le bord ext&eacute;rieur de l&rsquo;image pour une cam&eacute;ra Fisheye (Figure 4)</li>
             </ul>
+            <li ng-if="!objectDetectionSupport">Une cam&eacute;ra pour effectuer la gestion des files d&rsquo;attente n&eacute;cessite que l&rsquo;objectif soit install&eacute; au sol en prise directe. (Figure 5)</li>
         </ul>
+
         <p>Figure 1</p>
-        <p><img src="./images/pcSetup_1.png"></p>
-        <p>Figure 2</p>
         <p><img src="./images/pcSetup_2.png"></p>
-        <p>Figure 3</p>
+        <p>Figure 2</p>
         <p><img src="./images/pcSetup_3.png"></p>
-        <p>Figure 4</p>
+        <p>Figure 3</p>
         <p><img src="./images/pcSetup_4-1.png"></p>
         <p><img src="./images/pcSetup_4-2.png"></p>
         <p><img src="./images/pcSetup_4-3.png"></p>
-        <p>Figure 5</p>
+        <p>Figure 4</p>
         <p><img src="./images/pcSetup_5.png"></p>	
+        <p ng-if="!objectDetectionSupport">Figure 5</p>
+        <p ng-if="!objectDetectionSupport"><img src="./images/pcSetup_1.png"></p>
     </div>
     <hr class="wn5-setup-hr">
