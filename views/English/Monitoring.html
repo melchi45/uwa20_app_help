@@ -146,6 +146,7 @@
                         </td>
                     <td width="235">
                         <p>You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, tour, and tracking functions. </p>
+                        <p ng-if="FocusPresetSupportByChannel">You can check the list of focus in <strong class="UI">[Focus save]</strong>.</p>
                         <p ng-if="MaxChannel > 1 && HandoverCalibration">PTZ icon is displayed only when you select [PTZ] in the <a href="#channel">Select channel</a> section.</p>
                     </td>
                     </tr>
@@ -296,6 +297,22 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="WiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-wiper"></span></p>
+                            <p>Wiper</p>
+                        </td>
+                        <td width="235">Clicking the button activates the wiper three times.</td>
+                    </tr>
+                    <tr ng-if="HeaterOn">
+                        <td width="235">
+                            <p><span class="tui tui-wiper"></span></p>
+                            <p>Heater</p>
+                        </td>
+                        <td width="235">Clicking the button activates the heater for 30 seconds. </td>
+                    </tr>
+
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
@@ -598,6 +615,14 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <p>A moving object or person can automatically be tracked in the live view. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, the auto tracking function will be executed. When you click the Auto tracking icon <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> again, the tracking function will stop. </p>
             <p>In addition, when you click the right mouse button on the image screen, the motion based clicked area will be analyzed, and then auto tracking will begin.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+            <h3>Focus save</h3>
+            <p>You can check the list of focus save.</p>
+            <p>Click <strong class="UI">[Setup]</strong> to save the screen currently being shot into a focus area.&nbsp;After entering <strong class="UI">[Number]</strong> and <strong class="UI">[Name]</strong>, click <strong class="UI">[OK]</strong> to save. If you click <strong class="UI">[Move]</strong> after selecting focus save from the list, the camera focus moves to the saved focus area.</p>
+            <p>Focus save can also be set or deleted in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera Setup]</strong>&gt;<strong class="UI">[Focus save]</strong>.</p>
+        </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>Using the PTZ function</h3>
             <p>You can move the camera to a position set in advance or start and stop the swing, group, tour, and tracking functions. For relevant setting, refer to <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page.</p>
