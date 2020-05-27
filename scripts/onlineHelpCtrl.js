@@ -209,8 +209,8 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       /* WN7 PTZ에서 추가한 것 */
       $scope.FocusPresetSupportByChannel = attr.FocusPresetSupportByChannel;
       $scope.PTCorrectionSupport = attr.PTCorrectionSupport;
-      $scope.WiperOn = attr.WiperOn;
-      $scope.HeaterOn = attr.HeaterOn;
+      $scope.WiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WiperOn") !== -1;
+      $scope.HeaterOn = attr.AuxCommands && attr.AuxCommands.indexOf("HeaterOn") !== -1;
       $scope.AutoTrackObjectSize = attr.AutoTrackObjectSize;
 
 
