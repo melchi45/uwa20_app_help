@@ -111,16 +111,16 @@
  
             </ul>
             </div>  --> 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h3>最終ポジション</h3>
             <p>カメラの電源をオフにしてからオンすると、保存された最終ポジションに移動するように設定することができます。カメラ最終ポジションの保存有無を選択して保存間隔を選択します。</p>
         </div>
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h5>最終ポジション保存</h5>
                 <p>最終ポジションを保存するには、<strong class="UI">[有効]</strong>を選択します。</p>
 			
         </div> 
-<div class="wn5-setup-section-article-content">
+<div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h5>時間</h5>
        
                 <p>現在位置を最終ポジションに保存する保存間隔を設定します。単位は「秒」です。保存間隔をフィールドに入力した後、<strong class="UI">[適用]</strong>をクリックしてください。</p>

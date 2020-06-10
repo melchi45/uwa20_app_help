@@ -213,7 +213,14 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.HeaterOn = attr.AuxCommands && attr.AuxCommands.indexOf("HeaterOn") !== -1;
       $scope.AutoTrackObjectSize = attr.AutoTrackObjectSize;
 
-
+      /* TNU-6321에서 추가한 것 */
+      $scope.PeerConnectionInfoClientHttpsStatus = attr.PeerConnectionInfoClientHttpsStatus;
+      $scope.AreaZoomSupportbyChannel = attr.AreaZoomSupportbyChannel;
+      $scope.RememberLastPosition = attr.RememberLastPosition;
+      $scope.PanZeroPositionSupport = attr.PanZeroPositionSupport;
+      $scope.WDRControlModeOptions = attr.WDRControlModeOptions;
+      $scope.AGCMaxGainLevel = attr.AGCMaxGainLevel;
+      $scope.AGCModeOptions = attr.AGCModeOptions;
 
       /*
         1. true values

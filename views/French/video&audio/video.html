@@ -40,6 +40,28 @@
 	</div>
 </div> 
 
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>Ajuster le PTZ</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez ajuster les actions de panoramique, de mosa&iuml;que et de zoom de la cam&eacute;ra.</p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4>Ajuster le PTZ</h4>
+            <ul>
+                <li>Lorsque vous faites glisser l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span>avec la souris, la cam&eacute;ra se d&eacute;place en panoramique et en inclinaison.</li>
+                <li>S&eacute;lectionnez un grossissement d&apos;image en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> pour zoomer dans l&apos;&eacute;cran ou en cliquant sur le bouton <span class="tui tui-wn5-ptz-minus"></span> pour zoomer dans l&apos;&eacute;cran depuis la barre de zoom.</li>
+                <li>D&eacute;placez le focus en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Pour ajuster automatiquement la mise au point de la cam&eacute;ra pour prendre un clich&eacute;, cliquez sur le bouton <span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+    	</div>
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PrivacyMaskSupport">
 <div class="wn5-setup-section" ng-if="PrivacyMaskSupport">
 	<div class="wn5-setup-section-heading">
@@ -252,7 +274,7 @@
 	</div>
 </div> -->
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
@@ -294,8 +316,10 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
+<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions ||
+	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions ||
+	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
     </div>

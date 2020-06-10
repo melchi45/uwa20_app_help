@@ -28,7 +28,7 @@
                 <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
                 <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono <span class="tui tui-wn5-simple-focus"></span>.</li>
             </ul>
-            <p>Haga clic en <strong class="UI">[Definir posición de suelo para panorámica]</strong> para configurar el grado de panor&aacute;mica del v&iacute;deo actualmente definido en 0.</p>
+            <p ng-if="PanZeroPositionSupport">Haga clic en <strong class="UI">[Definir posición de suelo para panorámica]</strong> para configurar el grado de panor&aacute;mica del v&iacute;deo actualmente definido en 0.</p>
     	</div>
     </div>
 </div>
@@ -102,11 +102,11 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="PTCorrectionSupport">
+<div class="wn5-setup-section" ng-if="PTCorrectionSupport">
     <div class="wn5-setup-section-heading">
     <!-- 용어집대로 수정. 2019-04-12. XNP-6320RH 진행 시 변경            <h2>Inic. Pan/Volt</h2>   --> 
-    <h2>Iniciación de panorámica / volteo</h2> 
+    <h2>Corrección de panorámica/inclinación</h2> 
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">

@@ -19,7 +19,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
         <ul>
             <li>高解像度の映像をライブ画面で再生する場合、高解像度の映像を最適化して表示するPLUGINFREEプロファイルが自動に作成されます。作成されたPLUGINFREEプロファイルは、<strong class="UI">[設定]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[ビデオprofile]</strong>にて確認できます。  </li>
-            <li>ライブページの右上にあるアイコン<img src="./images/ic-top-cert-nor.svg">をクリックすると、接続したIPアドレスや認証状況を確認することができます。認証に成功した場合には緑のアイコン、失敗した場合には赤のアイコンに表示されます。また、HTTPに接続して該当事項がない場合にはダーシ(-)に表示されます。   </li>
+            <li ng-if="PeerConnectionInfoClientHttpsStatus">ライブページの右上にあるアイコン<img src="./images/ic-top-cert-nor.svg">をクリックすると、接続したIPアドレスや認証状況を確認することができます。認証に成功した場合には緑のアイコン、失敗した場合には赤のアイコンに表示されます。また、HTTPに接続して該当事項がない場合にはダーシ(-)に表示されます。   </li>
             <li>Chromeでウェブビューアに接続すると、再生画面の機能を最も安定した状態で使用することができます。</li>
             <li>ライブページで映像を再生する場合、下記の条件で画面に残像が表示されることがあります。</li>
             <ul>
@@ -287,6 +287,16 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="WiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-wiper"></span></p>
+                            <p>ワイパー</p>
+                        </td>
+                        <td width="235">ボタンをクリックすると、ワイパーが往復動作します。</td>
+                    </tr>
+
+                    
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
@@ -615,7 +625,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p><span class="tui tui-wn5-ptz-near"></span>ボタンか<span class="tui tui-wn5-ptz-far"></span>ボタンをクリックしてカメラのフォーカスを調整します。</p>
             <p>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</p>
         </div> 
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="DigitalAutoTracking">
             <h3>オートトラッキング</h3>
                      
             <p>ライブ画面で動く物事や人を自動でトラッキングすることができます。<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が実行されます。もう一度<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が中止されます。</p>
@@ -627,7 +637,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 		</div>
         
 		        
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
             <h3>領域ズーム</h3>
                      
             <p>領域ズームは、特定エリアのみズームインして表示できる機能です。</p>

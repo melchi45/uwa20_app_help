@@ -1,10 +1,10 @@
-<h1 class="wn5-setup-main-title">Camera setup</h1>
+﻿<h1 class="wn5-setup-main-title">Camera setup</h1>
 <div class="wn5-setup-section">
     <p>You can change the camera settings to capture the best image in the environment where the camera is installed. Image presets suitable for various environments are provided by default; the user can also specify camera settings directly. You can check on the camera preview screen how the camera image is displayed according to the settings. When you complete the setting, click the [Apply] button at the bottom of the page. If the time-out time (240 seconds) has passed without clicking the <strong class="UI">[Apply]</strong> button after changing the setting, the previous setting will be restored.</p>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="WDRControlModeOptions">
+<div class="wn5-setup-section" ng-if="WDRControlModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>Comparison view</h2>
     </div>
@@ -53,7 +53,6 @@
         <div class="wn5-setup-section-article-content">
             <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the PTZ jog panel will appear.</p>
-            <p ng-if="FocusPresetSupportByChannel">Select <strong class="UI">[Enable focus save]</strong> to activate the focus save function. The focus save function is a function that stores the focus value for a specific location (Pan/Tilt/Zoom) of the camera, and changes it to the saved focus value when reaching the corresponding Pan/Tilt positions while controlling the PTZ. The focus position can be set in <strong class="UI">[<a href="#focus_save">Focus save setup</a>]</strong>.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -66,19 +65,39 @@
                 <li>Place the screen center toward the north, and click the <span class="tui tui-wn5-north"></span> (Set North) button to change the location to the north. (The Set North button displays when you click the <strong class="UI">[OSD]</strong> tab.)</li>
             </ul>
         </div>
-        
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel">
+<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel">
+    <div class="wn5-setup-section-heading">
+        <h2>Focus save</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Select <strong class="UI">[Enable focus save]</strong> to activate the focus save function. The focus save function is a function that stores the focus value for a specific location (Pan/Tilt/Zoom) of the camera, and changes it to the saved focus value when reaching the corresponding Pan/Tilt positions while controlling the PTZ. The focus position can be set in <strong class="UI">[<a href="#focus_save">Focus save setup</a>]</strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
             <h3><a name="focus_save"></a>Focus save setup</h3>
             <p>You can check the list of set focus save.</p>
             <p>You can set or delete the focus position, and apply the desired focus to the camera.</p>
             <ul>
-                <li><strong class="UI">Move</strong>: Moves to the selected focus save area from the list of focus save.</li>
-                <li><strong class="UI">Setup</strong>: It saves the screen being shot into the focus save area. You can set a name or number for the focus save. Names can include up to 12 alphanumeric characters (A-Z; a-z; 0-9), excluding spaces.</li>
-                <li><strong class="UI">Delete</strong>: It deletes the selected focus save area from the list of focus save.</li>
+                <li><strong class="UI">Go</strong>: Moves to the selected focus save area from the list of focus save.</li>
+                <li><strong class="UI">Set</strong>: It saves the screen being shot into the focus save area. You can set a name or number for the focus save. Names can include up to 12 alphanumeric characters (A-Z; a-z; 0-9), excluding spaces.</li>
+                <li><strong class="UI">Remove</strong>: It deletes the selected focus save area from the list of focus save.</li>
             </ul>
         </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>[Enable focus save] option displays when the <strong class="UI">[Focus]</strong> tab is selected, and select [Enable focus save] to enable [Focus save setup] </li>
+            </ul>
+        </div> 
     </div>
 </div>
+
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
@@ -689,10 +708,10 @@
             <h3>Local contrast</h3>
                 <p>Local contrast more clearly shows the subtle difference in brightness of video.</p>
         </div>
-            <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="XCELevel">
                 <h3>Local contrastLevel</h3>
                 <p>This is enabled by setting [Local contrast] to [Enable].&nbsp;The higher the level value, the higher the contrast of video, which means a clearer image. However, this also increase the level of noise on the screen, and a warped form of the duplicated image might be more visible around the edges.</p>
-            </div>
+        </div>
         <div class="wn5-setup-section-article-content" ng-if="Saturation">
             <h3>Color level</h3>
             <p>Adjust the intensity of color in the image.</p>

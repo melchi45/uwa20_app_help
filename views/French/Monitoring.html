@@ -18,7 +18,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Si une vidéo haute résolution est lue sur l’écran Direct, un PLUGINFREE est automatiquement généré, ce qui optimise la vidéo haute résolution. Le profil PLUGINFREE généré est disponible dans <strong class="UI">[Configuration]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[Profil vidéo]</strong>.  </li>
-                <li>Si vous cliquez sur l’icône <img src="./images/ic-top-cert-nor.svg"> en haut à droite de la page Direct, l’adresse IP connectée et l’état d’authentification sont affichés. Dans le cas d’une authentification réussie, l’icône est en vert. Dans le cas d’un échec d’authentification, l’icône est en rouge. Si l’authentification n’a pas lieu d’être effectuée du fait de l’utilisation d’une connexion HTTP, un tiret (-) sera affiché.   </li>
+                <li ng-if="PeerConnectionInfoClientHttpsStatus">Si vous cliquez sur l’icône <img src="./images/ic-top-cert-nor.svg"> en haut à droite de la page Direct, l’adresse IP connectée et l’état d’authentification sont affichés. Dans le cas d’une authentification réussie, l’icône est en vert. Dans le cas d’un échec d’authentification, l’icône est en rouge. Si l’authentification n’a pas lieu d’être effectuée du fait de l’utilisation d’une connexion HTTP, un tiret (-) sera affiché.   </li>
                 <li>En vous connectant &agrave; la visionneuse web via Chrome, la fonction d&apos;&eacute;cran de lecture d&apos;enregistrement peut &ecirc;tre utilis&eacute;e en toute s&eacute;curit&eacute;.</li>
                 <li>Lors de la lecture d’une vidéo sur la page en direct, un fantôme peut se produire dans l’un des cas suivants :</li>
                 <ul>
@@ -281,6 +281,15 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="WiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-wiper"></span></p>
+                            <p>Essuie-glace</p>
+                        </td>
+                        <td width="235">Cliquer sur le bouton active l'essuie-glace.</td>
+                    </tr>
+
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
@@ -571,7 +580,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
                         <h3>Ajustement de la mise au point</h3>
             <p>Ajustez la mise au point de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-near"></span> ou le bouton <span class="tui tui-wn5-ptz-far"></span>.</p>
             <p>Pour ajuster automatiquement la mise au point de la cam&eacute;ra une fois, cliquez sur le bouton <span class="tui tui-wn5-simple-focus"></span>.</div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="DigitalAutoTracking">
             <h3>Suivi automatique</h3>
 
             <p>Un objet ou une personne en mouvement peut &ecirc;tre suivi automatiquement dans l&rsquo;&eacute;cran de direct. Lorsque vous cliquez sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, la fonction de suivi automatique sera ex&eacute;cut&eacute;e. Lorsque vous cliquez &agrave; nouveau sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, la fonction de suivi s&apos;arr&ecirc;tera.</p>
@@ -583,7 +592,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
   </div>
 
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
             <h3>Zoom localis&eacute;</h3>
 
             <p>Le zoom localis&eacute; permet d&rsquo;effectuer un zoom avant et de voir une zone sp&eacute;cifi&eacute;e.</p>

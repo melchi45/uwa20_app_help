@@ -1,0 +1,55 @@
+﻿<h1 class="wn5-setup-main-title">알람 출력</h1>
+<div class="wn5-setup-section">
+    <p>사용자가 알람을 출력하거나 이벤트가 발생하여 알람으로 출력될 때 알람을 어떻게 제어할 지 설정합니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 알람 출력 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[알람 출력]</strong>에 동일하게 적용됩니다.</p>
+    <p>알람 출력 타입의 설정 변경 시 모니터링 페이지의 알람 출력 버튼 과 이벤트 설정의 알람 출력의 타입이 변경됩니다.</p>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>알람 출력 번호</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>알람 출력 번호를 선택하여 각 알람 출력에 대한 상세 설정을 변경할 수 있습니다. </p>
+            <p>카메라마다 지원되는 알람 출력 수가 다를 수 있습니다. 카메라가 지원하는 알람 출력 수대로 알람 출력 번호가 나타납니다.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>알람 출력</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>방식  </h3>
+            <p>알람 출력 방식을 선택합니다. </p>
+            <!-- <ul>
+                <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 출력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람을 출력합니다.  </li>
+                <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 출력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람을 출력합니다.</li>
+            </ul> -->
+            <ul>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">N.O. (Normal Open)</strong>: 알람 출력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람을 출력합니다.  </li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">N.C. (Normal Close)</strong>: 알람 출력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람을 출력합니다.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>모드  </h3>
+            <p> 알람을 출력할 때 제어 방식을 설정합니다.</p>
+            <ul>
+                <li><strong class="UI">펄스</strong>: <strong class="UI">[실행 시간]</strong>에서 설정한 시간 동안 알람이 출력되고 자동으로 알람이 꺼집니다.
+                </li>
+                <li><strong class="UI">활성화/비활성화</strong>: 라이브 화면에서 알람 출력 버튼을 누르면 알람이 출력되고 다시 누르면 알람이 꺼집니다.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>실행 시간  </h3>
+            <p><strong class="UI">[모드]</strong>에서 <strong class="UI">[펄스]</strong>를 선택했을 때 알람 출력 시간을 설정합니다. </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

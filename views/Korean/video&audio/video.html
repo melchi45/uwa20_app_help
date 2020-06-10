@@ -35,6 +35,30 @@
 	</div>
 </div> 
 
+
+<hr class="wn5-setup-hr" ng-if="PTZModel">
+<div class="wn5-setup-section" ng-if="PTZModel">
+    <div class="wn5-setup-section-heading">
+        <h2>PTZ 조정하기</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
+        </div>
+			
+        <div class="wn5-online-help-action">
+    	   <h4>PTZ 조정하기</h4>
+            <ul>
+                <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
+                <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                <li><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
+                <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
+            </ul>
+    	</div>
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr" ng-if="PrivacyMaskSupport">
 <div class="wn5-setup-section" ng-if="PrivacyMaskSupport">
 	<div class="wn5-setup-section-heading">
@@ -263,10 +287,23 @@ TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('
 인 경우 HDMI 내용이 보여지면 됩니다. 
 기존 ng-if="VideoTypeOptions || UsbConfigEnable" -> ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable" 로 수정함. 2019-11-15 -->  
 
-<!-- 비디오 출력이 모두 노출되지 않아서 VideoTypeOptions ||을 추가함. TW 자체. 2019-12-27 -->
+<!-- 비디오 출력이 모두 노출되지 않아서 VideoTypeOptions ||을 추가함.  
+	VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable
+TW 자체. 2019-12-27 -->
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
-<div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<!-- submodule 폴더에서 TNB-9000에서 hide하기 위해 
+	VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable  
+	=> (VideoTypeOptions || VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 && UsbConfigEnable) && !SensorCaptureSize 로 변경. tw자체. 2020-04-23 -->
+
+<!-- VideoTypeOptions || VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1 && UsbConfigEnable  
+	=>  VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable 으로 수정. 김영호 책임. 메신저. LNO-6030R --> 
+
+
+
+<!-- <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable"> -->
+	<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
+	<div class="wn5-setup-section" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>
     </div>
@@ -305,10 +342,25 @@ TNB-9000에서 이재준 수석님 코멘트. ng-if ="VideoTypeOptions.indexOf('
 </div>  
 
 <!-- TNB-9000에서 이재준 수석님 코멘트에 따라 ng-if =" VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1" 추가.  2019-11-15 -->  
-<!-- pnm-9030v에서 !SupportAutoImageAlignment 추가함. tw 자체 2020-02-11-->
-<!-- WN7 XNV-9082에서 hide돼야 하므로 !XCELevel 추가함. tw 자체. 2020-05-06 -->
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
+<!-- pnm-9030v에서 !SupportAutoImageAlignment 추가함. tw 자체 2020-02-11  -->
+<!-- WN7 XNV-9082에서 hide돼야 하므로 !XCELevel 추가함. tw 자체. 2020-05-06  -->
+
+<!-- (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel 
+=> (VideoTypeOptions ||
+(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1))) && 
+(typeof SupportAutoImageAlignment !== 'undefined' && !SupportAutoImageAlignment) &&
+(typeof XCELevel !== 'undefined' && !XCELevel ) 로 수정. 김영호 책임님. 메신저 LNO-6030R. 2020-05-20. 
+=> (VideoTypeOptions ||
+(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1))) 로 수정. TW 자체. !SupportAutoImageAlignment와 !XCELevel는 이슈 수정을 위해 TW가 자체 추가한 것이므로 삭제  -->
+
+
+<!-- <hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel"> -->
+	<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions ||
+	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+	<div class="wn5-setup-section" ng-if ="(VideoTypeOptions ||
+	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>
     </div>

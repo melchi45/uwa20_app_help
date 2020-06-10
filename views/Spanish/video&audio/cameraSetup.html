@@ -3,8 +3,8 @@
     <p>Puede cambiar la configuraci&oacute;n de la c&aacute;mara para capturar la mejor imagen en el entorno donde est&aacute; instalada la c&aacute;mara. De forma predeterminada, se incluyen preajustes de imagen adecuados para varios entornos, y los usuarios pueden configurar directamente sus c&aacute;maras. En la pantalla de vista previa de la c&aacute;mara, puede comprobar c&oacute;mo se ver&aacute; la imagen. Cuando haya completado el ajuste, haga clic en el bot&oacute;n [Aplicar] en la parte inferior de la p&aacute;gina. Si se produce un tiempo de espera (240 seg.) sin hacer clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> despu&eacute;s de cambiar la configuraci&oacute;n, &eacute;sta volver&aacute; a la configuraci&oacute;n anterior.</p>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="WDRControlModeOptions">
+<div class="wn5-setup-section" ng-if="WDRControlModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>Vista de comparaci&oacute;n</h2>
     </div>
@@ -677,7 +677,7 @@
             <h3>Contraste local</h3>
                 <p>El contraste local muestra m&aacute;s claramente la sutil diferencia en el brillo del v&iacute;deo.</p>
         </div>
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="XCELevel">
                 <h3>Contraste localNivel</h3>
                 <p>&Eacute;ste se activa ajustando [Contraste local] en [Activar].&nbsp;Cuanto m&aacute;s alto sea el valor del nivel, m&aacute;s alto ser&aacute; el contraste del v&iacute;deo, lo que se refleja en una imagen m&aacute;s clara. Sin embargo, esto tambi&eacute;n aumenta el nivel de ruido en la pantalla, y la deformaci&oacute;n de la imagen duplicada podr&iacute;a ser m&aacute;s visible alrededor de los bordes.</p>
             </div>

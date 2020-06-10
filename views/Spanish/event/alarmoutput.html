@@ -1,0 +1,50 @@
+﻿<h1 class="wn5-setup-main-title">Salida de alarma</h1>
+<div class="wn5-setup-section">
+    <p>Establece c&oacute;mo controlar una alarma cuando una alarma es enviada por el usuario o cuando se crea un evento. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste del evento de detecci&oacute;n de salida de alarma se aplica a <strong class="UI">[Salida de alarma]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Salida de alarma N.&deg;</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Se puede seleccionar un n&uacute;mero de salida de alarma y cambiar la configuraci&oacute;n detallada de cada salida de alarma. </p>
+            <p>El n&uacute;mero de salidas de alarma admitidas pueden variar dependiendo de la c&aacute;mara. El n&uacute;mero de salida de alarma se muestra de acuerdo con el n&uacute;mero de salidas de alarma con el apoyo de la c&aacute;mara.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Salida de alarma</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Tipo  </h3>
+            <p>Selecciona el tipo de salida de alarma. </p>
+            <ul>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">Normal abierto</strong>: El sensor de salida de alarma est&aacute; abierto por defecto y cuando est&aacute; cerrado, se emite una alarma.  </li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">Normal cerrado</strong>: El sensor de salida de alarma est&aacute; cerrado de forma predeterminada y cuando est&aacute; abierto, se emite una alarma.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Modo  </h3>
+            <p> Establece el tipo de control cuando se emite una alarma.</p>
+            <ul>
+                <li><strong class="UI">Pulso</strong>: Una alarma se emite durante el tiempo establecido en <strong class="UI">[Duraci&oacute;n]</strong> y la alarma se apaga autom&aacute;ticamente.</li>
+                <li><strong class="UI">Activo/Inactivo</strong>: Cuando se pulsa el bot&oacute;n de salida de alarma en la pantalla en vivo, una alarma se encender&aacute;; cuando se pulsa el bot&oacute;n de nuevo, la alarma se apagar&aacute;.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Duraci&oacute;n  </h3>
+            <p>Establece el tiempo de salida de alarma cuando <strong class="UI">[Pulso]</strong> est&aacute; seleccionado en <strong class="UI">[Modo]</strong>. </p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

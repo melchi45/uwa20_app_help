@@ -27,7 +27,7 @@
                 <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
             </ul>
-            <p>Click <strong class="UI">[Set Pan ground position]</strong> to set the pan degree of the video currently shot as 0.</p>
+            <p ng-if="PanZeroPositionSupport">Click <strong class="UI">[Set Pan ground position]</strong> to set the pan degree of the video currently shot as 0.</p>
             <p ng-if="PTCorrectionSupport">Click <strong class="UI">[Pan/Tilt correction setup]</strong> to reset the Pan/Tilt positions manually once. </p>
     	</div>
     </div>
@@ -100,8 +100,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="PTCorrectionSupport">
+<div class="wn5-setup-section" ng-if="PTCorrectionSupport">
     <div class="wn5-setup-section-heading">
             <!-- XNP-6320RH에 Pan/Tilt init를 Pan/Tilt initialization로 변경 2019-04-04 추후 변경점에서 수정하기로 재논의됨  2019-04-12  --> 
         <!-- <h2>Pan/Tilt init</h2> -->

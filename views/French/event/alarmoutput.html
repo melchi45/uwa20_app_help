@@ -1,0 +1,51 @@
+﻿<h1 class="wn5-setup-main-title">&Eacute;mission d&apos;alerte</h1>
+<div class="wn5-setup-section">
+    <p>D&eacute;finit comment contr&ocirc;ler une alarme lorsqu&apos;une alarme est &eacute;mise par l&apos;utilisateur ou lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. Lorsque vous avez compl&eacute;t&eacute; le r&eacute;glage, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page. La configuration de l&apos;&eacute;v&eacute;nement d&rsquo;&eacute;mission d&apos;alerte s&apos;applique &agrave; <strong class="UI">[&Eacute;mission d&apos;alerte]</strong> sur les pages <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Config. évén.]</strong></a> de la m&ecirc;me mani&egrave;re.</p>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>N°&nbsp;de sortie d&apos;alarme</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez s&eacute;lectionner un num&eacute;ro de sortie d&rsquo;alarme et modifier le r&eacute;glage d&eacute;taill&eacute; de chaque &eacute;mission d&rsquo;alerte.</p>
+            <p>Le nombre d&rsquo;&eacute;missions d&rsquo;alerte prises en charge peut varier en fonction de la cam&eacute;ra. Le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte est affich&eacute; en fonction du nombre d&rsquo;&eacute;missions d&rsquo;alerte prises en charge par la cam&eacute;ra.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>&Eacute;mission d&apos;alerte</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            
+            <h3>Type</h3>
+            <p>S&eacute;lectionne le type d&rsquo;&eacute;mission d&apos;alerte.</p>
+            <ul>
+                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">N.O. (Ouverture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ouvert par d&eacute;faut et lorsqu&apos;il est ferm&eacute;, une alarme est &eacute;mise.</li>
+                <li ng-if="AlarmOutputNormalClose"><strong class="UI">N.C. (Fermeture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ferm&eacute; par d&eacute;faut et lorsqu&apos;il est ouvert, une alarme est &eacute;mise.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Mode</h3>
+            <p>D&eacute;finit le type de contr&ocirc;le lorsqu&apos;une alarme est &eacute;mise.</p>
+            <ul>
+                <li><strong class="UI">Impulsion</strong>&nbsp;: Une alarme est &eacute;mise pendant la dur&eacute;e d&eacute;finie dans <strong class="UI">[Dur&eacute;e]</strong> et l&apos;alarme s&rsquo;&eacute;teint automatiquement.</li>
+                <li><strong class="UI">Actif/Inactif</strong>&nbsp;: Lorsque vous appuyez sur le bouton d&rsquo;&eacute;mission d&rsquo;alerte sur l&apos;&eacute;cran de surveillance, une alarme s&apos;enclenche&nbsp;; lorsque vous appuyez &agrave; nouveau sur le bouton, l&apos;alarme s&apos;&eacute;teint.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Dur&eacute;e</h3>
+            <p>D&eacute;finit l&rsquo;heure d&rsquo;&eacute;mission de l&rsquo;alerte lorsque <strong class="UI">[Impulsion]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Mode]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

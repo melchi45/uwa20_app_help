@@ -21,7 +21,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
         <ul>
             <li>고해상도의 영상을 라이브 화면에서 재생하는 경우, 고해상도 영상을 최적화하여 보여줄 수 있는 PLUGINFREE 프로파일이 자동으로 생성됩니다. 생성된 PLUGINFREE 프로파일은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 확인할 수 있습니다. </li>
-            <li>라이브 페이지 오른쪽 상단에서 <img src="./images/ic-top-cert-nor.svg">아이콘을 클릭하면, 접속한 IP 주소와 인증 상태를 확인할 수 있습니다. 인증에 성공한 경우 초록색 아이콘으로, 실패한 경우 빨간색 아이콘으로 표시됩니다. 또한 HTTP로 접속하여 해당 사항이 없는 경우는 대시(-)로 표시됩니다. </li>
+            <li ng-if="PeerConnectionInfoClientHttpsStatus">라이브 페이지 오른쪽 상단에서 <img src="./images/ic-top-cert-nor.svg">아이콘을 클릭하면, 접속한 IP 주소와 인증 상태를 확인할 수 있습니다. 인증에 성공한 경우 초록색 아이콘으로, 실패한 경우 빨간색 아이콘으로 표시됩니다. 또한 HTTP로 접속하여 해당 사항이 없는 경우는 대시(-)로 표시됩니다. </li>
             <li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
             <li>라이브 페이지에서 영상을 재생할 때 아래와 같은 조건에서 화면에 잔상이 표시될 수 있습니다.</li>
             <ul>
@@ -309,7 +309,7 @@
                             <p><span class="tui tui-wiper"></span></p>
                             <p>와이퍼</p>
                         </td>
-                        <td width="235">버튼을 클릭하면 와이퍼가 3회 왕복 동작합니다. </td>
+                        <td width="235">버튼을 클릭하면 와이퍼가 왕복 동작합니다. </td>
                     </tr>
                     <tr ng-if="HeaterOn">
                         <td width="235">
@@ -653,7 +653,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p><span class="tui tui-wn5-ptz-near"></span>아이콘이나 <span class="tui tui-wn5-ptz-far"></span>아이콘을 클릭하여 카메라의 초점을 조절합니다.</p>
             <p> 카메라 초점을 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>아이콘을 클릭합니다.</p>
         </div> 
-		<div class="wn5-setup-section-article-content">
+		<div class="wn5-setup-section-article-content" ng-if="DigitalAutoTracking">
             <h3>자동 추적</h3>
                      
             <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>자동 추적 아이콘을 클릭하면 자동 추적 기능이 실행되며 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 자동 추적 아이콘을 한 번 더 클릭하면 추적 기능이 중지됩니다. </p>
@@ -675,7 +675,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 		</div>
         
 		        
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
             <h3>영역 줌</h3>
                      
             <p>영역 줌은 특정 영역만 확대하여 볼 수 있는 기능입니다.</p>

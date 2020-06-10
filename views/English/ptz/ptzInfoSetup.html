@@ -84,7 +84,7 @@
             <li><strong class="UI">Off</strong>: No action will be executed after the camera moves to the relevant preset position.</li>
                 <li><strong class="UI">Auto run</strong>: An action set from the <a class="wn5-online-help-link" href="ptzInfoSetup.html#autorun" ng-href="#/help/ptzSetup_ptzInfoSetup?#autorun"><strong class="UI">[Auto run] </strong>tab</a> will be executed automatically.&nbsp;When <strong class="UI">[Off]</strong> is selected from the Auto run <strong class="UI">[Mode]</strong> or there is no auto start action, the preset execution status will be maintained.</li>
                 <li><strong class="UI">Auto tracking</strong>: Executes the auto tracking for a time set from the <strong class="UI">[Tracking time]</strong> column.</li>
-                <li><strong>Auto tracking &gt; Go home</strong>: It moves to the PTZ home position after executing the auto tracking operation. Please refer to <a href="ptzInfoSetup.html#set_home">Setting the home</a> on how to set the home position.</li>
+                <li><strong>Auto tracking &gt; Home</strong>: It moves to the PTZ home position after executing the auto tracking operation. Please refer to <a href="ptzInfoSetup.html#set_home">Setting the home</a> on how to set the home position.</li>
                 <li><strong class="UI">Video analytics</strong>: Video analytics action will be executed.</li>
         </ul>
     </div>
@@ -102,15 +102,15 @@
                 <li><strong class="UI">IVA</strong>: Navigate to <strong class="UI">[Analytics] </strong>&gt; <strong class="UI">[IVA] </strong>page. When <strong class="UI">[Preset]</strong>&nbsp;is selected among the <strong class="UI">[Type]</strong>&nbsp;options from the IVA page, you can set a different IVA (Intelligent video analytics) event for each preset. </li>
             </ul>
     </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h3>Last position</h3>
             <p>You can set the camera to move to the last position when turning the camera on and off. Select whether or not to save the last position of the camera and select the saving interval.</p>
         </div>
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h5>Save last position</h5>
                 <p>To save the last position, select <strong class="UI">[Enable]</strong>.</p>
         </div> 
-<div class="wn5-setup-section-article-content">
+<div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h5>Time</h5>
               <!-- Set 버튼 Appl 버튼으로 변경. 2019-04-12. XNP-6320RH 진행 시 -->
             <p>Set the saving interval at which to save the current position as the last position. The unit used to measure the interval is seconds. Enter the saving interval on the field and click <strong class="UI">[Apply]</strong>.</p>

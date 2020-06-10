@@ -99,15 +99,15 @@
                 <li><strong class="UI">IVA</strong>: Allez &agrave; la page <strong class="UI">[Analyse] </strong>&gt; <strong class="UI">[IVA]</strong>. Lorsque <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> est s&eacute;lectionn&eacute; parmi les options <strong class="UI">[Type]</strong> de la page IVA, vous pouvez d&eacute;finir un &eacute;v&eacute;nement IVA (analyse vid&eacute;o intelligente) diff&eacute;rent pour chaque pr&eacute;r&eacute;glage.</li>
             </ul>
     </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h3>Derni&egrave;re position</h3>
             <p>Vous pouvez r&eacute;gler la cam&eacute;ra pour passer &agrave; la derni&egrave;re position lorsque vous allumez et &eacute;teignez la cam&eacute;ra. S&eacute;lectionnez si vous souhaitez enregistrer la derni&egrave;re position de la cam&eacute;ra et s&eacute;lectionnez l&apos;intervalle d&apos;enregistrement.</p>
         </div>
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h5>Enregistrer la dernière position</h5>
                 <p>Pour enregistrer la derni&egrave;re position, s&eacute;lectionnez <strong class="UI">[Utiliser]</strong>.</p>
         </div> 
-<div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
             <h5>Heure</h5>
        
             <p>D&eacute;finissez l&apos;intervalle d&apos;enregistrement pendant lequel enregistrer la position actuelle comme derni&egrave;re position. L&apos;unit&eacute; utilis&eacute;e pour mesurer l&apos;intervalle est la seconde. Saisissez l&apos;intervalle d&apos;enregistrement dans le champ et cliquez sur <strong class="UI">[AppliquerD&eacute;finir]</strong>.</p>

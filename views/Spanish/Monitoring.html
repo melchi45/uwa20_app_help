@@ -17,7 +17,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Si se reproduce un vídeo de alta resolución en la pantalla en vivo, se genera automáticamente un PLUGINFREE, que optimiza el vídeo de alta resolución. El perfil de PLUGINFREE generado se puede encontrar en <strong class="UI">[Configuración]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[Perfil de vídeo]</strong>.  </li>
-                <li>Si hace clic en el icono <img src="./images/ic-top-cert-nor.svg"> de la parte superior derecha de la página en vivo, podrá ver la dirección IP conectada y el estado de autenticación. Si la autenticación se realiza correctamente, el icono se coloreará de color verde. Si la autenticación falla, se coloreará de color rojo. Si la autenticación es irrelevante debido al uso de una conexión HTTP, se mostrará un guión (-).   </li>
+                <li ng-if="PeerConnectionInfoClientHttpsStatus">Si hace clic en el icono <img src="./images/ic-top-cert-nor.svg"> de la parte superior derecha de la página en vivo, podrá ver la dirección IP conectada y el estado de autenticación. Si la autenticación se realiza correctamente, el icono se coloreará de color verde. Si la autenticación falla, se coloreará de color rojo. Si la autenticación es irrelevante debido al uso de una conexión HTTP, se mostrará un guión (-).   </li>
                 <li>Si se conecta al visor web a trav&eacute;s de Chrome, la funci&oacute;n de pantalla de grabar reproducci&oacute;n puede ser utilizada con seguridad.</li>
                 <li>Cuando se reproduce un video en la p&aacute;gina en vivo, es posible que se produzca un efecto fantasma en uno de los siguientes casos:</li>
                 <ul>
@@ -286,6 +286,15 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
+
+                    <tr ng-if="WiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-wiper"></span></p>
+                            <p>Rascador</p>
+                        </td>
+                        <td width="235">Al hacer clic en el botón se activa el limpiador.</td>
+                    </tr>
+
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
@@ -582,7 +591,7 @@
             <p> Ajuste el enfoque de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-near"></span> o el bot&oacute;n <span class="tui tui-wn5-ptz-far"></span>.</p>
             <p> Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente de una vez,&nbsp;haga clic en el bot&oacute;n <span class="tui tui-wn5-simple-focus"></span>.
         </div>
-  <div class="wn5-setup-section-article-content">
+  <div class="wn5-setup-section-article-content" ng-if="DigitalAutoTracking">
             <h3>Seguimiento autom&aacute;tico</h3>
 
             <p>Un objeto o persona en movimiento puede ser seguido autom&aacute;ticamente en la vista en vivo. Cuando haga clic en el bot&oacute;n de Seguimiento autom&aacute;tico <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, &nbsp;la funci&oacute;n de seguimiento autom&aacute;tico se ejecutar&aacute;. Cuando haga clic de nuevo en el bot&oacute;n de Seguimiento autom&aacute;tico<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, &nbsp;la funci&oacute;n de seguimiento autom&aacute;tico se detendr&aacute;. </p>
@@ -594,7 +603,7 @@
   </div>
 
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
             <h3>Zoom de &aacute;rea</h3>
             <p>El zoom de &aacute;rea permite acercar el zoom y ver un &aacute;rea espec&iacute;fica.</p>
             <p>Cuando selecciona un &aacute;rea arrastrando el rat&oacute;n sobre la pantalla con la imagen de la c&aacute;mara despu&eacute;s de hacer clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom"></span>, la funci&oacute;n de zoom se ejecutar&aacute; sobre el &aacute;rea seleccionada y la posici&oacute;n de la c&aacute;mara se mover&aacute; hasta el &aacute;rea seleccionada.&nbsp;Puede moverse hasta el &aacute;rea seleccionada y configuraci&oacute;n anteriores haciendo clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom-back"></span>. En caso de que se haya movido al &aacute;rea seleccionada y configuraci&oacute;n anteriores, haga clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom-pre"></span>si desea regresar al &aacute;rea y configuraciones anteriores a &eacute;stas otra vez. Cuando haga clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom-1x"></span>, el aumento del zoom se cambiar&aacute; a 1x y la c&aacute;mara se mover&aacute; a su posici&oacute;n original.  </p>

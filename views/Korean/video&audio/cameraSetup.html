@@ -4,8 +4,8 @@
 전으로 돌아갑니다.</p>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="WDRControlModeOptions">
+<div class="wn5-setup-section" ng-if="WDRControlModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>비교 뷰</h2>
     </div>
@@ -59,7 +59,6 @@
         <div class="wn5-setup-section-article-content">
             <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 PTZ 조그 패널이 나타납니다.</p>
-            <p ng-if="FocusPresetSupportByChannel">포커스 저장 기능을 활성화하려면 <strong class="UI">[포커스 저장 사용]</strong>을 선택합니다. 포커스 저장 기능은 카메라의 특정 위치(Pan/Tilt/Zoom)에 대한 포커스 값을 저장하여, PTZ를 제어하는 중 해당 팬/틸트 위치에 도달하면 저장된 포커스&nbsp;값으로 변경되는 기능입니다. 포커스 위치는 <strong class="UI">[<a href="#focus_save">포커스 저장 설정</a>]</strong>에서 설정할 수 있습니다. </p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -72,19 +71,40 @@
                 <li>북쪽으로 설정하려는 방향에 화면 중앙을 위치시킨 후 <span class="tui tui-wn5-north"></span> (북쪽 설정)버튼을 클릭하면, 해당 위치를 북쪽으로 변경합니다.(북쪽 설정 버튼은 <strong class="UI">[OSD]</strong> 탭을 클릭해야 보입니다.)</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel !== undefined">
+<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel !== undefined">
+    <div class="wn5-setup-section-heading">
+        <h2>포커스 저장</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>포커스 저장 기능을 활성화하려면 <strong class="UI">[포커스 저장 사용]</strong>을 선택합니다. 포커스 저장 기능은 카메라의 특정 위치(Pan/Tilt/Zoom)에 대한 포커스 값을 저장하여, PTZ를 제어하는 중 해당 팬/틸트 위치에 도달하면 저장된 포커스 값으로 변경되는 기능입니다. 포커스 위치는 <strong class="UI">[<a href="#focus_save">포커스 저장 설정</a>]</strong>에서 설정할 수 있습니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content" >
             <h3><a name="focus_save"></a>포커스 저장 설정 </h3>
-            <p>설정한 포커스&nbsp;저장 목록을&nbsp;확인할 수 있습니다. </p>
-            <p>포커스 위치를 설정하거나 삭제할 수 있으며, 원하는 포커스를 카메라에 적용할 수 있습니다. &nbsp;</p>
+            <p>설정한 포커스 저장 목록을 확인할 수 있습니다. </p>
+            <p>포커스 위치를 설정하거나 삭제할 수 있으며, 원하는 포커스를 카메라에 적용할 수 있습니다.  </p>
             <ul>
                 <li><strong class="UI">이동</strong>: 포커스 저장 목록에서 선택한 포커스 저장 영역으로 이동합니다.</li>
                 <li><strong class="UI">설정</strong>: 촬상하고 있는 화면을 포커스 저장 영역으로 저장합니다. 포커스 저장 이름이나 번호를 설정할 수 있습니다. 이름은 최대 12자까지 입력할 수 있으며, 알파벳(A~Z, a~z) 및 숫자(0~9)를 입력할 수 있으며 공백은 입력할 수 없습니다 </li>
                 <li><strong class="UI">삭제</strong>: 포커스 저장 목록에서 선택한 포커스 저장 영역을 삭제합니다. </li>
             </ul>
         </div>
-
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li><strong class="UI">[포커스]</strong> 탭을 선택해야 [포커스 저장 사용] 옵션이 나타납니다. 또한 [포커스 저장 사용] 옵션을 선택해야 [포커스 사용 설정]이 활성화됩니다. </li>
+            </ul>
+        </div>  
     </div>
 </div>
+
+
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
@@ -92,8 +112,7 @@
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게 설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라
-설정 항목 중 일부 항목은 설정할 수 없습니다.</p>
+            <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게 설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라 설정 항목 중 일부 항목은 설정할 수 없습니다.</p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 '타입' 기능을 설정할 수 있습니다.</p>
         </div>
 </div>
@@ -579,7 +598,9 @@
                 <h3>P-조리개 위치  </h3>
                 <p><strong class="UI">[P-조리개]</strong>를 <strong class="UI">[수동]</strong>으로 선택하면 활성화됩니다. P-조리개의 위치를 조절할 수 있습니다. </p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
+            <!-- 정인혜 선임님 요청. '- Macgain 지원인 경우 : AGCMaxGainLevel
+- 그 외 : AGCModeOptions.    AGCModeOptions =>AGCMaxGainLevel로 변경 -->
+                <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
             <h3>AGC</h3>
                 <p>AGC (Auto Gain Control)는 어두운 조명에서 피사체를 촬영할 때 영상 게인의 감도를 조절하여 밝기를 조절할 수 있습니다. </p>
                 <ul>
@@ -588,6 +609,10 @@
                     <li><strong class="UI">최대 게인</strong>: 주변의 밝기에 따라 게인이 자동으로 제어될 수 있는 최대 게인을 설정합니다.</li>
                 </ul>
             </div>
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
+                <h3>AGC</h3>
+                    <p>AGC (Auto Gain Control)는 어두운 조명에서 피사체를 촬영할 때 영상 게인의 감도를 조절하여 밝기를 조절할 수 있습니다. </p>
+                </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
                 <h3>레벨(수동)</h3>
                 <p>AGC 레벨 값을 원하는대로 수동으로 설정합니다. 레벨 값을 높게 설정할수록 게인 값이 증가하여 어두운 환경에서도 화면이 밝게 됩니다. </p>
@@ -756,7 +781,7 @@
             <h3>로컬 대비</h3>
                 <p>로컬 대비는 영상의 미세한 밝기 차이를 분명하게 나타내는 기능입니다. </p>
         </div>
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="XCELevel"> 
                 <h3>로컬 대비 레벨</h3>
                 <p>[로컬 대비]에서 [사용]을 선택하면 활성화됩니다. 레벨 값이 증가할수록 영상의 밝기 차의 크기가 커져 선명한 효과가 나타나지만 영상에 노이즈가 심해지고, 윤곽선 주변에 왜곡된 형태의 이중상이 심해질 수 있습니다. </p>
             </div>
