@@ -53,6 +53,7 @@
         <div class="wn5-setup-section-article-content">
             <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
             <p ng-if="MaxChannel > 1 && HandoverCalibration">Only after you select a <strong class="UI">[PTZ]</strong> channel in <strong class="UI"><a href="#channel">[Select channel]</a></strong>, the PTZ jog panel will appear.</p>
+            <p ng-if="FocusPresetSupportByChannel">Select <strong class="UI">[Enable focus save]</strong> to activate the focus save function. The focus save function is a function that stores the focus value for a specific location (Pan/Tilt/Zoom) of the camera, and changes it to the saved focus value when reaching the corresponding Pan/Tilt positions while controlling the PTZ. The focus position can be set in <strong class="UI">[<a href="#focus_save">Focus save setup</a>]</strong>.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -64,7 +65,18 @@
                 <li>To adjust the camera focus automatically once, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
                 <li>Place the screen center toward the north, and click the <span class="tui tui-wn5-north"></span> (Set North) button to change the location to the north. (The Set North button displays when you click the <strong class="UI">[OSD]</strong> tab.)</li>
             </ul>
-    	</div>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+            <h3><a name="focus_save"></a>Focus save setup</h3>
+            <p>You can check the list of set focus save.</p>
+            <p>You can set or delete the focus position, and apply the desired focus to the camera.</p>
+            <ul>
+                <li><strong class="UI">Move</strong>: Moves to the selected focus save area from the list of focus save.</li>
+                <li><strong class="UI">Setup</strong>: It saves the screen being shot into the focus save area. You can set a name or number for the focus save. Names can include up to 12 alphanumeric characters (A-Z; a-z; 0-9), excluding spaces.</li>
+                <li><strong class="UI">Delete</strong>: It deletes the selected focus save area from the list of focus save.</li>
+            </ul>
+        </div>
     </div>
 </div>
 <hr class="wn5-setup-hr" ng-if="PTZModel">

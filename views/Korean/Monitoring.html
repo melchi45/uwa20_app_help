@@ -156,6 +156,7 @@
 							<p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p></td>
                     <td width="235">
                         <p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어, 추적 기능을 시작하고 중지할 수 있습니다. </p>
+                        <p ng-if="FocusPresetSupportByChannel"><strong class="UI">[포커스 저장]</strong>에서 포커스 목록을 확인할 수 있습니다. </p>                       
                         <p ng-if="MaxChannel > 1 && HandoverCalibration"><a href="#channel">채널 선택</a>에서 [PTZ] 채널을 선택한 경우에만 'PTZ' 아이콘이 보입니다.</p>
                     </td>
                     </tr>
@@ -302,6 +303,22 @@
                             <p> </p>
                         </td>
                     </tr>
+
+                    <tr ng-if="WiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-wiper"></span></p>
+                            <p>와이퍼</p>
+                        </td>
+                        <td width="235">버튼을 클릭하면 와이퍼가 3회 왕복 동작합니다. </td>
+                    </tr>
+                    <tr ng-if="HeaterOn">
+                        <td width="235">
+                            <p><span class="tui tui-heater-dry"></span></p>
+                            <p>히터</p>
+                        </td>
+                        <td width="235">버튼을 클릭하면 히터가 30초 동안 동작합니다. </td>
+                    </tr>
+
                     <!-- !CamSpecialModel -> !CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)로 변경. 김선미 책임님. XNO-6085RG. 2019-10-16 -->
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
@@ -641,7 +658,17 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                      
             <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>자동 추적 아이콘을 클릭하면 자동 추적 기능이 실행되며 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 자동 추적 아이콘을 한 번 더 클릭하면 추적 기능이 중지됩니다. </p>
             <p>또한 영상 화면에서 마우스 오른쪽 버튼을 클릭하면 클릭한 영역을 중심으로 움직임을 분석한 후 자동 추적을 시작합니다.</p>
-        </div>    
+        </div> 
+        
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+            <h3>포커스 저장</h3>
+            <p>포커스 저장 목록을 확인할 수 있습니다. </p>
+            <p>현재 촬상 화면을 포커스 영역으로 저장하려면 <strong class="UI">[설정]</strong> 버튼을 클릭합니다. <strong class="UI">[번호]</strong>와  <strong class="UI">[이름]</strong>을 입력한 후 <strong class="UI">[확인]</strong> 버튼을 클릭하면 저장됩니다. 목록에서 포커스 저장을 선택한 후 <strong class="UI">[이동]</strong>을 클릭하면 저장된 포커스 영역으로 카메라 포커스가 이동합니다.</p>
+            <p>포커스 저장은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[카메라 설정]</strong>&gt;<strong class="UI">[포커스 저장]</strong>에서도 설정하거나 삭제할 수 있습니다. </p>
+
+        </div>
+ 
+
         <div class="wn5-setup-section-article-content">
             <h3>PTZ 기능 사용하기</h3>
             <p>미리 설정한 위치로 카메라가 이동하도록 하거나, 스윙, 그룹, 투어, 추적 기능 시작하고 중지할 수 있습니다. 관련 설정은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지를 참고 하십시오.</p>

@@ -201,9 +201,19 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.AGCMaxGainLevel = attr.AGCMaxGainLevel;
       $scope.XCELevel = attr.XCELevel;
       $scope.GammaControl = attr.GammaControl;
+      
+      /* TNB-9000에 추가되어 submodule과 develop에 모두 적용됨 */  
       $scope.SensorCaptureSize = (
         typeof attr.SensorCaptureSize !== 'undefined' && attr.SensorCaptureSize.length > 0
 );
+      /* WN7 PTZ에서 추가한 것 */
+      $scope.FocusPresetSupportByChannel = attr.FocusPresetSupportByChannel;
+      $scope.PTCorrectionSupport = attr.PTCorrectionSupport;
+      $scope.WiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WiperOn") !== -1;
+      $scope.HeaterOn = attr.AuxCommands && attr.AuxCommands.indexOf("HeaterOn") !== -1;
+      $scope.AutoTrackObjectSize = attr.AutoTrackObjectSize;
+
+
 
       /*
         1. true values

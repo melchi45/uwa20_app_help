@@ -30,6 +30,7 @@
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>버튼을 클릭합니다.</li>
             </ul>
             <p><strong class="UI">[팬 그라운드 설정]</strong>을 클릭하면 현재 촬상하고 있는 영상의 팬(Pan) 각도를 0도로 설정합니다. </p>
+            <p ng-if="PTCorrectionSupport">팬/틸트 위치를 수동으로 1회 초기화하려면 <strong class="UI">[Pan/Tilt 보정 설정]</strong>을 클릭합니다. </p>
     	</div>
     </div>
 </div>
@@ -106,19 +107,21 @@
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
                     <!-- xnp-6320rh에서 팬/틸트 기울기 초기화를 팬/틸트 초기화로 변경함. 박종인 책임님 2019-03-26 메일 참조. 영어는 Pan/Tilt init. 에서 Pan/Tilt initialization로 수정 --> 
-        <h2>팬/틸트 초기화 </h2>
+        <!-- <h2>팬/틸트 초기화 </h2> -->
+        <h2>Pan/Tilt 보정 </h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+            <p>[Pan/Tilt 보정]은 팬과 틸트 위치를 수동으로 초기화하는 기능입니다. </p>
             <p>카메라의 팬과 틸트 모터 위치를 초기화할지 여부를 설정하고 초기화 주기와 시간을 설정할 수 있습니다.</p>
-            <p>예를 들어 <strong class="UI">[사용]</strong>을 선택한 후 <strong class="UI">[실행 시간]</strong>은 '2일'을, <strong class="UI">[초기화 시간]</strong>은 '9'로 선택한 경우, 2일마다 오전 9시에 팬/틸트 위치가 초기화됩니다. 카메라 설정 시간이 2000년 1월 1일인 경우 2000년 1월 3일 9시에 초기화 동작이 시작되며, 이 후 2000년 1월 5일, 7일과 같이 2일마다 오전 9시 정각에 팬/틸트 위치가 초기화됩니다.</p>
+            <p>예를 들어 <strong class="UI">[사용]</strong>을 선택한 후 <strong class="UI">[실행 시간]</strong>은 '2일'을, <strong class="UI">[시간]</strong>은 '9'로 선택한 경우, 2일마다 오전 9시에 팬/틸트 위치가 초기화됩니다. 카메라 설정 시간이 2000년 1월 1일인 경우 2000년 1월 3일 9시에 초기화 동작이 시작되며, 이 후 2000년 1월 5일, 7일과 같이 2일마다 오전 9시 정각에 팬/틸트 위치가 초기화됩니다.</p>
         </div>
             <div class="wn5-setup-section-article-content">
                 <h3>실행 시간</h3>
                 <p>초기화 주기를 설정합니다. 예를 들어 '2일'을 선택한 경우 2일마다 초기화가 진행됩니다.</p>
             </div>
             <div class="wn5-setup-section-article-content">
-                <h3>초기화 시간</h3>
+                <h3>시간</h3>
              <p>초기화 동작 시간을 설정합니다. 0시부터 23시까지 정각 시간을 선택할 수 있습니다.</p>
             </div>
 			<div class="wn5-online-help-info">
