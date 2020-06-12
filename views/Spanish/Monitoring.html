@@ -103,6 +103,7 @@
                             <!-- <p ng-if="objectDetectionSupport">Al seleccionar el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>, se activará la función PTZ.</p> -->
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ digital se habilita solo cuando se selecciona el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>.</p>
                             <p ng-if="GlobalPTZMode && MaxChannel > 1">Si no se muestra el icono PTZ, vaya a <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externo]</strong> y f&iacute;jese si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; marcada.</p>
+                            <p ng-if="FocusPresetSupportByChannel">Puede comprobar la lista de enfoque en <strong class="UI">[Guardado de enfoque]</strong>.</p>
                           </td>
                       </tr>
 
@@ -292,7 +293,17 @@
                             <p><span class="tui tui-wiper"></span></p>
                             <p>Rascador</p>
                         </td>
-                        <td width="235">Al hacer clic en el botón se activa el limpiador.</td>
+                        <td width="235">Haga clic en el bot&oacute;n tres veces para activar el rascador.</td>
+                    </tr>
+                    
+                    <tr ng-if="HeaterOn">
+                        <td width="235">
+                            <p><span class="tui tui-heater-dry"></span></p>
+                            <p>Calentador</p>
+                        </td>
+                        <td width="235">
+                         <p>Al hacer clic en el bot&oacute;n se activa el calentador durante 30 segundos.</p>
+                        </td>
                     </tr>
 
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
@@ -597,6 +608,14 @@
             <p>Un objeto o persona en movimiento puede ser seguido autom&aacute;ticamente en la vista en vivo. Cuando haga clic en el bot&oacute;n de Seguimiento autom&aacute;tico <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, &nbsp;la funci&oacute;n de seguimiento autom&aacute;tico se ejecutar&aacute;. Cuando haga clic de nuevo en el bot&oacute;n de Seguimiento autom&aacute;tico<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, &nbsp;la funci&oacute;n de seguimiento autom&aacute;tico se detendr&aacute;. </p>
             <p>Adem&aacute;s, cuando haga clic en el bot&oacute;n derecho del rat&oacute;n sobre la imagen en pantalla, el &aacute;rea sobre el que haya hecho clic asociada a un movimiento ser&aacute; analizada, y entonces comenzar&aacute; el seguimiento autom&aacute;tico.</p>
         </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+            <h3>Guardado de enfoque</h3>
+            <p>Puede comprobar la lista de guardado de enfoque.</p>
+            <p>Haga clic en <strong class="UI">[Definir]</strong> para guardar la pantalla que se est&aacute; fotografiando en un &aacute;rea de enfoque.&nbsp;Despu&eacute;s de introducir el <strong class="UI">[N&uacute;mero]</strong> y el <strong class="UI">[Nombre]</strong>, haga clic en <strong class="UI">[Aceptar]</strong> para guardar. Si hace clic en <strong class="UI">[Ir]</strong> despu&eacute;s de seleccionar el guardado de enfoque de la lista, el enfoque de la c&aacute;mara se mover&aacute; hacia el &aacute;rea del enfoque guardado.</p>
+            <p>Tambi&eacute;n se puede definir o eliminar el guardado de enfoque en <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de la c&aacute;mara]</strong>&gt;<strong class="UI">[Guardado de enfoque]</strong>.</p>
+        </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>Uso de la funci&oacute;n PTZ</h3>
             <p>Puede mover la c&aacute;mara hasta una posici&oacute;n definida con antelaci&oacute;n o iniciar y detener las funciones de oscilaci&oacute;n, grupo, tour y seguimiento. Para conocer el ajuste adecuado, consulte la p&aacute;gina <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[Configuraci&oacute;n PTZ]</strong>.</p>

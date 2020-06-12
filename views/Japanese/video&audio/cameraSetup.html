@@ -67,6 +67,36 @@
     	</div>
     </div>
 </div>
+
+
+<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel">
+<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel">
+    <div class="wn5-setup-section-heading">
+        <h2>フォーカス保存</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>フォーカス保存機能を有効にするには、<strong class="UI">[フォーカス保存を有効にする]</strong>を選択します。フォーカス保存機能はカメラの特定位置(Pan/Tilt/Zoom)に対するフォーカス値を保存して、PTZを制御している途中に該当のパン/チルト位置に到達すると、保存されたフォーカス値に変更される機能です。フォーカス位置は<strong class="UI">[<a href="#focus_save">フォーカス保存設定</a>]</strong>で設定することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3><a name="focus_save"></a>フォーカス保存設定</h3>
+            <p>設定したフォーカス保存リストを確認することができます。</p>
+            <p>フォーカス位置を設定したり削除することができます。またフォーカスをカメラに適用することができます。</p>
+            <ul>
+                <li><strong class="UI">移動</strong>：フォーカス保存リストで選択したフォーカス保存エリアに移動します。</li>
+                <li><strong class="UI">設定</strong>：撮像している画面をフォーカス保存エリアに保存します。フォーカス保存名や番号を設定することができます。名前は最大12文字入力できます。アルファベット(A~Z、a~z)&amp;数字(0~9)を入力できます。スペースは入力できません。</li>
+                <li><strong class="UI">削除</strong>：フォーカス保存リストで選択したフォーカス保存エリアを削除します。</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li><strong class="UI">[フォーカス]</strong>タブを選択して[フォーカス保存を有効にする]オプションを表示することができます。また、[フォーカス保存を有効にする]オプションを選択すると[フォーカス使用設定]が有効となります。</li>
+            </ul>
+        </div>  
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
@@ -521,7 +551,11 @@
                 <h3>Pアイリス位置</h3>
                 <p><strong class="UI">[Pアイリス]</strong>を<strong class="UI">[マニュアル]</strong>に選択すると有効になります。Pアイリス位置を調整することができます。</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
+                        <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && !AGCMaxGainLevel">
+            <h3>AGC</h3>
+                <p>AGC (Auto Gain Control)は暗い照明で被写体を撮影する時、映像Gainの感度を調整して明るさを調整することができます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && AGCMaxGainLevel">
             <h3>AGC</h3>
                 <p>AGC (Auto Gain Control)は暗い照明で被写体を撮影する時、映像Gainの感度を調整して明るさを調整することができます。</p>
                 <ul>
@@ -550,7 +584,7 @@
                     <li ng-if="SSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
                     <li ng-if="AGCModeOptions">AGC利用が多い場合、SSNRのSSNR 3D値が増加するため、映像が引かれることがあります。</li>
                     <li ng-if="AGCModeOptions">AGC動作時、画面にノイズが増加します。</li>
-                    <li ng-if="AGCModeOptions">AGCモードのオプションを[Off]や[手動]で設定したり、[最大ゲイン]値を30 db未満に設定した場合、[デイ/ナイト]の[自動]オプションは設定できません。</li>
+                    <li ng-if="AGCModeOptions && AGCMaxGainLevel">AGCモードのオプションを[Off]や[手動]で設定したり、[最大ゲイン]値を30 db未満に設定した場合、[デイ/ナイト]の[自動]オプションは設定できません。</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>

@@ -67,6 +67,36 @@
     	</div>
     </div>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel">
+<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel">
+    <div class="wn5-setup-section-heading">
+        <h2>Guardado de enfoque</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Seleccione <strong class="UI">[Activar guardado de enfoque]</strong> para activar la funci&oacute;n de guardado de enfoque. La funci&oacute;n de guardado de enfoque es una funci&oacute;n que guarda el valor del enfoque para una ubicaci&oacute;n espec&iacute;fica (Panor&aacute;mica/Inclinaci&oacute;n/Zoom) de la c&aacute;mara, y lo cambia al valor del enfoque guardado cuando se alcanzan las posiciones de Panor&aacute;mica/Inclinaci&oacute;n correspondientes mientras se controla la c&aacute;mara PTZ. La posici&oacute;n de enfoque se puede definir en <strong class="UI">[<a href="#focus_save">Configuraci&oacute;n de guardado de enfoque</a>]</strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3><a name="focus_save"></a>Configuraci&oacute;n de guardado de enfoque</h3>
+            <p>Puede comprobar la lista de guardado de enfoque establecido.</p>
+            <p>Puede definir o eliminar la posici&oacute;n de enfoque y aplicar el enfoque deseado a la c&aacute;mara.</p>
+            <ul>
+                <li><strong class="UI">Ir</strong>: Se desplazar&aacute; al &aacute;rea de guardado de enfoque seleccionada de la lista de guardado de enfoque.</li>
+                <li><strong class="UI">Definir</strong>: Guarda la pantalla que se est&aacute; capturando en el &aacute;rea de guardado de enfoque. Puede definir un nombre o un n&uacute;mero para el guardado de enfoque. Los nombres pueden incluir hasta 12 caracteres alfanum&eacute;ricos (A-Z; a-z; 0-9), excluyendo los espacios.</li>
+                <li><strong class="UI">Eliminar</strong>: Se eliminar&aacute; el &aacute;rea de guardado de enfoque seleccionada de la lista de guardado de enfoque.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>La opci&oacute;n [Activar guardado de enfoque] se muestra al seleccionar la pesta&ntilde;a <strong class="UI">[Enfoque]</strong> y se selecciona [Activar guardado de enfoque] para activar la [Configuraci&oacute;n de guardado de enfoque]</li>
+            </ul>
+        </div> 
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
@@ -521,7 +551,11 @@
                 <h3>Posici&oacute;n de iris P</h3>
                 <p>Se activa si <strong class="UI">[P-iris]</strong> est&aacute; ajustado a <strong class="UI">[Manual]</strong>. Tambi&eacute;n es posible ajustar la posici&oacute;n del iris P.</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && !AGCMaxGainLevel">
+                <h3>AGC</h3>
+                    <p>AGC (Control Autom&aacute;tico de Ganancia) ajusta el brillo mediante el control de la sensibilidad de la ganancia de la imagen al capturar un objeto en la penumbra.</p>
+                </div>
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && AGCMaxGainLevel">
             <h3>AGC</h3>
                 <p>AGC (Control Autom&aacute;tico de Ganancia) ajusta el brillo mediante el control de la sensibilidad de la ganancia de la imagen al capturar un objeto en la penumbra.</p>
                 <ul>
@@ -550,7 +584,7 @@
                     <li ng-if="SSNR2DLevel">Ya que la funci&oacute;n de detecci&oacute;n de movimiento se utiliza internamente cuando el Wise NR (SSNR 2D y SSNR 3D) est&aacute; habilitado para detectar movimiento en v&iacute;deo, se detecta de acuerdo con la condici&oacute;n operativa del evento de detecci&oacute;n de movimiento. Para obtener informaci&oacute;n detallada sobre la configuraci&oacute;n de la detecci&oacute;n de movimiento, vaya a <strong class="UI">[An&aacute;lisis]</strong> &gt; <strong class="UI">[Detecci&oacute;n de movimiento]</strong>.</li>
                     <li ng-if="AGCModeOptions">A medida que aumenta el uso de AGC, tambi&eacute;n aumenta el valor SSNR 3D, lo que podr&iacute;a llevar a un parpad en el v&iacute;deo.</li>
                     <li ng-if="AGCModeOptions">La acci&oacute;n del AGC incrementa el ruido de la pantalla.</li>
-                    <li ng-if="AGCModeOptions">Si la opci&oacute;n del modo AGC est&aacute; ajustada a [Des.] o [Manual], o si el valor de [Ganancia m&aacute;x.] est&aacute; ajustado por debajo de 30 db, [D&iacute;a/Noche] no se podr&aacute; ajustar a [Auto].</li>
+                    <li ng-if="AGCModeOptions && AGCMaxGainLevel">Si la opci&oacute;n del modo AGC est&aacute; ajustada a [Des.] o [Manual], o si el valor de [Ganancia m&aacute;x.] est&aacute; ajustado por debajo de 30 db, [D&iacute;a/Noche] no se podr&aacute; ajustar a [Auto].</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>

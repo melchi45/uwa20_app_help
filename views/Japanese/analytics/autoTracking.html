@@ -74,8 +74,28 @@
         </div>
     </div>
 
-<hr class="wn5-setup-hr">
+    <hr class="wn5-setup-hr" ng-if="AutoTrackObjectSize">
+    <div class="wn5-setup-section" ng-if="AutoTrackObjectSize">
+        <div class="wn5-setup-section-heading">
+            <h2>対象物オートトラッキングを有効にする</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>選択した対象物のモーションを検知した場合、対象物のモーションをオートトラッキングするには、<strong class="UI">[対象物オートトラッキングを有効にする]</strong>をクリックします。</p>
+            </div>
+            <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+                <h4>対象物オートトラッキング機能を有効にする</h4>
+                <p>対象物オートトラッキングは対象物を検知した場合、自動に対象物のモーションをトラッキングする機能です。指定した対象物だけを検知してオートトラッキングするように設定することができます。</p>
+                <ol>
+                    <li>モーションをトラッキングする対象物タイプを選択します。</li>
+                    <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span>アイコンをクリックすると、カメラが設定した対象物タイプを検知する場合、対象物のモーションをオートトラッキングします。</li>
+                    <li>オートトラッキングを中止するには、オートトラッキングアイコン<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>をもう一度クリックします。</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>設定</h2>

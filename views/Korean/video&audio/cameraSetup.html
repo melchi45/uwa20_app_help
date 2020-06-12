@@ -598,9 +598,17 @@
                 <h3>P-조리개 위치  </h3>
                 <p><strong class="UI">[P-조리개]</strong>를 <strong class="UI">[수동]</strong>으로 선택하면 활성화됩니다. P-조리개의 위치를 조절할 수 있습니다. </p>
             </div>
-            <!-- 정인혜 선임님 요청. '- Macgain 지원인 경우 : AGCMaxGainLevel
-- 그 외 : AGCModeOptions.    AGCModeOptions =>AGCMaxGainLevel로 변경 -->
-                <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
+
+
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && !AGCMaxGainLevel">
+                <h3>AGC</h3>
+                    <p>AGC (Auto Gain Control)는 어두운 조명에서 피사체를 촬영할 때 영상 게인의 감도를 조절하여 밝기를 조절할 수 있습니다. </p>
+            </div>
+
+             <!-- XNV-9082R WN7 Basic에서 attrtibute 받음. 박종찬 선임. 2020-03-25 -->
+             <!-- TNU-6321에서 TW가 && AGCMaxGainLevel 추가.
+                 정인혜 선임님 요청.  Macgain 지원인 경우 : AGCMaxGainLevel,                                    그 외 : AGCModeOptions.    -->
+                <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && AGCMaxGainLevel">
             <h3>AGC</h3>
                 <p>AGC (Auto Gain Control)는 어두운 조명에서 피사체를 촬영할 때 영상 게인의 감도를 조절하여 밝기를 조절할 수 있습니다. </p>
                 <ul>
@@ -609,20 +617,21 @@
                     <li><strong class="UI">최대 게인</strong>: 주변의 밝기에 따라 게인이 자동으로 제어될 수 있는 최대 게인을 설정합니다.</li>
                 </ul>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
-                <h3>AGC</h3>
-                    <p>AGC (Auto Gain Control)는 어두운 조명에서 피사체를 촬영할 때 영상 게인의 감도를 조절하여 밝기를 조절할 수 있습니다. </p>
-                </div>
+
+             <!-- XNV-9082R WN7 Basic에서 attrtibute 받음. 박종찬 선임. 2020-03-25 -->
             <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
                 <h3>레벨(수동)</h3>
                 <p>AGC 레벨 값을 원하는대로 수동으로 설정합니다. 레벨 값을 높게 설정할수록 게인 값이 증가하여 어두운 환경에서도 화면이 밝게 됩니다. </p>
                 <p>[AGC]에서 [수동]을 선택하면 [레벨(수동)]이 활성화됩니다. </p>
             </div>
+
+            <!-- XNV-9082R WN7 Basic에서 attrtibute 받음. 박종찬 선임. 2020-03-25 -->
             <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
             <h3>레벨(최대 게인)</h3>
                 <p>최대 게인 값을 설정합니다. 주변 밝기에 따라서 설정된 최대 게인까지 자동으로 제어됩니다. 레벨 값을 높게 설정할수록 최대 게인이 높게 설정됩니다. </p>
                 <p>[AGC]에서 [최대 게인]을 선택하면 레벨(최대 게인)]이 활성화됩니다.  </p>
             </div>
+
             <div class="wn5-online-help-info" ng-if="MinShutterOptions || SSNR2DLevel || AGCModeOptions">
                 <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
@@ -633,7 +642,8 @@
                     <li ng-if="SSNR2DLevel">지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다.    </li>
                     <li ng-if="AGCModeOptions">AGC 사용량이 많은 경우 SSNR의 SSNR 3D의 값이 증가하므로 영상에 끌림이 발생할 수 있습니다.</li>
                     <li ng-if="AGCModeOptions">AGC 동작 시 화면 노이즈가 증가합니다. </li>
-                    <li ng-if="AGCModeOptions">AGC 모드 옵션을 [사용 안 함]이나 [수동]으로 설정하거나, [최대 게인] 값을 30 db 미만으로 설정한 경우, [주야간 모드]의 [자동] 옵션은 설정할 수 없습니다.</li>
+                     <!-- TNU-6321에서 TW가 && AGCMaxGainLevel 추가. -->
+                    <li ng-if="AGCModeOptions && AGCMaxGainLevel">AGC 모드 옵션을 [사용 안 함]이나 [수동]으로 설정하거나, [최대 게인] 값을 30 db 미만으로 설정한 경우, [주야간 모드]의 [자동] 옵션은 설정할 수 없습니다.</li>
                 </ul>
                 <!-- <ul>
                 <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>

@@ -67,6 +67,37 @@
     	</div>
     </div>
 </div>
+
+
+<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel">
+<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel">
+    <div class="wn5-setup-section-heading">
+        <h2>Enregistrement de la mise au point</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>S&eacute;lectionnez <strong class="UI">[Activer l&apos;enregistrement de la mise au point]</strong> pour activer la fonction d&apos;enregistrement de la mise au point. La fonction Mises au point enregistr&eacute;es vous permet de sauvegarder la valeur de la mise en point de la cam&eacute;ra &agrave; un emplacement donn&eacute; (Pan/Inclinaison/Zoom). Elle vous permet &eacute;galement de modifier la mise en point de sorte &agrave; ce qu&rsquo;elle corresponde &agrave; une mise en point enregistr&eacute;e d&egrave;s que le Pan et l&rsquo;angle D&rsquo;inclinaison correspondants sont atteints lors du pilotage de la PTZ. Vous pouvez d&eacute;finir la position de la mise au point dans <strong class="UI">[<a href="#focus_save">Configuration de l&rsquo;enregistrement de la mise au point</a>]</strong>.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3><a name="focus_save"></a>Configuration de l&apos;enregistrement de la mise au point</h3>
+            <p>Vous pouvez consulter la liste des enregistrements des mises au point r&eacute;gl&eacute;es.</p>
+            <p>Vous pouvez d&eacute;finir ou supprimer une zone de mise au point et modifier la mise au point de votre cam&eacute;ra.</p>
+            <ul>
+                <li><strong class="UI">Aller</strong> : D&eacute;place la zone d&apos;enregistrement de la mise au point s&eacute;lectionn&eacute;e de la liste d&apos;enregistrements de la mise au point.</li>
+                <li><strong class="UI">R&eacute;gler</strong> : Vous permet de sauvegarder la prise de vue actuelle en tant que zone de mise au point. Vous pouvez d&eacute;finir un nom ou un num&eacute;ro pour l&apos;enregistrement de mise au point. Les noms peuvent comporter jusqu&rsquo;&agrave; 12 caract&egrave;res alphanum&eacute;riques (A&ndash;Z ; a&ndash;z ; 0&ndash;9), espaces non compris.</li>
+                <li><strong class="UI">Supprimer</strong> : Supprime la zone d&apos;enregistrement de la mise au point s&eacute;lectionn&eacute;e de la liste d&apos;enregistrements de la mise au point.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>L&rsquo;option [Activer l&rsquo;enregistrement de la mise au point] s&rsquo;affiche lorsque l&rsquo;onglet <strong class="UI">[M.au.pt.]</strong> est s&eacute;lectionn&eacute;, puis s&eacute;lectionnez [Activer l&rsquo;enregistrement de la mise au point] afin d&rsquo;activer [Configuration de l&rsquo;enregistrement de la mise au point]</li>
+            </ul>
+        </div> 
+    </div>
+</div>
+
 <hr class="wn5-setup-hr" ng-if="PTZModel">
 <div class="wn5-setup-section" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
@@ -521,7 +552,12 @@
                 <h3>Position du P-Iris</h3>
                 <p>Elle est activ&eacute;e si <strong class="UI">[P-iris]</strong> est d&eacute;fini sur <strong class="UI">[Manuel]</strong>. La position du P-iris peut &ecirc;tre ajust&eacute;e &eacute;galement.</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
+
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && !AGCMaxGainLevel">
+                <h3>CAG</h3>
+                    <p>CAG (Contr&ocirc;le de gain automatique) ajuste la luminosit&eacute; en contr&ocirc;lant la sensibilit&eacute; du gain de l&rsquo;image lors de la capture d&rsquo;un objet dans une lumi&egrave;re faible.</p>
+                </div>
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && AGCMaxGainLevel">
             <h3>CAG</h3>
                 <p>CAG (Contr&ocirc;le de gain automatique) ajuste la luminosit&eacute; en contr&ocirc;lant la sensibilit&eacute; du gain de l&rsquo;image lors de la capture d&rsquo;un objet dans une lumi&egrave;re faible.</p>
                 <ul>
@@ -549,7 +585,7 @@
                     <li ng-if="SSNR2DLevel">Dans un environnement clair et moins bruyant, l&rsquo;effet de Wise NR (SSNR 2D et SSNR 3D) peut &ecirc;tre faible.</li>
                     <li ng-if="SSNR2DLevel">Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
                     <li ng-if="AGCModeOptions">Puisque l&rsquo;usage d&rsquo;CAG augmente, la valeur SSNR 3D pour SSNR augmente aussi, ce qui peut conduire &agrave; un b&eacute;gaiement de la vid&eacute;o.</li>
-                    <li ng-if="AGCModeOptions">L&rsquo;action CAG augmente le bruit de l&rsquo;&eacute;cran.</li>
+                    <li ng-if="AGCModeOptions && AGCMaxGainLevel">L&rsquo;action CAG augmente le bruit de l&rsquo;&eacute;cran.</li>
                     <li ng-if="AGCModeOptions">Si l&rsquo;option du mode CAG est d&eacute;fini sur [D&eacute;sactiv&eacute;] ou [Manuel], ou si la valeur [Gain max.] est d&eacute;finie en dessous de 30&nbsp;db, [Diurne/Nocturne] ne peut pas &ecirc;tre d&eacute;fini sur [Automatique].</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>

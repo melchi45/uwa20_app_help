@@ -552,7 +552,13 @@
                 <h3>P-Iris position</h3>
                 <p>It is activated when <strong class="UI">[Manual]</strong> is selected for <strong class="UI">[P-Iris]</strong>. The P-Iris position can be adjusted.</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions">
+
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && !AGCMaxGainLevel">
+                <h3>AGC</h3>
+                    <p>AGC (Auto Gain Control) adjusts the brightness by controlling the sensitivity of image gain when capturing an object in dim light.</p>
+                </div>
+
+            <div class="wn5-setup-section-article-content" ng-if="AGCModeOptions && AGCMaxGainLevel">
             <h3>AGC</h3>
                 <p>AGC (Auto Gain Control) adjusts the brightness by controlling the sensitivity of image gain when capturing an object in dim light.</p>
                 <ul>
@@ -581,7 +587,7 @@
                     <li ng-if="SSNR2DLevel">Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>.</li>
                     <li ng-if="AGCModeOptions">As the usage of AGC increases, the SSNR 3D value for SSNR also increases, which could lead to stuttering in the video.</li>
                     <li ng-if="AGCModeOptions">AGC action increases screen noise.</li>
-                    <li ng-if="AGCModeOptions">If AGC mode option is set to [Off] or [Manual], or if [Max gain] value is set to below 30 db, [Day/Night] cannot be set to [Auto].</li>
+                    <li ng-if="AGCModeOptions && AGCMaxGainLevel">If AGC mode option is set to [Off] or [Manual], or if [Max gain] value is set to below 30 db, [Day/Night] cannot be set to [Auto].</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>

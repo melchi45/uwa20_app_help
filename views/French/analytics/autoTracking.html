@@ -68,6 +68,29 @@
             </div>
         </div>
     </div>
+
+    <hr class="wn5-setup-hr" ng-if="AutoTrackObjectSize">
+    <div class="wn5-setup-section" ng-if="AutoTrackObjectSize">
+        <div class="wn5-setup-section-heading">
+            <h2>Activer le suivi automatique de l&apos;objet</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Cliquez sur <strong class="UI">[Activer le suivi automatique de l&apos;objet]</strong> pour suivre automatiquement des objets s&eacute;lectionn&eacute;s d&egrave;s que la cam&eacute;ra d&eacute;tecte un mouvement.</p>
+            </div>
+            <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+                <h4>Activer la fonction de suivi automatique d&rsquo;objets</h4>
+                <p>La fonction de suivi automatique d&rsquo;objets vous permet de suivre automatiquement le mouvement d&rsquo;objets apr&egrave;s leur d&eacute;tection. Vous pouvez d&eacute;finir quels objets doivent &ecirc;tre suivis une fois d&eacute;tect&eacute;s. Le suivi est totalement automatique.</p>
+                <ol>
+                    <li>S&eacute;lectionner un type d&rsquo;objet pour le suivi automatique.</li>
+                    <li>Cliquez sur l&rsquo;ic&ocirc;ne<span class="tui tui-ch-live-ptz-tracking-auto-off"></span> pour que la cam&eacute;ra d&eacute;tecte ce type d&rsquo;objet et le suive automatiquement le cas &eacute;ch&eacute;ant.</li>
+                    <li>Cliquez une seconde fois sur l&rsquo;ic&ocirc;ne suivi automatique<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> pour d&eacute;sactiver le suivi automatique.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">

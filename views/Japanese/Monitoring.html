@@ -111,6 +111,8 @@
                         <!-- <p ng-if="objectDetectionSupport"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合、PTZ機能が有効になります。</p> -->
                         <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合のみ、デジタルPTZ機能が有効になります。</p>
                         <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZアイコンが表示されない場合、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>の<strong class="UI">[外部PTZ有効化]</strong>オプションが選択解除になっているかをご確認ください。</p>
+                        <p></p>
+                        <p ng-if="FocusPresetSupportByChannel"><strong class="UI">[フォーカス保存]</strong>でフォーカスリストを確認することができます。</p>
                     </td>
                     </tr>
 
@@ -293,8 +295,20 @@
                             <p><span class="tui tui-wiper"></span></p>
                             <p>ワイパー</p>
                         </td>
-                        <td width="235">ボタンをクリックすると、ワイパーが往復動作します。</td>
-                    </tr>
+                    <td width="235">
+                         <p>ボタンをクリックすると、ワイパーが往復動作します。</p>
+                <p></p>
+                    </td>
+                 </tr>
+                 <tr ng-if="HeaterOn">
+                    <td width="235">
+                        <p><span class="tui tui-heater-dry"></span></p>
+                        <p>ヒーター</p>
+                    </td>
+                    <td width="235">
+                   <p>ボタンをクリックすると、30秒間ヒーターが動作します。</p>
+                          </td>
+                </tr>
 
                     
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
@@ -630,7 +644,15 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                      
             <p>ライブ画面で動く物事や人を自動でトラッキングすることができます。<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が実行されます。もう一度<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>オートトラッキングボタンをクリックすると、オートトラッキング機能が中止されます。</p>
             <p>また映像画面でマウス右側ボタンをクリックすると、クリックしたエリアを中心でモーションを分析してオートトラッキングを開始します。</p>
-        </div>    
+        </div>  
+        
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+            <h3>フォーカス保存</h3>
+            <p>フォーカス保存リストを確認することができます。</p>
+            <p>現在の撮像画面をフォーカスエリアに保存するには、<strong class="UI">[設定]</strong>ボタンをクリックします。<strong class="UI">[番号]</strong>と<strong class="UI">[名前]</strong>を入力した後、<strong class="UI">[OK]</strong>ボタンをクリックすると保存されます。リストでフォーカス保存を選択した後、<strong class="UI">[移動]</strong>をクリックすると保存されたフォーカスエリアにカメラフォーカスが移動します。</p>
+            <p>フォーカス保存は<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[カメラ設定]</strong>&gt;<strong class="UI">[フォーカス保存]</strong>でも設定したり削除することができます。</p>
+        </div>
+        
         <div class="wn5-setup-section-article-content">
             <h3>PTZ機能使用</h3>
             <p>すでに設定した位置にカメラを移動させるかスウィング、グループ、ツアー、トラッキング機能を開始して中止することができます。関連の設定は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ設定]</strong>ページを参照してください。</p>

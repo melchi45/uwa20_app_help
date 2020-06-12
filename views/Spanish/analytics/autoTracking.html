@@ -69,6 +69,28 @@
             </div>
         </div>
     </div>
+    <hr class="wn5-setup-hr" ng-if="AutoTrackObjectSize">
+    <div class="wn5-setup-section" ng-if="AutoTrackObjectSize">
+        <div class="wn5-setup-section-heading">
+            <h2>Activar el seguimiento autom&aacute;tico de objetos</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Haga clic en <strong class="UI">[Activar el seguimiento autom&aacute;tico de objetos]</strong> para realizar el seguimiento autom&aacute;tico del movimiento de los objetos seleccionados cuando se detecte movimiento.</p>
+            </div>
+            <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+                <h4>Activaci&oacute;n de la funci&oacute;n de seguimiento autom&aacute;tico de objetos</h4>
+                <p>El seguimiento autom&aacute;tico de objetos es una funci&oacute;n que sigue autom&aacute;ticamente el movimiento de los objetos cuando son detectados. Puede definirlo para que detecte solo objetos espec&iacute;ficos y los siga autom&aacute;ticamente.</p>
+                <ol>
+                    <li>Seleccione el tipo de objeto para seguir el movimiento.</li>
+                    <li>Al hacer clic en el icono<span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se detectar&aacute; el tipo de objeto definido y se seguir&aacute; autom&aacute;ticamente el movimiento del objeto.</li>
+                    <li>Haga clic una vez m&aacute;s en el icono de seguimiento autom&aacute;tico<span class="tui tui-ch-live-ptz-tracking-auto-on active"></span> para detenerlo.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">

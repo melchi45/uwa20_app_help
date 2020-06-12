@@ -28,6 +28,7 @@
                 <li>Pour ajuster automatiquement la mise au point de la cam&eacute;ra pour prendre un clich&eacute;, cliquez sur le bouton <span class="tui tui-wn5-simple-focus"></span>.</li>
             </ul>
             <p ng-if="PanZeroPositionSupport">Cliquez sur <strong class="UI">[Régler la position sol du panoramique]</strong> pour r&eacute;gler le degr&eacute; du panoramique de la vid&eacute;o actuellement enregistr&eacute;e sur 0.</p>
+            <p ng-if="PTCorrectionSupport">Cliquez sur <strong class="UI">[Correction de panoramique/inclinaison]</strong> pour r&eacute;initialiser les positions de panoramique/inclinaison manuellement une fois.</p>
     	</div>
     </div>
 </div>
@@ -108,6 +109,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
+            <p>La fonction <strong class="UI">[Correction de panoramique/inclinaison]</strong> vous permet de r&eacute;initialiser les positions de panoramique/inclinaison manuellement.</p>
             <p>Sp&eacute;cifie s&rsquo;il est n&eacute;cessaire d&rsquo;initialiser la fonction Pan/inclinaison de la cam&eacute;ra, et s&rsquo;il faut configurer le cycle et l&rsquo;heure d&rsquo;initialisation.</p>
             <p>Par exemple, apr&egrave;s avoir s&eacute;lectionn&eacute; <strong class="UI">[Activer]</strong>, si vous sp&eacute;cifiez <strong class="UI">[Dur&eacute;e alarme]</strong> sur «&nbsp;2&nbsp;jours&nbsp;» et <strong class="UI">[Heure de d&eacute;marrage]</strong> sur «&nbsp;9&nbsp;», la position Pan/inclinaison sera initialis&eacute;e tous les deux jours &agrave; 9h00. Si l&rsquo;heure est d&eacute;finie sur le 1er janv.&nbsp;2000, le processus d&rsquo;initialisation commence &agrave; 9h00 le 3&nbsp;janvier&nbsp;2000, et la position de Pan/inclinaison sera initialis&eacute;e tous les deux jours &agrave; 9h00 (c.&agrave;.d. le 5&nbsp;janvier, le 7&nbsp;janvier etc.)</p>
         </div>
