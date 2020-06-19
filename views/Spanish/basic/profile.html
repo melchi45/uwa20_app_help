@@ -340,10 +340,10 @@
             <p>Ajuste el n&uacute;mero de fotogramas por segundo.</p>
             <p ng-if="Sensor">El rango de velocidades de fotogramas disponibles var&iacute;a seg&uacute;n el valor de velocidad de fotograma seleccionado de <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Configuraci&oacute;n de c&aacute;mara]</strong> &gt; <a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
+        <!-- <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>Compresi&oacute;n</h3>
             <p>Puede configurar la relaci&oacute;n de compresi&oacute;n.</p>
-        </div>
+        </div> -->
         <div class="wn5-setup-section-article-content">
             <h3>Vel. bits m&aacute;xima</h3>
             <p>Ajuste la velocidad de bits m&aacute;xima de la imagen cuando <strong class="UI">[Control de vel. bits]</strong> sea <strong class="UI">[VBR]</strong>.</p>
@@ -403,7 +403,7 @@
             <p>Este men&uacute; se activa s&oacute;lo cuando el c&oacute;dec del perfil es H.264. El perfil puede ser considerado como un conjunto de diferentes tecnolog&iacute;as de compresi&oacute;n. Los perfiles soportados en las c&aacute;maras Hanwha Techwin incluyen <strong class="UI">[BaseLine]</strong>, <strong class="UI">[Main] </strong> y <strong class="UI">[High]</strong>. El funcionamiento de la compresi&oacute;n se hace m&aacute;s alto y la calidad mejora a medida que se pasa de Base a Alto, pero una gran cantidad de recursos del sistema se utilizan para comprimir y descomprimir, y podr&iacute;a crear una tensi&oacute;n en el equipo de reproducci&oacute;n.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>Codif. Entropia</h3>
+            <h3>Codif. entropía</h3>
             <p>Establezca el tipo para reducir la p&eacute;rdida de compresi&oacute;n.</p>
             <p>Se proporcionan dos tipos de codificaci&oacute;n de entrop&iacute;a, CAVLC (Codificaci&oacute;n de Longitud Variable Adaptable al Contexto) y CABAC (Codificaci&oacute;n Aritm&eacute;tica Binaria Adaptable al Contexto). Sin embargo, solo se dispone de un tipo de codificaci&oacute;n CAVLC para el perfil base.</p><!-- <p ng-if="EntropyCodingOptionCAVLC">CAVLC(Context Adaptive Variable Length Coding)와 CABAC(Context Adaptive Binary Arithmetic Coding)의 두 가지 방식을 제공합니다. 단, Baseline 프로파일 일 때는 CAVLC 방식만 사용가능 합니다.</p> --><ul>
                 <li><strong class="UI">CABAC</strong>: <!-- 데이터 처리과정이 복잡하여 시스템 리소스를 많이 사용하지만 압축률이 높습니다. -->El procedimiento de tratamiento de bit de datos CABAC es m&aacute;s complicado que CAVLC, por lo que utiliza m&aacute;s recursos del sistema, pero tiene una velocidad de compresi&oacute;n excelente.</li>

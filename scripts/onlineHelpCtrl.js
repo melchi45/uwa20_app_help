@@ -174,9 +174,17 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.AlarmOutputNormalClose = (
         attr.AlarmOutputIdleStateOptions && attr.AlarmOutputIdleStateOptions.indexOf("NormallyClose") > -1
       );
+
+
+      // $scope.CompressionLevel = (
+      //   attr.CompressionLevel && attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
+      // );
+      /* TNU-6321에서 정인혜 선임님 요청에 따라 수정 */
       $scope.CompressionLevel = (
-        attr.CompressionLevel && attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
+        attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
       );
+
+
       $scope.ShowLanguage = (
         attr.Languages && attr.Languages.length > 1
       );
@@ -228,6 +236,12 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.WDRControlModeOptions = attr.WDRControlModeOptions;
       $scope.AGCMaxGainLevel = attr.AGCMaxGainLevel;
       $scope.AGCModeOptions = attr.AGCModeOptions;
+
+      /* TNU-6321에서 정인혜 선임님 요청에 따라 추가. 메신저로 받음 */
+      $scope.AGCModeOptions = attr.AGCModeOptions;
+      $scope.AudioClipCountRange = attr.AudioClipCountRange; 
+
+
 
       /*
         1. true values

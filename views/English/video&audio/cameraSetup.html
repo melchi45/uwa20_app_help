@@ -58,9 +58,9 @@
         <div class="wn5-online-help-action">
     	   <h4>Adjusting the PTZ</h4>
             <ul>
-                <li><span class="tui tui-wn5-ptz-handle"></span> When you drag the  icon with the mouse, the camera moves to the pan and tilt.</li>
+                <li>When you drag the  icon <span class="tui tui-wn5-ptz-handle"></span> with the mouse, the camera moves to the pan and tilt.</li>
                 <li>By using the zoom bar, you can adjust the video zooming ratio. Or select an image magnification by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom in or the <span class="tui tui-wn5-ptz-minus"></span> icon to zoom out.</li>
-                <li><span class="tui tui-wn5-ptz-near"></span> Move the focus near by clicking the  icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
+                <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically once, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
                 <li>Place the screen center toward the north, and click the <span class="tui tui-wn5-north"></span> (Set North) button to change the location to the north. (The Set North button displays when you click the <strong class="UI">[OSD]</strong> tab.)</li>
             </ul>
@@ -262,7 +262,7 @@
                 <li><strong class="UI">Outdoor</strong>: The colors of the camera are corrected to be optimized for an outdoor environment.</li>
                 <li><strong class="UI">Indoor</strong>: Correction is made to optimize colors for an indoor environment.</li>
                 <li><strong class="UI">AWC</strong>: Screen correction is made to optimize the colors for the current lighting environment. When you aim the camera at white paper and press the <strong class="UI">[Set]</strong> button, the red gain and blue gain will be adjusted and applied to the image. The white balance value continues to be applied to the currently displayed video. If the environment changes, this should be adjusted again.</li>
-                <li><strong class="UI">Narrow ATW</strong>: Auto-corrects camera color in 2800 K ~ 9000 K environment.<strong class="UI">[ATW]</strong>The color temperature range is narrower than Mode.</li>
+                <li><strong class="UI">NarrowATW</strong>: Auto-corrects camera color in 2800 K ~ 9000 K environment.<strong class="UI">[ATW]</strong>The color temperature range is narrower than Mode.</li>
                 <li><strong class="UI">MERCURY</strong>: Screen correction is made to optimize the colors for the mercury&nbsp;lighting environment.</li>
                 <li><strong class="UI">SODIUM</strong>: Screen correction is made to optimize the colors for the sodium&nbsp;lighting environment.</li><!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: ??? ??? ??? ?? ??? ?????? ?? ?????.</li>
                 <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: ??? ??? ???? ?? ??? ?????? ?? ?????.</li> --></ul>
@@ -308,7 +308,7 @@
         </div>  --><div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly.</p>
-            <p ng-if="PTZModel">If you select BLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons.</p>
+            <p ng-if="PTZModel">If you select BLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box step]</strong>, the larger the area size will change when you click the buttons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLC level</h5>
@@ -408,7 +408,7 @@
             <h5>WDR control</h5>
                 <p>Sets the WDR action option.</p>
                 <ul>
-                    <li><strong class="UI">Always use</strong>: the WDR mode is enabled at all times.</li>
+                    <li><strong class="UI">Always on</strong>: the WDR mode is enabled at all times.</li>
                     <li><strong class="UI">Auto</strong>: Video is analyzed and WDR mode is automatically turned on when backlight correction is necessary.</li>
                     <li><strong class="UI">Turn off in low light</strong>: The WDR mode is automatically turned off in a low-light environment.</li>
                     <li><strong class="UI">Turn off in B/W</strong>: The WDR mode is automatically turned off when the B/W mode operates.</li>
@@ -510,10 +510,14 @@
             <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
                 <h3>Lens</h3>
                 <p>Lens types are displayed. The iris value varies by lenses.</p>
-            </div><!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
+            </div>
+            <!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
                       tnb-9000 ?? ????? IrisModeOptions || EFLensSupport? ?? ??. TW. 2019-11-29 
-            <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> --><div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
-                <p>Iris</p><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>Select the iris type</p>
+            <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> -->
+                
+                <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
+                    <h3>Iris</h3><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  -->
+                    <p>Select the iris type</p>
             <ul>
                 <li><strong class="UI">DC (Auto)</strong>: Automatically adjusts the iris depending on the optical intensity of the surroundings.</li>
                 <li><strong class="UI">Manual</strong>: Manually adjusts the iris&rsquo;s F number.</li><!-- PIrisModeOptions ??? ??? ???? XNV-6081? ?? ???? PIrisInIrisList? ???. ??? ??? ?? ?? --><li><strong class="UI">P-Iris</strong>: Adjusts the iris through the step motor. A large depth of field can be secured so that a number of objects at various distances can be brought into focus at the same time.</li><!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-???</strong>:  ?? ??? ?? ???? ?????. ??? ??? ?? ?? ??? ??? ???? ?? ? ?? ?? ??? ?? ? ????.  </li> --></ul>
@@ -568,14 +572,14 @@
                 </ul>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
-                <h3>Level (manual)</h3>
+                <h3>Level (Manual)</h3>
                 <p>Sets the AGC level value manually as desired. The higher the level value, the higher the gain value, which results in a brighter screen even in a dark environment.</p>
-                <p>If [Manual] is selected under [AGC], [Level (manual)] is enabled.</p>
+                <p>If [Manual] is selected under [AGC], [Level (Manual)] is enabled.</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
-            <h3>Level (max gain)</h3>
+            <h3>Level (Max gain)</h3>
                 <p>Sets the max gain value. : Controls the max gain that is set based on the brightness of the surrounding. The higher the level value, the higher the max gain.</p>
-                <p>If [Max gain] is selected under [AGC], [Level (max gain)] is enabled.</p>
+                <p>[Level (Max gain)] is enabled if [Max gain] is selected under [AGC]. </p>
             </div>
             <div class="wn5-online-help-info" ng-if="MinShutterOptions || SSNR2DLevel || AGCModeOptions">
                 <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
@@ -785,7 +789,8 @@
             <p>Sets whether or not to display the camera title. When <strong class="UI">[Enable]</strong> is selected, the <strong class="UI">[Add]</strong>/<strong class="UI">[Delete]</strong> buttons will be activated.</p>
             <p>When you click the <strong class="UI">[Add]</strong> button, a field where a camera title can be entered will be added to the list.Enter the title of your camera, and move the cursor to set its location.Up to 5 camera titles can be added.</p>
                 <p>To delete a camera title, select the title to delete and click the <strong class="UI">[Delete]</strong> button. To preview how the camera title is displayed on the screen after entering it, enter the camera title and click the <strong class="UI">[Preview]</strong> button.</p>
-                <p><strong class="UI">In the [Position]</strong>column,<strong class="UI">click the [Move]</strong>button. Then, OSD position is displayed as a triangular shaped icon on the preview video screen. You can move the icon to adjust the position of the OSD.</p>
+
+                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">In the [Position]</strong>column,<strong class="UI">click the [Move]</strong>button. Then, OSD position is displayed as a triangular shaped icon on the preview video screen. You can move the icon to adjust the position of the OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Date &amp; Time</h3>
@@ -817,11 +822,11 @@
             <p>Set whether to display the camera&apos;s zoom maginification info or preset names on the screen.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>Overlay image</h3>
             <p>The image you want can be displayed at the top left of the screen. <strong class="UI">[Upload image]</strong> menu allows you to upload images.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>Upload image</h3>
             <p><strong class="UI">[...]</strong>button can be clicked to search files in bitmap format. Click the <strong class="UI">[Upload]</strong> button to upload image files. To delete image files applied to the screen, click the <strong class="UI">[Delete]</strong> button. The allowed image spec is 16-bit (RGB565 not supported) or 24-bit bitmap file. Its size should be a fixed 128x128 pixels, and the file size should be 52 KB or less.</p>
         </div>
@@ -1019,7 +1024,7 @@
             <h3>Mode</h3><!--         <p>?? ??? ?? ???? ??? LED </p> 
             <p>IR LED? ?? ?? IR ?? ?? ???? ??? ?? ?? ??? ??? ?? ?????? ??? ??????? ???.</p>  --><p>In the B/W mode when the IR LED is turned on, the saturation at the center of screen is prevented, so it is possible to identify a nearby object.</p>
             <ul>
-                <li><strong class="UI">Disable</strong>: Turns off IR LED.</li>
+                <li><strong class="UI">Off</strong>: Turns off IR LED.</li>
                 <li><strong class="UI">On</strong>: Turns on IR LED. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>.</li>
                 <li><strong class="UI">Day/Night</strong>: Turns on/off IR according to Day/Night. It means that, after the activation of Day/Night, LED is turned off when the video is in color mode and turned on when video is in B/W mode. If this mode is selected, <strong class="UI"><a href="#daynight">[Day/Night]</a></strong> is automatically set to [Auto] and the setting cannot be changed.</li>
                 <li><strong class="UI">Sensor</strong>: IR and Day/Night changes depending on the amount of light detected by the optical sensor. This mode disables <strong class="UI"><a href="#daynight">[Day/Night]</a></strong>.</li>

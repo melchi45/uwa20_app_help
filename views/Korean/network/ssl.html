@@ -41,8 +41,10 @@ href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</st
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<!-- TNU-6321에서 미지원 기능으로 분기 코드 추가함. TW -->
+<hr class="wn5-setup-hr" ng-if="PeerConnectionInfoClientHttpsStatus">
+<div class="wn5-setup-section" ng-if="PeerConnectionInfoClientHttpsStatus">
     <div class="wn5-setup-section-heading">
         <h2>TLS 설정</h2>
     </div>

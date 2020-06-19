@@ -54,7 +54,7 @@
                 <li>Cliquez sur le bouton <strong class="UI">[D&eacute;finir l&rsquo;accueil]</strong>.</li>
             </ol>
     	</div>
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="RememberLastPosition">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
         <ul>
             <li>Lorsque la caméra est redémarrée après avoir défini la position d'origine, l'écran est positionné à la position d'origine. Si une autre séquence (Préréglage, Swing, Groupe, Tour, Trace) est en cours d'exécution, la séquence qui était active sera exécutée sans être déplacée vers la position de base lorsque la caméra est réinitialisée.</li>
@@ -82,7 +82,7 @@
             <li><strong class="UI">Désactivé</strong> : Aucune action ne sera ex&eacute;cut&eacute;e apr&egrave;s que la cam&eacute;ra se soit d&eacute;plac&eacute;e vers la position pr&eacute;d&eacute;finie correspondante.</li>
                 <li><strong class="UI">Ex&eacute;cution automatique</strong>&nbsp;: Une action d&eacute;finie &agrave; partir de <a class="wn5-online-help-link" href="ptzInfoSetup.html#autorun" ng-href="#/help/ptzSetup_ptzInfoSetup?#autorun"><strong class="UI">l&apos;onglet </strong>[Ex&eacute;cution automatique]</a> sera ex&eacute;cut&eacute;e automatiquement.&nbsp;Lorsque <strong class="UI">[D&eacute;sactiver]</strong> est s&eacute;lectionn&eacute; dans le <strong class="UI">[Mode]</strong> Ex&eacute;cuter automatiquement ou qu&apos;il n&apos;y a pas d&apos;action de d&eacute;marrage automatique, l&apos;&eacute;tat d&apos;ex&eacute;cution pr&eacute;d&eacute;fini sera conserv&eacute;.</li>
                 <li><strong class="UI">Suivi automatique</strong>&nbsp;: Ex&eacute;cute le suivi automatique pour une dur&eacute;e r&eacute;gl&eacute;e depuis la colonne <strong class="UI">[Heure de suivi]</strong>.</li>
-                <li><strong>Suivi automatique &gt; Position initiale</strong> : Repositionne la PTZ dans sa position initiale &agrave; la fin du suivi automatique. Pour savoir comment d&eacute;finir la position initiale, <a href="ptzInfoSetup.html#set_home">cliquez ici</a>.</li>
+                <li><strong>Suivi automatique &gt; Aller à l’accueil</strong> : Repositionne la PTZ dans sa position initiale &agrave; la fin du suivi automatique. Pour savoir comment d&eacute;finir la position initiale, <a href="ptzInfoSetup.html#set_home">cliquez ici</a>.</li>
                 <li><strong class="UI">Analytique de vidéo</strong>&nbsp;: L&apos;action d&apos;analyse vid&eacute;o sera ex&eacute;cut&eacute;e.</li>
         </ul>
     </div>

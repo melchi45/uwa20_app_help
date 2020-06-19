@@ -128,7 +128,7 @@
 <hr class="wn5-setup-hr" ng-if="Sensor">
 <div class="wn5-setup-section" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
-        <h2><a class="wn5-online-help-link" name="sensor"></a>Capteur Mode</h2>
+        <h2><a class="wn5-online-help-link" name="sensor"></a>Mode Capteur</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -262,8 +262,8 @@
                 <li><strong class="UI">Ext&eacute;rieur</strong>&nbsp;: Les couleurs de la cam&eacute;ra sont corrig&eacute;es pour &ecirc;tre optimis&eacute;es pour un environnement ext&eacute;rieur.</li>
                 <li><strong class="UI">Int&eacute;rieur</strong>&nbsp;: Les couleurs de la cam&eacute;ra sont corrig&eacute;es pour &ecirc;tre optimis&eacute;es pour un environnement int&eacute;rieur.</li>
                 <li><strong class="UI">AWC</strong>&nbsp;: Ajustez l&rsquo;&eacute;cran pour optimiser la couleur de la cam&eacute;ra en fonction de l&rsquo;environnement d&rsquo;&eacute;clairage actuel. Placez un papier blanc devant la cam&eacute;ra et appuyez sur le bouton <strong class="UI">[R&eacute;gler]</strong> pour ajuster les gains rouge/bleu et appliquer les r&eacute;sultats &agrave; la vid&eacute;o. La valeur de la balance des blancs continue &agrave; s&rsquo;appliquer &agrave; la vid&eacute;o qui s&rsquo;affiche actuellement. Si l&rsquo;environnement change, cette valeur doit &agrave; nouveau &ecirc;tre ajust&eacute;e.</li>
-                <li><strong class="UI">ATW &eacute;troit</strong> Corrige automatiquement la couleur de la cam&eacute;ra dans un environnement 2800 K ~ 9000 K.<strong class="UI">[ATW]</strong>La plage de temp&eacute;ratures de couleurs est plus &eacute;troite que Mode.</li>
-                <li><strong class="UI">MERCURE</strong>&nbsp;: La correction &agrave; l&rsquo;&eacute;cran permet d&rsquo;optimiser les couleurs en fonction de l&rsquo;environnement d&rsquo;&eacute;clairage au mercure actuel.</li>
+                <li><strong class="UI">NarrowATW</strong> Corrige automatiquement la couleur de la cam&eacute;ra dans un environnement 2800 K ~ 9000 K.<strong class="UI">[ATW]</strong>La plage de temp&eacute;ratures de couleurs est plus &eacute;troite que Mode.</li>
+                <li><strong class="UI">MERCURY</strong>&nbsp;: La correction &agrave; l&rsquo;&eacute;cran permet d&rsquo;optimiser les couleurs en fonction de l&rsquo;environnement d&rsquo;&eacute;clairage au mercure actuel.</li>
                 <li><strong class="UI">SODIUM</strong>&nbsp;: La correction &agrave; l&rsquo;&eacute;cran permet d&rsquo;optimiser les couleurs en fonction de l&rsquo;environnement d&rsquo;&eacute;clairage au sodium actuel.</li><!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: ??? ??? ??? ?? ??? ?????? ?? ?????.</li>
                 <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: ??? ??? ???? ?? ??? ?????? ?? ?????.</li> --></ul>
         </div>
@@ -336,7 +336,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
-            <p>Le mode (Compensation de luminosit&eacute; &eacute;lev&eacute;e) bloque la forte luminosit&eacute; comme un lampadaire de rue ou les phares d&rsquo;un v&eacute;hicule,<strike></strike>pour &eacute;viter les d&eacute;fauts de d&eacute;tection d&rsquo;un objet avoisinant, comme une plaque d&rsquo;immatriculation de voiture, en raison de la saturation des fortes luminosit&eacute;s.</p>
+            <p>Le mode (Compensation de luminosit&eacute; &eacute;lev&eacute;e) bloque la forte luminosit&eacute; comme un lampadaire de rue ou les phares d&rsquo;un v&eacute;hicule, pour &eacute;viter les d&eacute;fauts de d&eacute;tection d&rsquo;un objet avoisinant, comme une plaque d&rsquo;immatriculation de voiture, en raison de la saturation des fortes luminosit&eacute;s.</p>
             <p ng-if="PTZModel">Si vous s&eacute;lectionnez le mode HLC, la r&eacute;gion choisie par d&eacute;faut appara&icirc;t sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Ajustez la taille de la zone en cliquant sur les boutons fl&eacute;ch&eacute;s de <strong class="UI"></strong>[R&eacute;glage coffre]. Plus le nombre que vous d&eacute;finissez dans <strong class="UI"></strong>[&Eacute;tape de la bo&icirc;te] est &eacute;lev&eacute;, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
@@ -349,7 +349,7 @@
             <p>Permet de choisir d&rsquo;appliquer ou non le masque.</p>
             <ul>
                 <li><strong class="UI">Désactivé</strong>&nbsp;: Ne cr&eacute;e pas de zone bloqu&eacute;e.</li>
-                <li><strong class="UI">Activer;</strong>&nbsp;: Bloque toujours les zones de luminosit&eacute; au-dessus d&rsquo;un certain niveau.</li>
+                <li><strong class="UI">Activé</strong>&nbsp;: Bloque toujours les zones de luminosit&eacute; au-dessus d&rsquo;un certain niveau.</li>
                 <li><strong class="UI">Toute la journ&eacute;e</strong>&nbsp;: Bloque les zones sauf pendant les p&eacute;riodes tr&egrave;s claires ou sombres.</li>
                 <li><strong class="UI">Nuit seulement</strong>&nbsp;: Bloque les zones existantes jusqu&rsquo;&agrave; ce qu&rsquo;il fasse nuit.</li>
             </ul>
@@ -408,7 +408,7 @@
             <h5>Contr&ocirc;le WDR</h5>
                 <p>D&eacute;finit l&rsquo;option d&rsquo;action WDR.</p>
                 <ul>
-                    <li><strong class="UI">Utilisez toujours : le mode WDR est activ&eacute; en permanence.</strong></li>
+                    <li><strong class="UI">Toujours activé</strong> : le mode WDR est activ&eacute; en permanence.</strong></li>
                     <li><strong class="UI">Auto&nbsp;:</strong> La vid&eacute;o est analys&eacute;e et le mode WDR est automatiquement activ&eacute; lorsque la correction de contre-jour est n&eacute;cessaire.</li>
                     <li><strong class="UI">D&eacute;sactivez si la luminosit&eacute; est faible :</strong> Le mode WDR est automatiquement d&eacute;sactiv&eacute; dans un environnement faiblement &eacute;clair&eacute;.</li>
                     <li><strong class="UI">D&eacute;sactiv&eacute; en N/B :</strong> Le mode WDR est automatiquement d&eacute;sactiv&eacute; si le mode N/B est utilis&eacute;.</li>
@@ -513,7 +513,7 @@
             </div><!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
                       tnb-9000 ?? ????? IrisModeOptions || EFLensSupport? ?? ??. TW. 2019-11-29 
             <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> --><div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
-                <p>Iris</p><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>S&eacute;lectionnez (Auto), manuel, ou P-Iris.</p>
+                <h3>Iris</h3><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>S&eacute;lectionnez (Auto), manuel, ou P-Iris.</p>
             <ul>
                 <li><strong class="UI">DC (Auto)</strong>&nbsp;: Ajuste automatiquement l&rsquo;iris en fonction de l&rsquo;intensit&eacute; optique de l&rsquo;environnement.</li>
                 <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement la valeur F de l&rsquo;iris.</li><!-- PIrisModeOptions ??? ??? ???? XNV-6081? ?? ???? PIrisInIrisList? ???. ??? ??? ?? ?? --><li><strong class="UI">P-iris</strong>&nbsp;: Le r&eacute;glage de l&rsquo;obturateur s&rsquo;effectue &agrave; l&rsquo;aide d&rsquo;un moteur &agrave; enclenchement. Une grande profondeur de champ peut &ecirc;tre s&eacute;curis&eacute;e de sorte qu&rsquo;un certain nombre d&rsquo;objets &agrave; diff&eacute;rentes distances peuvent &ecirc;tre mis au point en m&ecirc;me temps.</li><!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-???</strong>:  ?? ??? ?? ???? ?????. ??? ??? ?? ?? ??? ??? ???? ?? ? ?? ?? ??? ?? ? ????.  </li> --></ul>
@@ -785,7 +785,8 @@
             <p>Permet d&rsquo;afficher ou non le titre d&rsquo;une cam&eacute;ra. Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, les boutons <strong class="UI">[Ajouter]</strong>/<strong class="UI">[Effacer]</strong> seront activ&eacute;s.</p>
             <p>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong> pour ajouter un champ o&ugrave; vous pouvez entrer le nom de la cam&eacute;ra dans la liste.Saisissez le titre de votre cam&eacute;ra et d&eacute;placez le curseur pour d&eacute;finir son emplacement.Vous pouvez ajouter jusqu&rsquo;&agrave; 5 titres de cam&eacute;ra.</p>
                 <p>Pour supprimer un titre de cam&eacute;ra, s&eacute;lectionnez un nom de cam&eacute;ra &agrave; supprimer et cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Apr&egrave;s avoir entr&eacute; le titre de la cam&eacute;ra, si vous voulez voir &agrave; quoi elle ressemble, entrez le nom de la cam&eacute;ra et cliquez sur le bouton <strong class="UI">[Priview]</strong>.</p>
-                <p><strong class="UI">Dans la colonne</strong>[Position],<strong class="UI">cliquez sur le bouton</strong>[D&eacute;placer]. La position OSD s&rsquo;affiche sous forme d&rsquo;un ic&ocirc;ne triangulaire sur l&rsquo;&eacute;cran vid&eacute;o pr&eacute;c&eacute;dent. Vous pouvez d&eacute;placer l&rsquo;ic&ocirc;ne pour ajuster la position de l&rsquo;OSD.</p>
+
+                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">Dans la colonne</strong>[Position],<strong class="UI">cliquez sur le bouton</strong>[D&eacute;placer]. La position OSD s&rsquo;affiche sous forme d&rsquo;un ic&ocirc;ne triangulaire sur l&rsquo;&eacute;cran vid&eacute;o pr&eacute;c&eacute;dent. Vous pouvez d&eacute;placer l&rsquo;ic&ocirc;ne pour ajuster la position de l&rsquo;OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Date et heure</h3>
@@ -817,11 +818,11 @@
             <p>D&eacute;finit d&rsquo;afficher ou non les informations sur le zoom grossissant de la cam&eacute;ra ou les noms pr&eacute;d&eacute;finis sur l&rsquo;&eacute;cran.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>Superposition d&rsquo;image</h3>
             <p>L&rsquo;image s&eacute;lectionn&eacute;e peut s&rsquo;afficher en haut et &agrave; gauche de l&rsquo;&eacute;cran. Le menu <strong class="UI">[Upload image]</strong> vous permet de charger des images.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>Cliquez sur le bouton Charger une image</h3>
             <p><strong class="UI">[...]</strong>pour rechercher des fichiers en format bitmap. Cliquez sur le bouton <strong class="UI">[Upload]</strong> pour charger des fichiers d&rsquo;image. Pour supprimer des fichiers d&rsquo;image appliqu&eacute;s &agrave; l&rsquo;&eacute;cran, cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Les sp&eacute;cifications de l&rsquo;image sont un fichier 16-bit (RGB565 non pris en charge) ou un fichier bitmap 24-bit. Sa taille doit &ecirc;tre de 128x128 pixels fixe, et la taille du fichier doit &ecirc;tre de 52&nbsp;Ko ou moins.</p>
         </div>

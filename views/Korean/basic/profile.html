@@ -371,10 +371,12 @@
             <p>1초당 프레임 수를 설정합니다. </p>
             <p ng-if="Sensor"><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[카메라 설정]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[센서]</strong></a>에서 선택한 프레임 레이트의 값에 따라 설정할 수 있는 프레임 레이트 범위가 다르게 나타납니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
+
+        <!-- 미지원 기능으로 웹뷰어에서 주석처리되었다고 하여 도움말에서도 삭제함. XNP-9300RW. 김영호 책임님. TNU-6321 정인혜 선임님. 2020-06-17 -->
+        <!-- <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>압축</h3>
             <p>압축 정도를 설정합니다.</p>
-        </div>
+        </div> -->
         <div class="wn5-setup-section-article-content">
             <h3>최대 비트 레이트 </h3>
             <p><strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때, 영상의 최대 비트 레이트를 설정합니다.</p>
@@ -412,9 +414,10 @@
         
         <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>영상 압축</h3>
-            <p>영상 압축 정도를 설정합니다. <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[압축]</strong> CBR인 경우 인코딩의 우선 순위를 정하는 기능이고, 해당 기능은 VBR 동작에서 영상의 압축률에 따른 화질 및 전송 데이터양에 영향을 미치는 기능입니다.</p>
+            <p>영상 압축 정도를 설정합니다. </p>
+            <p><strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[압축]</strong>은 [비트 레이트 제어 방식]이 [CBR]인 경우 인코딩의 우선 순위를 정하는 기능이고, [영상 압축]은 VBR 동작에서 영상의 압축률에 따른 화질 및 전송 데이터양에 영향을 미치는 기능입니다.</p>
             <p>[영상 압축]에 높은 값을 설정할수록 영상 압축율이 높아집니다. 영상 압축률이 높아지면 영상 전송 데이터양은 줄어들지만 영상 화질이 떨어질 수 있습니다. [영상 압축]에 낮은 값을 설정하여 영상 압축율을 낮추면, 영상 화질은 개선되지만 전송 데이터 양이 증가할 수 있습니다.</p>
-            <p>프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[영상 압축]</strong>은 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[VBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
+            <p><strong class="UI">[영상 압축]</strong>은 프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[VBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

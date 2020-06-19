@@ -38,8 +38,9 @@ href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</st
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+
+<hr class="wn5-setup-hr" ng-if="PeerConnectionInfoClientHttpsStatus">
+<div class="wn5-setup-section" ng-if="PeerConnectionInfoClientHttpsStatus">
     <div class="wn5-setup-section-heading">
         <h2>TLS settings</h2>
     </div>
@@ -66,7 +67,7 @@ href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</st
 </div>
 <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>To select <strong class="UI">[HTTPS (Public Certificate in use)]</strong> in <strong class="UI">[Secure connection system]</strong>, you need to install a public certificate first.</p>
+            <p>To select <strong class="UI">[HTTPS (Secure connection mode using the public certificate)]</strong> in <strong class="UI">[Secure connection system]</strong>, you need to install a public certificate first.</p>
             <ul>
                 <li><strong class="UI">Name for the certificate</strong>: Enter the name of the certificate to install.</li>
                 <li><strong class="UI">Certificate file</strong>: Select the path to the certificate to install.</li>
@@ -76,7 +77,7 @@ href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</st
 				<div class="wn5-online-help-info">
 		<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                 <ul>
-                    <li>You cannot install or delete a public certificate when <strong class="UI">[HTTPS (Public Certificate in use)]</strong> mode is in effect. After changing to <strong class="UI">[HTTP (Secure Access not in use)]</strong> or <strong class="UI">[HTTPS (Private Certificate in use)]</strong> mode, be sure to install or delete the certificate.</li>
+                    <li>You cannot install or delete a public certificate when <strong class="UI">[HTTPS (Secure connection mode using the public certificate)]</strong> mode is in effect. After changing to <strong class="UI">[HTTP (Do not use a secure connection)]</strong> or <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> mode, be sure to install or delete the certificate.</li>
                 </ul>
 	</div>
 			

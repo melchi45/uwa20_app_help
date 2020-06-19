@@ -48,6 +48,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Vous pouvez ajuster les actions de panoramique, de mosa&iuml;que et de zoom de la cam&eacute;ra.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -162,7 +163,7 @@
 				<li>Cliquez sur le bouton <strong class="UI">[Effacer]</strong>. La zone s&eacute;lectionn&eacute;e est alors effac&eacute;e.</li>
 			</ol>
 		</div>
-		       <div class="wn5-online-help-action" ng-if="PTZModel">
+		       <!-- <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>R&eacute;glage du PTZ</h4>
             <p ng-if="MaxChannel > 1 && HandoverCalibration">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
             <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
@@ -172,7 +173,7 @@
                 <li>Rapprochez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span>  ou &eacute;loignez la mise au point en cliquant sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-ptz-far"></span>.</li>
                 <li>Pour ajuster la mise au point de la cam&eacute;ra pour une prise AF, cliquez sur l&rsquo;ic&ocirc;ne<span class="tui tui-wn5-simple-focus"></span>.</li>
             </ul>
-        </div>
+        </div> -->
 	</div>
 </div>
 
@@ -274,7 +275,7 @@
 	</div>
 </div> -->
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
@@ -316,10 +317,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
     </div>

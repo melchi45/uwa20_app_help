@@ -43,7 +43,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
+			<p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
+			<p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -160,7 +161,7 @@
 				<li><strong class="UI">[삭제]</strong> 버튼을 클릭합니다. 선택한 영역이 삭제됩니다.</li>
 			</ol>
 		</div>
-		       <div class="wn5-online-help-action" ng-if="PTZModel">
+		       <!-- <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>PTZ 조정하기</h4>
             <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
             <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다.</p>
@@ -170,7 +171,7 @@
                 <li><span class="tui tui-wn5-ptz-near"></span> 아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
                 <li>카메라 포커스를 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>아이콘을 클릭합니다.</li>
             </ul>
-        </div>
+        </div> -->
 	</div>
 </div>
 <hr class="wn5-setup-hr" ng-if="FlipMirrorSupport">
@@ -300,11 +301,9 @@ TW 자체. 2019-12-27 -->
 
 
 
-<!-- <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
-<div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable"> -->
-	<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
-	<div class="wn5-setup-section" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
-    <div class="wn5-setup-section-heading">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+	<div class="wn5-setup-section-heading"> 
         <h2>비디오 출력</h2>
     </div>
 	<div class="wn5-setup-section-article">
@@ -354,12 +353,11 @@ TW 자체. 2019-12-27 -->
 (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1))) 로 수정. TW 자체. !SupportAutoImageAlignment와 !XCELevel는 이슈 수정을 위해 TW가 자체 추가한 것이므로 삭제  -->
 
 
-<!-- <hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SupportAutoImageAlignment && !XCELevel"> -->
-	<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
-	<div class="wn5-setup-section" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+<!-- TNU-6321에서 정인혜 선임님 코멘트에 따라 !SupportAutoImageAlignment를 삭제함  -->
+
+
+<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
 
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>

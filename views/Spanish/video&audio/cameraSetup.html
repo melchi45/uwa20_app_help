@@ -261,9 +261,9 @@
                 <li><strong class="UI">Exterior</strong>: Los colores de la c&aacute;mara se corrigen para ser optimizados para un entorno al aire libre.</li>
                 <li><strong class="UI">Interior</strong>: Los colores de la c&aacute;mara se corrigen para ser optimizados para un entorno en el interior.</li>
                 <li><strong class="UI">AWC</strong>: Ajuste la pantalla para optimizar el color de la c&aacute;mara al entorno de iluminaci&oacute;n actual. Ponga un papel blanco delante de la c&aacute;mara y presione el bot&oacute;n <strong class="UI">[Definir]</strong> para ajustar las ganancias de rojo/azul y aplicar los resultados al v&iacute;deo. El valor del balance de blancos sigue aplic&aacute;ndose al v&iacute;deo que se muestra en curso. Si el entorno cambia, este valor debe ser ajustado de nuevo.</li>
-                <li><strong class="UI">ATW estrecho</strong>: Corrige autom&aacute;ticamente el color de la c&aacute;mara en un entorno de 2800 K ~ 9000 K.<strong class="UI">[ATW]</strong>El rango de temperatura de color es m&aacute;s estrecho que el Modo.</li>
-                <li><strong class="UI">MERCURIO</strong>: La correcci&oacute;n de pantalla est&aacute; hecha para optimizar los colores a un entorno de iluminaci&oacute;n con l&aacute;mparas de mercurio.</li>
-                <li><strong class="UI">SODIO</strong>: La correcci&oacute;n de pantalla est&aacute; hecha para optimizar los colores a un entorno de iluminaci&oacute;n con l&aacute;mparas de sodio.</li><!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: ??? ??? ??? ?? ??? ?????? ?? ?????.</li>
+                <li><strong class="UI">NarrowATW</strong>: Corrige autom&aacute;ticamente el color de la c&aacute;mara en un entorno de 2800 K ~ 9000 K.<strong class="UI">[ATW]</strong>El rango de temperatura de color es m&aacute;s estrecho que el Modo.</li>
+                <li><strong class="UI">MERCURY</strong>: La correcci&oacute;n de pantalla est&aacute; hecha para optimizar los colores a un entorno de iluminaci&oacute;n con l&aacute;mparas de mercurio.</li>
+                <li><strong class="UI">SODIUM</strong>: La correcci&oacute;n de pantalla est&aacute; hecha para optimizar los colores a un entorno de iluminaci&oacute;n con l&aacute;mparas de sodio.</li><!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: ??? ??? ??? ?? ??? ?????? ?? ?????.</li>
                 <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: ??? ??? ???? ?? ??? ?????? ?? ?????.</li> --></ul>
         </div>
 
@@ -335,7 +335,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
-            <p>El modo HLC (Compensaci&oacute;n de luz alta) bloquea la iluminaci&oacute;n fuerte como el faro de una calle o las luces de un veh&iacute;culo,<strike></strike>para prevenir fallas en la detecci&oacute;n de un objeto vecino, como la matr&iacute;cula de un auto, debido a la saturaci&oacute;n de luces fuertes.</p>
+            <p>El modo HLC (Compensaci&oacute;n de luz alta) bloquea la iluminaci&oacute;n fuerte como el faro de una calle o las luces de un veh&iacute;culo, para prevenir fallas en la detecci&oacute;n de un objeto vecino, como la matr&iacute;cula de un auto, debido a la saturaci&oacute;n de luces fuertes.</p>
             <p ng-if="PTZModel">Si selecciona el modo HLC, el &aacute;rea seleccionada por defecto aparecer&aacute; en la pantalla de v&iacute;deo de la c&aacute;mara. Ajuste el tama&ntilde;o del &aacute;rea haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el n&uacute;mero establecido en <strong class="UI">[Paso de caja]</strong>, mayor ser&aacute; el tama&ntilde;o del &aacute;rea al hacer clic en los botones.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
@@ -407,7 +407,7 @@
             <h5>Control WDR</h5>
                 <p>Establece la opci&oacute;n de acci&oacute;n WDR.</p>
                 <ul>
-                    <li><strong class="UI">Siempre usar</strong>: el modo WDR est&aacute; activado en todo momento.</li>
+                    <li><strong class="UI">Siempre encendido</strong>: el modo WDR est&aacute; activado en todo momento.</li>
                     <li><strong class="UI">Autom&aacute;tico</strong>: El v&iacute;deo es analizado y el modo WDR se activa autom&aacute;ticamente cuando es necesario corregir la retroiluminaci&oacute;n.</li>
                     <li><strong class="UI">Apagado en luz baja</strong>: El modo WDR se desactiva autom&aacute;ticamente en un ambiente con poca luz.</li>
                     <li><strong class="UI">Desactivar en B/N</strong>: El modo WDR se apaga autom&aacute;ticamente cuando el modo B/N est&aacute; en funcionamiento.</li>
@@ -512,7 +512,7 @@
             </div><!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
                       tnb-9000 ?? ????? IrisModeOptions || EFLensSupport? ?? ??. TW. 2019-11-29 
             <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> --><div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
-                <p>Iris</p><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>Seleccione el tipo de iris</p>
+                <h3>Iris</h3><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>Seleccione el tipo de iris</p>
             <ul>
                 <li><strong class="UI">DC (Autom&aacute;tico)</strong>: Ajusta autom&aacute;ticamente el iris dependiendo de la intensidad &oacute;ptica del entorno.</li>
                 <li><strong class="UI">Manual</strong>: Ajusta manualmente el valor de F del iris.</li><!-- PIrisModeOptions ??? ??? ???? XNV-6081? ?? ???? PIrisInIrisList? ???. ??? ??? ?? ?? --><li><strong class="UI">P-iris</strong>: El motor a presi&oacute;n se utiliza para ajustar el obturador. Es posible asegurar una gran profundidad de campo para enfocar simult&aacute;neamente varios objetos a diferentes distancias.</li><!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-???</strong>:  ?? ??? ?? ???? ?????. ??? ??? ?? ?? ??? ??? ???? ?? ? ?? ?? ??? ?? ? ????.  </li> --></ul>
@@ -782,7 +782,8 @@
             <p>Ajusta si se va a mostrar un t&iacute;tulo de c&aacute;mara o no. Si selecciona <strong class="UI">[Activar]</strong>, se activar&aacute;n los botones <strong class="UI">[Agregar]</strong>/<strong class="UI">[Eliminar]</strong>.</p>
             <p>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong> para a&ntilde;adir un campo en el que pueda introducir el nombre de la c&aacute;mara para la lista.Introduzca el t&iacute;tulo de su c&aacute;mara y mueva el cursor para establecer su ubicaci&oacute;n.Puede a&ntilde;adir hasta 5 t&iacute;tulos de c&aacute;mara.</p>
                 <p>Para eliminar un t&iacute;tulo de c&aacute;mara, seleccione el nombre de la c&aacute;mara que desee eliminar y haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>. Despu&eacute;s de introducir el t&iacute;tulo de la c&aacute;mara, si desea ver c&oacute;mo se ve, introduzca el nombre de la c&aacute;mara y haga clic en el bot&oacute;n <strong class="UI">[Vista previa]</strong>.</p>
-                <p><strong class="UI">En la [Posici&oacute;n]</strong>columna,<strong class="UI">haga clic en el bot&oacute;n [Mover]</strong>. Luego, la posici&oacute;n OSD se mostrar&aacute; como un icono de forma triangular en la pantalla de v&iacute;deo de vista previa. Puede mover el icono para ajustar la posici&oacute;n del OSD.</p>
+                
+                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">En la [Posici&oacute;n]</strong>columna,<strong class="UI">haga clic en el bot&oacute;n [Mover]</strong>. Luego, la posici&oacute;n OSD se mostrar&aacute; como un icono de forma triangular en la pantalla de v&iacute;deo de vista previa. Puede mover el icono para ajustar la posici&oacute;n del OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Fecha y hora</h3>
@@ -814,11 +815,11 @@
             <p>Def&iacute;nala si desea mostrar la informaci&oacute;n de ampliaci&oacute;n del zoom de la c&aacute;mara o los nombres de los preajustes en la pantalla.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>Imagen de superposici&oacute;n</h3>
             <p>La imagen que desea puede ser mostrada en la parte superior izquierda de la pantalla. El men&uacute; <strong class="UI">[Cargar imagen]</strong> le permitir&aacute; cargar im&aacute;genes.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>Cargar imagen</h3>
             <p><strong class="UI">[?]</strong>se puede hacer clic en el bot&oacute;n para buscar archivos en formato de mapa de bits. Haga clic en el bot&oacute;n <strong class="UI">[Cargar]</strong> para cargar archivos de im&aacute;genes. Para eliminar los archivos de imagen aplicados a la pantalla, haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>. La especificaci&oacute;n de imagen permitida es de 16 bits (RGB565 no soportado) o un archivo de mapa de bits de 24 bits. Su tama&ntilde;o debe ser un fijo de 128x128 p&iacute;xeles, y el tama&ntilde;o del archivo debe ser de 52 KB o menos.</p>
         </div>

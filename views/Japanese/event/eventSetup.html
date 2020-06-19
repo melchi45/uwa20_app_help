@@ -17,23 +17,39 @@
                 <li><strong class="UI">タイプ</strong>：<strong class="UI">[タイプ]</strong>カラムでイベント名を選択すると、該当イベントの詳細設定ページに移動します。</li>
                 <li><strong class="UI">イベントアクション</strong>：イベントが発生した時、カメラがどのイベントアクションを行うか設定します。</li>
                     <ul>
-                        <li><strong class="UI">FTP</strong>：映像画面をキャプチャーしてFTPサーバーに伝送するには、<strong class="UI">[FTP]</strong>カラムのチェックボックスを選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</li>
-                        <li><strong class="UI">E-mail</strong>：映像画面をキャプチャーしてE-mailに伝送するには、<strong class="UI">[E-mail]</strong>カラムのチェックボックスを選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>で行うことができます。</li>
+                        <li><strong class="UI">FTP</strong>：映像画面をキャプチャーしてFTPサーバーに伝送するには、<strong class="UI">[FTP]</strong>カラムのチェックボックスを選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</li>
+                        <li><strong class="UI">E-mail</strong>：映像画面をキャプチャーしてE-mailに伝送するには、<strong class="UI">[E-mail]</strong>カラムのチェックボックスを選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</li>
                         <li ng-if="Recording"><strong class="UI">録画</strong>：映像を保存するには、<strong class="UI">[録画]</strong>カラムのチェックボックスを選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</li>
-                        <li ng-if="MaxAlarmOutput>0"><strong class="UI">アラーム出力</strong>：イベントが発生した時、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で行うことができます。</li>
+
+
+                        <li ng-if="MaxAlarmOutput>0 && RememberLastPosition"><strong class="UI">アラーム出力</strong>：イベントが発生した時、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で行うことができます。</li>
+                        <li ng-if="MaxAlarmOutput>0 && !RememberLastPosition"><strong class="UI">アラーム出力</strong>：イベントが発生した時、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム出力]</strong>で行うことができます。</li>          
+                        
+                        
 
                         <li ng-if="PresetAction"><strong class="UI">プリセットに移動</strong>：カメラが指定したPTZプリセット位置に移動します。</li>
                         <li ng-if="AudioClipCountRange !== undefined"><strong class="UI">オーディオクリップ</strong>：イベントが発生する時、再生するオーディオクリップを選択します。イベントタイプ別にオーディオクリップをそれぞれ設定することができます。オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</li>
                     </ul>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0">
+
+
+
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-            <ul>
-            
+            <ul>          
                 <li>アラーム出力設定によって<strong class="UI">[アラーム出力]</strong>カラムの表示が異なります。アラーム出力がない場合、[アラーム出力]カラムは表示されません。アラーム出力が複数の場合、[アラーム出力1]、[アラーム出力2]のようにカラムが表示されます。アラーム入・出力は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で設定できます。</li>
             </ul>
         </div>
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>    
+                <li>アラーム出力設定によって<strong class="UI">[アラーム出力]</strong>カラムの表示が異なります。アラーム出力がない場合、[アラーム出力]カラムは表示されません。アラーム出力が複数の場合、[アラーム出力1]、[アラーム出力2]のようにカラムが表示されます。アラーム出力は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム出力]</strong>で設定できます。</li>
+            </ul>
+        </div>
+
+
+
     </div>
 </div>
 

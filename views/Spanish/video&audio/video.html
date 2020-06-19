@@ -48,6 +48,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Puede ajustar las acciones de panor&aacute;mica, mosaico y zoom de la c&aacute;mara.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">En <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>, seleccione el canal <strong class="UI">[PTZ]</strong>. El panel panor&aacute;mico del PTZ aparecer&aacute;.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -163,7 +164,7 @@
 				<li>Haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>. El &aacute;rea seleccionada se borrar&aacute;.</li>
 			</ol>
 		</div>
-		       <div class="wn5-online-help-action" ng-if="PTZModel">
+		       <!-- <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Ajuste del PTZ</h4>
             <p ng-if="MaxChannel > 1 && HandoverCalibration">En <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>, seleccione el canal <strong class="UI">[PTZ]</strong>. El panel panor&aacute;mico del PTZ aparecer&aacute;.</p>
             <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
@@ -173,7 +174,7 @@
                 <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
                 <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
             </ul>
-        </div>
+        </div> -->
 	</div>
 </div>
 
@@ -275,7 +276,7 @@
 
 
 <!-- 멀티 센서 변경점 이 후에는 분기 코드 삭제해야 함 --> 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Salida de v&iacute;deo</h2>
@@ -317,10 +318,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
 	<div class="wn5-setup-section-heading">
 		<h2>Salida de v&iacute;deo</h2>
     </div>

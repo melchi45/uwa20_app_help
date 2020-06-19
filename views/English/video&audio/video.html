@@ -49,6 +49,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Under <strong class="UI"><a href="#channel">[Select channel]</a></strong>, select the <strong class="UI">[PTZ]</strong> channel. The PTZ jog panel will appear.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -98,7 +99,7 @@
                     <li> Select whether to enable <strong class="UI">[Zoom threshold] </strong>. The function ensures that a privacy area is used only if the image is magnified to higher than a zoom ratio set in [Set zoom threshold]. In other words, if the image is reduced below the zoom ratio, the privacy area is deleted from the image. </li>
                 </ul>
                 <li> In the <strong class="UI">[Privacy area] </strong> window, click the <strong class="UI">[OK]</strong> button.</li>
-                <li> In step 3, if you selected <strong class="UI">[Enable]</strong> for the <strong class="UI">[Zoom threshold]</strong> option, then the <strong class="UI">[Set zoom threshold] </strong>window will appear. After setting the desired zoom ration, click the <strong class="UI">[OK]</strong> button.  </li>
+                <li> In step 3, if you selected <strong class="UI">[On]</strong> for the <strong class="UI">[Zoom threshold]</strong> option, then the <strong class="UI">[Set zoom threshold] </strong>window will appear. After setting the desired zoom ration, click the <strong class="UI">[OK]</strong> button.  </li>
                 <li>A new privacy area is added to the list of privacy areas. The privacy area to which zoom threshold is applied will be marked as '[Zoom]' in the list of privacy areas. The color set in the camera's image screen is used to display the privacy area.  </li>
             </ol>
             <!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> -->
@@ -116,7 +117,7 @@
                     <li>Select whether to enable <strong class="UI">[Zoom threshold] </strong>. The function ensures that a privacy area is used only if the image is magnified to higher than a zoom ratio set in [Set zoom threshold]. In other words, if the image is reduced below the zoom ratio, the privacy area is deleted from the image. </li>
                 </ul>
                 <li> In the <strong class="UI">[Privacy area] </strong> window, click the <strong class="UI">[OK]</strong> button.</li>
-                <li> In step 3, if you selected <strong class="UI">[Enable]</strong> for the <strong class="UI">[Zoom threshold]</strong> option, then the <strong class="UI">[Set zoom threshold] </strong>window will appear. After setting the desired zoom ration, click the <strong class="UI">[OK]</strong> button.</li>
+                <li> In step 3, if you selected <strong class="UI">[On]</strong> for the <strong class="UI">[Zoom threshold]</strong> option, then the <strong class="UI">[Set zoom threshold] </strong>window will appear. After setting the desired zoom ration, click the <strong class="UI">[OK]</strong> button.</li>
                 <li>A new privacy area is added to the list of privacy areas. The privacy area to which zoom threshold is applied will be marked as '[Zoom]' in the list of privacy areas. The color set in the camera's image screen is used to display the privacy area.</li>
             </ol>
         </div>
@@ -166,7 +167,7 @@
 				<li>Click the <strong class="UI">[Delete]</strong> button. The selected area will be deleted.</li>
 			</ol>
 		</div>
-		       <div class="wn5-online-help-action" ng-if="PTZModel">
+		       <!-- <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Adjusting the PTZ</h4>
             <p ng-if="MaxChannel > 1 && HandoverCalibration">Under <strong class="UI"><a href="#channel">[Select channel]</a></strong>, select the <strong class="UI">[PTZ]</strong> channel. The PTZ jog panel will appear.</p>
             <p>You can adjust the pan, tilt, and zoom actions of the camera.</p>
@@ -176,7 +177,7 @@
                 <li>Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li>
                 <li>To adjust the camera focus automatically for one shot, click the <span class="tui tui-wn5-simple-focus"></span> icon.</li>
             </ul>
-        </div>
+        </div> -->
 	</div>
 </div>
 
@@ -215,12 +216,12 @@
 
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
 			<h3>Flip/Mirror</h3>
-			<p>Select <strong class="UI">[Enable]</strong> to flip the camera output horizontally or vertically.</p>
+			<p>Select <strong class="UI">[On]</strong> to flip the camera output horizontally or vertically.</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
 			<h3>Digital flip</h3>
-            <p>When you change the camera location by using the PTZ functions, the camera's image can be flipped in four directions. Now, if you want to reverse the image automatically, so that you can see the natural image, select&nbsp;<strong class="UI">[Enable]</strong>.</p>
+            <p>When you change the camera location by using the PTZ functions, the camera's image can be flipped in four directions. Now, if you want to reverse the image automatically, so that you can see the natural image, select&nbsp;<strong class="UI">[On]</strong>.</p>
 		</div>
 		
         <div class="wn5-setup-section-article-content" ng-if="HallwayView">
@@ -282,8 +283,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
-<div class="wn5-setup-section" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Video output</h2>
     </div>
@@ -322,10 +323,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
     <div class="wn5-setup-section-heading">
         <h2>Video output</h2>
     </div>

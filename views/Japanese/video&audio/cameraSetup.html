@@ -256,12 +256,12 @@
             <h3>モード</h3>
             <p>カメラを使用する環境によってホワイトバランスモードを選択します。</p>
             <ul>
-                <li><strong class="UI">手動</strong>：手動で赤のゲインと青のゲインを調整することができます。赤が多く表示されると赤のゲインを下げ、青が多く表示されると青のゲインを下げます。緑が多く表示されると青色値/赤色値を共に上げます。</li>
+                <li><strong class="UI">マニュアル</strong>：手動で赤のゲインと青のゲインを調整することができます。赤が多く表示されると赤のゲインを下げ、青が多く表示されると青のゲインを下げます。緑が多く表示されると青色値/赤色値を共に上げます。</li>
                 <li><strong class="UI">ATW</strong>：カメラのカラーを自動に補正します。</li>
                 <li><strong class="UI">屋外</strong>：カメラのカラーを屋外環境に最適化されるように補正します。</li>
                 <li><strong class="UI">屋内</strong>：カメラのカラーを屋内環境に最適化されるように補正します。</li>
                 <li><strong class="UI">AWC</strong>：カメラのカラーを現在の照明環境に最適化されるように画面を補正します。カメラに白い紙を映して<strong class="UI">[設定]</strong>ボタンを押すと、赤/青のゲイン値が調整され映像に適用されます。現在、表示される映像のホワイトバランス値が映像に適用し続け、環境が変わると再調整する必要があります。</li>
-                <li><strong class="UI">Narrow ATW</strong>：2800 K～9000 K環境でカメラのカラーを自動に補正します。<strong class="UI">[ATW]</strong>モードよりカラーの温度範囲が狭いです。</li>
+                <li><strong class="UI">NarrowATW</strong>：2800 K～9000 K環境でカメラのカラーを自動に補正します。<strong class="UI">[ATW]</strong>モードよりカラーの温度範囲が狭いです。</li>
                 <li><strong class="UI">MERCURY</strong>：カメラのカラーを水銀灯照明環境に最適化されるように自動補正します。</li>
                 <li><strong class="UI">SODIUM</strong>：カメラのカラーをナトリウム灯照明環境に最適化されるように自動補正します。</li><!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: ??? ??? ??? ?? ??? ?????? ?? ?????.</li>
                 <li ng-if="PTZModel"><strong class="UI">SODIUM</strong>: ??? ??? ???? ?? ??? ?????? ?? ?????.</li> --></ul>
@@ -350,7 +350,7 @@
                 <li><strong class="UI">Off</strong>：遮断エリアが生成されません。</li>
                 <li><strong class="UI">On</strong>：一定の明るさ以上のエリアは常時遮断されます。</li>
                 <li><strong class="UI">全日</strong>：とても明るい時やとても暗い時を除けて遮断エリアが生成されます。</li>
-                <li><strong class="UI">夜間</strong>：とても暗くなる前まで遮断エリアが生成されます。</li>
+                <li><strong class="UI">夜間のみ</strong>：とても暗くなる前まで遮断エリアが生成されます。</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
@@ -407,7 +407,7 @@
             <h5>WDRコントロール</h5>
                 <p>WDRの動作オプションを設定します。</p>
                 <ul>
-                    <li><strong class="UI">常時使用</strong>：WDRモードが常時動作します。</li>
+                    <li><strong class="UI">常時オン</strong>：WDRモードが常時動作します。</li>
                     <li><strong class="UI">自動</strong>：映像を分析してバックライトが必要な場合、自動にWDRモードを動作します。</li>
                     <li><strong class="UI">ローライトオフ</strong>：低照度環境でWDRモードを自動にオフします。</li>
                     <li><strong class="UI">B/Wオフ</strong>：B/Wモードが動作した時にWDRモードを自動にオフします。</li>
@@ -451,7 +451,7 @@
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>?出補正</h2>
+        <h2>露出補正</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -487,7 +487,7 @@
             <h3>SSNR</h3>
             <p>映像のノイズを除去します。</p>
             <ul>
-                <li><strong class="UI">有効/無効</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[On]</strong>を選択すると、SSNRレベルを調整することができます。</li>
+                <li><strong class="UI">On/Off</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[On]</strong>を選択すると、SSNRレベルを調整することができます。</li>
                 <li><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li><!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">??? NR</strong>: ?? ?? ???? ??? ??? ???? ??? ?? ??? ???? ??? ???? ??????.  </li> --></ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
@@ -511,8 +511,9 @@
                 <p>レンズタイプが表示されます。選択したレンズによってアイリス値が異なります。</p>
             </div><!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
                       tnb-9000 ?? ????? IrisModeOptions || EFLensSupport? ?? ??. TW. 2019-11-29 
-            <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> --><div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
-                <p>アイリス</p><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>アイリスのタイプを選択します。</p>
+            <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> -->
+                <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
+                <h3>アイリス</h3><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>アイリスのタイプを選択します。</p>
             <ul>
                 <li><strong class="UI">DC(自動)</strong>：周囲環境の光量によってアイリスを自動に調整します。</li>
                 <li><strong class="UI">手動</strong>：アイリスF値を手動に調整します。</li><!-- PIrisModeOptions ??? ??? ???? XNV-6081? ?? ???? PIrisInIrisList? ???. ??? ??? ?? ?? --><li><strong class="UI">Pアイリス</strong>：ステッピングモーターでアイリスを調整します。様々な距離にある複数の対象物を同時にフォーカスを合わせることができて深い深度を持つことができます。</li><!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-???</strong>:  ?? ??? ?? ???? ?????. ??? ??? ?? ?? ??? ??? ???? ?? ? ?? ?? ??? ?? ? ????.  </li> --></ul>
@@ -560,14 +561,14 @@
                 <p>AGC (Auto Gain Control)は暗い照明で被写体を撮影する時、映像Gainの感度を調整して明るさを調整することができます。</p>
                 <ul>
                     <li><strong class="UI">Off</strong>：映像信号のゲインを増幅して暗い画面を明るく表示するAGC機能を無効にします。このオプションを選択すると、[SSNR]や[デイ/ナイト]機能が動作しません。</li>
-                    <li><strong class="UI">手動</strong>：AGC値を手動に調整します。</li>
+                    <li><strong class="UI">マニュアル</strong>：AGC値を手動に調整します。</li>
                     <li><strong class="UI">最大ゲイン</strong>：周りの明るさによってゲインが自動に制御される最大ゲインを設定します。</li>
                 </ul>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
-                <h3>レベル(手動)</h3>
+                <h3>レベル(マニュアル)</h3>
                 <p>AGCのレベル値を手動で設定します。レベル値を高く設定するほど、ゲイン値が増加して暗い環境でも画面が明るくなります。</p>
-                <p>[AGC]で[手動]を選択すると、[レベル(手動)]が有効になります。</p>
+                <p>[AGC]で[マニュアル]を選択すると、[レベル(マニュアル)]が有効になります。</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
             <h3>レベル(最大ゲイン)</h3>
@@ -608,9 +609,9 @@
             <h3>モード</h3>
             <p>カメラがカラーやB/Wに変更されるタイプを選択します。</p>
             <ul>
-                <li><strong class="UI">カラー</strong>：映像を常時カラーに出力します。</li>
+                <li><strong class="UI">色</strong>：映像を常時カラーに出力します。</li>
                 <li><strong class="UI">B/W</strong>：映像を常時B/Wに出力します。</li>
-                    <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">[?出補正]</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>や<strong class="UI">[手動]</strong>で設定したり、<strong class="UI">[最大ゲイン]</strong>を「30 dB未満」に設定する場合、[デイ/ナイト]を[自動]に設定できません。</li>
+                    <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>や<strong class="UI">[手動]</strong>で設定したり、<strong class="UI">[最大ゲイン]</strong>を「30 dB未満」に設定する場合、[デイ/ナイト]を[自動]に設定できません。</li>
                 <li><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
                 </li> --><li><strong class="UI">スケジュール</strong>：<strong class="UI">[動作時間(カラー)]</strong>で設定したスケジュールにデイ/ナイトが変更されます。</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ??? ?????.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ???? ?????.</li>  --></ul>
@@ -782,7 +783,9 @@
             <p>カメラタイトルの表示有無を設定します。<strong class="UI">[有効]</strong>を選択すると、<strong class="UI">[追加]</strong>/<strong class="UI">[削除]</strong>ボタンが有効になります。</p>
             <p><strong class="UI">[追加]</strong>ボタンをクリックすると、リストにカメラの名称を入力できるフィールドが追加されます。カメラのタイトルを入力し、カーソルを動かして位置を設定します。カメラタイトルは5つまで追加することができます。</p>
                 <p>カメラタイトルを削除するには、削除する名前を選択してから<strong class="UI">[削除]</strong>ボタンをクリックします。カメラタイトルを入力した後、画面上にどう表示されるのか確認するには名前を入力してから<strong class="UI">[プレビュー]</strong>ボタンをクリックします。</p>
-                <p><strong class="UI">[位置]</strong>カラムの<strong class="UI">[移動]</strong>ボタンをクリックすると、プレビュー映像画面にOSD位置が三角形のアイコンで表示されます。アイコンを移動してOSD位置を調整できます。</p>
+
+
+                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">[位置]</strong>カラムの<strong class="UI">[移動]</strong>ボタンをクリックすると、プレビュー映像画面にOSD位置が三角形のアイコンで表示されます。アイコンを移動してOSD位置を調整できます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>日付＆時間</h3>
@@ -814,11 +817,11 @@
             <p>ズーム倍率やカメラ名など、カメラ映像画面に表示するデータを選択します。</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>オーバーレイ画像</h3>
             <p>ユーザーが希望する画像を画面の左上に表示できます。<strong class="UI">[画像のアップロード]</strong>メニューで画像をアップロードできます。</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>画像のアップロード</h3>
             <p><strong class="UI">[…]</strong>ボタンをクリックしてビットマップタイプのファイルを検索します。<strong class="UI">[アップロード]</strong>ボタンをクリックして画像ファイルをアップロードします。画面に適用した画像ファイルを削除するには、<strong class="UI">[削除]</strong>ボタンをクリックします。適用できる画像の仕様は、16ビット(RGB565未対応)または24ビットのビットマップファイルで、サイズは横/縦128ピクセル固定サイズ、ファイルサイズは52 KB以下である必要があります。</p>
         </div>
@@ -875,7 +878,7 @@
             <h3>モード</h3>
             <p>カメラのフォーカス動作タイプを設定します。</p>
             <ul>
-                <li>手動：カメラのフォーカスを手動に調整します。</li>
+                <li>マニュアル：カメラのフォーカスを手動に調整します。</li>
                 <li>自動：カメラのフォーカスが自動に調整されます。</li>
                 <li>ワンショットAF：ユーザーイベント(オートフォーカスもしくはズーム動作)が発生する時、自動にフォーカスが一回調整されます。</li>
             </ul>
@@ -891,7 +894,7 @@
             <p>デジタルズームを有効にするためには、<strong class="UI">[有効]</strong>を選択します。</p>
         </div>
 		<div class="wn5-setup-section-article-content">
-            <h3>デジタルズーム制限</h3>
+            <h3>最大デジタルズーム</h3>
             <p>使用できる最大デジタルズームを設定します。<strong class="UI">[デジタルズーム]</strong>を<strong class="UI">[有効]</strong>に設定すると、デジタルズーム制限を設定することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content">

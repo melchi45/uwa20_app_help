@@ -54,8 +54,9 @@
                 </ul>
                 <li><strong class="UI">[홈 설정] </strong>버튼을 클릭합니다.</li>
             </ol>
-    	</div>
-        <div class="wn5-online-help-info">
+        </div>
+        <!-- TNU-6321 이슈 수정을 위해 임시 hide 코드 추가 -->
+        <div class="wn5-online-help-info" ng-if="RememberLastPosition">
                 <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>홈 위치 설정 후 카메라가 재부팅되면 화면이 홈 포지션에 위치합니다. 만약 다른 시퀀스(프리셋, 스윙, 그룹, 투어, 추적)가 동작 중이라면 카메라가 재부팅되더라도 홈 위치가 아닌 동작 중이던 시퀀스 기능이 실행됩니다. </li>

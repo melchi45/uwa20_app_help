@@ -107,7 +107,7 @@
 							<li><strong class="UI">[ズーム閾値]</strong>機能の使用状況の確認を選択します。「ズーム閾値」は[ズーム倍率制限設定]で指定したズーム倍率以上に映像をズームインした場合のみ、プライバシー領域が動作する機能です。つまり、設定したズーム倍率より映像画面をズームアウトすると、プライバシー領域が映像から除去されます。</li>
 						</ul>
 						<li><strong class="UI">[プライバシー領域]</strong>で<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
-						<li>3段階で<strong class="UI">[ズーム閾値]</strong>オプションの中、<strong class="UI">[使用]</strong>を選択した場合、<strong class="UI">[ズーム倍率制限設定]</strong>が表示されます。お望みの倍率でズームを調整してから、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
+						<li>3段階で<strong class="UI">[ズーム閾値]</strong>オプションの中、<strong class="UI">[On]</strong>を選択した場合、<strong class="UI">[ズーム倍率制限設定]</strong>が表示されます。お望みの倍率でズームを調整してから、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
 						<li>追加したプライバシー領域がプライバシー領域リストに追加されます。ズーム閾値機能が適用されたプライバシー領域は、プライバシー領域リストに「[ズーム]」が表記されます。カメラの映像画面に設定したカラーでプライバシー領域が表示されます。</li>
 					</ol>
 				</div>
@@ -123,7 +123,7 @@
 							<li><strong class="UI">[ズーム閾値]</strong>機能の使用状況の確認を選択します。「ズーム閾値」は[ズーム倍率制限設定]で指定したズーム倍率以上に映像をズームインした場合のみ、プライバシー領域が動作する機能です。つまり、設定したズーム倍率より映像画面をズームアウトすると、プライバシー領域が映像から除去されます。</li>
 						</ul>
 						<li><strong class="UI">[プライバシー領域]</strong>で<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
-						<li>3段階で<strong class="UI">[ズーム閾値]</strong>オプションの中、<strong class="UI">[使用]</strong>を選択した場合、<strong class="UI">[ズーム倍率制限設定]</strong>が表示されます。お望みの倍率でズームを調整してから、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
+						<li>3段階で<strong class="UI">[ズーム閾値]</strong>オプションの中、<strong class="UI">[On]</strong>を選択した場合、<strong class="UI">[ズーム倍率制限設定]</strong>が表示されます。お望みの倍率でズームを調整してから、<strong class="UI">[確認]</strong>ボタンをクリックします。</li>
 						<li>追加したプライバシー領域がプライバシー領域リストに追加されます。ズーム閾値機能が適用されたプライバシー領域は、プライバシー領域リストに「[ズーム]」が表記されます。カメラの映像画面に設定したカラーでプライバシー領域が表示されます。</li>
 					</ol>
 				</div>
@@ -203,12 +203,12 @@
 
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
 			<h3>フリップ/ミラー</h3>
-			<p>カメラの映像を上下左右に反転させるには、<strong class="UI">[有効]</strong>を選択します。</p>
+			<p>カメラの映像を上下左右に反転させるには、<strong class="UI">[On]</strong>を選択します。</p>
 		</div>
 
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
 			<h3>デジタルフリップ</h3>
-            <p>PTZ機能でカメラの位置を変更する時、カメラの映像画面が上下左右にひっくり返って見えることがあります。この時に映像画面が自動に反転されて正しく表示されるようにするためには、<strong class="UI">[有効]</strong>を選択します。</p>
+            <p>PTZ機能でカメラの位置を変更する時、カメラの映像画面が上下左右にひっくり返って見えることがあります。この時に映像画面が自動に反転されて正しく表示されるようにするためには、<strong class="UI">[On]</strong>を選択します。</p>
 		</div>
 		
 		<div class="wn5-setup-section-article-content" ng-if="HallwayView">
@@ -269,7 +269,7 @@
 </div> -->
 
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)) && UsbConfigEnable">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
     <div class="wn5-setup-section-heading">
         <h2>ビデオ出力</h2>
@@ -310,10 +310,8 @@
 </div>  
 
 
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions ||
-	(typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1)))">
+<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
+<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
     <div class="wn5-setup-section-heading">
         <h2>ビデオ出力</h2>
     </div>

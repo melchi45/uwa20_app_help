@@ -76,6 +76,17 @@
             <h4>Eliminaci&oacute;n de una l&iacute;nea virtual</h4>
 			<p>Para eliminar una l&iacute;nea virtual, haga clic en el bot&oacute;n derecho del rat&oacute;n en el &aacute;rea correspondiente de la pantalla y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n de eliminaci&oacute;n.</p>
         </div>
+        <div class="wn5-online-help-action" ng-if="PTZModel">
+            <h4>Ajuste del PTZ</h4>
+            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+            <ul>
+                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
+                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
+            </ul>
+        </div>
+
 
         <div class="wn5-setup-section-article-content">
             <h3>L&iacute;nea</h3>
@@ -153,16 +164,7 @@
 			<h4>Eliminaci&oacute;n de una zona virtual</h4>
 			<p>Para eliminar una zona virtual, haga clic en el bot&oacute;n derecho del rat&oacute;n en el &aacute;rea correspondiente de la pantalla y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n de eliminaci&oacute;n.</p>
         </div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
-            <h4>Ajuste del PTZ</h4>
-            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
-            <ul>
-                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
-                <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
-                <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
-                <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
-            </ul>
-        </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>&Aacute;rea</h3>
             <p>Cuando se a&ntilde;ade una zona virtual, el color de los botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Cuando se desactiva una zona virtual haciendo clic en los botones num&eacute;ricos, la zona virtual de referencia no se mostrar&aacute; en la pantalla de vista previa. Al hacer clic en los botones num&eacute;ricos de nuevo, la zona virtual volver&aacute; a aparecer.</p>
@@ -197,7 +199,7 @@
                 <li ng-if="objectDetectionSupport"><strong class="UI">Entrada</strong>: Este evento se activa cuando la cámara detecta que un objeto seleccionado en <strong class="UI">[Objeto]</strong> ha entrado en el área definida.</li>
                 <li ng-if="!objectDetectionSupport"><strong class="UI">Salida</strong>: Cuando un objeto en movimiento sale del &aacute;rea establecida por el usuario, se crear&aacute; un evento.</li>
                 <li ng-if="objectDetectionSupport"><strong class="UI">Salida</strong>: Este evento se activa cuando la cámara detecta que un objeto seleccionado en <strong class="UI">[Objeto]</strong> ha abandonado el área definida.</li>
-                <li ng-if="IvaAppearDisappear"><strong class="UI">Aparici&oacute;n (desaparici&oacute;n)</strong>: Cuando un objeto que no existe dentro del &aacute;rea designada por el usuario aparece dentro del &aacute;rea sin pasar la l&iacute;nea del &aacute;rea y se mantiene durante un cierto per&iacute;odo de tiempo, o si un objeto que existe dentro del &aacute;rea desaparece, se crear&aacute; un evento.</li>
+                <li ng-if="IvaAppearDisappear"><strong class="UI">Aparici&oacute;n (Desaparici&oacute;n)</strong>: Cuando un objeto que no existe dentro del &aacute;rea designada por el usuario aparece dentro del &aacute;rea sin pasar la l&iacute;nea del &aacute;rea y se mantiene durante un cierto per&iacute;odo de tiempo, o si un objeto que existe dentro del &aacute;rea desaparece, se crear&aacute; un evento.</li>
                 <li ng-if="objectDetectionSupport" style="list-style-type:none;">A diferencia de otras opciones, <strong class="UI">[Aparición (Desaparición)]</strong> detecta no solo el tipo de objeto seleccionado en <strong class="UI">[Objeto]</strong>, sino también el resto de los tipos de objetos móviles. </li>  
                 <ul ng-if="IvaAppearDisappear">
                     <li><strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>:  Configura el tiempo mínimo para que un objeto sea detectado como que aparece (desaparece). Cuando un objeto que existía en el área de detección durante el tiempo establecido desaparece, se detecta como Desapareciendo, y cuando un objeto que no existía aparece durante la cantidad de tiempo establecida, se detecta como Apareciendo.</li>

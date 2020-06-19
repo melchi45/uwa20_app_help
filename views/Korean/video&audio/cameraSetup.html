@@ -275,7 +275,7 @@
                 <li><strong class="UI">실내</strong>: 카메라의 색상을 실내 환경에 최적화되도록 보정합니다. 
                 </li>
                 <li><strong class="UI">AWC</strong>: 카메라의 색상을 현재 조명 환경에 최적화 되도록 화면을 보정합니다. 카메라에 흰 종이를 비추고 <strong class="UI">[설정]</strong> 버튼을 누르면 적색/청색 게인값이 조절되어 영상에 적용됩니다. 현재 보이는 영상의 화이트 밸런스 값이 계속 영상에 적용되며, 환경이 바뀌면 다시 조정해야 합니다.  </li>
-                <li><strong class="UI">Narrow ATW</strong>: 2800 K ~ 9000 K 환경에서 카메라 색상을 자동으로 보정합니다. <strong class="UI">[ATW]</strong> 모드 보다 색 온도 범위가 좁습니다.</li>
+                <li><strong class="UI">NarrowATW</strong>: 2800 K ~ 9000 K 환경에서 카메라 색상을 자동으로 보정합니다. <strong class="UI">[ATW]</strong> 모드 보다 색 온도 범위가 좁습니다.</li>
                 <li><strong class="UI">MERCURY</strong>: 카메라 색상을 수은등 조명 환경에 최적화되도록 자동 보정합니다.</li>
                 <li><strong class="UI">SODIUM</strong>: 카메라 색상을 나트룸등 조명 환경에 최적화되도록 자동 보정합니다.</li>
                 <!-- <li ng-if="PTZModel"><strong class="UI">MERCURY</strong>: 카메라 색상을 수은등 조명 환경에 최적화되도록 자동 보정합니다.</li>
@@ -433,7 +433,7 @@
             <h5>WDR 제어 </h5>
                 <p> WDR 동작 옵션을 설정합니다.</p>
                 <ul>
-                    <li> <strong class="UI">항상 사용</strong>: WDR 모드가 항상 동작합니다. </li>
+                    <li> <strong class="UI">항상 켜짐</strong>: WDR 모드가 항상 동작합니다. </li>
                     <li> <strong class="UI">자동</strong>: 영상을 분석하여 역광 보정이 필요한 경우 WDR 모드가 자동으로 동작합니다.</li>
                     <li> <strong class="UI">저조도 제외</strong>: 저조도 환경에서 WDR 모드를 자동으로 끕니다. </li>
                     <li> <strong class="UI">B/W 제외</strong>: B/W 모드가 작동했을 때 WDR 모드를 자동으로 끕니다. </li>
@@ -545,7 +545,7 @@
                       tnb-9000 이슈 수정하면서 IrisModeOptions || EFLensSupport로 최종 수정. TW. 2019-11-29 
             <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> -->
             <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
-                <p>조리개 </p>
+                <h3>조리개 </h3>
             <!-- <p>DC(자동), 수동, P-조리개 중에 선택할 수 있습니다.</p>  --> 
             <p>조리개 타입을 선택합니다.</p>
             <ul>
@@ -865,7 +865,9 @@
             <p>카메라 타이틀의 표시 여부를 설정합니다. <strong class="UI">[사용]</strong>을 선택하면<strong class="UI">[추가]</strong>/<strong class="UI">[삭제]</strong> 버튼이 활성화됩니다. </p>
             <p><strong class="UI">[추가]</strong> 버튼을 클릭하면 목록에 카메라 명칭을 입력할 수 있는 필드가 추가됩니다. 카메라의 타이틀을 입력하고 커서를 움직여 위치를 설정합니다. 카메라 타이틀은 5개까지 추가할 수 있습니다. </p>
                 <p>카메라 타이틀을 삭제하려면 삭제할 이름을 선택한 후 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다. 카메라 타이틀을 입력한 후 화면상에 어떻게 보이는지 미리 확인하려면 이름을 입력한 후 <strong class="UI">[미리보기]</strong> 버튼을 클릭합니다. </p>
-                <p><strong class="UI">[위치]</strong> 컬럼의 <strong class="UI">[이동]</strong> 버튼을 클릭하면 미리보기 영상 화면에 OSD 위치가 삼각형 모양의 아이콘으로 표시됩니다. 아이콘을 이동하여 OSD 위치를 조정할 수 있습니다. </p>
+                
+<!-- tnu-6321 미지원 기능이나 attribute 없음. 임시 hide 코드 추가 -->                
+                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">[위치]</strong> 컬럼의 <strong class="UI">[이동]</strong> 버튼을 클릭하면 미리보기 영상 화면에 OSD 위치가 삼각형 모양의 아이콘으로 표시됩니다. 아이콘을 이동하여 OSD 위치를 조정할 수 있습니다. </p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>날짜 및 시간 </h3>
@@ -898,12 +900,14 @@
             <h3>오버레이</h3>
             <p>줌 배율이나 카메라 이름 등 카메라 영상 화면에 나타낼 데이터를 선택합니다.</p>
         </div>
-		
-        <div class="wn5-setup-section-article-content">
+        
+        <!-- tnu-6321 미지원 기능이나 attribute 없음. 임시 hide 코드 추가 -->
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>오버레이 이미지 </h3>
             <p>사용자가 원하는 이미지를 화면 좌측 상단에 표시할 수 있습니다. <strong class="UI">[이미지 업로드]</strong> 메뉴에서 이미지를 업로드할 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content">
+         <!-- tnu-6321 미지원 기능이나 attribute 없음. 임시 hide 코드 추가 -->
+        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>이미지 업로드</h3>
             <p><strong class="UI">[…]</strong> 버튼을 클릭하여 비트맵 형식의 파일을 검색합니다. <strong class="UI">[업로드]</strong> 버튼을 클릭하여 이미지 파일을 업로드합니다. 화면에 적용한 이미지 파일을 삭제하려면 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다. 적용 가능한 이미지의 사양은 16  비트(RGB565 지원 안 함) 또는 24 비트 비트맵 파일이며, 사이즈는 가로/세로 128 픽셀 고정 사이즈여야 하며, 파일 크기 52 KB 이하여야 합니다.</p>
         </div>

@@ -337,10 +337,10 @@
             <p>Set the number of frames per second.</p>
             <p ng-if="Sensor">The range of frame rates available varies according to the frame rate value selected from <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<a class="wn5-online-help-link" href="../video&audio/cameraSetup.html#sensor" ng-href="#/help/videoAudio_cameraSetup?#sensor"><strong class="UI">[Sensor]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
+        <!-- <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>Compression</h3>
             <p>You can set the compression ratio.</p>
-        </div>
+        </div> -->
         <div class="wn5-setup-section-article-content">
             <h3>Maximum bitrate</h3>
             <p>Set the maximum bitrate of the image when <strong class="UI">[Bitrate control]</strong> is <strong class="UI">[VBR]</strong>.</p>
@@ -377,9 +377,10 @@
 		
         <div class="wn5-setup-section-article-content" ng-if="CompressionLevel">
             <h3>Video compression</h3>
-            <p>You can set the video compression ratio.<strong class="UI">[Profile properties]</strong> has the option of a<strong class="UI">[Compression]</strong>CBR. This is a function that sets the priority of encoding, which affects the amount of data transmission and video quality based on the video compression rate for VBR action.</p>
+            <p>You can set the video compression ratio.</p>
+            <p>The <strong class="UI">[Compression]</strong> option of <strong class="UI">[Profile properties]</strong> sets the priority of encoding when [Bitrate control] is set to [CBR]. The <strong class="UI">[Video compression]</strong> option sets sets the priority of encoding, which affects the amount of data transmission and video quality based on the video compression rate for VBR action.</p>
             <p>The higher the value of [Video compression], the better the video compression rate. As the video compression rate increases, the amount of video data transmission decreases, but the video quality might be degraded as a result. If the video compression rate is lowered by setting a low value to [Video compression], the video quality improves, but the amount of video transmission could increase.</p>
-            <p>If either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, <strong class="UI">[Video compression]</strong> is activated only when <strong class="UI">[VBR]</strong> is set for <strong class="UI">[Bitrate control]</strong>.</p>
+            <p><strong class="UI">[Video compression]</strong> is activated if either <strong class="UI">[H.264]</strong> or <strong class="UI">[H.265]</strong> is selected for <strong class="UI">[Codec]</strong> of the profile, and <strong class="UI">[VBR]</strong> is set for <strong class="UI">[Bitrate control]</strong>.</p>
         </div>
 		
         <div class="wn5-setup-section-article-content">
