@@ -240,7 +240,7 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       /* TNU-6321에서 정인혜 선임님 요청에 따라 추가. 메신저로 받음 */
       $scope.AGCModeOptions = attr.AGCModeOptions;
       $scope.AudioClipCountRange = attr.AudioClipCountRange; 
-
+      $scope.HDMISupport = attr.VideoTypeOptions.indexOf('HDMI_1080p') || attr.VideoTypeOptions.indexOf('HDMI_720p') !== -1;
 
 
       /*
