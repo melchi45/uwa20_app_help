@@ -364,7 +364,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="AudioClipCountRange !== undefined">
+                    <tr ng-if="AudioClipCountRange">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-toolbar_audio-stop"></span></p>
                             <p>Reproducir/Detener</p>
@@ -444,7 +444,7 @@
                    
                 </ul>
             </div>		
-            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange">
                 <h4>Para reproducir un clip de audio</h4>
                     <ul>
                     <li>Haga clic en el icono Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) despu&eacute;s de seleccionar un clip de audio que elija de la lista de clips de audios.</li>
@@ -623,7 +623,7 @@
   </div>
 
 
-        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupport ">
             <h3>Zoom de &aacute;rea</h3>
             <p>El zoom de &aacute;rea permite acercar el zoom y ver un &aacute;rea espec&iacute;fica.</p>
             <p>Cuando selecciona un &aacute;rea arrastrando el rat&oacute;n sobre la pantalla con la imagen de la c&aacute;mara despu&eacute;s de hacer clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom"></span>, la funci&oacute;n de zoom se ejecutar&aacute; sobre el &aacute;rea seleccionada y la posici&oacute;n de la c&aacute;mara se mover&aacute; hasta el &aacute;rea seleccionada.&nbsp;Puede moverse hasta el &aacute;rea seleccionada y configuraci&oacute;n anteriores haciendo clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom-back"></span>. En caso de que se haya movido al &aacute;rea seleccionada y configuraci&oacute;n anteriores, haga clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom-pre"></span>si desea regresar al &aacute;rea y configuraciones anteriores a &eacute;stas otra vez. Cuando haga clic en el bot&oacute;n <span class="tui tui-chi-live-ptz-areazoom-1x"></span>, el aumento del zoom se cambiar&aacute; a 1x y la c&aacute;mara se mover&aacute; a su posici&oacute;n original.  </p>

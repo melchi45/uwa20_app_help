@@ -358,7 +358,7 @@
                             <p ng-if="SupportAutoImageAlignment">La fonction haut-parleur est disponible seulement si vous avez sélectionné CAN 1.</p>
                         </td>
                     </tr>
-                    <tr ng-if="AudioClipCountRange !== undefined">
+                    <tr ng-if="AudioClipCountRange">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-toolbar_audio-stop"></span></p>
                             <p>Lecture/Arr&ecirc;ter</p>
@@ -438,7 +438,7 @@
                 </ul>
             </div>
             
-            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange">
                 <h4>Pour lire un clip audio</h4>
                     <ul>
                         <li>Cliquer sur l&apos;ic&ocirc;ne Lecture(<span class="tui tui-wn5-toolbar-play"></span>) apr&egrave;s avoir s&eacute;lectionn&eacute; un clip audio de votre choix dans la liste de clips audio.</li>
@@ -609,7 +609,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
   </div>
 
 
-        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupport ">
             <h3>Zoom localis&eacute;</h3>
 
             <p>Le zoom localis&eacute; permet d&rsquo;effectuer un zoom avant et de voir une zone sp&eacute;cifi&eacute;e.</p>

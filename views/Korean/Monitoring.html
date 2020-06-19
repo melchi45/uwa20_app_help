@@ -376,7 +376,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="AudioClipCountRange !== undefined">
+                    <tr ng-if="AudioClipCountRange">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-toolbar_audio-stop"></span></p>
                             <p>재생/정지</p>
@@ -457,7 +457,7 @@
                    
                 </ul>
             </div>															
-            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange">
                 <h4>오디오 클립을 재생하려면</h4>
                     <ul>
                         <li>오디오 클립 목록에서 원하는 오디오 클립을 선택한 후 재생 아이콘(<span class="tui tui-wn5-toolbar-play"></span>)을 클릭합니다.</li>
@@ -675,8 +675,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p>미리 설정한 위치로 카메라가 이동하도록 하거나, 스윙, 그룹, 투어, 추적 기능 시작하고 중지할 수 있습니다. 관련 설정은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지를 참고 하십시오.</p>
 		</div>
         
-		        
-        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
+		    <!-- TNU-6321에서 attribute로 AreaZoomSupportbyChannel 받았으나 기존 코드 AreaZoomSupport 있다고 함.  정인혜 선임님. 메신저. 2020-06-19   -->
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupport ">
             <h3>영역 줌</h3>
                      
             <p>영역 줌은 특정 영역만 확대하여 볼 수 있는 기능입니다.</p>
