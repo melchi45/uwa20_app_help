@@ -207,15 +207,22 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
         typeof attr.SensorCaptureSize !== 'undefined' && attr.SensorCaptureSize.length > 0
 );
       /* WN7 PTZ에서 추가한 것 */
-      $scope.FocusPresetSupportByChannel = attr.FocusPresetSupportByChannel;
+      // $scope.FocusPresetSupportByChannel = attr.FocusPresetSupportByChannel;
       $scope.PTCorrectionSupport = attr.PTCorrectionSupport;
       $scope.WiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WiperOn") !== -1;
       $scope.HeaterOn = attr.AuxCommands && attr.AuxCommands.indexOf("HeaterOn") !== -1;
       $scope.AutoTrackObjectSize = attr.AutoTrackObjectSize;
 
+      $scope.FocusPresetSupportByChannel = (
+        typeof attr.FocusPresetSupportByChannel !== 'undefined' && attr.FocusPresetSupportByChannel.length > 0
+);
+
       /* TNU-6321에서 추가한 것 */
       $scope.PeerConnectionInfoClientHttpsStatus = attr.PeerConnectionInfoClientHttpsStatus;
-      $scope.AreaZoomSupportbyChannel = attr.AreaZoomSupportbyChannel;
+      // $scope.AreaZoomSupportbyChannel = attr.AreaZoomSupportbyChannel;
+      $scope.AreaZoomSupportbyChannel = (
+        typeof attr.AreaZoomSupportbyChannel !== 'undefined' && attr.AreaZoomSupportbyChannel.length > 0
+);        
       $scope.RememberLastPosition = attr.RememberLastPosition;
       $scope.PanZeroPositionSupport = attr.PanZeroPositionSupport;
       $scope.WDRControlModeOptions = attr.WDRControlModeOptions;
