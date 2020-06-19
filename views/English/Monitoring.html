@@ -371,7 +371,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="AudioClipCountRange !== undefined">
+                    <tr ng-if="AudioClipCountRange">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-toolbar_audio-stop"></span></p>
                             <p>Audio play/Audio stop</p>
@@ -450,7 +450,7 @@
                    
                 </ul>
             </div>	
-            <div class="wn5-online-help-action" ng-if="AudioClipCountRange !== undefined">
+            <div class="wn5-online-help-action" ng-if="AudioClipCountRange">
                 <h4>To play an audio clip</h4>
                     <ul>
                         <li>Click the Play icon (<span class="tui tui-wn5-toolbar-play"></span>) after selecting an audio clip of your choice from the audio clip list.</li>
@@ -630,7 +630,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
   </div>
 
 
-        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupportbyChannel">
+        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupport ">
             <h3>Area zoom</h3>
 
             <p>The area zoom allows to zoom in and view a specified area.</p>

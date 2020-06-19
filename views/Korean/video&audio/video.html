@@ -353,11 +353,12 @@ TW 자체. 2019-12-27 -->
 (typeof VideoTypeOptions === 'object' && (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1))) 로 수정. TW 자체. !SupportAutoImageAlignment와 !XCELevel는 이슈 수정을 위해 TW가 자체 추가한 것이므로 삭제  -->
 
 
-<!-- TNU-6321에서 정인혜 선임님 코멘트에 따라 !SupportAutoImageAlignment를 삭제함  -->
+<!-- TNU-6321에서 정인혜 선임님. 메신저 !SupportAutoImageAlignment를 삭제함. (VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel 로 수정. 2020-06-19  -->
+<!-- TNU-6321. 정인혜 선임님 메일.  ng-if=(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel => ng-if= HDMISupport && !SupportAutoImageAlignment && !XCELevel
+ 2020-06-19  -->
 
-
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
+<hr class="wn5-setup-hr" ng-if ="HDMISupport && !SupportAutoImageAlignment && !XCELevel">
+<div class="wn5-setup-section" ng-if ="HDMISupport && !SupportAutoImageAlignment && !XCELevel">
 
     <div class="wn5-setup-section-heading">
         <h2>비디오 출력</h2>

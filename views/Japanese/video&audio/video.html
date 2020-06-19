@@ -310,8 +310,8 @@
 </div>  
 
 
-<hr class="wn5-setup-hr" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
-<div class="wn5-setup-section" ng-if ="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !XCELevel">
+<hr class="wn5-setup-hr" ng-if ="HDMISupport && !SupportAutoImageAlignment && !XCELevel">
+<div class="wn5-setup-section" ng-if ="HDMISupport && !SupportAutoImageAlignment && !XCELevel">
     <div class="wn5-setup-section-heading">
         <h2>ビデオ出力</h2>
     </div>
