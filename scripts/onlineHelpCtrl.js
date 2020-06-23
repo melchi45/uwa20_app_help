@@ -201,6 +201,7 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.SupportAAC = attr.AudioInEncodingOptions && attr.AudioInEncodingOptions.indexOf("AAC") !== -1;
       $scope.EntropyCodingOptionCAVLC = attr.EntropyCoding && attr.EntropyCoding.H264 && attr.EntropyCoding.H264.indexOf("CAVLC") !== -1;
       $scope.PrivacyMaskRectangle = attr.PrivacyMaskRectangle > 0;
+
       /* WN7에서 추가한 것 */
       $scope.ConnectionMode = attr.ConnectionMode;
       $scope.AdminAccess = attr.AdminAccess;
@@ -214,34 +215,35 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.SensorCaptureSize = (
         typeof attr.SensorCaptureSize !== 'undefined' && attr.SensorCaptureSize.length > 0
 );
+
       /* WN7 PTZ에서 추가한 것 */
-      // $scope.FocusPresetSupportByChannel = attr.FocusPresetSupportByChannel;
       $scope.PTCorrectionSupport = attr.PTCorrectionSupport;
       $scope.WiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WiperOn") !== -1;
       $scope.HeaterOn = attr.AuxCommands && attr.AuxCommands.indexOf("HeaterOn") !== -1;
       $scope.AutoTrackObjectSize = attr.AutoTrackObjectSize;
-
       $scope.FocusPresetSupportByChannel = (
         typeof attr.FocusPresetSupportByChannel !== 'undefined' && attr.FocusPresetSupportByChannel.length > 0
 );
+      $scope.CameraIDEnable = attr.CameraIDEnable;
+
 
       /* TNU-6321에서 추가한 것 */
       $scope.PeerConnectionInfoClientHttpsStatus = attr.PeerConnectionInfoClientHttpsStatus;
-      // $scope.AreaZoomSupportbyChannel = attr.AreaZoomSupportbyChannel;
-      $scope.AreaZoomSupportbyChannel = (
-        typeof attr.AreaZoomSupportbyChannel !== 'undefined' && attr.AreaZoomSupportbyChannel.length > 0
-);        
+//       $scope.AreaZoomSupportbyChannel = (
+//         typeof attr.AreaZoomSupportbyChannel !== 'undefined' && attr.AreaZoomSupportbyChannel.length > 0
+// );  => 영역 줌 attribute 받았으나 기존 분기 코드 AreaZoomSupport 사용
       $scope.RememberLastPosition = attr.RememberLastPosition;
       $scope.PanZeroPositionSupport = attr.PanZeroPositionSupport;
       $scope.WDRControlModeOptions = attr.WDRControlModeOptions;
       $scope.AGCMaxGainLevel = attr.AGCMaxGainLevel;
       $scope.AGCModeOptions = attr.AGCModeOptions;
-
       /* TNU-6321에서 정인혜 선임님 요청에 따라 추가. 메신저로 받음 */
       $scope.AGCModeOptions = attr.AGCModeOptions;
       $scope.AudioClipCountRange = attr.AudioClipCountRange; 
+      /* TNU-6321에서 정인혜 선임님이 직접 수정 후 커밋 */      
       $scope.HDMISupport = attr.VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || attr.VideoTypeOptions.indexOf('HDMI_720p') !== -1;
 
+      
 
       /*
         1. true values
