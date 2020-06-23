@@ -1,6 +1,6 @@
 ﻿<h1 class="wn5-setup-main-title">Configuraci&oacute;n PTZ</h1>
 <div class="wn5-setup-section">
-    <p>Puede definir la posici&oacute;n del preajuste del PTZ de la c&aacute;mara y las funciones detalladas incluyendo oscilaci&oacute;n, grupo, tour e inicio autom&aacute;tico. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte de abajo de la p&aacute;gina.</p>
+    <p>Puede definir la posici&oacute;n del preajuste del PTZ de la c&aacute;mara y las funciones detalladas incluyendo oscilaci&oacute;n, grupo, tour, seguimiento e inicio autom&aacute;tico. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte de abajo de la p&aacute;gina.</p>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
@@ -57,7 +57,7 @@
         <div class="wn5-online-help-info" ng-if="RememberLastPosition">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
         <ul>
-            <li>Cuando la cámara se reinicia después de configurar la posición inicial, la pantalla se coloca en la posición inicial. Si se está ejecutando otra secuencia (Preset, Swing, Group, Tour, Trace), la secuencia que estaba activa se ejecutará sin moverse a la posición inicial cuando la cámara se reinicie.</li>
+            <li>Cuando la cámara se reinicia después de configurar la posición inicial, la pantalla se coloca en la posición inicial. Si se está ejecutando otra secuencia (Preajuste, Oscilación, Grupo, Tour, Trazo), la secuencia que estaba activa se ejecutará sin moverse a la posición inicial cuando la cámara se reinicie.</li>
         </ul>
     </div>
         <div class="wn5-setup-section-article-content">
@@ -315,8 +315,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="TraceSupport">
-<div class="wn5-setup-section" ng-if="TraceSupport">
+<hr class="wn5-setup-hr"  ng-if="TraceSupport">
+<div class="wn5-setup-section"  ng-if="TraceSupport">
     <div class="wn5-setup-section-heading">
         <h2><a name="trace"></a>Trazo</h2>
     </div>
@@ -384,7 +384,7 @@
                                                             <li><strong class="UI">그룹</strong>: 그룹 번호를 선택합니다. 그룹은&nbsp;<a class="wn5-online-help-link" href="ptzInfoSetup.html#group" ng-href="#/help/ptzSetup_ptzInfoSetup?#group"><strong class="UI">[그룹] </strong>탭</a>에서 설정할 수 있습니다. </li>
                                                         </ul> --><li><strong class="UI">Tour</strong>: La acci&oacute;n de tour se ejecutar&aacute; autom&aacute;ticamente.</li><!-- <ul>
                                                             <li><strong class="UI">시간</strong>: <u>투어 동작이 자동으로 실행되는 시간을 설정합니다.</u></li>
-                                                        </ul> --><li><strong class="UI">Trazo</strong>: La acci&oacute;n de seguimiento se ejecutar&aacute; autom&aacute;ticamente. Puede definir la hora para ejecutar autom&aacute;ticamente la acci&oacute;n de seguimiento y el n&uacute;mero de trazo. Puede definir la acci&oacute;n de seguimiento detallada desde la pesta&ntilde;a <a class="wn5-online-help-link" href="ptzInfoSetup.html#trace" ng-href="#/help/ptzSetup_ptzInfoSetup?#trace"><strong class="UI">[Seguimiento]</strong></a>.</li><!--  <ul>
+                                                        </ul> --><li><strong class="UI">Trazo</strong>: La acci&oacute;n de seguimiento se ejecutar&aacute; autom&aacute;ticamente. Puede definir la hora para ejecutar autom&aacute;ticamente la acci&oacute;n de seguimiento y el n&uacute;mero de trazo. Puede definir la acci&oacute;n de seguimiento detallada desde la pesta&ntilde;a <a class="wn5-online-help-link" href="ptzInfoSetup.html#trace" ng-href="#/help/ptzSetup_ptzInfoSetup?#trace"><strong class="UI">[Trazo]</strong></a>.</li><!--  <ul>
                                                            <li><strong class="UI">시간</strong>: <u>추적 동작이 자동으로 실행되는 시간을 설정합니다.</u></li>
                                                             <li><strong class="UI">그룹</strong>: 추적 번호를 선택합니다. 추적 상세 기능은&nbsp;<a class="wn5-online-help-link" href="ptzInfoSetup.html#trace" ng-href="#/help/ptzSetup_ptzInfoSetup?#trace"><strong class="UI">[추적] 탭</strong></a>에서 설정할 수 있습니다.</li>
                                                         </ul> --><li><strong class="UI">Panor&aacute;mica autom.</strong>: Ejecuta la acci&oacute;n para girar 360 grados en la direcci&oacute;n de panor&aacute;mica autom&aacute;ticamente. Puede definir el tiempo para ejecutar la acci&oacute;n autom&aacute;ticamente, la velocidad de giro de la c&aacute;mara en la direcci&oacute;n de panor&aacute;mica y el &aacute;ngulo de fijaci&oacute;n de la inclinaci&oacute;n. Por ejemplo, si &amp;apos;30&apos; est&aacute; definido para el rango de inclinaci&oacute;n, el rango de inclinaci&oacute;n se mantendr&aacute; a 30 grados.</li><!--  <ul>

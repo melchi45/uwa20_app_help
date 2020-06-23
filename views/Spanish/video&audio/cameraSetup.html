@@ -528,11 +528,11 @@
             </div>
             <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
                 <h3>Iris m&aacute;ximo</h3>
-                <p>Se activa cuando el modo <strong class="UI">[Diafragma]</strong> est&aacute; configurado en <strong class="UI">[Auto]</strong>, y establece el valor de posici&oacute;n del iris que autom&aacute;ticamente abrir&aacute; el iris al m&aacute;ximo. Se abre en un ambiente oscuro poco iluminado.</p>
+                <p>Se activa cuando el modo <strong class="UI">[Diafragma]</strong> est&aacute; configurado en <strong class="UI">[Automático]</strong>, y establece el valor de posici&oacute;n del iris que autom&aacute;ticamente abrir&aacute; el iris al m&aacute;ximo. Se abre en un ambiente oscuro poco iluminado.</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
                 <h3>Iris preferido</h3>
-                <p>Se activa cuando el modo <strong class="UI">[Diafragma]</strong> est&aacute; configurado en <strong class="UI">[Auto]</strong>, y establece el valor preferido de la posici&oacute;n del diafragma con brillo normal. El rango de este valor se establece en un valor inferior al que estaba en <strong class="UI">[Posici&oacute;n m&aacute;xima del diafragma]</strong>.</p>
+                <p>Se activa cuando el modo <strong class="UI">[Diafragma]</strong> est&aacute; configurado en <strong class="UI">[Automático]</strong>, y establece el valor preferido de la posici&oacute;n del diafragma con brillo normal. El rango de este valor se establece en un valor inferior al que estaba en <strong class="UI">[Posici&oacute;n m&aacute;xima del diafragma]</strong>.</p>
             </div><!-- !EFLensSupport  ???. ??? ???. TNB-9000. 2019-11-15 --> <!-- Lens -> IrisFnoOptions (PNO-A9081. ??? ???. 2019-10-11) -> Lens? ???. TW. TNB-9000? QNB-8002 ?? ??. 2019-11-27--><div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
                 <h3>Lente</h3>
             <p>Seleccione entre DC (autom&aacute;tico), manual, e Iris P disponibles.</p>
@@ -561,7 +561,7 @@
                 <ul>
                     <li><strong class="UI">Des</strong>: Deshabilita la funci&oacute;n AGC que aclara las im&aacute;genes oscura amplificando la ganancia de la se&ntilde;al de v&iacute;deo.Cuando se selecciona esta opci&oacute;n, [SSNR] y [D&iacute;a/Noche] no funcionan.</li>
                     <li><strong class="UI">Manual:</strong>: Ajusta manualmente el valor de AGC.</li>
-                    <li><strong class="UI">Ganancia m&aacute;x.</strong>: Establece la m&aacute;xima ganancia que puede ser autocontrolada dependiendo del brillo del entorno.</li>
+                    <li><strong class="UI">Ganancia máx.</strong>: Establece la m&aacute;xima ganancia que puede ser autocontrolada dependiendo del brillo del entorno.</li>
                 </ul>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
@@ -570,9 +570,9 @@
                 <p>Si se selecciona [Manual] en [AGC], se activa [Nivel (manual)].</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
-            <h3>Nivel (ganancia m&aacute;x.)</h3>
+            <h3>Nivel (ganancia máx.)</h3>
                 <p>Establece el valor de ganancia m&aacute;xima. : Controla la ganancia m&aacute;xima que se puede establecer dependiendo del brillo del entorno. Cuanto m&aacute;s alto sea el valor del nivel, m&aacute;s alta ser&aacute; la ganancia m&aacute;xima.</p>
-                <p>Si se selecciona [Ganancia m&aacute;x.] en [AGC], se activar&aacute; [Nivel (ganancia m&aacute;x.)].</p>
+                <p>Si se selecciona [Ganancia máx.] en [AGC], se activar&aacute; [Nivel (ganancia máx.)].</p>
             </div>
             <div class="wn5-online-help-info" ng-if="MinShutterOptions || SSNR2DLevel || AGCModeOptions">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
@@ -584,7 +584,7 @@
                     <li ng-if="SSNR2DLevel">Ya que la funci&oacute;n de detecci&oacute;n de movimiento se utiliza internamente cuando el Wise NR (SSNR 2D y SSNR 3D) est&aacute; habilitado para detectar movimiento en v&iacute;deo, se detecta de acuerdo con la condici&oacute;n operativa del evento de detecci&oacute;n de movimiento. Para obtener informaci&oacute;n detallada sobre la configuraci&oacute;n de la detecci&oacute;n de movimiento, vaya a <strong class="UI">[An&aacute;lisis]</strong> &gt; <strong class="UI">[Detecci&oacute;n de movimiento]</strong>.</li>
                     <li ng-if="AGCModeOptions">A medida que aumenta el uso de AGC, tambi&eacute;n aumenta el valor SSNR 3D, lo que podr&iacute;a llevar a un parpad en el v&iacute;deo.</li>
                     <li ng-if="AGCModeOptions">La acci&oacute;n del AGC incrementa el ruido de la pantalla.</li>
-                    <li ng-if="AGCModeOptions && AGCMaxGainLevel">Si la opci&oacute;n del modo AGC est&aacute; ajustada a [Des.] o [Manual], o si el valor de [Ganancia m&aacute;x.] est&aacute; ajustado por debajo de 30 db, [D&iacute;a/Noche] no se podr&aacute; ajustar a [Auto].</li>
+                    <li ng-if="AGCModeOptions && AGCMaxGainLevel">Si la opci&oacute;n del modo AGC est&aacute; ajustada a [Des.] o [Manual], o si el valor de [Ganancia m&aacute;x.] est&aacute; ajustado por debajo de 30 db, [D&iacute;a/Noche] no se podr&aacute; ajustar a [Automático].</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>
@@ -782,7 +782,7 @@
             <p>Ajusta si se va a mostrar un t&iacute;tulo de c&aacute;mara o no. Si selecciona <strong class="UI">[Activar]</strong>, se activar&aacute;n los botones <strong class="UI">[Agregar]</strong>/<strong class="UI">[Eliminar]</strong>.</p>
             <p>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong> para a&ntilde;adir un campo en el que pueda introducir el nombre de la c&aacute;mara para la lista.Introduzca el t&iacute;tulo de su c&aacute;mara y mueva el cursor para establecer su ubicaci&oacute;n.Puede a&ntilde;adir hasta 5 t&iacute;tulos de c&aacute;mara.</p>
                 <p>Para eliminar un t&iacute;tulo de c&aacute;mara, seleccione el nombre de la c&aacute;mara que desee eliminar y haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>. Despu&eacute;s de introducir el t&iacute;tulo de la c&aacute;mara, si desea ver c&oacute;mo se ve, introduzca el nombre de la c&aacute;mara y haga clic en el bot&oacute;n <strong class="UI">[Vista previa]</strong>.</p>
-                
+
                 <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">En la [Posici&oacute;n]</strong>columna,<strong class="UI">haga clic en el bot&oacute;n [Mover]</strong>. Luego, la posici&oacute;n OSD se mostrar&aacute; como un icono de forma triangular en la pantalla de v&iacute;deo de vista previa. Puede mover el icono para ajustar la posici&oacute;n del OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -807,7 +807,7 @@
             <ul>
                 <li><strong class="UI">Posici&oacute;n PTZ</strong>: Define si se mostrar&aacute; o no la ubicaci&oacute;n PTZ en la pantalla.</li>
                 <li><strong class="UI">Nombre predefinido</strong>: Establece si se mostrar&aacute; o no el nombre de la configuraci&oacute;n predefinida en la pantalla.</li>
-                <li><strong class="UI">ID c&aacute;mara</strong>: Define si se debe mostrar el n&uacute;mero de c&aacute;mara en la pantalla o no.</li><!-- <li ng-if="RS485Support"><strong class="UI">??? ID</strong>: ??? ??? ID ?? ?? ??? ?????.</li> --><li><strong class="UI">Azimut</strong>: La funci&oacute;n se utiliza para mostrar el azimut del &aacute;rea que est&aacute; viendo actualmente en la pantalla. Cuando la funci&oacute;n est&aacute; activada, las 8 direcciones de E(Este)/W(Oeste)/S(Sur)/N(Norte)/NE(Noreste)/NW(Noroeste)/SE(Sudeste)/SW(Suroeste) se muestran en la parte inferior derecha de la pantalla.</li>
+                <li ng-if="CameraIDEnable"><strong class="UI">ID c&aacute;mara</strong>: Define si se debe mostrar el n&uacute;mero de c&aacute;mara en la pantalla o no.</li><!-- <li ng-if="RS485Support"><strong class="UI">??? ID</strong>: ??? ??? ID ?? ?? ??? ?????.</li> --><li><strong class="UI">Azimut</strong>: La funci&oacute;n se utiliza para mostrar el azimut del &aacute;rea que est&aacute; viendo actualmente en la pantalla. Cuando la funci&oacute;n est&aacute; activada, las 8 direcciones de E(Este)/W(Oeste)/S(Sur)/N(Norte)/NE(Noreste)/NW(Noroeste)/SE(Sudeste)/SW(Suroeste) se muestran en la parte inferior derecha de la pantalla.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="ZoomOnlyModel">
@@ -892,7 +892,7 @@
             <p>Para usar el zoom digital, seleccione <strong class="UI">[Act]</strong>.</p>
         </div>
 		<div class="wn5-setup-section-article-content">
-            <h3>L&iacute;mite de zoom digital</h3>
+            <h3>Zoom digital máximo</h3>
             <p>Ajusta el rango m&aacute;ximo de zoom digital disponible. Puede ajustar el rango del zoom digital fijando <strong class="UI">[Zoom digital]</strong> to <strong class="UI">[Act]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -1019,7 +1019,7 @@
             <ul>
                 <li><strong class="UI">Des</strong>: Apaga el LED IR.</li>
                 <li><strong class="UI">Act</strong>: Enciende el LED IR. Este modo deshabilita <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong>.</li>
-                <li><strong class="UI">D&iacute;a/Noche</strong>: Enciende/apaga el IR seg&uacute;n sea d&iacute;a/noche. Esto significa que, luego de activar D&iacute;a/Noche, el LED se apaga cuando el v&iacute;deo est&aacute; en modo color y se enciende cuando el v&iacute;deo est&aacute; en modo B/N. Si se selecciona este modo, <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong> se ajusta autom&aacute;ticamente a [Auto] y no se puede cambiar el ajuste.</li>
+                <li><strong class="UI">D&iacute;a/Noche</strong>: Enciende/apaga el IR seg&uacute;n sea d&iacute;a/noche. Esto significa que, luego de activar D&iacute;a/Noche, el LED se apaga cuando el v&iacute;deo est&aacute; en modo color y se enciende cuando el v&iacute;deo est&aacute; en modo B/N. Si se selecciona este modo, <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong> se ajusta autom&aacute;ticamente a [Automático] y no se puede cambiar el ajuste.</li>
                 <li><strong class="UI">Sensor</strong>: IR y D&iacute;a/Noche cambia seg&uacute;n la cantidad de luz que detecta el sensor &oacute;ptico. Este modo deshabilita <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong>.</li>
                 <li><strong class="UI">Temporizado</strong>: Configura la hora en que se enciende el IR. Este modo deshabilita <strong class="UI"><a href="#daynight">[D&iacute;a/Noche]</a></strong>.</li>
             </ul>
@@ -1042,7 +1042,7 @@
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Control de potencia LED</h3>
-            <p>Seleccione <strong class="UI">[Auto]</strong> para controlar el estado de saturaci&oacute;n de la pantalla ante la presencia de objetos cercanos. Si selecciona <strong class="UI">[Des.]</strong>, no se controlar&aacute; la saturaci&oacute;n de la pantalla, a&uacute;n si est&aacute; saturada.</p>
+            <p>Seleccione <strong class="UI">[Automático]</strong> para controlar el estado de saturaci&oacute;n de la pantalla ante la presencia de objetos cercanos. Si selecciona <strong class="UI">[Des.]</strong>, no se controlar&aacute; la saturaci&oacute;n de la pantalla, a&uacute;n si est&aacute; saturada.</p>
         </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>

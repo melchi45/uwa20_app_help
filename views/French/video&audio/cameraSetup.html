@@ -409,9 +409,9 @@
                 <p>D&eacute;finit l&rsquo;option d&rsquo;action WDR.</p>
                 <ul>
                     <li><strong class="UI">Toujours activé</strong> : le mode WDR est activ&eacute; en permanence.</strong></li>
-                    <li><strong class="UI">Auto&nbsp;:</strong> La vid&eacute;o est analys&eacute;e et le mode WDR est automatiquement activ&eacute; lorsque la correction de contre-jour est n&eacute;cessaire.</li>
-                    <li><strong class="UI">D&eacute;sactivez si la luminosit&eacute; est faible :</strong> Le mode WDR est automatiquement d&eacute;sactiv&eacute; dans un environnement faiblement &eacute;clair&eacute;.</li>
-                    <li><strong class="UI">D&eacute;sactiv&eacute; en N/B :</strong> Le mode WDR est automatiquement d&eacute;sactiv&eacute; si le mode N/B est utilis&eacute;.</li>
+                    <li><strong class="UI">Automatique :</strong> La vid&eacute;o est analys&eacute;e et le mode WDR est automatiquement activ&eacute; lorsque la correction de contre-jour est n&eacute;cessaire.</li>
+                    <li><strong class="UI">Eteindre faible lumière :</strong> Le mode WDR est automatiquement d&eacute;sactiv&eacute; dans un environnement faiblement &eacute;clair&eacute;.</li>
+                    <li><strong class="UI">IR désactivé :</strong> Le mode WDR est automatiquement d&eacute;sactiv&eacute; si le mode N/B est utilis&eacute;.</li>
                 </ul>
             </div>
         <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
@@ -513,9 +513,9 @@
             </div><!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
                       tnb-9000 ?? ????? IrisModeOptions || EFLensSupport? ?? ??. TW. 2019-11-29 
             <div class="wn5-setup-section-article-content" ng-if="IrisModeOptions"> --><div class="wn5-setup-section-article-content" ng-if="IrisModeOptions || EFLensSupport">
-                <h3>Iris</h3><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>S&eacute;lectionnez (Auto), manuel, ou P-Iris.</p>
+                <h3>Iris</h3><!-- <p>DC(??), ??, P-??? ?? ??? ? ????.</p>  --><p>S&eacute;lectionnez (Automatique), manuel, ou P-Iris.</p>
             <ul>
-                <li><strong class="UI">DC (Auto)</strong>&nbsp;: Ajuste automatiquement l&rsquo;iris en fonction de l&rsquo;intensit&eacute; optique de l&rsquo;environnement.</li>
+                <li><strong class="UI">DC (Automatique)</strong>&nbsp;: Ajuste automatiquement l&rsquo;iris en fonction de l&rsquo;intensit&eacute; optique de l&rsquo;environnement.</li>
                 <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement la valeur F de l&rsquo;iris.</li><!-- PIrisModeOptions ??? ??? ???? XNV-6081? ?? ???? PIrisInIrisList? ???. ??? ??? ?? ?? --><li><strong class="UI">P-iris</strong>&nbsp;: Le r&eacute;glage de l&rsquo;obturateur s&rsquo;effectue &agrave; l&rsquo;aide d&rsquo;un moteur &agrave; enclenchement. Une grande profondeur de champ peut &ecirc;tre s&eacute;curis&eacute;e de sorte qu&rsquo;un certain nombre d&rsquo;objets &agrave; diff&eacute;rentes distances peuvent &ecirc;tre mis au point en m&ecirc;me temps.</li><!-- <li ng-if="PIrisInIrisList"><strong class="UI">P-???</strong>:  ?? ??? ?? ???? ?????. ??? ??? ?? ?? ??? ??? ???? ?? ? ?? ?? ??? ?? ? ????.  </li> --></ul>
             </div><!-- !EFLensSupport  ???. ??? ???. TNB-9000. 2019-11-15 --><div class="wn5-setup-section-article-content" ng-if="IrisFnoOptions && !EFLensSupport">
             <h3>Pas de F. Iris</h3>
@@ -529,16 +529,16 @@
             </div>
             <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
                 <h3>Valeur maximale de l&apos;iris</h3>
-                <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Auto]</strong>, il r&egrave;gle la valeur de la position de l&rsquo;iris qui ouvrira automatiquement l&rsquo;iris au maximum. Il s&rsquo;ouvre dans un environnement sombre et mal &eacute;clair&eacute;.</p>
+                <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Automatique]</strong>, il r&egrave;gle la valeur de la position de l&rsquo;iris qui ouvrira automatiquement l&rsquo;iris au maximum. Il s&rsquo;ouvre dans un environnement sombre et mal &eacute;clair&eacute;.</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
                 <h3>Iris favorite.</h3>
-                <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Auto]</strong>, il r&egrave;gle la valeur de la position de l&rsquo;iris qui est pr&eacute;f&eacute;r&eacute;e en luminosit&eacute; normale. La plage de cette valeur est r&eacute;gl&eacute;e &agrave; une valeur inf&eacute;rieure &agrave; ce qui &eacute;tait en <strong class="UI">[Position maximale de l&rsquo;iris]</strong>.</p>
+                <p>Fonction activ&eacute;e lorsque le mode <strong class="UI">[Iris]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Automatique]</strong>, il r&egrave;gle la valeur de la position de l&rsquo;iris qui est pr&eacute;f&eacute;r&eacute;e en luminosit&eacute; normale. La plage de cette valeur est r&eacute;gl&eacute;e &agrave; une valeur inf&eacute;rieure &agrave; ce qui &eacute;tait en <strong class="UI">[Position maximale de l&rsquo;iris]</strong>.</p>
             </div><!-- !EFLensSupport  ???. ??? ???. TNB-9000. 2019-11-15 --> <!-- Lens -> IrisFnoOptions (PNO-A9081. ??? ???. 2019-10-11) -> Lens? ???. TW. TNB-9000? QNB-8002 ?? ??. 2019-11-27--><div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
                 <h3>Objectif.</h3>
-            <p>S&eacute;lectionnez DC (Auto), manuel, ou tout P-Iris disponible.</p>
+            <p>S&eacute;lectionnez DC (Automatique), manuel, ou tout P-Iris disponible.</p>
             <ul>
-                <li><strong class="UI">DC (Auto)</strong>&nbsp;: R&egrave;gle l&rsquo;iris en d&eacute;terminant la quantit&eacute; de lumi&egrave;re entrante.</li>
+                <li><strong class="UI">DC (Automatique)</strong>&nbsp;: R&egrave;gle l&rsquo;iris en d&eacute;terminant la quantit&eacute; de lumi&egrave;re entrante.</li>
                 <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle l&rsquo;iris manuellement.</li>
                 <li><strong class="UI">P-iris</strong>&nbsp;: Le r&eacute;glage de l&rsquo;obturateur s&rsquo;effectue &agrave; l&rsquo;aide d&rsquo;un moteur &agrave; enclenchement. Une grande profondeur de champ peut &ecirc;tre s&eacute;curis&eacute;e de sorte qu&rsquo;un certain nombre d&rsquo;objets &agrave; diff&eacute;rentes distances peuvent &ecirc;tre mis au point en m&ecirc;me temps. Il existe de nombreux types d&rsquo;iris diff&eacute;rents parmi lesquels vous pouvez choisir.</li>
             </ul>
@@ -563,7 +563,7 @@
                 <ul>
                     <li><strong class="UI">D&eacute;sactiv&eacute;</strong>: D&eacute;sactive la fonction CAG qui &eacute;claire une image sombre en amplifiant le gain provenant du signal vid&eacute;o.Si cette option est s&eacute;lectionn&eacute;e, [SSNR] et [Diurne/Nocturne] ne fonctionnent pas.</li>
                     <li><strong class="UI">Manuel&nbsp;:</strong>: Ajuste manuellement la valeur CAG.</li>
-                    <li><strong class="UI">Gain max.</strong>: D&eacute;finit le gain max. qui peut &ecirc;tre auto-contr&ocirc;l&eacute; en fonction de la luminosit&eacute; de l&rsquo;environnement.</li>
+                    <li><strong class="UI">Max. à nouveau</strong>: D&eacute;finit le gain max. qui peut &ecirc;tre auto-contr&ocirc;l&eacute; en fonction de la luminosit&eacute; de l&rsquo;environnement.</li>
                 </ul>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
@@ -572,9 +572,9 @@
                 <p>Si [Manuel] est s&eacute;lectionn&eacute; dans [CAG], [Niveau (manuel)] est activ&eacute;.</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
-            <h3>Niveau (gain max.)</h3>
+            <h3>Niveau (Max. à nouveau)</h3>
                 <p>D&eacute;finit la valeur du gain max. : Contr&ocirc;le le gain max. qui peut &ecirc;tre d&eacute;fini sur la base de la luminosit&eacute; de l&rsquo;environnement. Plus la valeur du niveau est &eacute;lev&eacute;e, plus important est le gain max.</p>
-                <p>Si [Gain max.] est s&eacute;lectionn&eacute; dans [CAG], [Niveau (gain max.)] est activ&eacute;.</p>
+                <p>Si [Max. à nouveau] est s&eacute;lectionn&eacute; dans [CAG], [Niveau (Max. à nouveau)] est activ&eacute;.</p>
             </div>
             <div class="wn5-online-help-info" ng-if="MinShutterOptions || SSNR2DLevel || AGCModeOptions">
                 <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
@@ -586,7 +586,7 @@
                     <li ng-if="SSNR2DLevel">Puisque la fonction de d&eacute;tection de mouvement est utilis&eacute;e en interne lorsque le Wise NR (SSNR 2D et SSNR 3D) est activ&eacute; pour d&eacute;tecter le mouvement dans la vid&eacute;o, elle est d&eacute;tect&eacute;e en fonction de l&rsquo;&eacute;tat de fonctionnement de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de mouvement. Pour les r&eacute;glages d&eacute;taill&eacute;s de d&eacute;tection de mouvement, allez &agrave; <strong class="UI">[Analyse]</strong> &gt; <strong class="UI">[D&eacute;tection de mouvement]</strong>.</li>
                     <li ng-if="AGCModeOptions">Puisque l&rsquo;usage d&rsquo;CAG augmente, la valeur SSNR 3D pour SSNR augmente aussi, ce qui peut conduire &agrave; un b&eacute;gaiement de la vid&eacute;o.</li>
                     <li ng-if="AGCModeOptions && AGCMaxGainLevel">L&rsquo;action CAG augmente le bruit de l&rsquo;&eacute;cran.</li>
-                    <li ng-if="AGCModeOptions">Si l&rsquo;option du mode CAG est d&eacute;fini sur [D&eacute;sactiv&eacute;] ou [Manuel], ou si la valeur [Gain max.] est d&eacute;finie en dessous de 30&nbsp;db, [Diurne/Nocturne] ne peut pas &ecirc;tre d&eacute;fini sur [Automatique].</li>
+                    <li ng-if="AGCModeOptions">Si l&rsquo;option du mode CAG est d&eacute;fini sur [D&eacute;sactiv&eacute;] ou [Manuel], ou si la valeur [Max. à nouveau] est d&eacute;finie en dessous de 30&nbsp;db, [Diurne/Nocturne] ne peut pas &ecirc;tre d&eacute;fini sur [Automatique].</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>
@@ -600,7 +600,7 @@
 <hr class="wn5-setup-hr" ng-if="DayNight">
 <div class="wn5-setup-section" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
-        <h2><a name="daynight"></a>Diurne/nocturne</h2>
+        <h2><a name="daynight"></a>Diurne/Nocturne</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
@@ -612,7 +612,7 @@
             <ul>
                 <li><strong class="UI">Couleur</strong>&nbsp;: Affiche une image en couleur.</li>
                 <li><strong class="UI">N/B</strong>&nbsp;: Affiche toujours une image en noir et blanc.</li>
-                    <li><strong class="UI">Automatique</strong>&nbsp;: Il passe en mode couleur le jour et en noir et blanc la nuit ou &agrave; l&rsquo;heure avec une faible luminosit&eacute;.Toutefois, si <strong class="UI">[CAG]</strong> dans <strong class="UI">[Exposition]</strong> est d&eacute;fini sur <strong class="UI">[D&eacute;sactiv&eacute;]</strong> ou <strong class="UI">[Manuel]</strong> ou si <strong class="UI">[Gain max.]</strong> est d&eacute;fini en dessous de 30&nbsp;db, [Diurne/Nocturne] ne peut pas &ecirc;tre d&eacute;fini sur [Automatique].</li>
+                    <li><strong class="UI">Automatique</strong>&nbsp;: Il passe en mode couleur le jour et en noir et blanc la nuit ou &agrave; l&rsquo;heure avec une faible luminosit&eacute;.Toutefois, si <strong class="UI">[CAG]</strong> dans <strong class="UI">[Exposition]</strong> est d&eacute;fini sur <strong class="UI">[D&eacute;sactiv&eacute;]</strong> ou <strong class="UI">[Manuel]</strong> ou si <strong class="UI">[Max. à nouveau]</strong> est d&eacute;fini en dessous de 30&nbsp;db, [Diurne/Nocturne] ne peut pas &ecirc;tre d&eacute;fini sur [Automatique].</li>
                 <li><strong class="UI">Entr&eacute;e externe</strong>&nbsp;: Lorsqu&rsquo;une borne d&rsquo;entr&eacute;e d&rsquo;alarme est reli&eacute;e &agrave; un &eacute;quipement externe, la couleur et le noir et blanc de la vid&eacute;o peuvent &ecirc;tre contr&ocirc;l&eacute;s.</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
                 </li> --><li><strong class="UI">Calendrier</strong>&nbsp;: Jour/Nuit est modifi&eacute; pour passer au calendrier d&eacute;fini &agrave; partir de <strong class="UI">[Heure d&rsquo;activation (couleur)]</strong>.</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ??? ?????.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ???? ?????.</li>  --></ul>
@@ -750,9 +750,9 @@
                 <li><strong class="UI">Manuel</strong>&nbsp;: R&egrave;gle manuellement le niveau de correction de distorsion.</li>
                     <li><strong class="UI">Automatique</strong>R&egrave;gle automatiquement la distorsion de l&rsquo;image.</li>
                     <li><strong class="UI">Remplissage (Manuel)</strong>: Corrige la vid&eacute;o avec le mode Remplissage. Les valeurs de correction peuvent &ecirc;tre manuellement ajust&eacute;es dans [Niveau LDC].</li>
-                    <li><strong class="UI">Remplissage (Auto)</strong>: Corrige la vid&eacute;o avec le mode Remplissage. Les valeurs de correction sont automatiquement d&eacute;finies. Puisque le mode Remplissage maintient les champs visuels angulaires des parties inf&eacute;rieures et sup&eacute;rieures de l&rsquo;&eacute;cran, l&rsquo;extr&eacute;mit&eacute; gauche et droite de la vid&eacute;o peuvent &ecirc;tre d&eacute;coup&eacute;es.</li>
+                    <li><strong class="UI">Remplissage (Automatique)</strong>: Corrige la vid&eacute;o avec le mode Remplissage. Les valeurs de correction sont automatiquement d&eacute;finies. Puisque le mode Remplissage maintient les champs visuels angulaires des parties inf&eacute;rieures et sup&eacute;rieures de l&rsquo;&eacute;cran, l&rsquo;extr&eacute;mit&eacute; gauche et droite de la vid&eacute;o peuvent &ecirc;tre d&eacute;coup&eacute;es.</li>
                     <li><strong class="UI">&Eacute;tirement (Manuel)</strong>: Corrige la vid&eacute;o avec le mode &Eacute;tirement. Les valeurs de correction peuvent &ecirc;tre manuellement ajust&eacute;es dans [Niveau LDC].</li>
-                    <li><strong class="UI">&Eacute;tirement (Auto)</strong>: Corrige la vid&eacute;o avec le mode &Eacute;tirement. Les valeurs de correction sont automatiquement d&eacute;finies. Puisque le mode Remplissage maintient les champs visuels angulaires des parties inf&eacute;rieures, sup&eacute;rieures, gauches et droites de l&rsquo;&eacute;cran, aucune des zones dans l&rsquo;enregistrement vid&eacute;o original n&rsquo;est perdue, mais le rapport de format de la vid&eacute;o n&rsquo;est pas maintenue.</li><!-- <li ng-if="LDCAuto"><strong class="UI">??</strong>: ???? ?? ??? ?????.  </li> --></ul>
+                    <li><strong class="UI">&Eacute;tirement (Automatique)</strong>: Corrige la vid&eacute;o avec le mode &Eacute;tirement. Les valeurs de correction sont automatiquement d&eacute;finies. Puisque le mode Remplissage maintient les champs visuels angulaires des parties inf&eacute;rieures, sup&eacute;rieures, gauches et droites de l&rsquo;&eacute;cran, aucune des zones dans l&rsquo;enregistrement vid&eacute;o original n&rsquo;est perdue, mais le rapport de format de la vid&eacute;o n&rsquo;est pas maintenue.</li><!-- <li ng-if="LDCAuto"><strong class="UI">??</strong>: ???? ?? ??? ?????.  </li> --></ul>
         </div>
         <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
@@ -786,6 +786,7 @@
             <p>Cliquez sur le bouton <strong class="UI">[Ajouter]</strong> pour ajouter un champ o&ugrave; vous pouvez entrer le nom de la cam&eacute;ra dans la liste.Saisissez le titre de votre cam&eacute;ra et d&eacute;placez le curseur pour d&eacute;finir son emplacement.Vous pouvez ajouter jusqu&rsquo;&agrave; 5 titres de cam&eacute;ra.</p>
                 <p>Pour supprimer un titre de cam&eacute;ra, s&eacute;lectionnez un nom de cam&eacute;ra &agrave; supprimer et cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Apr&egrave;s avoir entr&eacute; le titre de la cam&eacute;ra, si vous voulez voir &agrave; quoi elle ressemble, entrez le nom de la cam&eacute;ra et cliquez sur le bouton <strong class="UI">[Priview]</strong>.</p>
 
+
                 <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">Dans la colonne</strong>[Position],<strong class="UI">cliquez sur le bouton</strong>[D&eacute;placer]. La position OSD s&rsquo;affiche sous forme d&rsquo;un ic&ocirc;ne triangulaire sur l&rsquo;&eacute;cran vid&eacute;o pr&eacute;c&eacute;dent. Vous pouvez d&eacute;placer l&rsquo;ic&ocirc;ne pour ajuster la position de l&rsquo;OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -810,7 +811,7 @@
             <ul>
                 <li><strong class="UI">Position PTZ</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non la position PTZ &agrave; l&rsquo;&eacute;cran.</li>
                 <li><strong class="UI">Pr&eacute;r&eacute;gler nom</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non le nom pr&eacute;r&eacute;gl&eacute; &agrave; l&rsquo;&eacute;cran.</li>
-                <li><strong class="UI">ID de cam&eacute;ra</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non le num&eacute;ro de cam&eacute;ra &agrave; l&rsquo;&eacute;cran.</li><!-- <li ng-if="RS485Support"><strong class="UI">??? ID</strong>: ??? ??? ID ?? ?? ??? ?????.</li> --><li><strong class="UI">Azimut</strong>&nbsp;: La fonction est utilis&eacute;e pour afficher l&rsquo;azimut de la zone que vous &ecirc;tes en train de regarder sur l&rsquo;&eacute;cran. Lorsque la fonction est activ&eacute;e, les 8 directions E(Est)/W(Ouest)/S(Sud)/N(Nord)/NE(Nord-Est)/NW(Nord-Ouest)/SE(Sud-Est)/SW(Sud-Ouest) sont affich&eacute;es en bas &agrave; droite de l&rsquo;&eacute;cran.</li>
+                <li ng-if="CameraIDEnable"><strong class="UI">ID de cam&eacute;ra</strong>&nbsp;: D&eacute;finit s&rsquo;il faut afficher ou non le num&eacute;ro de cam&eacute;ra &agrave; l&rsquo;&eacute;cran.</li><!-- <li ng-if="RS485Support"><strong class="UI">??? ID</strong>: ??? ??? ID ?? ?? ??? ?????.</li> --><li><strong class="UI">Azimut</strong>&nbsp;: La fonction est utilis&eacute;e pour afficher l&rsquo;azimut de la zone que vous &ecirc;tes en train de regarder sur l&rsquo;&eacute;cran. Lorsque la fonction est activ&eacute;e, les 8 directions E(Est)/W(Ouest)/S(Sud)/N(Nord)/NE(Nord-Est)/NW(Nord-Ouest)/SE(Sud-Est)/SW(Sud-Ouest) sont affich&eacute;es en bas &agrave; droite de l&rsquo;&eacute;cran.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="ZoomOnlyModel">
@@ -819,11 +820,11 @@
         </div>
 		
         <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
-            <h3>Superposition d&rsquo;image</h3>
+            <h3>Overlay image</h3>
             <p>L&rsquo;image s&eacute;lectionn&eacute;e peut s&rsquo;afficher en haut et &agrave; gauche de l&rsquo;&eacute;cran. Le menu <strong class="UI">[Upload image]</strong> vous permet de charger des images.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
-            <h3>Cliquez sur le bouton Charger une image</h3>
+            <h3>Upload image</h3>
             <p><strong class="UI">[...]</strong>pour rechercher des fichiers en format bitmap. Cliquez sur le bouton <strong class="UI">[Upload]</strong> pour charger des fichiers d&rsquo;image. Pour supprimer des fichiers d&rsquo;image appliqu&eacute;s &agrave; l&rsquo;&eacute;cran, cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Les sp&eacute;cifications de l&rsquo;image sont un fichier 16-bit (RGB565 non pris en charge) ou un fichier bitmap 24-bit. Sa taille doit &ecirc;tre de 128x128 pixels fixe, et la taille du fichier doit &ecirc;tre de 52&nbsp;Ko ou moins.</p>
         </div>
 		
@@ -1042,7 +1043,7 @@
             <p>D&eacute;finissez la luminosit&eacute; maximum de l&rsquo;IR.</p>
         </div>
         <div class="wn5-setup-section-article-content">
-            <h3>LED de commande de l&rsquo;alim.</h3>
+            <h3>LED de commande d’alimentation</h3>
             <p>S&eacute;lectionnez <strong class="UI">[Automatique]</strong> pour contr&ocirc;ler l&rsquo;&eacute;tat de la saturation de l&rsquo;&eacute;cran en raison de la pr&eacute;sence d&rsquo;objets &agrave; proximit&eacute;. Si <strong class="UI">[D&eacute;sactiv&eacute;]</strong> est s&eacute;lectionn&eacute;, la saturation de l&rsquo;&eacute;cran ne sera pas contr&ocirc;l&eacute;e, m&ecirc;me s&rsquo;il est satur&eacute;.</p>
         </div>
         <div class="wn5-online-help-info">
