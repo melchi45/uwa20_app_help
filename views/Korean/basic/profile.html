@@ -244,13 +244,13 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="profiletype"></a>프로파일 타입</h3>
             <p>적용할 프로파일 타입을 선택합니다. 선택한 프로파일 타입은 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 표시됩니다. 선택한 코덱 타입에 따라 표시되는 설정 항목이 다를 수 있습니다.</p>
-            <p ng-if="SupportAutoImageAlignment">또한 <a href="#channel">채널 선택</a>에서 선택한 채널에 따라 설정할 수 있는 프로파일 타입이 다를 수 있습니다. 예를 들어 '에지 저장 프로파일'은 채널 1을 선택한 경우에만 설정할 수 있습니다.</p>
+            <p ng-if="SupportAutoImageAlignment">또한 <a href="#channel">채널 선택</a>에서 선택한 채널에 따라 설정할 수 있는 프로파일 타입이 다를 수 있습니다. 예를 들어 '저장 프로파일'은 채널 1을 선택한 경우에만 설정할 수 있습니다.</p>
             <ul>
                 <li><strong class="UI">기본 프로파일</strong>: 카메라의 영상을 라이브로 스트림할 때 적용되는 기본 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 ‘Default’로 표시됩니다.</li>
                 <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. <strong class="UI">[코덱]</strong>을 [MJPEG]으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다. </li>
                 <!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> -->
-                <li ng-if="Recording && NAS"><strong class="UI">에지 저장 프로파일</strong>: (micro)SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">에지 저장 프로파일</strong>: (micro)SD 카드에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <li ng-if="Recording && NAS"><strong class="UI">저장 프로파일</strong>: (micro)SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">저장 프로파일</strong>: (micro)SD 카드에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
                 <!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> 
                  <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  -->   
                  <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   -->  
@@ -476,8 +476,8 @@
 
             <ul>
                 <li>와이즈 스트림 기능을 사용하는 경우, 다이내믹 GOV와 다이내믹 FPS 기능을 사용하면 와이즈 스트림 성능이 최적화됩니다. 와이즈 스트림은 <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[와이즈 스트림]</strong> 메뉴에서 설정할 수 있습니다.</li>
-                <li ng-if="ATCModes">다이내믹 GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>이거나 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[에지 저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다.</li>
-                <li ng-if="!ATCModes">다이내믹 GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[에지 저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다.</li>
+                <li ng-if="ATCModes">다이내믹 GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>이거나 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다.</li>
+                <li ng-if="!ATCModes">다이내믹 GOV는 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다.</li>
             </ul>
 		</div>
 		    
@@ -501,8 +501,8 @@
 
             <ul>
                 <li>와이즈 스트림 기능을 사용하는 경우, 다이내믹 GOV와 다이내믹 FPS 기능을 사용하면 와이즈 스트림 성능이 최적화됩니다. 와이즈 스트림은 <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[와이즈 스트림]</strong> 메뉴에서 설정할 수 있습니다.</li>
-                <li ng-if="ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. 또한 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[에지 저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
-                <li ng-if="!ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[에지 저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
+                <li ng-if="ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. 또한 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
+                <li ng-if="!ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
             </ul>
 		</div>
         <div class="wn5-online-help-info" ng-if="!DynamicGOVSupport && DynamicFPSSupport">

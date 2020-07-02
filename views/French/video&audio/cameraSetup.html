@@ -308,7 +308,7 @@
         </div>  --><div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>Le mode BLC (Compensation du contre-jour) s&eacute;lectionne et corrige une zone sp&eacute;cifique d&rsquo;une image sombre captur&eacute;e en raison du contre-jour, afin de montrer plus clairement un objet dans la zone s&eacute;lectionn&eacute;e.</p>
-            <p ng-if="PTZModel">Si vous s&eacute;lectionnez le mode BLC, la r&eacute;gion choisie par d&eacute;faut appara&icirc;t sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Ajustez la taille de la zone en cliquant sur les boutons fl&eacute;ch&eacute;s de <strong class="UI"></strong>[R&eacute;glage coffre]. Plus le nombre que vous d&eacute;finissez dans <strong class="UI"></strong>[&Eacute;tape de la bo&icirc;te] est &eacute;lev&eacute;, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">Si vous s&eacute;lectionnez le mode BLC, la r&eacute;gion choisie par d&eacute;faut appara&icirc;t sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Ajustez la taille de la zone en cliquant sur les boutons fl&eacute;ch&eacute;s de <strong class="UI"></strong>[R&eacute;glage coffre]. Plus le nombre que vous d&eacute;finissez dans <strong class="UI"></strong>[&Eacute;tape de la bo&icirc;te] est &eacute;lev&eacute;, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Niveau de la BLC</h5>
@@ -337,7 +337,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>Le mode (Compensation de luminosit&eacute; &eacute;lev&eacute;e) bloque la forte luminosit&eacute; comme un lampadaire de rue ou les phares d&rsquo;un v&eacute;hicule, pour &eacute;viter les d&eacute;fauts de d&eacute;tection d&rsquo;un objet avoisinant, comme une plaque d&rsquo;immatriculation de voiture, en raison de la saturation des fortes luminosit&eacute;s.</p>
-            <p ng-if="PTZModel">Si vous s&eacute;lectionnez le mode HLC, la r&eacute;gion choisie par d&eacute;faut appara&icirc;t sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Ajustez la taille de la zone en cliquant sur les boutons fl&eacute;ch&eacute;s de <strong class="UI"></strong>[R&eacute;glage coffre]. Plus le nombre que vous d&eacute;finissez dans <strong class="UI"></strong>[&Eacute;tape de la bo&icirc;te] est &eacute;lev&eacute;, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">Si vous s&eacute;lectionnez le mode HLC, la r&eacute;gion choisie par d&eacute;faut appara&icirc;t sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Ajustez la taille de la zone en cliquant sur les boutons fl&eacute;ch&eacute;s de <strong class="UI"></strong>[R&eacute;glage coffre]. Plus le nombre que vous d&eacute;finissez dans <strong class="UI"></strong>[&Eacute;tape de la bo&icirc;te] est &eacute;lev&eacute;, plus la taille de la zone change lorsque vous cliquez sur les boutons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Niveau HLC</h5>
@@ -491,7 +491,7 @@
                 <li><strong class="UI">Activ&eacute;/D&eacute;sactiv&eacute;</strong>&nbsp;: D&eacute;finit s&rsquo;il faut ou non utiliser la fonction SSNR. Si vous s&eacute;lectionnez <strong class="UI">[Activ&eacute;]</strong>, il est alors possible d&rsquo;ajuster le niveau du SSNR.</li>
                 <li><strong class="UI">Wise NR</strong>&nbsp;: Lorsqu&rsquo;un objet en mouvement se trouve dans l&rsquo;image, le niveau de r&eacute;duction du bruit est ajust&eacute; automatiquement pour am&eacute;liorer la pr&eacute;cision de l&rsquo;identification de l&rsquo;objet.</li><!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">??? NR</strong>: ?? ?? ???? ??? ??? ???? ??? ?? ??? ???? ??? ???? ??????.  </li> --></ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+        <div class="wn5-setup-section-article-content"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
             <h3>Niveau du SSNR</h3>
             <p>R&eacute;glez le niveau SSNR. Le r&eacute;glage peut &ecirc;tre utilis&eacute; en r&eacute;glant <strong class="UI">[SSNR]</strong> sur <strong class="UI">[Activé]</strong>.</p>
             <p>Plus le niveau est &eacute;lev&eacute;, moins il y a de bruits, mais la vid&eacute;o peut devenir floue.</p>

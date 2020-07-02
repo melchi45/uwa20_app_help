@@ -3,8 +3,8 @@
     <p>カメラが設置された環境で最適の映像を撮影するようにカメラの設定を変更することができます。様々な環境に適合した画像プリセットを基本的に提供し、ユーザーが直接にカメラの設定値を指定することもできます。カメラのプレビュー画面で設定した値によって、カメラの映像がどう表示されるか確認することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。設定を変更した後、<strong class="UI">[適用]</strong>ボタンをクリックせずにTime out時間(240秒)が経過すると、設定値が変更前に戻ります。</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="WDRControlModeOptions">
-<div class="wn5-setup-section" ng-if="WDRControlModeOptions">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
     <div class="wn5-setup-section-heading">
         <h2>比較ビュー</h2>
     </div>
@@ -83,7 +83,7 @@
             <p>設定したフォーカス保存リストを確認することができます。</p>
             <p>フォーカス位置を設定したり削除することができます。またフォーカスをカメラに適用することができます。</p>
             <ul>
-                <li><strong class="UI">移動</strong>：フォーカス保存リストで選択したフォーカス保存エリアに移動します。</li>
+                <li><strong class="UI">進む</strong>：フォーカス保存リストで選択したフォーカス保存エリアに移動します。</li>
                 <li><strong class="UI">設定</strong>：撮像している画面をフォーカス保存エリアに保存します。フォーカス保存名や番号を設定することができます。名前は最大12文字入力できます。アルファベット(A~Z、a~z)&amp;数字(0~9)を入力できます。スペースは入力できません。</li>
                 <li><strong class="UI">削除</strong>：フォーカス保存リストで選択したフォーカス保存エリアを削除します。</li>
             </ul>
@@ -307,7 +307,7 @@
         </div>  --><div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Back Light Compensation)モードは、逆光で暗く撮影された映像にユーザーが特定エリアを設定して選択エリアの対象物がよく表示されるように補正します。</p>
-            <p ng-if="PTZModel">BLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">BLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLCレベル</h5>
@@ -335,8 +335,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
-            <p>HLC (High Light Compensation)モードは街灯や車のヘッドライトのように強い照明を効果的に遮断して<strike></strike>強い照明の飽和によって車のナンバープレートなどの周囲にある物事が識別できないことを防止します。</p>
-            <p ng-if="PTZModel">HLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
+            <p>HLC (High Light Compensation)モードは街灯や車のヘッドライトのように強い照明を効果的に遮断して強い照明の飽和によって車のナンバープレートなどの周囲にある物事が識別できないことを防止します。</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">HLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLCレベル</h5>
@@ -403,7 +403,7 @@
             <h5>WDRレベル</h5>
             <p>バックライトのレベルを調整します。</p>
         </div>
-            <div class="wn5-setup-section-article-content"  ng-if="WDRControlModeOptions">
+            <div class="wn5-setup-section-article-content"  >
             <h5>WDRコントロール</h5>
                 <p>WDRの動作オプションを設定します。</p>
                 <ul>
@@ -490,7 +490,7 @@
                 <li><strong class="UI">On/Off</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[On]</strong>を選択すると、SSNRレベルを調整することができます。</li>
                 <li><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li><!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">??? NR</strong>: ?? ?? ???? ??? ??? ???? ??? ?? ??? ???? ??? ???? ??????.  </li> --></ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+        <div class="wn5-setup-section-article-content"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
             <h3>SSNR レベル</h3>
             <p>SSNR レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]</strong>に選択した場合、設定することができます。</p>
             <p>レベルを上げるほど、ノイズは低減するが映像がぼやけることがあります。</p>

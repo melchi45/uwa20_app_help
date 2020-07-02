@@ -328,7 +328,8 @@
         <div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Back Light Compensation) 모드는 역광으로 어둡게 촬영된 영상 중 사용자가 특정 영역을 설정하여 선택 영역의 물체가 더욱 잘 보이도록 보정합니다. </p>
-            <p ng-if="PTZModel">BLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
+            <!-- xnp-9300rw에서 hide돼야 해서 수정. 김영호 책임님. PTZModel => PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined. 2020-07-02 -->
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">BLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLC 레벨</h5>
@@ -356,8 +357,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
-            <p>HLC (High Light Compensation) 모드는 가로등이나 자동차 헤드라이트와 같은 강한 조명을 효과적으로 차단하여,<strike> </strike>강한 조명의 포화로 인해 차량 번호판 등의 주변 사물이 식별이 안 되는 것을 방지합니다. </p>
-            <p ng-if="PTZModel">HLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
+            <p>HLC (High Light Compensation) 모드는 가로등이나 자동차 헤드라이트와 같은 강한 조명을 효과적으로 차단하여, 강한 조명의 포화로 인해 차량 번호판 등의 주변 사물이 식별이 안 되는 것을 방지합니다. </p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">HLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLC 레벨 </h5>
@@ -519,7 +520,9 @@
                 <!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">지능형 NR</strong>: 영상 내에 움직이는 물체가 있으면 자동으로 노이즈 감쇄 레벨을 조절하여 물체의 식별력을 향상시킵니다.  </li> -->
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+
+        <!-- xnp-9300rw에서 hide돼야 하므로 코드 수정. SSNRLevel => SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined. 김영호 책임님. 2020-07-02. -->
+        <div class="wn5-setup-section-article-content"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
             <h3>SSNR 레벨 </h3>
             <p>SSNR 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>으로 선택한 경우 설정할 수 있습니다.</p>
             <p>레벨을 높일수록 노이즈가 저감되나 영상에 끌림이 발생되고 흐려질 수 있습니다.</p>

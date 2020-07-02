@@ -307,7 +307,7 @@
         </div>  --><div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Compensaci&oacute;n de la luz) selecciona el modo y corrige un &aacute;rea espec&iacute;fica de una imagen oscura capturada gracias a la retroiluminaci&oacute;n, para mostrar un objeto en el &aacute;rea seleccionada con mayor claridad.</p>
-            <p ng-if="PTZModel">Si selecciona el modo BLC, el &aacute;rea seleccionada por defecto aparecer&aacute; en la pantalla de v&iacute;deo de la c&aacute;mara. Ajuste el tama&ntilde;o del &aacute;rea haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el n&uacute;mero establecido en <strong class="UI">[Paso de caja]</strong>, mayor ser&aacute; el tama&ntilde;o del &aacute;rea al hacer clic en los botones.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">Si selecciona el modo BLC, el &aacute;rea seleccionada por defecto aparecer&aacute; en la pantalla de v&iacute;deo de la c&aacute;mara. Ajuste el tama&ntilde;o del &aacute;rea haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el n&uacute;mero establecido en <strong class="UI">[Paso de caja]</strong>, mayor ser&aacute; el tama&ntilde;o del &aacute;rea al hacer clic en los botones.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>Nivel de BLC</h5>
@@ -336,7 +336,7 @@
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>El modo HLC (Compensaci&oacute;n de luz alta) bloquea la iluminaci&oacute;n fuerte como el faro de una calle o las luces de un veh&iacute;culo, para prevenir fallas en la detecci&oacute;n de un objeto vecino, como la matr&iacute;cula de un auto, debido a la saturaci&oacute;n de luces fuertes.</p>
-            <p ng-if="PTZModel">Si selecciona el modo HLC, el &aacute;rea seleccionada por defecto aparecer&aacute; en la pantalla de v&iacute;deo de la c&aacute;mara. Ajuste el tama&ntilde;o del &aacute;rea haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el n&uacute;mero establecido en <strong class="UI">[Paso de caja]</strong>, mayor ser&aacute; el tama&ntilde;o del &aacute;rea al hacer clic en los botones.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">Si selecciona el modo HLC, el &aacute;rea seleccionada por defecto aparecer&aacute; en la pantalla de v&iacute;deo de la c&aacute;mara. Ajuste el tama&ntilde;o del &aacute;rea haciendo clic en los botones de flecha en <strong class="UI">[Ajuste de caja]</strong>. Cuanto mayor sea el n&uacute;mero establecido en <strong class="UI">[Paso de caja]</strong>, mayor ser&aacute; el tama&ntilde;o del &aacute;rea al hacer clic en los botones.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>Nivel HLC</h5>
@@ -490,7 +490,7 @@
                 <li><strong class="UI">Act/Des</strong>: Es posible activar o desactivar la funci&oacute;n SSNR. Si selecciona <strong class="UI">[Act]</strong>, podr&aacute; ajustar el nivel de SSNR.</li>
                 <li><strong class="UI">Wise NR</strong>: Cuando un objeto en movimiento est&aacute; en la imagen, el nivel de ruido reducido se ajusta autom&aacute;ticamente para mejorar la precisi&oacute;n de la identificaci&oacute;n del objeto.</li><!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">??? NR</strong>: ?? ?? ???? ??? ??? ???? ??? ?? ??? ???? ??? ???? ??????.  </li> --></ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+        <div class="wn5-setup-section-article-content"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
             <h3>Nivel de SSNR</h3>
             <p>Ajuste el nivel SSNR. El ajuste puede utilizarse si ajusta <strong class="UI">[SSNR]</strong> a <strong class="UI">[Act]</strong>.</p>
             <p>Mientras m&aacute;s alto sea el nivel, menos ruidos habr&aacute;, pero es posible que el v&iacute;deo se vuelva borroso.</p>

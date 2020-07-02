@@ -308,7 +308,7 @@
         </div>  --><div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>The BLC (Back Light Compensation) mode selects and corrects a specific area on a dark image captured against the light, to show an object in a selected area more clearly.</p>
-            <p ng-if="PTZModel">If you select BLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box step]</strong>, the larger the area size will change when you click the buttons.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">If you select BLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box step]</strong>, the larger the area size will change when you click the buttons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
             <h5>BLC level</h5>
@@ -336,8 +336,8 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
-            <p>The HLC (High Light Compensation) mode blocks strong lighting such as a streetlight or the headlights of a vehicle,<strike></strike>to prevent failures to detect a neighboring object, such as a car license plate, due to saturation of strong lights.</p>
-            <p ng-if="PTZModel">If you select HLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons.</p>
+            <p>The HLC (High Light Compensation) mode blocks strong lighting such as a streetlight or the headlights of a vehicle, to prevent failures to detect a neighboring object, such as a car license plate, due to saturation of strong lights.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">If you select HLC mode, the default selected area appears on the camera video screen. Adjust the size of the area by clicking the arrow buttons at <strong class="UI">[Box adjustment]</strong>. The higher the number you set in <strong class="UI">[Box Step]</strong>, the larger the area size will change when you click the buttons.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="HLC">
             <h5>HLC level</h5>
@@ -491,18 +491,18 @@
                 <li><strong class="UI">On/Off</strong>: Sets whether or not to use the SSNR function. When <strong class="UI">[On]</strong> is selected, the SSNR level can be adjusted.</li>
                 <li><strong class="UI">Wise NR</strong>: When a moving object is in the image, the noise reduction level is adjusted automatically to improve object discrimination.</li><!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">??? NR</strong>: ?? ?? ???? ??? ??? ???? ??? ?? ??? ???? ??? ???? ??????.  </li> --></ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNRLevel">
+        <div class="wn5-setup-section-article-content"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
             <h3>SSNR level</h3>
             <p>Set the SSNR level. The level can be set when <strong class="UI">[On]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
             <p>The higher the level, the less the noises, but then the video might become fuzzy.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
-            <h3>SSNR 2D Level</h3>
+            <h3>SSNR 2D level</h3>
             <p>SSNR 2D reduces noise on the image using adjacent pixels in one frame. Set the SSNR 2D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
             <p>The higher the level, the less the noises, but then the video might become fuzzy.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
-            <h3>SSNR 3D Level</h3>
+            <h3>SSNR 3D level</h3>
             <p>SSNR 3D reduces noise on the image using the pixels of various frames. Set the SSNR 3D level. The level can be set when <strong class="UI">[On]</strong> or <strong class="UI">[Wise NR]</strong> is selected for <strong class="UI">[SSNR]</strong>.</p>
             <p>The higher the level, the less the noises, but then the video might lag.</p>
         </div>
