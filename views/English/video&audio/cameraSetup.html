@@ -836,7 +836,7 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>In case of the item with a location that can be adjusted(camera title, date &amp; time), if it overlaps with other fixed OSD items, the screen may fail to display it properly.</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">The &apos;camera ID&apos; in [Overlay] is displayed at the left top of screen while the &apos;PTZ position&apos; is displayed at the left bottom of screen; The locations cannot be changed.</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
+                <li ng-if="(PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable">The &apos;camera ID&apos; in [Overlay] is displayed at the left top of screen while the &apos;PTZ position&apos; is displayed at the left bottom of screen; The locations cannot be changed.</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
         </div>
     </div>
 </div>

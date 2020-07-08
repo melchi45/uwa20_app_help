@@ -894,6 +894,7 @@
             <ul>
                 <li><strong class="UI">PTZ 좌표</strong>: 화면에 PTZ 위치 표시 여부를 설정합니다.</li>
                 <li><strong class="UI">프리셋 이름</strong>: 화면에 프리셋 이름 표시 여부를 설정합니다.</li>
+            <!-- xnp-9300rw에서 hide돼야 해서 추가. 김영호 책임님. CameraIDEnable. 2020-06-17 메일.  -->
                 <li ng-if="CameraIDEnable"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
                 <!-- <li ng-if="RS485Support"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li> -->
                 <li><strong class="UI">방위각</strong>: 현재 화면 상으로 보고있는 영역의 방위각을 표시하는 기능입니다. 기능 설정 시 E(동)/W(서)/S(남)/N(북)/NE(북동)/NW(북서)/SE(남동)/SW(남서)의 8방향으로 표시하며, 화면 우측 하단에 나타나게 됩니다.</li>
@@ -920,7 +921,9 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>위치 조정이 가능한 항목(카메라 타이틀, 날짜 및 시간)의 경우, 고정된 다른 OSD 항목과 겹칠 경우 정상적으로 화면에 표시되지 않을 수 있습니다.</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">[오버레이]의 '카메라 ID'는 화면 좌측 상단, 'PTZ 좌표'는 화면 좌측 하단에 표시되며 위치를 변경할 수 없습니다.</li>
+                <!-- xnp-9300rw에서 hide돼야 해서 변경. tw자체.  김영호 책임님이 알려준 코드 CameraIDEnable 추가. 2020-06-17 메일.
+                PTZModel || PanTiltOnlyModel || ZoomOnlyModel  => (PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable -->
+                <li ng-if="(PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable">[오버레이]의 '카메라 ID'는 화면 좌측 상단, 'PTZ 좌표'는 화면 좌측 하단에 표시되며 위치를 변경할 수 없습니다.</li>
                 <!-- <li>한글, 영어, 숫자, 기호만 사용할 수 있습니다. </li> -->
             </ul>
         </div>

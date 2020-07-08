@@ -565,12 +565,12 @@
                 </ul>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
-                <h3>Nivel (manual)</h3>
+                <h3>Nivel (Manual)</h3>
                 <p>Establece manualmente el valor del nivel de AGC como se desee. Cuanto m&aacute;s alto sea el valor de nivel, m&aacute;s alto ser&aacute; el valor de la ganancia, lo que resulta en una pantalla m&aacute;s brillante incluso en un ambiente oscuro.</p>
                 <p>Si se selecciona [Manual] en [AGC], se activa [Nivel (manual)].</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
-            <h3>Nivel (ganancia máx.)</h3>
+            <h3>Nivel (Ganancia máx.)</h3>
                 <p>Establece el valor de ganancia m&aacute;xima. : Controla la ganancia m&aacute;xima que se puede establecer dependiendo del brillo del entorno. Cuanto m&aacute;s alto sea el valor del nivel, m&aacute;s alta ser&aacute; la ganancia m&aacute;xima.</p>
                 <p>Si se selecciona [Ganancia máx.] en [AGC], se activar&aacute; [Nivel (ganancia máx.)].</p>
             </div>
@@ -829,7 +829,7 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>En el caso de un elemento con una ubicaci&oacute;n que se puede ajustar (t&iacute;tulo de la c&aacute;mara, fecha y hora), si se superpone con otros elementos fijos de OSD, puede que la pantalla no lo muestre correctamente.</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">El ID de la c&aacute;mara en [Superposici&oacute;n] se muestra en la parte superior izquierda de la pantalla, mientras que la «Posici&oacute;n de PTZ» se muestra en la parte inferior izquierda de la pantalla, pero las ubicaciones no se pueden cambiar.</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
+                <li ng-if="(PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable">El ID de la c&aacute;mara en [Superposici&oacute;n] se muestra en la parte superior izquierda de la pantalla, mientras que la «Posici&oacute;n de PTZ» se muestra en la parte inferior izquierda de la pantalla, pero las ubicaciones no se pueden cambiar.</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
         </div>
     </div>
 </div>

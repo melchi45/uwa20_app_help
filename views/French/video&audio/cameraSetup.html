@@ -833,7 +833,7 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Si l&rsquo;&eacute;l&eacute;ment dont l&rsquo;emplacement peut &ecirc;tre ajust&eacute; (titre de cam&eacute;ra, date et heure), s&rsquo;il se superpose avec d&rsquo;autres &eacute;l&eacute;ments OSD fixes, l&rsquo;&eacute;cran peut ne pas afficher l&rsquo;&eacute;l&eacute;ment correctement.</li>
-                <li ng-if="PTZModel || PanTiltOnlyModel || ZoomOnlyModel">L&rsquo;«&nbsp;ID de cam&eacute;ra&nbsp;» dans [Transparence] s&rsquo;affiche en haut et &agrave; gauche de l&rsquo;&eacute;cran alors que la «&nbsp;Position PTZ&nbsp;» s&rsquo;affiche en bas et &agrave; gauche de l&rsquo;&eacute;cran, les emplacements ne peuvent pas &ecirc;tre modifi&eacute;s.</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
+                <li ng-if="(PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable">L&rsquo;«&nbsp;ID de cam&eacute;ra&nbsp;» dans [Transparence] s&rsquo;affiche en haut et &agrave; gauche de l&rsquo;&eacute;cran alors que la «&nbsp;Position PTZ&nbsp;» s&rsquo;affiche en bas et &agrave; gauche de l&rsquo;&eacute;cran, les emplacements ne peuvent pas &ecirc;tre modifi&eacute;s.</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
         </div>
     </div>
 </div>
