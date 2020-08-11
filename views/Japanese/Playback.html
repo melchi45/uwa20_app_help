@@ -47,6 +47,14 @@
                         <td width="235">チャンネル選択</td>
                         <td width="235">チャンネルを選択した後、チャンネルごとに録画された映像を検索したり再生することができます。</td>
                     </tr>
+                    <tr ng-if="SupportChannelExpansionFeature">
+                        <td width="235">チャンネル選択</td>
+                        <td width="235">
+                            <p>チャンネル番号を選択すると、各チャンネルに保存されたビデオを再生することができます。</p>
+                            <p>チャンネル1は魚眼カメラのオリジナルビデオであり、その他のチャンネルはユーザーが選択したビューモードに設定して追加したものです。カメラチャンネルは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で追加することができます。</p>
+                            <p></p>
+                        </td>
+                    </tr>
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>

@@ -997,16 +997,29 @@
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">?? 2</strong>: ?? ??? ? ???? ?? ???? ??? ?? ???? IR? ??? ?????.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">??</strong>: ???? IR? ??? ?????.</li>
             </ul> --></div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!IRledZoneLevel">
             <h3>レベル</h3>
             <p>IRレベルを設定します。</p>
             <p>IRレベルは<strong class="UI">[モード]</strong>で<strong class="UI">[手動]</strong>を選択すると、有効になります。</p>
-        </div><!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+        </div>
+
+        <div class="wn5-setup-section-article-content" ng-if="IRledZoneLevel">
+            <h3>エリア1レベル</h3>
+                <p>IRレベルをエリア別に適用することができます。IRレベル値を高く設定するとIR明るさが明るくなり、IRレベル値を低く設定するとIR明るさが暗くなります。</p>
+                <p>IRレベルは<strong class="UI">[モード]</strong>で<strong class="UI">[マニュアル]</strong>を選択すると、有効になります。</p>
+                <p>IRレベルを設定できるエリア数はカメラ据付けモードオプションによってことなります。<strong class="UI">[カメラ据付けモード]</strong>を<strong class="UI">[壁]</strong>に設定した場合、IRレベルを2つのエリアで別に設定できます。<strong class="UI">[カメラ据付けモード]</strong>を<strong class="UI">[天井]</strong>に設定した場合、レベルを3つのエリアで設定することができます。<strong class="UI">[カメラ据付けモード]</strong>は<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[ビデオ設定]</strong>&gt;<strong class="UI">[ビデオ回転]</strong>で変更できます。&nbsp;</p>
+                <p>エリア数によって<strong class="UI">[エリア2レベル]</strong>や<strong class="UI">[エリア3レベル]</strong>オプションが表示されます。</p>
+                <p>&nbsp;</p>
+        </div>
+        <!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
             <h3>??</h3>
             <p>IR ??? ?????.</p>
             <p>IR ??? <strong class="UI">[??]</strong>?? <strong class="UI">[??]</strong>? ???? ??????.</p>
-        </div> --></div>
-</div><!-- PTZModel -> PTZModel && IR?? ??. x??? ??? ??. ??? ??? ???. 2019-08-12  --><hr class="wn5-setup-hr" ng-if="PTZModel && IR">
+        </div> -->
+    </div>
+</div>
+<!-- PTZModel -> PTZModel && IR?? ??. x??? ??? ??. ??? ??? ???. 2019-08-12  -->
+<hr class="wn5-setup-hr" ng-if="PTZModel && IR">
 <div class="wn5-setup-section" ng-if="PTZModel && IR">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>

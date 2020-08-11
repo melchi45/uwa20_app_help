@@ -198,7 +198,8 @@
                             <p><a href="#channel">チャンネル選択</a></p>
                         </td>
                         <td width="235">
-                                <p>カメラが対応するチャンネルが表示されます。</p>
+                                <p>カメラが対応するチャンネルが表示されます。チャンネルを選択すると、各チャンネルのライブビデオを確認することができます。</p>
+                                <p ng-if="SupportChannelExpansionFeature">チャンネル1は魚眼カメラのオリジナルビデオであり、その他のチャンネルはユーザーが選択したビューモードに設定して追加したものです。カメラチャンネルは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で追加することができます。</p>
 
                             <!-- <p>カメラのチャンネル番号が表示されます。</p> -->
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">チャンネル番号を選択すると、該当チャンネルの映像がビューアに表示されます。4分割画面のアイコンを選択すると、4つのチャンネル映像を一気に表示します。シングル画面に戻すには、チャンネル番号をクリックします。</p>  -->
@@ -243,6 +244,8 @@
                             </td>
                         </tr> -->
 
+                        
+                <!-- QNF-9010 컨텐츠이며, QNF는 채널 2개까지 XNF는 채널 7개까지 추가되어 XNF-9010에서 일단 주석 처리함. QNF-9010 변경점 진행 시 재검토 필요함.  tw자체. 2020-08-11 -->
                         <tr ng-if="SupportChannelExpansionFeature">
                                 <td width="234">チャンネル選択</td>
                                 <td width="236">

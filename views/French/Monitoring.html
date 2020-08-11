@@ -192,7 +192,8 @@
                             <p><a href="#channel">S&eacute;lectionner un canal</a></p>
                         </td>
                         <td width="235">
-                                <p>Les canaux pris en charge par la caméra sont affichés.</p>
+                                <p>Les canaux pris en charge par la caméra sont affichés.S&eacute;lectionnez un canal pour la lecture du flux Live (direct) du canal s&eacute;lectionn&eacute;.</p>
+                                <p ng-if="SupportChannelExpansionFeature">Le canal&nbsp;1 correspond &agrave; la vid&eacute;o originale de la cam&eacute;ra Fisheye. Tous les autres canaux sont ajout&eacute;s et configur&eacute;s par les utilisateurs de mani&egrave;re &agrave; obtenir leurs modes d&rsquo;affichage pr&eacute;f&eacute;r&eacute;s. Des canaux peuvent &ecirc;tre ajout&eacute;s pour la cam&eacute;ra dans <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>.</p>
 
                             <!-- <p>Les num&eacute;ros des canaux de la cam&eacute;ra sont affich&eacute;s.</p> -->
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Si vous s&eacute;lectionnez le num&eacute;ro d&rsquo;un canal, la vid&eacute;o du canal appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne Vue Quad, les vid&eacute;os des 4 canaux seront affich&eacute;es sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</p>  --> 
@@ -235,8 +236,9 @@
                                 </ul>
                             </td>
                     </tr> -->
-
-    <tr ng-if="SupportChannelExpansionFeature">
+                
+    <!-- QNF-9010 컨텐츠이며, QNF는 채널 2개까지 XNF는 채널 7개까지 추가되어 XNF-9010에서 일단 주석 처리함. QNF-9010 변경점 진행 시 재검토 필요함.  tw자체. 2020-08-11 -->
+    <!-- <tr ng-if="SupportChannelExpansionFeature">
         <td width="234">S&eacute;lectionner un canal</td>
         <td width="236">
             <p>Vous pouvez s&eacute;lectionner un canal qui affiche uniquement les vid&eacute;os du type de vue s&eacute;lectionn&eacute;.</p>
@@ -245,7 +247,7 @@
             <p>La vue par d&eacute;faut est [Fisheye view] et vous pouvez ajouter jusqu&rsquo;&agrave; 2&nbsp;canaux vid&eacute;o.</p>
             <p>&nbsp;</p>
         </td>
-    </tr>
+    </tr> -->
 
 
                     <tr>

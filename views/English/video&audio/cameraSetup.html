@@ -1002,16 +1002,29 @@
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">?? 2</strong>: ?? ??? ? ???? ?? ???? ??? ?? ???? IR? ??? ?????.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">??</strong>: ???? IR? ??? ?????.</li>
             </ul> --></div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!IRledZoneLevel">
             <h3>Level</h3>
             <p>Set the IR level.</p>
             <p>The IR level is enabled when <strong class="UI">[Manual]</strong> is selected in <strong class="UI">[Mode]</strong>.</p>
-        </div><!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="IRledZoneLevel">
+            <h3>Area 1 level</h3>
+                <p>A different IR level can be applied to each area.&nbsp;The higher the IR level value, the higher the IR brightness. The lower the IR level value, the lower the IR brightness.</p>
+                <p>The IR level is enabled by selecting <strong class="UI">[Manual]</strong> in <strong class="UI">[Mode]</strong>.</p>
+                <p>The number of areas for which IR level can be set varies depending on the camera mounting mode option. If <strong class="UI">[Camera mounting mode]</strong> is set to <strong class="UI">[Wall]</strong>, IR level can be set for two area. If <strong class="UI">[Camera mounting mode]</strong> is set to <strong class="UI">[Ceiling]</strong>, IR level can be set for three areas.&nbsp;<strong class="UI">[Camera mounting mode]</strong> can be changed in <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Video setup]</strong>&gt;<strong class="UI">[Video rotation]</strong>.&nbsp;</p>
+                <p>Depending on the number of areas, <strong class="UI">[Area 2 level]</strong> or <strong class="UI">[Area 3 level]</strong> option appears.</p>
+                <p>&nbsp;</p>
+        </div>
+        
+        <!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
             <h3>??</h3>
             <p>IR ??? ?????.</p>
             <p>IR ??? <strong class="UI">[??]</strong>?? <strong class="UI">[??]</strong>? ???? ??????.</p>
-        </div> --></div>
-</div><!-- PTZModel -> PTZModel && IR?? ??. x??? ??? ??. ??? ??? ???. 2019-08-12  --><hr class="wn5-setup-hr" ng-if="PTZModel && IR">
+        </div> -->
+    </div>
+</div>
+<!-- PTZModel -> PTZModel && IR?? ??. x??? ??? ??. ??? ??? ???. 2019-08-12  --><hr class="wn5-setup-hr" ng-if="PTZModel && IR">
+
 <div class="wn5-setup-section" ng-if="PTZModel && IR">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>

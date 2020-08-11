@@ -4,10 +4,10 @@
 </div>
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-            <div class="wn5-setup-section-heading">
-                <h2><a name="channel"></a>채널 선택</h2>
-            </div>
-            <div class="wn5-setup-section-article">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>채널 선택</h2>
+    </div>
+    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선택한 후 채널별로 비디오 프로파일 세부 항목을 설정할 수 있습니다. </p>
             <p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. </p>
@@ -30,9 +30,66 @@
             <p>라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. <strong class="UI">[상세정보]</strong> 버튼을 클릭하면 채널 전체 상태를 채널별로 요약하여 보여줍니다. </p>
             <p>프로파일 설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
-            </div>
+    </div>
 </div>
 
+<!-- XNF-9010RV에서 채널 추가 기능이 추가되어 MaxChannel > 1 && SupportChannelExpansionFeature 추가함. TW 자체. 2020-08-05 -->
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>채널 선택</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라 채널을 선택한 후 채널별로 비디오 프로파일 세부 항목을 설정할 수 있습니다. </p>
+            <p>채널 1은 피쉬아이 카메라의&nbsp;기본 영상이며, 피쉬아이 카메라의 왜곡 영상을 보정하여 출력하도록 채널을 추가할 수 있습니다. 사용자가 추가할 수 있는 채널은 2번부터 8번까지입니다. 카메라 마운팅 모드를 [벽면형]으로 선택한 경우에는 2번부터 7번까지 추가할 수 있습니다. &nbsp;</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4><a name="adding_channel"></a>채널 추가하기</h4>
+            <p>피쉬아이 카메라의 왜곡 보정 영상을 출력할 채널을&nbsp;추가할 수 있습니다. </p>
+        <div>
+            <ol>                   
+            <li><strong class="UI">[채널 선택]</strong>에서 <strong class="UI">[추가]</strong>를 클릭합니다. 채널 번호가 자동으로 할당됩니다.</li>
+            <li><strong class="UI">[뷰 모드]</strong>에서 원하는 왜곡 보정 모드를 선택합니다.<br> 채널 하나당 하나의 [뷰 모드]를 선택할 수 있습니다. 예를 들어 채널 2번에 [4분할 뷰]를 선택하면 이 후 채널에는 [4분할 뷰]&nbsp;이 외 다른&nbsp;옵션만 선택할 수 있습니다. </li>
+                <ul>
+                    <li>4분할 뷰: 사람의 시야에 적합하도록 왜곡 보정한 특정 화면 4개를 동시에 보여줍니다. 분할 화면을 선택하여 뷰를 상하좌우로 이동하거나 줌 기능을 사용할 수 있습니다. &nbsp;</li>
+                    <li>더블 파노라마: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다. <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 더블 파노라마 옵션이 나타납니다. </li>
+                    <li>싱글 파노라마: 피쉬아이 카메라가 촬영한 영상을 보정하여 벽면형 파노라마 형식으로 보여줍니다. </li>
+                    <li>Q1: 4분할 뷰의 왼쪽 상단의 뷰를 보여줍니다.        </li>
+                    <li>Q2: 4분할 뷰의 오른쪽 상단의 뷰를 보여줍니다.        </li>
+                    <li>Q3: 4분할 뷰의 왼쪽 하단의 뷰를 보여줍니다.        </li>
+                    <li>Q4: 4분할 뷰의 오른쪽 하단의 뷰를 보여줍니다.        </li>
+                </ul>
+            <li><strong class="UI">[적용]</strong>을 클릭합니다.</li>
+        </ol>
+        <p>채널을 추가하면 카메라가 리부팅됩니다. </p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>비디오 채널 삭제하기</h4>
+    <p><a href="#adding_channel">사용자가 추가</a>한 채널을 한 번에 모두 삭제할 수 있습니다.</p>
+    <div>
+        <ol>
+                    
+            <li><strong class="UI">[모두 삭제]</strong>를 선택합니다    </li>
+        </ol>
+                <p>비디오 채널을 삭제하면 카메라가 리부팅됩니다. </p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>채널별 정보 확인하기</h4>
+    <p>채널의 전체 상태를 채널별로 요약하여 보여줍니다. </p>
+    <div>
+                <ol>
+                    
+                    <li><strong class="UI">[상세 정보]</strong>를 선택합니다.        </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- TNB-9000에서 신규 추가. 고용수 책임님. (2020-04-08) -->
 <hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
 <div class="wn5-setup-section" ng-if="SensorCaptureSize">
@@ -68,8 +125,7 @@
     <div class="wn5-setup-section-article">
     <div class="wn5-setup-section-article-content">
         <p>프로파일 속성이 변경됐을 때 기존 프로파일로 계속 영상을 출력할지 혹은 변경된 프로파일로 영상을 출력할지를 설정할 수 있습니다. </p>
-        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이
-출력됩니다. </p>
+        <p><strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하면, 프로파일 속성을 변경하더라도 기존 프로파일 속성대로 영상을 출력하고, 다시 웹뷰어에 접속했을 때 변경된 프로파일로 영상을 출력합니다. 프로파일의 속성을 변경하고 다시 웹뷰어에 접속하기 전까지는 <strong class="UI">[라이브]</strong> 화면에 테두리가 나타납니다. <strong class="UI">[프로파일 속성 변경 시 기존에 연결된 영상 유지]</strong>를 선택하지 않으면, 프로파일 속성을 변경했을 때 바로 변경된 프로파일로 영상이 출력됩니다. </p>
     </div>
     </div>
 </div>
@@ -221,6 +277,8 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>피쉬아이 뷰 타입</h3>
             <p>프로파일에서 보여질 피쉬아이 카메라의 영상 타입을 선택합니다.</p>
+            <!-- XNF-9010RV에서 채널 추가 기능이 추가되어 SupportChannelExpansionFeature 추가함. TW 자체. 2020-08-05 -->
+            <p ng-if="SupportChannelExpansionFeature">채널 1을 선택한 경우에 [피쉬아이 뷰 타입]을 설정할 수 있습니다.</p>
             <ul>
                 <li>피쉬아이 뷰: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
                 <li>왜곡 보정 뷰: 피쉬아이 카메라로 촬영한 360&deg; 영상을 보기 적합한 형태로 보정하여 보여줍니다. 보정 영상 타입은 '왜곡 보정 뷰'를 선택하면 보여지는 <strong class="UI">[뷰]</strong>옵션에서 선택할 수 있습니다.</li>
@@ -229,15 +287,17 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>뷰</h3>
             <p>왜곡 보정 영상 타입을 선택합니다. </p>
+            <!-- XNF-9010RV에서 채널 추가 기능이 추가되어 SupportChannelExpansionFeature 추가함. TW 자체. 2020-08-05 -->
+            <p ng-if="SupportChannelExpansionFeature">채널 1을 선택한 경우에 활성화됩니다.</p>
             <p><strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택한 경우에 활성화됩니다.</p>
             <ul>
-                <li>싱글 파노라마: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 벽면형 파노라마 형식으로 보여줍니다.  </li>
+                <li>싱글 파노라마: 피쉬아이 카메라가  촬영한 영상을 보정하여 벽면형 파노라마 형식으로 보여줍니다. </li>
                 <li>4분할 뷰: 사람의 시야에 적합하도록 왜곡 보정한 특정 화면 4개를 동시에 보여줍니다. 분할 화면을 선택하여 뷰를 상하좌우로 이동하거나 줌 기능을 사용할 수 있습니다.  </li>
-                <li>더블 파노라마: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다. <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 더블 파노라마 옵션이 나타납니다. </li>
-                <li>Q1: 4분할 뷰의 왼쪽 상단의 뷰를 보여줍니다. </li>
-                <li>Q2: 4분할 뷰의 오른쪽 상단의 뷰를 보여줍니다. </li>
-                <li>Q3: 4분할 뷰의 왼쪽 하단의 뷰를 보여줍니다. </li>
-                <li>Q4: 4분할 뷰의 오른쪽 하단의 뷰를 보여줍니다. </li>
+                <li>더블 파노라마: 360˚ 영역을 촬영한 영상을 왜곡 보정하여 파노라마 형식의 상하 분할 화면으로 보여줍니다. <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[비디오 설정]</strong> &gt; <strong class="UI">[비디오 회전]</strong> &gt; <strong class="UI">[카메라 마운팅 모드]</strong>에서 <strong class="UI">[천장형]</strong>을 선택한 경우에만 더블 파노라마 옵션이 나타납니다.  </li>
+                <li>Q1: 4분할 뷰의 왼쪽 상단의 뷰를 보여줍니다.  </li>
+                <li>Q2: 4분할 뷰의 오른쪽 상단의 뷰를 보여줍니다.  </li>
+                <li>Q3: 4분할 뷰의 왼쪽 하단의 뷰를 보여줍니다.  </li>
+                <li>Q4: 4분할 뷰의 오른쪽 하단의 뷰를 보여줍니다.  </li>
             </ul>
         </div>
 
@@ -248,9 +308,12 @@
             <ul>
                 <li><strong class="UI">기본 프로파일</strong>: 카메라의 영상을 라이브로 스트림할 때 적용되는 기본 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 ‘Default’로 표시됩니다.</li>
                 <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. <strong class="UI">[코덱]</strong>을 [MJPEG]으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다. </li>
-                <!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> -->
+                <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">피쉬아이 카메라에서 [이메일/FTP 프로파일] 옵션은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> 
                 <li ng-if="Recording && NAS"><strong class="UI">저장 프로파일</strong>: (micro)SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">저장 프로파일</strong>: (micro)SD 카드에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <li ng-if="Recording && NAS"><strong class="UI">저장 프로파일</strong>: (micro)SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <!-- XNF-9010RV에서 채널 추가 기능이 추가되어 SupportChannelExpansionFeature 추가함. TW 자체. 2020-08-05 -->
+                <li style="list-style-type: none;" ng-if="Recording && NAS && SupportChannelExpansionFeature">여러 채널과 프로파일에서 [저장 프로파일]을 설정한 경우, [저장 프로파일] 옵션을 가장 최근에 설정한 프로파일로 영상이 저장됩니다. 피쉬아아 예를 들어 채널 1의 'profile 1'과 채널 2의 'profile 2'에서 모두 [저장 프로파일] 옵션을 설정한 경우, 가장 최근에 설정한 프로파일이 'profile 2'라면 'profile 2' 프로파일로 영상이 저장됩니다. </li>
+
                 <!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> 
                  <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  -->   
                  <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   -->  
@@ -259,8 +322,8 @@
                 <!-- WN7 XNV-9082에서 show되도록 (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) && ExternalPTZModel && !objectDetectionSupport -> isDigitalPTZ로 수정. 이재준 수석님. 2020-05-06 -->
                 <li ng-if="isDigitalPTZ"><strong class="UI">디지털 PTZ 프로파일</strong>: PTZ 움직임을 디지털로 제어할 때 사용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘DPTZ’로 표시됩니다. <strong class="UI">[코덱]</strong>을 [H.264] 혹은 [H.265]로 설정한 경우에만 디지털 PTZ 프로파일 옵션이 나타납니다. </li>
                 <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> -->
-                <li><strong class="UI">프레임 레이트 고정 프로파일</strong>: 영상의 프레임 레이트를 일정 수준으로 보장하려고 할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 &lsquo;FrameLock&rsquo;으로 표시됩니다.<strong class="UI">[코덱]</strong>을 [H.264] 혹은 [H.265]로 설정한 경우에만 '프레임 레이트 고정 프로파일' 옵션이 나타납니다.</li>
-            </ul>
+                <li><strong class="UI">프레임 레이트 고정 프로파일</strong>: 영상의 프레임 레이트를 일정 수준으로 보장하려고 할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong>에 ‘FrameLock’으로 표시됩니다.<strong class="UI">[코덱]</strong>을 [H.264] 혹은 [H.265]로 설정한 경우에만 '프레임 레이트 고정 프로파일' 옵션이 나타납니다.</li>
+
         </div>
 
         <div class="wn5-online-help-info" ng-if="FisheyeLens">
@@ -426,7 +489,8 @@
         <div class="wn5-setup-section-article-content">
             <h3>인코딩 우선순위</h3>
             <p>영상 데이터 양이 목표 비트 레이트의 값을 넘을 때, 프레임 레이트와 화질 중 어느 것을 우선순위로 두고 인코딩할 지 설정합니다. </p>
-			<p>프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[압축]</strong> 중 선택할 수 있습니다. <strong class="UI">[프레임 레이트]</strong>를 우선순위로 설정하면 프레임 레이트를 최대한 보장하지만 화질은 떨어질 수 있습니다. 반면 <strong class="UI">[압축]</strong>을 우선순위로 설정하면 화질은 보장하지만 누락되는 프레임이 발생해 영상이 끊기거나 부자연스러울 수 있습니다. 프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[인코딩 우선순위]</strong>는 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[CBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
+			<p>프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[압축]</strong> 중 선택할 수 있습니다. <strong class="UI">[프레임 레이트]</strong>를 우선순위로 설정하면 프레임 레이트를 최대한 보장하지만 화질은 떨어질 수 있습니다. 반면 <strong class="UI">[압축]</strong>을 우선순위로 설정하면 화질은 보장하지만 누락되는 프레임이 발생해 영상이 끊기거나 부자연스러울
+수 있습니다. 프로파일의 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택한 경우, <strong class="UI">[인코딩 우선순위]</strong>는 <strong class="UI">[비트 레이트 제어 방식]</strong>을 <strong class="UI">[CBR]</strong>로 설정한 경우에만 활성화됩니다.</p>
 			
 			<p ng-if="!objectDetectionSupport">프로파일의 <strong class="UI">[코덱]</strong>이 <strong class="UI">[MJPEG]</strong>인 경우 <strong class="UI">[프레임 레이트]</strong>와 <strong class="UI">[비트 레이트]</strong> 중에 선택할 수 있습니다.</p>
         </div>
@@ -434,7 +498,8 @@
             <h3><a class="wn5-online-help-link" name="GOV"></a>GOV 길이  </h3>
           <!--    <p>GOV(Group of Video)는 <strong class="UI">[H.264]</strong>/<strong class="UI">[H.265]</strong> 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임까지의 프레임 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있습니다. P-프레임은 I-프레임을 기준으로 변경된 부분의 정보만 가지고 있습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상의 크기가 작고, GOV 길이가
 짧을수록 I-프레임이 많아지므로 영상의 크기는 큽니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다. </p> -->
-            <p>GOV(Group of Video)는 H.264/H.265 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임 전까지의 프레임들의 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이라는 2종류의 프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키 프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있는 독립적인 프레임입니다. P-프레임은 이전 프레임들을 기준으로 변경된 부분의 정보만 가지고 있어서 영상 데이터의 양이 적습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상 데이터의 양이 적고, GOV 길이가 짧을수록 I-프레임이 많아지므로 영상 데이터의 양은 많아집니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</p>
+            <p>GOV(Group of Video)는 H.264/H.265 비디오 압축을 위한 영상 프레임의 집합으로 I-프레임부터 다음 I-프레임 전까지의 프레임들의 모음을 의미합니다. GOV 내에는 I-프레임과 P-프레임이라는 2종류의 프레임이 있습니다. I-프레임은 압축의 기본이 되는 프레임으로 키 프레임이라고도 하며, 완전한 한 장의 이미지 데이터를 가지고 있는 독립적인 프레임입니다. P-프레임은 이전 프레임들을 기준으로 변경된 부분의 정보만 가지고 있어서 영상 데이터의 양이 적습니다. 따라서 GOV 길이가 길수록 I-프레임 수는 적으므로 영상 데이터의
+양이 적고, GOV 길이가 짧을수록 I-프레임이 많아지므로 영상 데이터의 양은 많아집니다. GOV 길이의 최댓값은 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</p>
             <p>H.264 코덱이나 H.265 코덱으로 녹화파일을 설정한 경우 GOV 길이는 framerate/2가 됩니다.</p>
         </div>
 
@@ -465,7 +530,8 @@
         <div class="wn5-setup-section-article-content" ng-if="DynamicGOVSupport">
             <h3>다이내믹 GOV</h3>
             <p>다이내믹 GOV 기능을 현재 설정 중인 프로파일에 적용하려면 <strong class="UI">[사용]</strong>을 선택합니다. </p>
-            <p>다이내믹 GOV는 영상 상황에 따라 GOV 길이가 최소 GOV 길이의 설정값에서부터 최대 다이내믹 GOV 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 GOV가 <strong class="UI">[다이내믹 GOV]</strong>에서 사용자가 설정한 값으로 동작하여 전체 영상의 비트레이트가 줄어듭니다. 움직임을 감지하면 그 직후 I프레임이 출력되며 이 후 움직임이 사라질 때까지 GOV가 <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV 길이]</strong></a>의 설정값으로 동작하게 됩니다.  </p>
+            <p>다이내믹 GOV는 영상 상황에 따라 GOV 길이가 최소 GOV 길이의 설정값에서부터 최대 다이내믹 GOV 설정값까지 자동으로 변경되는 기능입니다. 움직임이 거의 없는 영상에서는 GOV가 <strong class="UI">[다이내믹 GOV]</strong>에서 사용자가 설정한 값으로 동작하여 전체 영상의 비트레이트가 줄어듭니다. 움직임을 감지하면 그 직후 I프레임이 출력되며 이 후 움직임이 사라질 때까지 GOV가 <a class="wn5-online-help-link" href="#GOV" ng-href="#/help/basic_videoProfile?#GOV"><strong class="UI">[GOV 길이]</strong></a>의 설정값으로
+동작하게 됩니다.  </p>
             <ul>
                 <li>영상에 움직임이 없을 때 적용할 최대 GOV 길이값을 입력합니다. 입력값의 범위는 <strong class="UI">[GOV 길이]</strong> 옆에 표시됩니다. <strong class="UI">[GOV 길이]</strong>에 입력한 값이 최솟값이 되고, 최댓값은 480으로 <strong class="UI">[프로파일 속성]</strong>의 <strong class="UI">[프레임 레이트]</strong>에 따라 달라집니다.</li>
             </ul>
@@ -501,7 +567,8 @@
 
             <ul>
                 <li>와이즈 스트림 기능을 사용하는 경우, 다이내믹 GOV와 다이내믹 FPS 기능을 사용하면 와이즈 스트림 성능이 최적화됩니다. 와이즈 스트림은 <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[와이즈 스트림]</strong> 메뉴에서 설정할 수 있습니다.</li>
-                <li ng-if="ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. 또한 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
+                <li ng-if="ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. 또한 <strong class="UI">[ATC 모드]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정한 경우에만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹
+GOV를 사용할 수 없습니다. </li>
                 <li ng-if="!ATCModes">다이내믹 FPS는 <strong class="UI">[코덱]</strong>을 <strong class="UI">[H.264]</strong>나 <strong class="UI">[H.265]</strong>로 선택하고 <strong class="UI">[비트 레이트 제어 방식]</strong>이 <strong class="UI">[VBR]</strong>일 때만 활성화됩니다. <strong class="UI">[프로파일 타입]</strong>이 <strong class="UI">[저장 프로파일]</strong>로 설정한 경우는 다이내믹 GOV를 사용할 수 없습니다. </li>
             </ul>
 		</div>

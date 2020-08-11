@@ -54,6 +54,16 @@
                         <td width="235">채널 선택</td>
                         <td width="235">채널을 선택한 후 채널별로 녹화된 영상을 검색하거나 재생할 수 있습니다. </td>
                     </tr>
+
+                    <!-- XNF-9010RVM에서 채널 추가되어 추가함. SupportChannelExpansionFeature는 QNF-9010에서 사용하던 코드였으나 XNF-9010에서 사용. TW자체. 2020-08-11 -->
+                    <tr ng-if="SupportChannelExpansionFeature">
+                        <td width="235">채널 선택</td>
+                        <td width="235">
+                            <p>채널 번호를 선택하면 각 채널의 저장된 영상을 재생할 수 있습니다.</p>
+                            <p>채널 1은 피쉬아이 카메라의 원본 영상이며, 이 외 채널은 사용자가 원하는 뷰 모드로 설정하고 추가한 것입니다. 카메라 채널은 <strong class="UI">[설정 </strong>&gt;<strong class="UI">[Basic]</strong> &gt;<strong class="UI">[비디오 프로파일]</strong>에서 추가할 수 있습니다. </p>
+                            <p> </p>
+                        </td>
+                    </tr>
                     <tr>
                         <td width="235">
 						<p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>

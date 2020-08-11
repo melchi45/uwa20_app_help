@@ -29,6 +29,66 @@
             </div>
 </div>
 
+
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lection d&rsquo;un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails du profil vid&eacute;o pour chaque canal.</p>
+            <p>Le canal&nbsp;1 correspond &agrave; la vid&eacute;o par d&eacute;faut de la cam&eacute;ra Fisheye. D&rsquo;autres canaux peuvent &ecirc;tre ajout&eacute;s pour corriger la perspective de la vid&eacute;o de la cam&eacute;ra Fisheye et l&rsquo;afficher de mani&egrave;re ad&eacute;quate. Les utilisateurs peuvent ajouter des canaux num&eacute;rot&eacute;s entre 2 et 8. Si le mode de montage de la cam&eacute;ra est d&eacute;fini sur [Mur], des canaux num&eacute;rot&eacute;s entre 2 et 7 peuvent &ecirc;tre ajout&eacute;s.</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4><a name="adding_channel"></a>Ajout d&rsquo;un canal</h4>
+            <p>Vous pouvez ajouter des canaux pour l&rsquo;affichage de la vid&eacute;o de la cam&eacute;ra Fisheye dont la perspective a &eacute;t&eacute; corrig&eacute;e.</p>
+        <div>
+            <ol>                   
+            <li>Dans <strong class="UI">[S&eacute;lectionner un canal]</strong>, cliquez sur <strong class="UI">[Ajouter]</strong>. Le num&eacute;ro de canal est attribu&eacute; automatiquement.</li>
+            <li>S&eacute;lectionnez le mode Correction de perspective que vous souhaitez dans <strong class="UI">[Mode d&rsquo;affichage]</strong>.<br> Un [Mode d&rsquo;affichage] ne peut &ecirc;tre attribu&eacute; qu&rsquo;&agrave; un seul canal. Par exemple, si vous s&eacute;lectionnez [Quadravision] pour le canal&nbsp;2, vous pouvez s&eacute;lectionner n&rsquo;importe quelle option autre que [Quadravision] pour les autres canaux.</li>
+                <ul>
+                    <li>Quadravision&nbsp;: corrige la perspective de 4 &eacute;crans pour les adapter &agrave; la vue humaine et les affiche simultan&eacute;ment. S&eacute;lectionnez un &eacute;cran pour d&eacute;placer la vue vers le haut, le bas, la gauche, la droite ou le zoom avant/arri&egrave;re.</li>
+                    <li>Double panorama&nbsp;: corrige la perspective d&rsquo;une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama partag&eacute; en haut/bas. L&rsquo;option Double panorama appara&icirc;t uniquement lorsque <strong class="UI">[Plafond]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Vid&eacute;o configuration]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong> &gt; <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong>.</li>
+                    <li>Panorama simple&nbsp;: corrige la perspective d&rsquo;une vid&eacute;o de la cam&eacute;ra Fisheye et l&rsquo;affiche sous forme de panorama mural.</li>
+                    <li>Q1&nbsp;: affiche la vue sup&eacute;rieure gauche de la quadravision.</li>
+                    <li>Q2&nbsp;: affiche la vue sup&eacute;rieure droite de la quadravision.</li>
+                    <li>Q3&nbsp;: affiche la vue inf&eacute;rieure gauche de la quadravision.</li>
+                    <li>Q4&nbsp;: affiche la vue inf&eacute;rieure droite de la quadravision.</li>
+                </ul>
+            <li>Cliquez sur <strong class="UI">[Appliquer]</strong>.</li>
+        </ol>
+        <p>L&rsquo;ajout d&rsquo;un canal d&eacute;marre la cam&eacute;ra.</p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>Suppression d&rsquo;un canal vid&eacute;o</h4>
+    <p><a href="#adding_channel">Les canaux ajout&eacute;s par l&rsquo;utilisateur</a> peuvent &ecirc;tre supprim&eacute;s tous en m&ecirc;me temps.</p>
+    <div>
+        <ol>
+                    
+            <li>S&eacute;lectionnez <strong class="UI">[Supprimer tout]</strong>.</li>
+        </ol>
+                <p>La suppression d&rsquo;un canal d&eacute;marre la cam&eacute;ra.</p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>Affichage des informations par canal</h4>
+    <p>Affiche le r&eacute;capitulatif de l&rsquo;&eacute;tat de chaque canal.</p>
+    <div>
+                <ol>
+                    
+                    <li>S&eacute;lectionnez <strong class="UI">[Informations]</strong>.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
 <div class="wn5-setup-section" ng-if="SensorCaptureSize">
             <div class="wn5-setup-section-heading">
@@ -203,6 +263,8 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>Type d&apos;affichage Fisheye</h3>
             <p>S&eacute;lectionne un type de vid&eacute;o de la cam&eacute;ra fisheye &agrave; afficher dans le profil.</p>
+            <p ng-if="SupportChannelExpansionFeature">Afin que les utilisateurs puissent s&eacute;lectionner [Type d&rsquo;affichage Fisheye], le canal&nbsp;1 doit &ecirc;tre s&eacute;lectionn&eacute;.</p>
+            
             <ul>
                 <li>Fisheye view&nbsp: Affiche la vid&eacute;o de la cam&eacute;ra fisheye sans correction.</li>
                 <li>Affichage de la correction de perspective&nbsp;: Corrige la vid&eacute;o &agrave; 360&deg; captur&eacute;e par la cam&eacute;ra fisheye pour s&rsquo;adapter &agrave; l&rsquo;affichage. Le type de vid&eacute;o redress&eacute;e peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Vues]</strong>.</li>
@@ -211,6 +273,7 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>Vues</h3>
             <p>S&eacute;lectionne le type de vid&eacute;o redress&eacute;e.</p>
+            <p ng-if="SupportChannelExpansionFeature">Est activ&eacute; lorsque le canal&nbsp;1 est s&eacute;lectionn&eacute;.</p>
             <p>Il est activ&eacute; lorsque <strong class="UI">[Affichage de la correction de perspective]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Type d&apos;affichage Fisheye]</strong>.</p>
             <ul>
                 <li>Panorama simple&nbsp;: Lisse une vid&eacute;o &agrave; 360˚ et l&rsquo;affiche sous forme de panorama mural.</li>
@@ -229,8 +292,20 @@
             <p ng-if="SupportAutoImageAlignment">Ils varient aussi en fonction du canal s&eacute;lectionn&eacute;<a href="#channel">S&eacute;lectionner un canal</a>, un type de profil diff&eacute;rent peut &ecirc;tre d&eacute;fini. Par exemple, «&nbsp;Enregistrer profil &nbsp;» peut &ecirc;tre configur&eacute; seulement si vous avez s&eacute;lectionn&eacute; CAN1.</p>
             <ul>
                 <li><strong class="UI">Profil par d&eacute;faut</strong>&nbsp;: C&apos;est le profil par d&eacute;faut appliqu&eacute; pour diffuser une image de cam&eacute;ra en direct. «&nbsp;Default&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
-                <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. « Event » s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li><!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> --><li ng-if="Recording && NAS"><strong class="UI">Enregistrer profil </strong>Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">Enregistrer profil </strong>Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li><!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   --><li ng-if="isDigitalPTZ"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li><!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> --><li><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;: Ce profil s&rsquo;applique pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. «&nbsp;FrameLock&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265].</li>
+                <li><strong class="UI">Profil E-mail/FTP</strong>&nbsp;: Ce profil vid&eacute;o est utilis&eacute; pour envoyer l&apos;&eacute;cran captur&eacute; d&apos;une image lorsqu&apos;un &eacute;v&eacute;nement est cr&eacute;&eacute;. « Event » s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil E-mail / FTP appara&icirc;t uniquement lorsque MJPEG est d&eacute;fini pour le Codec.</li>
+                <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">L&rsquo;option [Profil E-mail/FTP] n&rsquo;est activ&eacute;e que lorsque le canal&nbsp;1 est s&eacute;lectionn&eacute; dans les cam&eacute;ras Fisheye.</li>                              
+                <!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> -->
+
+                <li ng-if="Recording && NAS"><strong class="UI">Enregistrer profil </strong>Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD ou un NAS. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">Enregistrer profil </strong>Ce profil est appliqu&eacute; pour l&apos;enregistrement d&apos;une image sur une carte SD. «&nbsp;Record&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils.</li>
+                <li style="list-style-type: none;" ng-if="Recording && NAS && SupportChannelExpansionFeature">Si l&rsquo;option [Enregistrer le profil] a &eacute;t&eacute; d&eacute;finie dans plusieurs canaux et profils, la vid&eacute;o est enregistr&eacute;e en utilisant le profil dans lequel cette option a &eacute;t&eacute; d&eacute;finie le plus r&eacute;cemment. Par exemple, si l&rsquo;option [Enregistrer le profil] a &eacute;t&eacute; d&eacute;finie &agrave; la fois dans le «&nbsp;profil&nbsp;1&nbsp;» du canal&nbsp;1 et dans le «&nbsp;profil&nbsp;2&nbsp;» du canal&nbsp;2, et qu&rsquo;elle l&rsquo;a &eacute;t&eacute; plus r&eacute;cemment dans le «&nbsp;profil&nbsp;2&nbsp;», le «&nbsp;profil&nbsp;2&nbsp;» sera utilis&eacute; pour l&rsquo;enregistrement vid&eacute;o.</li>
+                
+                <!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   -->
+                
+                <li ng-if="isDigitalPTZ"><strong class="UI">Profil PTZ num&eacute;rique</strong>&nbsp;: Ce profil est utilis&eacute; pour contr&ocirc;ler les mouvements PTZ. «&nbsp;DPTZ&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. L&apos;option Profil PTZ num&eacute;rique appara&icirc;t uniquement lorsque H.264 ou H.265 est d&eacute;fini pour le codec.</li>
+                <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> -->
+                
+                <li><strong class="UI">Profil de verrouillage de trame</strong>&nbsp;: Ce profil s&rsquo;applique pour garantir un certain niveau de vitesse d&rsquo;enregistrement vid&eacute;o. «&nbsp;FrameLock&nbsp;» s&rsquo;affiche dans <strong class="UI">[Type]</strong> dans la liste des profils. Cette option Profil de vitesse d&rsquo;enregistrement fixes&rsquo; n&rsquo;appara&icirc;t que lorsque <strong class="UI">[Codec]</strong> est r&eacute;gl&eacute; sur [H.264] ou [H.265].</li>
             </ul>
         </div>
 

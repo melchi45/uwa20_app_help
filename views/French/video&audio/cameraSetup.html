@@ -996,13 +996,24 @@
                 <li><strong class="UI">Manuel</strong>&nbsp;: Ajuste manuellement la luminosit&eacute; IR.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!IRledZoneLevel">
             <h3>Niveau</h3>
             <p>D&eacute;finir le niveau IR.</p>
             <p>Le niveau IR est activ&eacute; lorsque le <strong class="UI">[Mode]</strong> est d&eacute;fini sur <strong class="UI">[Manuel]</strong>.</p>
         </div>
     </div>
 </div>
+
+<div class="wn5-setup-section-article-content" ng-if="IRledZoneLevel">
+            <h3>Niveau 1&nbsp;zone</h3>
+                <p>Un niveau IR diff&eacute;rent peut &ecirc;tre appliqu&eacute; &agrave; chaque zone.&nbsp;Plus la valeur du niveau IR est &eacute;lev&eacute;e, plus l&rsquo;intensit&eacute; de l&rsquo;IR est haute. Plus la valeur du niveau IR est basse, plus l&rsquo;intensit&eacute; de l&rsquo;IR est basse.</p>
+                <p>Le niveau IR est activ&eacute; en s&eacute;lectionnant <strong class="UI">[Manuel]</strong> dans <strong class="UI">[Mode]</strong>.</p>
+                <p>Le nombre de zones pour lesquelles le niveau IR peut &ecirc;tre r&eacute;gl&eacute; varie en fonction de l&rsquo;option du mode de montage de la cam&eacute;ra. Si <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Mur]</strong>, le niveau IR peut &ecirc;tre r&eacute;gl&eacute; pour deux zones. Si <strong class="UI">[Mode de montage de la cam&eacute;ra]</strong> est r&eacute;gl&eacute; sur <strong class="UI">[Plafond]</strong>, le niveau IR peut &ecirc;tre r&eacute;gl&eacute; pour trois zones.&nbsp;<strong class="UI">[Mode de montage de la cam&eacute;ra]</strong> peut &ecirc;tre chang&eacute; dans <strong class="UI">[Vid&eacute;o &amp; Audio]</strong> &gt; <strong class="UI">[Configuration vid&eacute;o]</strong> &gt; <strong class="UI">[Rotation vid&eacute;o]</strong>.&nbsp;</p>
+                <p>En fonction du nombre de zones, l&rsquo;option <strong class="UI">[Niveau 2&nbsp;zones]</strong> ou <strong class="UI">[Niveau 3&nbsp;zones]</strong> appara&icirc;t.</p>
+                <p>&nbsp;</p>
+        </div>
+    </div>
+</div
 
 <hr class="wn5-setup-hr" ng-if="PTZModel && IR">
 <div class="wn5-setup-section" ng-if="PTZModel && IR">

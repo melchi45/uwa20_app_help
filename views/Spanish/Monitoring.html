@@ -196,7 +196,8 @@
                                 <p>Seleccionar canal</p>
                             </td>
                             <td width="235">
-                                    <p>Aquí se muestran los canales compatibles con la cámara.</p>
+                                    <p>Aquí se muestran los canales compatibles con la cámara.Seleccione un canal para reproducir la transmisi&oacute;n en vivo del canal seleccionado.</p>
+                                    <p ng-if="SupportChannelExpansionFeature">El Canal 1 es el v&iacute;deo original de la c&aacute;mara de ojo de pez. Todos los dem&aacute;s canales son a&ntilde;adidos y configurados por los usuarios para mostrar sus modos de visualizaci&oacute;n preferidos. Se pueden a&ntilde;adir canales de c&aacute;mara en <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[B&aacute;sico]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong>.</p>
 
                                 <!-- <p>Se muestran los n&uacute;meros de canal de la c&aacute;mara.</p> -->
                             <!--     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">En caso de seleccionar un n&uacute;mero de canal, el v&iacute;deo del canal se mostrar&aacute; en el visor. Si selecciona el icono de Vista cu&aacute;druple, los v&iacute;deos de 4 canales se mostrar&aacute;n en una pantalla. Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal.</p> -->
@@ -240,8 +241,9 @@
                                     </ul>
                                 </td>
                             </tr> -->
-            
-                            <tr ng-if="SupportChannelExpansionFeature">
+
+                <!-- QNF-9010 컨텐츠이며, QNF는 채널 2개까지 XNF는 채널 7개까지 추가되어 XNF-9010에서 일단 주석 처리함. QNF-9010 변경점 진행 시 재검토 필요함.  tw자체. 2020-08-11 -->
+                            <!-- <tr ng-if="SupportChannelExpansionFeature">
                                     <td width="234">Seleccionar canal</td>
                                     <td width="236">
                                         <p>Puede seleccionar un canal que solo muestre v&iacute;deos del tipo de vista seleccionado.</p>
@@ -250,7 +252,7 @@
                                         <p>El tipo de vista predeterminado es [vista de ojo de pez] y se pueden a&ntilde;adir hasta 2 canales de v&iacute;deo.</p>
                                         <p>&nbsp;</p>
                                     </td>
-                                </tr>
+                                </tr> -->
 
 
                     <tr>

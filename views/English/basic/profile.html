@@ -30,6 +30,63 @@
 </div>
 
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Selecting a channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting your camera channel, you can set the details of video profile for each channel.</p>
+            <p>Channel 1 is the default video for the fisheye camera. More channels can be added to dewarp the video of fisheye camera and display it appropriately. Users can add channel number 2 to 8. If the camera mounting mode is set to [Wall], channel number 2 to 7 can be added.</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4><a name="adding_channel"></a>Adding a channel</h4>
+            <p>You can add channels to show the dewarped video of the fisheye camera.</p>
+        <div>
+            <ol>                   
+            <li>In <strong class="UI">[Select channel]</strong>, click <strong class="UI">[Add]</strong>. Channel number is automatically assigned.</li>
+            <li>Select the dewarp mode you want from <strong class="UI">[View mode]</strong>.<br> A [View mode] can be assigned to only one channel. For example, if you select [Quad view] for Channel 2, you can select any option other than [Quad view] for the other channels.</li>
+                <ul>
+                    <li>Quad view: Dewarps 4 screens to fit human eyes and display them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
+                    <li>Double panorama: Dewarps a 360 video and displays it as a panorama split up/down. The Double panorama option only appears when <strong class="UI">[Ceiling]</strong> is selected in <strong class="UI">[Video &amp; Audio]</strong> &gt; <strong class="UI">[Video setup]</strong> &gt; <strong class="UI">[Video rotation]</strong> &gt; <strong class="UI">[Camera mounting mode]</strong>.</li>
+                    <li>Single panorama: Dewarps a video from fisheye camera and displays it as a wall panorama.</li>
+                    <li>Q1: Shows the upper left view of the quad view.</li>
+                    <li>Q2: Shows the top right view of quad view.</li>
+                    <li>Q3: Shows the lower left view of the quad view.</li>
+                    <li>Q4: Shows the lower right view of the quad view.</li>
+                </ul>
+            <li>Click <strong class="UI">[Apply]</strong>.</li>
+            </ol>
+            <p>Adding a channel boots the camera.</p>
+        </div>
+    </div>
+		
+    <div class="wn5-online-help-action">
+    <h4>Deleting a video channel</h4>
+    <p><a href="#adding_channel">User-added</a> channels can be deleted all at once.</p>
+    <div>
+        <ol>        
+            <li>Select <strong class="UI">[Delete all]</strong>.</li>
+        </ol>
+            <p>Deleting a video channel boots the camera.</p>
+    </div>
+    </div>
+		
+    <div class="wn5-online-help-action">
+    <h4>Viewing the information per channel</h4>
+    <p>Shows the summary of the status of each channel.</p>
+    <div>
+                <ol>
+                    
+                    <li>Select <strong class="UI">[Information]</strong>.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
 <div class="wn5-setup-section" ng-if="SensorCaptureSize">
             <div class="wn5-setup-section-heading">
@@ -205,6 +262,7 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>Fisheye view type</h3>
             <p>Selects a video type of the fisheye camera to be displayed in the profile.</p>
+            <p ng-if="SupportChannelExpansionFeature">Channel 1 needs to be selected for users to be able to select [Fisheye view type].</p>
             <ul>
                 <li>Fisheye view: Displays the fisheye camera video without correction.</li>
                 <li>Dewarp view: Corrects the 360&deg; video captured by the fisheye camera to fit the view. The dewarping video type can be selected from the <strong class="UI">[View]</strong>.</li>
@@ -214,6 +272,8 @@
             <h3>Views</h3>
             <p>Selects the dewarping video type.</p>
             <p>It is activated when <strong class="UI">[Dewarp view]</strong> is selected in <strong class="UI">[Fisheye view type]</strong>.</p>
+            <p ng-if="SupportChannelExpansionFeature">It is enabled only when Channel 1 is selected.</p>
+            
             <ul>
                 <li>Single panorama: Dewarps a 360&deg; video and displays it as a wall panorama.</li>
                 <li>Quad view: Dewarps 4 screens appropriate to the human view and display them simultaneously. Select a screen to move the view up/down/left/right or zoom in/out.</li>
@@ -231,8 +291,14 @@
             <p ng-if="SupportAutoImageAlignment">Also, depending on the channel you selected in <a href="#channel">Select channel</a>, a different profile type can be set. For example, &apos;Record profile&apos; can be set only if you&rsquo;ve selected CH1.</p>
             <ul>
                 <li><strong class="UI">Default profile</strong>: This is the default profile applied for streaming a live camera image. &lsquo;Default&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
-                <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. &lsquo;Event&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li><!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> --><li ng-if="Recording && NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li><!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   --><li ng-if="isDigitalPTZ"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li><!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> --><li><strong class="UI">Frame Lock profile</strong>: This is a profile applied to guarantee a certain level of video frame rate. &lsquo;FrameLock&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. This &lsquo;Frame Lock profile&rsquo; option appears only when <strong class="UI">[Codec]</strong> is set to [h.264] or [h.265].</li>
+                <li><strong class="UI">E-mail/FTP profile</strong>: This video profile is used for sending the captured screen of an image when an event is created. &lsquo;Event&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The E-mail/FTP profile option will appear only when MJPEG is set for the codec.</li><!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> -->
+                <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">The [E-mail/FTP profile] option is enabled only when Channel 1 is selected in fisheye cameras. </li>
+                <li ng-if="Recording && NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card or NAS. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">Record profile</strong>: This profile is applied for recording an image on an SD card. &lsquo;Record&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list.</li>
+                <li style="list-style-type: none;" ng-if="Recording && NAS && SupportChannelExpansionFeature">If multiple channels and profiles have set [Record profile], the video is recorded using the profile that has most recently set the [Record profile] option. For example, if both &quot;profile 1&quot; of Channel 1 and &quot;profile 2&quot; of Channel 2 have set the [Record profile] option, and &quot;profile 2&quot; has most recently been set, &quot;profile 2&quot; will be used for video recording.</li>
+                <!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   -->
+                <li ng-if="isDigitalPTZ"><strong class="UI">Digital PTZ profile</strong>: This profile is used for controlling PTZ motions. &lsquo;DPTZ&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. The Digital PTZ profile option will appear only when H.264 or H.265 is set for the codec.</li>
+                <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> --><li><strong class="UI">Frame Lock profile</strong>: This is a profile applied to guarantee a certain level of video frame rate. &lsquo;FrameLock&rsquo; is displayed in <strong class="UI">[Type]</strong> in the profile list. This &lsquo;Frame Lock profile&rsquo; option appears only when <strong class="UI">[Codec]</strong> is set to [h.264] or [h.265].</li>
             </ul>
         </div>
 

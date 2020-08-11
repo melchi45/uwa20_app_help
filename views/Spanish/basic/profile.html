@@ -29,6 +29,65 @@
             </div>
 </div>
 
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Selecci&oacute;n de canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede establecer los detalles de Perfil de v&iacute;deo para cada canal.</p>
+            <p>El Canal 1 es el v&iacute;deo por defecto para la c&aacute;mara de ojo de pez. Se pueden a&ntilde;adir m&aacute;s canales para corregir el v&iacute;deo de la c&aacute;mara de ojo de pez y mostrarlo apropiadamente. Los usuarios pueden a&ntilde;adir el canal n&uacute;mero 2 al 8. Si el modo de montaje de la c&aacute;mara est&aacute; configurado a [Pared], se puede a&ntilde;adir el canal n&uacute;mero 2 a 7.</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4><a name="adding_channel"></a>Adici&oacute;n de canal</h4>
+            <p>Puede a&ntilde;adir canales para mostrar el v&iacute;deo de la c&aacute;mara de ojo de pez.</p>
+        <div>
+            <ol>                   
+            <li>En <strong class="UI">[Seleccionar canal]</strong>, haga clic en <strong class="UI">[A&ntilde;adir]</strong>. El n&uacute;mero de canal se asigna autom&aacute;ticamente.</li>
+            <li>Seleccione el modo de correcci&oacute;n de distorsi&oacute;n que desee en <strong class="UI">[Modo de vista]</strong>.<br> Un [Modo de vista] puede asignarse a un solo canal. Por ejemplo, si selecciona [Vista de cuadrante] para el Canal 2, puede seleccionar cualquier opci&oacute;n que no sea [Vista de cuadrante] para los dem&aacute;s canales.</li>
+                <ul>
+                    <li>Vista de cuadrante: Corrige 4 pantallas para adaptarlas a la vista humana y las muestra simult&aacute;neamente. Seleccione una pantalla para mover la vista hacia arriba/abajo/izquierda/derecha o acercar/alejar el zoom.</li>
+                    <li>Panor&aacute;mica doble: Corrige un v&iacute;deo de 360˚ y lo muestra como una panor&aacute;mica dividida hacia arriba/abajo. La opci&oacute;n Panor&aacute;mica doble solo aparece cuando se selecciona <strong class="UI">[Techo]</strong> en <strong class="UI">[V&iacute;deo y audio]</strong> &gt; <strong class="UI">[Conf. de v&iacute;deo]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de v&iacute;deo]</strong> &gt; <strong class="UI">[Modo de montaje de la c&aacute;mara]</strong>.</li>
+                    <li>Panor&aacute;mica &uacute;nica: Corrige un v&iacute;deo de la c&aacute;mara de ojo de pez y lo muestra como una panor&aacute;mica de pared.</li>
+                    <li>Q1: Muestra la vista superior izquierda de la vista de cuadrante.</li>
+                    <li>Q2: Muestra la vista superior derecha de la vista de cuadrante.</li>
+                    <li>Q3: Muestra la vista inferior izquierda de la vista de cuadrante.</li>
+                    <li>Q4: Muestra la vista inferior derecha de la vista de cuadrante.</li>
+                </ul>
+            <li>Haga clic en <strong class="UI">[Aplicar]</strong>.</li>
+        </ol>
+        <p>La adici&oacute;n de un canal activa la c&aacute;mara.</p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>Eliminaci&oacute;n de un canal de v&iacute;deo</h4>
+    <p><a href="#adding_channel">Los canales a&ntilde;adidos</a> por el usuario pueden ser eliminados simult&aacute;neamente.</p>
+    <div>
+        <ol>
+                    
+            <li>Seleccione <strong class="UI">[Eliminar todo]</strong>.</li>
+        </ol>
+                <p>La eliminaci&oacute;n de un canal activa la c&aacute;mara.</p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>Visualizaci&oacute;n de la informaci&oacute;n por canal</h4>
+    <p>Muestra el resumen del estado de cada canal.</p>
+    <div>
+                <ol>
+                    
+                    <li>Seleccione <strong class="UI">[Informaci&oacute;n]</strong>.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
 <div class="wn5-setup-section" ng-if="SensorCaptureSize">
             <div class="wn5-setup-section-heading">
@@ -203,6 +262,8 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>Tipo de vista de ojo de pez</h3>
             <p>Selecciona el tipo de v&iacute;deo de la c&aacute;mara ojo de pez que se mostrar&aacute; en el perfil.</p>
+            <p ng-if="SupportChannelExpansionFeature">El canal 1 tiene que ser seleccionado para que los usuarios puedan seleccionar [Tipo de vista de ojo de pez].</p>
+            
             <ul>
                 <li>Vista de ojo de pez: Muestra el v&iacute;deo de c&aacute;mara de ojo de pez sin correcci&oacute;n.</li>
                 <li>Vista correcci&oacute;n esf&eacute;rica: Corrige el v&iacute;deo de 360&deg; capturado por la c&aacute;mara ojo de pez para ajustarse a la vista. El tipo de v&iacute;deo de correcci&oacute;n se puede seleccionar desde la opci&oacute;n <strong class="UI">[Vista]</strong> mostrada cuando se selecciona «Vista correcci&oacute;n esf&eacute;rica».</li>
@@ -211,6 +272,8 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>Vistas</h3>
             <p>Selecciona el tipo de v&iacute;deo de correcci&oacute;n de distorsi&oacute;n.</p>
+            <p ng-if="SupportChannelExpansionFeature">Se activa solo cuando se selecciona el Canal 1.</p>
+            
             <p>Esto se activa cuando se selecciona <strong class="UI">[Vista correcci&oacute;n esf&eacute;rica]</strong> en <strong class="UI">[Tipo de vista ojo de pez]</strong>.</p>
             <ul>
                 <li>Panor&aacute;mica &uacute;nica: Corrige un video de 360˚ y lo muestra como una panor&aacute;mica de pared.</li>
@@ -229,8 +292,14 @@
             <p ng-if="SupportAutoImageAlignment">Adem&aacute;s, dependiendo del canal que haya seleccionado en<a href="#channel">Seleccionar canal</a>se puede configurar un tipo de perfil diferente. Por ejemplo, el «Perfil de grabación» solo se puede configurar si ha seleccionado CH1.</p>
             <ul>
                 <li><strong class="UI">Perfil predet.</strong>: Este es el perfil predeterminado aplicado para la transmisi&oacute;n de una imagen de c&aacute;mara en vivo. «Default» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles.</li>
-                <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de v&iacute;deo se usa para enviar la pantalla capturada de una imagen cuando se crea un evento. «Event» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles. La opci&oacute;n de perfil E-mail/FTP aparecer&aacute; s&oacute;lo cuando MJPEG se establezca para el c&oacute;dec.</li><!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> --><li ng-if="Recording && NAS"><strong class="UI">Perfil de grabación</strong>Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD o NAS. «Record» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles.</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">Perfil de grabación</strong>Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD. «Record» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles.</li><!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   -->
+                <li><strong class="UI">Perfil de E-mail/FTP</strong>: Este perfil de v&iacute;deo se usa para enviar la pantalla capturada de una imagen cuando se crea un evento. «Event» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles. La opci&oacute;n de perfil E-mail/FTP aparecer&aacute; s&oacute;lo cuando MJPEG se establezca para el c&oacute;dec.</li>
+                <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">La opci&oacute;n [perfil de E-mail/FTP] est&aacute; habilitada solo cuando se selecciona el Canal 1 en las c&aacute;maras de ojo de pez.</li>                
+                
+                <!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> -->
+                <li ng-if="Recording && NAS"><strong class="UI">Perfil de grabación</strong>Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD o NAS. «Record» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">Perfil de grabación</strong>Este perfil se aplica para la grabaci&oacute;n de una imagen en una tarjeta SD. «Record» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles.</li>
+                <li style="list-style-type: none;" ng-if="Recording && NAS && SupportChannelExpansionFeature">Si varios canales y perfiles tienen configurada la opci&oacute;n [Perfil de grabaci&oacute;n], el v&iacute;deo se grabar&aacute; usando el perfil que fue configurado m&aacute;s recientemente por la opci&oacute;n [Perfil de grabaci&oacute;n]. Por ejemplo, si tanto el &quot;perfil 1&quot; del Canal 1 como el &quot;perfil 2&quot; del Canal 2 tienen configurada la opci&oacute;n [Perfil de grabaci&oacute;n], y el &quot;perfil 2&quot; ha sido configurado m&aacute;s recientemente, entonces el &quot;perfil 2&quot; se utilizar&aacute; para la grabaci&oacute;n de v&iacute;deo.</li>
+                <!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   -->
                 
                 <li ng-if="isDigitalPTZ"><strong class="UI">Perfil PTZ digital</strong>: Este perfil se usa para controlar los movimientos PTZ. «DPTZ» se muestra en <strong class="UI">[Tipo]</strong> en la lista de perfiles. La opci&oacute;n de perfil PTZ digital aparecer&aacute; s&oacute;lo cuando H.264 o H.265 se establezca para el c&oacute;dec.</li>
                 <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> -->

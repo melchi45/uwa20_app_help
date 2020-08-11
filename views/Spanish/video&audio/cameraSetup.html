@@ -995,16 +995,29 @@
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">?? 2</strong>: ?? ??? ? ???? ?? ???? ??? ?? ???? IR? ??? ?????.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">??</strong>: ???? IR? ??? ?????.</li>
             </ul> --></div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!IRledZoneLevel">
             <h3>Nivel</h3>
             <p>Establezca el nivel de IR.</p>
             <p>El nivel IR se activa cuando se selecciona <strong class="UI">[Manual]</strong> en <strong class="UI">[Modo]</strong>.</p>
-        </div><!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
+        </div>
+        <div class="wn5-setup-section-article-content" ng-if="IRledZoneLevel">
+            <h3>Nivel de &aacute;rea 1</h3>
+                <p>Se puede aplicar un nivel de IR diferente a cada &aacute;rea.&nbsp;Cuanto m&aacute;s alto es el valor del nivel de IR, m&aacute;s alto ser&aacute; el brillo de IR. Cuanto m&aacute;s bajo es el valor del nivel de IR, m&aacute;s bajo ser&aacute; el brillo de IR.</p>
+                <p>El nivel de IR se activa al seleccionar <strong class="UI">[Manual]</strong> en <strong class="UI">[Modo]</strong>.</p>
+                <p>La cantidad de &aacute;reas para las que se puede ajustar el nivel de IR var&iacute;a seg&uacute;n la opci&oacute;n de modo de montaje de la c&aacute;mara. Si el <strong class="UI">[Modo de montaje de la c&aacute;mara]</strong> est&aacute; ajustado a <strong class="UI">[Pared]</strong>, el nivel de IR puede ajustarse para dos &aacute;reas. Si el <strong class="UI">[Modo de montaje de la c&aacute;mara]</strong> est&aacute; ajustado a <strong class="UI">[Techo]</strong>, el nivel de IR puede ajustarse para tres &aacute;reas.&nbsp;<strong class="UI">El [Modo de montaje de la c&aacute;mara]</strong> puede cambiarse en <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI">[Conf. de v&iacute;deo]</strong> &gt; <strong class="UI">[Rotaci&oacute;n de v&iacute;deo]</strong>.&nbsp;</p>
+                <p>Dependiendo del n&uacute;mero de &aacute;reas, aparece la opci&oacute;n <strong class="UI">[Nivel de &aacute;rea 2]</strong> o <strong class="UI">[Nivel de &aacute;rea 3]</strong>.</p>
+                <p>&nbsp;</p>
+        </div>
+        <!-- <div class="wn5-setup-section-article-content" ng-if="IRModeOptionManual">
             <h3>??</h3>
             <p>IR ??? ?????.</p>
             <p>IR ??? <strong class="UI">[??]</strong>?? <strong class="UI">[??]</strong>? ???? ??????.</p>
-        </div> --></div>
-</div><!-- PTZModel -> PTZModel && IR?? ??. x??? ??? ??. ??? ??? ???. 2019-08-12  --><hr class="wn5-setup-hr" ng-if="PTZModel && IR">
+        </div> -->
+    </div>
+</div>
+<!-- PTZModel -> PTZModel && IR?? ??. x??? ??? ??. ??? ??? ???. 2019-08-12  -->
+
+<hr class="wn5-setup-hr" ng-if="PTZModel && IR">
 <div class="wn5-setup-section" ng-if="PTZModel && IR">
     <div class="wn5-setup-section-heading">
         <h2>IR</h2>

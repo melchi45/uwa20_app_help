@@ -211,7 +211,8 @@
                             <p><a href="#channel">Select channel</a></p>
                         </td>
                         <td width="235">
-                                <p>The channels supported by the camera are displayed.</p>
+                                <p>The channels supported by the camera are displayed. Select a channel to play the live feed of the selected channel.</p>
+                                <p ng-if="SupportChannelExpansionFeature">Channel 1 is the original video from the fisheye camera. All the other channels are added and set up by users to show their preferred view modes. Camera channels can be added in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>.</p>
                             <!-- <p>Camera channel numbers are displayed.</p> -->
                             
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">If you select a channel number, the video of the channel will appear in the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed on one screen. To return to the single view, click the channel number.</p> --> 
@@ -252,7 +253,8 @@
                         </td>
                     </tr> -->
 
-                    <tr ng-if="SupportChannelExpansionFeature">
+                    <!-- QNF-9010 컨텐츠이며, QNF는 채널 2개까지 XNF는 채널 7개까지 추가되어 XNF-9010에서 일단 주석 처리함. QNF-9010 변경점 진행 시 재검토 필요함.  tw자체. 2020-08-11 -->
+                    <!-- <tr ng-if="SupportChannelExpansionFeature">
                         <td width="234">Select channel</td>
                         <td width="236">
                             <p>You can select a channel that shows only videos of the view type you selected.</p>
@@ -261,7 +263,7 @@
                             <p>The default is [Fisheye view] and up to 2 video channels can be added.</p>
                             <p>&nbsp;</p>
                         </td>
-                    </tr>
+                    </tr> -->
 
                     <tr>                       
                         <td width="235">

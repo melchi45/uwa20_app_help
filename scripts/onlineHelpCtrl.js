@@ -247,6 +247,9 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       // /* TNU-6321에서 정인혜 선임님이 직접 수정 후 커밋 */      
       // $scope.HDMISupport = attr.VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || attr.VideoTypeOptions.indexOf('HDMI_720p') !== -1;
 
+
+      /* XNF-9010RVM에서 추가한 것. */
+      $scope.IRledZoneLevel = attr.IRledZoneLevel;
       
 
       /*

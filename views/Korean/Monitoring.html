@@ -21,7 +21,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
         <ul>
             <li>고해상도의 영상을 라이브 화면에서 재생하는 경우, 고해상도 영상을 최적화하여 보여줄 수 있는 PLUGINFREE 프로파일이 자동으로 생성됩니다. 생성된 PLUGINFREE 프로파일은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 확인할 수 있습니다. </li>
-            <li ng-if="PeerConnectionInfoClientHttpsStatus">라이브 페이지 오른쪽 상단에서 <img src="./images/ic-top-cert-nor.svg">아이콘을 클릭하면, 접속한 IP 주소와 인증 상태를 확인할 수 있습니다. 인증에 성공한 경우 초록색 아이콘으로, 실패한 경우 빨간색 아이콘으로 표시됩니다. 또한 HTTP로 접속하여 해당 사항이 없는 경우는 대시(-)로 표시됩니다. </li>
+            <li ng-if="PeerConnectionInfoClientHttpsStatus">라이브 페이지 오른쪽 상단에서 <img src="images/ic-top-cert-nor.svg">아이콘을 클릭하면, 접속한 IP 주소와 인증 상태를 확인할 수 있습니다. 인증에 성공한 경우 초록색 아이콘으로, 실패한 경우 빨간색 아이콘으로 표시됩니다. 또한 HTTP로 접속하여 해당 사항이 없는 경우는 대시(-)로 표시됩니다. </li>
             <li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
             <li>라이브 페이지에서 영상을 재생할 때 아래와 같은 조건에서 화면에 잔상이 표시될 수 있습니다.</li>
             <ul>
@@ -58,8 +58,8 @@
                 <tr ng-if="objectDetectionSupport">
                     <td width="235">BestShot</td>
                     <td width="235">
-                        <p>BestShot은 영상에서 감지된 객체(사람, 얼굴, 차량, 번호판)에서&nbsp;신뢰도가 가장 높은 객체를&nbsp;이미지로 추출한 것입니다. BestShot의 이미지 형식은 JPEG이며, 객체를 포함하는 일부 영역만 추출하여 이미지를 생성합니다. </p>
-                        <p>라이브 페이지의 BestShot 패널에서는&nbsp;객체별 BestShot을 확인할 수 있습니다. 또한 각 객체의 세부 속성이 아이콘으로 표시됩니다. 예를 들어 사람의 경우 성별,&nbsp;상/하의 옷 색상과 길이, 모자나 가방 착용 여부 등 세부 정보를 보여줍니다. </p>
+                        <p>BestShot은 영상에서 감지된 객체(사람, 얼굴, 차량, 번호판)에서 신뢰도가 가장 높은 객체를 이미지로 추출한 것입니다. BestShot의 이미지 형식은 JPEG이며, 객체를 포함하는 일부 영역만 추출하여 이미지를 생성합니다. </p>
+                        <p>라이브 페이지의 BestShot 패널에서는 객체별 BestShot을 확인할 수 있습니다. 또한 각 객체의 세부 속성이 아이콘으로 표시됩니다. 예를 들어 사람의 경우 성별, 상/하의 옷 색상과 길이, 모자나 가방 착용 여부 등 세부 정보를 보여줍니다. </p>
                         <p>BestShot 패널에 표시될 객체의 종류는 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[분석]</strong>&gt;<strong class="UI">[객체 감지]</strong>&gt;<strong class="UI">[BestShot]</strong>에서 선택할 수 있습니다. </p>
                         <p>&nbsp;</p>
                     </td>
@@ -147,7 +147,7 @@
                         <!-- <p><strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어, 추적 기능을 시작하고 중지할 수 있습니다. </p>  -->
                         
                         <p ng-if="GlobalPTZMode && MaxChannel > 1">[채널 선택]에서 채널 1을 선택한 경우에만 외부 PTZ 제어 기능이 동작합니다. </p>
-                        <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ 아이콘이 보이지 않으면 &nbsp;<strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택되어 있는지 확인하십시오. </p>
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ 아이콘이 보이지 않으면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택되어 있는지 확인하십시오. </p>
                         <p>&nbsp;</p>
                     </td>
                 </tr>
@@ -193,7 +193,7 @@
                     </td>
                     <td width="235">
                         <p>카메라가 객체를 감지할 때 영상 화면에 표시할 객체 타입을 선택할 수 있습니다. </p>
-                        <p>AI 카메라의 객체 분석 알고리즘이 작동하는 경우에만 감지한 객체가 영상 화면에 표시되며, AI 알고리즘이 동작하려면&nbsp;객체 감지, IVA, 피플 카운팅, 대기열 관리, 히트맵 중 하나의 기능이 활성화돼 있어야 합니다. </p>
+                        <p>AI 카메라의 객체 분석 알고리즘이 작동하는 경우에만 감지한 객체가 영상 화면에 표시되며, AI 알고리즘이 동작하려면 객체 감지, IVA, 피플 카운팅, 대기열 관리, 히트맵 중 하나의 기능이 활성화돼 있어야 합니다. </p>
                         <p><a href="#channel">[채널 선택]</a>에서 채널 1을 선택한 경우에만 오버레이 아이콘이 활성화됩니다. </p>
                         <p>&nbsp;</p>
                     </td>
@@ -216,13 +216,15 @@
                         <p><a href="#channel">채널 선택</a></p>
                     </td>
                     <td width="235">
-                        <p>카메라가 지원하는 채널이 표시됩니다.</p>
-                        <!-- <p>카메라 채널 번호가 표시됩니다.</p> -->
-                    <!--     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p> --> 
+                        <p>카메라가 지원하는 채널이 표시됩니다. 채널을 선택하면 각 채널의 라이브 영상을 확인할 수 있습니다. </p>
+                    <!-- XNF-9010RVM에서 채널 추가되어 추가함. SupportChannelExpansionFeature는 QNF-9010에서 사용하던 코드였으나 XNF-9010에서 사용. TW자체. 2020-08-11 -->
+                        <p ng-if="SupportChannelExpansionFeature">채널 1은 피쉬아이 카메라의 원본 영상이며, 이 외 채널은 사용자가 원하는 뷰 모드로 설정하고 추가한 것입니다. 카메라 채널은 <strong class="UI">[설정 </strong>&gt;<strong class="UI">[Basic]</strong> &gt;<strong class="UI">[비디오 프로파일]</strong>에서 추가할 수 있습니다. </p>
+<!-- <p>카메라 채널 번호가 표시됩니다.</p> -->
+<!--     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p> --> 
                         <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 멀티 뷰 아이콘을 선택하면 카메라가 지원하는 모든 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다. </p>
                         <p ng-if="HandoverCalibration">고정형 카메라의 채널 번호를 선택하면 해당 영상이 뷰어에 나타납니다. [PTZ]를 선택하면 PTZ 단일 채널 영상이 뷰어에 나타납니다. 멀티 채널 아이콘을 선택하면 고정형 카메라와 PTZ 카메라이 영상이 한 번에 나타납니다. 단일 화면으로 돌아오려면 채널 번호나 [PTZ]를  클릭합니다.</p>
-						<p ng-if="SupportAutoImageAlignment">카메라 채널 2~5번을 선택하면 각 채널별 카메라 영상을 보여줍니다. 채널 1을 선택하면 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여줍니다. 채널 6번과 7번을 선택하면 1번 채널 영상을 카메라 <a href="#PTZ">PTZ를 조정</a>하면서 확인할 수 있습니다. </p>
-                    <!-- </td>
+                        <p ng-if="SupportAutoImageAlignment">카메라 채널 2~5번을 선택하면 각 채널별 카메라 영상을 보여줍니다. 채널 1을 선택하면 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여줍니다. 채널 6번과 7번을 선택하면 1번 채널 영상을 카메라 <a href="#PTZ">PTZ를 조정</a>하면서 확인할 수 있습니다. </p>
+<!-- </td>
                 </tr>
 				
                 <tr ng-if="MaxChannel > 1 && objectDetectionSupport">
@@ -230,12 +232,12 @@
                     <td width="235">
                         <p>카메라가 지원하는 채널이 표시됩니다.</p> -->
                         <ul ng-if="objectDetectionSupport">
-                            <li>채널 1: 라이브 영상을 보여 주는 채널입니다. </li>
+                            <li>채널 1: 라이브 영상을 보여 주는 채널입니다.    </li>
                             <li>채널 2: 디지털 PTZ 영상을 보여주는 채널입니다.
-                                <!-- 
+<!-- 
                                     채널 2를 선택하면 <a href="#PTZ">디지털 PTZ 기능을 사용할 수 있습니다. 
                                         -->
-                            </li>
+                                                                                                                </li>
                         </ul>
                         <p>&nbsp;</p>
                     </td>
@@ -260,7 +262,8 @@
                     </td>
                 </tr> -->
 
-                <tr ng-if="SupportChannelExpansionFeature">
+                <!-- QNF-9010 컨텐츠이며, QNF는 채널 2개까지 XNF는 채널 7개까지 추가되어 XNF-9010에서 일단 주석 처리함. QNF-9010 변경점 진행 시 재검토 필요함.  tw자체. 2020-08-11 -->
+                <!-- <tr ng-if="SupportChannelExpansionFeature">
                     <td width="235">채널 선택</td>
                     <td width="235">
                         <p>선택한 뷰 타입의 영상만 존재하는 채널을 선택할 수 있습니다. </p>
@@ -269,7 +272,9 @@
                         <p>[피쉬아이 뷰]는 기본 채널이며, 최대 2개까지 비디오 채널을 추가할 수 있습니다. </p>
                         <p>&nbsp;</p>
                     </td>
-                </tr>
+                </tr> -->
+
+
                     <tr>
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-fullscreen"></span></p>
@@ -489,7 +494,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p><strong class="UI">[설정]</strong>&gt;<strong class="UI">[분석]</strong>&gt;<strong class="UI">[온도 감지]</strong>&gt;<strong class="UI">[온도 오버레이]</strong>에서 선택한 항목(영역, 평균, 최저, 최고 온도) 정보가 카메라 영상 상단에 오버레이로 표시됩니다.</p>
-            <p>카메라 영상을 클릭하면&nbsp;현재 선택한 지점의 온도를 표시해 줍니다. <strong class="UI">[스폿 방사율]</strong>에서 입력된 방사율 정보를 기준으로 온도를 분석합니다. 정확한 온도 분석을 위해 필요한 경우 방사율 정보를 변경할 수 있습니다. 물질별&nbsp;방사율 정보는 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[온도 설정]</strong>에서 방사율 표를&nbsp;참고하십시오.</p>
+            <p>카메라 영상을 클릭하면 현재 선택한 지점의 온도를 표시해 줍니다. <strong class="UI">[스폿 방사율]</strong>에서 입력된 방사율 정보를 기준으로 온도를 분석합니다. 정확한 온도 분석을 위해 필요한 경우 방사율 정보를 변경할 수 있습니다. 물질별 방사율 정보는 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[온도 설정]</strong>에서 방사율 표를 참고하십시오.</p>
         </div>
     </div>
 </div>
@@ -541,7 +546,7 @@
     
     <div class="wn5-setup-section-article-content">
         <h3>프리셋</h3>
-            <p>프리셋 목록에서 원하는 프리셋 번호를 선택한 후 <strong class="UI">[이동]</strong> 버튼을 클릭하면 카메라 뷰가 프리셋 위치로 이동합니다. 프리셋 위치를 설정하려면 PT 제어 화면에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라 뷰 위치를 조정한 후&nbsp;<strong class="UI">[설정]</strong> 버튼을 클릭합니다. <strong class="UI">[이름]</strong>과&nbsp;<strong class="UI">[번호] </strong>필드에 프리셋 이름과 번호를 각각 설정한 뒤 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</p>
+            <p>프리셋 목록에서 원하는 프리셋 번호를 선택한 후 <strong class="UI">[이동]</strong> 버튼을 클릭하면 카메라 뷰가 프리셋 위치로 이동합니다. 프리셋 위치를 설정하려면 PT 제어 화면에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라 뷰 위치를 조정한 후 <strong class="UI">[설정]</strong> 버튼을 클릭합니다. <strong class="UI">[이름]</strong>과 <strong class="UI">[번호] </strong>필드에 프리셋 이름과 번호를 각각 설정한 뒤 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</p>
             <p><strong class="UI">[홈]</strong> 버튼을 클릭하면 카메라 뷰가 홈 위치로 이동합니다. 홈 위치는 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PT 설정]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에 설정할 수 있습니다.</p>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -747,8 +752,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
     <div class="wn5-setup-section-article-content">
         <h3>프리셋</h3>
-            <p>프리셋 목록에서 프리셋 번호를 선택한 후 <strong class="UI">[이동]</strong> 버튼을 클릭하면 해당 PTZ 프리셋 위치로&nbsp;이동합니다. </p>
-            <p>프리셋을 추가하려면 <strong class="UI">[설정] </strong>버튼을 클릭한 후 프리셋 이름을 입력하고 번호를 설정한 뒤 <strong class="UI">[적용]</strong>&nbsp;버튼을 클릭합니다. 또한 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[디지털 PTZ]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에서 프리셋을 추가하거나 변경할 수 있습니다.</p>
+            <p>프리셋 목록에서 프리셋 번호를 선택한 후 <strong class="UI">[이동]</strong> 버튼을 클릭하면 해당 PTZ 프리셋 위치로 이동합니다. </p>
+            <p>프리셋을 추가하려면 <strong class="UI">[설정] </strong>버튼을 클릭한 후 프리셋 이름을 입력하고 번호를 설정한 뒤 <strong class="UI">[적용]</strong> 버튼을 클릭합니다. 또한 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt; <strong class="UI">[디지털 PTZ]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에서 프리셋을 추가하거나 변경할 수 있습니다.</p>
         <!--     <p><strong class="UI">[홈]</strong> 버튼을 클릭하면 카메라 뷰가 홈 위치로 이동합니다. 홈 위치는 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에 설정할 수 있습니다.</p>  --> 
     </div>
     <div class="wn5-setup-section-article-content">
@@ -788,7 +793,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>프리셋</h3>
-            <p>프리셋 목록에서 원하는 프리셋 번호를 선택한 후 <strong class="UI">[이동]</strong> 버튼을 클릭하면 카메라 뷰가 프리셋 위치로 이동합니다. 프리셋 위치를 설정하려면 PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라 뷰 위치를 조정한 후&nbsp;<strong class="UI">[설정]</strong> 버튼을 클릭합니다. <strong class="UI">[번호]</strong>와 <strong class="UI">[이름]</strong> 필드에서 프리셋 번호와 이름을 각각 설정한 뒤 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</p>
+            <p>프리셋 목록에서 원하는 프리셋 번호를 선택한 후 <strong class="UI">[이동]</strong> 버튼을 클릭하면 카메라 뷰가 프리셋 위치로 이동합니다. 프리셋 위치를 설정하려면 PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라 뷰 위치를 조정한 후 <strong class="UI">[설정]</strong> 버튼을 클릭합니다. <strong class="UI">[번호]</strong>와 <strong class="UI">[이름]</strong> 필드에서 프리셋 번호와 이름을 각각 설정한 뒤 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</p>
             <p><strong class="UI">[홈]</strong> 버튼을 클릭하면 카메라 뷰가 홈 위치로 이동합니다. 홈 위치는 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>&gt;<strong class="UI">[프리셋]</strong> 탭에 설정할 수 있습니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
@@ -797,7 +802,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>팬/홈</h3>
-            <p><strong class="UI">[팬]</strong>에서 카메라 방향을 조정한 후 <strong class="UI">[홈&nbsp;설정]</strong> 버튼을 클릭하면 해당 위치가 홈 위치로 설정됩니다. <strong class="UI">[홈 이동]</strong> 버튼을 클릭하면 카메라 뷰가 홈 위치로 바로 이동합니다.</p>
+            <p><strong class="UI">[팬]</strong>에서 카메라 방향을 조정한 후 <strong class="UI">[홈 설정]</strong> 버튼을 클릭하면 해당 위치가 홈 위치로 설정됩니다. <strong class="UI">[홈 이동]</strong> 버튼을 클릭하면 카메라 뷰가 홈 위치로 바로 이동합니다.</p>
         </div>
     </div>
 </div>

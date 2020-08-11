@@ -3,6 +3,7 @@
 <div class="wn5-setup-section">
 	<p>스마트 코덱은 사용자가 원하는 부분을 관심 영역으로 설정하고 관심 영역의 화질은 사용자가 설정한 대로 유지하되 그 외 영역은 일반 화질로 관리하여 영상 데이터 크기를 줄이는 기술입니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
+		
 <hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
 <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
@@ -43,8 +44,8 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
 				
-                <li>스마트 코덱은 비디오 프로파일 별로 사용 여부를 설정할 수 있습니다. <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 <a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[비트 레이트 제어 방식]</strong></a>을 <strong class="UI">[CBR]</strong>로 설정한 후, <a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong
-class="UI">[스마트 코덱]</strong></a>에서 [사용 안 함]을 선택하면, 해당 프로파일에서는 스마트 코덱 기능이 작동하지 않습니다.  </li>
+                <li>스마트 코덱은 비디오 프로파일 별로 사용 여부를 설정할 수 있습니다. <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 <a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[비트 레이트 제어 방식]</strong></a>을 <strong class="UI">[CBR]</strong>로 설정한 후, <a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong class="UI">[스마트 코덱]</strong></a>에서 [사용 안 함]을 선택하면, 해당 프로파일에서는 스마트 코덱 기능이 작동하지 않습니다. </li>
+                <li ng-if="SupportChannelExpansionFeature">피쉬아이 카메라에서 스마트 코덱 기능은 피쉬아이 뷰 모드 일 때만 동작합니다. 피쉬아이 뷰는 채널 1에서만 지원하며, 따라서 채널 2부터 채널 8까지의 영상은 모두 스마트 코덱이 적용되지 않습니다. 또한 채널 1에서 피쉬아이 뷰로 설정된 프로파일에만 스마트 코덱이 적용됩니다. 예를 들어 채널 1의 프로파일 중 'profile 1'은 [피쉬아이 뷰]로 설정하고, 'profile 2'는 왜곡 보정 옵션 중 하나인 [더블 파노라마]로 설정한 경우, 'profile 1'로 영상이 전송될 때만 스마트 코덱이 적용됩니다. 피쉬아이 뷰 모드는 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 설정할 수 있습니다.</li>
             </ul>
 		</div>
 	</div>

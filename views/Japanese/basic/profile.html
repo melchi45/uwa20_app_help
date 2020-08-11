@@ -30,6 +30,64 @@
 </div>
 
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature"
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラチャンネルを選択した後、チャンネル別にビデオプロファイルの詳細を設定することができます。</p>
+            <p>チャンネル1は魚眼カメラの基本ビデオであり、魚眼カメラの歪みビデオを補正して出力するためにチャンネルを追加することができます。ユーザーが追加できるチャンネルは2番から8番までです。カメラ据付けモードを[壁]に選択した場合には2番から7番まで追加することができます。</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4><a name="adding_channel"></a>チャンネル追加</h4>
+            <p>魚眼カメラの歪み補正ビデオを出力するチャンネルを追加することができます。</p>
+        <div>
+            <ol>                   
+            <li><strong class="UI">[チャンネル選択]</strong>で<strong class="UI">[追加]</strong>をクリックします。チャンネル番号が自動に割り当てられます。</li>
+            <li><strong class="UI">[ビューモード]</strong>で歪み補正モードを選択します。<br>一つのチャンネル当たりに一つの[ビューモード]を選択することができます。例えば、チャンネル2番に[クワドビュー]を選択すると、この後のチャンネルには[クワドビュー]以外の他のオプションのみ選択できます。</li>
+                <ul>
+                    <li>クワドビュー：人の視野に適するように歪み補正した特定画面4つを同時に表示します。分割画面を選択してビューを上下左右に移動したり、ズーム機能を使用することができます。</li>
+                    <li>ダブルパノラマ：360˚エリアを撮影したビデオを歪み補正してパノラマタイプの上下分割画面に表示します。<strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[ビデオ設定]</strong> &gt; <strong class="UI">[ビデオ回転]</strong> &gt; <strong class="UI">[カメラ据付けモード]</strong>で<strong class="UI">[天井]</strong>を選択した場合のみ、ダブルパノラマオプションが表示されます。</li>
+                    <li>シングルパノラマ：魚眼カメラが撮影したビデオを補正して壁パノラマタイプに表示します。</li>
+                    <li>Q1：クワドビューの左上のビューを表示します。</li>
+                    <li>Q2：クワドビューの右上のビューを表示します。</li>
+                    <li>Q3：クワドビューの左下のビューを表示します。</li>
+                    <li>Q4：クワドビューの右下のビューを表示します。</li>
+                </ul>
+            <li><strong class="UI">[適用]</strong>をクリックします。</li>
+        </ol>
+        <p>チャンネルを追加すると、カメラが再起動されます。</p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>ビデオチャンネル削除</h4>
+    <p><a href="#adding_channel">ユーザーが追加</a>したチャンネルを一度にすべて削除することができます。</p>
+    <div>
+        <ol>
+                    
+            <li><strong class="UI">[すべて削除]</strong>を選択します。</li>
+        </ol>
+                <p>ビデオチャンネルを削除すると、カメラが再起動されます。</p>
+    </div>
+</div>
+		
+<div class="wn5-online-help-action">
+    <h4>チャンネル別の情報を確認する</h4>
+    <p>チャンネルの全体状況をチャンネル別にまとめて表示します。</p>
+    <div>
+                <ol>
+                    
+                    <li><strong class="UI">[インフォメーション]</strong>を選択します。</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <hr class="wn5-setup-hr" ng-if="SensorCaptureSize">
 <div class="wn5-setup-section" ng-if="SensorCaptureSize">
             <div class="wn5-setup-section-heading">
@@ -204,6 +262,7 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>魚眼ビュータイプ</h3>
             <p>プロファイルで表示される魚眼カメラの映像タイプを選択します。</p>
+            <p ng-if="SupportChannelExpansionFeature">チャンネル1を選択した場合に[魚眼ビュータイプ]を設定することができます。</p>
             <ul>
                 <li>魚眼ビュー：魚眼カメラの映像をそのまま補正なしで見せます。</li>
                 <li>歪み補正ビュー：魚眼カメラで撮影した360&deg;映像を適合なタイプに補正して見せます。補正映像タイプは、「歪み補正ビュー」を選択すると表示される<strong class="UI">[ビュー]</strong>オプションで選択することができます。</li>
@@ -212,6 +271,7 @@
         <div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
             <h3>ビュー</h3>
             <p>歪み補正の映像タイプを選択します。</p>
+            <p ng-if="SupportChannelExpansionFeature">チャンネル1を選択した場合、有効になります。</p>
             <p><strong class="UI">[魚眼ビュータイプ]</strong>で<strong class="UI">[歪み補正ビュー]</strong>を選択した場合、有効となります。</p>
             <ul>
                 <li>シングルパノラマ：360˚エリアを撮影した映像を歪み補正して壁パノラマタイプに見せます。</li>
@@ -230,8 +290,19 @@
             <p ng-if="SupportAutoImageAlignment">また<a href="#channel">チャンネル選択</a>で選択したチャンネルによって設定できるプロファイルタイプが異なることがあります。例えば、「録画PROFILE」はチャンネル1を選択した場合のみ設定することができます。</p>
             <ul>
                 <li><strong class="UI">基本Profile</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。プロファイルリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
-                <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオProfileです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。<strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP プロファイルオプションが表示されます。</li><!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> --><li ng-if="Recording && NAS"><strong class="UI">録画PROFILE</strong>：(micro)SDカードまたはNASに映像を録画する時、適用するプロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
-                <li ng-if="Recording && !NAS"><strong class="UI">録画PROFILE</strong>：(micro)SDカードに映像を録画する時、適用するプロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li><!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   --><li ng-if="isDigitalPTZ"><strong class="UI">デジタルPTZプロファイル</strong>：PTZモーションをデジタルに制御する時、使用するプロファイルです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「DPTZ」と表示されます。<strong class="UI">[Codec]</strong>をH.264もしくはH.265に設定したのみ、デジタルPTZプロファイルオプションが表示されます。</li><!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> --><li><strong class="UI">フレームレート固定プロファイル</strong>：映像のフレームレートを一定レベルで保障する時、適用するプロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>に「FrameLock」と表示されます。<strong class="UI">[Codec]</strong>を[H.264]または[H.265]に設定した場合のみ、「フレームレート固定プロファイル」オプションが表示されます。</li>
+                <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオProfileです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。<strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP プロファイルオプションが表示されます。</li>
+                <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">魚眼カメラで[E-mail/FTP profile]オプションはチャンネル1を選択した場合のみ設定することができます。</li> 
+                <!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> -->
+                
+                <li ng-if="Recording && NAS"><strong class="UI">録画PROFILE</strong>：(micro)SDカードまたはNASに映像を録画する時、適用するプロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">録画PROFILE</strong>：(micro)SDカードに映像を録画する時、適用するプロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Record」と表示されます。</li>
+                <li style="list-style-type: none;" ng-if="Recording && NAS && SupportChannelExpansionFeature">複数のチャンネルとプロファイルで[録画PROFILE]を設定した場合、[録画PROFILE]オプションを最も最近に設定したプロファイルにビデオが保存されます。例えば、チャンネル1の「profile 1」とチャンネル2の「profile 2」ですべて[録画PROFILE]オプションを設定した場合、最も最近に設定したプロファイルが「profile 2」なら「profile 2」プロファイルにビデオが保存されます。</li>
+                
+                <!-- DPTZSetupPage && !SupportAutoImageAlignment -> (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZModel 으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment) || ExternalPTZMode -> (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel 으로 수정. QNF-8010. 김영호 책임님. 2019-09-03  --> <!-- (DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2) || ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel으로 수정. XNZ-L6320. 정인혜 책임님. 2019-10-10   --> <!-- DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel ->  DPTZSetupPage && !SupportAutoImageAlignment && !CameraPositionV2 && ExternalPTZModel && !objectDetectionSupport으로 수정. AI 카메라 |. TW자체 등록. 2019-10-10   -->
+                
+                <li ng-if="isDigitalPTZ"><strong class="UI">デジタルPTZプロファイル</strong>：PTZモーションをデジタルに制御する時、使用するプロファイルです。Profileリストの<strong class="UI">[タイプ]</strong>カラムに「DPTZ」と表示されます。<strong class="UI">[Codec]</strong>をH.264もしくはH.265に設定したのみ、デジタルPTZプロファイルオプションが表示されます。</li>
+                <!-- <li style="list-style-type: none;" ng-if="FisheyeLens">피쉬아이 카메라의 경우, 새 프로파일을 추가할 때 <strong class="UI">[피쉬아이 뷰 타입]</strong>에서 <strong class="UI">[왜곡 보정 뷰]</strong>를 선택하고, <strong class="UI">[뷰]</strong>에서 <strong class="UI">[4분할 뷰]</strong>를 선택하면 해당 프로파일이 자동으로 디지털 PTZ 프로파일로 등록됩니다.  </li> -->
+                <li><strong class="UI">フレームレート固定プロファイル</strong>：映像のフレームレートを一定レベルで保障する時、適用するプロファイルです。プロファイルリストの<strong class="UI">[タイプ]</strong>に「FrameLock」と表示されます。<strong class="UI">[Codec]</strong>を[H.264]または[H.265]に設定した場合のみ、「フレームレート固定プロファイル」オプションが表示されます。</li>
             </ul>
         </div>
 

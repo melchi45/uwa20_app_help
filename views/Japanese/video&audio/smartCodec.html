@@ -45,6 +45,8 @@
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 			<ul><li>Smart codecはビデオprofile別に使用有無を設定することができます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で<a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[ビットレート制御]</strong></a>を<strong class="UI">[CBR]</strong>に設定した後、<a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong class="UI">[Smart codec]</strong></a>で使用有無を設定します。「ビデオprofile」ページで「Smart codec」を「無効」に設定すると、Smart codec機能は動作しません。</li>
+			<li ng-if="FisheyeLens">魚眼カメラでスマートコーデック機能は魚眼ビューモードの場合のみ動作します。魚眼ビューはチャンネル1にのみ対応するため、チャンネル2からチャンネル8までのビデオはすべてスマートコーデックが適用されません。また、チャンネル1で魚眼ビューに設定されたプロファイルにのみ、スマートコーデックが適用されます。例えば、チャンネル1のプロファイルの中で「profile 1」は[魚眼ビュー]に設定し、「profile 2」は歪み補正オプションの一つの[ダブルパノラマ]に設定した場合、「profile 1」にビデオが伝送される場合のみスマートコーデックが適用されます。魚眼ビューモードは<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[魚眼ビュータイプ]</strong>で設定することができます。</li>
+            
 			</ul>
 		</div>
 	</div>
