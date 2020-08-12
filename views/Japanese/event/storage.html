@@ -17,7 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">ストレージ用デバイスの種類を選択して<strong class="UI">[使用]</strong>を選択すると、該当デバイスに対する設定を変更することができます。</p>
-	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport"><strong class="UI">[インフォメーション]</strong>ボタンをクリックすると、チャンネル別にSDカード(もしくはマイクロSDカード)の状況を確認することができます。</p> 
+	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport && !SupportChannelExpansionFeature"><strong class="UI">[インフォメーション]</strong>ボタンをクリックすると、チャンネル別にSDカード(もしくはマイクロSDカード)の状況を確認することができます。</p> 
             <p>デバイスにデータが正常的に保存されている場合、デバイスリストの<strong class="UI">[状況]</strong>に「保存中」と表示されます。<strong class="UI">[状況]</strong>に「エラー」と表示されると、ストレージ用デバイスが正しく接続されているか確認してください。</p>
             <!-- <p>また<strong class="UI">[性能状況]</strong>でSDカードの使用性能状況を確認することができます。「良くない」が表示される場合、SDカードを交換することをお勧めします。</p> -->
             <p ng-if="NAS">SDカードとNASを同時に<strong class="UI">[使用]</strong>と設定すると、NASを優先に処理します。</p>
@@ -235,8 +235,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        <h3>録画PROFILE</h3>
-            <p>録画する時に使用されるビデオプロファイル名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[録画PROFILE]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[プロファイルタイプ]</strong></a>で「録画PROFILE」に設定したプロファイルが表示されます。</p>
+        <h3>エッジ録画PROFILE</h3>
+            <p>録画する時に使用されるビデオプロファイル名が表示されます。<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[プロファイルタイプ]</strong></a>で「エッジ録画PROFILE」に設定したプロファイルが表示されます。</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

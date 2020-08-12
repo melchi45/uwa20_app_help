@@ -206,7 +206,7 @@
                         <p>If you select a channel in <a href="#channel">Select channel</a>, you can see the name of the lens installed for each channel. </td>
                         <p> </p>
                     </tr>
-                    <tr ng-if="!IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin)">
+                    <tr ng-if="MaxChannel > 1 && !IsAdmin && !SupportChannelExpansionFeature">
                         <td width="235">
                             <p><a href="#channel">Select channel</a></p>
                         </td>

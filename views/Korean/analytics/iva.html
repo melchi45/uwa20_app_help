@@ -8,8 +8,10 @@
         <li><strong class="UI">[객체] </strong>옵션에서 특정 객체를 선택한 경우, 카메라 영상에서 선택한 객체만을 감지하며, 해당 객체가 IVA 이벤트 규칙을 만족하는 경우 IVA 이벤트가 발생합니다. 반면에 <strong class="UI">[객체]</strong>에서 어떤 옵션도 선택하지 않은 경우, 움직이는 물체를 감지하며 움직이는 물체가 IVA 이벤트 규칙을 만족하는 경우 IVA 이벤트가 발생합니다.  </li>
     </ul>
         </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+
+<!-- XNF-9010에서 hide돼야 하므로 !SupportChannelExpansionFeature 추가. XNF-9010. TW자체. 2020-08-12.  -->
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>채널 선택</h2>
     </div>

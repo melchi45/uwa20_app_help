@@ -17,7 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">Seleccionar un dispositivo de grabaci&oacute;n y seleccionar <strong class="UI">[Act]</strong> le permite cambiar la configuraci&oacute;n para el dispositivo correspondiente.</p>
-	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport">Haga clic en <strong class="UI">[Informaci&oacute;n del producto]</strong> si desea comprobar el estado de la tarjeta SD (o tarjeta micro SD) por canal.</p> 
+	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport && !SupportChannelExpansionFeature">Haga clic en <strong class="UI">[Informaci&oacute;n del producto]</strong> si desea comprobar el estado de la tarjeta SD (o tarjeta micro SD) por canal.</p> 
             <p>Si se est&aacute;n grabando bit de datos en el dispositivo, «Grabando» se muestra en <strong class="UI">[Estado]</strong> en la lista de dispositivos. Cuando se muestra «Error» en <strong class="UI">[Estado]</strong>, verifique si el dispositivo de grabaci&oacute;n est&aacute; conectado correctamente.</p>
             <!-- <p>Adem&aacute;s, mirando<strong class="UI">[Estado de funcionamiento],</strong>puede comprobar el estado de funcionamiento de la escritura de su tarjeta SD. Si el estado es «Malo», se recomienda reemplazar la tarjeta SD.</p> -->
             <p ng-if="NAS">Cuando <strong class="UI">[Act]</strong> est&aacute; configurado para una tarjeta SD y NAS, al mismo tiempo, NAS es procesada por prioridad.</p>
@@ -235,8 +235,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        <h3>Perfil de grabación</h3>
-            <p>Se muestra el nombre del perfil de v&iacute;deo que ser&aacute; utilizado para la grabaci&oacute;n. Se visualizar&aacute; el perfil definido como «Perfil de grabación» desde <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Tipo de perfil]</strong></a>.</p>
+        <h3>Perfil de grabación en el borde</h3>
+            <p>Se muestra el nombre del perfil de v&iacute;deo que ser&aacute; utilizado para la grabaci&oacute;n. Se visualizar&aacute; el perfil definido como «Perfil de grabación en el borde» desde <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong> &gt; <a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/help/basic_videoProfile?#profiletype"><strong class="UI">[Tipo de perfil]</strong></a>.</p>
         </div>
 
         <div class="wn5-setup-section-article-content">

@@ -3,8 +3,8 @@
     <p>El tipo de sonido detectado mientras que la c&aacute;mara est&aacute; capturando una imagen puede ser clasificado y creado como un evento de clasificaci&oacute;n de sonidos. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste del evento de clasificaci&oacute;n de sonidos se aplica a <strong class="UI">[Clasificaci&oacute;n de sonidos]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-    <div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+    <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
         <div class="wn5-setup-section-heading">
             <h2><a name="channel"></a>Seleccionar canal</h2>
         </div>

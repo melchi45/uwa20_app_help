@@ -4,9 +4,9 @@
     <p>카메라 영상 촬영 중에 감지되는 소리의 종류를 분류하여 음원 분류 이벤트로 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 음원 분류 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[음원 분류]</strong>에 동일하게 적용됩니다.</p>
 </div>
 
-
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-    <div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<!-- XNF-9010에서 hide돼야 하므로 !SupportChannelExpansionFeature 추가. XNF-9010. TW자체. 2020-08-12.  -->
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+    <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
         <div class="wn5-setup-section-heading">
             <h2><a name="channel"></a>채널 선택</h2>
         </div>

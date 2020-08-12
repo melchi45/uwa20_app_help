@@ -4,8 +4,8 @@
     <p>カメラ映像の撮影中に検知される音の種類を分類してサウンド分類イベントに発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。サウンド分類イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[サウンド分類]</strong>に同じく適用されます。</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-    <div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+    <div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
         <div class="wn5-setup-section-heading">
             <h2><a name="channel"></a>チャンネル選択</h2>
         </div>
