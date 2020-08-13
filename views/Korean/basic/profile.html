@@ -67,7 +67,7 @@
 </div>
 		
 <div class="wn5-online-help-action">
-    <h4>비디오 채널 삭제하기</h4>
+    <h4>채널 삭제하기</h4>
     <p><a href="#adding_channel">사용자가 추가</a>한 채널을 한 번에 모두 삭제할 수 있습니다.</p>
     <div>
         <ol>      
@@ -308,7 +308,7 @@
                 <li><strong class="UI">이메일/FTP 프로파일</strong>: 이벤트가 발생하면 영상의 캡처 화면을 이메일과 FTP 서버로 전송하는데 이 때 사용하는 비디오 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Event’로 표시됩니다. <strong class="UI">[코덱]</strong>을 [MJPEG]으로 설정한 경우에만 이메일/FTP 프로파일 옵션이 나타납니다. </li>
                 <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">피쉬아이 카메라에서 [이메일/FTP 프로파일] 옵션은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> 
                 <li ng-if="Recording && NAS"><strong class="UI">에지 저장 프로파일</strong>: (micro)SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
-                <li ng-if="Recording && NAS"><strong class="UI">에지 저장 프로파일</strong>: (micro)SD 카드나 NAS에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
+                <li ng-if="Recording && !NAS"><strong class="UI">에지 저장 프로파일</strong>: (micro)SD 카드에 영상을 녹화할 때 적용하는 프로파일입니다. 프로파일 목록의 <strong class="UI">[타입]</strong> 컬럼에 ‘Record’로 표시됩니다.</li>
                 <!-- XNF-9010RV에서 채널 추가 기능이 추가되어 SupportChannelExpansionFeature 추가함. TW 자체. 2020-08-05 -->
                 <li style="list-style-type: none;" ng-if="Recording && NAS && SupportChannelExpansionFeature">여러 채널과 프로파일에서 [에지 저장 프로파일]을 설정한 경우, [에지 저장 프로파일] 옵션을 가장 최근에 설정한 프로파일로 영상이 저장됩니다. 피쉬아아 예를 들어 채널 1의 'profile 1'과 채널 2의 'profile 2'에서 모두 [에지 저장 프로파일] 옵션을 설정한 경우, 가장 최근에 설정한 프로파일이 'profile 2'라면 'profile 2' 프로파일로 영상이 저장됩니다. </li>
 

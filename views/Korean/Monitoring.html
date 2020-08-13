@@ -213,7 +213,7 @@
                 <!-- Guest, user 로 로그인 시 Select channel 설명 미노출되어 수정. TW 자체. PNM-9000VQ. 2020-04-20. -->
 
                 <!-- QNF-9010에서 hide했으나 XNF-9010에서 show될 수 있도록 !SupportChannelExpansionFeature 삭제. !IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin) => MaxChannel > 1 && !IsAdmin로 변경. TW 자체. XNF-9010. 2020-08-11. -->                
-                <tr ng-if="MaxChannel > 1 && !IsAdmin">
+                <tr ng-if="MaxChannel > 1 || !IsAdmin">
                     <td width="235">
                         <p><a href="#channel">채널 선택</a></p>
                     </td>
@@ -399,7 +399,7 @@
 
             <!-- Guest,user 로 로그인 시 Status 설명 노출되어 수정. MaxChannel > 1 && !SupportChannelEnabledFeature -> !IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin). TW 자체. PNM-9000VQ (2020-03-11) -->
             <!-- 코드 간단하게 정리. XNF-9010에서 채널 선택을 지원하지만 채널 번호를 선택하는 방식이 아니므로 hide되도록 !SupportChannelExpansionFeature 남김. TW 자체. XNF-9010. 2020-08-11. -->  
-           <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !IsAdmin && !SupportChannelExpansionFeature">
+           <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
             <h4>채널을 변경하려면</h4>
                 <ul>
                     <li>원하는 채널 번호를 선택합니다. 해당 채널의 영상이 뷰어에 나타납니다.</li>

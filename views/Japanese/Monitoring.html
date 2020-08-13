@@ -193,7 +193,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 && !IsAdmin">
+                    <tr ng-if="MaxChannel > 1 || !IsAdmin">
                         <td width="235">
                             <p><a href="#channel">チャンネル選択</a></p>
                         </td>
@@ -385,7 +385,7 @@
                 </tbody>
             </table>
         </div>
-            <div class="wn5-online-help-action" ng-if="MaxChannel > 1 && !IsAdmin && !SupportChannelExpansionFeature"></div>
+            <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature"></div>
             <h4>チャンネルを変更するには、</h4>
                 <ul>
                     <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
