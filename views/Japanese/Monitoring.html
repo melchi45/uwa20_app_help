@@ -199,11 +199,11 @@
                         </td>
                         <td width="235">
                                 <p>カメラが対応するチャンネルが表示されます。チャンネルを選択すると、各チャンネルのライブビデオを確認することができます。</p>
-                                <p ng-if="SupportChannelExpansionFeature">チャンネル1は魚眼カメラのオリジナルビデオであり、その他のチャンネルはユーザーが選択したビューモードに設定して追加したものです。カメラチャンネルは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で追加することができます。</p>
+                                <p ng-if="SupportChannelExpansionFeature">チャンネル[Fisheye View]は魚眼カメラのオリジナルビデオであり、その他のチャンネルはユーザーが選択したビューモードに設定して追加したものです。カメラチャンネルは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で追加することができます。</p>
 
                             <!-- <p>カメラのチャンネル番号が表示されます。</p> -->
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">チャンネル番号を選択すると、該当チャンネルの映像がビューアに表示されます。4分割画面のアイコンを選択すると、4つのチャンネル映像を一気に表示します。シングル画面に戻すには、チャンネル番号をクリックします。</p>  -->
-                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">チャンネル番号を選択すると、そのチャンネルの映像がビューアに表示されます。クワドビューアイコンを選択すると、カメラが対応する全チャンネルの映像が一つの画面に表示されます。シングル画面に戻るには、チャンネル番号をクリックします。 </p>
+                            <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport &&!SupportChannelExpansionFeature">チャンネル番号を選択すると、そのチャンネルの映像がビューアに表示されます。クワドビューアイコンを選択すると、カメラが対応する全チャンネルの映像が一つの画面に表示されます。シングル画面に戻るには、チャンネル番号をクリックします。 </p>
 
                             <p ng-if="HandoverCalibration">固定型カメラのチャンネル番号を選択すると、該当の映像がビューアに表示されます。[PTZ]を選択すると、PTZシングルチャンネル映像がビューアに表示されます。マルチチャンネルのアイコンを選択すると、固定型カメラとPTZカメラの映像がすべて表示されます。シングル画面に戻すには、チャンネル番号や[PTZ]をクリックします。</p> 
                             <p ng-if="SupportAutoImageAlignment">カメラチャンネル2～5を選択すると、各チャンネル別のカメラ映像を表示します。チャンネル1を選択すると、チャンネル2～5のカメラ映像を一つに接続させてパノラマタイプに表示します。チャンネル6と7を選択すると、チャンネル1の映像をカメラ<a href="#PTZ">PTZ調整</a>しながら確認することができます。</p>

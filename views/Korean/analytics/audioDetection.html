@@ -73,7 +73,7 @@
 		</div>
 		
 
-        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>프리셋 이동</h3>
                     <p>오디오 감지 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 위치 번호로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서 설정할 수 있습니다.</p>
                     <p ng-if="GlobalPTZMode && MaxChannel > 1"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>에서 <strong class="UI">[외부 PTZ 사용]</strong>&nbsp;옵션을 선택한 경우, [프리셋 이동] 옵션이 보이지 않습니다. </p>
