@@ -83,8 +83,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
         <h1>레코드</h1>
     </div>
@@ -96,14 +96,15 @@
 </div>
 
 <!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  -->
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>채널 선택</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선택한 후 채널별로 저장 관련 세부 항목을 설정할 수 있습니다.</p>
+            <p ng-if="SupportChannelExpansionFeature">채널 1은 피쉬아이 카메라의 원본 영상이며, 이 외 채널은 사용자가 원하는 뷰 모드로 설정하고 추가한 것입니다. 카메라 채널은 <strong class="UI">[설정 </strong>&gt;<strong class="UI">[Basic]</strong> &gt;<strong class="UI">[비디오 프로파일]</strong>에서 추가할 수 있습니다. </p>
         </div>
     </div>
 </div>

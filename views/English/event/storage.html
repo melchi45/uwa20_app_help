@@ -82,8 +82,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
         <h1>Record</h1>
     </div>
@@ -92,14 +92,16 @@
             <p></p>
         </div>
     </div>
-</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  --><hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
+</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  -->
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>Select channel</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After selecting your camera channel, you can set the details of the storage for each channel.</p>
+            <p ng-if="SupportChannelExpansionFeature">Channel 1 is the original video from the fisheye camera. All the other channels are added and set up by users to show their preferred view modes. Camera channels can be added in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>.</p>
         </div>
     </div>
 </div>

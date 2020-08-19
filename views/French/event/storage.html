@@ -82,8 +82,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
         <h1>Enregistrer</h1>
     </div>
@@ -92,14 +92,17 @@
             <p></p>
         </div>
     </div>
-</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  --><hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
+</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  -->
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>S&eacute;lectionner un canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails pour chaque canal.</p>
+            <p ng-if="SupportChannelExpansionFeature">Le canal&nbsp;1 correspond &agrave; la vid&eacute;o originale de la cam&eacute;ra Fisheye. Tous les autres canaux sont ajout&eacute;s et configur&eacute;s par les utilisateurs de mani&egrave;re &agrave; obtenir leurs modes d&rsquo;affichage pr&eacute;f&eacute;r&eacute;s. Des canaux peuvent &ecirc;tre ajout&eacute;s pour la cam&eacute;ra dans <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>.</p>
         </div>
     </div>
 </div>

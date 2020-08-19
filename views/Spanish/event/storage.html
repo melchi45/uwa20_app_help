@@ -82,8 +82,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1">
     <div class="wn5-setup-section-heading">
         <h1>Grabar</h1>
     </div>
@@ -92,14 +92,17 @@
             <p></p>
         </div>
     </div>
-</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  --><hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
+</div><!-- PNM-9030V에서 컨텐츠 보이지 않아야 하므로 TW 자체 수정. MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature -> MaxChannel > 1 && !objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment. 2020-01-16  -->
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !objectDetectionSupport && !SupportAutoImageAlignment">
     <div class="wn5-setup-section-heading">
         <h2>Seleccionar canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede definir los detalles para cada canal.</p>
+            <p ng-if="SupportChannelExpansionFeature">El Canal 1 es el v&iacute;deo original de la c&aacute;mara de ojo de pez. Todos los dem&aacute;s canales son a&ntilde;adidos y configurados por los usuarios para mostrar sus modos de visualizaci&oacute;n preferidos. Se pueden a&ntilde;adir canales de c&aacute;mara en <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong>.</p>
         </div>
     </div>
 </div>
