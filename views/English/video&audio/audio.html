@@ -4,8 +4,20 @@
 	<p>You can connect a microphone and speaker to a network camera and listen to the sound at a remote location where the camera is installed, or output audio from the camera to the location. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && GlobalRotateViewSupport">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && GlobalRotateViewSupport">
+    <div class="wn5-setup-section-heading">
+        <h2>Selecting a channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>After selecting a camera channel, you can set the details for audio per channel.</p>
+			
+        </div>
+	</div>
+</div> 
 
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>Audio in</h2>

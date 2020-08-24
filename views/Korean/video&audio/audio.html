@@ -5,8 +5,20 @@
 	<p>네트워크 카메라에 마이크와 스피커를 연결하여 원격에서 카메라가 설치된 곳의 소리를 듣거나 카메라에서 오디오를 출력할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
 
-<hr class="wn5-setup-hr">
 
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && GlobalRotateViewSupport">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && GlobalRotateViewSupport">
+    <div class="wn5-setup-section-heading">
+        <h2>채널 선택</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>카메라 채널을 선택한 후 채널별로 오디오 관련 세부 항목을 설정할 수 있습니다. </p>
+        </div>
+	</div>
+</div> 
+
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>오디오 입력</h2>

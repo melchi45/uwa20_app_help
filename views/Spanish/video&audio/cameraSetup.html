@@ -1,4 +1,4 @@
-<h1 class="wn5-setup-main-title">Configuraci&oacute;n de c&aacute;mara</h1>
+﻿<h1 class="wn5-setup-main-title">Configuraci&oacute;n de c&aacute;mara</h1>
 <div class="wn5-setup-section">
     <p>Puede cambiar la configuraci&oacute;n de la c&aacute;mara para capturar la mejor imagen en el entorno donde est&aacute; instalada la c&aacute;mara. De forma predeterminada, se incluyen preajustes de imagen adecuados para varios entornos, y los usuarios pueden configurar directamente sus c&aacute;maras. En la pantalla de vista previa de la c&aacute;mara, puede comprobar c&oacute;mo se ver&aacute; la imagen. Cuando haya completado el ajuste, haga clic en el bot&oacute;n [Aplicar] en la parte inferior de la p&aacute;gina. Si se produce un tiempo de espera (240 seg.) sin hacer clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> despu&eacute;s de cambiar la configuraci&oacute;n, &eacute;sta volver&aacute; a la configuraci&oacute;n anterior.</p>
 </div>
@@ -611,7 +611,7 @@
                 <li><strong class="UI">Color</strong>: Muestra una imagen en color.</li>
                 <li><strong class="UI">B/N</strong>: Muestra una imagen en blanco y negro todo el tiempo.</li>
                     <li><strong class="UI">Autom&aacute;tico</strong>: Cambia al modo de color durante el d&iacute;a y a blanco y negro durante la noche o en horario de poca luminosidad.Sin embargo, si <strong class="UI">[AGC]</strong> bajo <strong class="UI">[Exposici&oacute;n]</strong> se ajusta a <strong class="UI">[Des.]</strong> o <strong class="UI">[Manual]</strong>, o si <strong class="UI">[Ganancia m&aacute;x.]</strong> se ajusta por debajo de «menos de 30 dB», [D&iacute;a/Noche] no puede ajustarse a [Autom&aacute;tico].</li>
-                <li><strong class="UI">Entrada externa</strong>: Cuando un terminal de entrada de alarma est&aacute; relacionado con un equipo externo, se puede controlar el color y el B/N del v&iacute;deo.</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
+                <li><strong class="UI">Externo</strong>: Cuando un terminal de entrada de alarma est&aacute; relacionado con un equipo externo, se puede controlar el color y el B/N del v&iacute;deo.</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
                 </li> --><li><strong class="UI">Programaci&oacute;n</strong>: D&iacute;a/Noche se cambia a la programaci&oacute;n prevista de <strong class="UI">[Tiempo de activaci&oacute;n (color)]</strong>.</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ??? ?????.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ???? ?????.</li>  --></ul>
         </div>
@@ -632,7 +632,7 @@
             <p>Establece el intervalo de tiempo cuando se produce un cambio a color o B/N.Si selecciona [Personalizar], podr&aacute; ajustar manualmente la duraci&oacute;n.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
-            <h3>Entrada alarma</h3>
+            <h3>Entrada de alarma</h3>
             <p>Ajusta el v&iacute;deo a color o B/N en funci&oacute;n de la apertura o cierre del sensor de alarma. 
                 <!-- Cuando <strong class="UI">[Externo]</strong> est&aacute; ajustado para <strong class="UI">[Modo]</strong> de <strong class="UI">[D&iacute;a/Noche]</strong>, el <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Entrada de alarma]</strong> se desactivar&aacute; y no aparecer&aacute; la p&aacute;gina de configuraci&oacute;n. -->
             </p>
@@ -713,7 +713,7 @@
         </div>
             <div class="wn5-setup-section-article-content" ng-if="XCELevel">
                 <h3>Nivel de contraste local</h3>
-                <p>&Eacute;ste se activa ajustando [Contraste local] en [Activar].&nbsp;Cuanto m&aacute;s alto sea el valor del nivel, m&aacute;s alto ser&aacute; el contraste del v&iacute;deo, lo que se refleja en una imagen m&aacute;s clara. Sin embargo, esto tambi&eacute;n aumenta el nivel de ruido en la pantalla, y la deformaci&oacute;n de la imagen duplicada podr&iacute;a ser m&aacute;s visible alrededor de los bordes.</p>
+                <p>&Eacute;ste se activa ajustando [Contraste local] en [Act].&nbsp;Cuanto m&aacute;s alto sea el valor del nivel, m&aacute;s alto ser&aacute; el contraste del v&iacute;deo, lo que se refleja en una imagen m&aacute;s clara. Sin embargo, esto tambi&eacute;n aumenta el nivel de ruido en la pantalla, y la deformaci&oacute;n de la imagen duplicada podr&iacute;a ser m&aacute;s visible alrededor de los bordes.</p>
             </div>
         <div class="wn5-setup-section-article-content" ng-if="Saturation">
             <h3>Nivel de color</h3>
@@ -821,7 +821,7 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>Cargar imagen</h3>
-            <p><strong class="UI">[?]</strong>se puede hacer clic en el bot&oacute;n para buscar archivos en formato de mapa de bits. Haga clic en el bot&oacute;n <strong class="UI">[Cargar]</strong> para cargar archivos de im&aacute;genes. Para eliminar los archivos de imagen aplicados a la pantalla, haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>. La especificaci&oacute;n de imagen permitida es de 16 bits (RGB565 no soportado) o un archivo de mapa de bits de 24 bits. Su tama&ntilde;o debe ser un fijo de 200x200 p&iacute;xeles, y el tama&ntilde;o del archivo debe ser de 52 KB o menos.</p>
+            <p>Se puede hacer clic en el bot&oacute;n <strong class="UI">[...]</strong>para buscar archivos en formato de mapa de bits. Haga clic en el bot&oacute;n <strong class="UI">[Cargar]</strong> para cargar archivos de im&aacute;genes. Para eliminar los archivos de imagen aplicados a la pantalla, haga clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>. La especificaci&oacute;n de imagen permitida es de 16 bits (RGB565 no soportado) o un archivo de mapa de bits de 24 bits. Su tama&ntilde;o debe ser un fijo de 200x200 p&iacute;xeles, y el tama&ntilde;o del archivo debe ser de 52 KB o menos.</p>
         </div>
 		
 		

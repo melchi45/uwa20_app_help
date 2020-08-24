@@ -38,7 +38,9 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラチャンネルを選択した後、チャンネル別にビデオプロファイルの詳細を設定することができます。</p>
-            <p>チャンネル1は魚眼カメラの基本ビデオであり、魚眼カメラの歪みビデオを補正して出力するためにチャンネルを追加することができます。ユーザーが追加できるチャンネルは2番から8番までです。カメラ据付けモードを[壁]に選択した場合には2番から7番まで追加することができます。</p>
+            <p>チャンネル1は魚眼カメラの基本ビデオであり、魚眼カメラの歪みビデオを補正して出力するためにチャンネルを追加することができます。ユーザーが追加できるチャンネルは2番から4番までです。
+                <!-- カメラ据付けモードを[壁]に選択した場合には2番から7番まで追加することができます。 -->
+            </p>
         </div>
         <div class="wn5-online-help-action">
             <h4><a name="adding_channel"></a>チャンネル追加</h4>
@@ -289,7 +291,7 @@
             <p>適用するプロファイルタイプを選択します。選択したプロファイルタイプは、プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに表示されます。選択したCodecタイプによって表示される設定項目が異なります。</p>
             <p ng-if="SupportAutoImageAlignment">また<a href="#channel">チャンネル選択</a>で選択したチャンネルによって設定できるプロファイルタイプが異なることがあります。例えば、「エッジ録画PROFILE」はチャンネル1を選択した場合のみ設定することができます。</p>
             <ul>
-                <li><strong class="UI">基本Profile</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。プロファイルリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
+                <li><strong class="UI">基本プロファイル</strong>：カメラの映像をライブにストリームする時、適用される基本Profileです。プロファイルリストの<strong class="UI">[タイプ]</strong>に「Default」と表示されます。</li>
                 <li><strong class="UI">E-mail/FTP profile</strong>：イベントが発生すると、キャプチャー画面をE-mailとFTPサーバーに伝送する時に使用するビデオProfileです。プロファイルリストの<strong class="UI">[タイプ]</strong>カラムに「Event」と表示されます。<strong class="UI">[Codec]</strong>を「MJPEG」に設定した場合のみ、E-mail/FTP プロファイルオプションが表示されます。</li>
                 <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">魚眼カメラで[E-mail/FTP profile]オプションはチャンネル1を選択した場合のみ設定することができます。</li> 
                 <!-- <li style="list-style-type: none;" ng-if="SupportChannelExpansionFeature">이메일/FTP 프로파일은 채널 1을 선택한 경우에만 설정할 수 있습니다.</li> -->
@@ -368,7 +370,7 @@
                 <ol>
                     <li>クロップエンコーディングを<strong class="UI">[有効]</strong>に設定した後、<strong class="UI">[エリアを設定]</strong>ボタンをクリックします。</li>
                     <li><strong class="UI">[トリミング設定領域]</strong>のプレビュー画面でマウスをドラッグしてエリアを設定します。<strong class="UI">[マニュアル]</strong>を選択した後、エリアを選択します。</li>
-                    <!-- <strike>エリアを16:9比や4:3比に合わせて設定するには、それぞれ<strong class="UI">[16:9]</strong>、<strong class="UI">[4:3]</strong>を選択し、比率に関係ないエリアを選択するには、<strong class="UI">[手動]</strong>を選択します。</strike>&nbsp; -->
+                    <!-- <strike>エリアを16:9比や4:3比に合わせて設定するには、それぞれ<strong class="UI">[16:9]</strong>、<strong class="UI">[4:3]</strong>を選択し、比率に関係ないエリアを選択するには、<strong class="UI">[手動]</strong>を選択します。</strike>  -->
                     <li>エリア設定を完了したら、<strong class="UI">[OK]</strong>ボタンをクリックします。</li>
                 </ol>
             </div>

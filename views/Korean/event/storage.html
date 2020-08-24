@@ -18,7 +18,7 @@
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">저장 장치의 종류를 선택하고 <strong class="UI">[사용함]</strong>을 선택하면 해당 장치에 대한 설정을 변경할 수 있습니다.</p>
             <!-- XNF-9010에서 hide돼야 하므로 !SupportChannelExpansionFeature 추가함. XNF-9010. TW자체. 2020-08-12-->
-	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport && !SupportChannelExpansionFeature"><strong class="UI">[상세 정보] </strong>버튼을 클릭하면 채널별로 SD 카드(혹은 마이크로 SD 카드) 상태를 확인할 수 있습니다.</p> 
+	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport && !SupportChannelExpansionFeature && !GlobalRotateViewSupport"><strong class="UI">[상세 정보] </strong>버튼을 클릭하면 채널별로 SD 카드(혹은 마이크로 SD 카드) 상태를 확인할 수 있습니다.</p> 
             <p>장치에 데이터가 정상적으로 저장되고 있으면 장치 목록의 <strong class="UI">[상태]</strong>에 ‘저장 중’이라고 표시됩니다. <strong class="UI">[상태]</strong>에 ‘에러’라고 표시되면 저장 장치가 올바르게 연결돼 있는지 확인하십시오. </p> 
             <!-- <p>또한 <strong class="UI">[성능 상태]</strong>에서 SD 카드의 쓰기 성능 상태를 확인할 수 있습니다. '나쁨'이 표시되면 SD 카드를 교체할 것을 권장합니다. </p> -->
             <p ng-if="NAS">SD 카드(혹은 마이크로 SD 카드)와 NAS를 동시에 <strong class="UI">[사용함]</strong>으로 설정하면 NAS를 우선으로 처리합니다.</p>
@@ -287,6 +287,12 @@
                 <li><strong class="UI">STW</strong>: 한화테크윈 고유의 파일 형식입니다.
                 </li>
                 <li><strong class="UI">AVI</strong>: 일반 AVI 파일 형식입니다.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-info" ng-if="GlobalRotateViewSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>저장 비디오 파일 형식의 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
             </ul>
         </div>
 

@@ -5,8 +5,20 @@
 	<p>ネットワークカメラに接続させてリモートからカメラが設置された所の音を聞いたり、カメラで音声を出力することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
 
-<hr class="wn5-setup-hr">
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && GlobalRotateViewSupport">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && GlobalRotateViewSupport">
+    <div class="wn5-setup-section-heading">
+        <h2>チャンネル選択</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+			<p>カメラチャンネルを選択した後、チャンネル別にオーディオ関連の詳細を設定することができます。</p>
+			
+        </div>
+	</div>
+</div>
 
+<hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
 	<div class="wn5-setup-section-heading">
 		<h2>音声入力</h2>
@@ -20,7 +32,7 @@
 			<p>音声入力タイプを選択します。</p>
 			<ul>
 				<li><strong class="UI">内蔵マイク</strong>：カメラに含まれた内蔵マイクです。</li>
-				<li><strong class="UI">外部マイク</strong>：カメラに外部マイクを接続させて使用します。<strong class="UI">[外部マイク電源を有効にする]</strong>を選択すると、外部マイクの電源が供給されない場合にカメラから外部マイクに電源を供給します。</li>
+				<li><strong class="UI">外部マイク</strong>：カメラに外部マイクを接続させて使用します。<strong class="UI">[外部マイクに電源を入れてください]</strong>を選択すると、外部マイクの電源が供給されない場合にカメラから外部マイクに電源を供給します。</li>
 				<li><strong class="UI">ライン入力</strong>：ケーブルで音響機器と接続させます。例えば、MP3プレーヤーのような音響機器とカメラをケーブルで接続させた後、MP3プレーヤーに録音された音声をカメラに入力する時に選択します。</li>
 			</ul>
 		</div>

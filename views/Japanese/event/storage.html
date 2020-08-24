@@ -17,7 +17,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="NAS">ストレージ用デバイスの種類を選択して<strong class="UI">[使用]</strong>を選択すると、該当デバイスに対する設定を変更することができます。</p>
-	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport && !SupportChannelExpansionFeature"><strong class="UI">[インフォメーション]</strong>ボタンをクリックすると、チャンネル別にSDカード(もしくはマイクロSDカード)の状況を確認することができます。</p> 
+	        <p ng-if="(MaxChannel > 1 || HandoverCalibration) && !objectDetectionSupport && !SupportChannelExpansionFeature && !GlobalRotateViewSupport"><strong class="UI">[インフォメーション]</strong>ボタンをクリックすると、チャンネル別にSDカード(もしくはマイクロSDカード)の状況を確認することができます。</p> 
             <p>デバイスにデータが正常的に保存されている場合、デバイスリストの<strong class="UI">[状況]</strong>に「保存中」と表示されます。<strong class="UI">[状況]</strong>に「エラー」と表示されると、ストレージ用デバイスが正しく接続されているか確認してください。</p>
             <!-- <p>また<strong class="UI">[性能状況]</strong>でSDカードの使用性能状況を確認することができます。「良くない」が表示される場合、SDカードを交換することをお勧めします。</p> -->
             <p ng-if="NAS">SDカードとNASを同時に<strong class="UI">[使用]</strong>と設定すると、NASを優先に処理します。</p>
@@ -278,7 +278,12 @@
                 <li><strong class="UI">AVI</strong>: 一般のAVIファイルタイプです。</li>
             </ul>
         </div>
-
+        <div class="wn5-online-help-info" ng-if="GlobalRotateViewSupport">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>レコードファイルの種類のオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+            </ul>
+        </div>
 
     </div>
 </div>

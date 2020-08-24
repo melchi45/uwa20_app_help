@@ -137,7 +137,8 @@
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul><!-- PNM-9030V??? ?? ??? ???? ??? ?? ?? ????? ???? ?? ??. TW ??. ?? ????? ??? ???? (?? ??) ??? ?? ??. 2020-01-16.  --><li ng-if="!SupportAutoImageAlignment">センサーモードのオプションを変更すると、[カメラ設定]で設定したすべての値が初期化されます。</li>
                     <li>センサーモード値は、画像プリセットごとにそれぞれ異なる設定ができません。フレームレートは、すべての画像プリセットに等しく適用されます。</li>
-                    <li>センサーモードで設定したフレーム数に応じて、<strong class="UI">[Basic]</strong>＆gt;<strong class="UI">[ビデオprofile]</strong>＆gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。.</li>
+                    <li>センサーモードで設定したフレーム数に応じて、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。.</li>
+                    <li ng-if="GlobalRotateViewSupport">センサーモードのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
                 </ul>
             </div>  
     </div>
@@ -751,9 +752,11 @@
                     <li><strong class="UI">つめる(手動)</strong>：つめるモードで映像を補正し、[LDCレベル]で補正値を手動に調整できます。</li>
                     <li><strong class="UI">つめる(自動)</strong>：つめるモードで映像を補正し、補正値は自動に設定されます。つめるモードは、上下の視野角度を維持するため、オリジナル撮影映像の左右端部分が切れる現象がある場合があります。</li>
                     <li><strong class="UI">ズームイン(手動)</strong>：ズームインモードで映像を補正し、[LDCレベル]で補正値を手動に調整できます。</li>
-                    <li><strong class="UI">ズームイン(自動)</strong>：ズームインモードで映像を補正し、補正値は自動に設定されます。ズームインモードは、上下/左右の視野角度を維持するため、オリジナル撮影映像がすべて表示されるが、映像の横・縦の比率が維持されません。</li><!-- <li ng-if="LDCAuto"><strong class="UI">??</strong>: ???? ?? ??? ?????.  </li> --></ul>
+                    <li><strong class="UI">ズームイン(自動)</strong>：ズームインモードで映像を補正し、補正値は自動に設定されます。ズームインモードは、上下/左右の視野角度を維持するため、オリジナル撮影映像がすべて表示されるが、映像の横・縦の比率が維持されません。</li>
+                    <li ng-if="GlobalRotateViewSupport">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+                    <!-- <li ng-if="LDCAuto"><strong class="UI">??</strong>: ???? ?? ??? ?????.  </li> --></ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport || GlobalRotateViewSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
                     <li><strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[ビデオ設定]</a></strong>の <strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した場合、<strong class="UI">[LDC]</strong>と <strong class="UI">[LDC レベル] </strong>オプションが無効になります。カメラLDC機能を使用するには、<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除する必要があります。</li><!-- 

@@ -149,6 +149,7 @@
                     <li ng-if="!SupportAutoImageAlignment">센서 모드 옵션을 변경하면 [카메라 설정]에서 설정한 모든 값이 초기화됩니다.</li>
                     <li>센서 모드 값은 이미지 프리셋 별로 각각 다르게 설정할 수 없습니다. 프레임 레이트는 모든 이미지 프리셋에 동일하게 적용됩니다. </li>
                     <li>센서 모드에서 설정한 프레임 수에 따라 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프레임 레이트]</strong>의 최댓값이 달라집니다.</li>
+                    <li ng-if="GlobalRotateViewSupport">센서 모드 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
                 </ul>
             </div>  
     </div>
@@ -797,7 +798,7 @@
         </div>
             <div class="wn5-setup-section-article-content" ng-if="XCELevel"> 
                 <h3>로컬 대비 레벨</h3>
-                <p>[로컬 대비]에서 [사용]을 선택하면 활성화됩니다. 레벨 값이 증가할수록 영상의 밝기 차의 크기가 커져 선명한 효과가 나타나지만 영상에 노이즈가 심해지고, 윤곽선 주변에 왜곡된 형태의 이중상이 심해질 수 있습니다. </p>
+                <p>[로컬 대비]에서 [사용함]을 선택하면 활성화됩니다. 레벨 값이 증가할수록 영상의 밝기 차의 크기가 커져 선명한 효과가 나타나지만 영상에 노이즈가 심해지고, 윤곽선 주변에 왜곡된 형태의 이중상이 심해질 수 있습니다. </p>
             </div>
         <div class="wn5-setup-section-article-content" ng-if="Saturation">
             <h3>컬러 레벨 </h3>
@@ -838,10 +839,11 @@
                 <!-- <li ng-if="LDCAuto"><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li> -->
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport || GlobalRotateViewSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
                     <li><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[비디오 설정]</a></strong>에서 <strong class="UI">[프라이버시 영역 사용]</strong>을 선택한 경우, <strong class="UI">[LDC]</strong>와 <strong class="UI">[LDC 레벨] </strong>옵션이 모두 비활성화됩니다. 카메라 LDC 기능을 사용하려면, <strong class="UI">[프라이버시 영역 사용]</strong>을 선택 해제해야 합니다. </li>
+                    <li ng-if="GlobalRotateViewSupport">LDC 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
                 <!-- <li>[역광 보정]의 [WDR], [스페셜]의 [DIS]나 [LDC] 기능은 동시에 사용할 없습니다. 즉 세 기능 중 하나만 사용할 수 있습니다.</li>  -->
                 </ul>
         </div>  
