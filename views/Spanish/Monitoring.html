@@ -103,7 +103,7 @@
                             <!-- <p ng-if="objectDetectionSupport">Al seleccionar el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>, se activará la función PTZ.</p> -->
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ digital se habilita solo cuando se selecciona el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>.</p>
                             <p ng-if="GlobalPTZMode && MaxChannel > 1">Si no se muestra el icono PTZ, vaya a <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externo]</strong> y f&iacute;jese si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; marcada.</p>
-                            <p ng-if="FocusPresetSupportByChannel">Puede comprobar la lista de enfoque en <strong class="UI">[Guardado de enfoque]</strong>.</p>
+                            <p ng-if="FocusModeOptions !== undefined">Puede comprobar la lista de enfoque en <strong class="UI">[Guardado de enfoque]</strong>.</p>
                           </td>
                       </tr>
 
@@ -182,7 +182,7 @@
                             </td>
                         </tr>
 
-                    <tr ng-if="LensModelViewOptions">
+                    <tr ng-if="LensModelOptions !== undefined">
                         <td width="235">Nombre del modelo de lentes</td>
                         <td width="235">
                             <!-- <p>Se muestra el nombre del modelo de lente instalado en la c&aacute;mara.</p>  -->
@@ -191,13 +191,12 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 || !IsAdmin">
+                    <tr ng-if="MaxChannel > 1 || !IsAdmin && !SupportChannelExpansionFeature">
                             <td width="235">
                                 <p>Seleccionar canal</p>
                             </td>
                             <td width="235">
                                     <p>Aquí se muestran los canales compatibles con la cámara.Seleccione un canal para reproducir la transmisi&oacute;n en vivo del canal seleccionado.</p>
-                                    <p ng-if="SupportChannelExpansionFeature">El Canal [Fisheye View] es el v&iacute;deo original de la c&aacute;mara de ojo de pez. Todos los dem&aacute;s canales son a&ntilde;adidos y configurados por los usuarios para mostrar sus modos de visualizaci&oacute;n preferidos. Se pueden a&ntilde;adir canales de c&aacute;mara en <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[B&aacute;sico]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong>.</p>
 
                                 <!-- <p>Se muestran los n&uacute;meros de canal de la c&aacute;mara.</p> -->
                             <!--     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">En caso de seleccionar un n&uacute;mero de canal, el v&iacute;deo del canal se mostrar&aacute; en el visor. Si selecciona el icono de Vista cu&aacute;druple, los v&iacute;deos de 4 canales se mostrar&aacute;n en una pantalla. Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal.</p> -->
@@ -221,6 +220,16 @@
                                 </td>
                             </tr>
 
+                            <tr ng-if="SupportChannelExpansionFeature">
+                                <td width="235">
+                                    <p>Seleccionar canal</p>
+                                </td>
+                                <td width="235">
+                                        <p>Aquí se muestran los canales compatibles con la cámara.Seleccione un canal para reproducir la transmisi&oacute;n en vivo del canal seleccionado.</p>
+                                        <p>El Canal [Fisheye View] es el v&iacute;deo original de la c&aacute;mara de ojo de pez. Todos los dem&aacute;s canales son a&ntilde;adidos y configurados por los usuarios para mostrar sus modos de visualizaci&oacute;n preferidos. Se pueden a&ntilde;adir canales de c&aacute;mara en <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[B&aacute;sico]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong>.</p>
+
+                                </td>
+                            </tr>
 
                         <!-- <tr ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
                                 <td width="235">
@@ -612,7 +621,7 @@
             <p>Adem&aacute;s, cuando haga clic en el bot&oacute;n derecho del rat&oacute;n sobre la imagen en pantalla, el &aacute;rea sobre el que haya hecho clic asociada a un movimiento ser&aacute; analizada, y entonces comenzar&aacute; el seguimiento autom&aacute;tico.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+        <div class="wn5-setup-section-article-content" ng-if="FocusModeOptions !== undefined">
             <h3>Guardado de enfoque</h3>
             <p>Puede comprobar la lista de guardado de enfoque.</p>
             <p>Haga clic en <strong class="UI">[Definir]</strong> para guardar la pantalla que se est&aacute; fotografiando en un &aacute;rea de enfoque.&nbsp;Despu&eacute;s de introducir el <strong class="UI">[N&uacute;mero]</strong> y el <strong class="UI">[Nombre]</strong>, haga clic en <strong class="UI">[Aceptar]</strong> para guardar. Si hace clic en <strong class="UI">[Ir]</strong> despu&eacute;s de seleccionar el guardado de enfoque de la lista, el enfoque de la c&aacute;mara se mover&aacute; hacia el &aacute;rea del enfoque guardado.</p>

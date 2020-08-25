@@ -66,7 +66,7 @@
         <div class="wn5-setup-section-article-content">
             <p>Puede comprobar la fecha y hora e informaci&oacute;n detallada sobre un evento que se ha producido en el sistema.</p>
         </div>
-        <div class="wn5-setup-section-article-content"  ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !GlobalRotateViewSupport">
+        <div class="wn5-setup-section-article-content"  ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
             <h3>Seleccionar canal</h3>
             <p>Puede comprobar el registro de eventos de cada canal seleccionando el n&uacute;mero del canal.</p>
             <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. Solo se comprobará el registro de eventos del canal 1</p>

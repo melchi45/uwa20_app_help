@@ -146,7 +146,7 @@
                         </td>
                     <td width="235">
                         <p>You can control the pen/tilt/zoom motions of the camera. You can move to the preset location set on the <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ setup]</strong> page or start/stop the swing, group, and tour functions. </p>
-                        <p ng-if="FocusPresetSupportByChannel">You can check the list of focus in <strong class="UI">[Focus save]</strong>.</p>
+                        <p ng-if="FocusModeOptions !== undefined">You can check the list of focus in <strong class="UI">[Focus save]</strong>.</p>
                         <p ng-if="MaxChannel > 1 && HandoverCalibration">PTZ icon is displayed only when you select [PTZ] in the <a href="#channel">Select channel</a> section.</p>
                     </td>
                     </tr>
@@ -198,7 +198,7 @@
                         </tr>                    
 
 
-					<tr ng-if="LensModelViewOptions">
+					<tr ng-if="LensModelOptions !== undefined">
                         <td width="235">Lens model name</td>
                         <td width="235">
                                 <p>Lens types are displayed.</p>
@@ -206,13 +206,13 @@
                         <p>If you select a channel in <a href="#channel">Select channel</a>, you can see the name of the lens installed for each channel. </td>
                         <p> </p>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 || !IsAdmin">
+                    <tr ng-if="MaxChannel > 1 || !IsAdmin && !SupportChannelExpansionFeature">
                         <td width="235">
                             <p><a href="#channel">Select channel</a></p>
                         </td>
                         <td width="235">
                                 <p>The channels supported by the camera are displayed. Select a channel to play the live feed of the selected channel.</p>
-                                <p ng-if="SupportChannelExpansionFeature">Channel [Fisheye View] is the original video from the fisheye camera. All the other channels are added and set up by users to show their preferred view modes. Camera channels can be added in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>.</p>
+
                             <!-- <p>Camera channel numbers are displayed.</p> -->
                             
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">If you select a channel number, the video of the channel will appear in the viewer. If you select the Quad View icon, the videos from 4 channels will be displayed on one screen. To return to the single view, click the channel number.</p> --> 
@@ -234,6 +234,17 @@
                                 <p>&nbsp;</p>
                             </td>
                         </tr>
+
+                        <tr ng-if="SupportChannelExpansionFeature">
+                            <td width="235">
+                                <p><a href="#channel">Select channel</a></p>
+                            </td>
+                            <td width="235">
+                                    <p>The channels supported by the camera are displayed. Select a channel to play the live feed of the selected channel.</p>
+                                    <p>Channel [Fisheye View] is the original video from the fisheye camera. All the other channels are added and set up by users to show their preferred view modes. Camera channels can be added in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>.</p>
+                            </td>
+                        </tr>
+
                     <!-- <tr ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
                         <td width="235">
                             <p>View type</p>
@@ -621,7 +632,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <p>In addition, when you click the right mouse button on the image screen, the motion based clicked area will be analyzed, and then auto tracking will begin.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+        <div class="wn5-setup-section-article-content" ng-if="FocusModeOptions !== undefined">
             <h3>Focus save</h3>
             <p>You can check the list of focus save.</p>
             <p>Click <strong class="UI">[Set]</strong> to save the screen currently being shot into a focus area.&nbsp;After entering <strong class="UI">[Number]</strong> and <strong class="UI">[Name]</strong>, click <strong class="UI">[OK]</strong> to save. If you click <strong class="UI">[Go]</strong> after selecting focus save from the list, the camera focus moves to the saved focus area.</p>

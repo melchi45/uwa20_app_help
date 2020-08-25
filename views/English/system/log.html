@@ -64,7 +64,7 @@
             <p>You can check the date &amp; time and detailed information for an event which has occurred in the system.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content"  ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !GlobalRotateViewSupport">
+        <div class="wn5-setup-section-article-content"  ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
             <h3>Select channel</h3>
             <p>You can check the event log of each channel by selecting the channel number.</p>
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. Only the log of channel 1 can be checked.</p>

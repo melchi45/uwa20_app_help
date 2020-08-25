@@ -112,7 +112,7 @@
                         <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合のみ、デジタルPTZ機能が有効になります。</p>
                         <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZアイコンが表示されない場合、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>の<strong class="UI">[外部PTZ有効化]</strong>オプションが選択解除になっているかをご確認ください。</p>
                         <p></p>
-                        <p ng-if="FocusPresetSupportByChannel"><strong class="UI">[フォーカス保存]</strong>でフォーカスリストを確認することができます。</p>
+                        <p ng-if="FocusModeOptions !== undefined"><strong class="UI">[フォーカス保存]</strong>でフォーカスリストを確認することができます。</p>
                     </td>
                     </tr>
 
@@ -185,7 +185,7 @@
                             </td>
                         </tr>
 
-                    <tr ng-if="LensModelViewOptions">
+                    <tr ng-if="LensModelOptions !== undefined">
                         <td width="235">レンズモデル名</td>
                         <td width="235">
                             <p>レンズタイプが表示されます。</p>
@@ -193,13 +193,12 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 || !IsAdmin">
+                    <tr ng-if="MaxChannel > 1 || !IsAdmin && !SupportChannelExpansionFeature">
                         <td width="235">
                             <p><a href="#channel">チャンネル選択</a></p>
                         </td>
                         <td width="235">
                                 <p>カメラが対応するチャンネルが表示されます。チャンネルを選択すると、各チャンネルのライブビデオを確認することができます。</p>
-                                <p ng-if="SupportChannelExpansionFeature">チャンネル[Fisheye View]は魚眼カメラのオリジナルビデオであり、その他のチャンネルはユーザーが選択したビューモードに設定して追加したものです。カメラチャンネルは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で追加することができます。</p>
 
                             <!-- <p>カメラのチャンネル番号が表示されます。</p> -->
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">チャンネル番号を選択すると、該当チャンネルの映像がビューアに表示されます。4分割画面のアイコンを選択すると、4つのチャンネル映像を一気に表示します。シングル画面に戻すには、チャンネル番号をクリックします。</p>  -->
@@ -224,7 +223,19 @@
                                 <p>&nbsp;</p>
                             </td>
                         </tr>
-                    
+
+                        <tr ng-if="SupportChannelExpansionFeature">
+                            <td width="235">
+                                <p><a href="#channel">チャンネル選択</a></p>
+                            </td>
+                            <td width="235">
+                                    <p>カメラが対応するチャンネルが表示されます。チャンネルを選択すると、各チャンネルのライブビデオを確認することができます。</p>
+                                    <p>チャンネル[Fisheye View]は魚眼カメラのオリジナルビデオであり、その他のチャンネルはユーザーが選択したビューモードに設定して追加したものです。カメラチャンネルは<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>で追加することができます。</p>
+                            </td>
+                        </tr>
+
+
+
                     <!-- <tr ng-if="MaxChannel > 1 && SupportChannelExpansionFeature">
                             <td width="235">
                                 <p>ビュー</p>
@@ -650,7 +661,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p>また映像画面でマウス右側ボタンをクリックすると、クリックしたエリアを中心でモーションを分析してオートトラッキングを開始します。</p>
         </div>  
         
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+        <div class="wn5-setup-section-article-content" ng-if="FocusModeOptions !== undefined">
             <h3>フォーカス保存</h3>
             <p>フォーカス保存リストを確認することができます。</p>
             <p>現在の撮像画面をフォーカスエリアに保存するには、<strong class="UI">[設定]</strong>ボタンをクリックします。<strong class="UI">[番号]</strong>と<strong class="UI">[名前]</strong>を入力した後、<strong class="UI">[OK]</strong>ボタンをクリックすると保存されます。リストでフォーカス保存を選択した後、<strong class="UI">[移動]</strong>をクリックすると保存されたフォーカスエリアにカメラフォーカスが移動します。</p>
