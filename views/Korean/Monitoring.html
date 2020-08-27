@@ -158,7 +158,7 @@
                         <p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어 기능을 시작하고 중지할 수 있습니다. </p>
 
                             <!-- PNM-9000QB에서 컨텐츠가 show되어 hide되도록 수정. FocusPresetSupportByChannel -> FocusModeOptions !== undefined. 김주희 선임님 메일 2020-08-25.   -->
-                        <p ng-if="FocusPresetSupportByChannel !== undefined || FocusModeOptions !== undefined"><strong class="UI">[포커스 저장]</strong>에서 포커스 목록을 확인할 수 있습니다. </p>                       
+                        <p ng-if="FocusPresetSupportByChannel !== undefined && FocusModeOptions !== undefined"><strong class="UI">[포커스 저장]</strong>에서 포커스 목록을 확인할 수 있습니다. </p>                       
                         <p ng-if="MaxChannel > 1 && HandoverCalibration"><a href="#channel">채널 선택</a>에서 [PTZ] 채널을 선택한 경우에만 'PTZ' 아이콘이 보입니다.</p>
                     </td>
                     </tr>
@@ -202,7 +202,7 @@
                 </tr>					
                 
               <!-- PNM-9000QB에서 컨텐츠가 hide되어 show되도록 수정. 기존 LensModelViewOptions에  LensModelOptions !== undefined를 추가함. 김주희 선임님 메일 2020-08-25.   -->
-                <tr ng-if="LensModelViewOptions || LensModelOptions !== undefined">
+                <tr ng-if="LensModelViewOptions && LensModelOptions !== undefined">
                         <td width="235">렌즈 모델명</td>
                     <td width="235">
                         <!-- <p>카메라에 장착된 렌즈 모델 이름이 표시됩니다. </p> -->
@@ -681,7 +681,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div> 
         
     <!-- PNM-9000QB에서 컨텐츠가 show되어 hide되도록 수정. 기존 FocusPresetSupportByChannel !== undefined에서  FocusModeOptions !== undefined를 추가함 . 김주희 선임님 메일 2020-08-25.   -->
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel !== undefined || FocusModeOptions !== undefined">
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel !== undefined && FocusModeOptions !== undefined">
             <h3>포커스 저장</h3>
             <p>포커스 저장 목록을 확인할 수 있습니다. </p>
             <p>현재 촬상 화면을 포커스 영역으로 저장하려면 <strong class="UI">[설정]</strong> 버튼을 클릭합니다. <strong class="UI">[번호]</strong>와  <strong class="UI">[이름]</strong>을 입력한 후 <strong class="UI">[확인]</strong> 버튼을 클릭하면 저장됩니다. 목록에서 포커스 저장을 선택한 후 <strong class="UI">[이동]</strong>을 클릭하면 저장된 포커스 영역으로 카메라 포커스가 이동합니다.</p>
