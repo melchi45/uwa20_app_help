@@ -251,6 +251,9 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       /* XNF-9010RVM에서 추가한 것. */
       $scope.IRledZoneLevel = attr.IRledZoneLevel;
       
+      /* PNM-9000QB에서 추가한 것. */
+      $scope.GlobalRotateViewSupport = attr.GlobalRotateViewSupport;
+      
 
       /*
         1. true values
