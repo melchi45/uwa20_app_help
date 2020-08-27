@@ -201,21 +201,22 @@
                     </td>
                 </tr>					
                 
+
               <!-- PNM-9000QB에서 컨텐츠가 hide되어 show되도록 수정. 기존 LensModelViewOptions에  LensModelOptions !== undefined를 추가함. 김주희 선임님 메일 2020-08-25.   -->
                 <tr ng-if="LensModelViewOptions && LensModelOptions !== undefined">
-                        <td width="235">렌즈 모델명</td>
+                    <td width="235">렌즈 모델명</td>
                     <td width="235">
-                        <!-- <p>카메라에 장착된 렌즈 모델 이름이 표시됩니다. </p> -->
-                        <p>렌즈 종류가 표시됩니다.</p>
-                        <p><a href="#channel">채널 선택</a>에서 채널을 선택하면 채널별로 장착된 렌즈 이름을 확인할 수 있습니다.</p>
-                        
-                        <p> </p>
-                    </td>
+                            <p>렌즈 종류가 표시됩니다.</p>
+                    <!-- <p>카메라에 장착된 렌즈 모델 이름이 표시됩니다. </p> -->
+                    <p><a href="#channel">채널 선택</a>에서 채널을 선택하면 채널별로 장착된 렌즈 이름을 확인할 수 있습니다.</td>
+                    <p> </p>
                 </tr>
+
+
                 <!-- Guest, user 로 로그인 시 Select channel 설명 미노출되어 !IsAdmin 추가. TW 자체. PNM-9000VQ. 2020-04-20. -->
 
                 <!-- QNF-9010에서 hide했으나 XNF-9010에서 show될 수 있도록 !SupportChannelExpansionFeature 삭제. !IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin) => MaxChannel > 1 && !IsAdmin로 변경. TW 자체. XNF-9010. 2020-08-11. -->                
-                <tr ng-if="MaxChannel > 1 || !IsAdmin && !SupportChannelExpansionFeature">
+                <tr ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
                     <td width="235">
                         <p><a href="#channel">채널 선택</a></p>
                     </td>

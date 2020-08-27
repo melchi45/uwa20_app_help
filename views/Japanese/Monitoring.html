@@ -193,7 +193,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 || !IsAdmin && !SupportChannelExpansionFeature">
+                    <tr ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
                         <td width="235">
                             <p><a href="#channel">チャンネル選択</a></p>
                         </td>
@@ -257,7 +257,7 @@
 
                         
                 <!-- QNF-9010 컨텐츠이며, QNF는 채널 2개까지 XNF는 채널 7개까지 추가되어 XNF-9010에서 일단 주석 처리함. QNF-9010 변경점 진행 시 재검토 필요함.  tw자체. 2020-08-11 -->
-                        <tr ng-if="SupportChannelExpansionFeature">
+                        <!-- <tr ng-if="SupportChannelExpansionFeature">
                                 <td width="234">チャンネル選択</td>
                                 <td width="236">
                                     <p>選択したビュータイプの映像のみ存在するチャンネルを選択できます。</p>
@@ -266,7 +266,7 @@
                                     <p>[魚眼ビュー]は基本チャンネルであり、最大2つまでビデオチャンネルを追加できます。</p>
                                     <p>&nbsp;</p>
                                 </td>
-                            </tr>
+                            </tr> -->
 
 
                     <tr>

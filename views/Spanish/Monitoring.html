@@ -191,7 +191,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxChannel > 1 || !IsAdmin && !SupportChannelExpansionFeature">
+                    <tr ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
                             <td width="235">
                                 <p>Seleccionar canal</p>
                             </td>
