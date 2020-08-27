@@ -112,7 +112,7 @@
                         <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[<a href="#channel">チャンネル選択</a>]</strong>でチャンネル2を選択した場合のみ、デジタルPTZ機能が有効になります。</p>
                         <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZアイコンが表示されない場合、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>の<strong class="UI">[外部PTZ有効化]</strong>オプションが選択解除になっているかをご確認ください。</p>
                         <p></p>
-                        <p ng-if="FocusModeOptions !== undefined"><strong class="UI">[フォーカス保存]</strong>でフォーカスリストを確認することができます。</p>
+                        <p ng-if="FocusPresetSupportByChannel !== undefined || FocusModeOptions !== undefined"><strong class="UI">[フォーカス保存]</strong>でフォーカスリストを確認することができます。</p>
                     </td>
                     </tr>
 
@@ -185,7 +185,7 @@
                             </td>
                         </tr>
 
-                    <tr ng-if="LensModelOptions !== undefined">
+                    <tr ng-if="LensModelViewOptions || LensModelOptions !== undefined">
                         <td width="235">レンズモデル名</td>
                         <td width="235">
                             <p>レンズタイプが表示されます。</p>
@@ -661,7 +661,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p>また映像画面でマウス右側ボタンをクリックすると、クリックしたエリアを中心でモーションを分析してオートトラッキングを開始します。</p>
         </div>  
         
-        <div class="wn5-setup-section-article-content" ng-if="FocusModeOptions !== undefined">
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel !== undefined || FocusModeOptions !== undefined">
             <h3>フォーカス保存</h3>
             <p>フォーカス保存リストを確認することができます。</p>
             <p>現在の撮像画面をフォーカスエリアに保存するには、<strong class="UI">[設定]</strong>ボタンをクリックします。<strong class="UI">[番号]</strong>と<strong class="UI">[名前]</strong>を入力した後、<strong class="UI">[OK]</strong>ボタンをクリックすると保存されます。リストでフォーカス保存を選択した後、<strong class="UI">[移動]</strong>をクリックすると保存されたフォーカスエリアにカメラフォーカスが移動します。</p>
