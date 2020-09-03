@@ -225,9 +225,11 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.WiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WiperOn") !== -1;
       $scope.HeaterOn = attr.AuxCommands && attr.AuxCommands.indexOf("HeaterOn") !== -1;
       $scope.AutoTrackObjectSize = attr.AutoTrackObjectSize;
-      $scope.FocusPresetSupportByChannel = (
-        typeof attr.FocusPresetSupportByChannel !== 'undefined' && attr.FocusPresetSupportByChannel.length > 0
-);
+//       $scope.FocusPresetSupportByChannel = (
+//         typeof attr.FocusPresetSupportByChannel !== 'undefined' && attr.FocusPresetSupportByChannel.length > 0
+// );
+
+$scope.FocusPresetSupportByChannel = attr.FocusPresetSupportByChannel;
       $scope.CameraIDEnable = attr.CameraIDEnable;
 
 
