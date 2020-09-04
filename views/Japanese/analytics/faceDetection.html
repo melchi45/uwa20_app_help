@@ -1,4 +1,4 @@
-﻿
+﻿<div ng-if="HeadDetectionSupport">
 <h1 class="wn5-setup-main-title">顔/上体検知</h1>
 
 <div class="wn5-setup-section">
@@ -214,3 +214,226 @@
 </div>
 
 <hr class="wn5-setup-hr">
+</div>
+
+<!-- face detection -->
+<div ng-if="HeadDetectionSupport">
+
+
+    <h1 class="wn5-setup-main-title">顔検出</h1>
+
+    <div class="wn5-setup-section">
+        <p>カメラで映像撮影中にユーザーが指定したエリアで顔が検知される場合、顔検知イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。顔検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[顔検知]</strong>に同じく適用されます。</p>
+    </div>
+    <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section" ng-if="MaxChannel > 1">
+        <div class="wn5-setup-section-heading">
+            <h2>チャンネル選択</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>カメラチャンネルを選択した後、チャンネル別に顔検知の詳細を設定することができます。</p>
+                <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+                <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
+            </div>
+    
+        </div>
+    </div>	
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>顔検出</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                
+                <h3>顔検知を有効にする</h3>
+                <p>顔検知イベントを有効にするためには、<strong class="UI">[顔検知を有効にする]</strong>を選択します。</p>
+            </div>
+    <!--      임시 삭제. 2019-04-13 일본어에만 존재함. 이유는??? 
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    
+                    <li>下記の場合には、顔検知性能が低下されるか誤動作が発生することがあります。                    
+                        <ul>
+                            <li>顔の角度や傾きが撮像方向と異なる場合(例：逆立ちなど)</li>
+                            <li>メガネ、サングラス、キャップ、マスクなど顔を隠すアクセサリーを着用する場合</li>
+                            <li>カメラの焦点が合わなくて顔がぼける場合</li>
+                            <li>夜間、低照度環境</li>
+                            <li>逆光などの照明方向によって顔の形状の明暗が一般的ではない場合</li>
+                        </ul>
+                </ul>
+            </div>	  -->
+            
+        </div>
+    </div>
+    
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+                <h2>含有エリア</h2>
+         </div>  
+            <div class="wn5-setup-section-article">
+    
+                <div class="wn5-online-help-action">
+                <h4>エリア設定</h4>
+                <p><strong class="UI">[顔検知を有効にする]</strong>を選択すると、四角のオレンジ色の枠にエリアが表示されます。四角の真ん中に最小顔検知サイズが顔の画像で表示されますが、顔の画像より大きい顔のみ検知します。</p>
+                </div>
+            <div class="wn5-online-help-action">
+                <h4>エリア変更</h4>
+                <p>設定したエリアの右下にある頂点を動かしてエリアのサイズを変更することができます。エリアを移動させるためには、マウスで該当エリアをクリックしてドラッグします。</p>
+            </div>
+            <div class="wn5-online-help-action" ng-if="PTZModel">
+                <h4>PTZ調整</h4>
+                <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+                <ul>
+                    <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
+                    <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
+                    <li><span class="tui tui-wn5-ptz-near"></span>アイコンをクリックしてフォーカスを近く(near)移動したり、<span class="tui tui-wn5-ptz-far"></span>アイコンをクリックしてフォーカスを遠く(far)移動します。</li>
+                    <li>カメラのフォーカスを自動で一度合わせるには、<span class="tui tui-wn5-simple-focus"></span>ボタンをクリックします。</li>
+                </ul>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>感度</h3>
+                <p>顔検知イベントの感度を設定します。感度が高いほど、細かく顔検知をすることができます。</p>            
+            </div>
+             <div class="wn5-setup-section-article-content">
+                <h3>モーションベースの動的領域</h3>
+                <p>モーション分析によって顔検知エリアが自動に変更されるようにするには、<strong class="UI">[有効]</strong>を選択します。<strong class="UI">[有効]</strong>を選択しない場合、設定したエリアでしか顔を検知しません。</p>
+                <p>エリアを設定すると、設定したエリア内でのみ顔が検知され、遠くの小さい顔は検知効率が落ちる場合があります。「モーションベースの動的領域」機能を使うと、画面全体でモーションを検知する時に顔検知のためのエリアが自動に変更され顔検知の効率が向上されます。</p>
+            </div>
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    <li>モーションベースの動的領域機能を使用時、モーションが発生するエリアのみ顔検知エリアに指定されます。</li>
+                    <li>複数のエリアで顔を検知するために検知エリアが能動的に変更されるため、持続的な顔検知は不可能です。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+    
+                <h2>除外エリア</h2>
+        </div>  
+            <div class="wn5-setup-section-article">      
+            <div class="wn5-online-help-action">
+                <h4>除外エリア設定</h4>
+                <p>プレビュー画面からマウスで頂点4つを選択するか、マウスでドラッグして四角を描くと除外エリアが設定されます。</p>
+                <p>除外エリアは最大8つまで設定することができます。</p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>除外エリア変更</h4>
+                <p>設定した除外エリアの頂点を動かして除外エリアのサイズを変更することができます。</p>
+                <p>多角形を作るには、作られた四角の線を選択した後、表示されるプラス(+)記号をクリックすると頂点が追加されます。最大4つの点を追加して多角形を作ることができます。</p>
+                <p>除外エリアを移動するには、マウスで該当エリアをクリックしてドラッグします。</p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>除外エリア削除</h4>
+                <p>除外エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+    
+                <h3>エリア</h3>
+                <p>除外エリアが追加されると、順番に数字ボタン色が変更されます。数字ボタンをクリックすると、該当の除外エリアがプレビュー画面で選択されます。</p>
+            </div>
+    
+    
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+                <ul>
+                    <li>エリアと除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+        <!--    <div class="wn5-setup-section-article-content">
+                <h3>エリア</h3>
+                <p>除外エリアが追加されると、順番に<strong class="UI">[エリア]</strong>数字ボタン色が変更されます。数字ボタンをクリックすると、該当の除外エリアはプレビュー画面で表示されません。もう一度、数字ボタンをクリックすると除外エリアが再度表示されます。</p>  --> 
+    
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>オーバーレイ</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p><strong class="UI">[有効]</strong>をクリックすると、検知された位置を映像にオーバーレイして表示します。</P>
+            </div>       
+        </div>
+    </div>
+    
+    
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2><a class="wn5-online-help-link" name="action"></a>イベントアクションの設定</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+    
+                <h3>FTP</h3>
+                <p>顔検知イベントが発生した時、映像の画像をFTPサーバーに保存するには<strong class="UI">[有効]</strong>を選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>E-mail</h3>
+                <p>顔検知イベントが発生した時、映像の画像をE-mailに伝送するには<strong class="UI">[有効]</strong>を選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="Recording">
+                <h3>録画</h3>
+                <p ng-if="NAS">アラーム入力イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+                <p ng-if="!NAS">アラーム入力イベントが発生した時、SDカードに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+                <h3>アラーム出力</h3>
+                <p>顔検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[Off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[アラーム出力]</strong></a>で行うことができます。</p>
+                <p>カメラが対応する出力アラーム個数によって、アラーム出力オプションの表示が異なります。例えば出力されるアラームが2つなら、「アラーム出力1」、「アラーム出力2」とオプションが表示されます。 </p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+                <h3>プリセットに移動</h3>
+                        <p>顔検知イベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+                <h3>プリセットに移動</h3>
+                        <p>顔検知イベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[プリセット設定]</strong></a>の<strong class="UI">[プリセット設定]</strong>エリアで設定することができます。</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+                <h3>プリセットに移動</h3>
+                        <p>顔検知イベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+                <h3>オーディオクリップ</h3>
+                <p>顔検知イベントが発生した時、特定のオーディオクリップが再生されるように設定することができます。オーディオクリップリストでファイルを選択すると、イベントが発生する時に該当のクリップが再生されます。イベントが発生してもオーディオクリップが再生されないように設定するためには、<strong class="UI">[Off]</strong>を選択します。再生ボタン(<span class="tui tui-wn5-toolbar-play"></span>)をクリックすると、該当オーディオファイルを再生してプレビューを聞くことができます。</p>
+                <p>オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</p>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>イベント動作時間</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>顔検知のイベントアクションの動作時間を設定します。<strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_faceDetection?#action">イベントアクションの設定</a>]</strong>で設定したイベントアクションが常時動作するように設定したり、スケジュール動作するように設定します。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>常時動作</h3>
+                <p>顔検知イベントが発生した時、設定したイベントアクションを常に実行します。</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>スケジュール動作</h3>
+                <p>設定した時間に顔検知イベントが発生した時、設定したイベントアクションを実行します。<strong class="UI">[スケジュール動作]</strong>を選択して表示されるタイムテーブルには、現在のカメラ時間を基準とした日曜日から土曜日までの日付が表示されます。タイムテーブルでマウスをクリックしたりドラッグしてイベントアクション時間を設定することができます。設定されたイベント動作時間は、該当曜日と時間に繰り返して実行されます。</p>
+                <p><strong class="UI">[1分]</strong>、<strong class="UI">[30分]</strong>、<strong class="UI">[1時]</strong>ボタンをクリックして、タイムビュー単位を変更することができます。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定されたイベント動作時間がすべて削除されます。カメラ時間を確認するか変更するためには、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[日付＆時間]</strong>を参照してください。</p>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="wn5-setup-hr">
+
+</div>

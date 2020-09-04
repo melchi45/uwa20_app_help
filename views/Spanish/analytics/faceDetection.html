@@ -1,4 +1,6 @@
-﻿<h1 class="wn5-setup-main-title">Detección de rostro/parte superior del cuerpo</h1>
+﻿<div ng-if="HeadDetectionSupport">
+
+<h1 class="wn5-setup-main-title">Detección de rostro/parte superior del cuerpo</h1>
 
 <div class="wn5-setup-section">
     <p>Si durante la vigilancia realizada por la cámara se detecta un rostro humano o la parte superior del cuerpo dentro del ROI establecido por el usuario, se inicia un evento de detección facial o de la parte superior del cuerpo. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste en el caso de detecci&oacute;n facial o de la parte superior del cuerpo se aplica a <strong class="UI">[Detección de rostro/parte superior del cuerpo]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
@@ -192,3 +194,204 @@
 </div>
 
 <hr class="wn5-setup-hr">
+</div>
+
+<!-- face detection -->
+<div ng-if="!HeadDetectionSupport">
+
+    <h1 class="wn5-setup-main-title">Detecci&oacute;n facial</h1>
+
+    <div class="wn5-setup-section">
+        <p>Un evento de detecci&oacute;n facial puede ser creado cuando se detecta una cara dentro del &aacute;rea designada por el usuario, mientras que la c&aacute;mara est&aacute; capturando una imagen. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina. El ajuste en el caso de detecci&oacute;n facial se aplica a <strong class="UI">[Detecci&oacute;n facial]</strong> en la p&aacute;gina de <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a> igualmente.</p>
+    </div>
+    <hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
+    <div class="wn5-setup-section" ng-if="MaxChannel > 1">
+        <div class="wn5-setup-section-heading">
+            <h2>Seleccionar canal</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Después de seleccionar su canal de cámara, puede configurar los detalles de Detección facial para cada canal. </p>
+                <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
+                <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
+            </div>
+        </div>
+    </div>
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>Detecci&oacute;n facial</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                
+                <h3>Activar la detecci&oacute;n facial</h3>
+                <p>Para utilizar el evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar la detecci&oacute;n facial]</strong>.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h2>Área incluida</h2>
+            </div>  
+            <div class="wn5-setup-section-article">
+                <div class="wn5-online-help-action">
+                <h5>Configuraci&oacute;n de un &aacute;rea</h5>
+                <p>De toda la pantalla, un &aacute;rea seleccionada por el usuario puede ser definida como el &aacute;rea. El tamaño mínimo de detección facial se muestra como un icono de rostroen el área de detección. Cualquier cara que sea mayor que un icono de rostroen que se detecta en el área de detección.</p>
+                </div>
+                <div class="wn5-online-help-action">
+                <h5>Cambio de un &aacute;rea</h5>
+                <p>Se puede cambiar el tama&ntilde;o del &aacute;rea de detecci&oacute;n haciendo clic en la esquina inferior derecha del &aacute;rea de juego y arrastrando el &aacute;rea relevante con el rat&oacute;n. </p>
+                </div>
+    
+                <div class="wn5-online-help-action" ng-if="PTZModel">
+                    <h4>Ajuste del PTZ</h4>
+                    <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+                    <ul>
+                        <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                        <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
+                        <li>Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span>  o mueva el foco lejano haciendo clic en el icono<span class="tui tui-wn5-ptz-far"></span>.</li>
+                        <li>Para ajustar el enfoque de la c&aacute;mara autom&aacute;ticamente para un disparo, haga clic en el icono<span class="tui tui-wn5-simple-focus"></span>.</li>
+                    </ul>
+                </div>
+    
+            <div class="wn5-setup-section-article-content">
+                
+                <h5>Sensibilidad</h5>
+                <p>Esto ajusta la sensibilidad del evento de detecci&oacute;n facial. Cuanto mayor sea la sensibilidad, m&aacute;s detallada ser&aacute; la detecci&oacute;n facial posible.</p>
+              </div>
+            <div class="wn5-setup-section-article-content">
+                  <h3>Área dinámica basada en el movimiento</h3>
+                  <p>Seleccione <strong class="UI">[Activar]</strong> si desea que el área de detección de rostros cambie automáticamente, de acuerdo con el análisis de movimiento.Si no se selecciona activar <strong class="UI">[Activar]</strong>, las caras solo se detectarán en el área ROI establecida. </p>
+                  <p>Si se establece el área de ROI, la cara se detectará solo dentro del área establecida, y la eficiencia de detección de la cara pequeña a una larga distancia puede deteriorarse. Si se utiliza la función "Movimiento de área ROI basada en movimiento ", cuando se detecta movimiento en toda la pantalla, el área para la detección de rostros cambia automáticamente &nbsp;y, por lo tanto, se mejora la eficacia de detección de rostros.</p>
+              </div>
+              <div class="wn5-online-help-info">
+                  <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                  <ul>
+                      <li>Cuando se utiliza la función de movimiento ROI basada en movimiento, solo el área donde ocurre el movimiento se designa como el área de detección de rostros. </li>
+                      <li>La detección continua de rostros es imposible porque el área de detección se cambia activamente para detectar caras en diversas áreas. </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+      <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+    
+                <h2>&Aacute;rea excluida</h2>
+        </div>  
+            <div class="wn5-setup-section-article">      
+            <div class="wn5-online-help-action">
+                <h4>Configuraci&oacute;n de un &aacute;rea excluida</h4>
+                <p>De toda la pantalla, un &aacute;rea seleccionada por el usuario puede ser definida como el &aacute;rea excluida. Cuando selecciona 4 esquinas de la imagen con el rat&oacute;n, el &aacute;rea se establece como el &aacute;rea excluida y el color de los botones num&eacute;ricos <strong class="UI">[&Aacute;rea]</strong> cambia. Se pueden configurar hasta 8 &aacute;reas excluidas.</p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>Cambio de un &aacute;rea excluida</h4>
+                <p>Se puede cambiar el tama&ntilde;o del &aacute;rea excluida haciendo clic en la esquina del &aacute;rea excluida y arrastrando el &aacute;rea relevante con el rat&oacute;n.  </p>
+            </div>
+            <div class="wn5-online-help-action">
+                <h4>Eliminaci&oacute;n de un &aacute;rea excluida</h4>
+                <p>Para borrar un &aacute;rea excluida, haga clic en el bot&oacute;n derecho del rat&oacute;n en el &aacute;rea correspondiente de la pantalla y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n de eliminaci&oacute;n.</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+    
+                <h3>&Aacute;rea  </h3>
+                <p>Cuando se a&ntilde;ade un &aacute;rea excluida, el color del bot&oacute;n num&eacute;rico tambi&eacute;n cambiar&aacute;. Al hacer clic en el bot&oacute;n num&eacute;rico, el &aacute;rea excluida correspondiente desaparecer&aacute; de la pantalla de vista previa. Al hacer clic en el bot&oacute;n num&eacute;rico otra vez, el &aacute;rea excluida volver&aacute; a aparecer.</p>
+            </div>
+    
+    
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+                    <li>Si el &aacute;rea de detecci&oacute;n y el &aacute;rea excluida son id&eacute;nticos o se solapan, el &aacute;rea excluida tiene prioridad.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="wn5-setup-hr">
+        <div class="wn5-setup-section">
+            <div class="wn5-setup-section-heading">
+                <h2>Superposici&oacute;n</h2>
+           </div>
+            <div class="wn5-setup-section-article">
+                <div class="wn5-setup-section-article-content">
+                <p>Haga clic en <strong class="UI">[Activar]</strong> para superponer el &aacute;rea detectada en la pantalla de video. El movimiento detectado de la cabeza de una persona se muestra como una forma cuadril&aacute;tera en la pantalla de video.<U> </U></p>
+                </div>
+            </div>
+        </div>
+    
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+    
+                <h3>FTP</h3>
+                <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>E-mail</h3>
+                <p>Para enviar una imagen por e-mail cuando se crea un evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="Recording">
+                <h3>Grabar</h3>
+                <p ng-if="NAS">Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+                <p ng-if="!NAS">Para guardar una imagen en una tarjeta SD cuando se crea un evento de detecci&oacute;n facial, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+                <h3>Salida de alarma</h3>
+                <p>Es posible establecer una direcci&oacute;n de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento de detecci&oacute;n facial.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. Se pueden hacer ajustes detallados para salida de alarma desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/alarmoutput.html" ng-href="#/help/event_alarmoutput"><strong class="UI">[Salida de alarma]</strong></a>.</p>
+                <p>La pantalla de opción de salida de alarma variará según la cantidad de alarmas de salida que tenga la cámara. Por ejemplo, si hay 2 alarmas para la salida, la opción mostrará «Salida de alarma 1» y «Salida de alarma 2». </p>
+            </div>
+    
+          <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel">
+                <h3>Ir a preajuste.</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+                <h3>Ir a preajuste.</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
+            </div>
+    
+            <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
+                <h3>Ir a preajuste.</h3>
+                    <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n facial. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+            </div>
+            <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange !== undefined">
+                <h3>Clip de audio</h3>
+                <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento de detecci&oacute;n facial. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[Apagado]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
+                <p>Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong>&gt;<strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="wn5-setup-hr">
+    <div class="wn5-setup-section">
+        <div class="wn5-setup-section-heading">
+            <h2>Tiempo de activaci&oacute;n de evento</h2>
+        </div>
+        <div class="wn5-setup-section-article">
+            <div class="wn5-setup-section-article-content">
+                <p>Esto establece el tiempo de funcionamiento de la configuraci&oacute;n de acciones de eventos de detecci&oacute;n facial. Establezca la configuraci&oacute;n de acciones de eventos desde <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_faceDetection?#action">Conf. de acciones de evento</a>]</strong> para funcionar siempre o s&oacute;lo a la hora programada.</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+    
+                <h3>Siempre</h3>
+                <p>La configuraci&oacute;n de acciones de eventos se ejecutan siempre cuando se crea un evento de detecci&oacute;n facial.</p>
+            </div>
+            <div class="wn5-setup-section-article-content">
+                <h3>S&oacute;lo tiempo programado</h3>
+                <p>La configuraci&oacute;n de acciones de eventos se ejecutan cuando se crea un evento de detecci&oacute;n facial durante el tiempo establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se muestra en la tabla de tiempos que aparece cuando <strong class="UI">[S&oacute;lo tiempo programado]</strong> se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n de evento configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
+                <p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1 min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la c&aacute;mara, consulte <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Fecha y hora]</strong>.</p>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="wn5-setup-hr">
+    
+</div>

@@ -69,8 +69,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel !== undefined && FocusModeOptions !== undefined">
-<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel !== undefined && FocusModeOptions !== undefined">
+<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
+<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
     <div class="wn5-setup-section-heading">
         <h2>Enregistrement de la mise au point</h2>
     </div>
@@ -139,6 +139,7 @@
                 <ul><!-- PNM-9030V??? ?? ??? ???? ??? ?? ?? ????? ???? ?? ??. TW ??. ?? ????? ??? ???? (?? ??) ??? ?? ??. 2020-01-16.  --><li ng-if="!SupportAutoImageAlignment">Changer le mode du capteur r&eacute;initialisera tout le r&eacute;glage de la cam&eacute;ra.</li>
                     <li>La valeur du mode capteur ne peut pas &ecirc;tre d&eacute;finie diff&eacute;remment pour chaque image pr&eacute;d&eacute;finie. La vitesse d&rsquo;enregistrement s&rsquo;applique de mani&egrave;re identique &agrave; tous les pr&eacute;r&eacute;glages d&rsquo;image.</li>
                     <li>Valeur maximale de <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Vitesse d&apos;enregistrement]</strong> varie en fonction du nombre d&apos;images d&eacute;fini pour le mode de capteur.</li>
+                    <li ng-if="GlobalRotateViewSupport">Toute modification apportée aux options Mode Capteur sera appliquée de façon identique à tous les autres canaux.</li>
                 </ul>
             </div>  
     </div>
@@ -758,7 +759,9 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
                     <li>Lorsque <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Vid&eacute;o configuration]</a></strong>, <strong class="UI">[LDC]</strong> et <strong class="UI">[LDC Niveau]</strong>. D&eacute;cochez la case <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> pour utiliser la fonction LDC.</li><!-- 
-                    <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  --></ul>
+                    <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
+                    <li ng-if="GlobalRotateViewSupport">Toute modification apportée aux options LDC sera appliquée de façon identique à tous les autres canaux.</li>
+                </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <!-- <h3>Niveau de LDC</h3> -->

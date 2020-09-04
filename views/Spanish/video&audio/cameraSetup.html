@@ -138,6 +138,7 @@
                 <ul><!-- PNM-9030V??? ?? ??? ???? ??? ?? ?? ????? ???? ?? ??. TW ??. ?? ????? ??? ???? (?? ??) ??? ?? ??. 2020-01-16.  --><li ng-if="!SupportAutoImageAlignment">Cambiar el modo del sensor restablecer&aacute; toda la configuraci&oacute;n de la c&aacute;mara.</li>
                     <li>El valor del modo de sensor no puede ajustarse de forma diferente para cada preajuste de imagen. La Velocidad de cuadros se aplica de forma id&eacute;ntica a todos los preajustes de imagen.</li>
                     <li>El valor m&aacute;ximo de <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong> &gt; <strong class="UI">[Velocidad de cuadro]</strong> var&iacute;a seg&uacute;n la cantidad de cuadros configurados para el modo de sensor.</li>
+                    <li ng-if="GlobalRotateViewSupport">Cualquier cambio en las opciones del modo Sensor se aplicará por igual a todos los demás canales.</li>
                 </ul>
             </div>  
     </div>
@@ -756,7 +757,9 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
                     <li>Cuando se selecciona <strong class="UI">[Activar la zona de privacidad]</strong> en <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Configuraci&oacute;n de v&iacute;deo]</a></strong>, tanto <strong class="UI">[LDC]</strong> como <strong class="UI">[LDC Nivel]</strong>. Desmarque <strong class="UI">[Activar la zona de privacidad]</strong> para usar la funci&oacute;n LDC.</li><!-- 
-                    <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  --></ul>
+                    <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
+                    <li ng-if="GlobalRotateViewSupport">Cualquier cambio en las opciones LDC se aplicará por igual a todos los demás canales.</li>
+                </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDC Nivel</h3>
