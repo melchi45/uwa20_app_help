@@ -203,7 +203,7 @@
                 
 
               <!-- PNM-9000QB에서 컨텐츠가 hide되어 show되도록 수정. 기존 LensModelViewOptions에  LensModelOptions !== undefined를 추가함. 김주희 선임님 메일 2020-08-25.   -->
-                <tr ng-if="LensModelViewOptions || LensModelOptions !== undefined">
+                <tr ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
                     <td width="235">렌즈 모델명</td>
                     <td width="235">
                             <p>렌즈 종류가 표시됩니다.</p>
@@ -682,7 +682,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div> 
         
     <!-- PNM-9000QB에서 컨텐츠가 show되어 hide되도록 수정. 기존 FocusPresetSupportByChannel !== undefined에서  FocusModeOptions !== undefined를 추가함 . 김주희 선임님 메일 2020-08-25.   -->
-    <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel">
+    <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
         <!-- <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined"> -->
             <h3>포커스 저장</h3>
             <p>포커스 저장 목록을 확인할 수 있습니다. </p>

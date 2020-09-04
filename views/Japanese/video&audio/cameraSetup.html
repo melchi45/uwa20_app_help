@@ -667,6 +667,19 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content"><!-- <p>??? ??? ????? ??, ???, ?? ?? ?? ? ? ????.</p>  --><p>映像のシャープを調整したりコントラスト、カラー調整などを設定することができます。</p>
         </div>
+
+		<div class="wn5-setup-section-article-content" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
+            <h3>レンズ</h3>
+                <p>カメラに搭載されたレンズのモデル名が表示されます。</p>
+                <p>チャンネル選択でチャンネルを選択すると、チャンネル別に搭載されたレンズモデルを選択することができます。</p>
+        </div>
+		<div class="wn5-online-help-info" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>一部レンズを選択する時、<strong class="UI">[LDC]</strong>オプションが表示されない場合があります。</li>
+            </ul>
+        </div>
+
         <div class="wn5-setup-section-article-content" ng-if="DIS">
             <h3>DIS</h3>
             <p>DIS (Digital Image Stabilization)は風のような外部的な要因でカメラに振動が発生する場合、映像を自動に補正して安定的に画面を出力します。</p>
@@ -753,14 +766,18 @@
                     <li><strong class="UI">つめる(自動)</strong>：つめるモードで映像を補正し、補正値は自動に設定されます。つめるモードは、上下の視野角度を維持するため、オリジナル撮影映像の左右端部分が切れる現象がある場合があります。</li>
                     <li><strong class="UI">ズームイン(手動)</strong>：ズームインモードで映像を補正し、[LDCレベル]で補正値を手動に調整できます。</li>
                     <li><strong class="UI">ズームイン(自動)</strong>：ズームインモードで映像を補正し、補正値は自動に設定されます。ズームインモードは、上下/左右の視野角度を維持するため、オリジナル撮影映像がすべて表示されるが、映像の横・縦の比率が維持されません。</li>
-                    <li ng-if="GlobalRotateViewSupport">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+
                     <!-- <li ng-if="LDCAuto"><strong class="UI">??</strong>: ???? ?? ??? ?????.  </li> --></ul>
         </div>
         <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport || GlobalRotateViewSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
-                    <li><strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[ビデオ設定]</a></strong>の <strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した場合、<strong class="UI">[LDC]</strong>と <strong class="UI">[LDC レベル] </strong>オプションが無効になります。カメラLDC機能を使用するには、<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除する必要があります。</li><!-- 
-                    <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  --></ul>
+                    <li><strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[ビデオ設定]</a></strong>の <strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した場合、<strong class="UI">[LDC]</strong>と <strong class="UI">[LDC レベル] </strong>オプションが無効になります。カメラLDC機能を使用するには、<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除する必要があります。</li>
+                    <!-- 
+                    <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
+                    <li ng-if="GlobalRotateViewSupport">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+                    <li ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">選択したレンズタイプによって[LDC]オプションが表示されない場合があります。レンズタイプは<strong class="UI">[レンズ]</strong>で選択することができます。</li>
+                </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
             <h3>LDCレベル</h3>

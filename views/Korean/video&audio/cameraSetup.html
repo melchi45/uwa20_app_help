@@ -77,10 +77,9 @@
 
     <!-- PNM-9000QB에서 컨텐츠가 show되어 hide되도록 수정. FocusPresetSupportByChannel !== undefined에 FocusModeOptions !== undefined를 추가함. 김주희 선임님 메일 2020-08-25.   -->
 
-<!-- <hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
-<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined"> -->
-    <hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel">
-<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel">
+
+    <hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel || FocusModeOptions !== undefined">
+<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel || FocusModeOptions !== undefined">
     <div class="wn5-setup-section-heading">
         <h2>포커스 저장</h2>
     </div>
@@ -749,12 +748,12 @@
             <p>영상의 윤곽을 조절하거나 대비, 색조절 등을 할 수 있습니다.</p>
         </div>
 
-		<div class="wn5-setup-section-article-content" ng-if="LensModelViewOptions || LensModelOptions !== undefined">
+		<div class="wn5-setup-section-article-content" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
             <h3>렌즈</h3>
                 <p>카메라에 장착된 렌즈 모델명이 표시됩니다. </p>
                 <p>채널 선택에서 채널을 선택하면 채널별로 장착된 렌즈 모델을 선택할 수 있습니다. </p>
         </div>
-		<div class="wn5-online-help-info" ng-if="LensModelViewOptions || LensModelOptions !== undefined">
+		<div class="wn5-online-help-info" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>일부 렌즈 선택 시 <strong class="UI">[LDC]</strong> 옵션이 보이지 않을 수 있습니다.   </li>
@@ -860,7 +859,7 @@
                 <ul>
                     <li><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[비디오 설정]</a></strong>에서 <strong class="UI">[프라이버시 영역 사용]</strong>을 선택한 경우, <strong class="UI">[LDC]</strong>와 <strong class="UI">[LDC 레벨] </strong>옵션이 모두 비활성화됩니다. 카메라 LDC 기능을 사용하려면, <strong class="UI">[프라이버시 영역 사용]</strong>을 선택 해제해야 합니다. </li>
                     <li ng-if="GlobalRotateViewSupport">LDC 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
-                    <li ng-if="LensModelViewOptions || LensModelOptions !== undefined">선택한 렌즈 종류에 따라 [LDC] 옵션이 보이지 않을 수 있습니다. 렌즈 종류는 <strong class="UI">[렌즈]</strong>에서 선택할 수 있습니다.  </li>
+                    <li ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">선택한 렌즈 종류에 따라 [LDC] 옵션이 보이지 않을 수 있습니다. 렌즈 종류는 <strong class="UI">[렌즈]</strong>에서 선택할 수 있습니다.  </li>
  
                 <!-- <li>[역광 보정]의 [WDR], [스페셜]의 [DIS]나 [LDC] 기능은 동시에 사용할 없습니다. 즉 세 기능 중 하나만 사용할 수 있습니다.</li>  -->
                 </ul>

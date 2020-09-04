@@ -307,7 +307,13 @@
                 <li><strong class="UI">NTSC</strong>&nbsp;: NTSC (Comit&eacute; du syst&egrave;me national de t&eacute;l&eacute;vision) est la norme am&eacute;ricaine pour les t&eacute;l&eacute;viseurs couleur. Le nombre d&rsquo;images par seconde est de 30 et le nombre de faisceaux de projection horizontale est de 525. Comme le nombre d&rsquo;images par seconde est &eacute;lev&eacute;, l&rsquo;&eacute;cran semble tr&egrave;s naturel. Il est surtout utilis&eacute; aux &Eacute;tats-Unis, au Japon et au Canada.</li>
 				<li><strong class="UI">PAL</strong>&nbsp;: La m&eacute;thode PAL (Ligne d&rsquo;alternance de phase) a &eacute;t&eacute; propos&eacute;e par l&rsquo;Allemagne et elle est similaire &agrave; NTSC mais diff&egrave;re par la fa&ccedil;on dont elle traite les signaux de couleur. Il est surtout utilis&eacute; en Europe. Par rapport au NTSC, le nombre d&rsquo;images par seconde est plus faible, mais le nombre de faisceaux horizontaux est plus &eacute;lev&eacute; (625). Ainsi, la r&eacute;solution est plus &eacute;lev&eacute;e, la d&eacute;formation des couleurs est moindre et l&rsquo;installation de diffusion n&rsquo;exige pas de sp&eacute;cifications &eacute;lev&eacute;es.</li>
 			</ul>
-		</div>
+        </div>
+        
+        <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport">
+            <h3>Présentation</h3>
+            <p>Vous pouvez sélectionner les options de disposition pour l'écran de sortie vidéo de la caméra dans [Présentation]. La sélection de [Quad] affiche toutes les vidéos de 4 chaînes sur un seul écran. La sélection de [Unique] n'affiche qu'une seule vidéo parmi 4 canaux à l'écran. Si [Unique] est sélectionné, vous pouvez choisir le canal pour diffuser la vidéo.</p>
+        </div>
+
 		      <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
@@ -340,6 +346,12 @@
                 <h3>Type</h3>
                 <p>S&eacute;lectionnez la r&eacute;solution HDMI d&rsquo;affichage vid&eacute;o. Dans <strong class="UI">[Sortie vid&eacute;o]</strong>, s&eacute;lectionner [Activer] pour pouvoir s&eacute;lectionner le type souhait&eacute;.</p>
             </div>
+
+            <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport">
+                <h3>Présentation</h3>
+                <p>Vous pouvez sélectionner les options de disposition pour l'écran de sortie vidéo de la caméra dans [Présentation]. La sélection de [Quad] affiche toutes les vidéos de 4 chaînes sur un seul écran. La sélection de [Unique] n'affiche qu'une seule vidéo parmi 4 canaux à l'écran. Si [Unique] est sélectionné, vous pouvez choisir le canal pour diffuser la vidéo.</p>
+            </div>
+
 		      <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
