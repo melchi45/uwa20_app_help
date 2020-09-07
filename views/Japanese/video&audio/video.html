@@ -269,14 +269,17 @@
 </div> -->
 
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+
+<!-- 통합 전 -->
+
+<!-- <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
     <div class="wn5-setup-section-heading">
         <h2>ビデオ出力</h2>
     </div>
 	<div class="wn5-setup-section-article">		
 		<div class="wn5-setup-section-article-content">	
-	<!--     <p>カメラ映像をアナログ方式で出力するとき、出力方式を設定することができます。アナログビデオ出力はカメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができて有用です。</p>  --> 
+
 			<p>カメラ映像をビデオで出力するタイプを選択します。 </p>
 		</div>
 	    <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">			
@@ -286,14 +289,14 @@
 		</div>
 	    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions && !VideooutputEnableHide">			
 			<h3>CVBS</h3>  
-		<!-- 	<h3>ビデオ出力</h3>	--> 
+
 			<p>CVBSを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
 			<p>カメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができるため、有用です。</p>
 		</div>
 
 	    <div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
 	 	<h3>CVBSタイプ</h3> 
-	<!--	<h3>タイプ</h3>	  -->	
+
 	    	<p>CVBSを使用する場合、CVBSビデオ出力タイプを選択します。</p>
 			<ul>			
 				<li><strong class="UI">NTSC</strong>：NTSC (National Television System Committee)タイプは、アメリカで制定したカラーテレビの標準です。1秒当たりのフレーム数は30フレーム、水平走査線は525です。1秒当たりのフレーム数が高くて画面が自然に表現されます。主にアメリカ、日本、カナダなどで使用するタイプです。</li>
@@ -309,7 +312,7 @@
         <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 			<ul>				
-				<li>カメラの性能低下を防ぐためにカメラを設置した後には、「ビデオ出力」機能をオフにしてください。</li>
+				<li>カメラの性能低下を防ぐためにカメラを設置した後には、「アナログビデオ」機能をオフにしてください。</li>
 			</ul>
 		</div>
 	</div>
@@ -323,7 +326,7 @@
     </div>
 	<div class="wn5-setup-section-article">		
 		<div class="wn5-setup-section-article-content">	
-	<!--     <p>カメラ映像をアナログ方式で出力するとき、出力方式を設定することができます。アナログビデオ出力はカメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができて有用です。</p>  --> 
+
 		<p>カメラ映像をビデオで出力するタイプを選択します。</p>
 		</div>
 	    <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">			
@@ -349,10 +352,74 @@
         <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 			<ul>				
-				<li>カメラの性能低下を防ぐためにカメラを設置した後には、「ビデオ出力」機能をオフにしてください。</li>
+				<li>カメラの性能低下を防ぐためにカメラを設置した後には、「アナログビデオ」機能をオフにしてください。</li>
 			</ul>
 		</div>
 	</div>
 </div>  
 
+<hr class="wn5-setup-hr"> -->
+
+
+
+<!-- 통합 후 -->
+
+
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions">
+	<div class="wn5-setup-section-heading">
+		<h2>ビデオ出力</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+			<p>カメラ映像をビデオで出力するタイプを選択します。 </p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
+			<h3>USB</h3>
+			<p>USBを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
+			<p>Wi-Fiドングルとハンファテックウィンで提供するスマートフォンアプリケーションでWi-Fi通信に接続してカメラにアクセスすることができます。ネットワークカメラを最初にインストールする時や視野角度、位置などを変更する場合、別途の設置用モニターがなくてもスマートフォンでカメラの映像を確認することができるため、有用です。</p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
+			<h3>CVBS</h3>
+			<p>CVBSを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
+			<p>カメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができるため、有用です。</p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+			<h3>CVBSタイプ</h3>
+			<p>CVBSを使用する場合、CVBSビデオ出力タイプを選択します。</p>
+			<ul>
+				<li><strong class="UI">NTSC</strong>：NTSC (National Television System Committee)タイプは、アメリカで制定したカラーテレビの標準です。1秒当たりのフレーム数は30フレーム、水平走査線は525です。1秒当たりのフレーム数が高くて画面が自然に表現されます。主にアメリカ、日本、カナダなどで使用するタイプです。</li>
+				<li><strong class="UI">PAL</strong>：PAL (Phase Alternation Line)タイプはドイツから提案されてNTSCタイプと似ているが、カラー信号を扱う方法に差があります。主にヨーロッパで使用するタイプです。NTSCに比べて1秒当たりのフレーム数は少ないが、水平走査線が625でより多くて解像度が高く、カラー変形が少なく、放送設備に高度の規格が必要ないです。</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+            <h3>レイアウト</h3>
+            <p>カメラビデオ出力画面のレイアウトオプションを <strong class="UI">[レイアウト]</strong>で選択することができます。<strong class="UI">[4分割]</strong>を選択すると、4チャンネルのビデオを分割して一つの画面にすべて表示します。<strong class="UI"></strong>[シングル]</strong>を選択すると、4チャンネルのビデオの中で一つだけ画面に表示します。[シングル]オプションを選択時、画面に表示するチャンネルを選択することができます。</p>
+		</div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+			<h3>ビデオ出力</h3>
+			<p>HDMIポートにケーブルを接続して映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。カメラを設置する時、レンズの位置や焦点などを確認しながら設定できるため、有用です。</p>
+		</div>
+		
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+			<h3>タイプ</h3>
+			<p>映像を出力するHDMI解像度を選択します。<strong class="UI">[ビデオ出力]</strong>で[有効]を選択してから、タイプを選択できます。</p>
+		</div>
+
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+			<h3>HDMIタイプ</h3>
+			<p>映像を出力するHDMI解像度を選択します。</p>
+		</div>
+
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+			<ul>
+				<li>カメラの性能低下を防ぐためにカメラを設置した後には、「ビデオ出力」機能をオフにしてください。</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 <hr class="wn5-setup-hr">
+

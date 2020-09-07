@@ -330,6 +330,13 @@
                         </td>
                         <td width="235">버튼을 클릭하면 와이퍼가 왕복 동작합니다. </td>
                     </tr>
+                    <tr ng-if="WasherWiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-washer_wiper"></span></p>
+                            <p>워셔</p>
+                        </td>
+                        <td width="235">버튼을 클릭하면 물이 3초 동안 나온 후 자동으로 중지합니다. 이 후 와이퍼가 10초 정도 동작하며 물을 닦아냅니다.  </td>
+                    </tr>
                     <tr ng-if="HeaterOn">
                         <td width="235">
                             <p><span class="tui tui-heater-dry"></span></p>
@@ -587,7 +594,8 @@
             <ul>
                 <li>외부 PTZ를 사용 중이며 채널 1을 선택한 경우에만 외부 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택합니다.</li>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <!-- TNO-6322ER에서는 pan/tilt 기능 지원하지 않으므로 hide하도록 코드 추가. tw자체 -->
+        <div class="wn5-setup-section-article-content" ng-if="!ZoomOnlyModel">
             <h3>팬/틸트 동작 제어하기</h3>
             <p> 팬/틸트 영역에서 <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하여 카메라의 방향을 이동합니다. </p>
         </div>

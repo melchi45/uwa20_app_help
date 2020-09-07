@@ -187,8 +187,12 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.CompressionLevel = (
         attr.CompressionLevel && attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
       );
+      // /* TNO-6322ER에서 hide되도록 수정. 정인혜 선임님. 2020-09-07 */      
+      $scope.CompressionLevel = (
+        attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
+      );
 
-
+      
       $scope.ShowLanguage = (
         attr.Languages && attr.Languages.length > 1
       );
@@ -225,8 +229,12 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.WiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WiperOn") !== -1;
       $scope.HeaterOn = attr.AuxCommands && attr.AuxCommands.indexOf("HeaterOn") !== -1;
       $scope.AutoTrackObjectSize = attr.AutoTrackObjectSize;
-      $scope.FocusPresetSupportByChannel = (
-        typeof attr.FocusPresetSupportByChannel !== 'undefined' && attr.FocusPresetSupportByChannel.length > 0
+/* TNO-6322에서 정인혜 선임님 수정 요청.  2020-09-07 메일  */
+//       $scope.FocusPresetSupportByChannel = (
+//         typeof attr.FocusPresetSupportByChannel !== 'undefined' && attr.FocusPresetSupportByChannel.length > 0
+// );
+        $scope.FocusPresetSupportByChannel = (
+          typeof attr.FocusPresetSupportByChannel && attr.FocusPresetSupportByChannel.length > 0
 );
       $scope.CameraIDEnable = attr.CameraIDEnable;
 
@@ -253,6 +261,10 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       
       /* PNM-9000QB에서 추가한 것. */
       $scope.GlobalRotateViewSupport = attr.GlobalRotateViewSupport;
+
+      /* TNO-6322에서 추가한 것. 정인혜 선임님. 2020-09-07 메일  */
+      $scope.WasherWiperOn = attr.WasherWiperOn;      
+      $scope.AutoRunModes = attr.AutoRunModes;    
       
 
       /*

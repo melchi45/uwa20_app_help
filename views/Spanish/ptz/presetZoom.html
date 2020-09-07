@@ -77,8 +77,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="RememberLastPosition">
+<div class="wn5-setup-section" ng-if="RememberLastPosition">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link"></a>&Uacute;ltima posici&oacute;n</h2>
     </div>
@@ -99,7 +99,7 @@
              </div>		
         </div>
         
-<hr class="wn5-setup-hr">
+<!-- <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link"></a>&Uacute;ltima posici&oacute;n</h2>
@@ -119,9 +119,9 @@
             <p>Defina el intervalo para guardar la posici&oacute;n actual como la &uacute;ltima posici&oacute;n. La unidad usada para medir el intervalo es segundos. Introduzca el intervalo para guardar en el campo y haga clic en <strong class="UI">[Definir]</strong>.</p>
             </div>
              </div>		
-		</div>
-        <hr class="wn5-setup-hr">
-        <div class="wn5-setup-section">
+		</div> -->
+        <hr class="wn5-setup-hr" ng-if="AutoRunModes">
+        <div class="wn5-setup-section" ng-if="AutoRunModes">
             <div class="wn5-setup-section-heading">
                 <h2>Ejecuci&oacute;n autom&aacute;tica</h2>
             </div>

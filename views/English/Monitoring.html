@@ -318,6 +318,13 @@
                         </td>
                         <td width="235">Clicking the button activates the wiper.</td>
                     </tr>
+                    <tr ng-if="WasherWiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-washer_wiper"></span></p>
+                            <p>Washer</p>
+                        </td>
+                        <td width="235">Clicking this button sprays water for 3 seconds and then automatically stops. After that, the wiper operates for about 10 seconds to wipe the surface. </td>
+                    </tr>
                     <tr ng-if="HeaterOn">
                         <td width="235">
                             <p><span class="tui tui-heater-dry"></span></p>
@@ -674,7 +681,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <li>External PTZ control can be used only when external PTZ is enabled and channel 1 is selected. To use external PTZ, go to <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[External PTZ]</strong> and select the <strong class="UI">[Use external PTZ]</strong> option.</li>
         </div>
 
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content" ng-if="!ZoomOnlyModel">
             <h3>Controlling pan/tilt motions</h3>
             <p> Move the camera direction by clicking the icon <span class="tui tui-wn5-ptz-handle"></span> in the Pan &amp; Tilt area. </p>
         </div>

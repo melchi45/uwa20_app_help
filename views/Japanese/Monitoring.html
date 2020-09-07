@@ -314,6 +314,15 @@
                 <p></p>
                     </td>
                  </tr>
+
+                 <tr ng-if="WasherWiperOn">
+                    <td width="235">
+                        <p><span class="tui tui-washer_wiper"></span></p>
+                        <p>ウォッシャー</p>
+                    </td>
+                    <td width="235">ボタンをクリックすると、外部に付着されたウォッシャーが動作します。動作3秒後、自動でオフになります。  </td>
+                </tr>
+
                  <tr ng-if="HeaterOn">
                     <td width="235">
                         <p><span class="tui tui-heater-dry"></span></p>
@@ -573,7 +582,7 @@
             <li>外部PTZを有効にしてチャンネル1を選択した場合のみ、外部PTZ制御機能を使用できます。外部PTZを有効化にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[外部PTZ]</strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択します。</li>
             </div>
 
-            <div class="wn5-setup-section-article-content">
+            <div class="wn5-setup-section-article-content" ng-if="!ZoomOnlyModel">
                 <h3>パン/チルト動作制御</h3>
                 <p>パン/チルトエリアで<span class="tui tui-wn5-ptz-handle"></span>ボタンをクリックしてカメラの方向を移動します。</p>
             </div>            

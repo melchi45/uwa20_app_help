@@ -275,7 +275,11 @@
 	</div>
 </div> -->
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+
+
+
+<!-- 통합 전 -->
+<!-- <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
@@ -283,7 +287,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Sélectionne la méthode d’affichage de la sortie vidéo de la caméra. </p>
-            <!-- <p>Ceci d&eacute;termine le type de sortie vid&eacute;o pour une sortie vid&eacute;o analogique. La sortie vid&eacute;o analogique est utile car vous pouvez la r&eacute;gler tout en v&eacute;rifiant l&rsquo;emplacement de l&rsquo;objectif et la mise au point de la cam&eacute;ra lors de l&rsquo;installation de la cam&eacute;ra.</p> --> 
+
         </div>
 
             <div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
@@ -293,14 +297,14 @@
             </div>
 			<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions && !VideooutputEnableHide">
                 <h3>CVBS</h3>
-             <!--    <h3>Sortie vid&eacute;o</h3>  -->
+    
                 <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
                 <p>Elle est utile car vous pouvez la régler en vérifiant la position de l’objectif ou la mise au point lors de l’installation de la caméra.</p>
             </div>
 	
 	<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
          <h3>Type de CVBS</h3>
-        <!-- <h3>Type</h3> -->
+   
 	    	<p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>
 
 			<ul>
@@ -362,6 +366,71 @@
 
 </div>
 
+
+<hr class="wn5-setup-hr"> -->
+
+
+
+
+<!-- 비디오 출력 cvbs와 hdmi 통합 -->
+
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions">
+	<div class="wn5-setup-section-heading">
+		<h2>Sortie vid&eacute;o</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+            <p>Sélectionne la méthode d’affichage de la sortie vidéo de la caméra. </p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
+            <h3>USB</h3>
+            <p>Pour afficher une vidéo de caméra à l’aide d’un USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
+            <p>En utilisant le dongle Wi-Fi et l’application pour smartphone de Hanwha Techwin, vous pouvez accéder à votre caméra via Wi-Fi. C’est utile lorsque vous essayez d’installer une caméra réseau pour la première fois ou de modifier le champ de vision angulaire ou la position de votre caméra, car vous pouvez voir l’écran de la caméra sur votre smartphone sans avoir à vous procurer un moniteur supplémentaire pour vérifier l’installation.</p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
+            <h3>CVBS</h3>
+            <!--    <h3>Sortie vid&eacute;o</h3>  -->
+               <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
+               <p>Elle est utile car vous pouvez la régler en vérifiant la position de l’objectif ou la mise au point lors de l’installation de la caméra.</p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+            <h3>Type de CVBS</h3>
+            <!-- <h3>Type</h3> -->
+                <p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>
+			<ul>
+                <li><strong class="UI">NTSC</strong>&nbsp;: NTSC (Comit&eacute; du syst&egrave;me national de t&eacute;l&eacute;vision) est la norme am&eacute;ricaine pour les t&eacute;l&eacute;viseurs couleur. Le nombre d&rsquo;images par seconde est de 30 et le nombre de faisceaux de projection horizontale est de 525. Comme le nombre d&rsquo;images par seconde est &eacute;lev&eacute;, l&rsquo;&eacute;cran semble tr&egrave;s naturel. Il est surtout utilis&eacute; aux &Eacute;tats-Unis, au Japon et au Canada.</li>
+				<li><strong class="UI">PAL</strong>&nbsp;: La m&eacute;thode PAL (Ligne d&rsquo;alternance de phase) a &eacute;t&eacute; propos&eacute;e par l&rsquo;Allemagne et elle est similaire &agrave; NTSC mais diff&egrave;re par la fa&ccedil;on dont elle traite les signaux de couleur. Il est surtout utilis&eacute; en Europe. Par rapport au NTSC, le nombre d&rsquo;images par seconde est plus faible, mais le nombre de faisceaux horizontaux est plus &eacute;lev&eacute; (625). Ainsi, la r&eacute;solution est plus &eacute;lev&eacute;e, la d&eacute;formation des couleurs est moindre et l&rsquo;installation de diffusion n&rsquo;exige pas de sp&eacute;cifications &eacute;lev&eacute;es.</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+            <h3>Pr&eacute;sentation</h3>
+            <p>Vous pouvez s&eacute;lectionner les options de pr&eacute;sentation de l&rsquo;&eacute;cran de sortie vid&eacute;o de la cam&eacute;ra dans <strong class="UI">[Pr&eacute;sentation]</strong>. La s&eacute;lection de <strong class="UI">[Quad]</strong> permet l&rsquo;affichage de toutes les vid&eacute;os des 4&nbsp;canaux sur un seul &eacute;cran. La s&eacute;lection de <strong class="UI">[Unique]</strong> permet l&rsquo;affichage d&rsquo;une seule vid&eacute;o des 4&nbsp;canaux sur l&rsquo;&eacute;cran. Si [Unique] est s&eacute;lectionn&eacute;, vous pouvez choisir le canal de diffusion de la vid&eacute;o.</p>
+		</div>
+		<!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+            <h3>Sortie vid&eacute;o </h3>
+            <p>Pour afficher Vid&eacute;o en connectant un c&acirc;ble &agrave; la borne HDMI, cliquez sur <strong class="UI">[Activer]</strong>. Elle est utile car vous pouvez la r&eacute;gler en v&eacute;rifiant la position de l&rsquo;objectif ou la mise au point lors de l&rsquo;installation de la cam&eacute;ra.</p>
+		</div>
+		<!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+            <h3>Type</h3>
+            <p>S&eacute;lectionnez la r&eacute;solution HDMI d&rsquo;affichage vid&eacute;o. Dans <strong class="UI">[Sortie vid&eacute;o]</strong>, s&eacute;lectionner [Activer] pour pouvoir s&eacute;lectionner le type souhait&eacute;.</p>
+		</div>
+		<!-- TNB-9000에서 show 하기 위해 SensorCaptureSize 추가. tw자체. 2020-04-23 -->
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && SensorCaptureSize">
+			<h3>HDMI Type</h3>
+			<p>S&eacute;lectionnez la r&eacute;solution HDMI d&rsquo;affichage vid&eacute;o.</p>
+		</div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li>Pour &eacute;viter la d&eacute;gradation des performances de la cam&eacute;ra, d&eacute;sactivez la fonction vid&eacute;o analogique apr&egrave;s l&rsquo;installation d&rsquo;une cam&eacute;ra.</li>
+                </ul>
+		</div>
+	</div>
+</div>
 
 <hr class="wn5-setup-hr">
 

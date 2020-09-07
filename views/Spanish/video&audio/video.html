@@ -275,15 +275,15 @@
 
 
 
-<!-- 멀티 센서 변경점 이 후에는 분기 코드 삭제해야 함 --> 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
+<!-- 통합 전  --> 
+<!-- <hr class="wn5-setup-hr" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 <div class="wn5-setup-section" ng-if="VideoTypeOptions || (VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Salida de v&iacute;deo</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        <!--     <p>Esto determina el tipo de salida del video para una salida de video anal&oacute;gica. La salida de video anal&oacute;gica es &uacute;til ya que puede configurarla mientras verifica la ubicaci&oacute;n de los lentes y el enfoque de la c&aacute;mara mientras instala la c&aacute;mara.</p> --> 
+
         <p>Seleccione el método de mostrar la salida de vídeo de la cámara. </p>
         </div>
 
@@ -294,14 +294,14 @@
             </div>
 			<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions && !VideooutputEnableHide">
                <h3>CVBS</h3> 
-             <!--     <h3>Salida de v&iacute;deo</h3>  -->
+
                 <p>Para mostrar un video al conectar un cable a la terminal CVBS, haga clic en <strong class="UI">[Activar]</strong>.</p>
                 <p>Es útil ya que se puede establecer durante la comprobación de la posición de la lente o el enfoque cuando se instala la cámara.</p>
             </div>
 	
 	<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions">
          <h3>Tipo de CVBS</h3>
-        <!-- <h3>Tipo</h3> -->
+
 	    	<p>Para usar CVBS, seleccione el tipo de salida de video CVBS.</p>
             <ul>
                 <li><strong class="UI">NTSC</strong>: NTSC (Comit&eacute; Nacional de Sistema de Televisi&oacute;n) es el est&aacute;ndar para la televisi&oacute;n en color en los EE. UU. El n&uacute;mero de fotogramas por segundo es 30 y el n&uacute;mero de rayo de proyecci&oacute;n horizontal es 525. Dado que el n&uacute;mero de fotogramas por segundo es alto, la pantalla parece muy natural. En su mayor&iacute;a, se usa en los EE. UU., Jap&oacute;n y Canad&aacute;.</li>
@@ -332,7 +332,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-        <!--     <p>Esto determina el tipo de salida del video para una salida de video anal&oacute;gica. La salida de video anal&oacute;gica es &uacute;til ya que puede configurarla mientras verifica la ubicaci&oacute;n de los lentes y el enfoque de la c&aacute;mara mientras instala la c&aacute;mara.</p> --> 
+
         <p>Seleccione el m&eacute;todo de mostrar la salida de v&iacute;deo de la c&aacute;mara.</p>
         </div>
 
@@ -348,13 +348,12 @@
 	
 	<div class="wn5-setup-section-article-content">
          <h3>Tipo</h3>
-        <!-- <h3>Tipo</h3> -->                     
+                   
             <p>Seleccione la resoluci&oacute;n de HDMI para visualizar el v&iacute;deo. En <strong class="UI">[Salida de v&iacute;deo]</strong> seleccione [Activar] para poder seleccionar el tipo que usted desee.</p>
 
         </div>
         
         <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport">
-            <h3>Esquema</h3>
             <h3>Esquema</h3>
             <p>Puede seleccionar las opciones de dise&ntilde;o para la pantalla de salida de v&iacute;deo de la c&aacute;mara en <strong class="UI">[Esquema]</strong>. Si selecciona <strong class="UI">[Cuadrante]</strong> se mostrar&aacute;n todos los v&iacute;deos de los 4 canales en una pantalla. Si selecciona <strong class="UI">[Simple]</strong> se mostrar&aacute; solo un v&iacute;deo de los 4 canales en una pantalla. Si selecciona [Simple], podr&aacute; elegir el canal para transmitir el v&iacute;deo.</p>
         </div>
@@ -369,5 +368,71 @@
 </div>
 
 
+<hr class="wn5-setup-hr"> -->
+
+
+<!-- 통합 후 -->
+
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions">
+	<div class="wn5-setup-section-heading">
+		<h2>Salida de v&iacute;deo</h2>
+	</div>
+	<div class="wn5-setup-section-article">
+		<div class="wn5-setup-section-article-content">
+            <p>Seleccione el método de mostrar la salida de vídeo de la cámara. </p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
+            <h3>USB</h3>
+            <p>Para mostrar un vídeo de la cámara al usar el USB, haga clic en <strong class="UI">[Activar]</strong>.</p>
+            <p>Mediante el dongle de Wi-Fi y la aplicación para smartphone de Hanwha Techwin puede acceder a su cámara por Wi-Fi. Esto es útil cuando intenta instalar una cámara de red por primera vez o cambiar el campo de visión angular o la posición de su cámara, ya que puede ver la pantalla de la cámara en su smartphone sin preocuparse por tener un monitor adicional para comprobar la instalación.</p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
+            <h3>CVBS</h3> 
+            <!--     <h3>Salida de v&iacute;deo</h3>  -->
+               <p>Para mostrar un video al conectar un cable a la terminal CVBS, haga clic en <strong class="UI">[Activar]</strong>.</p>
+               <p>Es útil ya que se puede establecer durante la comprobación de la posición de la lente o el enfoque cuando se instala la cámara.</p>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+            <h3>Tipo de CVBS</h3>
+            <!-- <h3>Tipo</h3> -->
+                <p>Para usar CVBS, seleccione el tipo de salida de video CVBS.</p>
+                <ul>
+                    <li><strong class="UI">NTSC</strong>: NTSC (Comit&eacute; Nacional de Sistema de Televisi&oacute;n) es el est&aacute;ndar para la televisi&oacute;n en color en los EE. UU. El n&uacute;mero de fotogramas por segundo es 30 y el n&uacute;mero de rayo de proyecci&oacute;n horizontal es 525. Dado que el n&uacute;mero de fotogramas por segundo es alto, la pantalla parece muy natural. En su mayor&iacute;a, se usa en los EE. UU., Jap&oacute;n y Canad&aacute;.</li>
+                    <li><strong class="UI">PAL</strong>: Al m&eacute;todo PAL (L&iacute;nea de alternancia de fase) lo propuso Alemania y es similar al NTSC pero difiere en la manera en que trata las se&ntilde;ales de color. En su mayor&iacute;a, se usa en Europa. Comparado con el NTSC, el n&uacute;mero de fotogramas por segundo es m&aacute;s bajo pero el n&uacute;mero de rayos horizontales es m&aacute;s alto (625). Por consiguiente, la resoluci&oacute;n es m&aacute;s alta, la deformaci&oacute;n de color es menor, y el centro de radiodifusi&oacute;n no requiere altas especificaciones.</li>
+			</ul>
+		</div>
+		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+            <h3>Esquema</h3>
+            <p>Puede seleccionar las opciones de dise&ntilde;o para la pantalla de salida de v&iacute;deo de la c&aacute;mara en <strong class="UI">[Esquema]</strong>. Si selecciona <strong class="UI">[Cuadrante]</strong> se mostrar&aacute;n todos los v&iacute;deos de los 4 canales en una pantalla. Si selecciona <strong class="UI">[Simple]</strong> se mostrar&aacute; solo un v&iacute;deo de los 4 canales en una pantalla. Si selecciona [Simple], podr&aacute; elegir el canal para transmitir el v&iacute;deo.</p>
+		</div>
+		<!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+            <h3>Salida de v&iacute;deo</h3>
+            <p>Para visualizar el v&iacute;deo conectando un cable al terminal HDMI, haga clic en <strong class="UI">[Activar]</strong>. Esto es &uacute;til ya que usted puede ajustarlo durante la comprobaci&oacute;n de la posici&oacute;n de la lente o el enfoque cuando se instala la c&aacute;mara.</p>
+		</div>
+		<!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+            <h3>Tipo</h3>
+            <!-- <h3>Tipo</h3> -->                     
+                <p>Seleccione la resoluci&oacute;n de HDMI para visualizar el v&iacute;deo. En <strong class="UI">[Salida de v&iacute;deo]</strong> seleccione [Activar] para poder seleccionar el tipo que usted desee.</p>
+		</div>
+		<!-- TNB-9000에서 show 하기 위해 SensorCaptureSize 추가. tw자체. 2020-04-23 -->
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && SensorCaptureSize">
+			<h3>HDMI Tipo</h3>
+			<p>Seleccione la resoluci&oacute;n de HDMI para visualizar el v&iacute;deo.</p>
+		</div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+                <ul>
+                    <li>Para evitar la degradaci&oacute;n del rendimiento de la c&aacute;mara, apague la funci&oacute;n de video anal&oacute;gico despu&eacute;s de instalar la c&aacute;mara.</li>
+                </ul>
+		</div>
+	</div>
+</div>
+
 <hr class="wn5-setup-hr">
+
+
 

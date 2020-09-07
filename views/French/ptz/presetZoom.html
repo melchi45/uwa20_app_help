@@ -77,8 +77,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="RememberLastPosition">
+<div class="wn5-setup-section" ng-if="RememberLastPosition">
     <div class="wn5-setup-section-heading">
         <h2>Derni&egrave;re position</h2>
     </div>
@@ -100,8 +100,8 @@
         </div>
         
 
-        <hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+        <hr class="wn5-setup-hr"  ng-if="AutoRunModes">
+<div class="wn5-setup-section"  ng-if="AutoRunModes">
     <div class="wn5-setup-section-heading">
         <h2>Démarrer automatique</h2>
     </div>
