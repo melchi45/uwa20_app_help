@@ -106,7 +106,7 @@
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le canal 2 est s&eacute;lectionn&eacute; dans <strong class="UI">[<a href="#channel">S&eacute;lectionner le canal</a>]</strong>.</p>
                             <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;ic&ocirc;ne PTZ n&rsquo;est pas affich&eacute;e, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;coch&eacute;e.</p>
                             
-                            <p ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">Vous pouvez consulter la liste de mises au point dans <strong class="UI">[Enregistrement de la mise au point]</strong>.</p>
+                            <p ng-if="FocusPresetSupport">Vous pouvez consulter la liste de mises au point dans <strong class="UI">[Enregistrement de la mise au point]</strong>.</p>
                             <p> </p>                         
                     </td>
                     </tr>
@@ -300,6 +300,15 @@
                         </td>
                         <td width="235">Cliquer sur le bouton active l'essuie-glace.</td>
                     </tr>
+
+                    <tr ng-if="WasherWiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-washer_wiper"></span></p>
+                            <p>Nettoyeur</p>
+                        </td>
+                        <td width="235">Si vous cliquez sur ce bouton, de l’eau est pulvérisée pendant 3 secondes, puis s’arrête automatiquement. Après cela, l’essuie-glace fonctionne pendant environ 10 secondes pour essuyer la surface.</td>
+                    </tr>
+
                     <tr ng-if="HeaterOn">
                         <td width="235">
                             <p><span class="tui tui-heater-dry"></span></p>
@@ -607,7 +616,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <p>Un objet ou une personne en mouvement peut &ecirc;tre suivi automatiquement dans l&rsquo;&eacute;cran de direct. Lorsque vous cliquez sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, la fonction de suivi automatique sera ex&eacute;cut&eacute;e. Lorsque vous cliquez &agrave; nouveau sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, la fonction de suivi s&apos;arr&ecirc;tera.</p>
             <p>De plus, lorsque vous cliquez sur l&apos;&eacute;cran d&apos;image avec le bouton droit de la souris, la zone cliqu&eacute;e bas&eacute;e sur le mouvement sera analys&eacute;e, et le suivi automatique commencera.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport">
             <h3>Enregistrement de la mise au point</h3>
             <p>Vous pouvez consulter la liste des enregistrements de mise au point.</p>
             <p>Cliquez sur <strong class="UI">[R&eacute;gler]</strong> pour enregistrer la prise de vue actuelle en tant que zone de mise au point.&nbsp;Saisissez un <strong class="UI">[Nombre]</strong> et un <strong class="UI">[Nom]</strong> puis enregistrez en cliquant sur <strong class="UI">[OK]</strong>. Si vous cliquez sur <strong class="UI">[Aller]</strong> apr&egrave;s avoir s&eacute;lectionn&eacute; Enregistrement de la mise au point dans la liste,  la cam&eacute;ra se repositionne automatiquement sur la zone de mise en point enregistr&eacute;e.</p>

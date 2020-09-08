@@ -233,9 +233,14 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
 //       $scope.FocusPresetSupportByChannel = (
 //         typeof attr.FocusPresetSupportByChannel !== 'undefined' && attr.FocusPresetSupportByChannel.length > 0
 // );
-        $scope.FocusPresetSupportByChannel = (
-          typeof attr.FocusPresetSupportByChannel && attr.FocusPresetSupportByChannel.length > 0
-);
+
+    /* TNO-6322ER 정인혜 선임님 삭제 요청.  2020-09-08 메일  */
+//       $scope.FocusPresetSupportByChannel = (
+//         typeof attr.FocusPresetSupportByChannel && attr.FocusPresetSupportByChannel.length > 0
+// );
+/* TNO-6322ER에서 정인혜 선임님 추가 요청.  2020-09-08 메일  */
+      $scope.FocusPresetSupport = attr.FocusPresetSupport;
+
       $scope.CameraIDEnable = attr.CameraIDEnable;
 
 
@@ -262,8 +267,10 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       /* PNM-9000QB에서 추가한 것. */
       $scope.GlobalRotateViewSupport = attr.GlobalRotateViewSupport;
 
-      /* TNO-6322에서 추가한 것. 정인혜 선임님. 2020-09-07 메일  */
-      $scope.WasherWiperOn = attr.WasherWiperOn;      
+ 
+      // TNO-6322ER에서 추가. 정인혜 선임님. 2020-09-08 메일
+      $scope.WasherWiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WasherWiperOn") !== -1; 
+
       $scope.AutoRunModes = attr.AutoRunModes;    
       
 

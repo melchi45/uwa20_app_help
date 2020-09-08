@@ -407,18 +407,18 @@
             <p>Puede seleccionar las opciones de dise&ntilde;o para la pantalla de salida de v&iacute;deo de la c&aacute;mara en <strong class="UI">[Esquema]</strong>. Si selecciona <strong class="UI">[Cuadrante]</strong> se mostrar&aacute;n todos los v&iacute;deos de los 4 canales en una pantalla. Si selecciona <strong class="UI">[Simple]</strong> se mostrar&aacute; solo un v&iacute;deo de los 4 canales en una pantalla. Si selecciona [Simple], podr&aacute; elegir el canal para transmitir el v&iacute;deo.</p>
 		</div>
 		<!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && HDMISupport && !SensorCaptureSize">
             <h3>Salida de v&iacute;deo</h3>
             <p>Para visualizar el v&iacute;deo conectando un cable al terminal HDMI, haga clic en <strong class="UI">[Activar]</strong>. Esto es &uacute;til ya que usted puede ajustarlo durante la comprobaci&oacute;n de la posici&oacute;n de la lente o el enfoque cuando se instala la c&aacute;mara.</p>
 		</div>
 		<!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && HDMISupport && !SensorCaptureSize">
             <h3>Tipo</h3>
             <!-- <h3>Tipo</h3> -->                     
                 <p>Seleccione la resoluci&oacute;n de HDMI para visualizar el v&iacute;deo. En <strong class="UI">[Salida de v&iacute;deo]</strong> seleccione [Activar] para poder seleccionar el tipo que usted desee.</p>
 		</div>
 		<!-- TNB-9000에서 show 하기 위해 SensorCaptureSize 추가. tw자체. 2020-04-23 -->
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && SensorCaptureSize">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && HDMISupport && SensorCaptureSize">
 			<h3>HDMI Tipo</h3>
 			<p>Seleccione la resoluci&oacute;n de HDMI para visualizar el v&iacute;deo.</p>
 		</div>

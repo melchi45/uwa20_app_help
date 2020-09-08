@@ -69,8 +69,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
-<div class="wn5-setup-section" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
+<hr class="wn5-setup-hr" ng-if="FocusPresetSupport">
+<div class="wn5-setup-section" ng-if="FocusPresetSupport">
     <div class="wn5-setup-section-heading">
         <h2>Enregistrement de la mise au point</h2>
     </div>
@@ -668,6 +668,19 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content"><!-- <p>??? ??? ????? ??, ???, ?? ?? ?? ? ? ????.</p>  --><p>R&egrave;gle la nettet&eacute;, le contraste, et le niveau de couleur des images.</p>
         </div>
+		<div class="wn5-setup-section-article-content" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
+            <h3>Objectif</h3>
+                <p>Le nom du mod&egrave;le de l&rsquo;objectif install&eacute; sur la cam&eacute;ra est affich&eacute;.</p>
+                <p>La s&eacute;lection d&rsquo;un canal dans S&eacute;lectionner un canal vous permet de s&eacute;lectionner le mod&egrave;le d&rsquo;objectif install&eacute; pour chaque canal.</p>
+        </div>
+		
+		<div class="wn5-online-help-info" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Pour certains objectifs, l&rsquo;option <strong class="UI">[LDC]</strong> peut ne pas &ecirc;tre disponible.</li>
+            </ul>
+        </div>
+
         <div class="wn5-setup-section-article-content" ng-if="DIS">
             <h3>DIS</h3>
             <p>DIS (Stabilisation d&rsquo;image num&eacute;rique) est utilis&eacute; pour afficher l&rsquo;&eacute;cran de mani&egrave;re fiable en corrigeant automatiquement les images lorsque la cam&eacute;ra tremble en raison d&rsquo;impacts externes, comme le vent.</p>
@@ -761,6 +774,7 @@
                     <li>Lorsque <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Vid&eacute;o configuration]</a></strong>, <strong class="UI">[LDC]</strong> et <strong class="UI">[LDC Niveau]</strong>. D&eacute;cochez la case <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> pour utiliser la fonction LDC.</li><!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
                     <li ng-if="GlobalRotateViewSupport">Toute modification apportée aux options LDC sera appliquée de façon identique à tous les autres canaux.</li>
+                    <li ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">Selon le type d&rsquo;objectif s&eacute;lectionn&eacute;, l&rsquo;option [LDC] peut ne pas &ecirc;tre disponible. Le type d&rsquo;objectif peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Objectif]</strong>.</li>
                 </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">

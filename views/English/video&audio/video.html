@@ -399,24 +399,24 @@
 				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) method was proposed by Germany and it is similar to NTSC but differs in the way it handles the color signals. It is mostly used in Europe. Compared to NTSC, the number of frames per sec is lower but the number of horizontal beams is higher (625). Thus, the resolution is higher, the color deformation is less, and the broadcasting facility does not require high specifications. </li>
 			</ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport">
-            <h3>레이아웃</h3>
-            <p>카메라 영상 출력 화면의 레이아웃 옵션을 <strong class="UI">[레이아웃]</strong>에서 선택할 수 있습니다. <strong class="UI">[4분할]</strong>을 선택하면 4채널의 영상을 분할하여 한 화면에 모두 보여줍니다. <strong class="UI">[단일]</strong>을 선택하면 4개 채널의 영상 중 하나만 화면에 보여줍니다. [단일] 옵션 선택 시 화면에 보여질 채널을 선택할 수 있습니다. </p>
+        <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+            <h3>Layout</h3>
+            <p>You can select layout options for camera video output screen in <strong class="UI">[Layout]</strong>. Selecting <strong class="UI">[Quad]</strong> displays all videos from 4 channels on one screen. Selecting <strong class="UI">[Single]</strong> displays only one video from 4 channels on the screen. If [Single] is selected, you can choose the channel to stream the video.</p>
         </div>
         
         <!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
         
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && HDMISupport && !SensorCaptureSize">
             <h3>Video output </h3>
 			<p>To display video by connecting a cable to the HDMI terminal, click <strong class="UI">[Enable]</strong>. It is useful since you can set it while checking the lens position or focus when installing the camera.</p>
 		</div>
 		<!-- TNB-9000에서 hide하기 위해 !SensorCaptureSize 추가. tw자체. 2020-04-23 -->
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && !SensorCaptureSize">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && HDMISupport && !SensorCaptureSize">
             <h3>Type </h3>
             <p>Select the HDMI resolution to display video. In <strong class="UI">[Video output]</strong>, select [Enable] to be able to select the type you want. </p>
 		</div>
 		<!-- TNB-9000에서 show 하기 위해 SensorCaptureSize 추가. tw자체. 2020-04-23 -->
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && SensorCaptureSize">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('HDMI_1080p') !== -1 || VideoTypeOptions.indexOf('HDMI_720p') !== -1) && HDMISupport && SensorCaptureSize">
 			<h3>HDMI type</h3>
 			<p>Select the HDMI resolution to display video.</p>
 		</div>

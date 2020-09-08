@@ -103,7 +103,7 @@
                             <!-- <p ng-if="objectDetectionSupport">Al seleccionar el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>, se activará la función PTZ.</p> -->
                             <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ digital se habilita solo cuando se selecciona el canal 2 en <strong class="UI">[<a href="#channel">Seleccionar canal</a>]</strong>.</p>
                             <p ng-if="GlobalPTZMode && MaxChannel > 1">Si no se muestra el icono PTZ, vaya a <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externo]</strong> y f&iacute;jese si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; marcada.</p>
-                            <p ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">Puede comprobar la lista de enfoque en <strong class="UI">[Guardado de enfoque]</strong>.</p>
+                            <p ng-if="FocusPresetSupport">Puede comprobar la lista de enfoque en <strong class="UI">[Guardado de enfoque]</strong>.</p>
                           </td>
                       </tr>
 
@@ -306,7 +306,13 @@
                         </td>
                         <td width="235">Haga clic en el bot&oacute;n tres veces para activar el rascador.</td>
                     </tr>
-                    
+                    <tr ng-if="WasherWiperOn">
+                        <td width="235">
+                            <p><span class="tui tui-washer_wiper"></span></p>
+                            <p>Arandela</p>
+                        </td>
+                        <td width="235">Al hacer clic en este botón, se rocía agua durante 3 segundos y luego se detiene automáticamente. Seguidamente, el Rascador funcionará durante unos 10 segundos para limpiar la superficie.</td>
+                    </tr>
                     <tr ng-if="HeaterOn">
                         <td width="235">
                             <p><span class="tui tui-heater-dry"></span></p>
@@ -621,7 +627,7 @@
             <p>Adem&aacute;s, cuando haga clic en el bot&oacute;n derecho del rat&oacute;n sobre la imagen en pantalla, el &aacute;rea sobre el que haya hecho clic asociada a un movimiento ser&aacute; analizada, y entonces comenzar&aacute; el seguimiento autom&aacute;tico.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupportByChannel && FocusModeOptions !== undefined">
+        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport">
             <h3>Guardado de enfoque</h3>
             <p>Puede comprobar la lista de guardado de enfoque.</p>
             <p>Haga clic en <strong class="UI">[Definir]</strong> para guardar la pantalla que se est&aacute; fotografiando en un &aacute;rea de enfoque.&nbsp;Despu&eacute;s de introducir el <strong class="UI">[N&uacute;mero]</strong> y el <strong class="UI">[Nombre]</strong>, haga clic en <strong class="UI">[Aceptar]</strong> para guardar. Si hace clic en <strong class="UI">[Ir]</strong> despu&eacute;s de seleccionar el guardado de enfoque de la lista, el enfoque de la c&aacute;mara se mover&aacute; hacia el &aacute;rea del enfoque guardado.</p>
