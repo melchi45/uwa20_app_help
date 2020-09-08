@@ -184,9 +184,9 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       //   attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
       // );
       // /* TNU-6321에서 정인혜 선임님 요청에 따라 수정했으나 XNP-9300 이슈 수정 테스트용으로 롤백 */      
-      $scope.CompressionLevel = (
-        attr.CompressionLevel && attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
-      );
+      // $scope.CompressionLevel = (
+      //   attr.CompressionLevel && attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
+      // );
       // /* TNO-6322ER에서 hide되도록 수정. 정인혜 선임님. 2020-09-07 */      
       $scope.CompressionLevel = (
         attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
