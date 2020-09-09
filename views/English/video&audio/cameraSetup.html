@@ -94,7 +94,7 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>[Enable focus save] option displays when the <strong class="UI">[Focus]</strong> tab is selected, and select [Enable focus save] to enable [Focus save setup] </li>
+                <li>The [Enable focus save] option displays when the <strong class="UI">[Focus]</strong> tab is selected, and select [Enable focus save] to enable [Focus save setup] </li>
             </ul>
         </div> 
     </div>
@@ -594,7 +594,7 @@
                     <li ng-if="SSNR2DLevel">The level of noise might go up despite the improved video detection ability after setting the Wise NR mode (SSNR 2D and SSNR 3D).</li>
                     <li ng-if="SSNR2DLevel">In the bright environment with less noises, the effect of Wise NR (SSNR 2D and SSNR 3D) can be little.</li>
                     <li ng-if="SSNR2DLevel">Since the motion detection function is used internally when the Wise NR (SSNR 2D and SSNR 3D) is enabled to detect motion in video, it is detected according to the operational condition of motion detection event. For the detailed motion detection settings, go to <strong class="UI">[Analysis]</strong> &gt; <strong class="UI">[Motion Detection]</strong>.</li>
-                    <li ng-if="AGCModeOptions">As the usage of AGC increases, the SSNR 3D value for SSNR also increases, which could lead to stuttering in the video.</li>
+                    <li ng-if="AGCModeOptions && SSNR2DLevel">As the usage of AGC increases, the SSNR 3D value for SSNR also increases, which could lead to stuttering in the video.</li>
                     <li ng-if="AGCModeOptions">AGC action increases screen noise.</li>
                     <li ng-if="AGCModeOptions && AGCMaxGainLevel">If AGC mode option is set to [Off] or [Manual], or if [Max gain] value is set to below 30 db, [Day/Night] cannot be set to [Auto].</li>
                     <li ng-if="HybridThermal">If Channel 1 is selected (visible video), Brightness, SSNR, SSNR 2D level, SSNR 3D level, Minimum shutter, Maximum shutter, Prefer shutter, Anti flicker, AGC, Level (Manual), and Level (Max gain) are supported. If Channel 2 is selected (thermal video), only Brightness, SSNR, SSNR 2D level, and SSNR 3D level are supported.</li>
@@ -623,7 +623,9 @@
             <ul>
                 <li><strong class="UI">Color</strong>: Outputs an image in color.</li>
                 <li><strong class="UI">B/W</strong>: Outputs an image in b/w.</li>
-                    <li><strong class="UI">Auto</strong>: Switch to color mode during the daytime and b/w at night or in low light. However, if <strong class="UI">[AGC]</strong> under <strong class="UI">[Exposure]</strong> is set to <strong class="UI">[Off]</strong> or <strong class="UI">[Manual]</strong>, or if <strong class="UI">[Max gain]</strong> is set below &quot;below 30 dB&quot;, [Day/Night] cannot be set to [Auto].</li>
+                <li><strong class="UI">Auto</strong>: Switch to color mode during the daytime and b/w at night or in low light. </li>
+                    <li style="list-style-type: none;" ng-if="!AGCMaxGainLevel">However, if <strong class="UI">[AGC]</strong> under <strong class="UI">[Exposure]</strong> is set to <strong class="UI">[Off]</strong>, [Day/Night] cannot be set to [Auto].</li>
+                    <li style="list-style-type: none;" ng-if="AGCMaxGainLevel">However, if <strong class="UI">[AGC]</strong> under <strong class="UI">[Exposure]</strong> is set to <strong class="UI">[Off]</strong> or <strong class="UI">[Manual]</strong>, or if <strong class="UI">[Max gain]</strong> is set below &quot;below 30 dB&quot;, [Day/Night] cannot be set to [Auto].</li>
                 <li><strong class="UI">External</strong>: When an alarm input terminal is linked with external equipment, color and b/w can be controlled.</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
                 </li> --><li><strong class="UI">Schedule</strong>: Day/Night is changed to the schedule set from <strong class="UI">[Activation time (Color)]</strong>.</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ??? ?????.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ???? ?????.</li>  --></ul>
@@ -632,7 +634,7 @@
 				 <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                 <ul>
-                    <li><strong class="UI">[External]</strong>Options can be set when there is more than one alarm inputs. Select <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong> to set the alarm I/O.</li>
+                    <li><strong class="UI">The [External]</strong> <option value=""></option> can be set when there is more than one alarm inputs. Select <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong> to set the alarm I/O.</li>
                 </ul>
 			</div> 
 			
@@ -788,7 +790,7 @@
                 <ul>
                     <li>When <strong class="UI">[Enable privacy area]</strong> is selected in <strong class="UI">[Vidoe &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Video setup]</a></strong>, both <strong class="UI">[LDC]</strong> and <strong class="UI">[LDC level]</strong> options are disabled. Uncheck <strong class="UI">[Enable privacy area]</strong> to use the LDC function.</li>
                     <li ng-if="GlobalRotateViewSupport">Any changes to the LDC options are equally applied to all the other channels.</li>
-                    <li ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">Depending on the type of lens you selected, [LDC] option might not be available. Lens type can be selected in <strong class="UI">[Lens]</strong>.</li>
+                    <li ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">Depending on the type of lens you selected, the [LDC] option might not be available. Lens type can be selected in <strong class="UI">[Lens]</strong>.</li>
                     
                     <!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->

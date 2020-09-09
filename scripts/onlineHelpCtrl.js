@@ -188,9 +188,11 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       //   attr.CompressionLevel && attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
       // );
       // /* TNO-6322ER에서 hide되도록 수정. 정인혜 선임님. 2020-09-07 */      
-      $scope.CompressionLevel = (
-        attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
-      );
+      // $scope.CompressionLevel = (
+      //   attr.CompressionLevel.minValue !== attr.CompressionLevel.maxValue
+      // );
+      // /* TNO-6322ER에서 hide되도록 수정. 정인혜 선임님. 2020-09-09 메신저. */      
+      $scope.CompressionLevel = attr.CompressionLevel;      
 
       
       $scope.ShowLanguage = (

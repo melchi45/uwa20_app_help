@@ -588,7 +588,7 @@
                     <li ng-if="SSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)モード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
                     <li ng-if="SSNR2DLevel">明るくてノイズが少ない環境では、あまりWISE NR(SSNR 2DとSSNR 3D)の効果がないです。</li>
                     <li ng-if="SSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
-                    <li ng-if="AGCModeOptions">AGC利用が多い場合、SSNRのSSNR 3D値が増加するため、映像が引かれることがあります。</li>
+                    <li ng-if="AGCModeOptions && SSNR2DLevel">AGC利用が多い場合、SSNRのSSNR 3D値が増加するため、映像が引かれることがあります。</li>
                     <li ng-if="AGCModeOptions">AGC動作時、画面にノイズが増加します。</li>
                     <li ng-if="AGCModeOptions && AGCMaxGainLevel">AGCモードのオプションを[Off]や[手動]で設定したり、[最大ゲイン]値を30 db未満に設定した場合、[デイ/ナイト]の[自動]オプションは設定できません。</li>
                     <li ng-if="HybridThermal">チャンネル1(実画像ビデオ)を選択した場合、明るさ、SSNR、SSNR 2Dレベル、SSNR 3Dレベル、最小シャッター、最大シャッター、シャッター優先、アンチフリッカー、AGC、レベル(マニュアル)、レベル(最大ゲイン)をサポートします。チャンネル2(熱画像ビデオ)を選択した場合、明るさ、SSNR、SSNR 2Dレベル、SSNR 3Dレベルのみサポートします。</li>
@@ -617,7 +617,9 @@
             <ul>
                 <li><strong class="UI">色</strong>：映像を常時カラーに出力します。</li>
                 <li><strong class="UI">B/W</strong>：映像を常時B/Wに出力します。</li>
-                    <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>や<strong class="UI">[手動]</strong>で設定したり、<strong class="UI">[最大ゲイン]</strong>を「30 dB未満」に設定する場合、[デイ/ナイト]を[自動]に設定できません。</li>
+                <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。</li>
+                    <li style="list-style-type: none;" ng-if="!AGCMaxGainLevel">但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>、[デイ/ナイト]を[自動]に設定できません。</li>
+                    <li style="list-style-type: none;" ng-if="AGCMaxGainLevel">但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>や<strong class="UI">[手動]</strong>で設定したり、<strong class="UI">[最大ゲイン]</strong>を「30 dB未満」に設定する場合、[デイ/ナイト]を[自動]に設定できません。</li>
                 <li><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
                 </li> --><li><strong class="UI">スケジュール</strong>：<strong class="UI">[動作時間(カラー)]</strong>で設定したスケジュールにデイ/ナイトが変更されます。</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ??? ?????.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ???? ?????.</li>  --></ul>
