@@ -2,8 +2,24 @@
 <h1 class="wn5-setup-main-title">Detecci&oacute;n de temperatura</h1>
 
 <div class="wn5-setup-section">
-    <p>Se puede activar un evento de detecci&oacute;n de temperatura si se produce un cambio brusco de temperatura en el &aacute;rea de inter&eacute;s especificada por el usuario. Cuando haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n [Aplicar] en la parte inferior de la p&aacute;gina. Los ajustes para los eventos de detecci&oacute;n de temperatura son los mismos para <B>[Detecci&oacute;n de temperatura]</B> en la p&aacute;gina <B>[Evento]</B>&gt; <B>[Configuraci&oacute;n de evento]</B>.<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></strong></a> </p>
+    <p ng-if="!BoxTemperatureDetection">Se puede activar un evento de detecci&oacute;n de temperatura si se produce un cambio brusco de temperatura en el &aacute;rea de inter&eacute;s especificada por el usuario. Cuando haya completado la configuraci&oacute;n, haga clic en el bot&oacute;n [Aplicar] en la parte inferior de la p&aacute;gina. </p>
+    <p ng-if="BoxTemperatureDetection">Cuando se detecta una temperatura de la condici&oacute;n especificada en el &aacute;rea ROI especificada por los usuarios, se puede accionar un evento de detecci&oacute;n de temperatura. Una vez completada la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
+    <p>Los ajustes para los eventos de detecci&oacute;n de temperatura son los mismos para <B>[Detecci&oacute;n de temperatura]</B> en la p&aacute;gina <B>[Evento]</B>&gt; <B>[Configuraci&oacute;n de evento]</B>.<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></strong></a> </p>
 </div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HybridThermal">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HybridThermal">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Despu&eacute;s de seleccionar un canal de c&aacute;mara, podr&aacute; definir los detalles para la Detecci&oacute;n de temperatura por canal.</p>
+            <p>El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico. Solo el canal 2 est&aacute; activado.</p>
+        </div>
+    </div>
+</div>
+
 
 <hr class="wn5-setup-hr">
 

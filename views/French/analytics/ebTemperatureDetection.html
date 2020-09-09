@@ -1,0 +1,163 @@
+﻿
+<h1 class="wn5-setup-main-title">D&eacute;tection de la temp&eacute;rature du corps estim&eacute;e</h1>
+<div class="wn5-setup-section">
+    <p>La temp&eacute;rature du corps peut &ecirc;tre d&eacute;tect&eacute;e sur la base de la temp&eacute;rature du visage. Il est possible de d&eacute;finir des crit&egrave;res ou des options d&eacute;taill&eacute;es &agrave; appliquer lors de la d&eacute;tection de la temp&eacute;rature du corps.</p>
+    <p>Apr&egrave;s avoir termin&eacute; la configuration, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page. La configuration de l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e s&rsquo;applique &agrave; <strong class="UI">[D&eacute;tection de la temp&eacute;rature du corps estim&eacute;e]</strong> dans les pages <strong class="UI">[&Eacute;v&eacute;nement]</strong>&nbsp;&gt;&nbsp;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Config. &eacute;v&eacute;n.]</strong></a> de la m&ecirc;me fa&ccedil;on.</p>
+</div><!-- XNF-9010에서 hide돼야 하므로 !SupportChannelExpansionFeature 추가. XNF-9010. TW자체. 2020-08-12.  --><hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>D&eacute;tection de la temp&eacute;rature du corps estim&eacute;e</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Activer la d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e</h3>
+            <p>Pour activer l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e, s&eacute;lectionnez <strong class="UI">[Activer la d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e]</strong>.</p>
+        </div>		        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>D&eacute;tection de la temp&eacute;rature</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Il est possible de d&eacute;finir les param&egrave;tres d&eacute;taill&eacute;s permettant &agrave; la cam&eacute;ra d&rsquo;extraire la valeur de temp&eacute;rature la plus &eacute;lev&eacute;e en fonction de la zone du visage d&eacute;tect&eacute;e et de d&eacute;clencher l&rsquo;&eacute;v&eacute;nement de d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Chevauchement de la zone de d&eacute;tection</h3>
+            <p><strong class="UI">La s&eacute;lection de [Activer]</strong> permet d&rsquo;afficher la zone de d&eacute;tection. La zone dans laquelle la d&eacute;tection de visage va &ecirc;tre ex&eacute;cut&eacute;e est alors affich&eacute;e et les visages en dehors de cette zone ne seront pas d&eacute;tect&eacute;s.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Temp&eacute;rature de d&eacute;tection</h3>
+            <p>Entrez la temp&eacute;rature qui d&eacute;clenchera un &eacute;v&eacute;nement de d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e.</p>
+        </div>
+        
+       
+        <div class="wn5-setup-section-article-content">
+            <h3>Dur&eacute;e minimum (s)</h3>
+            <p>D&eacute;finit le temps minimum que doit durer la condition de d&eacute;clenchement afin qu&rsquo;un &eacute;v&eacute;nement de d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e soit d&eacute;clench&eacute;. Lorsque, dans la zone de d&eacute;tection de visage, la temp&eacute;rature la plus &eacute;lev&eacute;e d&eacute;finie dans [Zone de d&eacute;tection de r&eacute;f&eacute;rence] est sup&eacute;rieure &agrave; celle d&eacute;finie dans [Temp&eacute;rature de d&eacute;tection] pendant une dur&eacute;e sup&eacute;rieure &agrave; celle d&eacute;finie dans [Dur&eacute;e minimum], un &eacute;v&eacute;nement de d&eacute;tection de la temp&eacute;rature du corps estim&eacute;e se produit.</p>
+
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Bip de d&eacute;tection de la temp&eacute;rature</h3>
+            <p>Afin qu&rsquo;un bip r&eacute;sonne lorsque la temp&eacute;rature du corps est d&eacute;tect&eacute;e, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Zone de d&eacute;tection de r&eacute;f&eacute;rence</h3>
+            <p>D&eacute;tecte la temp&eacute;rature du corps en se basant sur la temp&eacute;rature la plus &eacute;lev&eacute;e du visage. Dans [Zone de d&eacute;tection de r&eacute;f&eacute;rence], vous pouvez d&eacute;finir la zone de d&eacute;tection du visage dans laquelle extraire la valeur de temp&eacute;rature la plus &eacute;lev&eacute;e.</p>
+            <p>Si vous cliquez sur <strong class="UI">[R&eacute;initialiser]</strong>, les param&egrave;tres sont supprim&eacute;s et la zone de d&eacute;tection du visage est ramen&eacute;e par d&eacute;faut &agrave; la taille et &agrave; l&rsquo;emplacement de la zone de d&eacute;tection initiale.</p>
+            <ul>
+                <li><strong class="UI">Taux horizontal</strong>&nbsp;: la taille de la zone de d&eacute;tection du visage peut &ecirc;tre ajust&eacute;e en r&eacute;glant son taux de r&eacute;duction horizontale.</li>
+                <li><strong class="UI">Taux vertical</strong>&nbsp;: la taille de la zone de d&eacute;tection du visage peut &ecirc;tre ajust&eacute;e en r&eacute;glant son taux de r&eacute;duction verticale.</li>
+                <li><strong class="UI">Emplacement&nbsp;</strong>: l&rsquo;emplacement de la zone de d&eacute;tection du visage peut &ecirc;tre ajust&eacute; &agrave; l&rsquo;aide des boutons haut/bas/gauche/droite.</li>
+            </ul>
+        </div>
+        
+		       
+        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Compensation</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Il est possible de d&eacute;finir des param&egrave;tres d&eacute;taill&eacute;s de compensation de la temp&eacute;rature &agrave; appliquer lorsque la cam&eacute;ra d&eacute;tecte la temp&eacute;rature du visage.</p>
+        </div>
+       
+        <div class="wn5-setup-section-article-content">
+            <h3>Activer la compensation personnalis&eacute;e</h3>
+            <p>Vous pouvez d&eacute;finir la valeur de temp&eacute;rature qui permettra de compenser le d&eacute;calage entre la temp&eacute;rature r&eacute;elle de l&rsquo;objet mesur&eacute; et la temp&eacute;rature d&eacute;tect&eacute;e par la cam&eacute;ra. Une fois la valeur de temp&eacute;rature d&eacute;finie, la valeur de la temp&eacute;rature de d&eacute;tection de la cam&eacute;ra, qui est ajout&eacute;e &agrave; la valeur de temp&eacute;rature d&eacute;finie, est affich&eacute;e. Pour utiliser la compensation personnalis&eacute;e, cochez la case [Activer la compensation personnalis&eacute;e].</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Activer la temp&eacute;rature ambiante</h3>
+            <p>Vous pouvez d&eacute;finir la temp&eacute;rature r&eacute;elle de l&rsquo;environnement dans lequel la cam&eacute;ra est install&eacute;e. Pour permettre &agrave; la temp&eacute;rature ambiante de compenser la temp&eacute;rature de d&eacute;tection de la cam&eacute;ra, cochez la case [Activer la temp&eacute;rature ambiante].</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Activer le taux d&rsquo;humidit&eacute; ambiant</h3>
+            <p>Vous pouvez d&eacute;finir le taux d&rsquo;humidit&eacute; r&eacute;el de l&rsquo;environnement dans lequel la cam&eacute;ra est install&eacute;e. Pour permettre au taux d&rsquo;humidit&eacute; ambiant de compenser la temp&eacute;rature de d&eacute;tection de la cam&eacute;ra, cochez la case [Activer le taux d&rsquo;humidit&eacute; ambiant].</p>
+        </div>
+		        
+        <div class="wn5-setup-section-article-content">
+            <h3>Distance de d&eacute;tection</h3>
+            <p>Permet de d&eacute;finir la distance entre le sujet et la cam&eacute;ra &agrave; laquelle appliquer la compensation de la temp&eacute;rature de d&eacute;tection de la cam&eacute;ra en utilisant la distance de d&eacute;tection.</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>Activer la compensation du corps noir</h3>
+            <p>S&eacute;lectionnez [Activer la compensation du corps noir] pour compenser la temp&eacute;rature en utilisant le corps noir. Lorsque la compensation du corps noir est activ&eacute;e, la temp&eacute;rature peut &ecirc;tre compens&eacute;e en configurant les options suivantes&nbsp;:</p>
+            <ul>
+                <li><strong class="UI">Temp&eacute;rature du corps noir&nbsp;</strong>: permet de d&eacute;finir la valeur de la temp&eacute;rature de fonctionnement du corps noir.</li>
+                <li><strong class="UI">Modification de la temp&eacute;rature du corps noir&nbsp;</strong>: permet de d&eacute;finir la tol&eacute;rance entre la valeur de la temp&eacute;rature de fonctionnement du corps noir et la valeur r&eacute;elle.</li>
+                <li><strong class="UI">&Eacute;missivit&eacute; du corps noir&nbsp;</strong>: permet de d&eacute;finir la valeur d&rsquo;&eacute;missivit&eacute; de fonctionnement du corps noir.</li>
+                <li><strong class="UI">Distance du corps noir&nbsp;</strong>: permet de d&eacute;finir la distance entre le corps noir et la cam&eacute;ra.</li>
+                <li><strong class="UI">Hauteur du corps noir&nbsp;</strong>: permet de d&eacute;finir la hauteur d&rsquo;installation du corps noir. &nbsp;Vous pouvez d&eacute;finir la hauteur d&rsquo;installation du corps noir.</li>
+                <li><strong class="UI">Hauteur de la cam&eacute;ra&nbsp;</strong>: permet de d&eacute;finir la hauteur d&rsquo;installation de la cam&eacute;ra.</li>
+                <li><strong class="UI">Angle d&rsquo;inclinaison de la cam&eacute;ra&nbsp;</strong>: permet de d&eacute;finir la diff&eacute;rence entre les angles d&rsquo;installation de la cam&eacute;ra et du corps noir.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Bip d&rsquo;erreur concernant le corps noir</h3>
+            <p>Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, la cam&eacute;ra &eacute;met un bip sonore lorsque la valeur de la temp&eacute;rature du corps noir d&eacute;tect&eacute;e par la cam&eacute;ra et la valeur de la temp&eacute;rature du corps noir que vous avez d&eacute;finie sont diff&eacute;rentes.</p>
+        </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>&Eacute;talonnage</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Permet de synchroniser les coordonn&eacute;es vid&eacute;o pour partager l&rsquo;emplacement de la zone du visage en tant que coordonn&eacute;es des vid&eacute;os thermiques et visibles.</p>
+            <p>En faisant glisser la souris sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra vers l&rsquo;emplacement souhait&eacute; ou en utilisant le bouton <strong class="UI">[Emplacement]</strong>, vous pouvez r&eacute;gler avec pr&eacute;cision son emplacement en haut/en bas/&agrave; gauche/&agrave; droite.</p>
+        </div>
+			
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Emplacement</h3>
+            <p>Cliquez sur ce bouton pour r&eacute;gler l&rsquo;emplacement en haut/en bas/&agrave; gauche/&agrave; droite.</p>
+        </div>
+       
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Commun</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez d&eacute;finir les param&egrave;tres communs &agrave; appliquer pour que la cam&eacute;ra d&eacute;tecte la zone du visage.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensibilité</h3>
+            <p>Cette option définit la sensibilité de la détection de visage. Diminue la sensibilité dans un environnement où l'arrière-plan et les objets peuvent être facilement distingués, et augmente la sensibilité dans un environnement sombre où l'arrière-plan et les objets sont difficiles à distinguer.</p>
+        </div>        
+        <div class="wn5-setup-section-article-content">
+            <h3>Taille</h3>
+            <p>Permet de d&eacute;finir la taille minimale et maximale des objets qui seront soumis &agrave; la d&eacute;tection de la temp&eacute;rature du corps. Si vous cliquez sur <strong class="UI">[R&eacute;initialiser]</strong>, les r&eacute;glages sont supprim&eacute;s et les tailles minimale et maximale sont r&eacute;initialis&eacute;es aux valeurs par d&eacute;faut.</p>
+        </div>
+     
+        <div class="wn5-setup-section-article-content">
+            <h3>Temp&eacute;rature</h3>
+            <ul>
+                <li><strong class="UI">[Limite de temp&eacute;rature maximale]&nbsp;</strong>: aucune temp&eacute;rature sup&eacute;rieure &agrave; la temp&eacute;rature d&eacute;finie n&rsquo;est d&eacute;tect&eacute;e. Par exemple, si [40] est entr&eacute;, les temp&eacute;ratures au-dessus de 40&nbsp;degr&eacute;s ne sont pas d&eacute;tect&eacute;es.</li>
+                <li><strong class="UI">[Limite de temp&eacute;rature minimale]&nbsp;</strong>: aucune temp&eacute;rature inf&eacute;rieure &agrave; la temp&eacute;rature d&eacute;finie n&rsquo;est d&eacute;tect&eacute;e.&nbsp;Par exemple, si [35] est entr&eacute;, les temp&eacute;ratures au-dessous de 35&nbsp;degr&eacute;s ne sont pas d&eacute;tect&eacute;es.</li>
+            </ul>
+        </div>
+       
+    </div>
+</div>
+
+
+		
+
+
+<hr class="wn5-setup-hr">

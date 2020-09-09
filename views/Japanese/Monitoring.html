@@ -26,7 +26,9 @@
                 <li>プロファイルを変更するときに解像度が変わる場合</li>
                 <li>プロファイルを変更するときにネットワーク遅延発生でデータ受信が遅れる場合</li>
                 <li>ウェブブラウザのサイズ変更&amp;位置を移動する場合</li>
-            </ul><!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> --></ul>
+            </ul><!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> -->
+            <li ng-if="HybridThermal">発熱検知カメラでチャンネル1は実画像ビデオであり、チャンネル2は熱画像ビデオです。</li>
+        </ul>
     
     </div>
 </div>
@@ -220,6 +222,7 @@
                                         <!-- チャンネル2を選択すると、<a href="#PTZ">PTZ</a>機能を使用できます。 -->
                                     </li>
                                 </ul>
+                                <p ng-if="HybridThermal">チャンネル1は実画像ビデオであり、チャンネル2は熱画像ビデオです。マルチビューアイコンを選択すると、実画像ビデオや熱画像ビデオを同時に確認することができます。</p>
                                 <p>&nbsp;</p>
                             </td>
                         </tr>

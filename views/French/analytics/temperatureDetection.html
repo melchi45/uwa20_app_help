@@ -2,7 +2,22 @@
 <h1 class="wn5-setup-main-title">D&eacute;tection de temp&eacute;rature</h1>
 
 <div class="wn5-setup-section">
-    <p>Si un changement soudain de temp&eacute;rature se produit dans la zone d&apos;int&eacute;r&ecirc;t sp&eacute;cifi&eacute;e par l&apos;utilisateur, un &eacute;v&eacute;nement de d&eacute;tection de temp&eacute;rature peut &ecirc;tre d&eacute;clench&eacute;. Lorsque vous aurez termin&eacute; les r&eacute;glages, cliquez sur le bouton [Appliquer] au bas de la page. Les param&egrave;tres pour les &eacute;v&eacute;nements de d&eacute;tection de temp&eacute;rature sont les m&ecirc;mes que pour la <strong class="UI">[D&eacute;tection de temp&eacute;rature]</strong> sur la page <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt; [Configuration de l&rsquo;&eacute;v&eacute;nement].<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></strong></a></p>
+    <p ng-if="!BoxTemperatureDetection">Si un changement soudain de temp&eacute;rature se produit dans la zone d&apos;int&eacute;r&ecirc;t sp&eacute;cifi&eacute;e par l&apos;utilisateur, un &eacute;v&eacute;nement de d&eacute;tection de temp&eacute;rature peut &ecirc;tre d&eacute;clench&eacute;. Lorsque vous aurez termin&eacute; les r&eacute;glages, cliquez sur le bouton [Appliquer] au bas de la page. </p>
+    <p ng-if="BoxTemperatureDetection">Lorsque la temp&eacute;rature de la condition sp&eacute;cifi&eacute;e est d&eacute;tect&eacute;e dans la zone d&rsquo;int&eacute;r&ecirc;t sp&eacute;cifi&eacute;e par les utilisateurs, un &eacute;v&eacute;nement de d&eacute;tection de la temp&eacute;rature peut &ecirc;tre d&eacute;clench&eacute;. Apr&egrave;s avoir termin&eacute; la configuration, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
+    <p>Les param&egrave;tres pour les &eacute;v&eacute;nements de d&eacute;tection de temp&eacute;rature sont les m&ecirc;mes que pour la <strong class="UI">[D&eacute;tection de temp&eacute;rature]</strong> sur la page <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt; [Configuration de l&rsquo;&eacute;v&eacute;nement].<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI"></strong></a></p>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HybridThermal">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HybridThermal">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails de la d&eacute;tection de temp&eacute;rature pour chaque canal.</p>
+            <p>Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique. Seul le canal&nbsp;2 est activ&eacute;.</p>
+        </div>
+    </div>
 </div>
 
 <hr class="wn5-setup-hr">

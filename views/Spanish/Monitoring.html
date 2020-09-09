@@ -25,6 +25,7 @@
                     <li>Cuando se retrasa la transmisi&oacute;n de datos debido a retrasos en la red despu&eacute;s de cambiar el perfil</li>
                     <li>Cuando el tama&ntilde;o o la ubicaci&oacute;n del navegador web cambia</li>
                 </ul>
+                <li ng-if="HybridThermal">Para la c&aacute;mara de detecci&oacute;n de temperatura corporal, el canal 1 es un v&iacute;deo visible, y el canal 2 es un v&iacute;deo t&eacute;rmico.</li>
 			</ul>
 
         </div>
@@ -216,6 +217,7 @@
                                         <!-- <li>Canal 2: Muestra el vídeo PTZ digital. Seleccione el canal 2 para usar la función <a href="#PTZ">PTZ</a>. -->
                                         </li>
                                     </ul>
+                                    <p ng-if="HybridThermal">El canal 1 es un v&iacute;deo visible, y el canal 2 es un v&iacute;deo t&eacute;rmico. Si selecciona el &iacute;cono Multivista, podr&aacute; ver tanto los videos visibles como los videos t&eacute;rmicos.</p>
                                     <p>&nbsp;</p>
                                 </td>
                             </tr>

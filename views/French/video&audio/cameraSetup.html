@@ -26,7 +26,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails de chaque canal.</p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">Sur la page en direct ou la page de lecture, le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; s&rsquo;affiche automatiquement.</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment && HybridThermal">Sur la page en direct ou la page de lecture, le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; s&rsquo;affiche automatiquement.</p>
             <p ng-if="objectDetectionSupport">La transmission Direct s&rsquo;affiche sur le canal 1 tandis que la vid&eacute;o PTZ num&eacute;rique s&rsquo;affiche sur le canal&nbsp;2. Vous ne pouvez acc&eacute;der &agrave; [R&eacute;glage cam&eacute;ra] que sur le canal&nbsp;1.</p>
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme «&nbsp;PTZ&nbsp;».</p>
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
@@ -40,7 +40,9 @@
                 <li>?? 6: ?? 4? 4?? ???? ??? ??? ??? ?????.</li>
                 <li>?? 7: ?? 4? 4?? ???? ?? ??? ??? ?????.</li>
                 <li>?? 8: ?? 4? 4?? ???? ??? ??? ??? ?????.</li>
-            </ul> --> <!-- <p>??? ??? ? ???? ?? ?? ??? ??? ?? ?? ???? ?????. </p> --></div>
+            </ul> --> <!-- <p>??? ??? ? ???? ?? ?? ??? ??? ?? ?? ???? ?????. </p> -->
+            <p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
+        </div>
 	</div>
 </div> 
 
@@ -169,6 +171,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Apr&egrave;s avoir s&eacute;lectionn&eacute; un mode de pr&eacute;r&eacute;glage d&rsquo;image, modifiez les param&egrave;tres d&eacute;taill&eacute;s de l&rsquo;image de la cam&eacute;ra, tels que la balance des blancs et les modes nuit/jour, puis cliquez sur <strong class="UI">[Appliquer]</strong>. Pour r&eacute;initialiser la valeur par d&eacute;faut, cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>.</li>
+                <li ng-if="HybridThermal">Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), le mode SSDR, le niveau du SSDR, l&rsquo;obturation minimale, l&rsquo;obturation maximale, l&rsquo;AGC, le SSNR, le niveau du SSNR et le niveau des couleurs sont pris en charge.</li>
             </ul>
         </div>
     </div>
@@ -192,6 +195,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Apr&egrave;s avoir s&eacute;lectionn&eacute; un mode de pr&eacute;r&eacute;glage d&rsquo;image, changez les param&egrave;tres d&eacute;taill&eacute;s, tels que SSDR et Exposition et cliquez sur <strong class="UI">[Appliquer]</strong> pour enregistrer la valeur chang&eacute;e en tant que valeur de pr&eacute;r&eacute;glage d&rsquo;image. Pour r&eacute;initialiser la valeur par d&eacute;faut, cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>.</li>
+                <li ng-if="HybridThermal">Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), les modes [Int&eacute;rieur] et [Ext&eacute;rieur] sont pris en charge. De plus, SSDR, LCE, la luminosit&eacute;, SSNR, la nettet&eacute; et le contraste sont pris en charge pour chaque mode.</li>
             </ul>
         </div>
     </div>
@@ -588,6 +592,7 @@
                     <li ng-if="AGCModeOptions">Puisque l&rsquo;usage d&rsquo;CAG augmente, la valeur SSNR 3D pour SSNR augmente aussi, ce qui peut conduire &agrave; un b&eacute;gaiement de la vid&eacute;o.</li>
                     <li ng-if="AGCModeOptions && AGCMaxGainLevel">L&rsquo;action CAG augmente le bruit de l&rsquo;&eacute;cran.</li>
                     <li ng-if="AGCModeOptions">Si l&rsquo;option du mode CAG est d&eacute;fini sur [D&eacute;sactiv&eacute;] ou [Manuel], ou si la valeur [Max. à nouveau] est d&eacute;finie en dessous de 30&nbsp;db, [Diurne/Nocturne] ne peut pas &ecirc;tre d&eacute;fini sur [Automatique].</li>
+                    <li ng-if="HybridThermal">Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), la luminosit&eacute;, le SSNR, le niveau SSNR&nbsp;2D, le niveau SSNR&nbsp;3D, l&rsquo;obturation minimale, l&rsquo;obturation maximale, l&rsquo;obturation pr&eacute;f&eacute;rentielle, l&rsquo;anti-scintillement, l&rsquo;AGC, le niveau (manuel) et le niveau (gain maximal) sont pris en charge. Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), seuls la luminosit&eacute;, le niveau SSNR, le niveau SSNR&nbsp;2D et le niveau SSNR&nbsp;3D sont pris en charge.</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>
@@ -667,6 +672,13 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content"><!-- <p>??? ??? ????? ??, ???, ?? ?? ?? ? ? ????.</p>  --><p>R&egrave;gle la nettet&eacute;, le contraste, et le niveau de couleur des images.</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+                <ul>
+                    <li ng-if="HybridThermal">Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), DIS, la nettet&eacute;, le niveau de nettet&eacute;, le contr&ocirc;le gamma, le contraste gamma, le contraste local, le niveau des couleurs, le d&eacute;sembuage et LDC sont pris en charge. Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), seuls DIS, la nettet&eacute; et le niveau de nettet&eacute; sont pris en charge.</li>
+                </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
             <h3>Objectif</h3>

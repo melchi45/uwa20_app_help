@@ -23,7 +23,9 @@
                 <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                 <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
             </ul>
-            <p ng-if="SupportChannelExpansionFeature">특정 뷰 모드만 사용하려면 채널 번호를 선택한 후 <strong class="UI">[채널 활성화]</strong>를 선택합니다. 예를 들어 채널 2번과 3번만 활성화하면 카메라 영상을 벽면형 파노라마 형식으로 보거나 상항 분할 화면으로만 볼 수 있으며, 그 외 영상 화면은 지원하지 않습니다. </p> --><p>On the live page or play page, the last selected channel number is automatically displayed. Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition.</p>
+            <p ng-if="SupportChannelExpansionFeature">특정 뷰 모드만 사용하려면 채널 번호를 선택한 후 <strong class="UI">[채널 활성화]</strong>를 선택합니다. 예를 들어 채널 2번과 3번만 활성화하면 카메라 영상을 벽면형 파노라마 형식으로 보거나 상항 분할 화면으로만 볼 수 있으며, 그 외 영상 화면은 지원하지 않습니다. </p> -->
+            <p ng-if="HybridThermal">Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel.</p>
+            <p>On the live page or play page, the last selected channel number is automatically displayed. Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition.</p>
             <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p>
         </div>
             </div>

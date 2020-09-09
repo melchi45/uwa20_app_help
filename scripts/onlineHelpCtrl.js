@@ -270,9 +270,11 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
  
       // TNO-6322ER에서 추가. 정인혜 선임님. 2020-09-08 메일
       $scope.WasherWiperOn = attr.AuxCommands && attr.AuxCommands.indexOf("WasherWiperOn") !== -1; 
-
       $scope.AutoRunModes = attr.AutoRunModes;    
       
+      // TNM-3620TDY 발열 감지 카메라. 고용수 책임님. 2020-09-09 메일
+      $scope.HybridThermal = attr.HybridThermal; 
+
 
       /*
         1. true values

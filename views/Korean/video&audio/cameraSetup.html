@@ -27,7 +27,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선택한 후 채널별로 세부 항목을 설정할 수 있습니다. </p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment && HybridThermal">라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
             <p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [카메라 설정]은 채널 1에서만 설정할 수 있습니다. </p>
             <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
             <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
@@ -44,7 +44,7 @@
                 <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                 <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
             </ul> -->
-
+			<p ng-if="HybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. </p>
             <!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> -->
         </div>
 	</div>
@@ -181,6 +181,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>이미지 프리셋 모드를 선택한 후 화이트밸런스, 주야간모드 등과 같은 카메라 이미지 세부 설정을 변경하고 <strong class="UI">[적용]</strong>을 클릭하면, 변경한 값이 해당 이미지 프리셋 값으로 저장됩니다. 초깃값으로 되돌리려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다. </li>
+                <li ng-if="HybridThermal">채널 1(실화상 영상)을 선택한 경우 활성화되며, SSDR 모드, SSDR 레벨, 최소 셔터, 최대 셔터, AGC, SSNR, SSNR 레벨, 컬러 레벨을 지원합니다. </li>
             </ul>
         </div>
     </div>
@@ -204,6 +205,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>이미지 프리셋 모드를 선택한 후 SSDR, 노출 보정 등과 같은 카메라 이미지 세부 설정을 변경하고 <strong class="UI">[적용]</strong>을 클릭하면, 변경한 값이 해당 이미지 프리셋 값으로 저장됩니다. 초깃값으로 되돌리려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다.</li>
+                <li ng-if="HybridThermal">채널 2(열화상 영상)을 선택한 경우, [실내] 모드와 [실외] 모드를 지원하며, 모드별로 SSDR, LCE, 밝기, SSNR, 윤곽 조정, 대비를 지원합니다.</li>
             </ul>
         </div>
     </div>
@@ -651,6 +653,7 @@
                     <li ng-if="AGCModeOptions">AGC 동작 시 화면 노이즈가 증가합니다. </li>
                      <!-- TNU-6321에서 TW가 && AGCMaxGainLevel 추가. -->
                     <li ng-if="AGCModeOptions && AGCMaxGainLevel">AGC 모드 옵션을 [사용 안 함]이나 [수동]으로 설정하거나, [최대 게인] 값을 30 db 미만으로 설정한 경우, [주야간 모드]의 [자동] 옵션은 설정할 수 없습니다.</li>
+                    <li ng-if="HybridThermal">채널 1(실화상 영상)을 선택한 경우, 밝기, SSNR, SSNR 2D 레벨, SSNR 3D 레벨, 최소 셔터, 최대 셔터, 사용자 선호 셔터, 플리커 방지, AGC, 레벨(수동), 레벨(최대 게인)을 지원합니다. 채널 2(열화상 영상)을 선택한 경우, 밝기, SSNR, SSNR 2D 레벨, SSNR 3D 레벨만 지원합니다. </li>
                 </ul>
                 <!-- <ul>
                 <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
@@ -746,6 +749,12 @@
         <div class="wn5-setup-section-article-content">
             <!-- <p>영상의 윤곽을 조절하거나 대비, 색조절, 안개 제거 등을 할 수 있습니다.</p>  -->
             <p>영상의 윤곽을 조절하거나 대비, 색조절 등을 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-online-help-info" ng-if="HybridThermal">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+                <ul>
+                    <li>채널 1(실화상 영상)을&nbsp;선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨, 감마 제어, 감마, 대비, 로컬 대비, 컬러 레벨, 안개 제거, LDC을 지원합니다. 채널 2(열화상 영상)을 선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨만 지원합니다.  </li>
+                </ul>
         </div>
 
 		<div class="wn5-setup-section-article-content" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">

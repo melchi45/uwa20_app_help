@@ -30,8 +30,9 @@
                 <li>웹 브라우저 창의 크기 변경 및 위치 이동 시</li>
             </ul>
             <!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> -->
+            <li ng-if="HybridThermal">발열 감지 카메라에서 채널 1은 실화상 영상이며, 채널 2는 열화상 영상입니다.</li>
         </ul>
-    
+
         </div>
 </div>
 <hr class="wn5-setup-hr">
@@ -242,6 +243,7 @@
                                         -->
                                                                                                                 </li>
                         </ul>
+                        <p ng-if="HybridThermal">채널 1은 실화상 영상이며, 채널 2는 열화상 영상입니다. 멀티뷰 아이콘을 선택하면 실화상 영상과 열화상 영상을 동시에 확인할 수 있습니다. </p>
                         <p>&nbsp;</p>
                     </td>
                 </tr>

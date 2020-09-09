@@ -26,6 +26,7 @@
                     <li>Lorsque le transfert de données est retardé en raison du retard du réseau après un changement de profil</li>
                     <li>Lorsque la taille ou l’emplacement de la fenêtre du navigateur Web a changé</li>
                 </ul>
+                <li ng-if="HybridThermal">Pour la cam&eacute;ra &agrave; d&eacute;tection de la temp&eacute;rature corporelle, le canal&nbsp;1 correspond &agrave; une vid&eacute;o visible et le canal&nbsp;2 &agrave; une vid&eacute;o thermique.</li>
             </ul>
 
         </div>
@@ -212,6 +213,8 @@
                                         <!-- Sélectionner le canal 2 pour utiliser la fonction <a href="#PTZ">PTZ</a>. -->
                                     </li>
                                 </ul>
+                                <p ng-if="HybridThermal">Le canal&nbsp;1 correspond &agrave; une vid&eacute;o visible et le canal&nbsp;2 &agrave; une vid&eacute;o thermique. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne «&nbsp;Affichage multiple&nbsp;», vous pouvez visualiser les vid&eacute;os visibles et thermiques.</p>
+                                <p>&nbsp;</p>
                                 <p>&nbsp;</p>
                             </td>
                         </tr>

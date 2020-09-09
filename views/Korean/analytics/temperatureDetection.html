@@ -2,11 +2,25 @@
 <h1 class="wn5-setup-main-title">온도 감지</h1>
 
 <div class="wn5-setup-section">
-    <p>사용자가 지정한 관심 영역에서 급격한 온도 변화가 발생한 경우, 온도 감지 이벤트를 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 온도 감지 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[온도 감지]</strong>에 동일하게 적용됩니다.</p>
+    <p ng-if="!BoxTemperatureDetection">사용자가 지정한 관심 영역에서 급격한 온도 변화가 발생한 경우, 온도 감지 이벤트를 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
+    <p ng-if="BoxTemperatureDetection">사용자가 지정한 관심 영역에서 지정한 조건의 온도를 감지하는 경우, 온도 감지 이벤트를 발생시킬 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. </p>
+    <p>온도 감지 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[온도 감지]</strong>에 동일하게 적용됩니다.</p>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HybridThermal">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HybridThermal">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>채널 선택</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라 채널을 선택한 후 채널별로 온도 감지 세부 항목을 설정할 수 있습니다. </p>
+            <p>채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. 채널 2만 활성화됩니다. </p>
+        </div>
+    </div>
 </div>
 
 <hr class="wn5-setup-hr">
-
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>온도 감지</h2>

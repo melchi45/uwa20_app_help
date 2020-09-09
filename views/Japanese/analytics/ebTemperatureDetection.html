@@ -1,0 +1,163 @@
+﻿
+<h1 class="wn5-setup-main-title">発熱検知</h1>
+<div class="wn5-setup-section">
+    <p>顔温度を基準に発熱状況を検知することができます。発熱状況を検知する時、適用する基準や詳細を設定することができます。</p>
+    <p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。発熱検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[発熱検知]</strong>に同じく適用されます。</p>
+</div><!-- XNF-9010에서 hide돼야 하므로 !SupportChannelExpansionFeature 추가. XNF-9010. TW자체. 2020-08-12.  --><hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>発熱検知</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>発熱検知を有効にする</h3>
+            <p>発熱検知イベントを有効にするためには、<strong class="UI">[発熱検知を有効にする]</strong>を選択します。</p>
+        </div>		        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>温度検知</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>検知した顔領域を基盤にカメラが最高温度値を抽出し、発熱検知イベントを発生することに適用される詳細を設定することができます。</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>検知領域オーバーレイ</h3>
+            <p><strong class="UI">[有効]</strong>を選択すると、検知領域を表示します。顔検出が動作する該当領域を表示し、領域外の顔は検出しません。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>検知温度</h3>
+            <p>発熱検知イベントを発生することに適用される温度を入力します。</p>
+        </div>
+        
+       
+        <div class="wn5-setup-section-article-content">
+            <h3>最短期間(秒)</h3>
+            <p>発熱検知イベントが発生するための発生条件の最小維持時間を設定します。[基準検知領域]で設定した顔領域の最高点温度が[検知温度]で設定した温度を超過して維持される時間が[最短期間]の設定値より長い場合、発熱検知イベントが発生する。</p>
+
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>発熱検知ビープ</h3>
+            <p>発熱検知時、ビープを発生するには<strong class="UI">[有効]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>基準検知領域</h3>
+            <p>顔の最高点温度を基準に発熱状況を検知します。[基準検知領域]で最高点温度値を抽出する顔領域を調整することができます。</p>
+            <p><strong class="UI">[初期化]</strong>をクリックすると、設定内訳がキャンセルされ、顔領域が元の検知領域サイズと位置に変更されます。</p>
+            <ul>
+                <li><strong class="UI">水平比</strong>：顔領域の横縮小比を調整して、顔領域のサイズを調整することができます。</li>
+                <li><strong class="UI">垂直比</strong>：顔領域の縦縮小比を調整して、顔領域のサイズを調整することができます。</li>
+                <li><strong class="UI">位置</strong>：上下左右ボタンで顔領域の位置を調整することができます。</li>
+            </ul>
+        </div>
+        
+		       
+        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>補正</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラが顔の温度を検知する時、適用する温度補正機能の詳細を設定することができます。</p>
+        </div>
+       
+        <div class="wn5-setup-section-article-content">
+            <h3>ユーザー指定オフセットを有効にする</h3>
+            <p>測定対象物の実際温度とカメラが検知した温度の間の誤差を補正する温度値を設定することができます。温度値を設定すると、設定された温度値だけ加わったカメラ検知温度値が表示されます。ユーザーが指定したオフセットを有効にするには、[ユーザー指定オフセットを有効にする]チェックボックスを選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>周囲温度を有効にする</h3>
+            <p>カメラがインストールされた環境の現在温度を設定することができます。周囲温度を有効にしてカメラの検知温度を補正するには、[周囲温度を有効にする]チェックボックスを選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>周囲湿度を有効にする</h3>
+            <p>カメラがインストールされた環境の現在湿度を設定することができます。周囲湿度を有効にしてカメラの検知温度を補正するには、[周囲湿度を有効にする]チェックボックスを選択します。</p>
+        </div>
+		        
+        <div class="wn5-setup-section-article-content">
+            <h3>測定距離</h3>
+            <p>測定距離を用いてカメラ検知温度補正に適用するように、被測定者とカメラ間の距離を設定します。補正</p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>ブラックボディ補正を有効にする</h3>
+            <p>ブラックボディを活用して温度補正をするには、[ブラックボディ補正を有効にする]を選択します。ブラックボディ補正を有効にする時、次のオプションを設定して温度補正することができます。</p>
+            <ul>
+                <li><strong class="UI">ブラックボディ温度</strong>：ブロックボディ運用温度値を設定します。</li>
+                <li><strong class="UI">ブラックボディ温度修正</strong>：入力したブラックボディ運用温度値と実際温度との誤差を設定します。</li>
+                <li><strong class="UI">ブラックボディ放射率</strong>：ブラックボディとの運用放射率値を設定します。</li>
+                <li><strong class="UI">ブラックボディとの距離</strong>：ブラックボディとカメラ間の距離を設定します。</li>
+                <li><strong class="UI">ブラックボディのインストール高さ</strong>：ブラックボディのインストール高さを設定します。 &nbsp;ブラックボディのインストール高さを設定することができます。</li>
+                <li><strong class="UI">カメラのインストール高さ</strong>：カメラのインストール高さを設定します。</li>
+                <li><strong class="UI">カメラチルト角度</strong>：カメラとブラックボディ間のインストール角度の差を設定します。</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>ブラックボディのエラービープ</h3>
+            <p><strong class="UI">[有効]</strong>を選択すると、カメラが検知するブラックボディの温度値と設定されたブラックボディの温度値が異なる場合、カメラ自体のビープが発生します。</p>
+        </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>校正</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>顔領域の位置を熱画像ビデオと実画像ビデオ座標から共有するために、ビデオ座標を同期化します。</p>
+            <p>カメラビデオ画面でマウスにドラッグして希望する位置に調整したり、<strong class="UI">[位置]</strong>のボタンを用いて上下左右の位置を詳細調整することができます。</p>
+        </div>
+			
+        <div class="wn5-setup-section-article-content">
+
+            <h3>位置</h3>
+            <p>ボタンをクリックして上下左右位置を調整します。</p>
+        </div>
+       
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>一般</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>顔領域をカメラが検知することに適用する一般項目を設定することができます。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>感度</h3>
+            <p>顔検出の感度を設定します。背景と対象物の区分が明確な環境では感度を低く設定し、暗くて背景と対象物の区分が明確ではない環境では感度を高く設定します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>サイズ</h3>
+            <p>発熱状況を検知する対象物の最小サイズや最大サイズを設定します。<strong class="UI">[初期化]</strong>をクリックすると、設定内訳がキャンセルされ、出荷条件初期化状況の最小サイズや最大サイズに変更されます。</p>
+        </div>
+     
+        <div class="wn5-setup-section-article-content">
+            <h3>温度</h3>
+            <ul>
+                <li><strong class="UI">[最大検知温度制限]</strong>：設定した温度を超過する温度は検知しません。例えば、[40]を入力する場合、40度以上の温度は検知しません。</li>
+                <li><strong class="UI">[最小検知温度制限]</strong>：設定した温度より未満の温度は検知しません。例えば、[35]を入力する場合、35度未満の温度は検知しません。</li>
+            </ul>
+        </div>
+       
+    </div>
+</div>
+
+
+		
+
+
+<hr class="wn5-setup-hr">

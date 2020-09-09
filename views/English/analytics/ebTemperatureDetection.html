@@ -1,0 +1,163 @@
+﻿
+<h1 class="wn5-setup-main-title">Estimated body temperature detection</h1>
+<div class="wn5-setup-section">
+    <p>Body temperature can be detected based on the face temperature. Criteria or detailed options to apply when detecting body temperature can be set up.</p>
+    <p>Once the setup is complete, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the estimated body temperature detection event applies to <strong class="UI">[Estimated body temperature detection]</strong> in <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> pages equally.</p>
+</div><!-- XNF-9010에서 hide돼야 하므로 !SupportChannelExpansionFeature 추가. XNF-9010. TW자체. 2020-08-12.  --><hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Estimated body temperature detection</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Enable estimated body temperature detection</h3>
+            <p>To enable estimated body temperature detection event, select <strong class="UI">[Enable estimated body temperature detection]</strong>.</p>
+        </div>		        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Temperature detection</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Detailed settings for the camera to extract the highest temperature value based on the detected face area and trigger the estimated body temperature detection event can be set.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Detection area overlay</h3>
+            <p>Selecting <strong class="UI">[Enable]</strong> displays the detection area. It displays the area for face detection to operate, and any faces outside the area are not detected.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Detection temperature</h3>
+            <p>Enter the temperature that will trigger an estimated body temperature detection event.</p>
+        </div>
+        
+       
+        <div class="wn5-setup-section-article-content">
+            <h3>Minimum duration (s)</h3>
+            <p>Sets the minimum duration of the trigger condition to trigger an estimated body temperature detection event. When the highest temperature on the face area set in [Reference detection area] exceeds the temperature set in [Detection temperature] for longer than the duration set in [Minimum duration], an estimated body temperature detection event occurs.</p>
+
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Temperature detection beep</h3>
+            <p>To make a beep sound when body temperature is detected, select <strong class="UI">[Enable]</strong>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Reference detection area</h3>
+            <p>Detects body temperature based on the highest temperature on the face. In [Reference detection area], you can set the face area to extract the highest temperature value.</p>
+            <p>If you click <strong class="UI">[Reset]</strong>, the settings are discarded and the face area defaults back to the size and location of the initial detection area.</p>
+            <ul>
+                <li><strong class="UI">Horizontal ratio</strong>: The size of face area can be adjusted by adjusting the horizontal reduction ratio of the face area.</li>
+                <li><strong class="UI">Vertical ratio</strong>: The size of face area can be adjusted by adjusting the vertical reduction ratio of the face area.</li>
+                <li><strong class="UI">Location</strong>: The location of face area can be adjusted with up/down/left/right buttons.</li>
+            </ul>
+        </div>
+        
+		       
+        
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Compensation</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Detailed settings for temperature compensation to be applied when camera detects face temperature can be set.</p>
+        </div>
+       
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable custom offset</h3>
+            <p>You can set the temperature value that compensates an error between the actual temperature of the measured object and the temperature detected by the camera. Once the temperature value is set, the camera detection temperature value, which is added by the set temperature value, is displayed. To use the custom offset, check the [Enable custom offset] box.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable ambient temperature</h3>
+            <p>You can set the current temperature for the environment where the camera is installed. To enable the ambient temperature to compensate the camera&apos;s detection temperature, check the [Enable ambient temperature] box.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable ambient humidity</h3>
+            <p>You can set the current humidity for the environment where the camera is installed. To enable the ambient humidity to compensate the camera&apos;s detection temperature, check the [Enable ambient humidity] box.</p>
+        </div>
+		        
+        <div class="wn5-setup-section-article-content">
+            <h3>Detection distance</h3>
+            <p>Sets the distance between the subject and camera in order to apply to the compensation of the camera detection temperature using the detection distance. </p>
+        </div>
+		
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable blackbody compensation</h3>
+            <p>Select [Enable blackbody compensation] to compensate for temperature using blackbody. When blackbody compensation is enabled, the temperature can be compensated by setting the following options:</p>
+            <ul>
+                <li><strong class="UI">Blackbody temperature</strong>: Sets the blackbody operating temperature value.</li>
+                <li><strong class="UI">Blackbody temperature modification</strong>: Sets the error between the entered blackbody operating temperature value and actual value.</li>
+                <li><strong class="UI">Blackbody emissivity</strong>: Sets the operating emissivity value for the blackbody.</li>
+                <li><strong class="UI">Blackbody distance</strong>: Sets the distance between the blackbody and camera.</li>
+                <li><strong class="UI">Blackbody height</strong>: Sets the installation height of the blackbody. &nbsp;You can set the installation height of the blackbody.</li>
+                <li><strong class="UI">Camera height</strong>: Sets the installation height of the camera.</li>
+                <li><strong class="UI">Camera tilt angle</strong>: Sets the angular difference of installation between the camera and blackbody.</li>
+            </ul>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Blackbody error beep</h3>
+            <p>If you select <strong class="UI">[Enable]</strong>, the camera makes a beep sound when the blackbody temperature value detected by the camera and the blackbody temperature value you set is different.</p>
+        </div>
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+        <h2>Calibration</h2>
+    </div>
+        <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Synchronizes video coordinates to share the location of the face area as coordinates of thermal and visible videos.</p>
+            <p>By dragging the mouse on the camera video screen to a desired location or using the <strong class="UI">[Location]</strong> button, you can fine-tune its up/down/left/right location.</p>
+        </div>
+			
+        <div class="wn5-setup-section-article-content">
+
+            <h3>Location</h3>
+            <p>Click this button to adjust the up/down/left/right location.</p>
+        </div>
+       
+    </div>
+</div>
+<div class="wn5-setup-section">
+
+    <div class="wn5-setup-section-heading">
+            <h2>Common</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>You can set the common settings to apply for camera to detect face area.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensitivity</h3>
+            <p>Sets the sensitivity of detecting faces. Decrease the sensitivity in an environment where background and objects are clearly distinguished, and increase the sensitivity in a dark environment where background and objects are hard to be distinguished.</p>
+        </div>       
+        <div class="wn5-setup-section-article-content">
+            <h3>Size</h3>
+            <p>Sets the minimum and maximum size of objects that will be subject to body temperature detection. If you click <strong class="UI">[Reset]</strong>, the settings are discarded and the minimum and maximum size reset to factory defaults.</p>
+        </div>
+     
+        <div class="wn5-setup-section-article-content">
+            <h3>Temperature</h3>
+            <ul>
+                <li><strong class="UI">[Maximum temperature limit]</strong>: Does not detect any temperature above the set temperature. For example, if [40] is entered, temperature beyond 40 degrees is not detected.</li>
+                <li><strong class="UI">[Minimum temperature limit]</strong>: Does not detect any temperature less than the set temperature.&nbsp;For example, if [35] is entered, temperature below 35 degrees is not detected.</li>
+            </ul>
+        </div>
+       
+    </div>
+</div>
+
+
+		
+
+
+<hr class="wn5-setup-hr">

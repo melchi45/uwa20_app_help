@@ -2,7 +2,22 @@
 <h1 class="wn5-setup-main-title">Temperature detection</h1>
 
 <div class="wn5-setup-section">
-    <p>If a sudden temperature change occurs in the user-specified area of interest, a temperature detection event can be triggered. When you have completed the settings, click the [Apply] button at the bottom of the page. The settings for temperature detection events are the same for <strong class="UI">[Temperature detection]</strong> on the <strong class="UI">[Event]</strong>&gt; <a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event Setup]</strong></a> page.</p>
+    <p ng-if="!BoxTemperatureDetection">If a sudden temperature change occurs in the user-specified area of interest, a temperature detection event can be triggered. When you have completed the settings, click the [Apply] button at the bottom of the page. </p>
+    <p ng-if="BoxTemperatureDetection">When temperature of the specified condition is detected in the ROI area specified by users, a temperature detection event can be triggered. Once the setup is complete, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+    <p>The settings for temperature detection events are the same for <strong class="UI">[Temperature detection]</strong> on the <strong class="UI">[Event]</strong>&gt; <a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event Setup]</strong></a> page.</p>
+</div>
+
+<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HybridThermal">
+<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HybridThermal">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>After selecting a camera channel, you can set the details for temperature detection per channel.</p>
+            <p>Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel. Only Channel 2 is activated.</p>
+        </div>
+    </div>
 </div>
 
 <hr class="wn5-setup-hr">
