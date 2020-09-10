@@ -1,7 +1,8 @@
 ﻿
 <h1 class="wn5-setup-main-title">Configuraci&oacute;n de preajustes</h1>
 <div class="wn5-setup-section">
-    <p>Puede definir y eliminar un preajuste de c&aacute;mara, seleccionar si guarda o no la posici&oacute;n actual como la &uacute;ltima posici&oacute;n de la c&aacute;mara, y definir el intervalo para guardar. </p>
+    <p ng-if="!RememberLastPosition">Puede definir y eliminar un preajuste de c&aacute;mara. </p>
+    <p ng-if="RememberLastPosition">Puede definir y eliminar un preajuste de c&aacute;mara, seleccionar si guarda o no la posici&oacute;n actual como la &uacute;ltima posici&oacute;n de la c&aacute;mara, y definir el intervalo para guardar. </p>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

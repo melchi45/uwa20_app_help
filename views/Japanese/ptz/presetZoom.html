@@ -1,7 +1,8 @@
 ﻿
 <h1 class="wn5-setup-main-title">プリセット設定</h1>
 <div class="wn5-setup-section">
-    <p>カメラのプリセットを設定・削除することができます。現在の位置をカメラの最終ポジションに保存有無を選択して保存間隔を設定することができます。</p>
+    <p ng-if="!RememberLastPosition">カメラのプリセットを設定・削除することができます。</p>
+    <p ng-if="RememberLastPosition">カメラのプリセットを設定・削除することができます。現在の位置をカメラの最終ポジションに保存有無を選択して保存間隔を設定することができます。</p>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

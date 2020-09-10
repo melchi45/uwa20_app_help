@@ -1,6 +1,7 @@
 ﻿<h1 class="wn5-setup-main-title">Preset setup</h1>
 <div class="wn5-setup-section">
-    <p>You can set and delete a camera preset, select whether or not to save the current position as the last position of the camera, and set the saving interval. </p>
+    <p ng-if="!RememberLastPosition">You can set and delete a camera preset. </p>
+    <p ng-if="RememberLastPosition">You can set and delete a camera preset, select whether or not to save the current position as the last position of the camera, and set the saving interval. </p>
 </div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
