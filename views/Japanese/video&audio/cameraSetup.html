@@ -3,8 +3,8 @@
     <p>カメラが設置された環境で最適の映像を撮影するようにカメラの設定を変更することができます。様々な環境に適合した画像プリセットを基本的に提供し、ユーザーが直接にカメラの設定値を指定することもできます。カメラのプレビュー画面で設定した値によって、カメラの映像がどう表示されるか確認することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。設定を変更した後、<strong class="UI">[適用]</strong>ボタンをクリックせずにTime out時間(240秒)が経過すると、設定値が変更前に戻ります。</p>
 </div>
 
-<hr class="wn5-setup-hr" >
-<div class="wn5-setup-section" >
+<hr class="wn5-setup-hr" ng-if="WDRControlModeOptions">
+<div class="wn5-setup-section" ng-if="WDRControlModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>比較ビュー</h2>
     </div>
@@ -403,12 +403,14 @@
                     <td>WDRモードオフ</td>
                     <td>WDRモードオン</td>
                 </tr>
-            </table><!-- <p><img src="./images/cameraSetup_WDR_1.png" width="230" height="186">  <img src="./images/cameraSetup_WDR_2.png" width="230" height="186"><br>WDR ?? ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WDR ?? ?</p>
-            </div> --><div class="wn5-setup-section-article-content">
+            </table><!-- <p><img src="./images/cameraSetup_WDR_1.png" width="230" height="186">  <img src="./images/cameraSetup_WDR_2.png" width="230" height="186"><br>WDR ?? ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WDR ?? ?</p>-->
+            </div> 
+            
+            <div class="wn5-setup-section-article-content">
             <h5>WDRレベル</h5>
             <p>バックライトのレベルを調整します。</p>
         </div>
-            <div class="wn5-setup-section-article-content"  >
+            <div class="wn5-setup-section-article-content"  ng-if="WDRControlModeOptions">
             <h5>WDRコントロール</h5>
                 <p>WDRの動作オプションを設定します。</p>
                 <ul>
