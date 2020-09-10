@@ -83,7 +83,12 @@
 			<h3>Mod&egrave;le</h3>
             <p>S&eacute;lectionnez le mod&egrave;le de mosa&iuml;que &agrave; appliquer &agrave; une zone de confidentialit&eacute;. S&eacute;lectionnez <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> pour appliquer le jeu de couleurs dans la fen&ecirc;tre de la zone de confidentialit&eacute;. Si vous s&eacute;lectionnez le mod&egrave;le, il sera appliqu&eacute; &agrave; toutes les zones.</p>
 		</div>
-
+		<div class="wn5-online-help-info" ng-if="GlobalMaskPatternSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+			<ul>				
+				<li>Toute modification apportée à l’option Modèle sera appliquée à tous les canaux simultanément.</li>
+			</ul>
+		</div> 
 	        <div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (cam&eacute;ra PTZ)</h4>
             <ol>
@@ -388,13 +393,13 @@
             <p>Pour afficher une vidéo de caméra à l’aide d’un USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
             <p>En utilisant le dongle Wi-Fi et l’application pour smartphone de Hanwha Techwin, vous pouvez accéder à votre caméra via Wi-Fi. C’est utile lorsque vous essayez d’installer une caméra réseau pour la première fois ou de modifier le champ de vision angulaire ou la position de votre caméra, car vous pouvez voir l’écran de la caméra sur votre smartphone sans avoir à vous procurer un moniteur supplémentaire pour vérifier l’installation.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide && VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
             <h3>CVBS</h3>
             <!--    <h3>Sortie vid&eacute;o</h3>  -->
                <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
                <p>Elle est utile car vous pouvez la régler en vérifiant la position de l’objectif ou la mise au point lors de l’installation de la caméra.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
             <h3>Type de CVBS</h3>
             <!-- <h3>Type</h3> -->
                 <p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>

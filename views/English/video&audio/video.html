@@ -84,7 +84,12 @@
 			<h3>Pattern</h3>
             <p>Select the mosaic pattern to apply to a privacy area. Select <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> to apply the color set in the privacy area window. If you select the pattern, it will be applied to all the areas.</p>
 		</div>
-
+		<div class="wn5-online-help-info" ng-if="GlobalMaskPatternSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+			<ul>				
+				<li>Any changes to the pattern option will be applied to all channels simultaneously.</li>
+			</ul>
+		</div> 
 	
 	        <div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>Setting a privacy area (PTZ camera)  </h4>
@@ -386,12 +391,12 @@
             <p>To display a camera image by using the USB, click <strong class="UI">[Enable]</strong>.</p>
             <p>Using the Wi-Fi dongle and smartphone app from Hanwha Techwin, you can access your camera over Wi-Fi. This is useful when you are trying to install a network camera for the first time or change the angular field of view or position of your camera, since you can see the camera screen on your smartphone without the hassle of getting an additional monitor to check the installation.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide && VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
 			<h3>CVBS</h3>
             <p>To display a video by connecting a cable to the CVBS terminal, click <strong class="UI">[Enable]</strong>.</p>
             <p>It is useful since you can set it while checking the lens position or focus when installing the camera.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
             <h3>CVBS type</h3>  
             <p>To use CVBS, select the CVBS video output type.</p>
 			<ul>

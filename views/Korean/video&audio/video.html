@@ -83,7 +83,12 @@
 			<h3>패턴</h3>
             <p>프라이버시 영역에 적용할 모자이크 패턴을 선택합니다. <strong class="UI">[</strong><strong>불투명</strong><strong class="UI">]</strong>으로 설정하면 프라이버시 영역 창에서 설정한 색상이 적용됩니다. 패턴을 선택하면 모든 영역에 동일하게 적용됩니다.</p>
 		</div>
-
+		<div class="wn5-online-help-info" ng-if="GlobalMaskPatternSupport">
+			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+			<ul>				
+				<li>패턴 옵션 변경 시 모든 채널에 동시 적용 됩니다.</li>
+			</ul>
+		</div> 
 	
 	        <div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>프라이버시 영역 설정하기(PTZ 카메라의 경우)  </h4>
@@ -420,11 +425,11 @@ TW 자체. 2019-12-27 -->
 			<p>USB를 사용하여 카메라 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다.</p>
 			<p>와이파이 동글과 한화테크윈에서 제공하는 스마트폰 애플리케이션을 통해, 와이파이 통신으로 카메라에 접속할 수 있습니다. 네트워크 카메라 최초 설치시나 화각이나 위치 등을 변경하려는 경우 별도의 설치용 모니터가 없어도 스마트폰으로 카메라의 영상을 확인할 수 있어 유용합니다. </p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide && VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
 			<h3>CVBS</h3>
 			<p>CVBS 단자에 케이블을 연결하여 아날로그 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다. 카메라 설치 시 렌즈 위치나 포커스 등을 확인하면서 설정할 수 있어 유용합니다.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
 			<h3>CVBS 방식 </h3>
 			<p>CVBS을 사용하는 경우 CVBS 비디오 출력 타입을 선택합니다.</p>
 			<ul>

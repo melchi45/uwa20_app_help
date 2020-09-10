@@ -140,7 +140,7 @@
                 <ul><!-- PNM-9030V??? ?? ??? ???? ??? ?? ?? ????? ???? ?? ??. TW ??. ?? ????? ??? ???? (?? ??) ??? ?? ??. 2020-01-16.  --><li ng-if="!SupportAutoImageAlignment">センサーモードのオプションを変更すると、[カメラ設定]で設定したすべての値が初期化されます。</li>
                     <li>センサーモード値は、画像プリセットごとにそれぞれ異なる設定ができません。フレームレートは、すべての画像プリセットに等しく適用されます。</li>
                     <li>センサーモードで設定したフレーム数に応じて、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。.</li>
-                    <li ng-if="GlobalRotateViewSupport">センサーモードのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+                    <li ng-if="GlobalSensorModeSupport">センサーモードのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
                 </ul>
             </div>  
     </div>
@@ -641,7 +641,7 @@
             <p>カラーやB/Wに切り替え動作が起きる時間の間隔を設定します。[ユーザー指定]を選択すると、継続時間を直接設定できます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="!PTZModel && MaxAlarmInput>0">
-            <h3>アラーム入力</h3>
+            <h3>‐‐でアラーム</h3>
             <p>アラームセンサーの開/閉状況によって映像をカラーやB/Wに設定することができます。
                 <!-- <strong class="UI">[デイ/ナイト]</strong>の<strong class="UI">[モード]</strong>を<strong class="UI">[外部]</strong>に設定すると、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入力]</strong>機能が無効になり設定ページが表示されません。 -->
             </p>
@@ -680,12 +680,12 @@
                     <li>チャンネル1(実画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベル、ガンマ制御、ガンマ、コントラスト、ローカル・コントラスト、カラーレベル、曇り除去、LDCをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベルのみサポートします。</li>
                 </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
+		<div class="wn5-setup-section-article-content" ng-if="!!LensModelViewOptions || !!LensModelOptions">
             <h3>レンズ</h3>
                 <p>カメラに搭載されたレンズのモデル名が表示されます。</p>
                 <p>チャンネル選択でチャンネルを選択すると、チャンネル別に搭載されたレンズモデルを選択することができます。</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
+		<div class="wn5-online-help-info" ng-if="!!LensModelViewOptions || !!LensModelOptions">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>一部レンズを選択する時、<strong class="UI">[LDC]</strong>オプションが表示されない場合があります。</li>
@@ -787,8 +787,8 @@
                     <li><strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[ビデオ設定]</a></strong>の <strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した場合、<strong class="UI">[LDC]</strong>と <strong class="UI">[LDC レベル] </strong>オプションが無効になります。カメラLDC機能を使用するには、<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除する必要があります。</li>
                     <!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
-                    <li ng-if="GlobalRotateViewSupport">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
-                    <li ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">選択したレンズタイプによって[LDC]オプションが表示されない場合があります。レンズタイプは<strong class="UI">[レンズ]</strong>で選択することができます。</li>
+                    <li ng-if="GlobalLDCModeSupport">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+                    <li ng-if="!!LensModelViewOptions || !!LensModelOptions">選択したレンズタイプによって[LDC]オプションが表示されない場合があります。レンズタイプは<strong class="UI">[レンズ]</strong>で選択することができます。</li>
                 </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">

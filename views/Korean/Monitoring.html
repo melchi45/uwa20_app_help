@@ -204,7 +204,9 @@
                 
 
               <!-- PNM-9000QB에서 컨텐츠가 hide되어 show되도록 수정. 기존 LensModelViewOptions에  LensModelOptions !== undefined를 추가함. 김주희 선임님 메일 2020-08-25.   -->
-                <tr ng-if="LensModelViewOptions !== undefined || LensModelOptions !== undefined">
+              <!-- TNV-8010 고용수 책임님.  LensModelViewOptions !== undefined || LensModelOptions !== undefined  => LensModelViewOptions && LensModelOptions -->
+
+                <tr ng-if="!!LensModelViewOptions || !!LensModelOptions">
                     <td width="235">렌즈 모델명</td>
                     <td width="235">
                             <p>렌즈 종류가 표시됩니다.</p>
