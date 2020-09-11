@@ -292,7 +292,12 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       $scope.GlobalLDCModeSupport = attr.GlobalLDCModeSupport; 
       $scope.GlobalRecordFileTypeSupport = attr.GlobalRecordFileTypeSupport; 
       $scope.GlobalMaskPatternSupport = attr.GlobalMaskPatternSupport; 
-
+      $scope.AlarmInputNormalOpen = (
+        attr.AlarmInputStateOptions && attr.AlarmInputStateOptions.indexOf('NormallyOpen') !== -1
+      );
+      $scope.AlarmInputNormalClose = (
+        attr.AlarmInputStateOptions && attr.AlarmInputStateOptions.indexOf('NormallyClose') !== -1
+      );
 
       
       /*
