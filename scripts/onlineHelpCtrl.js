@@ -287,7 +287,14 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
       // TNM-3620TDY 발열 감지 카메라. 고용수 책임님. 2020-09-09 메일
       $scope.HybridThermal = attr.HybridThermal; 
 
+      // PNM-9000QB. 김주희 책임님. 2020-09-10 메일
+      $scope.GlobalSensorModeSupport = attr.GlobalSensorModeSupport; 
+      $scope.GlobalLDCModeSupport = attr.GlobalLDCModeSupport; 
+      $scope.GlobalRecordFileTypeSupport = attr.GlobalRecordFileTypeSupport; 
+      $scope.GlobalMaskPatternSupport = attr.GlobalMaskPatternSupport; 
 
+
+      
       /*
         1. true values
           Object 인 값 : {},
