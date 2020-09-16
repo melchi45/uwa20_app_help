@@ -1,9 +1,25 @@
 ﻿
 <h1 class="wn5-setup-main-title">温度設定</h1>
 <div class="wn5-setup-section">
-    <p>カメラが温度を検知するときに参照する放射率やカメラ映像に適用するカラーパレットタイプ、温度表示単位、温度カラーバーの使用有無などを設定することができます。</p>
+    <p  ng-if="TemperatureSetupSupport && ThermalModeOptions">カメラの検知モードを設定することができます。カメラが温度を検知する時、参照する放射率やカメラビデオに適用するカラーパレットタイプ、温度表示単位などを設定することができます。</p>
+    <p ng-if="TemperatureSetupSupport && !ThermalModeOptions">カメラが温度を検知するときに参照する放射率やカメラ映像に適用するカラーパレットタイプ、温度表示単位、温度カラーバーの使用有無などを設定することができます。</p>
     <p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
+
+<hr class="wn5-setup-hr"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+<div class="wn5-setup-section"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+    <div class="wn5-setup-section-heading">
+        <h2>検知モード</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラの検知動作モードを選択することができます。<strong class="UI">[一般モード]</strong>を選択すると、一般的な熱画像カメラの機能に動作します。<strong class="UI">[発熱検知モード]</strong>を選択すると、顔温度を基準に発熱状況を検知します。</p>
+            <p>検知モード選択によって<strong class="UI">[アナリティクス]</strong>下位メニューが異なります。</p>
+            <p>一般熱画像カメラの温度検知詳細機能は、<strong class="UI">[アナリティクス]</strong>&gt;<strong class="UI">[発熱検知]</strong>で設定することができます。発熱検知モードの詳細機能は<strong class="UI">[アナリティクス]</strong>&gt;<strong class="UI">[温度検知]</strong>で設定することができます。</p>
+        </div>   
+    </div>
+</div>
+
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -14,6 +30,10 @@
         <div class="wn5-setup-section-article-content">
             <h3>温度単位(Temperature unit)</h3>
             <p>温度表示単位を設定することができます。°C / °Fの中で一つを選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+            <h3>顔検知チャンネル</h3>
+            <p>発熱検知モードで顔を検知するために分析するビデオチャンネルを選択します。あるビデオを用いて顔を検出するか分析に使用するチャンネルを選択します。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>カラーパレット</h3>
@@ -34,7 +54,11 @@
                 <li><strong class="UI">Midrange-WH</strong>：設定された温度セクションは黄からオレンジ、その他の部分は高温から低温を白から黒に表現します。温度セクションは、<strong class="UI">[カラー表示温度セクション]</strong>で設定することができます。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content">
+        <div class="wn5-setup-section-article-content"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+            <h3>変化感度</h3>
+            <p>熱の画面変化感度を設定します。変化感度値が高いほど、画面の温度差を素早く表現して画面の温度変化に素早く反応します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content" >
             <h3>カラー表示温度セクション</h3>
             <p>ユーザーが選択した温度セクションのみをカラー表示するようにセクションの開始温度と終了温度を設定することができます。<strong class="UI">[カラーパレット]</strong>で<strong class="UI">Red-WH</strong>、<strong class="UI">Iron-WH</strong>、<strong class="UI">Midrange-WH</strong>モードを選択した場合のみ使用できます。</p>
             <p>例えば、<strong class="UI">[カラーパレット]</strong>で「Midrange-WH」を選択して<strong class="UI">[カラー表示温度セクション]</strong>で[開始]と[終了]に「20」と「60」をそれぞれ入力した場合、カメラ映像で20℃から60℃の温度をもつ物体のみカラーで表現します。20℃に近い物体は黄、60℃に近い物体であるほどオレンジに表現します。</p>
@@ -43,6 +67,7 @@
             <h3>スポット放射率</h3>
             <p>カメラが温度を分析するときに参照する放射率情報を入力します。</p>
             <p>ここで入力した値は、[ライブ]画面でマウスをクリックして温度を測定するときに初期値として適用されます。放射率値を変更して物体の表面状況、テクスチャーなどによる最適の温度値を確認することができます。</p>
+            <p ng-if="TemperatureSetupSupport && ThermalModeOptions">発熱カメラの場合、<strong class="UI">[検知モード]</strong>で<strong class="UI">[一般モード]</strong>を選択した場合のみライブ画面で適用されます。</p>
             <p>放射率情報は下記の表を参照してください。下記の表は参照用に提供される初期値です。放射率は表面処理、カラー、測定当時の温度、大気温度などの様々な状況によって異なるため、実験を繰り返して最適値を見つける必要があります。正確な放射率値を入力すると、より正確な温度測定値が表示されます。</p>
 			 <table class="table table-bordered wn5-setup-table" width="372">
                 <thead>
@@ -205,7 +230,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>温度カラーバー</h3>
             <p>温度カラーバーは、現在画面上に表現されるカラーをバーで表示します。バーの上側から下側まで高温から低温のカラーを表示します。</p>
-            <p><strong class="UI">[使用]</strong>を選択すると、温度カラーバーがカメラ映像画面の右側に表示されます。</p>
+            <p ng-if="TemperatureSetupSupport && !ThermalModeOptions"><strong class="UI">[使用]</strong>を選択すると、温度カラーバーがカメラ映像画面の右側に表示されます。</p>
         </div>
        
     </div>

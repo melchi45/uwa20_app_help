@@ -1,9 +1,26 @@
 ﻿
 <h1 class="wn5-setup-main-title">R&eacute;glage de temp&eacute;rature</h1>
 <div class="wn5-setup-section">
-    <p>Vous pouvez choisir ou non d&rsquo;utiliser l&rsquo;&eacute;missivit&eacute; pour que la cam&eacute;ra s&rsquo;y r&eacute;f&egrave;re pour la d&eacute;tection de temp&eacute;rature, le type de palette de couleurs &agrave; appliquer aux vid&eacute;os de la cam&eacute;ra, l&rsquo;unit&eacute; d&rsquo;affichage de temp&eacute;rature, la barre de couleurs de temp&eacute;rature etc.</p>
+    <p  ng-if="TemperatureSetupSupport && ThermalModeOptions">Vous pouvez d&eacute;finir le mode de d&eacute;tection de la cam&eacute;ra, l&rsquo;&eacute;missivit&eacute; de r&eacute;f&eacute;rence de la cam&eacute;ra lors de la d&eacute;tection de la temp&eacute;rature ainsi que le type de palette de couleurs et l&rsquo;unit&eacute; d&rsquo;affichage de la temp&eacute;rature &agrave; appliquer &agrave; la vid&eacute;o de la cam&eacute;ra.</p>
+    <p ng-if="TemperatureSetupSupport && !ThermalModeOptions">Vous pouvez choisir ou non d&rsquo;utiliser l&rsquo;&eacute;missivit&eacute; pour que la cam&eacute;ra s&rsquo;y r&eacute;f&egrave;re pour la d&eacute;tection de temp&eacute;rature, le type de palette de couleurs &agrave; appliquer aux vid&eacute;os de la cam&eacute;ra, l&rsquo;unit&eacute; d&rsquo;affichage de temp&eacute;rature, la barre de couleurs de temp&eacute;rature etc.</p>
     <p>Cliquez sur le bouton <strong class="UI">[Appliquer]</strong> ci-dessous lorsque la configuration est termin&eacute;e.</p>
 </div>
+
+<hr class="wn5-setup-hr"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+<div class="wn5-setup-section"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+    <div class="wn5-setup-section-heading">
+        <h2>Mode de d&eacute;tection</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez faire votre choix parmi les modes d&rsquo;action de d&eacute;tection de la cam&eacute;ra. La s&eacute;lection de <strong class="UI">[Mode normal]</strong> active le fonctionnement de la cam&eacute;ra thermique normale. La s&eacute;lection de <strong class="UI">[Mode Temp&eacute;rature du corps estim&eacute;e]</strong> permet de d&eacute;tecter la temp&eacute;rature du corps &agrave; partir de la temp&eacute;rature du visage.</p>
+            <p>Selon le mode de d&eacute;tection s&eacute;lectionn&eacute;, un ensemble diff&eacute;rent de sous-menus <strong class="UI">[Analyse]</strong> s&rsquo;affiche.</p>
+            <p>Les param&egrave;tres d&eacute;taill&eacute;s de la d&eacute;tection de temp&eacute;rature par une cam&eacute;ra thermique normale peuvent &ecirc;tre d&eacute;finis dans <strong class="UI">[Analyse]</strong>&nbsp;&gt;&nbsp;<strong class="UI">[D&eacute;tection de la temp&eacute;rature du corps estim&eacute;e]</strong>, tandis que les param&egrave;tres d&eacute;taill&eacute;s du mode Temp&eacute;rature du corps estim&eacute;e peuvent &ecirc;tre d&eacute;finis dans <strong class="UI">[Analyse]</strong>&nbsp;&gt;&nbsp;<strong class="UI">[D&eacute;tection de la temp&eacute;rature]</strong>.</p>
+        </div>
+       
+    </div>
+</div>
+
 <hr class="wn5-setup-hr">
 
 <div class="wn5-setup-section">
@@ -14,6 +31,10 @@
         <div class="wn5-setup-section-article-content">
             <h3>Unit&eacute; de temp&eacute;rature</h3>
             <p>L&rsquo;unit&eacute; d&rsquo;affichage de temp&eacute;rature peut &ecirc;tre d&eacute;finie.&nbsp;Vous pouvez choisir entre Celsius et Fahrenheit.</p>
+        </div>
+        <div class="wn5-setup-section-article-content"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+            <h3>Canal de d&eacute;tection de visage</h3>
+            <p>S&eacute;lectionnez un canal vid&eacute;o &agrave; analyser pour la d&eacute;tection de visage dans le mode Temp&eacute;rature du corps estim&eacute;e. S&eacute;lectionnez le canal vid&eacute;o &agrave; utiliser pour l&rsquo;analyse de la d&eacute;tection de visage.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Palette de couleurs</h3>
@@ -34,6 +55,10 @@
                 <li><strong class="UI">Plage moyenne-WH</strong>&nbsp;: La section de temp&eacute;rature est repr&eacute;sent&eacute;e du jaune &agrave; l&rsquo;orange. Pour tout le reste, une temp&eacute;rature &eacute;lev&eacute;e &agrave; faible est repr&eacute;sent&eacute;e du blanc au noir. La section de temp&eacute;rature peut &ecirc;tre d&eacute;finie dans <strong class="UI">[Niveaux]</strong>.</li>
             </ul>
         </div>
+        <div class="wn5-setup-section-article-content"  ng-if="TemperatureSetupSupport && ThermalModeOptions">
+            <h3>Sensibilit&eacute; aux variations</h3>
+            <p>Permet de d&eacute;finir la sensibilit&eacute; aux variations thermiques au niveau de l&rsquo;&eacute;cran. Plus la valeur de la sensibilit&eacute; aux variations est &eacute;lev&eacute;e, plus l&rsquo;affichage de la diff&eacute;rence de temp&eacute;rature est rapide, ce qui se traduit &agrave; l&rsquo;&eacute;cran par une r&eacute;action plus rapide &agrave; la variation de temp&eacute;rature.</p>
+        </div>
         <div class="wn5-setup-section-article-content">
             <h3>Niveaux</h3>
             <p>Vous pouvez d&eacute;finir les temp&eacute;ratures de d&eacute;but et de fin sur la section de temp&eacute;rature de mani&egrave;re &agrave; ce que seulement la section de temp&eacute;rature s&eacute;lectionn&eacute;e par l&rsquo;utilisateur soit affich&eacute;e en couleur.&nbsp;Vous pouvez seulement l&rsquo;utiliser apr&egrave;s avoir s&eacute;lectionn&eacute; le mode <strong class="UI">Rouge-WH</strong>, <strong class="UI">Fer-WH</strong> ou <strong class="UI">Plage moyenne-WH</strong> dans <strong class="UI">[Palette de couleurs]</strong>.</p>
@@ -43,6 +68,7 @@
             <h3>&Eacute;missivit&eacute; de tache</h3>
             <p>Entrez les informations d&rsquo;&eacute;missivit&eacute; pour que la cam&eacute;ra s&rsquo;y r&eacute;f&egrave;re lors de l&rsquo;analyse de la temp&eacute;rature.</p>
             <p>La valeur que vous avez entr&eacute;e ici sera appliqu&eacute;e comme valeur par d&eacute;faut lorsque vous mesurez la temp&eacute;rature en cliquant avec la souris sur l&rsquo;&eacute;cran [Direct]. Vous pouvez obtenir une valeur de temp&eacute;rature appropri&eacute;e qui tient compte de la condition de surface de l&rsquo;objet, la texture, etc. en changeant la valeur d&rsquo;&eacute;missivit&eacute;.</p>
+            <p ng-if="TemperatureSetupSupport && ThermalModeOptions">Dans le cas d&rsquo;une cam&eacute;ra thermique, cela est appliqu&eacute; &agrave; l&rsquo;&eacute;cran en direct uniquement lorsque <strong class="UI">[Mode de d&eacute;tection]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Mode normal]</strong>.</p>
             <p>Pour les informations d&rsquo;&eacute;missivit&eacute;, voir le tableau ci-dessous. Le tableau ci-dessous liste les valeurs par d&eacute;faut utilis&eacute;es comme valeurs de r&eacute;f&eacute;rence. Du fait que l&rsquo;&eacute;missivit&eacute; varie en fonction des diverses variables, incluant le traitement de surface, les couleurs, la temp&eacute;rature au moment de la mesure et la temp&eacute;rature de l&rsquo;air, vous devez essayer des valeurs diff&eacute;rentes pour obtenir la valeur la mieux appropri&eacute;e. L&rsquo;entr&eacute;e d&rsquo;une valeur d&rsquo;&eacute;missivit&eacute; pr&eacute;cise garantit une mesure de temp&eacute;rature plus pr&eacute;cise.</p>
 			 <table class="table table-bordered wn5-setup-table" width="372">
                 <thead>
@@ -205,7 +231,7 @@
         <div class="wn5-setup-section-article-content">
             <h3>Barre de couleurs de temp&eacute;rature</h3>
             <p>La barre de couleurs de temp&eacute;rature affiche les couleurs qui apparaissent sur l&rsquo;&eacute;cran sous forme de barre. Les couleurs du bas vers le haut repr&eacute;sentent les temp&eacute;ratures dans l&rsquo;ordre d&eacute;croissant, &eacute;lev&eacute; &agrave; faible.</p>
-            <p>Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, la barre de couleurs de temp&eacute;rature appara&icirc;t sur le c&ocirc;t&eacute; droit de l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</p>
+            <p ng-if="TemperatureSetupSupport && !ThermalModeOptions">Si vous s&eacute;lectionnez <strong class="UI">[Activer]</strong>, la barre de couleurs de temp&eacute;rature appara&icirc;t sur le c&ocirc;t&eacute; droit de l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra.</p>
         </div>
        
     </div>
