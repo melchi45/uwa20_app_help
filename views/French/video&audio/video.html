@@ -393,13 +393,13 @@
             <p>Pour afficher une vidéo de caméra à l’aide d’un USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
             <p>En utilisant le dongle Wi-Fi et l’application pour smartphone de Hanwha Techwin, vous pouvez accéder à votre caméra via Wi-Fi. C’est utile lorsque vous essayez d’installer une caméra réseau pour la première fois ou de modifier le champ de vision angulaire ou la position de votre caméra, car vous pouvez voir l’écran de la caméra sur votre smartphone sans avoir à vous procurer un moniteur supplémentaire pour vérifier l’installation.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide && GlobalRotateViewSupport">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
             <h3>CVBS</h3>
             <!--    <h3>Sortie vid&eacute;o</h3>  -->
                <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
                <p>Elle est utile car vous pouvez la régler en vérifiant la position de l’objectif ou la mise au point lors de l’installation de la caméra.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && GlobalRotateViewSupport">
+		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
             <h3>Type de CVBS</h3>
             <!-- <h3>Type</h3> -->
                 <p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>
