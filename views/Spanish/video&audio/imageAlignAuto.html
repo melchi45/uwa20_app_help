@@ -1,46 +1,73 @@
 ﻿<h1 class="wn5-setup-main-title">Alineaci&oacute;n de la imagen</h1>
 
 <div class="wn5-setup-section">
-    <p>Puede ajustar el campo visual y la distancia de detecci&oacute;n de la c&aacute;mara montada.</p>
-
-<div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-            <ul>
-                <li>El campo visual y la distancia de detecci&oacute;n no pueden ajustarse de forma simult&aacute;nea. </li>
-            </ul>
-        </div>
-	</div>
+    <p ng-if="FovDistanceRange">El campo de visi&oacute;n angular y la distancia al objetivo se pueden definir para la c&aacute;mara instalada.</p>
+    <p ng-if="!FovDistanceRange">El campo de visi&oacute;n angular se puede definir para la c&aacute;mara instalada, y la posici&oacute;n de la imagen de v&iacute;deo de cada sensor se puede ajustar en unidades de p&iacute;xeles para corregir las uniones de las im&aacute;genes de v&iacute;deo.</p>
+    <div class="wn5-online-help-info" ng-if="FovDistanceRange">
+        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+        <ul>
+            <li>El campo de visi&oacute;n angular y la distancia al objetivo no se pueden definir simult&aacute;neamente.</li>
+        </ul>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-		<h2>Campo de visión angular</h2>
+		<h2>Campo de visi&oacute;n angular</h2>
     </div>		
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Cuando organiza los v&iacute;deos de las c&aacute;maras montadas para crear una vista panor&aacute;mica de ellos, puede ajustar el campo visual eligiendo la manera en que se coloca cada c&aacute;mara montada individual. </p>
-            <ul>
-                <li><strong class="UI">Modo de 180 grados</strong>: Coloque las pantallas de la c&aacute;mara verticalmente. Debido a que este modo organiza las pantallas de acuerdo con la longitud de cada una, ver&aacute; un v&iacute;deo cuya altura es mayor que la del modo de 220 grados. &nbsp;</li>
-                <li><strong class="UI">Modo de 220 grados</strong>: Ajuste las pantallas de la c&aacute;mara de manera horizontal. Debido a que este modo organiza las pantallas de acuerdo con el ancho de cada una, ver&aacute; un v&iacute;deo cuyo ancho es mayor que el del modo de 180 grados.</li>
+            <p ng-if="FovDistanceRange">Usted puede ajustar el campo de visi&oacute;n angular seleccionando el tipo de disposici&oacute;n de c&aacute;maras individuales instaladas cuando se ordenan los v&iacute;deos de las c&aacute;maras instaladas y se crea un v&iacute;deo panor&aacute;mico.</p>
+            <p ng-if="!FovDistanceRange">Tambi&eacute;n puede definir el campo de visi&oacute;n angular panor&aacute;mico para la c&aacute;mara instalada.</p>
+            <p ng-if="!FovDistanceRange">Al seleccionar el <strong class="UI">[modo de 209º</strong>], podr&aacute; crear una vista cuyo ancho ser&aacute; m&aacute;s largo que el de la vista del <strong class="UI">[modo de 180º]</strong>.</p>
+            <ul ng-if="FovDistanceRange">
+                <li><strong class="UI">Modo de 180º</strong>: Ordena verticalmente los videos de las c&aacute;maras individuales. Dado que la vista est&aacute; ordenada seg&uacute;n el largo de los v&iacute;deos, usted puede crear una vista cuya longitud sea mayor que la del [modo de 209º].</li>
+                <li><strong class="UI">Modo de 209º</strong>: Ordena horizontalmente los videos de las c&aacute;maras individuales. Dado que la vista est&aacute; ordenada seg&uacute;n el ancho de los v&iacute;deos, usted puede crear una vista cuya longitud sea mayor que la del [modo de 180º].</li>
             </ul>
         </div>
-		 <div class="wn5-online-help-info">
+	    <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
-                <li>Si cambia la opci&oacute;n Campo de visi&oacute;n angular, la c&aacute;mara se reinicializa y la configuraci&oacute;n de v&iacute;deo se reinicializa seg&uacute;n el campo de visi&oacute;n angular seleccionado. Configure de nuevo el &aacute;rea privada, el an&aacute;lisis y las estad&iacute;sticas. &Eacute;stos se pueden configurar en los men&uacute;s <strong class="UI">[Configuraci&oacute;n de v&iacute;deo]</strong>, <strong class="UI">[An&aacute;lisis]</strong> y <strong class="UI">[Estad&iacute;sticas]</strong>, respectivamente.</li>
+                <li ng-if="FovDistanceRange">Si usted cambia la opci&oacute;n de campo de visi&oacute;n angular, la c&aacute;mara se iniciar&aacute; y se restablecer&aacute;n los ajustes de v&iacute;deo de acuerdo con el campo de visi&oacute;n angular seleccionado. Vuelva a configurar el &aacute;rea de privacidad, la anal&iacute;tica y las estad&iacute;sticas. Se pueden definir en los men&uacute;s <strong class="UI">[Conf. de v&iacute;deo]</strong>, <strong class="UI">[Anal&iacute;tica]</strong> y <strong class="UI">[Estad&iacute;sticas]</strong>, respectivamente.</li>
+                <li ng-if="!FovDistanceRange">Si usted cambia la opci&oacute;n de campo de visi&oacute;n angular, la c&aacute;mara se iniciar&aacute; y se restablecer&aacute;n los ajustes de abajo de acuerdo con el campo de visi&oacute;n angular seleccionado. Se pueden definir en los men&uacute;s <strong class="UI">[Perfil de v&iacute;deo]</strong>, <strong class="UI">[Conf. de v&iacute;deo]</strong>, <strong class="UI">[Configuraci&oacute;n de c&aacute;mara]</strong>, <strong class="UI">[PTZ digital]</strong>, <strong class="UI">[Detecci&oacute;n de movimiento]</strong>, <strong class="UI">[IVA]</strong>, y <strong class="UI">[Mapa de calor]</strong>, respectivamente.</li>
+                <ul>
+                    <li>Perfil de v&iacute;deo</li>
+                    <li>&Aacute;rea de privacidad y configuraci&oacute;n de video</li>
+                    <li>Configuraci&oacute;n de c&aacute;mara</li>
+                    <li>Configuraci&oacute;n de grupos y preajustes en la c&aacute;mara PTZ digital</li>
+                    <li>Detecci&oacute;n de movimiento e IVA en Anal&iacute;tica</li>
+                    <li>Mapa de calor en Estad&iacute;sticas</li>
+                </ul>
             </ul>
         </div>
 	</div>
 </div>
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="FovDistanceRange">
     <div class="wn5-setup-section-heading">
-		<h2>Distancia al objetivo</h2>
-    </div>		
+        <h2>Distancia del objetivo</h2>
+    </div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-                <p>Luego de seleccionar el campo visual de la c&aacute;mara, puede ingresar un valor de distancia para el objeto destino que se est&aacute; supervisando. Puede establecer el valor ajustando la barra deslizante o ingresando un valor en metros. </p>
-                <p>Se generar&aacute; una LUT (Tabla de b&uacute;squeda o Look Up Table) de acuerdo con el valor de distancia que se ingres&oacute; y se aplic&oacute; a la vista panor&aacute;mica. </p>
+                <p>Despu&eacute;s de seleccionar el campo de visi&oacute;n angular, podr&aacute; introducir la informaci&oacute;n sobre la distancia desde el objetivo que la c&aacute;mara va a monitorizar. Al ajustar la barra de deslizamiento, podr&aacute; definir o introducir un valor en metros.</p>
+                <p>Se generar&aacute; una LUT (Tabla de consulta) de acuerdo con la informaci&oacute;n de la distancia definida y se aplicar&aacute; al v&iacute;deo panor&aacute;mico.</p>
         </div>
     </div>
 </div>
 
+
+<div class="wn5-setup-section" ng-if="!FovDistanceRange">
+    <div class="wn5-setup-section-heading">
+		<h2>Alineaci&oacute;n de la imagen</h2>
+    </div>		
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Cuando se crea un v&iacute;deo panor&aacute;mico mediante la disposici&oacute;n de im&aacute;genes de v&iacute;deo desde cuatro canales, las uniones entre los v&iacute;deos pueden parecer poco naturales. Cuando esto sucede, puede utilizar [Alineaci&oacute;n de la imagen] para mover la posici&oacute;n de dos v&iacute;deos simult&aacute;neamente y corregir la uni&oacute;n para que tenga un aspecto m&aacute;s natural.</p>
+            <p>En la vista previa del video preliminar, el video de la izquierda es el &Aacute;rea 1, y el de la derecha es el &Aacute;rea 4. Al hacer clic en el bot&oacute;n <strong class="UI">[1-2]</strong>, podr&aacute; ajustar la posici&oacute;n de los dos v&iacute;deos en las &Aacute;reas 1 y 2 para eliminar las uniones. Del mismo modo, haga clic en el bot&oacute;n <strong class="UI">[2-3]</strong> para ajustar los videos en las &Aacute;reas 2 y 3, y haga clic en el bot&oacute;n <strong class="UI">[3-4]</strong> para ajustar los videos en las &Aacute;reas 3 y 4. Haga clic en <strong class="UI">[Restablecer todo]</strong> para restablecer los valores predeterminados de todas las &aacute;reas de las &Aacute;reas 1 a 4.</p>
+            <p>Seleccione <strong class="UI">[Mezcla Alfa]</strong> para mezclar y difuminar los bordes de las &aacute;reas. Si no se selecciona <strong class="UI">[Mezcla Alfa]</strong>, los bordes de las &aacute;reas se mostrar&aacute;n como una l&iacute;nea continua.</p>
+            <p></p>
+            <p>Si selecciona el &aacute;rea que desea y mueve el rat&oacute;n sobre un v&iacute;deo, aparecer&aacute;n las teclas de flecha <strong class="UI">[Arriba]</strong>/<strong class="UI">[Abajo]</strong>/<strong class="UI">[Izquierda]</strong>/<strong class="UI">[Derecha]</strong>. Cada vez que usted haga clic en una de las teclas, la imagen de v&iacute;deo se mover&aacute; 1 p&iacute;xel. Si hace clic y mantiene pulsada una tecla de flecha, podr&aacute; mover la imagen de v&iacute;deo 10 p&iacute;xeles a la vez. Si desea restablecer la posici&oacute;n predeterminada del v&iacute;deo que est&aacute; siendo editado, haga clic en el bot&oacute;n <strong class="UI">[Restablecer]</strong>.</p>
+
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">

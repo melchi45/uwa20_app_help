@@ -1,15 +1,15 @@
 ﻿<h1 class="wn5-setup-main-title">画像の位置合わせ</h1>
 
 <div class="wn5-setup-section">
-    <p>装着されたカメラの視野角度を設定して対象距離を設定することができます。</p>
-
-<div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-            <ul>
-                <li>視野角度と対象距離は同時に設定できません。 </li>
-            </ul>
-        </div>
-	</div>
+    <p ng-if="FovDistanceRange">装着されたカメラの視野角度を設定して対象距離を設定することができます。</p>
+    <p ng-if="!FovDistanceRange">装着されたカメラの視野角度を設定して、各センサーの映像画像位置をピクセル単位で調整して映像画像の接合部分を補正することができます。</p>
+    <div class="wn5-online-help-info" ng-if="FovDistanceRange">
+        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+        <ul>
+            <li>視野角度と対象距離は同時に設定できません。</li>
+        </ul>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -17,31 +17,57 @@
     </div>		
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>装着されたカメラの映像を配列してパノラマタイプの映像を作成する時、装着された個別カメラを配列するタイプを選択して視野角度(field of view)を調整することができます。 </p>
-            <ul>
-                <li><strong class="UI">180°モード</strong>：個別カメラ映像を縦に配列します。映像の縦長に合わせて配列するため、220°モードを選択した場合より縦ビューがより確保された映像を作成することができます。 &nbsp;
-                </li>
-                <li><strong class="UI">220°モード</strong>：個別カメラ映像を横に配列します。映像の横長に合わせて配列するため、180°モードを選択した場合より縦ビューがより確保された映像を作成することができます。</li>
+            <p ng-if="FovDistanceRange">装着されたカメラの映像を配列してパノラマタイプの映像を作成する時、装着された個別カメラを配列するタイプを選択して視野角度(field of view)を調整することができます。</p>
+            <p ng-if="!FovDistanceRange">装着されたカメラのパノラマ映像視野角度(field of view)を設定することができます。</p>
+            <p ng-if="!FovDistanceRange"><strong class="UI">[209°モード]</strong>を選択すると、<strong class="UI">[180°モード]</strong>を選択した場合より横にビューが確保された映像を作成することができます。</p>
+            <ul ng-if="FovDistanceRange">
+                <li><strong class="UI">180°モード</strong>：個別カメラ映像を縦に配列します。映像の縦長に合わせて配列するため、209°モードを選択した場合より縦ビューがより確保された映像を作成することができます。</li>
+                <li><strong class="UI">209°モード</strong>：個別カメラ映像を横に配列します。映像の横長に合わせて配列するため、180°モードを選択した場合より縦ビューがより確保された映像を作成することができます。</li>
             </ul>
         </div>
-		 <div class="wn5-online-help-info">
+	    <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                <li>視野角度オプションを変更すると、カメラが再起動され映像設定が選択した視野角度に合わせて初期化されます。プライバシーエリア、分析、統計項目を再設定してください。該当項目は<strong class="UI">[ビデオ設定]</strong>、<strong class="UI">[分析]</strong>、<strong class="UI">[統計]</strong>メニューでそれぞれ設定することができます。</li>
+                <li ng-if="FovDistanceRange">視野角度オプションを変更すると、カメラが再起動され映像設定が選択した視野角度に合わせて初期化されます。プライバシー領域、分析、統計項目を再設定してください。該当項目は<strong class="UI">[ビデオ設定]</strong>、<strong class="UI">[分析]</strong>、<strong class="UI">[統計]</strong>メニューでそれぞれ設定することができます。</li>
+                <li ng-if="!FovDistanceRange">視野角度オプションを変更すると、カメラが再起動され次の設定が選択した視野角度に合わせて初期化されます。該当項目は<strong class="UI">[ビデオprofile]</strong>、<strong class="UI">[ビデオ設定]</strong>、<strong class="UI">[カメラ設定]</strong>、<strong class="UI">[デジタルPTZ]</strong>、<strong class="UI">[モーション検知]</strong>、<strong class="UI">[IVA]</strong>、<strong class="UI">[ヒートマップ]</strong>メニューでそれぞれ設定することができます。</li>
+                <ul>
+                    <li>ビデオprofile</li>
+                    <li>プライバシー領域&amp;ビデオ設定</li>
+                    <li>カメラ設定</li>
+                    <li>デジタルPTZのプリセット&amp;グループ設定</li>
+                    <li>アナリティクスのモーション検知、IVA</li>
+                    <li>統計のヒートマップ</li>
+                </ul>
             </ul>
         </div>
 	</div>
 </div>
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="FovDistanceRange">
     <div class="wn5-setup-section-heading">
-		<h2>対象距離</h2>
-    </div>		
+        <h2>対象距離</h2>
+    </div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-                <p>カメラの視野角度を選択した後、カメラでモニタリングする対象の距離情報を入力することができます。スライドバーを調整して値を設定したり、1m単位で入力することができます。 </p>
-                <p>設定した距離情報に合わせてLUT(Look Up Table)を作成してパノラマ映像に適用されます。 </p>
+                <p>カメラの視野角度を選択した後、カメラでモニタリングする対象の距離情報を入力することができます。スライドバーを調整して値を設定したり、1m単位で入力することができます。</p>
+                <p>設定した距離情報に合わせてLUT(Look Up Table)を作成してパノラマ映像に適用されます。</p>
         </div>
     </div>
 </div>
 
+
+<div class="wn5-setup-section" ng-if="!FovDistanceRange">
+    <div class="wn5-setup-section-heading">
+		<h2>画像の位置合わせ</h2>
+    </div>		
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>4チャンネルの映像画像を配列してパノラマタイプの映像を作成する時、各映像の接合部分が不自然に接続されることがあります。この時、[画像の位置合わせ]機能を用いて2つの映像ずつ位置を調整して映像画像が自然に配列されるように接合位置を細かく調整することができます。</p>
+            <p>プレビュー映像で一番左側の映像がエリア1で、一番右側の映像がエリア4です。<strong class="UI">[1-2]</strong>ボタンをクリックすると、1エリア映像と2エリア映像が自然に接合されるように二つの映像の位置を調整することができます。これと同じくエリア2と3の映像を整列するには<strong class="UI">[2-3]</strong>ボタンを、エリア3と4の映像を整列するには<strong class="UI">[3-4]</strong>ボタンをクリックします。<strong class="UI">[すべてリセット]</strong>をクリックすると、エリア1から4まで全体エリアの位置を初期値に戻します。</p>
+            <p><strong class="UI">[アルファブレンディング]</strong>を選択すると、エリアの境界面が混合され薄暗くなります。<strong class="UI">[アルファブレンディング]</strong>を選択しない場合、境界面が直線の形に表示されます。</p>
+            <p></p>
+            <p>エリアを選択した後、映像の上にマウスオーバーすると<strong class="UI">[上へ]</strong>/<strong class="UI">[下へ]</strong>/<strong class="UI">[左へ]</strong>/<strong class="UI">[右へ]</strong>方向キーが表示され、各ボタンをクリックして映像の位置を1ピクセルずつ調整することができます。方向キーを押し続けていると、最大10ピクセルまで一括調整することができます。現在修正中の映像の位置を初期値に戻すには<strong class="UI">[初期化]</strong>ボタンをクリックします。</p>
+
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">

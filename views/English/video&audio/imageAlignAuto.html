@@ -1,15 +1,15 @@
-﻿<h1 class="wn5-setup-main-title">Image Alignment</h1>
+﻿<h1 class="wn5-setup-main-title">Image alignment</h1>
 
 <div class="wn5-setup-section">
-    <p>You can set the field of view and detection distance for your mounted camera.</p>
-
-<div class="wn5-online-help-info">
-            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
-            <ul>
-                <li>Field of view and detection distance cannot be set simultaneously. </li>
-            </ul>
-        </div>
-	</div>
+    <p ng-if="FovDistanceRange">The angular field of view and target distance can be set for the installed camera.</p>
+    <p ng-if="!FovDistanceRange">The angular field of view can be set for the installed camera, and the video image position of each sensor can be adjusted in pixel unit to correct the seams of the video images.</p>
+    <div class="wn5-online-help-info" ng-if="FovDistanceRange">
+        <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+        <ul>
+            <li>Angular field of view and target distance cannot be set at the same time.</li>
+        </ul>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -17,31 +17,57 @@
     </div>		
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>When you arrange the videos of mounted cameras to create a panoramic view of the videos, you can adjust the field of view by choosing the way of arranging each individual camera mounted. </p>
-            <ul>
-                <li><strong class="UI">180 degree mode</strong>: Arrange camera screens vertically. Since this mode arranges the screens according to the length of each screen, you will see a video whose length is longer than that in the 220 degree mode. &nbsp;
-                </li>
-                <li><strong class="UI">220 degree mode</strong>: Arrange camera screens horizontally. Since this mode arranges the screens according to the width of each screen, you will see a video whose width is longer than that in the 180 degree mode.</li>
+            <p ng-if="FovDistanceRange">You can adjust the angular field of view by selecting the type to arrange individual cameras installed when arranging videos of the installed cameras and creating a panoramic video.</p>
+            <p ng-if="!FovDistanceRange">You can also set the panoramic angular field of view for the installed camera.</p>
+            <p ng-if="!FovDistanceRange">By selecting <strong class="UI">[209 degree mode]</strong>, you can create a view of which width is longer than that of <strong class="UI">[180 degree mode]</strong>.</p>
+            <ul ng-if="FovDistanceRange">
+                <li><strong class="UI">180 degree mode</strong>: Vertically arranges individual camera videos. Since the view is arranged in alignment with the length of the videos, you can create a view of which length is longer than that of [209 degree mode].</li>
+                <li><strong class="UI">209 degree mode</strong>: Horizontally arranges individual camera videos. Since the view is arranged in alignment with the width of the videos, you can create a view of which width is longer than that of [180 degree mode].</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info">
+	    <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
-                <li>If you change the Angular field of view option, the camera reboots and the video setup will be reset according to the selected angular field of view. Please set privacy area, Analytics, and Statistics again. These can be set in the <strong class="UI">[Video setup]</strong>, <strong class="UI">[Analytics]</strong>, and <strong class="UI">[Statistics]</strong> menus, respectively.</li>
+                <li ng-if="FovDistanceRange">If you change the angular field of view option, the camera boots and resets the video settings according to the selected angular field of view. Please set privacy area, analytics, and statistics again. They can be set in the <strong class="UI">[Video setup]</strong>, <strong class="UI">[Analytics]</strong>, and <strong class="UI">[Statistics]</strong> menus, respectively.</li>
+                <li ng-if="!FovDistanceRange">If you change the angular field of view option, the camera boots and resets the below settings according to the selected angular field of view. They can be set in the <strong class="UI">[Video profile]</strong>, <strong class="UI">[Video setup]</strong>, <strong class="UI">[Camera setup]</strong>, <strong class="UI">[Digital PTZ]</strong>, <strong class="UI">[Motion detection]</strong>, <strong class="UI">[IVA]</strong>, and <strong class="UI">[Heatmap]</strong> menus, respectively.</li>
+                <ul>
+                    <li>Video profile</li>
+                    <li>Privacy area and video setup</li>
+                    <li>Camera setup</li>
+                    <li>Preset and Group setup in Digital PTZ</li>
+                    <li>Motion detection and IVA in Analytics</li>
+                    <li>Heatmap in Statistics</li>
+                </ul>
             </ul>
         </div>
 	</div>
 </div>
-<div class="wn5-setup-section">
+<div class="wn5-setup-section" ng-if="FovDistanceRange">
     <div class="wn5-setup-section-heading">
-		<h2>Target distance</h2>
-    </div>		
+        <h2>Target distance</h2>
+    </div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-                <p>After selecting the field of view of your camera, you can enter a distance value for the target object that is being monitored. You can set the value by adjusting the slide bar or enter a value in meters. </p>
-                <p>An LUT (Look Up Table) will be generated according to the entered distance value and applied to the panoramic view. </p>
+                <p>After selecting the angular field of view, you can enter the information about the distance from the target that the camera is going to monitor. By adjusting the slide bar, you can set or enter a value in meters.</p>
+                <p>An LUT (Look Up Table) is generated according to the set distance information and applied to the panoramic video.</p>
         </div>
     </div>
 </div>
 
+
+<div class="wn5-setup-section" ng-if="!FovDistanceRange">
+    <div class="wn5-setup-section-heading">
+		<h2>Image alignment</h2>
+    </div>		
+	<div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>When creating a panoramic video by arranging the video images from four channels, the seams between videos might look unnatural. When this happens, you can use [Image alignment] to move the position of two videos at a time and correct the seam for natural look.</p>
+            <p>In the preview video, the leftmost video is Area 1, and the rightmost video is Area 4.  By clicking the <strong class="UI">[1-2]</strong> button, you can adjust the position of the two videos in Areas 1 and 2 to remove seams. Likewise, click the <strong class="UI">[2-3]</strong> button to adjust the videos in Areas 2 and 3, and click the <strong class="UI">[3-4]</strong> button to adjust the videos in Areas 3 and 4. Click <strong class="UI">[Reset all]</strong> to reset to default all areas from Areas 1 to 4.</p>
+            <p>Select <strong class="UI">[Alpha blending]</strong> to blend and blur the edges of the areas. If <strong class="UI">[Alpha blending]</strong> is not selected, the edges of the areas is displayed as a linear line.</p>
+            <p></p>
+            <p>If you select the area you want and move the mouse over a video, <strong class="UI">[Up]</strong>/<strong class="UI">[Down]</strong>/<strong class="UI">[Left]</strong>/<strong class="UI">[Right]</strong> arrow keys show up. Each time you click one of the keys, the video image moves by 1 pixel. If you click and hold an arrow key, you can move the video image by 10 pixels at a time. If you want to reset to defaults the position of the video currently being edited, click the <strong class="UI">[Reset]</strong> button.</p>
+
+        </div>
+    </div>
+</div>
 <hr class="wn5-setup-hr">
