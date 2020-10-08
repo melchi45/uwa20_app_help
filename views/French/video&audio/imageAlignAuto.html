@@ -1,15 +1,15 @@
-﻿<h1 class="wn5-setup-main-title">Alignement de l&rsquo;image</h1>
+﻿<h1 class="wn5-setup-main-title">Alignement d&rsquo;image</h1>
 
 <div class="wn5-setup-section">
-    <p ng-if="FovDistanceRange">Le champ de vision angulaire et la distance de la cible peuvent &ecirc;tre r&eacute;gl&eacute;s pour la cam&eacute;ra install&eacute;e.</p>
-    <p ng-if="!FovDistanceRange">Le champ de vision angulaire peut &ecirc;tre r&eacute;gl&eacute; pour la cam&eacute;ra install&eacute;e et la position de l&rsquo;image vid&eacute;o de chaque capteur peut &ecirc;tre ajust&eacute;e en unit&eacute; de pixel pour corriger les raccords des images vid&eacute;o.</p>
-    <div class="wn5-online-help-info" ng-if="FovDistanceRange">
-        <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
-        <ul>
-            <li>Le champ de vision angulaire et la distance de la cible ne peuvent pas &ecirc;tre r&eacute;gl&eacute;s simultan&eacute;ment.</li>
-        </ul>
-    </div>
-</div>
+    <p>Vous pouvez r&eacute;gler le champ de vision et la distance de d&eacute;tection pour la cam&eacute;ra mont&eacute;e.</p>
+
+<div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>Le champ de vision et la distance de d&eacute;tection ne peuvent pas &ecirc;tre r&eacute;gl&eacute;s simultan&eacute;ment. </li>
+            </ul>
+        </div>
+	</div>
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
@@ -17,57 +17,30 @@
     </div>		
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="FovDistanceRange">Vous pouvez ajuster le champ de vision angulaire en s&eacute;lectionnant le type de disposition de chacune des cam&eacute;ras install&eacute;es lors de la disposition des vid&eacute;os des cam&eacute;ras install&eacute;es et de la cr&eacute;ation d&rsquo;une vid&eacute;o panoramique.</p>
-            <p ng-if="!FovDistanceRange">Vous pouvez &eacute;galement r&eacute;gler le champ de vision angulaire panoramique de la cam&eacute;ra install&eacute;e.</p>
-            <p ng-if="!FovDistanceRange">En s&eacute;lectionnant le <strong class="UI">[Mode 209&nbsp;degr&eacute;s]</strong>, l&rsquo;affichage obtenu a une largeur sup&eacute;rieure &agrave; celle du <strong class="UI">[Mode 180&nbsp;degr&eacute;s]</strong>.</p>
-            <ul ng-if="FovDistanceRange">
-                <li><strong class="UI">Mode 180&nbsp;degr&eacute;s</strong>&nbsp;: Dispose verticalement les vid&eacute;os de chacune des cam&eacute;ras. L&rsquo;affichage &eacute;tant organis&eacute; en fonction de la longueur des vid&eacute;os, vous pouvez cr&eacute;er un affichage dont la longueur est sup&eacute;rieure &agrave; celle du [Mode 209&nbsp;degr&eacute;s].</li>
-                <li><strong class="UI">Mode 209&nbsp;degr&eacute;s</strong>&nbsp;: Dispose horizontalement les vid&eacute;os de chacune des cam&eacute;ras. L&rsquo;affichage &eacute;tant organis&eacute; en fonction de la largeur des vid&eacute;os, vous pouvez cr&eacute;er un affichage dont la largeur est sup&eacute;rieure &agrave; celle du [Mode 180&nbsp;degr&eacute;s].</li>
+            <p>Lorsque vous organisez les vid&eacute;os des cam&eacute;ras mont&eacute;es pour cr&eacute;er une vue panoramique des vid&eacute;os, vous pouvez r&eacute;gler le champ de vision en choisissant la mani&egrave;re d&rsquo;organiser chaque cam&eacute;ra individuelle mont&eacute;e. </p>
+            <ul>
+                <li><strong class="UI">Mode 180°</strong>&nbsp;: Organiser les &eacute;crans de cam&eacute;ra verticalement. Du fait que ce mode organise les &eacute;crans en fonction de la longueur de chaque &eacute;cran, vous verrez une vid&eacute;o dont la longueur est sup&eacute;rieure &agrave; celle en mode 220°. &nbsp;</li>
+                <li><strong class="UI">Mode 220°</strong>&nbsp;: Organiser les &eacute;crans de cam&eacute;ra horizontalement. Du fait que ce mode organise les &eacute;crans en fonction de la largeur de chaque &eacute;cran, vous verrez une vid&eacute;o dont la largeur est sup&eacute;rieure &agrave; celle en mode 180°.</li>
             </ul>
         </div>
-	    <div class="wn5-online-help-info">
+		 <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li ng-if="FovDistanceRange">Si vous modifiez l&rsquo;option de champ de vision angulaire, la cam&eacute;ra d&eacute;marre et r&eacute;initialise les param&egrave;tres vid&eacute;o en fonction du champ de vision angulaire s&eacute;lectionn&eacute;. Veuillez r&eacute;gler une nouvelle fois zone de confidentialit&eacute;, analyse et statistiques. Ils peuvent &ecirc;tre r&eacute;gl&eacute;s dans les menus <strong class="UI">[Vid&eacute;o configuration]</strong>, <strong class="UI">[Analyse]</strong> et <strong class="UI">[Statistiques]</strong>, respectivement.</li>
-                <li ng-if="!FovDistanceRange">Si vous modifiez l&rsquo;option de champ de vision angulaire, la cam&eacute;ra d&eacute;marre et r&eacute;initialise les param&egrave;tres ci-dessous en fonction du champ de vision angulaire s&eacute;lectionn&eacute;. Ils peuvent &ecirc;tre r&eacute;gl&eacute;s dans les menus <strong class="UI">[Profil vid&eacute;o]</strong>, <strong class="UI">[Vid&eacute;o configuration]</strong>, <strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>, <strong class="UI">[PTZ num&eacute;rique]</strong>, <strong class="UI">[D&eacute;tection de mouvement]</strong>, <strong class="UI">[IVA]</strong> et <strong class="UI">[Heatmap]</strong>, respectivement.</li>
-                <ul>
-                    <li>Profil vid&eacute;o</li>
-                    <li>Zone de confidentialit&eacute; et configuration vid&eacute;o</li>
-                    <li>R&eacute;glage cam&eacute;ra</li>
-                    <li>Pr&eacute;r&eacute;glage et Configuration groupe dans PTZ num&eacute;rique</li>
-                    <li>D&eacute;tection de mouvement et IVA dans Analyse</li>
-                    <li>Heatmap dans Statistiques</li>
-                </ul>
+                <li>Si vous changez l&rsquo;option de champ de vision angulaire, la cam&eacute;ra red&eacute;marre et la configuration vid&eacute;o sera initialis&eacute;e en fonction du champ de vision angulaire s&eacute;lectionn&eacute;. Veuillez &agrave; nouveau d&eacute;finir la zone de confidentialit&eacute;, les analyses et les statistiques. Elles peuvent &ecirc;tre d&eacute;finies dans les menus <strong class="UI">[Vid&eacute;o Configuration]</strong>, <strong class="UI">[Analyses]</strong> et <strong class="UI">[Statistiques]</strong> respectivement.</li>
             </ul>
         </div>
 	</div>
 </div>
-<div class="wn5-setup-section" ng-if="FovDistanceRange">
+<div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
-        <h2>Distance cible</h2>
-    </div>
-	<div class="wn5-setup-section-article">
-        <div class="wn5-setup-section-article-content">
-                <p>Apr&egrave;s la s&eacute;lection du champ de vision angulaire, vous pouvez entrer les informations relatives &agrave; la distance depuis la cible que la cam&eacute;ra va surveiller. En ajustant la barre de d&eacute;filement, vous pouvez r&eacute;gler ou entrer une valeur en m&egrave;tres.</p>
-                <p>Un TR (tableau de recherche) est g&eacute;n&eacute;r&eacute; en fonction des informations de distance d&eacute;finies et appliqu&eacute;es &agrave; la vid&eacute;o panoramique.</p>
-        </div>
-    </div>
-</div>
-
-
-<div class="wn5-setup-section" ng-if="!FovDistanceRange">
-    <div class="wn5-setup-section-heading">
-		<h2>Alignement de l&rsquo;image</h2>
+		<h2>Distance cible</h2>
     </div>		
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Lors de la cr&eacute;ation d&rsquo;une vid&eacute;o panoramique en disposant les images vid&eacute;o de quatre canaux, les raccords entre les vid&eacute;os peuvent sembler artificiels. Lorsque c&rsquo;est le cas, vous pouvez utiliser [Alignement de l&rsquo;image] pour d&eacute;placer la position de deux vid&eacute;os &agrave; la fois et corriger le raccord pour obtenir un aspect naturel.</p>
-            <p>Dans la vid&eacute;o de pr&eacute;visualisation, la vid&eacute;o la plus &agrave; gauche correspond &agrave; la Zone&nbsp;1 et la vid&eacute;o la plus &agrave; droite correspond &agrave; la Zone&nbsp;4. En cliquant sur le bouton <strong class="UI">[1-2]</strong>, vous pouvez ajuster la position des deux vid&eacute;os des Zones&nbsp;1 et 2 pour supprimer les raccords. De m&ecirc;me, cliquez sur le bouton <strong class="UI">[2-3]</strong> pour ajuster la position des vid&eacute;os des Zones&nbsp;2 et 3, puis cliquez sur le bouton <strong class="UI">[3-4]</strong> pour ajuster la position des vid&eacute;os des Zones&nbsp;3 et 4. Cliquez sur <strong class="UI">[Tout r&eacute;initialiser]</strong> pour ramener &agrave; leur param&egrave;tres par d&eacute;faut toutes les zones des Zones&nbsp;1 &agrave; 4.</p>
-            <p>S&eacute;lectionnez <strong class="UI">[M&eacute;lange alpha]</strong> pour fusionner et estomper les bords des zones. Si <strong class="UI">[M&eacute;lange alpha]</strong> n&rsquo;est pas s&eacute;lectionn&eacute;, les bords des zones sont affich&eacute;s sous la forme d&rsquo;une ligne lin&eacute;aire.</p>
-            <p></p>
-            <p>Si vous s&eacute;lectionnez la zone souhait&eacute;e et que vous passez la souris sur une vid&eacute;o, les touches fl&eacute;ch&eacute;es <strong class="UI">[Haut]</strong>/<strong class="UI">[Bas]</strong>/<strong class="UI">[Gauche]</strong>/<strong class="UI">[Droite]</strong> s&rsquo;affichent. Chaque fois que vous cliquez sur l&rsquo;une de ces touches, l&rsquo;image vid&eacute;o se d&eacute;place d&rsquo;un pixel. Si vous cliquez sur une touche fl&eacute;ch&eacute;e et la maintenez enfonc&eacute;e, vous pouvez d&eacute;placer l&rsquo;image vid&eacute;o de 10&nbsp;pixels &agrave; la fois. Si vous voulez ramener la vid&eacute;o en cours d&rsquo;&eacute;dition &agrave; sa position par d&eacute;faut, cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>.</p>
-
+                <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le champ de vision de la cam&eacute;ra, vous pouvez entrer une valeur de distance pour la cible supervis&eacute;e. Vous pouvez r&eacute;gler la valeur en ajustant le curseur ou en entrant une valeur en m&egrave;tres. </p>
+                <p>Un LUT (tableau de r&eacute;f&eacute;rence) sera g&eacute;n&eacute;r&eacute; en fonction de la valeur de distance entr&eacute;e et sera appliqu&eacute; &agrave; la vue panoramique. </p>
         </div>
     </div>
 </div>
+
 <hr class="wn5-setup-hr">

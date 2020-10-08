@@ -33,6 +33,7 @@
                     <li>Channel 7: Displays the bottom left video from the 4-split view of Channel 4.</li>
                     <li>Channel 8: Displays the top right video from the 4-split view of Channel 4.</li>
             </ul> -->
+            <p ng-if="MultiImager">Channel 1 displays live feed and channel 2 and channel 3 display Digital PTZ video. [Video setup] can only be configured on channel 1.</p> 
             <p ng-if="HybridThermal">Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel.</p>
             <p ng-if="!SupportAutoImageAlignment">Click the <strong class="UI">[Info]</strong> button to see the overall summary of each channel.</p>
             <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p> -->
@@ -377,8 +378,8 @@
 
 <!-- 비디오 출력 cvbs와 hdmi 통합 후 -->
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions">
-<div class="wn5-setup-section" ng-if="VideoTypeOptions">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Video output</h2>
 	</div>

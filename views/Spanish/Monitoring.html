@@ -214,9 +214,11 @@
                                     <p>Aquí se muestran los canales compatibles con la cámara.</p> -->
                                     <ul ng-if="objectDetectionSupport">
                                         <li>Canal 1: Muestra el vídeo en directo.</li>
-                                        <!-- <li>Canal 2: Muestra el vídeo PTZ digital. Seleccione el canal 2 para usar la función <a href="#PTZ">PTZ</a>. -->
+                                        <li>Canal 2: Muestra el vídeo PTZ digital. 
+                                            <!-- Seleccione el canal 2 para usar la función <a href="#PTZ">PTZ</a>.  -->
                                         </li>
                                     </ul>
+                                    <p ng-if="MultiImager">El canal 1 muestra transmisión en vivo, y los canales 2 y 3 muestran video PTZ digital.</p>
                                     <p ng-if="HybridThermal">El canal 1 es un v&iacute;deo visible, y el canal 2 es un v&iacute;deo t&eacute;rmico. Si selecciona el &iacute;cono Multivista, podr&aacute; ver tanto los videos visibles como los videos t&eacute;rmicos.</p>
                                     <p>&nbsp;</p>
                                 </td>

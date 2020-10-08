@@ -21,12 +21,13 @@
             </div>
             <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="objectDetectionSupport">After selecting your camera channel, you can set the details of PTZ for each channel.</p>
+            <p>After selecting your camera channel, you can set the details of PTZ for each channel.</p>
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Digital PTZ] can only be configured on channel 2.</p>
             <p ng-if="SupportAutoImageAlignment">After selecting your camera channel, you can set the details of PTZ for each channel. </p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied.</p>
             <p ng-if="SupportAutoImageAlignment">The presets set in the Digital PTZ menu can be seen on the Live screen.</p>
             <p ng-if="SupportAutoImageAlignment">'Digital PTZ setup' can only be set on CH6 and CH7.</p>
+            <p ng-if="MultiImager">Channel 1 displays live feed, and channel 2 and channel 3 display Digital PTZ video. [Digital PTZ] can only be configured on channel 2 and 3.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">After selecting your camera channel, you can set the details of PTZ for each channel. </p>
             <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below. Only Channel 4 to 8 can be set up.</p>

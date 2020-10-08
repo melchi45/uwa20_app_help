@@ -27,7 +27,7 @@
                 <li>When the size or location of the web browser window changed</li>
             </ul>
             <!-- 		<li>When you connect to a web viewer through Internet Explorer or Safari, a plugin is required before you can use the capture<span class="tui tui-wn5-toolbar-capture"></span>, record<span class="tui tui-wn5-toolbar-record"></span>, pixel count<span class="tui tui-wn5-toolbar-pixel"></span> or microphone <span class="tui tui-wn5-toolbar-mic"></span>functions. To install the plugin, click the <span class="tui tui-wn5-download"></span> button at the top right.</li>  -->
-            <li ng-if="HybridThermal">For the body temperature detection camera, Channel 1 is a visible video, and Channel 2 is a thermal video.</li
+            <li ng-if="HybridThermal">For the body temperature detection camera, Channel 1 is a visible video, and Channel 2 is a thermal video.</li>
         </ul>
         </div>
 </div>
@@ -232,6 +232,7 @@
                                         <!-- Select channel 2 to use the <a href="#PTZ">PTZ</a> function. -->
                                     </li>
                                 </ul>
+                                <p ng-if="MultiImager">Channel 1 displays live feed, and channel 2 and channel 3 display Digital PTZ video.</p>
                                 <p ng-if="HybridThermal">Channel 1 is a visible video, and Channel 2 is a thermal video. If you select Multi view icon, you can view both visible and thermal videos.</p>
                                 <p>&nbsp;</p>
                             </td>

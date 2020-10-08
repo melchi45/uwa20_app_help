@@ -16,12 +16,12 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p ng-if="SupportAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s, tels que la rotation vid&eacute;o, la sortie analogique, etc.</p> 
-            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1.</p> 
             <p ng-if="!SupportAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s.</p> 
+            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1.</p> 
             <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
             <p ng-if="SupportAutoImageAlignment">Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">Du fait qu&rsquo;une zone de confidentialit&eacute; est d&eacute;finie individuellement pour chaque canal, une zone de confidentialit&eacute; d&eacute;finie sur CAN1 sera seulement appliqu&eacute;e &agrave; CAN1 m&ecirc;me si la m&ecirc;me zone de confidentialit&eacute; existe sur CAN2.</p>
-
+            <p ng-if="MultiImager">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2 et le canal 3. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1.</p> 
             <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;Configuration de la vidéo&nbsp;” peut être activé sur le canal 1 uniquement.</p>
             <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
@@ -379,8 +379,8 @@
 
 <!-- 비디오 출력 cvbs와 hdmi 통합 -->
 
-<hr class="wn5-setup-hr" ng-if="VideoTypeOptions">
-<div class="wn5-setup-section" ng-if="VideoTypeOptions">
+<hr class="wn5-setup-hr" ng-if="VideoTypeOptions || UsbConfigEnable">
+<div class="wn5-setup-section" ng-if="VideoTypeOptions || UsbConfigEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie vid&eacute;o</h2>
 	</div>
