@@ -941,6 +941,8 @@
         <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
             <h3>오버레이 이미지 </h3>
             <p>사용자가 원하는 이미지를 화면 좌측 상단에 표시할 수 있습니다. <strong class="UI">[이미지 업로드]</strong> 메뉴에서 이미지를 업로드할 수 있습니다.</p>
+            <!-- pnm-9000qb/8082v에서만 show 되도록 분기 코드 추가. 김주희 선임님. 2020-10-12 -->
+            <p ng-if="GlobalMultiImageOSDSupport">오버레이 이미지를 변경하면 모든 채널의 오버레이 이미지가 변경됩니다.</p>
         </div>
          <!-- tnu-6321 미지원 기능이나 attribute 없음. 임시 hide 코드 추가 -->
         <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
