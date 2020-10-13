@@ -17,11 +17,11 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>EAPタイプ</h3>
-		    <p>EAP (Extensible Authentication Protocol)は、無線ネットワークとポイントツーポイントプロトコル
-(Point to Point Protocol)で規定された認証タイプに拡張しやすいように設計されたプロトコルです。LEAPタイプが保安に弱い認証タイプであるため、EAP-TLSを使用できない環境でのみ使用することをお勧めします。</p>
+		    <p>EAP (Extensible Authentication Protocol)は無線ネットワークとポイントツーポイントプロトコル(Point to Point Protocol)で規定された認証タイプに拡張しやすいように設計されたプロトコルです。LEAPタイプが保安に弱い認証タイプであるため、EAP-TLS、PEAPv0/MSCHAPv2を使用できない環境でのみ使用することをお勧めします。</p>
 		    <ul>
 		        <li><strong class="UI">EAP-TLS</strong>：EAP-TLS (Transport Layer Security)は、サーバーとクライアント証明書を必要とする相互認証を行い、アクセスされてからの保安を考えて動的WEPキーを使用します。</li>
-		        <li><strong class="UI">LEAP</strong>：LEAP (Lightweight Extensible Authentication Protocol)は証明書を要求せずに動的WEPキーだけを使用するため、必ず強力なパスワードを使用する必要があります。</li>
+				<li><strong class="UI">LEAP</strong>：LEAP (Lightweight Extensible Authentication Protocol)は証明書を要求せずに動的WEPキーだけを使用するため、必ず強力なパスワードを使用する必要があります。</li>
+				<li><strong class="UI">PEAPv0/MSCHAPv2</strong>: PEAP/MSCHAPv2 (Protected Extensible Authentication Protocol/Microsoft Challenge Handshake Authentication Protocol)認証はサーバ側の認証だけを行って作成されたEAP-TLSセッションでユーザーのID、パスワード基盤の認証を行います。</li>
 		    </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -30,11 +30,11 @@
 	    </div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>ID</h3>
-		    <p><strong class="UI">[EAP-TLS]</strong>ではクライアント証明書IDを入力し、<strong class="UI">[LEAP]</strong>ではユーザーIDを入力します。</p>
+		    <p><strong class="UI">[EAP-TLS]</strong>ではクライアント証明書IDを入力し、<strong class="UI">[LEAP]</strong>と<strong class="UI">[PEAPv0/MSCHAPv2]</strong>ではユーザーIDを入力します。</p>
 	   	</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>Password</h3>
-		    <p><strong class="UI">[EAP-TLS]</strong>ではクライアントのプライベートキーパスワードを入力し、<strong class="UI">[LEAP]</strong>ではユーザーのパスワードを入力します。<strong class="UI">[EAP-TLS]</strong>で暗号化されてないキーファイルを使用する場合、入力する必要はありません。</p>
+		    <p><strong class="UI">[EAP-TLS]</strong>ではクライアントのプライベートキーパスワードを入力し、<strong class="UI">[LEAP]</strong>と<strong class="UI">[PEAPv0/MSCHAPv2]</strong>ではユーザーのパスワードを入力します。<strong class="UI">[EAP-TLS]</strong>で暗号化されてないキーファイルを使用する場合、入力する必要はありません。</p>
 		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
@@ -53,7 +53,7 @@
 	<div class="wn5-setup-section-article">
 
 		<div class="wn5-setup-section-article-content">
-			<p>証明書は<strong class="UI">[EAP-TLS]</strong>を有効にする場合のみ必要です。該当する証明書とキーをインストールしたり削除することができます。</p>
+			<p>証明書は<strong class="UI">[EAP-TLS]</strong>や<strong class="UI">[PEAPv0/MSCHAPv2]</strong>を使用する場合のみ必要です。該当する証明書とキーをインストールしたり削除できます。<strong class="UI">[PEAPv0/MSCHAPv2]</strong>は<strong class="UI">[CA証明書]</strong>だけ入力します。</p>
 			<ul>
 				<li><strong class="UI">CA証明書</strong>：公開キーが含まれた公認証明書の場合に選択します。</li>
 				<li><strong class="UI">クライアント証明書</strong>：クライアント認証キーが含まれた公認証明書の場合に選択します。</li>

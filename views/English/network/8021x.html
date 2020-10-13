@@ -17,10 +17,11 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>EAP Type </h3>
-		    <p>EAP (Extensible Authentication Protocol) is an authentication mode regulated in wireless networks and Point-to-Point protocols, and is designed for easy extension. The LEAP mode is a security-vulnerable authentication mode, so is recommended only for environments where EAP-TLS cannot be used.</p>
+		    <p>EAP (Extensible Authentication Protocol) is a protocol that allows easier extension using the authentication method defined by wireless network and Point-to-Point Protocol. It is recommended to be used only in an environment where EAP-TLS, PEAPv0/MSCHAPv2 cannot be used since LEAP is an insecure authentication method.</p>
 		    <ul>
 		        <li><strong class="UI">EAP-TLS</strong>: EAP-TLS (Transport Layer Security) carries out mutual authentication that requires a client certificate with the server; a dynamic WEP key is used for security after connection is made.</li>
-		        <li><strong class="UI">LEAP</strong>: LEAP (Lightweight Extensible Authentication Protocol) does not require certificates and uses only a dynamic WEP key, so a strong password should be used.  </li>
+				<li><strong class="UI">LEAP</strong>: LEAP (Lightweight Extensible Authentication Protocol) does not require certificates and uses only a dynamic WEP key, so a strong password should be used.  </li>
+				<li><strong class="UI">PEAPv0/MSCHAPv2</strong>: PEAP/MSCHAPv2 (Protected Extensible Authentication Protocol/Microsoft Challenge Handshake Authentication Protocol) authentication performs authentication based on the ID and password of user through an EAP-TLS session generated from the server-side authentication only.</li>
 		    </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -29,11 +30,11 @@
 	    </div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>ID</h3>
-		    <p>Enter the client certificate ID for <strong class="UI">[EAP-TLS]</strong> and the user ID for <strong class="UI">[LEAP]</strong>.</p>
+		    <p>Enter your client certificate ID for <strong class="UI">[EAP-TLS]</strong> and enter your user ID for <strong class="UI">[LEAP]</strong> and <strong class="UI">[PEAPv0/MSCHAPv2]</strong>.</p>
 	   	</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>Password</h3>
-		    <p>Enter the client private key for <strong class="UI">[EAP-TLS]</strong> and the user password for <strong class="UI">[LEAP]</strong>. This is not necessary if an unencrypted key is used in <strong class="UI">[EAP-TLS]</strong>. </p>
+		    <p>Enter your client private key for <strong class="UI">[EAP-TLS]</strong> and enter your user password for <strong class="UI">[LEAP]</strong> and <strong class="UI">[PEAPv0/MSCHAPv2]</strong>. This is not necessary if an unencrypted key is used in <strong class="UI">[EAP-TLS]</strong>. </p>
 		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
@@ -52,7 +53,7 @@
 	<div class="wn5-setup-section-article">
 
 		<div class="wn5-setup-section-article-content">
-			<p>Certificates are necessary only when <strong class="UI">[EAP-TLS]</strong> is used. You can install or delete the relevant certificates and keys.</p>
+			<p>Certificate is needed only when using <strong class="UI">[EAP-TLS]</strong> or <strong class="UI">[PEAPv0/MSCHAPv2]</strong>. The corresponding certificate and key can be installed or deleted. Enter only <strong class="UI">[CA certificate]</strong> for <strong class="UI">[PEAPv0/MSCHAPv2]</strong>.</p>
 			<ul>
 				<li><strong class="UI">CA certificates</strong>: Select if CA certificates include an open key.</li>
 				<li><strong class="UI">Client certificate</strong>: Select if CA certificates include a client authentication key.</li>

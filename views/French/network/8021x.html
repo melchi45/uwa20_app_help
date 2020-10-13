@@ -17,10 +17,11 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>Type d&apos;EAP</h3>
-		    <p>EAP (Extensible Authentication Protocol) est un mode d&apos;authentification r&eacute;gul&eacute; dans les r&eacute;seaux sans fil et les protocoles point-&agrave;-point, et il est con&ccedil;u pour &ecirc;tre facilement extensible. Le mode LEAP est un mode d&apos;authentification &agrave; faible s&eacute;curit&eacute;, il est donc recommand&eacute; uniquement pour les environnements dans lesquels EAP-TLS ne peut pas &ecirc;tre utilis&eacute;.</p>
+		    <p>Le protocole extensible d’authentification (EAP) est un protocole qui permet une extension plus facile en utilisant la méthode d’authentification définie par le réseau sans fil et le protocole point à point. Son utilisation est recommandée uniquement dans un environnement où EAP-TLS, PEAPv0/MSCHAPv2 ne peuvent pas être utilisés, car LEAP est une méthode d’authentification non sécurisée.</p>
 		    <ul>
 		        <li><strong class="UI">EAP-TLS</strong>&nbsp;: EAP-TLS (Transport Layer Security) effectue une authentification mutuelle qui n&eacute;cessite un certificat client avec le serveur. Une cl&eacute; WEP dynamique est utilis&eacute;e pour des raisons de s&eacute;curit&eacute; une fois que la connexion est &eacute;tablie.</li>
-		        <li><strong class="UI">LEAP</strong>&nbsp;: LEAP (Lightweight Extensible Authentication Protocol) ne n&eacute;cessite pas de certificat et utilise uniquement une cl&eacute; WEP dynamique, un mot de passe fort doit donc &ecirc;tre utilis&eacute;.</li>
+				<li><strong class="UI">LEAP</strong>&nbsp;: LEAP (Lightweight Extensible Authentication Protocol) ne n&eacute;cessite pas de certificat et utilise uniquement une cl&eacute; WEP dynamique, un mot de passe fort doit donc &ecirc;tre utilis&eacute;.</li>
+				<li><strong class="UI">PEAPv0/MSCHAPv2</strong> : L’exécution de l’authentification PEAP/MSCHAPv2 (protocole extensible d’authentification protégé/protocole d’authentification mutuel par négociation de Microsoft) se fait sur la base de l’identifiant et du mot de passe de l’utilisateur par le biais d’une session EAP-TLS générée à partir de l’authentification côté serveur uniquement.</li>
 		    </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -29,11 +30,11 @@
 	    </div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>ID</h3>
-		    <p>Entrez l&apos;identifiant du certificat client pour <strong class="UI">[EAP-TLS]</strong> et l&apos;identifiant de l&rsquo;utilisateur pour <strong class="UI">[LEAP]</strong>.</p>
+		    <p>Entrez l’identifiant du certificat client pour <strong class="UI">[EAP-TLS]</strong> et entrez votre identifiant d’utilisateur pour <strong class="UI">[LEAP]</strong> et <strong class="UI">[PEAPv0/MSCHAPv2]</strong>.</p>
 	   	</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>Mot de passe</h3>
-		    <p>Entrez la cl&eacute; priv&eacute;e client pour <strong class="UI">[EAP-TLS]</strong> et le mot de passe de l&apos;utilisateur pour <strong class="UI">[LEAP]</strong>. Ceci n&apos;est pas n&eacute;cessaire si une cl&eacute; non crypt&eacute;e est utilis&eacute;e dans <strong class="UI">[EAP-TLS]</strong>.</p>
+		    <p>Entrez votre clé privée client pour <strong class="UI">[EAP-TLS]</strong> et entrez votre mot de passe utilisateur pour <strong class="UI">[LEAP]</strong> et <strong class="UI">[PEAPv0/MSCHAPv2]</strong>. Ceci n&apos;est pas n&eacute;cessaire si une cl&eacute; non crypt&eacute;e est utilis&eacute;e dans <strong class="UI">[EAP-TLS]</strong>.</p>
 		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
@@ -52,7 +53,7 @@
 	<div class="wn5-setup-section-article">
 
 		<div class="wn5-setup-section-article-content">
-			<p>Les certificats sont n&eacute;cessaires uniquement lorsque <strong class="UI">[EAP-TLS]</strong> est utilis&eacute;. Vous pouvez installer ou supprimer les certificats et les cl&eacute;s concern&eacute;s.</p>
+			<p>Le certificat n’est nécessaire que pour l’utilisation de <strong class="UI">[EAP-TLS]</strong> ou <strong class="UI">[PEAPv0/MSCHAPv2]</strong>. Le certificat et la clé correspondants peuvent être installés ou supprimés. Entrez seulement <strong class="UI">[CA certificate]</strong> pour <strong class="UI">[PEAPv0/MSCHAPv2]</strong>.</p>
 			<ul>
 				<li><strong class="UI">Certificats CA</strong>&nbsp;: S&eacute;lectionnez si les certificats CA incluent une cl&eacute; ouverte.</li>
 				<li><strong class="UI">Certificat client</strong>&nbsp;: S&eacute;lectionnez si les certificats CA incluent une cl&eacute; d&apos;authentification client.</li>

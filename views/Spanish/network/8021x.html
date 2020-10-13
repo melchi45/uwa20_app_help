@@ -17,10 +17,11 @@
 		</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>Tipo EAP </h3>
-		    <p>EAP (Extensible Authentication Protocol) es un modo de autenticaci&oacute;n regulada en redes inal&aacute;mbricas y protocolos punto a punto, y est&aacute; dise&ntilde;ado para una f&aacute;cil extensi&oacute;n. El modo LEAP es un modo de autenticaci&oacute;n de seguridad vulnerable, por lo que s&oacute;lo se recomienda para entornos en los que EAP-TLS no se pueda utilizar.</p>
+		    <p>EAP (Protocolo de Autenticación Extensible) es un protocolo que permite una extensión más fácil utilizando el método de autenticación definido por la red inalámbrica y por el Protocolo Punto a Punto. Se recomienda utilizarlo solo en un entorno en el que no se pueda utilizar EAP-TLS, PEAPv0/MSCHAPv2, ya que LEAP es un método de autenticación inseguro.</p>
 		    <ul>
 		        <li><strong class="UI">EAP-TLS</strong>: EAP-TLS (Transport Layer Security) lleva a cabo una autenticaci&oacute;n mutua que requiere un certificado del cliente con el servidor; una clave WEP din&aacute;mica se utiliza por seguridad despu&eacute;s de que se realiza la conexi&oacute;n.</li>
-		        <li><strong class="UI">LEAP</strong>: LEAP (protocolo de autenticaci&oacute;n extensible ligero) no requiere certificados y s&oacute;lo utiliza una clave WEP din&aacute;mica, por lo que debe utilizarse una contrase&ntilde;a segura.  </li>
+				<li><strong class="UI">LEAP</strong>: LEAP (protocolo de autenticaci&oacute;n extensible ligero) no requiere certificados y s&oacute;lo utiliza una clave WEP din&aacute;mica, por lo que debe utilizarse una contrase&ntilde;a segura.  </li>
+				<li><strong class="UI">PEAPv0/MSCHAPv2</strong>: La autenticación PEAP/MSCHAPv2 (Protocolo de autenticación extensible protegida/Protocolo de autenticación por desafío mutuo de Microsoft) realiza una autenticación basada en el ID y la contraseña del usuario a través de una sesión EAP-TLS generada únicamente a partir de la autenticación del lado del servidor.</li>
 		    </ul>
 		</div>
 		<div class="wn5-setup-section-article-content">
@@ -29,11 +30,11 @@
 	    </div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>ID</h3>
-		    <p>Introduzca el ID de certificado de cliente para <strong class="UI">[EAP-TLS]</strong> y el ID de usuario para <strong class="UI">[LEAP]</strong>.</p>
+		    <p>Introduzca su ID de certificado de cliente para <strong class="UI">[EAP-TLS]</strong> y el ID de usuario para <strong class="UI">[LEAP]</strong> y <strong class="UI">[PEAPv0/MSCHAPv2]</strong>.</p>
 	   	</div>
 		<div class="wn5-setup-section-article-content">
 		    <h3>Contrase&ntilde;a</h3>
-		    <p>Introduzca la clave privada del cliente para <strong class="UI">[EAP-TLS]</strong> y la contrase&ntilde;a de usuario para <strong class="UI">[LEAP]</strong>. Esto no es necesario si la clave no cifrada se utiliza en <strong class="UI">[EAP-TLS]</strong>. </p>
+		    <p>Introduzca su clave privada del cliente para <strong class="UI">[EAP-TLS]</strong> y su contraseña de usuario para <strong class="UI">[LEAP]</strong> y <strong class="UI">[PEAPv0/MSCHAPv2]</strong>. Esto no es necesario si la clave no cifrada se utiliza en <strong class="UI">[EAP-TLS]</strong>. </p>
 		</div>
 		<div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
@@ -52,7 +53,7 @@
 	<div class="wn5-setup-section-article">
 
 		<div class="wn5-setup-section-article-content">
-			<p>Los certificados son necesarios s&oacute;lo cuando se utiliza <strong class="UI">[EAP-TLS]</strong>. Puede instalar o eliminar los certificados y claves relevantes.</p>
+			<p>El certificado es necesario solamente cuando se usa <strong class="UI">[EAP-TLS]</strong> o <strong class="UI">[PEAPv0/MSCHAPv2]</strong>. El certificado y la clave correspondientes pueden instalarse o eliminarse. Introduzca únicamente <strong class="UI">[Certificados CA]</strong> para <strong class="UI">[PEAPv0/MSCHAPv2]</strong>.</p>
 			<ul>
 				<li><strong class="UI">Certificados CA</strong>: Seleccione si los certificados CA incluyen una clave abierta.</li>
 				<li><strong class="UI">Certificado de cliente</strong>: Seleccione si los certificados CA incluyen una clave de autenticaci&oacute;n de cliente.</li>
