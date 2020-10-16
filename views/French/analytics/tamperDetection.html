@@ -50,7 +50,8 @@
 
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>R&eacute;glage du PTZ</h4>
-            <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Lorsque vous cliquez sur <strong class="UI">[PTZ]</strong> dans le menu <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[S&eacute;lectionner un canal]</a>, le panneau de jog PTZ s'affiche pour le réglage PTZ de la caméra.</p>
+            <!-- <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p> -->
             <ul>
                 <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
                 <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span>pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span>pour le r&eacute;duire.</li>
@@ -78,7 +79,14 @@
             <h3>Sauf l&apos;obscurit&eacute;</h3>
             <p>Pour exclure une diminution soudaine de la luminosit&eacute; sur l&apos;&eacute;cran, comme une baisse soudaine de la lumi&egrave;re d&eacute;tect&eacute;e par l&apos;&eacute;v&eacute;nement de d&eacute;tection de sabotage, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
         </div>
-
+        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+            <h3>Transfert</h3>
+            <p>La fonction Transfert est une fonction qui d&eacute;place le focus de la cam&eacute;ra PTZ vers la zone d&eacute;sign&eacute;e &agrave; l&rsquo;&eacute;cran ou vers une zone pr&eacute;r&eacute;gl&eacute;e lors de la survenue d&rsquo;un &eacute;v&eacute;nement de détection de mouvement dans la cam&eacute;ra fixe.</p>
+            <ul>
+                <li><strong class="UI">D&eacute;sactiver</strong>&nbsp;: D&eacute;sactive la fonction Transfert.</li>
+                <li><strong class="UI">Transfert n°</strong>: Sélectionnez un numéro de transfert. Les numéros de transfert doivent être définis à l'avance dans le menu <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[Transfert]</strong>. </li>
+            </ul>
+            </div>
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
@@ -151,6 +159,7 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Al à Prérég</h3>
                 <p>Vous pouvez d&eacute;finir la position de la cam&eacute;ra pour passer &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de gestion de file d&apos;attente est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Al à Prérég] s'affiche uniquement lorsque vous sélectionnez <strong class="UI"> [PTZ]</strong> dans <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">S&eacute;lectionner un canal]</a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
             <h3>Al à Prérég</h3>

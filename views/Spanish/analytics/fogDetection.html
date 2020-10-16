@@ -31,7 +31,8 @@
 
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Ajuste del PTZ</h4>
-            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Cuando hace clic en <strong class="UI">[PTZ]</strong> en el menú <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Seleccionar canal]</a>, se muestra el panel de desplazamiento PTZ para el ajuste de PTZ de la cámara.</p>
+            <!-- <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p> -->
             <ul>
                 <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
                 <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
@@ -106,6 +107,7 @@
      <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Ir a preajuste.] aparece solo cuando selecciona <strong class="UI">[PTZ]</strong> en el menú <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Seleccionar canal]</a>. </p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
@@ -116,6 +118,7 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de niebla. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Predefinido]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Ir a preajuste.] aparece solo cuando selecciona <strong class="UI">[PTZ]</strong> en el menú <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Seleccionar canal]</a>. </p>
         </div>
 		
 		<div class="wn5-setup-section-article-content">

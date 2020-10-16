@@ -43,7 +43,8 @@ pages equally.</p>
 
         <div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>Type</h3>
-            <p>To set the same IVA (Intelligent video analytics) for all presets, select <strong class="UI">[Global]</strong>. To set a different IVA (Intelligent video analytics)&nbsp;for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.htm" ng-href="#/help/ptzSetup_ptzInfoSetup">Preset setup</a> page.</p>
+            <p>To set the same IVA (Intelligent video analytics) for all presets, select <strong class="UI">[Global]</strong>. To set a different IVA (Intelligent video analytics)&nbsp;for each PTZ preset, select <strong class="UI">[Preset]</strong>. The <strong class="UI">[Preset]</strong> option will be activated only when a preset is set from the <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.htm" ng-href="#/help/ptzSetup_ptzInfoSetup">[Preset setup]</a> page.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">The [Type] option displays only when <strong class="UI">[PTZ]</strong> is selected in the <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Select channel]</a>. 
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
             <h3>Type</h3>
@@ -86,7 +87,7 @@ pages equally.</p>
 		
 		 <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Adjusting the PTZ</h4>
-            <p>When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel">Select channel</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">When you click <strong class="UI">[PTZ]</strong> in the <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Select channel]</a> menu, the PTZ jog panel displays for camera PTZ adjustment.</p>
             <ul>
                 <li>When you drag the <span class="tui tui-wn5-ptz-handle"></span> icon with the mouse, the camera moves to the pan and tilt.</li>
                 <li>Select an image magnification by adjusting the zoom slide bar, or by clicking the <span class="tui tui-wn5-ptz-plus"></span> icon to zoom the screen in or clicking the  <span class="tui tui-wn5-ptz-minus"></span> icon to zoom the screen out.</li>
@@ -405,6 +406,7 @@ pages equally.</p>
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Goto preset</h3>
                 <p>You can set the position of camera to move to a preset position when an IVA event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Goto preset] displays only when you select <strong class="UI">[PTZ]</strong> in the <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Select channel]</a> menu. </p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">

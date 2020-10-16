@@ -46,7 +46,8 @@
         </div>
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>PTZ調整</h4>
-            <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[チャンネル選択]</a></strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
+            <!-- <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p> -->
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
                 <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
@@ -147,6 +148,7 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>プリセットに移動</h3>
                     <p>タンパリング検知イベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
+                    <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[プリセットに移動]オプションが表示されます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
             <h3>プリセットに移動</h3>

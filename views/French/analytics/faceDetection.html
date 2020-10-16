@@ -49,7 +49,8 @@
 
             <div class="wn5-online-help-action" ng-if="PTZModel">
                 <h4>R&eacute;glage du PTZ</h4>
-                <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">Lorsque vous cliquez sur <strong class="UI">[PTZ]</strong> dans le menu <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[S&eacute;lectionner un canal]</a>, le panneau de jog PTZ s'affiche pour le réglage PTZ de la caméra.</p>
+                <!-- <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p> -->
                 <ul>
                     <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
                     <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span>pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span>pour le r&eacute;duire.</li>
@@ -101,7 +102,10 @@
         <div class="wn5-setup-section-article-content">
             
             <h3>Zone</h3>
-            <p>Lorsqu&apos;une zone exclue est ajout&eacute;e, la couleur du bouton num&eacute;rique change &eacute;galement. Lorsque vous cliquez sur le bouton num&eacute;rique, la zone exclue correspondante dispara&icirc;tra de l&apos;&eacute;cran d&apos;aper&ccedil;u. Lorsque vous cliquez &agrave; nouveau sur le bouton num&eacute;rique, la zone exclue r&eacute;appara&icirc;tra.</p>
+            <p>Lorsqu&apos;une zone exclue est ajout&eacute;e, la couleur du bouton num&eacute;rique change &eacute;galement. Lorsque vous cliquez sur le bouton num&eacute;rique, la zone exclue correspondante dispara&icirc;tra de l&apos;&eacute;cran d&apos;aper&ccedil;u. 
+                <!-- Lorsque vous cliquez &agrave; nouveau sur le bouton num&eacute;rique, la zone exclue r&eacute;appara&icirc;tra. -->
+
+            </p>
         </div>
         
         <!--        <div class="wn5-setup-section-article-content">
@@ -155,7 +159,7 @@
             <p>Les options <strong class="UI">[&Eacute;mission d&rsquo;alerte]</strong> peuvent para&icirc;tre diff&eacute;rentes selon la configuration d&rsquo;&eacute;mission d&rsquo;alerte. En cas d&rsquo;&eacute;mission d&rsquo;alerte, les options, <strong class="UI">[&Eacute;mission d&rsquo;alerte]</strong> ne s&rsquo;affichent pas. Si plusieurs alertes sont &eacute;mises, elles s&rsquo;affichent sous <strong class="UI">« émission d’alerte 1 »</strong>, <strong class="UI">« émission d’alerte 2 »</strong>, etc. S&eacute;lectionnez <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[E/S de l&rsquo;alarme]</strong> pour d&eacute;finir l&rsquo;E/S de l&rsquo;alarme.</p>
         </div>
 
-      <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction"&& PresetAction">
+      <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction && PresetAction">
             <h3>Al à Prérég</h3>
                     <p>Vous pouvez r&eacute;gler la position de vue de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; un nombre pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de visage/partie supérieure du corps est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
         </div>
@@ -168,6 +172,7 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Al à Prérég</h3>
                 <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de visage/partie supérieure du corps est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Al à Prérég] s'affiche uniquement lorsque vous sélectionnez <strong class="UI"> [PTZ]</strong> dans <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">S&eacute;lectionner un canal]</a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
             <h3>Clip audio</h3>
@@ -255,7 +260,8 @@
     
                 <div class="wn5-online-help-action" ng-if="PTZModel">
                     <h4>R&eacute;glage du PTZ</h4>
-                    <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
+                    <p ng-if="MaxChannel > 1 && HandoverCalibration">Lorsque vous cliquez sur <strong class="UI">[PTZ]</strong> dans le menu <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[S&eacute;lectionner un canal]</a>, le panneau de jog PTZ s'affiche pour le réglage PTZ de la caméra.</p>
+                    <!-- <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p> -->
                     <ul>
                         <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
                         <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span>pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span>pour le r&eacute;duire.</li>
@@ -307,7 +313,10 @@
             <div class="wn5-setup-section-article-content">
                 
                 <h3>Zone</h3>
-                <p>Lorsqu&apos;une zone exclue est ajout&eacute;e, la couleur du bouton num&eacute;rique change &eacute;galement. Lorsque vous cliquez sur le bouton num&eacute;rique, la zone exclue correspondante dispara&icirc;tra de l&apos;&eacute;cran d&apos;aper&ccedil;u. Lorsque vous cliquez &agrave; nouveau sur le bouton num&eacute;rique, la zone exclue r&eacute;appara&icirc;tra.</p>
+                <p>Lorsqu&apos;une zone exclue est ajout&eacute;e, la couleur du bouton num&eacute;rique change &eacute;galement. Lorsque vous cliquez sur le bouton num&eacute;rique, la zone exclue correspondante dispara&icirc;tra de l&apos;&eacute;cran d&apos;aper&ccedil;u. 
+                    <!-- Lorsque vous cliquez &agrave; nouveau sur le bouton num&eacute;rique, la zone exclue r&eacute;appara&icirc;tra. -->
+
+                </p>
             </div>
             
             <!--        <div class="wn5-setup-section-article-content">
@@ -374,6 +383,7 @@
             <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
                 <h3>Al à Prérég</h3>
                     <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de visage est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
+                    <p ng-if="MaxChannel > 1 && HandoverCalibration">[Al à Prérég] s'affiche uniquement lorsque vous sélectionnez <strong class="UI"> [PTZ]</strong> dans <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">S&eacute;lectionner un canal]</a>.</p>
             </div>
             <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
                 <h3>Clip audio</h3>

@@ -48,8 +48,11 @@
 			</div>
 			<div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>Tipo</h3>
-            <p>Para definir la misma detecci&oacute;n de movimiento para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir la misma detecci&oacute;n de movimiento para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuraci&oacute;n de preajustes</a>. Si selecciona <strong class="UI">[Preajuste]</strong> y configura una detección de movimiento para cada preajuste, quizá no pueda ver alguna de las características en los ajustes detallados.</p>
+            <p>Para definir la misma detecci&oacute;n de movimiento para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir la misma detecci&oacute;n de movimiento para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. </p>
+            <p>La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuraci&oacute;n de preajustes</a>. Si selecciona <strong class="UI">[Preajuste]</strong> y configura una detección de movimiento para cada preajuste, quizá no pueda ver alguna de las características en los ajustes detallados.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">La opción [Tipo] sólo se puede configurar cuando se selecciona <strong class="UI">[PTZ]</strong> en <strong class="UI"><a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Seleccionar canal]</a></strong>.</p>
             </div>
+
 			<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
                 <h3>Tipo</h3>
                 <p>Para configurar la misma detección de movimiento para cada preajuste, seleccione <strong class="UI">[Global]</strong>. PPara configurar la detección de movimiento para cada preajuste de panorámica/inclinación, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong>se activará únicamente cuando se configure el preajuste desde la página <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">Configuraci&oacute;n de PT</a>. Si selecciona <strong class="UI">[Preajuste]</strong> y configura una detección de movimiento para cada preajuste, quizá no pueda ver alguna de las características en los ajustes detallados.</p>
@@ -101,7 +104,8 @@
         </div>
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>Ajuste del PTZ</h4>
-            <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
+            <!-- <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p> -->
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Cuando hace clic en <strong class="UI">[PTZ]</strong> en el menú <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Seleccionar canal]</a>, se muestra el panel de desplazamiento PTZ para el ajuste de PTZ de la cámara.</p>
             <ul>
                 <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
                 <li>Con la barra de zoom puede ajustar el porcentaje de zoom del v&iacute;deo. Tambi&eacute;n puede hacer clic en el icono <span class="tui tui-wn5-ptz-plus"></span>para ampliar la pantalla o en el icono <span class="tui tui-wn5-ptz-minus"></span>para reducirla.</li>
@@ -145,7 +149,7 @@
             <ul>
                 
                 <li>Puede definir el traspaso para cada &aacute;rea ROI. La funci&oacute;n de Traspaso se puede utilizar despu&eacute;s de definir el &aacute;rea ROI.</li>
-                <li>El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a href="#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
+                <li>El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
             </ul>
         </div>
 
@@ -311,6 +315,7 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento de detecci&oacute;n de movimiento. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Ir a preajuste.] aparece solo cuando selecciona <strong class="UI">[PTZ]</strong> en el menú <a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[Seleccionar canal]</a>. </p>
         </div>
 
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
