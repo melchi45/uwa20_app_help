@@ -31,7 +31,9 @@
                 <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
             </ul> -->
 			<p ng-if="HybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. </p>
-            <p ng-if="!SupportAutoImageAlignment"><strong class="UI">[상세정보]</strong> 버튼을 클릭하면 채널 전체 상태를 채널별로 요약하여 보여줍니다. </p>
+
+			<!-- 열상 카메라 TNM-6320TDY에서 hdie 되도록 코드 추가 -->
+            <p ng-if="!SupportAutoImageAlignment && !HybridThermal"><strong class="UI">[상세정보]</strong> 버튼을 클릭하면 채널 전체 상태를 채널별로 요약하여 보여줍니다. </p>
             <!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> -->
         </div>
 	</div>
@@ -434,7 +436,8 @@ TW 자체. 2019-12-27 -->
 			<h3>CVBS</h3>
 			<p>CVBS 단자에 케이블을 연결하여 아날로그 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다. 카메라 설치 시 렌즈 위치나 포커스 등을 확인하면서 설정할 수 있어 유용합니다.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1 && !MultiImager">
 			<h3>CVBS 방식 </h3>
 			<p>CVBS을 사용하는 경우 CVBS 비디오 출력 타입을 선택합니다.</p>
 			<ul>
@@ -442,7 +445,8 @@ TW 자체. 2019-12-27 -->
 				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) 방식은 독일에서 제안되었고 NTSC 방식과 비슷하지만 색 신호를 취급하는 방법에 차이가 있습니다. 주로 유럽에서 사용하는 방식입니다. NTSC에 비해 초당 프레임 수는 적지만 수평 주사선이 625로 더 많아 해상도가 높고, 색 변형이 적으며 방송 설비에 고도의 규격이 필요하지 않습니다. </li>
 			</ul>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel"> -->
+		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel && !MultiImager">
             <h3>레이아웃</h3>
             <p>카메라 영상 출력 화면의 레이아웃 옵션을 <strong class="UI">[레이아웃]</strong>에서 선택할 수 있습니다. <strong class="UI">[4분할]</strong>을 선택하면 4채널의 영상을 분할하여 한 화면에 모두 보여줍니다. <strong class="UI">[단일]</strong>을 선택하면 4개 채널의 영상 중 하나만 화면에 보여줍니다. [단일] 옵션 선택 시 화면에 보여질 채널을 선택할 수 있습니다. </p>
 		</div>

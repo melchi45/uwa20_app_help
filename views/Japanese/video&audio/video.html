@@ -36,7 +36,7 @@
 				<li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
 			</ul> -->
             <p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
-            <p ng-if="!SupportAutoImageAlignment"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
+            <p ng-if="!SupportAutoImageAlignment && !HybridThermal"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
             <!-- <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p> -->
 
         </div>
@@ -392,7 +392,8 @@
 			<p>CVBSを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
 			<p>カメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができるため、有用です。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1 && !MultiImager">
 			<h3>CVBSタイプ</h3>
 			<p>CVBSを使用する場合、CVBSビデオ出力タイプを選択します。</p>
 			<ul>
@@ -400,7 +401,8 @@
 				<li><strong class="UI">PAL</strong>：PAL (Phase Alternation Line)タイプはドイツから提案されてNTSCタイプと似ているが、カラー信号を扱う方法に差があります。主にヨーロッパで使用するタイプです。NTSCに比べて1秒当たりのフレーム数は少ないが、水平走査線が625でより多くて解像度が高く、カラー変形が少なく、放送設備に高度の規格が必要ないです。</li>
 			</ul>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel"> -->
+			<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel && !MultiImager">
             <h3>レイアウト</h3>
             <p>カメラビデオ出力画面のレイアウトオプションを <strong class="UI">[レイアウト]</strong>で選択することができます。<strong class="UI">[4分割]</strong>を選択すると、4チャンネルのビデオを分割して一つの画面にすべて表示します。<strong class="UI"></strong>[シングル]</strong>を選択すると、4チャンネルのビデオの中で一つだけ画面に表示します。[シングル]オプションを選択時、画面に表示するチャンネルを選択することができます。</p>
 		</div>

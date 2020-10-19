@@ -34,7 +34,7 @@
                 <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
             </ul> -->
             <p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
-            <p ng-if="!SupportAutoImageAlignment">Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher le r&eacute;sum&eacute; global de chaque canal.</p>
+            <p ng-if="!SupportAutoImageAlignment && !HybridThermal">Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher le r&eacute;sum&eacute; global de chaque canal.</p>
             <!-- <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p> -->
         </div>
 	</div>
@@ -399,7 +399,8 @@
                <p>Pour afficher une vid&eacute;o en connectant un c&acirc;ble &agrave; la borne CVBS, cliquez sur <strong class="UI">[Activer]</strong>.</p>
                <p>Elle est utile car vous pouvez la régler en vérifiant la position de l’objectif ou la mise au point lors de l’installation de la caméra.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1 && !MultiImager">
             <h3>Type de CVBS</h3>
             <!-- <h3>Type</h3> -->
                 <p>Pour utiliser CVBS, s&eacute;lectionnez le type de sortie vid&eacute;o CVBS.</p>
@@ -408,7 +409,8 @@
 				<li><strong class="UI">PAL</strong>&nbsp;: La m&eacute;thode PAL (Ligne d&rsquo;alternance de phase) a &eacute;t&eacute; propos&eacute;e par l&rsquo;Allemagne et elle est similaire &agrave; NTSC mais diff&egrave;re par la fa&ccedil;on dont elle traite les signaux de couleur. Il est surtout utilis&eacute; en Europe. Par rapport au NTSC, le nombre d&rsquo;images par seconde est plus faible, mais le nombre de faisceaux horizontaux est plus &eacute;lev&eacute; (625). Ainsi, la r&eacute;solution est plus &eacute;lev&eacute;e, la d&eacute;formation des couleurs est moindre et l&rsquo;installation de diffusion n&rsquo;exige pas de sp&eacute;cifications &eacute;lev&eacute;es.</li>
 			</ul>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel"> -->
+            <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel && !MultiImager">
             <h3>Pr&eacute;sentation</h3>
             <p>Vous pouvez s&eacute;lectionner les options de pr&eacute;sentation de l&rsquo;&eacute;cran de sortie vid&eacute;o de la cam&eacute;ra dans <strong class="UI">[Pr&eacute;sentation]</strong>. La s&eacute;lection de <strong class="UI">[Quad]</strong> permet l&rsquo;affichage de toutes les vid&eacute;os des 4&nbsp;canaux sur un seul &eacute;cran. La s&eacute;lection de <strong class="UI">[Unique]</strong> permet l&rsquo;affichage d&rsquo;une seule vid&eacute;o des 4&nbsp;canaux sur l&rsquo;&eacute;cran. Si [Unique] est s&eacute;lectionn&eacute;, vous pouvez choisir le canal de diffusion de la vid&eacute;o.</p>
 		</div>

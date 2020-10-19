@@ -35,7 +35,7 @@
             </ul> -->
 
             <p ng-if="HybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
-            <p ng-if="!SupportAutoImageAlignment">Haga clic en el bot&oacute;n <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
+            <p ng-if="!SupportAutoImageAlignment && !HybridThermal">Haga clic en el bot&oacute;n <strong class="UI">[Información del producto]</strong> para ver un resumen general de cada canal.</p>
             <!-- <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p> -->
         </div>
 	</div>
@@ -399,7 +399,8 @@
                <p>Para mostrar un video al conectar un cable a la terminal CVBS, haga clic en <strong class="UI">[Activar]</strong>.</p>
                <p>Es útil ya que se puede establecer durante la comprobación de la posición de la lente o el enfoque cuando se instala la cámara.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1 && !MultiImager">
             <h3>Tipo de CVBS</h3>
             <!-- <h3>Tipo</h3> -->
                 <p>Para usar CVBS, seleccione el tipo de salida de video CVBS.</p>
@@ -408,7 +409,8 @@
                     <li><strong class="UI">PAL</strong>: Al m&eacute;todo PAL (L&iacute;nea de alternancia de fase) lo propuso Alemania y es similar al NTSC pero difiere en la manera en que trata las se&ntilde;ales de color. En su mayor&iacute;a, se usa en Europa. Comparado con el NTSC, el n&uacute;mero de fotogramas por segundo es m&aacute;s bajo pero el n&uacute;mero de rayos horizontales es m&aacute;s alto (625). Por consiguiente, la resoluci&oacute;n es m&aacute;s alta, la deformaci&oacute;n de color es menor, y el centro de radiodifusi&oacute;n no requiere altas especificaciones.</li>
 			</ul>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel"> -->
+            <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel && !MultiImager">
             <h3>Esquema</h3>
             <p>Puede seleccionar las opciones de dise&ntilde;o para la pantalla de salida de v&iacute;deo de la c&aacute;mara en <strong class="UI">[Esquema]</strong>. Si selecciona <strong class="UI">[Cuadrante]</strong> se mostrar&aacute;n todos los v&iacute;deos de los 4 canales en una pantalla. Si selecciona <strong class="UI">[Simple]</strong> se mostrar&aacute; solo un v&iacute;deo de los 4 canales en una pantalla. Si selecciona [Simple], podr&aacute; elegir el canal para transmitir el v&iacute;deo.</p>
 		</div>

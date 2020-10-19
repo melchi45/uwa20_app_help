@@ -35,7 +35,7 @@
             </ul> -->
             <p ng-if="MultiImager">Channel 1 displays live feed and channel 2 and channel 3 display Digital PTZ video. [Video setup] can only be configured on channel 1.</p> 
             <p ng-if="HybridThermal">Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel.</p>
-            <p ng-if="!SupportAutoImageAlignment">Click the <strong class="UI">[Info]</strong> button to see the overall summary of each channel.</p>
+            <p ng-if="!SupportAutoImageAlignment && !HybridThermal">Click the <strong class="UI">[Info]</strong> button to see the overall summary of each channel.</p>
             <!-- <p>If you select another channel without applying the changes in the setting, an alarm message will appear.</p> -->
 
         </div>
@@ -398,7 +398,7 @@
             <p>It is useful since you can set it while checking the lens position or focus when installing the camera.</p>
 		</div>
 		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
-            <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1 && !MultiImager">
             <h3>CVBS type</h3>  
             <p>To use CVBS, select the CVBS video output type.</p>
 			<ul>
@@ -406,8 +406,8 @@
 				<li><strong class="UI">PAL</strong>: PAL (Phase Alternation Line) method was proposed by Germany and it is similar to NTSC but differs in the way it handles the color signals. It is mostly used in Europe. Compared to NTSC, the number of frames per sec is lower but the number of horizontal beams is higher (625). Thus, the resolution is higher, the color deformation is less, and the broadcasting facility does not require high specifications. </li>
 			</ul>
         </div>
-        <!-- <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel"> -->
-        <div class="wn5-setup-section-article-content" ng-if="(!GlobalRotateViewSupport && !ZoomOnlyModel) || GlobalRotateViewSupport == undefined">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel"> -->
+            <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel && !MultiImager">
             <h3>Layout</h3>
             <p>You can select layout options for camera video output screen in <strong class="UI">[Layout]</strong>. Selecting <strong class="UI">[Quad]</strong> displays all videos from 4 channels on one screen. Selecting <strong class="UI">[Single]</strong> displays only one video from 4 channels on the screen. If [Single] is selected, you can choose the channel to stream the video.</p>
         </div>
