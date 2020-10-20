@@ -236,8 +236,9 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection">
-<div class="wn5-setup-section" ng-if="BoxTemperatureDetection">
+<!-- 열상 카메라 TNM-3620TDY. 이재준 수석님.typeof mAttr.thermalModelbyChannel !== 'undefined' ? mAttr.thermalModelbyChannel[currentChannel] : false; 가이드 받음. thermalModelbyChannel !== undefined 추가함. 2020-10-19 메일 -->
+<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection || thermalModelbyChannel !== undefined">
+<div class="wn5-setup-section" ng-if="BoxTemperatureDetection || thermalModelbyChannel !== undefined">
     <div class="wn5-setup-section-heading">
         <h2>LCE (Local Contrast Enhancement)  </h2>
     </div>
@@ -943,14 +944,18 @@
         </div>
         
         <!-- tnu-6321 미지원 기능이나 attribute 없음. 임시 hide 코드 추가 -->
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <!-- <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus"> -->
+        <!-- 열상 TNM-3620TDY. 이재준 수석님. mAttributes.MultiImageIndex > 0 인 경우만 보여줌 2020-10-19 -->           
+            <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>오버레이 이미지 </h3>
             <p>사용자가 원하는 이미지를 화면 좌측 상단에 표시할 수 있습니다. <strong class="UI">[이미지 업로드]</strong> 메뉴에서 이미지를 업로드할 수 있습니다.</p>
             <!-- pnm-9000qb/8082v에서만 show 되도록 분기 코드 추가. 김주희 선임님. 2020-10-12 -->
             <p ng-if="GlobalMultiImageOSDSupport">오버레이 이미지를 변경하면 모든 채널의 오버레이 이미지가 변경됩니다.</p>
         </div>
-         <!-- tnu-6321 미지원 기능이나 attribute 없음. 임시 hide 코드 추가 -->
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <!-- tnu-6321 미지원 기능이나 attribute 없음. 임시 hide 코드 추가 -->
+        <!-- <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus"> -->
+        <!-- 열상 TNM-3620TDY. 이재준 수석님. mAttributes.MultiImageIndex > 0 인 경우만 보여줌 2020-10-19 -->           
+        <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>이미지 업로드</h3>
             <p><strong class="UI">[…]</strong> 버튼을 클릭하여 비트맵 형식의 파일을 검색합니다. <strong class="UI">[업로드]</strong> 버튼을 클릭하여 이미지 파일을 업로드합니다. 화면에 적용한 이미지 파일을 삭제하려면 <strong class="UI">[삭제]</strong> 버튼을 클릭합니다.
 

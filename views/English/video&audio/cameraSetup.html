@@ -226,8 +226,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection">
-<div class="wn5-setup-section" ng-if="BoxTemperatureDetection">
+<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection || thermalModelbyChannel !== undefined">
+<div class="wn5-setup-section" ng-if="BoxTemperatureDetection || thermalModelbyChannel !== undefined">
     <div class="wn5-setup-section-heading">
         <h2>LCE (Local Contrast Enhancement)</h2>
     </div>
