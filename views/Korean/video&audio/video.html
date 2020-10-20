@@ -446,7 +446,8 @@ TW 자체. 2019-12-27 -->
 			</ul>
 		</div>
 		<!-- <div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel"> -->
-		<div class="wn5-setup-section-article-content" ng-if="!GlobalRotateViewSupport && !ZoomOnlyModel && !MultiImager">
+		<!-- PNM-9322VQP. VideoTypeOptions : undefined. 김주희 선임님. 2020-10-16 메일 -->
+		<div class="wn5-setup-section-article-content" ng-if="VideoTypeOptions == undefined">
             <h3>레이아웃</h3>
             <p>카메라 영상 출력 화면의 레이아웃 옵션을 <strong class="UI">[레이아웃]</strong>에서 선택할 수 있습니다. <strong class="UI">[4분할]</strong>을 선택하면 4채널의 영상을 분할하여 한 화면에 모두 보여줍니다. <strong class="UI">[단일]</strong>을 선택하면 4개 채널의 영상 중 하나만 화면에 보여줍니다. [단일] 옵션 선택 시 화면에 보여질 채널을 선택할 수 있습니다. </p>
 		</div>

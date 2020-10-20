@@ -11,16 +11,17 @@
 		</div>
 		<!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 -->
 		<!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --> 
+		<!-- AdminIDChange : undefined. PNM-9322VQP. 김주희 선임님. 2020-10-16 메일 참고  -->
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="AdminID == undefined || AdminID">관리자 계정의 ID와 비밀번호를 변경할 수 있습니다. 비밀번호를 변경하는 경우, 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
-			<p ng-if="AdminID == undefined || !AdminID">관리자의 비밀번호를 변경할 수 있습니다. 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
+			<p ng-if="AdminIDChange == undefined || AdminIDChange">관리자 계정의 ID와 비밀번호를 변경할 수 있습니다. 비밀번호를 변경하는 경우, 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
+			<p ng-if="AdminIDChange == undefined || !AdminIDChange">관리자의 비밀번호를 변경할 수 있습니다. 보안을 강화하기 위해 영문자 대문자 및 소문자, 숫자, 특수문자 등을 다양하게 조합하여 비밀번호를 생성하십시오.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="AdminID == undefined || AdminID">
+		<div class="wn5-setup-section-article-content" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h3>ID</h3>
 	        <p>현재 사용하고 있는 관리자 ID를 확인하거나 변경할 수 있습니다.</p>
 	    </div>
-		<div class="wn5-online-help-info" ng-if="AdminID == undefined || AdminID">
+		<div class="wn5-online-help-info" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>관리자 ID는 알파벳, 숫자만 사용할 수 있으며, 최대 8자까지 입력할 수 있습니다.</li>

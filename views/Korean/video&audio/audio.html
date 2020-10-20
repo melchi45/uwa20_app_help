@@ -5,9 +5,11 @@
 	<p>네트워크 카메라에 마이크와 스피커를 연결하여 원격에서 카메라가 설치된 곳의 소리를 듣거나 카메라에서 오디오를 출력할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
 
-<!-- PNM-9000QB에 신규 추가됨.  -->
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1">
+<!-- PNM-9000QB에 신규 추가됨. ng-if="MaxChannel > 1" 추가 -->
+<!-- PNM-9322VQP에서 코드 수정. 김주희 선임님. 2020-10-16 메일 -->
+
+<hr class="wn5-setup-hr" ng-if="MaxAudioInputCount > 1">
+<div class="wn5-setup-section" ng-if="MaxAudioInputCount > 1">
     <div class="wn5-setup-section-heading">
         <h2>채널 선택</h2>
     </div>

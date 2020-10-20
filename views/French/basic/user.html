@@ -11,14 +11,14 @@
 				<h2>Modification des informations relatives à l’administrateur</h2>
 		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="AdminID == undefined || AdminID">Vous pouvez modifier l&rsquo;ID du compte administrateur et le mot de passe. Pour renforcer la s&eacute;curit&eacute;, cr&eacute;ez un mot de passe en combinant de mani&egrave;re al&eacute;atoire des lettres anglaises majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</p>
-			<p ng-if="AdminID == undefined || !AdminID">Vous pouvez modifier le mot de passe administrateur. Pour renforcer la s&eacute;curit&eacute;, cr&eacute;ez un mot de passe en combinant de mani&egrave;re al&eacute;atoire des lettres anglaises majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</p>
+			<p ng-if="AdminIDChange == undefined || AdminID">Vous pouvez modifier l&rsquo;ID du compte administrateur et le mot de passe. Pour renforcer la s&eacute;curit&eacute;, cr&eacute;ez un mot de passe en combinant de mani&egrave;re al&eacute;atoire des lettres anglaises majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</p>
+			<p ng-if="AdminIDChange == undefined || !AdminID">Vous pouvez modifier le mot de passe administrateur. Pour renforcer la s&eacute;curit&eacute;, cr&eacute;ez un mot de passe en combinant de mani&egrave;re al&eacute;atoire des lettres anglaises majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="AdminID == undefined || AdminID">
+		<div class="wn5-setup-section-article-content" ng-if="AdminIDChange == undefined || AdminID">
 			<h3>ID</h3>
 	        <p>Vous pouvez afficher ou modifier l&rsquo;ID administrateur qui est actuellement utilis&eacute;.</p>
 	    </div>
-		<div class="wn5-online-help-info" ng-if="AdminID == undefined || AdminID">
+		<div class="wn5-online-help-info" ng-if="AdminIDChange == undefined || AdminID">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>L&rsquo;ID administrateur ne doit contenir que des caract&egrave;res alphanum&eacute;riques avec une longueur maximale de 8&nbsp;caract&egrave;res.</li>

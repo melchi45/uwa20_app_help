@@ -684,12 +684,12 @@
                     <li>チャンネル1(実画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベル、ガンマ制御、ガンマ、コントラスト、ローカル・コントラスト、カラーレベル、曇り除去、LDCをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベルのみサポートします。</li>
                 </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+		<div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
             <h3>レンズ</h3>
                 <p>カメラに搭載されたレンズのモデル名が表示されます。</p>
                 <p>チャンネル選択でチャンネルを選択すると、チャンネル別に搭載されたレンズモデルを選択することができます。</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+		<div class="wn5-online-help-info" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>一部レンズを選択する時、<strong class="UI">[LDC]</strong>オプションが表示されない場合があります。</li>
@@ -792,7 +792,7 @@
                     <!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
                     <li ng-if="GlobalLDCModeSupport">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
-                    <li ng-if="!!LensModelViewOptions || !!LensModelOptions">選択したレンズタイプによって[LDC]オプションが表示されない場合があります。レンズタイプは<strong class="UI">[レンズ]</strong>で選択することができます。</li>
+                    <li ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">選択したレンズタイプによって[LDC]オプションが表示されない場合があります。レンズタイプは<strong class="UI">[レンズ]</strong>で選択することができます。</li>
                 </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">

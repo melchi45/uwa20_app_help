@@ -688,13 +688,13 @@
                     <li ng-if="HybridThermal">Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), DIS, la nettet&eacute;, le niveau de nettet&eacute;, le contr&ocirc;le gamma, le contraste gamma, le contraste local, le niveau des couleurs, le d&eacute;sembuage et LDC sont pris en charge. Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), seuls DIS, la nettet&eacute; et le niveau de nettet&eacute; sont pris en charge.</li>
                 </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+		<div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
             <h3>Objectif</h3>
                 <p>Le nom du mod&egrave;le de l&rsquo;objectif install&eacute; sur la cam&eacute;ra est affich&eacute;.</p>
                 <p>La s&eacute;lection d&rsquo;un canal dans S&eacute;lectionner un canal vous permet de s&eacute;lectionner le mod&egrave;le d&rsquo;objectif install&eacute; pour chaque canal.</p>
         </div>
 		
-		<div class="wn5-online-help-info" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+		<div class="wn5-online-help-info" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Pour certains objectifs, l&rsquo;option <strong class="UI">[LDC]</strong> peut ne pas &ecirc;tre disponible.</li>
@@ -794,7 +794,7 @@
                     <li>Lorsque <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Vid&eacute;o configuration]</a></strong>, <strong class="UI">[LDC]</strong> et <strong class="UI">[LDC Niveau]</strong>. D&eacute;cochez la case <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong> pour utiliser la fonction LDC.</li><!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
                     <li ng-if="GlobalLDCModeSupport">Toute modification apportée aux options LDC sera appliquée de façon identique à tous les autres canaux.</li>
-                    <li ng-if="!!LensModelViewOptions || !!LensModelOptions">Selon le type d&rsquo;objectif s&eacute;lectionn&eacute;, l&rsquo;option [LDC] peut ne pas &ecirc;tre disponible. Le type d&rsquo;objectif peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Objectif]</strong>.</li>
+                    <li ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">Selon le type d&rsquo;objectif s&eacute;lectionn&eacute;, l&rsquo;option [LDC] peut ne pas &ecirc;tre disponible. Le type d&rsquo;objectif peut &ecirc;tre s&eacute;lectionn&eacute; dans <strong class="UI">[Objectif]</strong>.</li>
                 </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">

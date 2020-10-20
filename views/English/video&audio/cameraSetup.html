@@ -689,12 +689,12 @@
                     <li>If Channel 1 is selected (visible video), DIS, Sharpness, Sharpness level, Gamma control, Gamma contrast, Local contrast, Color level, Defog, and LDC are supported. If Channel 2 is selected (thermal video), only DIS, Sharpness, and Sharpness level are supported.</li>
                 </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+		<div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
             <h3>Lens</h3>
                 <p>The model name of the lens installed on the camera is displayed.</p>
                 <p>Selecting a channel in Select channel allows you to select the installed lens model for each channel.</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+		<div class="wn5-online-help-info" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>For some lenses, <strong class="UI">[LDC]</strong> option might not be available.</li>
@@ -793,7 +793,7 @@
                 <ul>
                     <li>When <strong class="UI">[Enable privacy area]</strong> is selected in <strong class="UI">[Vidoe &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Video setup]</a></strong>, both <strong class="UI">[LDC]</strong> and <strong class="UI">[LDC level]</strong> options are disabled. Uncheck <strong class="UI">[Enable privacy area]</strong> to use the LDC function.</li>
                     <li ng-if="GlobalLDCModeSupport">Any changes to the LDC options are equally applied to all the other channels.</li>
-                    <li ng-if="!!LensModelViewOptions || !!LensModelOptions">Depending on the type of lens you selected, the [LDC] option might not be available. Lens type can be selected in <strong class="UI">[Lens]</strong>.</li>
+                    <li ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">Depending on the type of lens you selected, the [LDC] option might not be available. Lens type can be selected in <strong class="UI">[Lens]</strong>.</li>
                     
                     <!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->

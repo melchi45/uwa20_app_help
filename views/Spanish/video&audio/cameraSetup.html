@@ -686,13 +686,13 @@
                     <li>Si se selecciona el Canal 1 (v&iacute;deo visible), se admiten DIS, Nitidez, Nivel de nitidez, Control de gama, Contraste de gama, Contraste local, Nivel de color, Filtro antineblina y LDC. Si se selecciona el Canal 2 (v&iacute;deo t&eacute;rmico), solo se admiten DIS, Nitidez y Nivel de nitidez.</li>
                 </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+        <div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
             <h3>Lente</h3>
                 <p>Se muestra el nombre del modelo de la lente instalada en la c&aacute;mara.</p>
                 <p>La selecci&oacute;n de un canal en Seleccionar canal le permitir&aacute; seleccionar el modelo de lente instalado para cada canal.</p>
         </div>
 		
-		<div class="wn5-online-help-info" ng-if="!!LensModelViewOptions || !!LensModelOptions">
+		<div class="wn5-online-help-info" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Para algunas lentes, la opci&oacute;n <strong class="UI">[LDC]</strong> podr&iacute;a no estar disponible.</li>
@@ -792,7 +792,7 @@
                     <li>Cuando se selecciona <strong class="UI">[Activar la zona de privacidad]</strong> en <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[Configuraci&oacute;n de v&iacute;deo]</a></strong>, tanto <strong class="UI">[LDC]</strong> como <strong class="UI">[LDC Nivel]</strong>. Desmarque <strong class="UI">[Activar la zona de privacidad]</strong> para usar la funci&oacute;n LDC.</li><!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
                     <li ng-if="GlobalLDCModeSupport">Cualquier cambio en las opciones LDC se aplicará por igual a todos los demás canales.</li>
-                    <li ng-if="!!LensModelViewOptions || !!LensModelOptions">Dependiendo del tipo de lente que haya seleccionado, la opci&oacute;n [LDC] podr&iacute;a no estar disponible. El tipo de lente se puede seleccionar en <strong class="UI">[Lente]</strong>.</li>
+                    <li ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">Dependiendo del tipo de lente que haya seleccionado, la opci&oacute;n [LDC] podr&iacute;a no estar disponible. El tipo de lente se puede seleccionar en <strong class="UI">[Lente]</strong>.</li>
                 </ul>
         </div>  
         <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
