@@ -8,7 +8,8 @@
 
 <div class="wn5-setup-section">
 		<div class="wn5-setup-section-heading">
-				<h2>Cambiar la información del administrador</h2>
+			<h2 ng-if="AdminIDChange == undefined || AdminIDChange">Cambiar la información del administrador</h2>
+			<h2 ng-if="AdminIDChange == undefined || !AdminIDChange">Cambiar contraseña de administrador</h2>
 		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
 			<p ng-if="AdminIDChange == undefined || AdminIDChange">Puede cambiar el ID de la cuenta de administrador y la contrase&ntilde;a. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>

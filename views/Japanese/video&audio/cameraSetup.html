@@ -821,7 +821,7 @@
                 <p>カメラタイトルを削除するには、削除する名前を選択してから<strong class="UI">[削除]</strong>ボタンをクリックします。カメラタイトルを入力した後、画面上にどう表示されるのか確認するには名前を入力してから<strong class="UI">[プレビュー]</strong>ボタンをクリックします。</p>
 
 
-                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">[位置]</strong>カラムの<strong class="UI">[移動]</strong>ボタンをクリックすると、プレビュー映像画面にOSD位置が三角形のアイコンで表示されます。アイコンを移動してOSD位置を調整できます。</p>
+                <p ng-if="MultiImageIndex > 0"><strong class="UI">[位置]</strong>カラムの<strong class="UI">[移動]</strong>ボタンをクリックすると、プレビュー映像画面にOSD位置が三角形のアイコンで表示されます。アイコンを移動してOSD位置を調整できます。</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>日付＆時間</h3>
@@ -853,12 +853,12 @@
             <p>ズーム倍率やカメラ名など、カメラ映像画面に表示するデータを選択します。</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>オーバーレイ画像</h3>
             <p>ユーザーが希望する画像を画面の左上に表示できます。<strong class="UI">[画像のアップロード]</strong>メニューで画像をアップロードできます。</p>
             <p ng-if="GlobalMultiImageOSDSupport">オーバーレイ画像を変更すると、全チャンネルのオーバーレイ画像が変更されます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>画像のアップロード</h3>
             <p><strong class="UI">[…]</strong>ボタンをクリックしてビットマップタイプのファイルを検索します。<strong class="UI">[アップロード]</strong>ボタンをクリックして画像ファイルをアップロードします。画面に適用した画像ファイルを削除するには、<strong class="UI">[削除]</strong>ボタンをクリックします。
 
@@ -878,8 +878,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
-<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>カラーパレット</h2>
     </div>

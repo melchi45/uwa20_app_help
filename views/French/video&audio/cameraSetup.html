@@ -824,7 +824,7 @@
                 <p>Pour supprimer un titre de cam&eacute;ra, s&eacute;lectionnez un nom de cam&eacute;ra &agrave; supprimer et cliquez sur le bouton <strong class="UI">[Effacer]</strong>. Apr&egrave;s avoir entr&eacute; le titre de la cam&eacute;ra, si vous voulez voir &agrave; quoi elle ressemble, entrez le nom de la cam&eacute;ra et cliquez sur le bouton <strong class="UI">[Priview]</strong>.</p>
 
 
-                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">Dans la colonne</strong>[Position],<strong class="UI">cliquez sur le bouton</strong>[D&eacute;placer]. La position OSD s&rsquo;affiche sous forme d&rsquo;un ic&ocirc;ne triangulaire sur l&rsquo;&eacute;cran vid&eacute;o pr&eacute;c&eacute;dent. Vous pouvez d&eacute;placer l&rsquo;ic&ocirc;ne pour ajuster la position de l&rsquo;OSD.</p>
+                <p ng-if="MultiImageIndex > 0"><strong class="UI">Dans la colonne</strong>[Position],<strong class="UI">cliquez sur le bouton</strong>[D&eacute;placer]. La position OSD s&rsquo;affiche sous forme d&rsquo;un ic&ocirc;ne triangulaire sur l&rsquo;&eacute;cran vid&eacute;o pr&eacute;c&eacute;dent. Vous pouvez d&eacute;placer l&rsquo;ic&ocirc;ne pour ajuster la position de l&rsquo;OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Date et heure</h3>
@@ -856,12 +856,12 @@
             <p>D&eacute;finit d&rsquo;afficher ou non les informations sur le zoom grossissant de la cam&eacute;ra ou les noms pr&eacute;d&eacute;finis sur l&rsquo;&eacute;cran.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>Overlay image</h3>
             <p>L&rsquo;image s&eacute;lectionn&eacute;e peut s&rsquo;afficher en haut et &agrave; gauche de l&rsquo;&eacute;cran. Le menu <strong class="UI">[Upload image]</strong> vous permet de charger des images.</p>
             <p ng-if="GlobalMultiImageOSDSupport">La modification d’une image de surimpression entraîne la modification des images de surimpression de tous les canaux.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>Upload image</h3>
             <p>Cliquez sur le bouton <strong class="UI">[...]</strong>pour rechercher des fichiers en format bitmap. Cliquez sur le bouton <strong class="UI">[Upload]</strong> pour charger des fichiers d&rsquo;image. Pour supprimer des fichiers d&rsquo;image appliqu&eacute;s &agrave; l&rsquo;&eacute;cran, cliquez sur le bouton <strong class="UI">[Effacer]</strong>. 
                 
@@ -880,8 +880,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
-<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>Palette de couleurs</h2>
     </div>

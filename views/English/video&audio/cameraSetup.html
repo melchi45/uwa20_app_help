@@ -824,7 +824,7 @@
             <p>When you click the <strong class="UI">[Add]</strong> button, a field where a camera title can be entered will be added to the list.Enter the title of your camera, and move the cursor to set its location.Up to 5 camera titles can be added.</p>
                 <p>To delete a camera title, select the title to delete and click the <strong class="UI">[Delete]</strong> button. To preview how the camera title is displayed on the screen after entering it, enter the camera title and click the <strong class="UI">[Preview]</strong> button.</p>
 
-                <p ng-if="PeerConnectionInfoClientHttpsStatus"><strong class="UI">In the [Position]</strong>column,<strong class="UI">click the [Move]</strong>button. Then, OSD position is displayed as a triangular shaped icon on the preview video screen. You can move the icon to adjust the position of the OSD.</p>
+                <p ng-if="MultiImageIndex > 0"><strong class="UI">In the [Position]</strong>column,<strong class="UI">click the [Move]</strong>button. Then, OSD position is displayed as a triangular shaped icon on the preview video screen. You can move the icon to adjust the position of the OSD.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>Date &amp; Time</h3>
@@ -856,12 +856,12 @@
             <p>Set whether to display the camera&apos;s zoom maginification info or preset names on the screen.</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>Overlay image</h3>
             <p>The image you want can be displayed at the top left of the screen. <strong class="UI">[Upload image]</strong> menu allows you to upload images.</p>
             <p ng-if="GlobalMultiImageOSDSupport">Changing an overlay image results in changing overlay images of all channels.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PeerConnectionInfoClientHttpsStatus">
+        <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>Upload image</h3>
             <p><strong class="UI">[...]</strong>button can be clicked to search files in bitmap format. Click the <strong class="UI">[Upload]</strong> button to upload image files. To delete image files applied to the screen, click the <strong class="UI">[Delete]</strong> button. 
                 
@@ -881,8 +881,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection">
-<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>Color Palette</h2>
     </div>
