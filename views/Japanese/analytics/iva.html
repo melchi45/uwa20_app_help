@@ -42,7 +42,7 @@
 		<div class="wn5-setup-section-article-content" ng-if="PTZModel">
             <h3>タイプ</h3>
             <p>すべてのプリセットに同じIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[グローバル]</strong>を選択します。PTZプリセット別にそれぞれのIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[プリセット]</strong>を選択します。<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">プリセット設定</a>ページでプリセットを設定した場合のみ、<strong class="UI">[プリセット]</strong>オプションが有効になります。</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[タイプ]オプションを設定することができます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[タイプ]オプションを設定することができます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
             <h3>タイプ</h3>
@@ -77,7 +77,7 @@
         </div>
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>PTZ調整</h4>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel" ng-href="#/help/analytics_motiondetection#channel">[チャンネル選択]</a></strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
             <!-- <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p> -->
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
@@ -129,7 +129,7 @@
             <ul>
                 
                 <li>仮想線別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想線を先に設定してから使用できます。</li>
-                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
             </ul>
         </div>
 
@@ -241,7 +241,7 @@
             <ul>
                 
                 <li>仮想領域別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想領域を先に設定してから使用できます。</li>
-                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
             </ul>
         </div>
     </div>
@@ -395,7 +395,7 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>プリセットに移動</h3>
                     <p>IVAイベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
-                    <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[プリセットに移動]オプションが表示されます。</p>
+                    <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[プリセットに移動]オプションが表示されます。</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
             <h3>プリセットに移動</h3>

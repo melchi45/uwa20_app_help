@@ -432,12 +432,13 @@ TW 자체. 2019-12-27 -->
 	<!-- PNM-9000QB에서 hide되도록 && VideoTypeOptions.indexOf('HDMI_QuadView') === -1 코드 추가. 김주희 선임님. TNO-6322ER에서 hide되어 || VideoTypeOptions.indexOf('HDMI_QuadView') === -1로 수정. TW 자체 -->
 
 	<!-- && !VideooutputEnableHide 추가할 것. CVBS는 노출되고, CVBS type은 미노출돼야 하는 경우. -->
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
 			<h3>CVBS</h3>
 			<p>CVBS 단자에 케이블을 연결하여 아날로그 영상을 출력하려면 <strong class="UI">[사용]</strong>을 클릭합니다. 카메라 설치 시 렌즈 위치나 포커스 등을 확인하면서 설정할 수 있어 유용합니다.</p>
 		</div>
 		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
-			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !MultiImager">
 			<h3>CVBS 방식 </h3>
 			<p>CVBS을 사용하는 경우 CVBS 비디오 출력 타입을 선택합니다.</p>
 			<ul>

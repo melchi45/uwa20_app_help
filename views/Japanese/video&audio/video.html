@@ -387,13 +387,14 @@
 			<p>USBを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
 			<p>Wi-Fiドングルとハンファテックウィンで提供するスマートフォンアプリケーションでWi-Fi通信に接続してカメラにアクセスすることができます。ネットワークカメラを最初にインストールする時や視野角度、位置などを変更する場合、別途の設置用モニターがなくてもスマートフォンでカメラの映像を確認することができるため、有用です。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide || VideoTypeOptions.indexOf('HDMI_QuadView') === -1">
+		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !VideooutputEnableHide">
 			<h3>CVBS</h3>
 			<p>CVBSを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
 			<p>カメラを設置する時、レンズ位置やフォーカスなどを確認しながら設定することができるため、有用です。</p>
 		</div>
 		<!-- <div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) || VideoTypeOptions.indexOf('HDMI_QuadView') === -1"> -->
-			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1)">
+			<div class="wn5-setup-section-article-content" ng-if="(VideoTypeOptions.indexOf('NTSC') !== -1 || VideoTypeOptions.indexOf('PAL') !== -1) && !MultiImager">
 			<h3>CVBSタイプ</h3>
 			<p>CVBSを使用する場合、CVBSビデオ出力タイプを選択します。</p>
 			<ul>
