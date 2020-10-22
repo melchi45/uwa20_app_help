@@ -199,7 +199,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Apr&egrave;s avoir s&eacute;lectionn&eacute; un mode de pr&eacute;r&eacute;glage d&rsquo;image, changez les param&egrave;tres d&eacute;taill&eacute;s, tels que SSDR et Exposition et cliquez sur <strong class="UI">[Appliquer]</strong> pour enregistrer la valeur chang&eacute;e en tant que valeur de pr&eacute;r&eacute;glage d&rsquo;image. Pour r&eacute;initialiser la valeur par d&eacute;faut, cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>.</li>
-                <li ng-if="HybridThermal">Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), les modes [Int&eacute;rieur] et [Ext&eacute;rieur] sont pris en charge. De plus, SSDR, LCE, la luminosit&eacute;, SSNR, la nettet&eacute; et le contraste sont pris en charge pour chaque mode.</li>
+                <li ng-if="HybridThermal">Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), les modes [Int&eacute;rieur] et [Ext&eacute;rieur] sont pris en charge. De plus, SSDR, LCE, la luminosit&eacute;, SSNR, DIS, la nettet&eacute; et le contraste sont pris en charge pour chaque mode.</li>
             </ul>
         </div>
     </div>
@@ -685,7 +685,7 @@
         <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
-                    <li ng-if="HybridThermal">Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), DIS, la nettet&eacute;, le niveau de nettet&eacute;, le contr&ocirc;le gamma, le contraste gamma, le contraste local, le niveau des couleurs, le d&eacute;sembuage et LDC sont pris en charge. Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), seuls DIS, la nettet&eacute; et le niveau de nettet&eacute; sont pris en charge.</li>
+                    <li ng-if="HybridThermal">Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), DIS, la nettet&eacute;, le niveau de nettet&eacute;, le contr&ocirc;le gamma, le contraste gamma, le contraste local, le niveau des couleurs, le d&eacute;sembuage et LDC sont pris en charge. Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), seuls DIS, la nettet&eacute;, le niveau de nettet&eacute; et contrast sont pris en charge.</li>
                 </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">

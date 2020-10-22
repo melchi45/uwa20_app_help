@@ -11,7 +11,7 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>After selecting a camera channel, you can specify the details of audio detection for each channel.  </p>
+            <p ng-if="!HybridThermal">After selecting a camera channel, you can specify the details of audio detection for each channel.  </p>
             <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Audio detection] can only be configured on channel 1.</p>
             <p ng-if="SupportAutoImageAlignment">CH2 to CH5 are videos of individually installed cameras. CH1 is a panoramic view across multiple camera screens of CH2 to CH5 arranged in a row. CH6 and CH7 are videos of CH1 video with digital PTZ applied. [Audio detection] can only be configured on channel 1.</p>
             <p ng-if="MultiImager">Channel 1 is a live feed channel whereas Channels 2 and 3 are channels that show a digital PTZ video. [Audio detection] can only be configured on channel 1.</p>

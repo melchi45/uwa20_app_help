@@ -18,6 +18,7 @@
             <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
             <p ng-if="SupportAutoImageAlignment">« D&eacute;tection de mouvement » peut seulement &ecirc;tre d&eacute;fini sur CAN1.</p>
             <p ng-if="MultiImager">Le canal 1 est un canal de diffusion en direct alors que les canaux 2 et 3 sont des canaux de diffusion des vidéos PTZ numériques.   Vous ne pouvez configurer [Détection de mouvement] que sur le canal 1.</p>
+            <p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique. </p>
             <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;D&eacute;tection de mouvement&nbsp;” peut être configuré sur le canal 1 uniquement.</p>
             <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
@@ -50,7 +51,7 @@
             <h3>Type</h3>
             <p>Pour appliquer la m&ecirc;me d&eacute;tection de mouvement &agrave; tous les pr&eacute;r&eacute;glages, s&eacute;lectionnez <strong class="UI">[Global]</strong>. Pour d&eacute;finir une d&eacute;tection de mouvement diff&eacute;rente pour chaque PTZ pr&eacute;r&eacute;gl&eacute;e, s&eacute;lectionnez <strong class="UI">[Pr&eacute;r&eacute;glage]</strong>. </p>
             <p>L&apos;option <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> ne sera activ&eacute;e que lorsqu&apos;un pr&eacute;r&eacute;glage est d&eacute;fini &agrave; partir de la page <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuration pr&eacute;r&eacute;gl&eacute;e</a>. Si vous sélectionnez <strong class="UI">[Préréglage]</strong> et configurez la détection de mouvement pour chaque préréglage, vous ne pourrez peut-être pas configurer certaines des fonctions dans les paramètres détaillés.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">L'option [Type] ne peut être définie que lorsque <strong class="UI">[PTZ]</strong> est sélectionné dans <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motiondetection#channel">[S&eacute;lectionner un canal].</a></p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">L'option [Type] ne peut être définie que lorsque <strong class="UI">[PTZ]</strong> est sélectionné dans <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[S&eacute;lectionner un canal].</a></p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
             <h3>Type</h3>
@@ -103,7 +104,7 @@
         <div class="wn5-online-help-action" ng-if="PTZModel">
             <h4>R&eacute;glage du PTZ</h4>
             <!-- <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p> -->
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Lorsque vous cliquez sur <strong class="UI">[PTZ]</strong> dans le menu <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motiondetection#channel">[S&eacute;lectionner un canal]</a>, le panneau de jog PTZ s'affiche pour le réglage PTZ de la caméra.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration">Lorsque vous cliquez sur <strong class="UI">[PTZ]</strong> dans le menu <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[S&eacute;lectionner un canal]</a>, le panneau de jog PTZ s'affiche pour le réglage PTZ de la caméra.</p>
             <ul>
                 <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
                 <li>&Agrave; l&rsquo;aide de la barre de zoom, vous pouvez ajuster le rapport de zoom vid&eacute;o. Ou, cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-plus"></span>pour agrandir l&rsquo;&eacute;cran ou sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-minus"></span>pour le r&eacute;duire.</li>
@@ -147,7 +148,7 @@
                         <ul>
                             
                             <li>Vous pouvez d&eacute;finir le transfert pour chaque zone ROI. La fonction de relais peut &ecirc;tre utilis&eacute;e apr&egrave;s avoir d&rsquo;abord d&eacute;fini la zone d&rsquo;int&eacute;r&ecirc;t.</li>
-                            <li>Le menu «&nbsp;Transfert&nbsp;» s&rsquo;affiche seulement lorsque le canal de la cam&eacute;ra fixe a &eacute;t&eacute; s&eacute;lectionn&eacute; dans le menu <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motiondetection#channel">[S&eacute;lectionner un canal]</a></strong>. Le menu ne s&rsquo;affichera pas si le canal PTZ est s&eacute;lectionn&eacute;.</li>
+                            <li>Le menu «&nbsp;Transfert&nbsp;» s&rsquo;affiche seulement lorsque le canal de la cam&eacute;ra fixe a &eacute;t&eacute; s&eacute;lectionn&eacute; dans le menu <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[S&eacute;lectionner un canal]</a></strong>. Le menu ne s&rsquo;affichera pas si le canal PTZ est s&eacute;lectionn&eacute;.</li>
                         </ul>
                 </div>
         <!-- <div class="wn5-setup-section-article-content">
@@ -317,7 +318,7 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Al à Prérég</h3>
                 <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de mouvement est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
-                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Al à Prérég] s'affiche uniquement lorsque vous sélectionnez <strong class="UI"> [PTZ]</strong> dans <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motiondetection#channel">S&eacute;lectionner un canal]</a>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Al à Prérég] s'affiche uniquement lorsque vous sélectionnez <strong class="UI"> [PTZ]</strong> dans <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">S&eacute;lectionner un canal]</a>.</p>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
             <h3>Clip audio</h3>

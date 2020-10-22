@@ -175,7 +175,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Una vez seleccionado un modo de preajuste de imagen, cambie la configuraci&oacute;n detallada de la imagen de la c&aacute;mara, como los modos de balance de blancos y de noche/d&iacute;a, y haga clic en <strong class="UI">[Aplicar]</strong>. El valor cambiado se guardar&aacute; como el valor predefinido de la imagen. Para reinicializarlo al valor predeterminado, haga clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>.</li>
-                <li ng-if="HybridThermal">Si se selecciona el Canal 1 (v&iacute;deo visible), se admiten modo SSDR, nivel de SSDR, Obturador m&iacute;nimo, Obturador m&aacute;ximo, AGC, SSNR, Nivel de SSNR y Nivel de color.</li>
+                <li ng-if="HybridThermal">Si se selecciona el Canal 1 (v&iacute;deo visible), se admiten modo SSDR, DIS, nivel de SSDR, Obturador m&iacute;nimo, Obturador m&aacute;ximo, AGC, SSNR, Nivel de SSNR y Nivel de color.</li>
             </ul>
         </div>
     </div>
@@ -199,7 +199,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>Luego de seleccionar un modo de preajuste de imagen, cambie la configuraci&oacute;n detallada de la imagen de la c&aacute;mara, como SSDR y Exposici&oacute;n y haga clic en <strong class="UI">[Aplicar]</strong> para guardar el valor cambiado como el valor de preajuste de imagen. Para reinicializarlo al valor predeterminado, haga clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>.</li>
-                <li ng-if="HybridThermal">Si se selecciona el canal 2 (v&iacute;deo t&eacute;rmico), son compatibles los modos [Interior] y [Exterior]. Adem&aacute;s, SSDR, LCE, Brillo, SSNR, Nitidez y Contraste son admitidos para cada modo.</li>
+                <li ng-if="HybridThermal">Si se selecciona el canal 2 (v&iacute;deo t&eacute;rmico), son compatibles los modos [Interior] y [Exterior]. Adem&aacute;s, SSDR, LCE, Brillo, SSNR, DIS, Nitidez y Contraste son admitidos para cada modo.</li>
             </ul>
         </div>
     </div>
@@ -683,7 +683,7 @@
 		<div class="wn5-online-help-info" ng-if="HybridThermal">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
-                    <li>Si se selecciona el Canal 1 (v&iacute;deo visible), se admiten DIS, Nitidez, Nivel de nitidez, Control de gama, Contraste de gama, Contraste local, Nivel de color, Filtro antineblina y LDC. Si se selecciona el Canal 2 (v&iacute;deo t&eacute;rmico), solo se admiten DIS, Nitidez y Nivel de nitidez.</li>
+                    <li>Si se selecciona el Canal 1 (v&iacute;deo visible), se admiten DIS, Nitidez, Nivel de nitidez, Control de gama, Contraste de gama, Contraste local, Nivel de color, Filtro antineblina y LDC. Si se selecciona el Canal 2 (v&iacute;deo t&eacute;rmico), solo se admiten DIS, Nitidez, Nivel de nitidez y Contraste.</li>
                 </ul>
         </div>
         <div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">

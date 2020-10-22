@@ -206,7 +206,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>이미지 프리셋 모드를 선택한 후 SSDR, 노출 보정 등과 같은 카메라 이미지 세부 설정을 변경하고 <strong class="UI">[적용]</strong>을 클릭하면, 변경한 값이 해당 이미지 프리셋 값으로 저장됩니다. 초깃값으로 되돌리려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다.</li>
-                <li ng-if="HybridThermal">채널 2(열화상 영상)을 선택한 경우, [실내] 모드와 [실외] 모드를 지원하며, 모드별로 SSDR, LCE, 밝기, SSNR, 윤곽 조정, 대비를 지원합니다.</li>
+                <li ng-if="HybridThermal">채널 2(열화상 영상)을 선택한 경우, [실내] 모드와 [실외] 모드를 지원하며, 모드별로 SSDR, LCE, 밝기, SSNR, DIS, 윤곽 조정, 대비를 지원합니다.</li>
             </ul>
         </div>
     </div>
@@ -757,7 +757,7 @@
         <div class="wn5-online-help-info" ng-if="HybridThermal">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
-                    <li>채널 1(실화상 영상)을&nbsp;선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨, 감마 제어, 감마, 대비, 로컬 대비, 컬러 레벨, 안개 제거, LDC을 지원합니다. 채널 2(열화상 영상)을 선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨만 지원합니다.  </li>
+                    <li>채널 1(실화상 영상)을&nbsp;선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨, 감마 제어, 감마, 대비, 로컬 대비, 컬러 레벨, 안개 제거, LDC을 지원합니다. 채널 2(열화상 영상)을 선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨, 대비만 지원합니다.  </li>
                 </ul>
         </div>
 <!-- TNV-8010C. !!LensModelViewOptions || !!LensModelOptions. 고용수 책임님. 2020-09-10 메일 -->        

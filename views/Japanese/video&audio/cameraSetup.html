@@ -172,7 +172,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>画像プリセットモードを選択してからホワイトバランス、デイ・ナイトモードなどのようにカメラ画像の詳細設定を変更して<strong class="UI">[適用]</strong>をクリックすると、変更した値が該当の画像プリセット値で保存されます。初期値に戻すためには、<strong class="UI">[初期化]</strong>ボタンをクリックします。</li>
-                <li ng-if="HybridThermal">チャンネル1(実画像ビデオ)を選択した場合、SSDRモード、SSDRレベル、最小シャッター、最大シャッター、AGC、SSNR、SSNRレベル、カラーレベルをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、<b>屋内モードや屋外モード</b>をサポートし、モード別にSSDR、LCE、明るさ、SSNR、シャープネス、コントラストをサポートします。</li>
+                <li ng-if="HybridThermal">チャンネル1(実画像ビデオ)を選択した場合、SSDRモード、SSDRレベル、最小シャッター、最大シャッター、AGC、SSNR、SSNRレベル、カラーレベルをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、<b>屋内モードや屋外モード</b>をサポートし、モード別にSSDR、LCE、明るさ、SSNR、DIS、シャープネス、コントラストをサポートします。</li>
             </ul>
         </div>
     </div>
@@ -681,7 +681,7 @@
 		<div class="wn5-online-help-info" ng-if="HybridThermal">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
-                    <li>チャンネル1(実画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベル、ガンマ制御、ガンマ、コントラスト、ローカル・コントラスト、カラーレベル、曇り除去、LDCをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベルのみサポートします。</li>
+                    <li>チャンネル1(実画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベル、ガンマ制御、ガンマ、コントラスト、ローカル・コントラスト、カラーレベル、曇り除去、LDCをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、DIS、コントラスト、シャープネス、シャープネスレベルのみサポートします。</li>
                 </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">
