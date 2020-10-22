@@ -486,7 +486,7 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<!-- <hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
 <div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>カラーパレット</h2>
@@ -497,7 +497,7 @@
             <p>各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong> &gt; <strong class="UI">[映像&amp;音声]</strong> &gt; <strong class="UI">[カメラ設定]</strong> &gt; <strong class="UI">[カラーパレット]</strong>を参照してください。</p>
         </div>
     </div>
-</div>
+</div> -->
 <hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
 <div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
     <div class=" wn5-setup-section-heading">
@@ -510,7 +510,7 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
+<!-- <hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
 <div class="wn5-setup-section" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>カラーパレット</h2>
@@ -521,7 +521,24 @@
             <p>各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[温度設定]</strong>&gt;<strong class="UI">[カラーパレット]</strong>を参照してください。</p>
         </div>
     </div>
+</div> -->
+
+
+<hr class="wn5-setup-hr" ng-if="ColorPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette">
+    <div class="wn5-setup-section-heading">
+        <h2>カラーパレット</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>カメラ映像を視覚的に分析しやすいようにカラーパレットを提供します。カラーパレットを選択すると、カメラ映像画面に選択したカラーパレットが適用されます。</p>
+            <p ng-if="!BoxTemperatureDetection && !HybridThermal">各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[温度設定]</strong>&gt;<strong class="UI">[カラーパレット]</strong>を参照してください。</p>
+            <p ng-if="!BoxTemperatureDetection && !HybridThermal">各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI">[温度設定]</strong>&gt;<strong class="UI">[カラーパレット]</strong>を参照してください。</p>
+            <p ng-if="HybridThermal">各カラーパレットのオプション別特徴は、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[温度設定]</strong>&gt;<strong class="UI">[カラーパレット]</strong>を参照してください。</p>
+        </div>
+    </div>
 </div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

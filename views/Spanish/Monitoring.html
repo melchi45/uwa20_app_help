@@ -477,7 +477,7 @@
         </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<!-- <hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
 <div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>Paleta de colores</h2>
@@ -488,7 +488,7 @@
             <p>Para conocer las caracter&iacute;sticas de cada opci&oacute;n de la paleta de colores, consulte <B>[Configuraci&oacute;n]</B> &gt;<B> [V&iacute;deo y audio]</B> &gt; <B>[Configuraci&oacute;n de la c&aacute;mara] </B>&gt; <B>[Paleta de colores]</B>.</p>
         </div>
     </div>
-</div>
+</div> -->
 
 <hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
 <div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
@@ -502,7 +502,7 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
+<!-- <hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
 <div class="wn5-setup-section" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>Paleta de colores</h2>
@@ -513,7 +513,26 @@
             <p>Para conocer las caracter&iacute;sticas de cada paleta de colores, consulte <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de temperatura]</strong>&gt;<strong class="UI">[Paleta de colores]</strong>.</p>
         </div>
     </div>
+</div> -->
+
+<hr class="wn5-setup-hr" ng-if="ColorPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette">
+    <div class="wn5-setup-section-heading">
+        <h2>Paleta de colores</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Para obtener un an&aacute;lisis visual sencillo del v&iacute;deo de la c&aacute;mara, se proporcionan las paletas de colores. Seleccione una paleta de colores que desea ver aplicada en la pantalla del v&iacute;deo de la c&aacute;mara.</p>
+            <p ng-if="!BoxTemperatureDetection && !HybridThermal">Para conocer las caracter&iacute;sticas de cada opci&oacute;n de la paleta de colores, consulte <B>[Configuraci&oacute;n]</B> &gt;<B> [V&iacute;deo y audio]</B> &gt; <B>[Configuraci&oacute;n de la c&aacute;mara] </B>&gt; <B>[Paleta de colores]</B>.
+            </p>
+            <p ng-if="BoxTemperatureDetection && !HybridThermal">Para conocer las caracter&iacute;sticas de cada paleta de colores, consulte <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de temperatura]</strong>&gt;<strong class="UI">[Paleta de colores]</strong>.</p>
+
+            <p ng-if="HybridThermal">Para conocer las caracter&iacute;sticas de cada opci&oacute;n de la paleta de colores, consulte <B>[Configuraci&oacute;n]</B> &gt;<B> [Basic]</B> &gt; <B>[Configuraci&oacute;n de la c&aacute;mara] </B>&gt; <B>[Paleta de colores]</B>.
+            </p>
+        </div>
+    </div>
 </div>
+
 
 <hr class="wn5-setup-hr">
 <div class="wn5-setup-section">

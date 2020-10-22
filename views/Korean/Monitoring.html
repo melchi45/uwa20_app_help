@@ -499,8 +499,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !BoxTemperatureDetection && !HybridThermal">
-<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection">
+<!-- <hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>컬러 팔레트</h2>
     </div>
@@ -510,7 +510,7 @@
             <p>각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong> &gt; <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[카메라 설정]</strong> &gt; <strong class="UI">[컬러 팔레트]</strong>를 참고하십시오. </p>
         </div>
     </div>
-</div>
+</div> -->
 
 <hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
 <div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
@@ -524,7 +524,9 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
+
+
+<!-- <hr class="wn5-setup-hr" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
 <div class="wn5-setup-section" ng-if="ColorPalette && BoxTemperatureDetection && !HybridThermal">
     <div class="wn5-setup-section-heading">
         <h2>컬러 팔레트</h2>
@@ -533,6 +535,22 @@
         <div class="wn5-setup-section-article-content">
             <p>카메라 영상을 시각적으로 분석하기 용이하도록 컬러 팔레트를 제공합니다. 원하는 컬러 팔레트를 선택하면 카메라 영상 화면에 선택한 컬러 팔레트가 적용되어 나타납니다.</p>
             <p>각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[온도 설정]</strong>&gt;<strong class="UI">[컬러 팔레트]</strong>를 참고하십시오.</p>
+        </div>
+    </div>
+</div> -->
+
+
+<hr class="wn5-setup-hr" ng-if="ColorPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette">
+    <div class="wn5-setup-section-heading">
+        <h2>컬러 팔레트</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라 영상을 시각적으로 분석하기 용이하도록 컬러 팔레트를 제공합니다. 원하는 컬러 팔레트를 선택하면 카메라 영상 화면에 선택한 컬러 팔레트가 적용되어 나타납니다.</p>
+            <p ng-if="!BoxTemperatureDetection && !HybridThermal">각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong> &gt; <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[카메라 설정]</strong> &gt; <strong class="UI">[컬러 팔레트]</strong>를 참고하십시오. </p>
+            <p ng-if="BoxTemperatureDetection && !HybridThermal">각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[온도 설정]</strong>&gt;<strong class="UI">[컬러 팔레트]</strong>를 참고하십시오.</p>
+            <p ng-if="HybridThermal">각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[온도 설정]</strong>&gt;<strong class="UI">[컬러 팔레트]</strong>를 참고하십시오. </p>
         </div>
     </div>
 </div>
