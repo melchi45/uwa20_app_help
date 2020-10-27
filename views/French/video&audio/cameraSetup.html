@@ -682,10 +682,10 @@
         <div class="wn5-setup-section-article-content"><!-- <p>??? ??? ????? ??, ???, ?? ?? ?? ? ? ????.</p>  --><p>R&egrave;gle la nettet&eacute;, le contraste, et le niveau de couleur des images.</p>
         </div>
 
-        <div class="wn5-online-help-info">
+        <div class="wn5-online-help-info" ng-if="HybridThermal">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                 <ul>
-                    <li ng-if="HybridThermal">Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), DIS, la nettet&eacute;, le niveau de nettet&eacute;, le contr&ocirc;le gamma, le contraste gamma, le contraste local, le niveau des couleurs, le d&eacute;sembuage et LDC sont pris en charge. Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), seuls DIS, la nettet&eacute;, le niveau de nettet&eacute; et contrast sont pris en charge.</li>
+                    <li>Si le canal&nbsp;1 est s&eacute;lectionn&eacute; (vid&eacute;o visible), DIS, la nettet&eacute;, le niveau de nettet&eacute;, le contr&ocirc;le gamma, le contraste gamma, le contraste local, le niveau des couleurs, le d&eacute;sembuage et LDC sont pris en charge. Si le canal&nbsp;2 est s&eacute;lectionn&eacute; (vid&eacute;o thermique), seuls DIS, la nettet&eacute;, le niveau de nettet&eacute; et contrast sont pris en charge.</li>
                 </ul>
         </div>
 		<div class="wn5-setup-section-article-content" ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">

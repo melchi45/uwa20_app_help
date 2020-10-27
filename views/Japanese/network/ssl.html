@@ -38,8 +38,8 @@ href="../basic/ipPort.html" ng-href="#/help/basic_ipPort">IP 및 포트</a>]</st
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="PeerConnectionInfoClientHttpsStatus">
+<div class="wn5-setup-section" ng-if="PeerConnectionInfoClientHttpsStatus">
     <div class="wn5-setup-section-heading">
         <h2>TLS設定</h2>
     </div>
