@@ -327,6 +327,16 @@
                         </td>
                     </tr>
 
+                    <tr ng-if="SpinningDryOn">
+                        <td width="235">
+                            <p><span class="tui tui-spinningdry"></span></p>
+                            <p>Giro en seco</p>
+                        </td>
+                        <td width="235">
+                            <p>Al presionar este bot&oacute;n, el motor girar&aacute; tres veces en una direcci&oacute;n para secarlo.&nbsp;</p>
+                        </td>
+                    </tr>
+
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
@@ -653,7 +663,9 @@
         <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport">
             <h3>Guardado de enfoque</h3>
             <p>Puede comprobar la lista de guardado de enfoque.</p>
-            <p>Haga clic en <strong class="UI">[Definir]</strong> para guardar la pantalla que se est&aacute; fotografiando en un &aacute;rea de enfoque.&nbsp;Despu&eacute;s de introducir el <strong class="UI">[N&uacute;mero]</strong> y el <strong class="UI">[Nombre]</strong>, haga clic en <strong class="UI">[Aceptar]</strong> para guardar. Si hace clic en <strong class="UI">[Ir]</strong> despu&eacute;s de seleccionar el guardado de enfoque de la lista, el enfoque de la c&aacute;mara se mover&aacute; hacia el &aacute;rea del enfoque guardado.</p>
+            <p>Haga clic en <strong class="UI">[Definir]</strong> para guardar la pantalla que se est&aacute; fotografiando en un &aacute;rea de enfoque.&nbsp;Despu&eacute;s de introducir el <strong class="UI">[N&uacute;mero]</strong> y el <strong class="UI">[Nombre]</strong>, haga clic en <strong class="UI">[Aceptar]</strong> para guardar. </p>
+            <p ng-if="IrShiftLevel">Para aplicar el Cambio de infrarrojos a un &aacute;rea guardada de enfoque, vaya a <strong class="UI">[Cambio de infrarrojos]</strong> y haga clic en [Activar].</p>
+            <p>Si hace clic en <strong class="UI">[Ir]</strong> despu&eacute;s de seleccionar el guardado de enfoque de la lista, el enfoque de la c&aacute;mara se mover&aacute; hacia el &aacute;rea del enfoque guardado.</p>
             <p>Tambi&eacute;n se puede definir o eliminar el guardado de enfoque en <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[V&iacute;deo y audio]</strong>&gt;<strong class="UI">[Configuraci&oacute;n de la c&aacute;mara]</strong>&gt;<strong class="UI">[Guardado de enfoque]</strong>.</p>
         </div>
 

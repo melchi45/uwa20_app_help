@@ -88,7 +88,12 @@
             <p>You can set or delete the focus position, and apply the desired focus to the camera.</p>
             <ul>
                 <li><strong class="UI">Go</strong>: Moves to the selected focus save area from the list of focus save.</li>
-                <li><strong class="UI">Set</strong>: It saves the screen being shot into the focus save area. You can set a name or number for the focus save. Names can include up to 12 alphanumeric characters (A-Z; a-z; 0-9), excluding spaces.</li>
+                <li><strong class="UI">Set</strong>: Saves the screen currently being recorded as a focus save area.</li>
+                <ul>
+                    <li><strong class="UI">Number</strong>: Selects the number of a focus area to save.</li>
+                    <li><strong class="UI">Name</strong>: Enter the name of a focus area to save. Names can include up to 12 alphanumeric characters (A-Z, a-z, 0-9), excluding spaces.</li>
+                    <li ng-if="IrShiftLevel"><strong class="UI">IR shift</strong>: Select [Enable] to apply IR shift to the focus save area. When enabled, IR shift moves the focus to match the location of the saved focus based on visible light. The extent to move the focus can be set using the slide bar.</li>
+                </ul>
                 <li><strong class="UI">Remove</strong>: It deletes the selected focus save area from the list of focus save.</li>
             </ul>
         </div>

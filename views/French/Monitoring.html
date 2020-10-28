@@ -323,6 +323,15 @@
                             <p>Vous pouvez activer le r&eacute;chauffeur pendant 30 secondes en appuyant sur le bouton.</p>
                         </td>
                     </tr>
+                    <tr ng-if="SpinningDryOn">
+                        <td width="235">
+                            <p><span class="tui tui-spinningdry"></span></p>
+                            <p>S&eacute;chage par rotation</p>
+                        </td>
+                        <td width="235">
+                        <p>Une pression sur ce bouton entra&icirc;ne la rotation du moteur trois fois dans un sens pour le s&eacute;cher.&nbsp;</p>
+                        </td>
+                    </tr>
 
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
@@ -642,7 +651,9 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport">
             <h3>Enregistrement de la mise au point</h3>
             <p>Vous pouvez consulter la liste des enregistrements de mise au point.</p>
-            <p>Cliquez sur <strong class="UI">[R&eacute;gler]</strong> pour enregistrer la prise de vue actuelle en tant que zone de mise au point.&nbsp;Saisissez un <strong class="UI">[Nombre]</strong> et un <strong class="UI">[Nom]</strong> puis enregistrez en cliquant sur <strong class="UI">[OK]</strong>. Si vous cliquez sur <strong class="UI">[Aller]</strong> apr&egrave;s avoir s&eacute;lectionn&eacute; Enregistrement de la mise au point dans la liste,  la cam&eacute;ra se repositionne automatiquement sur la zone de mise en point enregistr&eacute;e.</p>
+            <p>Cliquez sur <strong class="UI">[R&eacute;gler]</strong> pour enregistrer la prise de vue actuelle en tant que zone de mise au point.&nbsp;Saisissez un <strong class="UI">[Nombre]</strong> et un <strong class="UI">[Nom]</strong> puis enregistrez en cliquant sur <strong class="UI">[OK]</strong>.</p>
+            <p ng-if="IrShiftLevel">Pour appliquer le d&eacute;placement de l&apos;infrarouge &agrave; une zone &agrave; la mise au point enregistr&eacute;e, allez sur <strong class="UI">[D&eacute;placement IR]</strong>, puis cliquez sur [Activer].</p>
+            <p>Si vous cliquez sur <strong class="UI">[Aller]</strong> apr&egrave;s avoir s&eacute;lectionn&eacute; Enregistrement de la mise au point dans la liste,  la cam&eacute;ra se repositionne automatiquement sur la zone de mise en point enregistr&eacute;e.</p>
             <p>Vous pouvez &eacute;galement modifier ou supprimer l&apos;enregistrement de la mise en point dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<strong class="UI">[Enregistrement de la mise au point]</strong>.</p>
         </div>
         <div class="wn5-setup-section-article-content">

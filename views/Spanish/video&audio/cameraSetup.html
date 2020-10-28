@@ -91,7 +91,12 @@
             <p>Puede definir o eliminar la posici&oacute;n de enfoque y aplicar el enfoque deseado a la c&aacute;mara.</p>
             <ul>
                 <li><strong class="UI">Ir</strong>: Se desplazar&aacute; al &aacute;rea de guardado de enfoque seleccionada de la lista de guardado de enfoque.</li>
-                <li><strong class="UI">Definir</strong>: Guarda la pantalla que se est&aacute; capturando en el &aacute;rea de guardado de enfoque. Puede definir un nombre o un n&uacute;mero para el guardado de enfoque. Los nombres pueden incluir hasta 12 caracteres alfanum&eacute;ricos (A-Z; a-z; 0-9), excluyendo los espacios.</li>
+                <li><strong class="UI">Definir</strong>: Guarda la pantalla que est&aacute; siendo grabada actualmente como un &aacute;rea de guardado de enfoque.</li>
+                <ul>
+                    <li><strong class="UI">N&uacute;mero</strong>: Selecciona el n&uacute;mero de un &aacute;rea de enfoque para guardar.</li>
+                    <li><strong class="UI">Nombre</strong>: Selecciona el nombre de un &aacute;rea de enfoque para guardar. Los nombres pueden incluir hasta 12 caracteres alfanum&eacute;ricos (A-Z, a-z, 0-9), sin incluir los espacios.</li>
+                    <li ng-if="IrShiftLevel"><strong class="UI">Cambio de infrarrojos</strong>: Seleccione [Activar] para aplicar el Cambio de infrarrojos al &aacute;rea de guardado de enfoque. Cuando est&aacute; activado, el Cambio de infrarrojos mueve el enfoque para que coincida con la ubicaci&oacute;n del enfoque guardado, bas&aacute;ndose en la luz visible. La amplitud de desplazamiento del enfoque se puede definir con ayuda de la barra de desplazamiento.</li>
+                </ul>
                 <li><strong class="UI">Eliminar</strong>: Se eliminar&aacute; el &aacute;rea de guardado de enfoque seleccionada de la lista de guardado de enfoque.</li>
             </ul>
         </div>

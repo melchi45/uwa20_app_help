@@ -337,7 +337,15 @@
                         </td>
                         <td width="235">Clicking the button activates the heater for 30 seconds. </td>
                     </tr>
-
+                    <tr ng-if="SpinningDryOn">
+                        <td width="235">
+                            <p><span class="tui tui-spinningdry"></span></p>
+                            <p>Spinning dry</p>
+                        </td>
+                    <td width="235">
+                        <p>Pressing this button rotates the motor three times in one direction to dry it.&nbsp;</p>
+                    </td>
+                    </tr>
                     <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
@@ -664,7 +672,9 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport">
             <h3>Focus save</h3>
             <p>You can check the list of focus save.</p>
-            <p>Click <strong class="UI">[Set]</strong> to save the screen currently being shot into a focus area.&nbsp;After entering <strong class="UI">[Number]</strong> and <strong class="UI">[Name]</strong>, click <strong class="UI">[OK]</strong> to save. If you click <strong class="UI">[Go]</strong> after selecting focus save from the list, the camera focus moves to the saved focus area.</p>
+            <p>Click <strong class="UI">[Set]</strong> to save the screen currently being shot into a focus area.&nbsp;After entering <strong class="UI">[Number]</strong> and <strong class="UI">[Name]</strong>, click <strong class="UI">[OK]</strong> to save. </p>
+            <p ng-if="IrShiftLevel">To apply IR shift to a focus-saved area, go to <strong class="UI">[IR shift]</strong> and click [Enable].</p>
+            <p>If you click <strong class="UI">[Go]</strong> after selecting focus save from the list, the camera focus moves to the saved focus area.</p>
             <p>Focus save can also be set or deleted in <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI">[Camera setup]</strong>&gt;<strong class="UI">[Focus save]</strong>.</p>
         </div>
 
