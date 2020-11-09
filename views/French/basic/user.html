@@ -126,8 +126,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!IOBox">
+<div class="wn5-setup-section" ng-if="!IOBox">
 	<div class="wn5-setup-section-heading">
 		<h2>Configuration invit&eacute;</h2>
 	</div>
@@ -149,9 +149,9 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
 
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!IOBox">
+<div class="wn5-setup-section" ng-if="!IOBox">
 	<div class="wn5-setup-section-heading">
 		<h2>Config. de l&rsquo;authentification</h2>
 	</div>
@@ -225,9 +225,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!IOBox">
+<div class="wn5-setup-section" ng-if="!IOBox">
 	<div class="wn5-setup-section-heading">
 		<h2>Utilisateurs actuels</h2>
 	</div>

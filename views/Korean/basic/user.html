@@ -136,8 +136,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr">
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!IOBox">
+<div class="wn5-setup-section" ng-if="!IOBox">
 	<div class="wn5-setup-section-heading">
 		<h2>게스트 설정</h2>
 	</div>
@@ -159,9 +159,9 @@
         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr">
 
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!IOBox">
+<div class="wn5-setup-section" ng-if="!IOBox">
 	<div class="wn5-setup-section-heading">
 		<h2>인증 설정</h2>
 	</div>
@@ -235,9 +235,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr">
-
-<div class="wn5-setup-section">
+<hr class="wn5-setup-hr" ng-if="!IOBox">
+<div class="wn5-setup-section" ng-if="!IOBox">
 	<div class="wn5-setup-section-heading">
 		<h2>접속자 정보</h2>
 	</div>
