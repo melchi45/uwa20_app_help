@@ -247,8 +247,9 @@
 </div>
 
 <!-- 열상 카메라 TNM-3620TDY. 이재준 수석님.typeof mAttr.thermalModelbyChannel !== 'undefined' ? mAttr.thermalModelbyChannel[currentChannel] : false; 가이드 받음. thermalModelbyChannel !== undefined 추가함. 2020-10-19 메일 -->
-<hr class="wn5-setup-hr" ng-if="BoxTemperatureDetection || thermalModelbyChannel !== undefined">
-<div class="wn5-setup-section" ng-if="BoxTemperatureDetection || thermalModelbyChannel !== undefined">
+<!-- XNP-9300R. 김영호 책임님. 2020-11-11 메일. -->
+<hr class="wn5-setup-hr" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
+<div class="wn5-setup-section" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
     <div class="wn5-setup-section-heading">
         <h2>LCE (Local Contrast Enhancement)  </h2>
     </div>
