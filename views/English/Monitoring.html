@@ -337,7 +337,8 @@
                         </td>
                         <td width="235">Clicking the button activates the heater for 30 seconds. </td>
                     </tr>
-                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin">
+                    <!-- <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin"> -->
+                    <tr ng-if="SpinningDryOn">
                         <td width="235">
                             <p><span class="tui tui-spinningdry"></span></p>
                             <p>Spinning dry</p>

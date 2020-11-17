@@ -336,7 +336,8 @@
                    <p>ボタンをクリックすると、30秒間ヒーターが動作します。</p>
                           </td>
                 </tr>
-                <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin">
+                <!-- <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin"> -->
+                    <tr ng-if="SpinningDryOn">
                     <td width="235">
                         <p><span class="tui tui-spinningdry"></span></p>
                         <p>水気除去</p>
