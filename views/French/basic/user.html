@@ -58,21 +58,17 @@
                 <li>Pour plus de s&eacute;curit&eacute;, il est recommand&eacute; de cr&eacute;er un mot de passe qui combine des caract&egrave;res sp&eacute;ciaux, des chiffres, des majuscules et des minuscules.</li>
                 <li>Il est recommand&eacute; de changer le mot de passe tous les trois mois.</li>
                 <li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
-                <ul>
-					<!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 -->
-					
-					<!-- <li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
-					<li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caract&egrave;res, il doit contenir au moins trois des r&egrave;gles suivantes : majuscules / minuscules, chiffres et symboles.</li>	 -->
-					
+                    <li ng-if="PasswordRule2">Si le mot de passe de plus de 9 caract&egrave;res, il doit contenir au moins trois des r&egrave;gles suivantes : majuscules / minuscules, chiffres et symboles.</li>					
                     <li>Le mot de passe doit être différent de votre identifiant (ID). Nous vous recommandons également de ne pas utiliser votre chaine ID en tant que partie de votre mot de passe.   </li>
                     <li>Vous ne pouvez pas utiliser quatre lettres cons&eacute;cutives d&rsquo;un m&ecirc;me type. (p. ex. : 1234, abcd).</li>
                     <li>Vous ne pouvez pas utiliser le m&ecirc;me caract&egrave;re quatre fois ou plus de suite (p.ex., !!!!, 1111, aaaa).</li>
-					<!-- <li ng-if="PasswordRule1">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
+					<li ng-if="PasswordRule1">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
-					<li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li> -->
+					<li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
                     <li>Apr&egrave;s la r&eacute;initialisation d&rsquo;usine, les mots de passe administrateur et utilisateur seront r&eacute;initialis&eacute;s et vous devrez les cr&eacute;er &agrave; nouveau.</li>
                     <li>Lorsque vous acc&eacute;dez au Web Viewer de la cam&eacute;ra pour la premi&egrave;re fois, ou lorsque vous y acc&eacute;dez apr&egrave;s l&rsquo;initialisation, vous acc&eacute;dez au menu. Param&egrave;tres du mot de passe.</li>
                     <li>Pour utiliser le menu Web Viewer, vous devez d&eacute;finir le nouveau mot de passe dans le menu Changer MDP et vous connecter &agrave; nouveau &agrave; Web Viewer avec le mot de passe modifi&eacute;.</li>

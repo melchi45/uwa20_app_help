@@ -179,10 +179,8 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>Once forgotten or lost, your password cannot be recovered. You can reset your password instead, but then the SD card will be formatted and all of its data will be deleted.</li>
-                <!-- <li>The password length and restrictions are as follows:</li>
-                <ul> -->
-                    <!-- TTA용 XNO-6085RG 이슈 수정. 김선미 책임님. 2019-10-18. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음   -->
-                    <!-- <li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+                <li>The password length and restrictions are as follows:</li>
+                <ul><!-- TTA용 XNO-6085RG 이슈 수정. 김선미 책임님. 2019-10-18. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음   --><li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li ng-if="PasswordRule1">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
@@ -192,7 +190,7 @@
                     <li ng-if="PasswordRule1">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
 					<li ng-if="PasswordRule2">Only ~`!@#$%^&amp;*()_-+=|{}[].?/ are allowed for special characters.</li>
-                </ul> -->
+                </ul>
             </ul>
         </div>
     </div>

@@ -58,20 +58,17 @@
                 <li>Para una mayor seguridad, se recomienda crear una contrase&ntilde;a que combine caracteres especiales, n&uacute;meros y letras may&uacute;sculas y min&uacute;sculas.</li>
                 <li>Se recomienda cambiar la contrase&ntilde;a cada tres meses.</li>
                 <li>La longitud y restricciones de la contrase&ntilde;a son las siguientes:</li>
-				<ul>
-					<!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 -->
-					
-					<!-- <li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
 					<li ng-if="PasswordRule1">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
-                    <li ng-if="PasswordRule2">La contrase&ntilde;a deber&aacute; tener m&aacute;s de 9 caracteres, y usted deber&aacute; combinar al menos tres de los siguientes tipos: may&uacute;sculas/min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>					 -->
+                    <li ng-if="PasswordRule2">La contrase&ntilde;a deber&aacute; tener m&aacute;s de 9 caracteres, y usted deber&aacute; combinar al menos tres de los siguientes tipos: may&uacute;sculas/min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>					
                     <li>La contraseña debe ser diferente de su ID. Además, le recomendamos no usar la cadena de identificación como parte de la contraseña.   </li>
                     <li>No pueden utilizar cuatro o m&aacute;s caracteres consecutivos (por ej., 1234, abcd).</li>
                     <li>No se puede usar los mismos cuatro caracteres o m&aacute;s veces seguidas. (Por ejemplo: !!!!, 1111, aaaa).</li>
-					<!-- <li ng-if="PasswordRule1">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+					<li ng-if="PasswordRule1">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
-					<li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li> -->
+					<li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
                     <li>Despu&eacute;s del restablecimiento de f&aacute;brica, se restablecer&aacute;n las contrase&ntilde;as de administrador y de usuario y deber&aacute; crearlas nuevamente.</li>
                     <li>Cuando acceda al visor web de la c&aacute;mara por primera vez o acceda a &eacute;l despu&eacute;s de la inicializaci&oacute;n, se lo llevar&aacute; al men&uacute; de configuraci&oacute;n de la contrase&ntilde;a.</li>
                     <li>Para utilizar el men&uacute; del visor web, se debe configurar la nueva contrase&ntilde;a en el men&uacute; de cambio de contrase&ntilde;a e iniciar sesi&oacute;n nuevamente en el visor web con la nueva contrase&ntilde;a.</li>
