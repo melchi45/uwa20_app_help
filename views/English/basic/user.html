@@ -57,18 +57,21 @@
             <ul>
                 <li>To reinforce security, it is recommended to create a password by combining special characters, numbers, and uppercase and lowercase letters.</li>
                 <li>It is recommended to change the password every three months.</li>
-                <li>The password length and restrictions are as follows:</li>
-                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+				<!-- <li>The password length and restrictions are as follows:</li> -->
+				<li>The password restrictions are as follows:</li>
+                <ul>
+					<!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 -->
+					<!-- <li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
-                    <li ng-if="PasswordRule2">Password should be longer than 9 digits, and you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>					
+                    <li ng-if="PasswordRule2">Password should be longer than 9 digits, and you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li> -->
                     <li>Password must be different from your ID. Also, we recommend not to use your ID string as part of the password.   </li>
                     <li>You cannot use four or more consecutive characters (e.g. 1234, abcd).</li>
                     <li>You cannot use the same character four or more times in a row (e.g. !!!!, 1111, aaaa).</li>
-					<li ng-if="PasswordRule1">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
+					<!-- <li ng-if="PasswordRule1">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
-					<li ng-if="PasswordRule2">Only ~`!@#$%^&amp;*()_-+=|{}[].?/ are allowed for special characters.</li>
+					<li ng-if="PasswordRule2">Only ~`!@#$%^&amp;*()_-+=|{}[].?/ are allowed for special characters.</li> -->
                     <li>After the factory reset, both the admin and user passwords will reset, and you need to create them again.</li>
                     <li>When you access the camera web viewer for the first time, or access it after the initialization, you will be moved to the password setting menu.</li>
                     <li>To use the web viewer menu, you need to set the new password in the password change menu and log in to the web viewer again with the changed password.</li>

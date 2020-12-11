@@ -348,8 +348,11 @@
                         </td>
                         <td width="235">버튼을 클릭하면 히터가 30초 동안 동작합니다. </td>
                     </tr>
+
                     <!-- XNP-9300R. 김영호 책임님. 2020-11-11 메일. -->
-                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin">
+                    <!-- <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin"> -->
+                    <!-- TTA QNV-6120RG. 정인혜 선임님. 메신저. 2020-12-11 -->
+                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1"></tr>
                         <td width="235">
                             <p><span class="tui tui-spinningdry"></span></p>
                             <p>물기 제거</p>

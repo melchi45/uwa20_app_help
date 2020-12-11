@@ -246,7 +246,8 @@
         <div class="wn5-online-help-info" ng-if="FisheyeLens">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-                <li>카메라 마운팅 모드를 변경하면 <strong class="UI">[비디오 프로파일]</strong>에서 설정한 모든 프로파일 설정이 초기화되고 카메라가 재부팅됩니다. 또한 변경되는 화면에 맞추어 영상 분석 및 통계 설정을 변경해야 합니다. 해당 설정은 <strong class="UI">[분석]</strong>과 <strong class="UI">[통계] </strong>메뉴에서 변경할 수 있습니다.  </li>
+				<li ng-if="Statistics">카메라 마운팅 모드를 변경하면 <strong class="UI">[비디오 프로파일]</strong>에서 설정한 모든 프로파일 설정이 초기화되고 카메라가 재부팅됩니다. 또한 변경되는 화면에 맞추어 영상 분석 및 통계 설정을 변경해야 합니다. 해당 설정은 <strong class="UI">[분석]</strong>과 <strong class="UI">[통계] </strong>메뉴에서 변경할 수 있습니다. </li>
+				<li ng-if="!Statistics">카메라 마운팅 모드를 변경하면 <strong class="UI">[비디오 프로파일]</strong>에서 설정한 모든 프로파일 설정이 초기화되고 카메라가 재부팅됩니다. 또한 변경되는 화면에 맞추어 영상 분석 및 통계 설정을 변경해야 합니다. 해당 설정은 <strong class="UI">[분석]</strong> 메뉴에서 변경할 수 있습니다. </li>
                 <li>카메라 마운팅 모드를 <strong class="UI">[벽면형]</strong>으로 선택한 경우에만 <strong class="UI">[라이브]</strong><span> </span> 모드에서 DPTZ 중 팬 기능을 사용할 수 있습니다.</li>
                 <li>카메라 마운팅 모드를 변경하면 <strong class="UI">[라이브]</strong><span> </span>모드에서 피쉬아이 뷰 모드 방향도 같이 변경됩니다.</li>
             </ul>

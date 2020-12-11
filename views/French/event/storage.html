@@ -177,8 +177,10 @@
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li>Si le mot de passe est oubli&eacute; ou perdu, il ne peut pas &ecirc;tre r&eacute;cup&eacute;r&eacute;. &Agrave; la place, vous pouvez r&eacute;initialiser votre mot de passe, mais la carte SD sera alors format&eacute;e et toutes ses donn&eacute;es seront supprim&eacute;es.</li>
-                <li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
-                <ul><!-- TTA용 XNO-6085RG 이슈 수정. 김선미 책임님. 2019-10-18. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음   --><li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
+                <!-- <li>La longueur du mot de passe et les restrictions sont les suivantes&nbsp;:</li>
+                <ul> -->
+                    <!-- TTA용 XNO-6085RG 이슈 수정. 김선미 책임님. 2019-10-18. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음   -->
+                    <!-- <li ng-if="PasswordRule1">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 8 &agrave; 9 chiffres, vous devez combiner au moins trois types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Pour un mot de passe de 10 &agrave; 15 chiffres, vous devez combiner au moins deux types diff&eacute;rents de ce qui suit&nbsp;: des lettres majuscules et minuscules, des chiffres et des caract&egrave;res sp&eacute;ciaux.</li>
@@ -188,7 +190,7 @@
                     <li ng-if="PasswordRule1">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
                     <li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Seuls ~`!@#$%^*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
 					<li ng-if="PasswordRule2">Seuls ~`!@#$%^&amp;*()_-+=|{}[].?/ sont autoris&eacute;s pour les caract&egrave;res sp&eacute;ciaux.</li>
-                </ul>
+                </ul> -->
             </ul>
         </div>
     </div>
