@@ -323,8 +323,8 @@
                             <p>Vous pouvez activer le r&eacute;chauffeur pendant 30 secondes en appuyant sur le bouton.</p>
                         </td>
                     </tr>
-                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1">
-                    <!-- <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin"> -->
+                    
+                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdminUse">
                         <td width="235">
                             <p><span class="tui tui-spinningdry"></span></p>
                             <p>S&eacute;chage par rotation</p>
