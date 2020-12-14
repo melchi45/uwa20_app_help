@@ -364,7 +364,8 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Utilisez la fonction microphone. Pour utiliser la fonction microphone, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p>
+                            <p>Utilisez la fonction microphone. </p>
+                            <!-- <p>Pour utiliser la fonction microphone, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p> -->
                             <p ng-if="SupportAutoImageAlignment">La fonction de microphone est disponible seulement si vous avez sélectionné CAN 1. </p>
                             <p>&nbsp;</p>
                         </td>
@@ -388,6 +389,7 @@
                         </td>
                         <td width="235">
                             <p>R&eacute;glez le volume audio de l&apos;&eacute;cran de direct. <span class="tui tui-wn5-toolbar-sound"></span> Cliquez sur le bouton pour activer l&apos;audio et ajuster le volume.</p>
+                            <p>Pour utiliser la fonction haut-parleur, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p>
                             <p>&nbsp;</p>
                             <p ng-if="SupportAutoImageAlignment">La fonction haut-parleur est disponible seulement si vous avez sélectionné CAN 1.</p>
                         </td>
@@ -408,9 +410,8 @@
         <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
             <h4>Pour changer de canal</h4>
                 <ul>
-                    <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
-                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Cliquez sur l’icône Multi-vues pour afficher toutes les vidéos des canaux de la caméra sur un même écran.</li>
-                    <li>Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</li>
+                    <li>S&eacute;lectionnez un canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
+                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Cliquez sur l’icône Multi-vues pour afficher toutes les vidéos des canaux de la caméra sur un même écran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</li>
                 </ul>
             </div>
             <div class="wn5-online-help-action">

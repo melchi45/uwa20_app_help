@@ -377,7 +377,9 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Use the microphone function. To use the microphone function, the <strong class="UI">[Audio in]</strong> function should be activated for the relevant profile. To activate the audio input function, select <strong class="UI">[Enable]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Audio in]</strong>.</p>
+                            <p>Use the microphone function. </p>
+                            <!-- <p>To use the microphone function, the <strong class="UI">[Audio in]</strong> function should be activated for the relevant profile. To activate the audio input function, select <strong class="UI">[Enable]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Audio in]</strong>.
+                            </p> -->
                             <p ng-if="SupportAutoImageAlignment">The microphone feature is available only if you’ve selected CH1. </p>
                             <p>&nbsp;</p>
                         </td>
@@ -401,6 +403,8 @@
                         </td>
                         <td width="235">
                             <p>Adjust the audio volume of the live screen. <span class="tui tui-wn5-toolbar-sound"></span> Click the icon to activate the audio and adjust the volume.</p>
+                            <p>To use the speaker function, the <strong class="UI">[Audio in]</strong> function should be activated for the relevant profile. To activate the audio input function, select <strong class="UI">[Enable]</strong> from <strong class="UI">[Setup]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Video profile]</strong>&gt;<strong class="UI">[Audio in]</strong>.
+                            </p>
                             <p ng-if="SupportAutoImageAlignment">The speaker feature is available only if you’ve selected CH1.</p>
                             <p>&nbsp;</p>
                         </td>
@@ -423,11 +427,9 @@
             <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
             <h4>To change channel</h4>
                 <ul>
-                    <li>Select the channel number you want. The video of the channel will appear in the viewer.</li>
+                    <li>Select the channel you want. The video of the channel will appear in the viewer.</li>
                  <!--    <li ng-if="!SupportAutoImageAlignment">For the quad view, click the Quad View icon.</li> --> 
-                 <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Click the Multi view icon to display all videos of camera channels on one screen. </li>
-
-                    <li>To return to the single view, click the channel number. </li>
+                 <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Click the Multi view icon to display all videos of camera channels on one screen. To return to the single view, click the channel number. </li>
                 </ul>
             </div>
             <div class="wn5-online-help-action">

@@ -197,7 +197,7 @@
                                 <p>Seleccionar canal</p>
                             </td>
                             <td width="235">
-                                    <p>Aquí se muestran los canales compatibles con la cámara.Seleccione un canal para reproducir la transmisi&oacute;n en vivo del canal seleccionado.</p>
+                                    <p>Aquí se muestran los canales compatibles con la cámara. Seleccione un canal para reproducir la transmisi&oacute;n en vivo del canal seleccionado.</p>
 
                                 <!-- <p>Se muestran los n&uacute;meros de canal de la c&aacute;mara.</p> -->
                             <!--     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">En caso de seleccionar un n&uacute;mero de canal, el v&iacute;deo del canal se mostrar&aacute; en el visor. Si selecciona el icono de Vista cu&aacute;druple, los v&iacute;deos de 4 canales se mostrar&aacute;n en una pantalla. Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal.</p> -->
@@ -229,7 +229,7 @@
                                     <p>Seleccionar canal</p>
                                 </td>
                                 <td width="235">
-                                        <p>Aquí se muestran los canales compatibles con la cámara.Seleccione un canal para reproducir la transmisi&oacute;n en vivo del canal seleccionado.</p>
+                                        <p>Aquí se muestran los canales compatibles con la cámara. Seleccione un canal para reproducir la transmisi&oacute;n en vivo del canal seleccionado.</p>
                                         <p>El Canal [Fisheye View] es el v&iacute;deo original de la c&aacute;mara de ojo de pez. Todos los dem&aacute;s canales son a&ntilde;adidos y configurados por los usuarios para mostrar sus modos de visualizaci&oacute;n preferidos. Se pueden a&ntilde;adir canales de c&aacute;mara en <strong class="UI">[Configuraci&oacute;n]</strong> &gt; <strong class="UI">[B&aacute;sico]</strong> &gt; <strong class="UI">[Perfil de v&iacute;deo]</strong>.</p>
 
                                 </td>
@@ -368,7 +368,8 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>Utilice la funci&oacute;n del micr&oacute;fono. Para utilizar la funci&oacute;n de micr&oacute;fono, la funci&oacute;n <strong class="UI">[Entrada de audio]</strong> debe ser activada para el perfil correspondiente. Para activar la funci&oacute;n de entrada de v&iacute;deo, seleccione <strong class="UI">[Activar]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>.</p>
+                            <p>Utilice la funci&oacute;n del micr&oacute;fono. </p>
+                            <!-- <p>Para utilizar la funci&oacute;n de micr&oacute;fono, la funci&oacute;n <strong class="UI">[Entrada de audio]</strong> debe ser activada para el perfil correspondiente. Para activar la funci&oacute;n de entrada de v&iacute;deo, seleccione <strong class="UI">[Activar]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>.</p> -->
                             <p ng-if="SupportAutoImageAlignment">La función del micrófono solo está disponible si ha seleccionado Canal1.</p>
                             <p>&nbsp;</p>
                         </td>
@@ -392,6 +393,8 @@
                         </td>
                         <td width="235">
                             <p>Ajuste el volumen del audio de la pantalla en vivo. <span class="tui tui-wn5-toolbar-sound"></span> Haga clic en el bot&oacute;n para activar el audio y ajustar el volumen.</p>
+                            <p>Para utilizar la funci&oacute;n de altavoz, la funci&oacute;n <strong class="UI">[Entrada de audio]</strong> debe ser activada para el perfil correspondiente. Para activar la funci&oacute;n de entrada de v&iacute;deo, seleccione <strong class="UI">[Activar]</strong> de <strong class="UI">[Configuraci&oacute;n]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<strong class="UI">[Entrada de audio]</strong>.</p>
+
                             <p ng-if="SupportAutoImageAlignment">La función del altavoz solo está disponible si ha seleccionado Canal1.</p>
                             <p>&nbsp;</p>
                         </td>
@@ -412,10 +415,9 @@
         <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
             <h4>Para cambiar el canal</h4>
                 <ul>
-                    <li>Seleccione el n&uacute;mero del canal que desea. El video del canal aparecer&aacute; en el visor.</li>
+                    <li>Seleccione un canal que desea. El video del canal aparecer&aacute; en el visor.</li>
                 <!--    <li ng-if="!SupportAutoImageAlignment">Para la vista quad, haga clic en el icono de la visa Quad.</li>  -->
-                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Haga clic en el icono Multivista para mostrar todos los vídeos de los canales de la cámara en una pantalla.</li>
-                    <li>Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal. </li>
+                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Haga clic en el icono Multivista para mostrar todos los vídeos de los canales de la cámara en una pantalla. Para volver a la vista &uacute;nica, haga clic en el n&uacute;mero del canal. </li>
                 </ul>
             </div>
             <div class="wn5-online-help-action">

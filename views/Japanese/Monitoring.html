@@ -377,7 +377,8 @@
                             <p>&nbsp;</p>
                         </td>
                         <td width="235">
-                            <p>マイク機能を使用することができます。マイク機能を使用するためには、該当のプロファイルに<strong class="UI">[音声入力]</strong>機能を有効にする必要があります。ビデオ入力機能を有効にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[音声入力]</strong>で<strong class="UI">[On]</strong>を選択します。</p>
+                            <p>マイク機能を使用することができます。</p>
+                            <!-- <p>マイク機能を使用するためには、該当のプロファイルに<strong class="UI">[音声入力]</strong>機能を有効にする必要があります。ビデオ入力機能を有効にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[音声入力]</strong>で<strong class="UI">[On]</strong>を選択します。</p> -->
                             <p ng-if="SupportAutoImageAlignment">チャンネル1を選択した場合のみ、マイク機能を使用することができます。</p>
                             <p>&nbsp;</p>
                         </td>
@@ -401,6 +402,7 @@
                         </td>
                         <td width="235">
                             <p>ライブ画面のオーディオ音量を調整することができます。 <span class="tui tui-wn5-toolbar-sound"></span> ボタンをクリックしてオーディオを有効に設定してから、音量を調整することができます。</p>
+                            <p>マイク機能を使用するためには、該当のプロファイルに<strong class="UI">[音声入力]</strong>機能を有効にする必要があります。ビデオ入力機能を有効にするには、<strong class="UI">[設定]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[音声入力]</strong>で<strong class="UI">[On]</strong>を選択します。</p>
                             <p>&nbsp;</p>
                             <p ng-if="SupportAutoImageAlignment">チャンネル1を選択した場合のみ、スピーカー機能を使用することができます。</p>
                         </td>
@@ -421,9 +423,8 @@
             <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
             <h4>チャンネルを変更するには、</h4>
                 <ul>
-                    <li>チャンネルNo.を選択します。該当チャンネルの映像がビューアに表示されます。</li>
-                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">クワドビュー画面に表示するには、クワドビューのアイコンをクリックします。</li>
-                    <li>シングル画面に戻すには、チャンネルNo.をクリックします。</li>
+                    <li>チャンネル選択します。該当チャンネルの映像がビューアに表示されます。</li>
+                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">クワドビュー画面に表示するには、クワドビューのアイコンをクリックします。シングル画面に戻すには、チャンネルNo.をクリックします。</li>
                 </ul>
             </div>
             <div class="wn5-online-help-action">
