@@ -11,17 +11,17 @@
     <p>상단의 버튼을 클릭하여 라이브 화면과 재생 화면, 설정 화면으로 이동할 수 있습니다.</p>
         <ul>
             <li><span class="tui tui-wn5-top-live"></span>(라이브): 카메라가 촬영 중인 라이브 화면을 확인하고 다양한 카메라 기능을 제어할 수 있습니다.</li>
-            <li ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(재생): (micro)SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
-            <li ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(재생): (micro)SD 카드에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
-            <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(설정): 카메라의 상세 설정을 변경할 수 있습니다.  </li>
+            <li ng-if="Recording && NAS" class="sptRecordingSDNas"><span class="tui tui-wn5-top-playback"></span>(재생): (micro)SD 카드 또는 NAS에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
+            <li ng-if="Recording && !NAS" class="sptRecordingSD"><span class="tui tui-wn5-top-playback"></span>(재생): (micro)SD 카드에 녹화해 둔 영상을 검색하고 재생하여 볼 수 있습니다.</li>
+            <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(설정): 카메라의 상세 설정을 변경할 수 있습니다. 관리자 권한으로 접속한 경우에만 [설정] 메뉴를 확인하고 변경할 수 있습니다. </li>
         </ul>
     </div>
 
-		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
+		<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
         <ul>
-            <li>고해상도의 영상을 라이브 화면에서 재생하는 경우, 고해상도 영상을 최적화하여 보여줄 수 있는 PLUGINFREE 프로파일이 자동으로 생성됩니다. 생성된 PLUGINFREE 프로파일은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 확인할 수 있습니다. </li>
-            <li ng-if="PeerConnectionInfoClientHttpsStatus">라이브 페이지 오른쪽 상단에서 <img src="images/ic-top-cert-nor.svg">아이콘을 클릭하면, 접속한 IP 주소와 인증 상태를 확인할 수 있습니다. 인증에 성공한 경우 초록색 아이콘으로, 실패한 경우 빨간색 아이콘으로 표시됩니다. 또한 HTTP로 접속하여 해당 사항이 없는 경우는 대시(-)로 표시됩니다. </li>
+            <!-- <li>고해상도의 영상을 라이브 화면에서 재생하는 경우, 고해상도 영상을 최적화하여 보여줄 수 있는 PLUGINFREE 프로파일이 자동으로 생성됩니다. 생성된 PLUGINFREE 프로파일은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 확인할 수 있습니다. </li> -->
+            <li ng-if="PeerConnectionInfoClientHttpsStatus" class="sptPeerConnectionInfoClientHttpsStatus">라이브 페이지 오른쪽 상단에서 <img src="images/ic-top-cert-nor.svg">아이콘을 클릭하면, 접속한 IP 주소와 인증 상태를 확인할 수 있습니다. 인증에 성공한 경우 초록색 아이콘으로, 실패한 경우 빨간색 아이콘으로 표시됩니다. 또한 HTTP로 접속하여 해당 사항이 없는 경우는 대시(-)로 표시됩니다. </li>
             <li>Chrome으로 웹뷰어에 접속하면 재생 화면의 기능을 가장 안정적으로 사용할 수 있습니다.</li>
             <li>라이브 페이지에서 영상을 재생할 때 아래와 같은 조건에서 화면에 잔상이 표시될 수 있습니다.</li>
             <ul>
@@ -30,7 +30,7 @@
                 <li>웹 브라우저 창의 크기 변경 및 위치 이동 시</li>
             </ul>
             <!-- 	<li>Internet Explorer나 Safari로 웹뷰어에 접속한 경우, 플러그인을 설치해야 캡처<span class="tui tui-wn5-toolbar-capture"></span>, 저장<span class="tui tui-wn5-toolbar-record"></span>, 픽셀카운트<span class="tui tui-wn5-toolbar-pixel"></span>, 마이크<span class="tui tui-wn5-toolbar-mic"></span> 기능을 사용할 수 있습니다. 플러그인을 설치하려면 오른쪽 상단의 플러그인 <span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li> -->
-            <li ng-if="HybridThermal">발열 감지 카메라에서 채널 1은 실화상 영상이며, 채널 2는 열화상 영상입니다.</li>
+            <li ng-if="HybridThermal" class="sptHybridThermal">발열 감지 카메라에서 채널 1은 실화상 영상이며, 채널 2는 열화상 영상입니다.</li>
         </ul>
 
         </div>
@@ -56,7 +56,7 @@
                 <tbody>
 
                     <!-- AI 카메라. 고용수 책임님. 2019-09-20.  -->
-                <tr ng-if="objectDetectionSupport">
+                <tr ng-if="objectDetectionSupport" class="sptObjectDetection">
                     <td width="235">BestShot</td>
                     <td width="235">
                         <p>BestShot은 영상에서 감지된 객체(사람, 얼굴, 차량, 번호판)에서 신뢰도가 가장 높은 객체를 이미지로 추출한 것입니다. BestShot의 이미지 형식은 JPEG이며, 객체를 포함하는 일부 영역만 추출하여 이미지를 생성합니다. </p>
@@ -76,7 +76,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="spotTemperatureSupport">
+                    <tr ng-if="spotTemperatureSupport" class="sptSpotTemperature"> 
                         <td width="235">
                             <p><span class="tui tui-toolbar_temperature"></span></p>
                             <p>온도</p>
@@ -91,7 +91,7 @@
                     </tr>
                 
                     <!-- PTZ 타입 5개임 1)Zoom 2)PTZ 3)DPTZ (PTRZ 포함) 4)fisheye 5) external  -->
-                    <tr ng-if="Zoom">
+                    <tr ng-if="Zoom" class="sptZoomOnly">
                         <td width="235">
                                 <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
                                 <p><a class="wn5-online-help-link" href="#PTZ" ng-href="#/help/monitoring?#PTZ">PTZ</a></p>
@@ -99,7 +99,7 @@
                         <td width="235">카메라의 줌이나 초점을 조절하고 원하는 프리셋으로 이동할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[프리셋 설정]</strong> 페이지에서 설정한 프리셋 목록이 표시됩니다. <strong class="UI">[설정]</strong>버튼을 클릭한 후 새로운 프리셋 위치를 추가할 수도 있습니다.</td>
                     </tr>
                     
-                    <tr ng-if="PanTiltOnlyModel">
+                    <tr ng-if="PanTiltOnlyModel" class="sptPantiltOnly">
                     <td width="235">
                             <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
                             <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
@@ -116,13 +116,13 @@
                         </td>
                     <td width="235">
                         <p>카메라의 팬/틸트/줌 동작을 디지털로 제어할 수 있습니다. </p>
-                        <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment && !MultiImager">현재 라이브 화면에 적용된 비디오 프로파일이 디지털 PTZ를 지원하는 경우에만 작동합니다. 디지털 PTZ 제어 프로파일로 변경하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택합니다.</p>
+                        <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment && !MultiImager" class="sptDPTZ">현재 라이브 화면에 적용된 비디오 프로파일이 디지털 PTZ를 지원하는 경우에만 작동합니다. 디지털 PTZ 제어 프로파일로 변경하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택합니다.</p>
                         
 
                         <!-- live 페이지내 채널별 다르게 동작하는 ptz => 일단 ‘ ng-if="GlobalPTZMode  && MaxChannel > 1” ‘ 로 사용하시면 될 것 같습니다. 고용수 책임님. TNB-9000. 2019-11-11. -->
-                        <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[채널 선택]</strong>에서 채널 2를 선택한 경우에만 디지털 PTZ 기능이 활성화됩니다. </p>
+                        <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)" class="sptDPTZOnlyChannel2"><strong class="UI">[채널 선택]</strong>에서 채널 2를 선택한 경우에만 디지털 PTZ 기능이 활성화됩니다. </p>
 						
-                        <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ 아이콘이 보이지 않으면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택 해제되어 있는지 확인하십시오. </p>
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">PTZ 아이콘이 보이지 않으면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택 해제되어 있는지 확인하십시오. </p>
 
                         <p>&nbsp;</p>
                         <p> </p>
@@ -147,8 +147,8 @@
                         <p>카메라 RS-485나 RS-422 단자에 연결된 팬/틸트 리시버를 통해 카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. </p>
                         <!-- <p><strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어, 추적 기능을 시작하고 중지할 수 있습니다. </p>  -->
                         
-                        <p ng-if="GlobalPTZMode && MaxChannel > 1">[채널 선택]에서 채널 1을 선택한 경우에만 외부 PTZ 제어 기능이 동작합니다. </p>
-                        <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ 아이콘이 보이지 않으면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택되어 있는지 확인하십시오. </p>
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">[채널 선택]에서 채널 1을 선택한 경우에만 외부 PTZ 제어 기능이 동작합니다. </p>
+                        <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">PTZ 아이콘이 보이지 않으면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>의 <strong class="UI">[외부 PTZ 사용]</strong> 옵션이 선택되어 있는지 확인하십시오. </p>
                         <p>&nbsp;</p>
                     </td>
                 </tr>
@@ -159,8 +159,8 @@
                         <p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다. <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ 설정]</strong> 페이지에서 설정한 프리셋 위치로 이동하거나, 스윙, 그룹, 투어 기능을 시작하고 중지할 수 있습니다. </p>
 
                             <!-- PNM-9000QB에서 컨텐츠가 show되어 hide되도록 수정. FocusPresetSupportByChannel -> FocusModeOptions !== undefined. 김주희 선임님 메일 2020-08-25.   -->
-                        <p ng-if="FocusPresetSupport"><strong class="UI">[포커스 저장]</strong>에서 포커스 목록을 확인할 수 있습니다. </p>                       
-                        <p ng-if="MaxChannel > 1 && HandoverCalibration">[채널 선택]에서 [PTZ] 채널을 선택한 경우에만 'PTZ' 아이콘이 보입니다.</p>
+                        <p ng-if="FocusPresetSupport" class="sptFocusPreset"><strong class="UI">[포커스 저장]</strong>에서 포커스 목록을 확인할 수 있습니다. </p>                       
+                        <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">[채널 선택]에서 [PTZ] 채널을 선택한 경우에만 'PTZ' 아이콘이 보입니다.</p>
                     </td>
                     </tr>
 				<!--	<tr ng-if="FisheyeLens">
@@ -189,7 +189,7 @@
                         </td>
                     </tr>
 					
-               <tr ng-if="objectDetectionSupport">
+               <tr ng-if="objectDetectionSupport" class="sptObjectDetection">
                     <td width="235">
                         <p><span class="tui tui-ch-live-overlay"></span></p>
                         <p>오버레이</p>
@@ -206,7 +206,7 @@
               <!-- PNM-9000QB에서 컨텐츠가 hide되어 show되도록 수정. 기존 LensModelViewOptions에  LensModelOptions !== undefined를 추가함. 김주희 선임님 메일 2020-08-25.   -->
               <!-- TNV-8010 고용수 책임님.  LensModelViewOptions !== undefined || LensModelOptions !== undefined  => LensModelViewOptions && LensModelOptions -->
 
-                <tr ng-if="!!LensModelViewOptions || !!LensModelOptions">
+                <tr ng-if="!!LensModelViewOptions || !!LensModelOptions" class="sptLensModel">
                     <td width="235">렌즈 모델명</td>
                     <td width="235">
                             <p>렌즈 종류가 표시됩니다.</p>
@@ -219,7 +219,7 @@
                 <!-- Guest, user 로 로그인 시 Select channel 설명 미노출되어 !IsAdmin 추가. TW 자체. PNM-9000VQ. 2020-04-20. -->
 
                 <!-- QNF-9010에서 hide했으나 XNF-9010에서 show될 수 있도록 !SupportChannelExpansionFeature 삭제. !IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin) => MaxChannel > 1 && !IsAdmin로 변경. TW 자체. XNF-9010. 2020-08-11. -->                
-                <tr ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
+                <tr ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature"  class="sptChannelSelector">
                     <td width="235">
                         <p>채널 선택</p>
                     </td>
@@ -228,8 +228,8 @@
 <!-- <p>카메라 채널 번호가 표시됩니다.</p> -->
 <!--     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 4분할 화면 아이콘을 선택하면 4개 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다.</p> --> 
                         <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport &&!SupportChannelExpansionFeature">채널 번호를 선택하면 해당 채널의 영상이 뷰어에 나타납니다. 멀티 뷰 아이콘을 선택하면 카메라가 지원하는 모든 채널의 영상이 한 번에 보여집니다. 단일 화면으로 돌아오려면 채널 번호를 클릭합니다. </p>
-                        <p ng-if="HandoverCalibration">고정형 카메라의 채널 번호를 선택하면 해당 영상이 뷰어에 나타납니다. [PTZ]를 선택하면 PTZ 단일 채널 영상이 뷰어에 나타납니다. 멀티 채널 아이콘을 선택하면 고정형 카메라와 PTZ 카메라이 영상이 한 번에 나타납니다. 단일 화면으로 돌아오려면 채널 번호나 [PTZ]를  클릭합니다.</p>
-                        <p ng-if="SupportAutoImageAlignment">카메라 채널 2~5번을 선택하면 각 채널별 카메라 영상을 보여줍니다. 채널 1을 선택하면 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여줍니다. 채널 6번과 7번을 선택하면 1번 채널 영상을 카메라 <a href="#PTZ">PTZ를 조정</a>하면서 확인할 수 있습니다. </p>
+                        <p ng-if="HandoverCalibration" class="sptHandoverCalibration">고정형 카메라의 채널 번호를 선택하면 해당 영상이 뷰어에 나타납니다. [PTZ]를 선택하면 PTZ 단일 채널 영상이 뷰어에 나타납니다. 멀티 채널 아이콘을 선택하면 고정형 카메라와 PTZ 카메라이 영상이 한 번에 나타납니다. 단일 화면으로 돌아오려면 채널 번호나 [PTZ]를  클릭합니다.</p>
+                        <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">카메라 채널 2~5번을 선택하면 각 채널별 카메라 영상을 보여줍니다. 채널 1을 선택하면 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여줍니다. 채널 6번과 7번을 선택하면 1번 채널 영상을 카메라 <a href="#PTZ">PTZ를 조정</a>하면서 확인할 수 있습니다. </p>
 <!-- </td>
                 </tr>
 				
@@ -237,7 +237,7 @@
                     <td width="235"><a name="channel_AI">채널 선택</a> </td>
                     <td width="235">
                         <p>카메라가 지원하는 채널이 표시됩니다.</p> -->
-                        <ul ng-if="objectDetectionSupport">
+                        <ul ng-if="objectDetectionSupport" class="sptObjectDetection">
                             <li>채널 1: 라이브 영상을 보여 주는 채널입니다.    </li>
                             <li>채널 2: 디지털 PTZ 영상을 보여주는 채널입니다.
                             <!--  채널 2를 선택하면 <a href="#PTZ">디지털 PTZ 기능을 사용할 수 있습니다.   -->
@@ -245,13 +245,13 @@
                         </ul>
                         <p ng-if="MultiImager">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2와 채널 3은 디지털 PTZ 영상을 보여 주는 채널입니다. </p>
 <!-- 발열 감지 카메라 TNM-3620TDY. 고용수 책임님. 2020-09-09 메일 참고 -->
-                        <p ng-if="HybridThermal">채널 1은 실화상 영상이며, 채널 2는 열화상 영상입니다. 멀티뷰 아이콘을 선택하면 실화상 영상과 열화상 영상을 동시에 확인할 수 있습니다. </p>
+                        <p ng-if="HybridThermal" class="sptHybridThermal">채널 1은 실화상 영상이며, 채널 2는 열화상 영상입니다. 멀티뷰 아이콘을 선택하면 실화상 영상과 열화상 영상을 동시에 확인할 수 있습니다. </p>
                         <p>&nbsp;</p>
                     </td>
                 </tr>
 
                 <!-- XNF-9010RVM에서 채널 추가되어 추가함. SupportChannelExpansionFeature는 QNF-9010에서 사용하던 코드였으나 XNF-9010에서 사용. TW자체. 2020-08-11 -->               
-                <tr ng-if="SupportChannelExpansionFeature">
+                <tr ng-if="SupportChannelExpansionFeature" class="sptChannelExpansionFeature">
                     <td width="235">
                         <p>채널 선택</p>
                     </td>
@@ -327,33 +327,30 @@
                         </td>
                     </tr>
 
-                    <tr ng-if="WiperOn">
+                    <tr ng-if="WiperOn" class="sptWiper">
                         <td width="235">
                             <p><span class="tui tui-wiper"></span></p>
                             <p>와이퍼</p>
                         </td>
                         <td width="235">버튼을 클릭하면 와이퍼가 왕복 동작합니다. </td>
                     </tr>
-                    <tr ng-if="WasherWiperOn">
+                    <tr ng-if="WasherWiperOn" class="sptWasher">
                         <td width="235">
                             <p><span class="tui tui-washer_wiper"></span></p>
                             <p>워셔</p>
                         </td>
                         <td width="235">버튼을 클릭하면 물이 3초 동안 나온 후 자동으로 중지합니다. 이 후 와이퍼가 10초 정도 동작하며 물을 닦아냅니다.  </td>
                     </tr>
-                    <tr ng-if="HeaterOn">
+                    <tr ng-if="HeaterOn" class="sptHeater">
                         <td width="235">
                             <p><span class="tui tui-heater-dry"></span></p>
                             <p>히터</p>
                         </td>
                         <td width="235">버튼을 클릭하면 히터가 30초 동안 동작합니다. </td>
                     </tr>
-
-                    <!-- TTA QNV-6120RG. 정인혜 선임님. 메신저. 2020-12-11
-                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1"></tr> -->
-
                     <!-- XNP-9300R. 김영호 책임님. 2020-11-11 메일. -->
-                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdminUse">
+                    <!-- <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdmin"> -->
+                <tr ng-if="SpinningDryOn">
                         <td width="235">
                             <p><span class="tui tui-spinningdry"></span></p>
                             <p>물기 제거</p>
@@ -363,7 +360,7 @@
                     </td>
                 </tr>
                     <!-- !CamSpecialModel -> !CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)로 변경. 김선미 책임님. XNO-6085RG. 2019-10-16 -->
-                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
+                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)" class="sptRecording">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>저장</p>
@@ -385,21 +382,21 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput>0">
+                    <tr ng-if="MaxAudioOutput>0" class="sptAudioOutput">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>마이크</p>
                             <p> </p>
                         </td>
                         <td width="235">
-                            <p>마이크 기능을 사용할 수 있습니다.</p> 
+                            <p>마이크 기능을 사용할 수 있습니다. </p>
+                            <p>마이크 기능을 사용하려면 HTTPS로 접속해야 합니다.</p>
                             <!-- <p>마이크 기능을 사용하려면 해당 프로파일에 <strong class="UI">[오디오 입력]</strong> 기능이 활성화되어 있어야 합니다. 오디오 입력 기능을 활성화하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI">[사용]</strong>을 선택합니다.</p> -->
-                
-							<p ng-if="SupportAutoImageAlignment">채널 1을 선택한 경우에만 마이크 기능을 사용할 수 있습니다. </p>
+							<p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">채널 1을 선택한 경우에만 마이크 기능을 사용할 수 있습니다. </p>
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAlarmOutput>0">
+                    <tr ng-if="MaxAlarmOutput>0" class="sptAlarmOutput">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                         <p>알람 출력</p>
@@ -409,7 +406,7 @@
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput>0">
+                    <tr ng-if="MaxAudioInput>0" class="sptAudioInput">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>스피커</p>
@@ -417,12 +414,12 @@
                         </td>
                         <td width="235">
                             <p>라이브 화면의 오디오 음량을 조절할 수 있습니다. <span class="tui tui-wn5-toolbar-sound"></span> 아이콘을 클릭하여 오디오를 활성화한 후 음량 크기를 조절할 수 있습니다.</p>
-                            스피커 기능을 사용하려면 해당 프로파일에 <strong class="UI">[오디오 입력]</strong> 기능이 활성화되어 있어야 합니다. 오디오 입력 기능을 활성화하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI">[사용]</strong>을 선택합니다.</p>
-                            <p ng-if="SupportAutoImageAlignment">채널 1을 선택한 경우에만 스피커 기능을 사용할 수 있습니다.</p>
+                            <p>스피커 기능을 사용하려면 해당 프로파일에 <strong class="UI">[오디오 입력]</strong> 기능이 활성화되어 있어야 합니다. 오디오 입력 기능을 활성화하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[오디오 입력]</strong>에서 <strong class="UI">[사용]</strong>을 선택합니다.</p>
+                            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">채널 1을 선택한 경우에만 스피커 기능을 사용할 수 있습니다.</p>
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="AudioClipCountRange">
+                    <tr ng-if="AudioClipCountRange" class="sptAudioClip">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-toolbar_audio-stop"></span></p>
                             <p>재생/정지</p>
@@ -438,7 +435,7 @@
 
             <!-- Guest,user 로 로그인 시 Status 설명 노출되어 수정. MaxChannel > 1 && !SupportChannelEnabledFeature -> !IsAdmin || (MaxChannel > 1 && !SupportChannelExpansionFeature && !IsAdmin). TW 자체. PNM-9000VQ (2020-03-11) -->
             <!-- 코드 간단하게 정리. XNF-9010에서 채널 선택을 지원하지만 채널 번호를 선택하는 방식이 아니므로 hide되도록 !SupportChannelExpansionFeature 남김. TW 자체. XNF-9010. 2020-08-11. -->  
-           <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
+           <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature" class="sptChannelSelector">
             <h4>채널을 변경하려면</h4>
                 <ul>
                     <li>원하는 채널을 선택합니다. 해당 채널의 영상이 뷰어에 나타납니다.</li>
@@ -454,7 +451,7 @@
                 </ul>
                 <!-- <p>Windows 7 이상에서 Internet Explorer 브라우저로 캡쳐가 안 되는 경우,  Internet Explorer 브라우저를 관리자 권한으로 실행하십시오. </p> -->
             </div>
-            <div class="wn5-online-help-action" ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
+            <div class="wn5-online-help-action sptRecording" ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
             <h4><a name="record"></a>영상을 녹화하려면</h4>
                 <ul>
                     <li>저장 아이콘(<span class="tui tui-wn5-toolbar-record"></span>)을 클릭합니다.</li>
@@ -466,7 +463,7 @@
                     <li>목록에서 ZIP을 선택한 후 비밀번호를 입력합니다.</li>
                 </ul>     
                 <p>사용자 PC에 녹화한 파일이.zip 파일로 저장되며, 영상을 재생할 때 설정한 비밀번호를 입력해야 합니다. </p>                        
-                <p ng-if="FisheyeLens">피쉬아이 뷰 모드에서 녹화를 하면 사용자가 보고 있는 왜곡보정된 뷰가 아닌 원본 이미지로 저장됩니다.</p>
+                <p ng-if="FisheyeLens" class="sptFisheyeLens">피쉬아이 뷰 모드에서 녹화를 하면 사용자가 보고 있는 왜곡보정된 뷰가 아닌 원본 이미지로 저장됩니다.</p>
             </div>
 			
             <div class="wn5-online-help-action">
@@ -477,7 +474,7 @@
                 </ul>
             </div>
             <!-- 박종찬 선임님 가이드에 따라 마이크를 MaxAudioOutput>0으로, 스피커를 MaxAudioInput>0로 변경함. 모델분기_Amba_Q_시리즈 2M.xlsx 참조 --> 
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
+            <div class="wn5-online-help-action sptAudioOutput" ng-if="MaxAudioOutput>0">
             <h4>마이크를 사용하려면</h4>
                 <ul>
                     <li>마이크 아이콘(<span class="tui tui-wn5-toolbar-mic"></span>)을 클릭합니다.</li>
@@ -487,7 +484,7 @@
                 <p>마이크 장치 설정에 따라 카메라에서 출력되는 소리가 균일하게 나오지 않을 수 있습니다. 소리가 잘 나오지 않는 경우 웹뷰어가 동작하고 있는 PC에서 마이크 속성의 개선 기능을 끄거나 마이크 장치 볼륨을 조절하십시오. </p> 
             </div>
 			            <!-- 박종찬 선임님 가이드에 따라 마이크를 MaxAudioOutput>0으로, 스피커를 MaxAudioInput>0로 변경함. 모델분기_Amba_Q_시리즈 2M.xlsx 참조 --> 
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
+            <div class="wn5-online-help-action sptRecording" ng-if="MaxAudioInput>0">
                 <h4>스피커를 사용하려면</h4>
                 <ul>
                     <li>스피커 아이콘(<span class="tui tui-wn5-toolbar-sound"></span>)을 클릭합니다.</li>
@@ -503,7 +500,7 @@
                    
                 </ul>
             </div>															
-            <div class="wn5-online-help-action" ng-if="AudioClipCountRange">
+            <div class="wn5-online-help-action sptAudioClip" ng-if="AudioClipCountRange">
                 <h4>오디오 클립을 재생하려면</h4>
                     <ul>
                         <li>오디오 클립 목록에서 원하는 오디오 클립을 선택한 후 재생 아이콘(<span class="tui tui-wn5-toolbar-play"></span>)을 클릭합니다.</li>
@@ -527,8 +524,8 @@
     </div>
 </div> -->
 
-<hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
-<div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
+<hr class="wn5-setup-hr sptSpotTemperature" ng-if="spotTemperatureSupport">
+<div class=" wn5-setup-section sptSpotTemperature" ng-if="spotTemperatureSupport">
     <div class=" wn5-setup-section-heading">
         <h2>영상 화면에서 온도 확인</h2>
 </div>
@@ -565,7 +562,7 @@
             <p>카메라 영상을 시각적으로 분석하기 용이하도록 컬러 팔레트를 제공합니다. 원하는 컬러 팔레트를 선택하면 카메라 영상 화면에 선택한 컬러 팔레트가 적용되어 나타납니다.</p>
             <p ng-if="!BoxTemperatureDetection && !HybridThermal">각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong> &gt; <strong class="UI">[비디오 및 오디오]</strong> &gt; <strong class="UI">[카메라 설정]</strong> &gt; <strong class="UI">[컬러 팔레트]</strong>를 참고하십시오. </p>
             <p ng-if="BoxTemperatureDetection && !HybridThermal">각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI">[온도 설정]</strong>&gt;<strong class="UI">[컬러 팔레트]</strong>를 참고하십시오.</p>
-            <p ng-if="HybridThermal">각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[온도 설정]</strong>&gt;<strong class="UI">[컬러 팔레트]</strong>를 참고하십시오. </p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">각 컬러 팔레트 옵션별 특징은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[온도 설정]</strong>&gt;<strong class="UI">[컬러 팔레트]</strong>를 참고하십시오. </p>
         </div>
     </div>
 </div>
@@ -593,8 +590,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
-<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<hr class="wn5-setup-hr sptPantiltOnly" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section sptPantiltOnly" ng-if="PanTiltOnlyModel">
 <div class="wn5-setup-section-heading">
     <h2><a name="PT"></a>PT</h2>
 </div>
@@ -615,8 +612,8 @@
 </div>
 </div>
 <!-- Zoom -> Zoom || ExternalPTZModel으로 수정. x시리즈 변경점 이슈. 정인혜 선임님 가이드. 2019-08-12  --> 
-<hr class="wn5-setup-hr" ng-if="Zoom || ExternalPTZModel">
-<div class="wn5-setup-section" ng-if="Zoom || ExternalPTZModel">
+<hr class="wn5-setup-hr sptExternalPTZ" ng-if="Zoom || ExternalPTZModel">
+<div class="wn5-setup-section sptExternalPTZ" ng-if="Zoom || ExternalPTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -626,7 +623,7 @@
             <p>카메라의 팬/틸트/줌 동작을 제어할 수 있습니다</p>    
         </div>
         
-        <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
+        <div class="wn5-online-help-info sptMultiChannelExternalPTZ" ng-if="GlobalPTZMode && MaxChannel > 1">
             <h4>알아두기</h4>
             <ul>
                 <li>외부 PTZ를 사용 중이며 채널 1을 선택한 경우에만 외부 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택합니다.</li>
@@ -690,8 +687,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 </div>
 -->
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -704,7 +701,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
                 <li>줌 축소: UI 우측의 바를 아래로 끌어내리거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 누르면 화면의 배율을 축소합니다. 바 위치가 중앙에서 멀수록 줌 축소 속도가 빨라집니다.</li>
                 <li>화면 이동: 커서가 있는 방향으로 이동합니다.</li>
             </ul>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">채널 선택에서 PTZ 채널을 선택한 경우에만 PTZ 기능이 활성화됩니다.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">[채널 선택]에서 PTZ 채널을 선택한 경우에만 PTZ 기능이 활성화됩니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>줌 동작 제어하기</h3>
@@ -719,7 +716,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <p><span class="tui tui-wn5-ptz-near"></span>아이콘이나 <span class="tui tui-wn5-ptz-far"></span>아이콘을 클릭하여 카메라의 초점을 조절합니다.</p>
             <p> 카메라 초점을 자동으로 한 번 맞추려면 <span class="tui tui-wn5-simple-focus"></span>아이콘을 클릭합니다.</p>
         </div> 
-		<div class="wn5-setup-section-article-content" ng-if="DigitalAutoTracking">
+		<div class="wn5-setup-section-article-content sptDigitalAutoTracking" ng-if="DigitalAutoTracking">
             <h3>자동 추적</h3>
                      
             <p>라이브 화면에서 움직이는 사물이나 사람을 자동으로 추적할 수 있습니다. <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>자동 추적 아이콘을 클릭하면 자동 추적 기능이 실행되며 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 자동 추적 아이콘을 한 번 더 클릭하면 추적 기능이 중지됩니다. </p>
@@ -727,8 +724,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         </div> 
         
     <!-- PNM-9000QB에서 컨텐츠가 show되어 hide되도록 수정. 기존 FocusPresetSupportByChannel !== undefined에서  FocusModeOptions !== undefined를 추가함 . 김주희 선임님 메일 2020-08-25.   -->
-    <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport">
-        <!-- <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport"> -->
+    <div class="wn5-setup-section-article-content sptFocusPreset" ng-if="FocusPresetSupport">
+        <!-- <div class="wn5-setup-section-article-content sptFocusPreset" ng-if="FocusPresetSupport"> -->
             <h3>포커스 저장</h3>
             <p>포커스 저장 목록을 확인할 수 있습니다. </p>
             <p>현재 촬상 화면을 포커스 영역으로 저장하려면 <strong class="UI">[설정]</strong> 버튼을 클릭합니다. <strong class="UI">[번호]</strong>와  <strong class="UI">[이름]</strong>을 입력한 후 <strong class="UI">[확인]</strong> 버튼을 클릭하면 저장됩니다. 목록에서 포커스 저장을 선택한 후 <strong class="UI">[이동]</strong>을 클릭하면 저장된 포커스 영역으로 카메라 포커스가 이동합니다.</p>
@@ -745,7 +742,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 		</div>
         
 		    <!-- TNU-6321에서 attribute로 AreaZoomSupportbyChannel 받았으나 기존 코드 AreaZoomSupport 있다고 함.  정인혜 선임님. 메신저. 2020-06-19   -->
-        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupport">
+        <div class="wn5-setup-section-article-content sptAreaZoom" ng-if="AreaZoomSupport">
             <h3>영역 줌</h3>
                      
             <p>영역 줌은 특정 영역만 확대하여 볼 수 있는 기능입니다.</p>
@@ -775,17 +772,17 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
             <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)"><strong class="UI">[채널 선택]</strong>에서 채널 2를 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>                
 
                
-                <li ng-if="GlobalPTZMode && MaxChannel > 1">외부 PTZ 기능을 사용하지 않고 [채널 선택]</strong>에서 채널 2를 선택한 경우에만 디지털 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하지 않으려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>&gt;<strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택하지 않습니다.</li>
+                <li ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">외부 PTZ 기능을 사용하지 않고 [채널 선택]</strong>에서 채널 2를 선택한 경우에만 디지털 PTZ 제어 기능을 사용할 수 있습니다. 외부 PTZ를 사용하지 않으려면 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>&gt;<strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택하지 않습니다.</li>
  
-             <li ng-if="!objectDetectionSupport && !MultiImager"><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>  
+             <li ng-if="!objectDetectionSupport && !MultiImager" class="nsptObjectDetection"><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프로파일 타입]</strong>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>  
 
              <li>PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 카메라 영상을 먼저 확대한 후, <span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하고 드래그하여 카메라 뷰를 조정할 수 있습니다. </li>
 
-                <li ng-if="DigitalAutoTracking"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</li>
+                <li ng-if="DigitalAutoTracking" class="sptDigitalAutoTracking"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</li>
 
-                <li ng-if="objectDetectionSupport">AI 카메라에서는 지정한 객체만 감지하여 자동 추적하도록 설정할 수 있습니다. 자동 추적을 적용할 객체 타입은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>에서 선택할 수 있습니다. </li>
+                <li ng-if="objectDetectionSupport" class="sptObjectDetection">AI 카메라에서는 지정한 객체만 감지하여 자동 추적하도록 설정할 수 있습니다. 자동 추적을 적용할 객체 타입은 <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[디지털 PTZ]</strong>에서 선택할 수 있습니다. </li>
                 
-                <li ng-if="GlobalPTZMode && MaxChannel > 1" style="list-style-type: none;"><strong class="UI">[디지털 PTZ]</strong> 메뉴가 보이지 않는 경우, <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용] </strong>옵션을 선택 해제하십시오.</li>
+                <li ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ" style="list-style-type: none;"><strong class="UI">[디지털 PTZ]</strong> 메뉴가 보이지 않는 경우, <strong class="UI">[설정]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[외부 PTZ]</strong>에서 <strong class="UI">[외부 PTZ 사용] </strong>옵션을 선택 해제하십시오.</li>
             </ul>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -799,8 +796,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
 </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+<hr class="wn5-setup-hr sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 <div class="wn5-setup-section-heading">
     <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
 </div>
@@ -811,7 +808,7 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     <div class="wn5-online-help-info">
         <h4>알아두기</h4>
             <ul>
-                <li>채널 선택에서 채널 6번과 7번을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>
+                <li>[채널 선택]에서 채널 6번과 7번을 선택한 경우에만 PTZ 기능을 사용할 수 있습니다.</li>
             </ul>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -826,8 +823,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
 </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="FisheyeLens">
-<div class="wn5-setup-section" ng-if="FisheyeLens">
+<hr class="wn5-setup-hr sptFisheyeLens" ng-if="FisheyeLens">
+<div class="wn5-setup-section sptFisheyeLens" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -851,9 +848,11 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
         <div class="wn5-setup-section-article-content">
             <h3>분할 화면 선택</h3>
             <p>4분할 뷰에서 개별 영상의 번호를 선택합니다. 1은 4분할 뷰의 왼쪽 상단, 2는 오른쪽 상단, 3은 왼쪽 하단, 4는 오른쪽 하단의 영상 뷰입니다.  </p>
+
+            <p><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 [왜곡 보정 뷰]를 선택한 후 <strong class="UI">[뷰]</strong>에서 [4분할 뷰]를 선택한 경우에만 [분할 화면 선택] 옵션이 나타납니다.</p>
+
             <p><span class="tui tui-wn5-ptz-handle"></span>버튼을 클릭하고 드래그하여 카메라 영상 뷰를 조정합니다. 줌 막대에서 <span class="tui tui-wn5-ptz-plus"></span>  버튼을 클릭하면 화면이 확대되고 <span class="tui tui-wn5-ptz-minus"></span> 버튼을 클릭하면 화면이 축소됩니다.</p>
             <p>카메라 영상 화면에서 PTZ를 조정할 수도 있습니다. <span class="tui tui-ptz_cross"></span> 아이콘 위에 마우스를 올린 후 방향 표시를 클릭하여 카메라의 팬/틸트를 미세하게 조정하거나, <span class="tui tui-ptz_cross"></span> 아이콘을 클릭한 후 마우스를 드래그하여 카메라 팬/틸트를 빠르게 조정할 수 있습니다. 또한 마우스를 위로 스크롤하면 영상이 확대되고, 마우스를 아래로 스크롤하면 영상이 축소됩니다.  </p>
-            <p><strong class="UI">[설정]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 [왜곡 보정 뷰]를 선택한 후 <strong class="UI">[뷰]</strong>에서 [4분할 뷰]를 선택한 경우에만 [분할 화면 선택] 옵션이 나타납니다.</p>
         </div>
         <div class="wn5-setup-section-article-content">
             <h3>프리셋</h3>
@@ -876,8 +875,8 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
 
 
 
-<!-- <hr class="wn5-setup-hr" ng-if="FisheyeLens">
-<div class="wn5-setup-section" ng-if="FisheyeLens">
+<!-- <hr class="wn5-setup-hr sptFisheyeLens" ng-if="FisheyeLens">
+<div class="wn5-setup-section sptFisheyeLens" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a name="fisheyeview"></a>피쉬아이 뷰</h2>
     </div>
@@ -925,10 +924,10 @@ H.264 및 H.265 코덱을 사용하는 프로파일에만 적용할 수 있습�
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && HandoverCalibration">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && HandoverCalibration">
+<hr class="wn5-setup-hr sptPTZMultiChannel" ng-if="MaxChannel > 1 && HandoverCalibration">
+<div class="wn5-setup-section sptPTZMultiChannel" ng-if="MaxChannel > 1 && HandoverCalibration">
     <div class="wn5-setup-section-heading">
-        <h2><a name="channel"></a>채널 선택</h2>
+        <h2>채널 선택</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">

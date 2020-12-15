@@ -299,6 +299,10 @@ controller("onlineHelpWrapperCtrl", function ($scope, $state) {
         attr.AlarmInputStateOptions && attr.AlarmInputStateOptions.indexOf('NormallyClose') !== -1
       );
 
+      /* XNP-9300R에서 추가한 것 */
+      $scope.SpinningDryOn = attr.AuxCommands && attr.AuxCommands.indexOf("SpinningDryOn") !== -1; 
+
+
       
       /*
         1. true values

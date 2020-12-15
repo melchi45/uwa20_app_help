@@ -237,8 +237,9 @@
         <div class="wn5-online-help-info" ng-if="FisheyeLens">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                <li>カメラ据付けモードを変更すると、<strong class="UI">[ビデオprofile]</strong>で設定したすべてのProfile設定が初期化され、カメラが再起動します。また、変更される画面に合わせてビデオ映像分析&amp;統計設定を変更する必要があります。該当設定は<strong class="UI">[分析]</strong>と<strong class="UI">[統計]</strong>メニューで変更することができます。</li>
-                <li>カメラ据付けモードを<strong class="UI">[壁]</strong>を選択した場合のみ、<strong class="UI">[ライブ]</strong>モードでDPTZ中にパン機能を使用することができます。</li>
+				<li ng-if="Statistics">カメラ据付けモードを変更すると、<strong class="UI">[ビデオprofile]</strong>で設定したすべてのProfile設定が初期化され、カメラが再起動します。また、変更される画面に合わせてビデオ映像分析&amp;統計設定を変更する必要があります。該当設定は<strong class="UI">[分析]</strong>と<strong class="UI">[統計]</strong>メニューで変更することができます。</li>
+				<li ng-if="!Statistics">カメラ据付けモードを変更すると、<strong class="UI">[ビデオprofile]</strong>で設定したすべてのProfile設定が初期化され、カメラが再起動します。また、変更される画面に合わせてビデオ映像分析&amp;統計設定を変更する必要があります。該当設定は<strong class="UI">[分析]</strong>メニューで変更することができます。</li>
+                <li>カメラ据付けモードを<strong class="UI">[天井]</strong>を選択した場合のみ、<strong class="UI">[ライブ]</strong>モードでDPTZ中にパン機能を使用することができます。</li>
                 <li>カメラ据付けモードを変更すると、&nbsp;<strong class="UI">[ライブ]</strong>モードで魚眼ビューモードの方向も共に変更されます。</li>
             </ul>
         </div>

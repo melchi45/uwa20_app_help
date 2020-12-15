@@ -8,17 +8,17 @@
     <p>Vous pouvez passer &agrave; l&apos;&eacute;cran de direct, &agrave; l&apos;&eacute;cran de lecture ou &agrave; l&apos;&eacute;cran de configuration en cliquant sur les boutons situ&eacute;s en haut.</p>
         <ul>
             <li><span class="tui tui-wn5-top-live"></span>(Direct)&nbsp;: v&eacute;rifiez l&apos;&eacute;cran de direct pour voir ce qui est film&eacute; par la cam&eacute;ra et contr&ocirc;ler les diverses fonctions de la cam&eacute;ra.</li>
-            <li  ng-if="Recording && NAS"><span class="tui tui-wn5-top-playback"></span>(Lecture)&nbsp;: recherchez et lisez une image enregistr&eacute;e &agrave; partir d&apos;une carte SD ou d&rsquo;un NAS.</li>
-            <li  ng-if="Recording && !NAS"><span class="tui tui-wn5-top-playback"></span>(Lecture)&nbsp;: recherchez et lisez une image enregistr&eacute;e &agrave; partir d&apos;une carte SD.</li>
+            <li  ng-if="Recording && NAS" class="sptRecordingSDNas"><span class="tui tui-wn5-top-playback"></span>(Lecture)&nbsp;: recherchez et lisez une image enregistr&eacute;e &agrave; partir d&apos;une carte SD ou d&rsquo;un NAS.</li>
+            <li  ng-if="Recording && !NAS" class="sptRecordingSD"><span class="tui tui-wn5-top-playback"></span>(Lecture)&nbsp;: recherchez et lisez une image enregistr&eacute;e &agrave; partir d&apos;une carte SD.</li>
             <li ng-if="IsAdmin"><span class="tui tui-wn5-top-setup"></span>(Configuration)&nbsp;: changez les r&eacute;glages de la cam&eacute;ra</li>
         </ul>
     </div>
 
-		<div class="wn5-online-help-info" ng-if="!CamSpecialModel">
+		<div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-                <li>Si une vidéo haute résolution est lue sur l’écran Direct, un PLUGINFREE est automatiquement généré, ce qui optimise la vidéo haute résolution. Le profil PLUGINFREE généré est disponible dans <strong class="UI">[Configuration]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[Profil vidéo]</strong>.  </li>
-                <li ng-if="PeerConnectionInfoClientHttpsStatus">Si vous cliquez sur l’icône <img src="./images/ic-top-cert-nor.svg"> en haut à droite de la page Direct, l’adresse IP connectée et l’état d’authentification sont affichés. Dans le cas d’une authentification réussie, l’icône est en vert. Dans le cas d’un échec d’authentification, l’icône est en rouge. Si l’authentification n’a pas lieu d’être effectuée du fait de l’utilisation d’une connexion HTTP, un tiret (-) sera affiché.   </li>
+                <!-- <li>Si une vidéo haute résolution est lue sur l’écran Direct, un PLUGINFREE est automatiquement généré, ce qui optimise la vidéo haute résolution. Le profil PLUGINFREE généré est disponible dans <strong class="UI">[Configuration]</strong>><strong class="UI">[Basic]</strong>><strong class="UI">[Profil vidéo]</strong>.  </li> -->
+                <li ng-if="PeerConnectionInfoClientHttpsStatus" class="sptPeerConnectionInfoClientHttpsStatus">Si vous cliquez sur l’icône <img src="./images/ic-top-cert-nor.svg"> en haut à droite de la page Direct, l’adresse IP connectée et l’état d’authentification sont affichés. Dans le cas d’une authentification réussie, l’icône est en vert. Dans le cas d’un échec d’authentification, l’icône est en rouge. Si l’authentification n’a pas lieu d’être effectuée du fait de l’utilisation d’une connexion HTTP, un tiret (-) sera affiché.   </li>
                 <li>En vous connectant &agrave; la visionneuse web via Chrome, la fonction d&apos;&eacute;cran de lecture d&apos;enregistrement peut &ecirc;tre utilis&eacute;e en toute s&eacute;curit&eacute;.</li>
                 <li>Lors de la lecture d’une vidéo sur la page en direct, un fantôme peut se produire dans l’un des cas suivants :</li>
                 <ul>
@@ -26,7 +26,7 @@
                     <li>Lorsque le transfert de données est retardé en raison du retard du réseau après un changement de profil</li>
                     <li>Lorsque la taille ou l’emplacement de la fenêtre du navigateur Web a changé</li>
                 </ul>
-                <li ng-if="HybridThermal">Pour la cam&eacute;ra &agrave; d&eacute;tection de la temp&eacute;rature corporelle, le canal&nbsp;1 correspond &agrave; une vid&eacute;o visible et le canal&nbsp;2 &agrave; une vid&eacute;o thermique.</li>
+                <li ng-if="HybridThermal" class="sptHybridThermal">Pour la cam&eacute;ra &agrave; d&eacute;tection de la temp&eacute;rature corporelle, le canal&nbsp;1 correspond &agrave; une vid&eacute;o visible et le canal&nbsp;2 &agrave; une vid&eacute;o thermique.</li>
             </ul>
 
         </div>
@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
 
-               <tr ng-if="objectDetectionSupport">
+               <tr ng-if="objectDetectionSupport" class="sptObjectDetection">
                                 <td width="235">BestShot</td>
                                 <td width="235">
                                     <p>BestShot est l'image extraite de l'objet le plus clairement visible parmi les objets (Personne, Visage, Véhicule, Plaque d'immatriculation) détectés par la caméra. Le format d'image de BestShot est JPEG, et cette image ne contient qu'une partie de la zone où se trouvaient les objets.</p>
@@ -73,7 +73,7 @@
                         </td>
                     </tr>
 
-                    <tr ng-if="spotTemperatureSupport">
+                    <tr ng-if="spotTemperatureSupport" class="sptSpotTemperature"> 
                         <td width="235">
                             <p><span class="tui tui-toolbar_temperature"></span></p>
                             <p>Temp&eacute;rature</p>
@@ -87,7 +87,7 @@
                         </td>
                     </tr>
 
-                    <tr ng-if="PanTiltOnlyModel">
+                    <tr ng-if="PanTiltOnlyModel" class="sptPantiltOnly">
                         <td width="235">
                                 <p><span class="tui tui-wn5-toolbar-ptz"></span></p>
                                 <p><a class="wn5-online-help-link" href="#PT" ng-href="#/help/monitoring?#PT">PT</a></p>
@@ -102,12 +102,12 @@
                         </td>
                         <td width="235">
                             <p >Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra. </p>
-                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment && !MultiImager">PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
-                            <!-- <p ng-if="objectDetectionSupport">Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p> -->
-                            <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)">PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le canal 2 est s&eacute;lectionn&eacute; dans <strong class="UI">[<a href="#channel">S&eacute;lectionner le canal</a>]</strong>.</p>
-                            <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;ic&ocirc;ne PTZ n&rsquo;est pas affich&eacute;e, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;coch&eacute;e.</p>
+                            <p ng-if="!FisheyeLens && !objectDetectionSupport && !SupportAutoImageAlignment && !MultiImager" class="sptDPTZ">PTZ ne fonctionne que si le profil vid&eacute;o appliqu&eacute; &agrave; l&apos;&eacute;cran de direct actuel prend en charge le PTZ num&eacute;rique. Pour passer &agrave; un profil de contr&ocirc;le PTZ num&eacute;rique, s&eacute;lectionnez <strong class="UI">[Profil PTZ num&eacute;rique]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</p>
+                            <!-- <p ng-if="objectDetectionSupport" >Si le canal 2 est sélectionné depuis <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>, la fonction PTZ est activée.</p> -->
+                            <p ng-if="objectDetectionSupport || (GlobalPTZMode && MaxChannel > 1)" class="sptDPTZOnlyChannel2">PTZ num&eacute;rique n&rsquo;est activ&eacute; que lorsque le canal 2 est s&eacute;lectionn&eacute; dans <strong class="UI">[S&eacute;lectionner un canal]</strong>.</p>
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">Si l&rsquo;ic&ocirc;ne PTZ n&rsquo;est pas affich&eacute;e, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;coch&eacute;e.</p>
                             
-                            <p ng-if="FocusPresetSupport">Vous pouvez consulter la liste de mises au point dans <strong class="UI">[Enregistrement de la mise au point]</strong>.</p>
+                            <p ng-if="FocusPresetSupport" class="sptFocusPreset">Vous pouvez consulter la liste de mises au point dans <strong class="UI">[Enregistrement de la mise au point]</strong>.</p>
                             <p> </p>                         
                     </td>
                     </tr>
@@ -130,8 +130,8 @@
                     <td width="235">
                             <p>Vous pouvez contr&ocirc;ler le fonctionnement panoramique/inclinaison/zoom de la cam&eacute;ra via un r&eacute;cepteur panoramique/inclinaison connect&eacute; au terminal RS-485 ou RS-422 de la cam&eacute;ra.   </p>
                                 <!-- Vous pouvez passer &agrave; la position pr&eacute;d&eacute;finie &eacute;tablie dans la page <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong>&gt;<strong class="UI">[PTZ externe]</strong>, ou d&eacute;marrer et arr&ecirc;ter les fonctions de swing, de groupe, de tour et de suivi. -->
-                            <p ng-if="GlobalPTZMode && MaxChannel > 1">PTZ externe control n&rsquo;est activ&eacute; que lorsque le canal 1 est s&eacute;lectionn&eacute; dans [S&eacute;lectionner le canal].</p>
-                            <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;ic&ocirc;ne PTZ ne s&rsquo;affiche pas, allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est coch&eacute;e.</p>
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">PTZ externe control n&rsquo;est activ&eacute; que lorsque le canal 1 est s&eacute;lectionn&eacute; dans [S&eacute;lectionner le canal].</p>
+                            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">Si l&rsquo;ic&ocirc;ne PTZ ne s&rsquo;affiche pas, allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et voyez si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est coch&eacute;e.</p>
                             <p> </p>
                     </td>
                     </tr>
@@ -166,7 +166,7 @@
                     </tr>
 
 
-                    <tr ng-if="objectDetectionSupport">
+                    <tr ng-if="objectDetectionSupport" class="sptObjectDetection">
                             <td width="235">
                                 <p><span class="tui tui-ch-live-overlay"></span></p>
                                 <p>Superposition</p>
@@ -174,23 +174,23 @@
                             <td width="235">
                                 <p>Vous pouvez configurer le type d'objets qui apparaîtront à l'écran lorsque la caméra détecte des objets.</p>
                                 <p>Les objets détectés par une caméra AI ne sont affichés que lorsque l'algorithme d'analyse de la caméra AI est fonctionnel. Pour que l'algorithme AI soit fonctionnel, l'une des fonctions suivantes doit être activée : Détection d'objets, IVA, Comptage de personnes, Gestion des files d’attente ou Carte thermique.</p>
-                                <p>L'icône de superposition ne s'active que lorsque le canal 1 est sélectionné dans [<a href="#channel">Sélectionner un canal</a>].</p>
+                                <p>L'icône de superposition ne s'active que lorsque le canal 1 est sélectionné dans [S&eacute;lectionner un canal].</p>
                                 <p>&nbsp;</p>
                             </td>
                         </tr>
 
-                    <tr ng-if="!!LensModelViewOptions || !!LensModelOptions">
+                    <tr ng-if="!!LensModelViewOptions || !!LensModelOptions" class="sptLensModel">
                         <td width="235">Nom du mod&egrave;le de lentille</td>
                         <td width="235">
                             <!-- <p>Le nom du mod&egrave;le de lentille install&eacute; dans la cam&eacute;ra est affich&eacute;.</p>  -->
                             <p>Les types de lentilles sont affich&eacute;s.</p>
-                            <p>Si vous s&eacute;lectionnez un canal dans <a href="#channel">S&eacute;lectionner un canal</a>, vous voyez le nom de la lentille install&eacute;e pour chaque canal.</p>
+                            <p>Si vous s&eacute;lectionnez un canal dans [S&eacute;lectionner un canal], vous voyez le nom de la lentille install&eacute;e pour chaque canal.</p>
                             <p> </p>
                         </td>
                     </tr>
-                    <tr ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
+                    <tr ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature"  class="sptChannelSelector">
                         <td width="235">
-                            <p><a href="#channel">S&eacute;lectionner un canal</a></p>
+                            <p>S&eacute;lectionner un canal</p>
                         </td>
                         <td width="235">
                                 <p>Les canaux pris en charge par la caméra sont affichés.S&eacute;lectionnez un canal pour la lecture du flux Live (direct) du canal s&eacute;lectionn&eacute;.</p>
@@ -198,8 +198,8 @@
                             <!-- <p>Les num&eacute;ros des canaux de la cam&eacute;ra sont affich&eacute;s.</p> -->
                         <!--    <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment">Si vous s&eacute;lectionnez le num&eacute;ro d&rsquo;un canal, la vid&eacute;o du canal appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne Vue Quad, les vid&eacute;os des 4 canaux seront affich&eacute;es sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</p>  --> 
                             <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport && !SupportChannelExpansionFeature">Si vous sélectionnez l’icône Multi-vues, les vidéos de tous les canaux pris en charge par la caméra seront affichées sur le même écran. Pour revenir à la vue simple, cliquez sur le numéro de canal.</p>                           
-                            <p ng-if="HandoverCalibration">Si vous s&eacute;lectionnez le num&eacute;ro du canal de votre cam&eacute;ra fixe, la vid&eacute;o appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez [PTZ], la vid&eacute;o du canal unique PTZ appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne multi-canal, les vid&eacute;os de la cam&eacute;ra fixe et de la cam&eacute;ra PTZ appara&icirc;tront sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro du canal ou sur [PTZ].</p>
-                            <p ng-if="SupportAutoImageAlignment">L’écran de la caméra de chaque canal s’affiche lorsque vous sélectionnez un canal de caméra CAN 2 à CAN 5. Si vous sélectionnez CAN 1, les écrans de caméra CAN 2 à CAN 5 seront alignés en ligne droite pour montrer une vue panoramique. Si vous sélectionnez CAN 6 et CAN 7, vous pouvez vérifier la vidéo du CAN 1 tout en <a href="#PTZ">ajustant PTZ de la caméra</a>.</p>
+                            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">Si vous s&eacute;lectionnez le num&eacute;ro du canal de votre cam&eacute;ra fixe, la vid&eacute;o appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez [PTZ], la vid&eacute;o du canal unique PTZ appara&icirc;tra dans le visualisateur. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne multi-canal, les vid&eacute;os de la cam&eacute;ra fixe et de la cam&eacute;ra PTZ appara&icirc;tront sur un seul &eacute;cran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro du canal ou sur [PTZ].</p>
+                            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">L’écran de la caméra de chaque canal s’affiche lorsque vous sélectionnez un canal de caméra CAN 2 à CAN 5. Si vous sélectionnez CAN 1, les écrans de caméra CAN 2 à CAN 5 seront alignés en ligne droite pour montrer une vue panoramique. Si vous sélectionnez CAN 6 et CAN 7, vous pouvez vérifier la vidéo du CAN 1 tout en <a href="#PTZ">ajustant PTZ de la caméra</a>.</p>
                         <!-- </td>
                     </tr>
 
@@ -207,23 +207,23 @@
                             <td width="235"><a name="channel_AI">Sélectionner un canal</a></td>
                             <td width="235">
                                 <p>Les canaux pris en charge par la caméra sont affichés.</p> -->
-                                <ul ng-if="objectDetectionSupport">
+                                <ul ng-if="objectDetectionSupport" class="sptObjectDetection">
                                     <li>Canal 1 : Affiche la vidéo Live (direct).</li>
                                     <li>Canal 2 : Affiche la vidéo PTZ numérique. 
                                         <!-- Sélectionner le canal 2 pour utiliser la fonction <a href="#PTZ">PTZ</a>. -->
                                     </li>
                                 </ul>
                                 <p ng-if="MultiImager">Le canal 1 est un canal de diffusion en direct alors que les canaux 2 et 3 sont des canaux de diffusion des vidéos PTZ numériques. </p>
-                                <p ng-if="HybridThermal">Le canal&nbsp;1 correspond &agrave; une vid&eacute;o visible et le canal&nbsp;2 &agrave; une vid&eacute;o thermique. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne «&nbsp;Affichage multiple&nbsp;», vous pouvez visualiser les vid&eacute;os visibles et thermiques.</p>
+                                <p ng-if="HybridThermal" class="sptHybridThermal">Le canal&nbsp;1 correspond &agrave; une vid&eacute;o visible et le canal&nbsp;2 &agrave; une vid&eacute;o thermique. Si vous s&eacute;lectionnez l&rsquo;ic&ocirc;ne «&nbsp;Affichage multiple&nbsp;», vous pouvez visualiser les vid&eacute;os visibles et thermiques.</p>
 
                                 <p>&nbsp;</p>
                                 <p>&nbsp;</p>
                             </td>
                         </tr>
 
-                        <tr ng-if="SupportChannelExpansionFeature">
+                        <tr ng-if="SupportChannelExpansionFeature" class="sptChannelExpansionFeature">
                             <td width="235">
-                                <p><a href="#channel">S&eacute;lectionner un canal</a></p>
+                                <p>S&eacute;lectionner un canal</p>
                             </td>
                             <td width="235">
                                     <p>Les canaux pris en charge par la caméra sont affichés.S&eacute;lectionnez un canal pour la lecture du flux Live (direct) du canal s&eacute;lectionn&eacute;.</p>
@@ -298,7 +298,7 @@
                         </td>
                     </tr>
 
-                    <tr ng-if="WiperOn">
+                    <tr ng-if="WiperOn" class="sptWiper">
                         <td width="235">
                             <p><span class="tui tui-wiper"></span></p>
                             <p>Essuie-glace</p>
@@ -306,7 +306,7 @@
                         <td width="235">Cliquer sur le bouton active l'essuie-glace.</td>
                     </tr>
 
-                    <tr ng-if="WasherWiperOn">
+                    <tr ng-if="WasherWiperOn" class="sptWasher">
                         <td width="235">
                             <p><span class="tui tui-washer_wiper"></span></p>
                             <p>Nettoyeur</p>
@@ -314,7 +314,7 @@
                         <td width="235">Si vous cliquez sur ce bouton, de l’eau est pulvérisée pendant 3 secondes, puis s’arrête automatiquement. Après cela, l’essuie-glace fonctionne pendant environ 10 secondes pour essuyer la surface.</td>
                     </tr>
 
-                    <tr ng-if="HeaterOn">
+                    <tr ng-if="HeaterOn" class="sptHeater">
                         <td width="235">
                             <p><span class="tui tui-heater-dry"></span></p>
                             <p>R&eacute;chauffeur</p>
@@ -323,8 +323,7 @@
                             <p>Vous pouvez activer le r&eacute;chauffeur pendant 30 secondes en appuyant sur le bouton.</p>
                         </td>
                     </tr>
-                    
-                    <tr ng-if="AuxCommands.indexOf('SpinningDryOn') !== -1 && IsAdminUse">
+                    <tr ng-if="SpinningDryOn">
                         <td width="235">
                             <p><span class="tui tui-spinningdry"></span></p>
                             <p>S&eacute;chage par rotation</p>
@@ -334,7 +333,7 @@
                         </td>
                     </tr>
 
-                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)">
+                    <tr ng-if="!CamSpecialModel && (BrowserBackup == undefined || BrowserBackup)" class="sptRecording">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-record"></span></p>
                             <p>Enregistrer</p>
@@ -357,7 +356,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioOutput>0">
+                    <tr ng-if="MaxAudioOutput>0" class="sptAudioOutput">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-mic"></span></p>
                             <p><a class="wn5-online-help-link" name="mic"></a>Microphone</p>
@@ -366,11 +365,11 @@
                         <td width="235">
                             <p>Utilisez la fonction microphone. </p>
                             <!-- <p>Pour utiliser la fonction microphone, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p> -->
-                            <p ng-if="SupportAutoImageAlignment">La fonction de microphone est disponible seulement si vous avez sélectionné CAN 1. </p>
+                            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">La fonction de microphone est disponible seulement si vous avez sélectionné CAN 1. </p>
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAlarmOutput>0">
+                    <tr ng-if="MaxAlarmOutput>0" class="sptAlarmOutput">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-alarm"></span></p>
                             <p>&Eacute;mission d&apos;alerte</p>
@@ -381,7 +380,7 @@
                             <p>&nbsp;</p>
                         </td>
                     </tr>
-                    <tr ng-if="MaxAudioInput>0">
+                    <tr ng-if="MaxAudioInput>0" class="sptAudioInput">
                         <td width="235" >
                             <p><span class="tui tui-wn5-toolbar-sound"></span></p>
                             <p><a class="wn5-online-help-link" name="speaker"></a>Haut-parleur</p>
@@ -389,12 +388,12 @@
                         </td>
                         <td width="235">
                             <p>R&eacute;glez le volume audio de l&apos;&eacute;cran de direct. <span class="tui tui-wn5-toolbar-sound"></span> Cliquez sur le bouton pour activer l&apos;audio et ajuster le volume.</p>
-                            <p>Pour utiliser la fonction haut-parleur, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p>
+                            <p>Pour utiliser la fonction Haut-parleur, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p>
                             <p>&nbsp;</p>
-                            <p ng-if="SupportAutoImageAlignment">La fonction haut-parleur est disponible seulement si vous avez sélectionné CAN 1.</p>
+                            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">La fonction haut-parleur est disponible seulement si vous avez sélectionné CAN 1.</p>
                         </td>
                     </tr>
-                    <tr ng-if="AudioClipCountRange">
+                    <tr ng-if="AudioClipCountRange" class="sptAudioClip">
                         <td width="235">
                             <p><span class="tui tui-wn5-toolbar-play"></span>/<span class="tui tui-toolbar_audio-stop"></span></p>
                             <p>Lecture/Arr&ecirc;ter</p>
@@ -407,11 +406,12 @@
                 </tbody>
             </table>
         </div>
-        <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature">
+        <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature" class="sptChannelSelector">
             <h4>Pour changer de canal</h4>
                 <ul>
-                    <li>S&eacute;lectionnez un canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
-                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Cliquez sur l’icône Multi-vues pour afficher toutes les vidéos des canaux de la caméra sur un même écran. Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</li>
+                    <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
+                    <li ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport">Cliquez sur l’icône Multi-vues pour afficher toutes les vidéos des canaux de la caméra sur un même écran.</li>
+                    <li>Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</li>
                 </ul>
             </div>
             <div class="wn5-online-help-action">
@@ -436,7 +436,7 @@
                 </ul>
                 <p>L’enregistrement manuel peut être sauvegardé sous forme de fichier .zip sur votre PC. Vous devez entrer le mot de passe pour lire les vidéos. (La fonction de configuration du mot de passe pour les vidéos enregistrées n'est pas disponible sur certains modèles d'appareils photo.) </p> 
 
-                <p ng-if="FisheyeLens">Si vous enregistrez la vid&eacute;o en mode d&rsquo;affichage Fisheye, les images originales seront sauvegard&eacute;es &agrave; la place des images de la vue en cours d&rsquo;affichage.</p>
+                <p ng-if="FisheyeLens" class="sptFisheyeLens">Si vous enregistrez la vid&eacute;o en mode d&rsquo;affichage Fisheye, les images originales seront sauvegard&eacute;es &agrave; la place des images de la vue en cours d&rsquo;affichage.</p>
             </div>
 			
             <div class="wn5-online-help-action">
@@ -446,7 +446,7 @@
                     <li>Pour quitter le mode Plein &eacute;cran, cliquez &agrave; nouveau sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-toolbar-fullscreen"></span> Plein &eacute;cran ou appuyez sur le touche [Esc] du clavier.</li>
                 </ul>
             </div>
-            <div class="wn5-online-help-action" ng-if="MaxAudioOutput>0">
+            <div class="wn5-online-help-action sptAudioOutput" ng-if="MaxAudioOutput>0">
             <h4>Pour utiliser un microphone</h4>
                 <ul>
                     <li>Cliquez sur l&rsquo;ic&ocirc;ne du microphone <span class="tui tui-wn5-toolbar-mic"></span> .</li>
@@ -456,7 +456,7 @@
                 <p>La sortie son depuis la caméra peut être incohérente en fonction du réglage sur le périphérique microphone. Si le son n’est pas correctement audible, désactivez la fonction d’amélioration dans les propriétés du microphone sur l’ordinateur sur lequel le Web Viewer fonctionne ou réglez le volume du périphérique microphone.</p> 
             </div>
 			
-            <div class="wn5-online-help-action" ng-if="MaxAudioInput>0">
+            <div class="wn5-online-help-action sptRecording" ng-if="MaxAudioInput>0">
                 <h4>Pour utiliser le haut-parleur</h4>
                 <ul>
                     <li>Cliquez sur l&rsquo;ic&ocirc;ne Haut-parleur <span class="tui tui-wn5-toolbar-sound"></span> .</li>
@@ -473,7 +473,7 @@
                 </ul>
             </div>
             
-            <div class="wn5-online-help-action" ng-if="AudioClipCountRange">
+            <div class="wn5-online-help-action sptAudioClip" ng-if="AudioClipCountRange">
                 <h4>Pour lire un clip audio</h4>
                     <ul>
                         <li>Cliquer sur l&apos;ic&ocirc;ne Lecture(<span class="tui tui-wn5-toolbar-play"></span>) apr&egrave;s avoir s&eacute;lectionn&eacute; un clip audio de votre choix dans la liste de clips audio.</li>
@@ -499,8 +499,8 @@
     </div>
 </div> -->
 
-<hr class="wn5-setup-hr" ng-if="spotTemperatureSupport">
-<div class=" wn5-setup-section" ng-if="spotTemperatureSupport">
+<hr class="wn5-setup-hr sptSpotTemperature" ng-if="spotTemperatureSupport">
+<div class=" wn5-setup-section sptSpotTemperature" ng-if="spotTemperatureSupport">
     <div class=" wn5-setup-section-heading">
         <h2>V&eacute;rifiez la temp&eacute;rature sur l&rsquo;&eacute;cran vid&eacute;o</h2>
 </div>
@@ -536,7 +536,7 @@
 
             <p ng-if="!BoxTemperatureDetectio && !HybridThermal">Pour les caract&eacute;ristiques de chaque option de palette de couleurs, reportez-vous &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Vid&eacute;o &amp; Audio]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<strong class="UI">[Palette de couleurs]</strong>.</p>
             <p ng-if="BoxTemperatureDetection && !HybridThermal">Pour les caract&eacute;ristiques de chaque palette de couleurs, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Vid&eacute;o &amp; Audio]</strong>&gt;<strong class="UI">[R&eacute;glage de temp&eacute;rature]</strong>&gt;<strong class="UI">[Palette de couleurs]</strong>.</p>
-            <p ng-if="HybridThermal">Pour les caract&eacute;ristiques de chaque option de palette de couleurs, reportez-vous &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<strong class="UI">[Palette de couleurs]</strong>.</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">Pour les caract&eacute;ristiques de chaque option de palette de couleurs, reportez-vous &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[R&eacute;glage cam&eacute;ra]</strong>&gt;<strong class="UI">[Palette de couleurs]</strong>.</p>
         </div>
     </div>
 </div> 
@@ -561,8 +561,8 @@
         </div>
     </div>
 </div>
-<!-- <hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<!-- <hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -598,8 +598,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 -->
 
-<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
-<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<hr class="wn5-setup-hr sptPantiltOnly" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section sptPantiltOnly" ng-if="PanTiltOnlyModel">
 <div class="wn5-setup-section-heading">
     <h2><a name="PT"></a>PT</h2>
 </div>
@@ -621,8 +621,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -644,13 +644,13 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
                         <h3>Ajustement de la mise au point</h3>
             <p>Ajustez la mise au point de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-near"></span> ou le bouton <span class="tui tui-wn5-ptz-far"></span>.</p>
             <p>Pour ajuster automatiquement la mise au point de la cam&eacute;ra une fois, cliquez sur le bouton <span class="tui tui-wn5-simple-focus"></span>.</div>
-        <div class="wn5-setup-section-article-content" ng-if="DigitalAutoTracking">
+        <div class="wn5-setup-section-article-content sptDigitalAutoTracking" ng-if="DigitalAutoTracking">
             <h3>Suivi automatique</h3>
 
             <p>Un objet ou une personne en mouvement peut &ecirc;tre suivi automatiquement dans l&rsquo;&eacute;cran de direct. Lorsque vous cliquez sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, la fonction de suivi automatique sera ex&eacute;cut&eacute;e. Lorsque vous cliquez &agrave; nouveau sur le bouton Suivi automatique <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>, la fonction de suivi s&apos;arr&ecirc;tera.</p>
             <p>De plus, lorsque vous cliquez sur l&apos;&eacute;cran d&apos;image avec le bouton droit de la souris, la zone cliqu&eacute;e bas&eacute;e sur le mouvement sera analys&eacute;e, et le suivi automatique commencera.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="FocusPresetSupport">
+        <div class="wn5-setup-section-article-content sptFocusPreset" ng-if="FocusPresetSupport">
             <h3>Enregistrement de la mise au point</h3>
             <p>Vous pouvez consulter la liste des enregistrements de mise au point.</p>
             <p>Cliquez sur <strong class="UI">[R&eacute;gler]</strong> pour enregistrer la prise de vue actuelle en tant que zone de mise au point.&nbsp;Saisissez un <strong class="UI">[Nombre]</strong> et un <strong class="UI">[Nom]</strong> puis enregistrez en cliquant sur <strong class="UI">[OK]</strong>.</p>
@@ -664,7 +664,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
   </div>
 
 
-        <div class="wn5-setup-section-article-content" ng-if="AreaZoomSupport">
+        <div class="wn5-setup-section-article-content sptAreaZoom" ng-if="AreaZoomSupport">
             <h3>Zoom localis&eacute;</h3>
 
             <p>Le zoom localis&eacute; permet d&rsquo;effectuer un zoom avant et de voir une zone sp&eacute;cifi&eacute;e.</p>
@@ -676,8 +676,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Zoom || ExternalPTZModel">
-<div class="wn5-setup-section" ng-if="Zoom || ExternalPTZModel">
+<hr class="wn5-setup-hr sptExternalPTZ" ng-if="Zoom || ExternalPTZModel">
+<div class="wn5-setup-section sptExternalPTZ" ng-if="Zoom || ExternalPTZModel">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -686,7 +686,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
             <!-- <p>Vous pouvez ajuster le zoom ou la mise au point de la cam&eacute;ra.</p> -->
             <p>Vous pouvez contr&ocirc;ler les mouvements panoramique/inclinaison/zoom de la cam&eacute;ra.</p>
         </div>
-        <div class="wn5-online-help-info" ng-if="GlobalPTZMode && MaxChannel > 1">
+        <div class="wn5-online-help-info sptMultiChannelExternalPTZ" ng-if="GlobalPTZMode && MaxChannel > 1">
                 <h4>Remarque</h4>
         <ul>
             <li>La commande PTZ externe ne peut &ecirc;tre utilis&eacute;e que lorsque la fonction PTZ externe est activ&eacute;e et que le canal 1 est s&eacute;lectionn&eacute;. Pour utiliser PTZ externe, Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
@@ -713,8 +713,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FisheyeLens">
-<div class="wn5-setup-section" ng-if="FisheyeLens">
+<hr class="wn5-setup-hr sptFisheyeLens" ng-if="FisheyeLens">
+<div class="wn5-setup-section sptFisheyeLens" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
     </div>
@@ -790,14 +790,14 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
-            <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[<a href="#channel">Sélectionner un canal</a>]</strong>.</li>
-            <li ng-if="GlobalPTZMode && MaxChannel > 1">La commande PTZ num&eacute;rique ne peut &ecirc;tre utilis&eacute;e que lorsque la fonction PTZ externe est d&eacute;sactiv&eacute;e et que le canal 2 est s&eacute;lectionn&eacute;. Pour ne pas utiliser PTZ externe, Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et d&eacute;s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
-            <li ng-if="!objectDetectionSupport && !MultiImager">La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>  
+            <li ng-if="objectDetectionSupport && !(GlobalPTZMode && MaxChannel > 1)">La fonction PTZ ne peut être utilisée que lorsque le canal 2 est sélectionné dans <strong class="UI">[S&eacute;lectionner un canal]</strong>.</li>
+            <li ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">La commande PTZ num&eacute;rique ne peut &ecirc;tre utilis&eacute;e que lorsque la fonction PTZ externe est d&eacute;sactiv&eacute;e et que le canal 2 est s&eacute;lectionn&eacute;. Pour ne pas utiliser PTZ externe, Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et d&eacute;s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
+            <li ng-if="!objectDetectionSupport && !MultiImager" class="nsptObjectDetection">La fonction PTZ est disponible uniquement lorsque le <strong class="UI">[Profil PTZ num&eacute;rique]</strong> est s&eacute;lectionn&eacute; dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Type de profil]</strong>.</li>  
             <li>Agrandissez l&apos;image de la cam&eacute;ra en cliquant sur le bouton <span class="tui tui-wn5-ptz-plus"></span> sur l&apos;&eacute;cran de contr&ocirc;le PTZ et ajustez les vues de la cam&eacute;ra en cliquant et en faisant glisser le bouton <span class="tui tui-wn5-ptz-handle"></span>.</li>
                 <li  ng-if="DigitalAutoTracking">Lorsque vous cliquez sur le bouton <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, un objet en mouvement sur l&apos;&eacute;cran sera suivi automatiquement. Lorsque vous cliquez &agrave; nouveau sur le bouton, le suivi automatique s&apos;arr&ecirc;te.</li>
 
-                <li ng-if="objectDetectionSupport">Vous pouvez configurer les cam&eacute;ras AI pour qu&rsquo;elles d&eacute;tectent et suivent automatiquement seuls les objets sp&eacute;cifi&eacute;s. Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ num&eacute;rique]</strong> pour s&eacute;lectionner les types d&rsquo;objets &agrave; suivre automatiquement.</li>
-                <li ng-if="GlobalPTZMode && MaxChannel > 1" style="list-style-type: none;">Si <strong class="UI">[PTZ num&eacute;rique]</strong> ne s&rsquo;affiche pas, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et d&eacute;s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
+                <li ng-if="objectDetectionSupport" class="sptObjectDetection">Vous pouvez configurer les cam&eacute;ras AI pour qu&rsquo;elles d&eacute;tectent et suivent automatiquement seuls les objets sp&eacute;cifi&eacute;s. Allez &agrave; <strong class="UI">[Configuration]</strong> &gt; <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ num&eacute;rique]</strong> pour s&eacute;lectionner les types d&rsquo;objets &agrave; suivre automatiquement.</li>
+                <li ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ" style="list-style-type: none;">Si <strong class="UI">[PTZ num&eacute;rique]</strong> ne s&rsquo;affiche pas, allez &agrave; <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ externe]</strong> et d&eacute;s&eacute;lectionnez l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong>.</li>
             </ul>
 
         </div>
@@ -815,8 +815,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+<hr class="wn5-setup-hr sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 <div class="wn5-setup-section-heading">
     <h2><a class="wn5-online-help-link" name="PTZ"></a>PTZ</h2>
 </div>
@@ -827,7 +827,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-online-help-info">
         <h4>Remarque</h4>
             <ul>
-                <li>La fonction PTZ est seulement disponible si vous avez sélectionné CAN 6 et CAN 7 dans <a href="#channel">Sélectionner un canal</a>.</li>
+                <li>La fonction PTZ est seulement disponible si vous avez sélectionné CAN 6 et CAN 7 dans [S&eacute;lectionner un canal].</li>
             </ul>
     </div>
     <div class="wn5-setup-section-article-content">
@@ -844,8 +844,8 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
 </div>
 
 
-<!-- <hr class="wn5-setup-hr" ng-if="FisheyeLens">
-<div class="wn5-setup-section" ng-if="FisheyeLens">
+<!-- <hr class="wn5-setup-hr sptFisheyeLens" ng-if="FisheyeLens">
+<div class="wn5-setup-section sptFisheyeLens" ng-if="FisheyeLens">
     <div class="wn5-setup-section-heading">
         <h2><a name="FisheyeView"></a>Affichage fisheye</h2>
     </div>
