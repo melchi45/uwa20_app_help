@@ -9,20 +9,20 @@
 	<p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>チャンネル選択</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 
-			<p ng-if="SupportAutoImageAlignment">カメラチャンネルを選択した後、チャンネル別にプライバシー領域を設定したりビデオ回転やアナログ出力有無などのビデオ関連の詳細を設定することができます。</p> 
-			<p ng-if="!SupportAutoImageAlignment">カメラのチャンネルを選択した後、ビデオ関連の詳細項目を設定することができます。</p>
-			<p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[ビデオ設定]は、チャンネル1でのみ設定できます。</p> 
-            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
-            <p ng-if="SupportAutoImageAlignment">[ビデオ設定]は、チャンネル1でのみ設定できます。チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
-			<p ng-if="SupportAutoImageAlignment">チャンネル別にプライバシー領域が設定されるため、チャンネル1でプライバシー領域を設定した部分がチャンネル2の映像に該当されてもチャンネル1で設定したプライバシー映像は、チャンネル1のみ適用されます。</p>
+			<p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">カメラチャンネルを選択した後、チャンネル別にプライバシー領域を設定したりビデオ回転やアナログ出力有無などのビデオ関連の詳細を設定することができます。</p> 
+			<p ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">カメラのチャンネルを選択した後、ビデオ関連の詳細項目を設定することができます。</p>
+			<p ng-if="objectDetectionSupport" class="sptObjectDetection">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[ビデオ設定]は、チャンネル1でのみ設定できます。</p> 
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">[ビデオ設定]は、チャンネル1でのみ設定できます。チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
+			<p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">チャンネル別にプライバシー領域が設定されるため、チャンネル1でプライバシー領域を設定した部分がチャンネル2の映像に該当されてもチャンネル1で設定したプライバシー映像は、チャンネル1のみ適用されます。</p>
 			<p ng-if="MultiImager">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2とチャンネル3はデジタルPTZ映像を表示するチャンネルです。[ビデオ設定]は、チャンネル1でのみ設定できます。</p> 
 			<!-- <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。「ビデオ設定」はチャンネル1のみ有効になります。</p>
 			<ul ng-if="SupportChannelExpansionFeature">
@@ -35,8 +35,8 @@
 				<li>チャンネル7：チャンネル4の4分割画面で左下の映像を見せます。</li>
 				<li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
 			</ul> -->
-            <p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
-            <p ng-if="panoramicSupport || !ThermalModeOptions"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
+            <p ng-if="panoramicSupport || !ThermalModeOptions" class="sptUseInfo"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p>
             <!-- <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p> -->
 
         </div>
@@ -44,14 +44,15 @@
 </div> 
 
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>PTZ調整</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+			<p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
+			<p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI">[チャンネル選択]</strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -65,8 +66,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="PrivacyMaskSupport">
-<div class="wn5-setup-section" ng-if="PrivacyMaskSupport">
+<hr class="wn5-setup-hr sptPrivacyMask" ng-if="PrivacyMaskSupport">
+<div class="wn5-setup-section sptPrivacyMask" ng-if="PrivacyMaskSupport">
 	<div class="wn5-setup-section-heading">
 		<h2>プライバシー領域</h2>
 	</div>
@@ -74,18 +75,18 @@
 		<div class="wn5-setup-section-article-content">
 		    <p>カメラ映像でプライバシーの侵害の恐れがある部分を表示しないようにプライバシー領域として設定することができます。<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した後。プライバシー領域を無効にするには<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除した後。プライバシー領域によって隠される部分なくカメラ映像を確認することができます。設定しておいたエリアは、削除されることなくプライバシー領域リストで確認することができます。</p>
 		</div>
-		<div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+		<div class="wn5-online-help-info sptLDCIncompatible" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 			<ul>				
 				<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択すると、カメラのLDC機能が無効になります。カメラLDC機能は <strong class="UI">[映像&音声]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="cameraSetup.html" ng-href="#/help/videoAudio_cameraSetup">カメラ設定</a>]</strong>&gt;<strong class="UI">[特別設定]</strong>で確認することができます。
 				 </li>
 			</ul>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="PrivacyMaskPattern">
+		<div class="wn5-setup-section-article-content sptPrivacyMaskPattern" ng-if="PrivacyMaskPattern">
 			<h3>パターン</h3>
             <p>プライバシー領域に適用するモザイクパターンを選択します。<strong class="UI">[</strong><strong>ソリッド</strong><strong class="UI">]</strong>で設定すると、プライバシー領域のメニューで設定した色が適用されます。パターンを選択すると、すべてのエリアに同じく適用されます。</p>
 		</div>
-		<div class="wn5-online-help-info" ng-if="GlobalMaskPatternSupport">
+		<div class="wn5-online-help-info sptGlobalMaskPattern" ng-if="GlobalMaskPatternSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 			<ul>				
 				<li>パターンオプション変更時、全チャンネルに同時適用されます。</li>
@@ -103,7 +104,7 @@
 
 
 
-				<div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+				<div class="wn5-online-help-action sptPTZPrivacy" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
 					<h4>プライバシー領域設定(PTZカメラの場合)</h4>
 					<ol>
 						<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択します。</li>
@@ -120,7 +121,7 @@
 					</ol>
 				</div>
 		
-				<div class="wn5-online-help-action" ng-if="Zoom && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+				<div class="wn5-online-help-action sptZoomPrivacy" ng-if="Zoom && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
 					<h4>プライバシー領域設定(ズームカメラの場合)</h4>
 					<ol>
 						<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択します。</li>
@@ -136,7 +137,7 @@
 					</ol>
 				</div>
 
-				<div class="wn5-online-help-action" ng-if="!PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+				<div class="wn5-online-help-action sptOtherModelPrivacy" ng-if="!PrivacyMaskRectangle && !PrivacyMasGlobalColor">
 						<h4>プライバシー領域設定(ズームカメラやPTZカメラ以外の場合)</h4>
 						<ol>
 							<li><strong class="UI">[プライバシーエリアを有効にする]</strong>を選択します。</li>
@@ -150,7 +151,7 @@
 						</ol>
 					</div>
 
-					<div class="wn5-online-help-action" ng-if="PrivacyMasGlobalColor">
+					<div class="wn5-online-help-action sptPrivacyMaskGlobalColor" ng-if="PrivacyMasGlobalColor">
 							<h4>プライバシー領域設定</h4>
 							<ol>
 								
@@ -179,9 +180,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FlipMirrorSupport">
+<hr class="wn5-setup-hr sptFlipMirror" ng-if="FlipMirrorSupport">
 
-<div class="wn5-setup-section" ng-if="FlipMirrorSupport">
+<div class="wn5-setup-section sptFlipMirror" ng-if="FlipMirrorSupport">
 	<div class="wn5-setup-section-heading">
 		<h2>ビデオ回転</h2>
 	</div>
@@ -189,66 +190,67 @@
         <div class="wn5-setup-section-article-content">
             <p>カメラを設定した後、画面がひっくり返って見える場合にはフリップ、ミラー機能で画面を直すことができます。また廊下や小道にカメラを設置した場合、<strong class="UI">[玄関ビュー]</strong>機能で画面を縦に長く撮影することができるため、監視エリアを効率的に運用することができます。</p>
 		</div>
-		<div class="wn5-online-help-info" ng-if="Statistics">
+		<div class="wn5-online-help-info sptStatistics" ng-if="Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                     <ul>
                         <li>ビデオ回転設定を変更すると、ビデオ映像画面が上下左右にひっくり返ったり変更されます。変更された映像に合わせて映像を分析したり、統計データを蓄積するように分析と統計設定を変更してください。該当設定は[分析]メニューと[統計]メニューで変更することができます。</li>
                     </ul>
         </div>
-				<div class="wn5-online-help-info" ng-if="!Statistics">
+				<div class="wn5-online-help-info nsptStatistics" ng-if="!Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                     <ul>
                         <li>ビデオ回転設定を変更すると、ビデオ映像画面が上下左右にひっくり返ったり変更されます。変更された映像に合わせて映像を分析できるように[分析]メニューで分析設定を変更してください。</li>
                     </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel"><h3>フリップ</h3>
+		<div class="wn5-setup-section-article-content sptMirror" ng-if="!PTZModel && !PTRZModel"><h3>フリップ</h3>
 			<p>カメラの映像をフリップさせるには、<strong class="UI">[On]</strong>を選択します。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
+		<div class="wn5-setup-section-article-content sptMirror" ng-if="!PTZModel && !PTRZModel">
 			<h3>ミラー</h3>
 			<p>カメラの映像をミラーさせるには、<strong class="UI">[On]</strong>を選択します。</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
+		<div class="wn5-setup-section-article-content sptMirrorAll" ng-if="PTZModel || PTRZModel">
 			<h3>フリップ/ミラー</h3>
 			<p>カメラの映像を上下左右に反転させるには、<strong class="UI">[On]</strong>を選択します。</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
+		<div class="wn5-setup-section-article-content sptDigitalMirror" ng-if="PTZModel && AutoFlip">
 			<h3>デジタルフリップ</h3>
             <p>PTZ機能でカメラの位置を変更する時、カメラの映像画面が上下左右にひっくり返って見えることがあります。この時に映像画面が自動に反転されて正しく表示されるようにするためには、<strong class="UI">[On]</strong>を選択します。</p>
 		</div>
 		
-		<div class="wn5-setup-section-article-content" ng-if="HallwayView">
+		<div class="wn5-setup-section-article-content sptHallwayView" ng-if="HallwayView">
 			<h3>玄関ビュー</h3>
 			<p>狭い廊下や小道のように一般カメラの映像には監視しにくい環境でカメラ映像を回転させて上下の監視エリアをズームインすることができます。90°(時計回り)、270°(時計回り)に回転することができ、0°に設定すると元の映像に戻ります。</p>
+			<p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI">[チャンネル選択]</strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
 		</div>
-		<div class="wn5-online-help-info" ng-if="HallwayView">
+		<div class="wn5-online-help-info sptHallwayView" ng-if="HallwayView">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 				<ul><li>玄関ビューを設定するためには、設置されたカメラを0°、90°(時計回り)もしくは270°(時計回り)に直接回転させた後、<strong class="UI">[玄関ビュー]</strong>で同一な角度を選択する必要があります。</li>
 					<li><strong class="UI">[玄関ビュー]</strong>を設定すると、ウェブブラウザが自動に閉じられるためウェブビューアーに再度アクセスする必要があります。</li>
 				</ul>
 		</div>
 		
-						<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+						<div class="wn5-setup-section-article-content sptFisheyeLens" ng-if="FisheyeLens">
 			<h3>カメラ据付けモード</h3>
             <p>カメラ据付けモードを選択します。カメラを壁に設置した場合には<strong class="UI">[壁]</strong>を選択し、天井に設置した場合には<strong class="UI">[天井]</strong>を選択します。</p>
 		</div>
-        <div class="wn5-online-help-info" ng-if="FisheyeLens">
+        <div class="wn5-online-help-info sptFisheyeLens" ng-if="FisheyeLens">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-				<li ng-if="Statistics">カメラ据付けモードを変更すると、<strong class="UI">[ビデオprofile]</strong>で設定したすべてのProfile設定が初期化され、カメラが再起動します。また、変更される画面に合わせてビデオ映像分析&amp;統計設定を変更する必要があります。該当設定は<strong class="UI">[分析]</strong>と<strong class="UI">[統計]</strong>メニューで変更することができます。</li>
+                <li ng-if="Statistics">カメラ据付けモードを変更すると、<strong class="UI">[ビデオprofile]</strong>で設定したすべてのProfile設定が初期化され、カメラが再起動します。また、変更される画面に合わせてビデオ映像分析&amp;統計設定を変更する必要があります。該当設定は<strong class="UI">[分析]</strong>と<strong class="UI">[統計]</strong>メニューで変更することができます。(一部カメラモデルでは、[統計]機能に対応していません。)</li>
 				<li ng-if="!Statistics">カメラ据付けモードを変更すると、<strong class="UI">[ビデオprofile]</strong>で設定したすべてのProfile設定が初期化され、カメラが再起動します。また、変更される画面に合わせてビデオ映像分析&amp;統計設定を変更する必要があります。該当設定は<strong class="UI">[分析]</strong>メニューで変更することができます。</li>
                 <li>カメラ据付けモードを<strong class="UI">[天井]</strong>を選択した場合のみ、<strong class="UI">[ライブ]</strong>モードでDPTZ中にパン機能を使用することができます。</li>
-                <li>カメラ据付けモードを変更すると、&nbsp;<strong class="UI">[ライブ]</strong>モードで魚眼ビューモードの方向も共に変更されます。</li>
+                <li>カメラ据付けモードを変更すると、<strong class="UI">[ライブ]</strong><span></span>モードで映像画面のビュー方向が共に変更されます。</li>
             </ul>
         </div>
 	</div>
 </div>
 
 
-<!-- <hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+<!-- <hr class="wn5-setup-hr sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 	<div class="wn5-setup-section-heading">
 		<h2>アナログビデオ</h2>
 	</div>
@@ -383,7 +385,7 @@
 		<div class="wn5-setup-section-article-content">
 			<p>カメラ映像をビデオで出力するタイプを選択します。 </p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
+		<div class="wn5-setup-section-article-content sptUsbConfigEnable" ng-if="UsbConfigEnable">
 			<h3>USB</h3>
 			<p>USBを使ってカメラ映像を出力するためには、<strong class="UI">[有効]</strong>をクリックします。</p>
 			<p>Wi-Fiドングルとハンファテックウィンで提供するスマートフォンアプリケーションでWi-Fi通信に接続してカメラにアクセスすることができます。ネットワークカメラを最初にインストールする時や視野角度、位置などを変更する場合、別途の設置用モニターがなくてもスマートフォンでカメラの映像を確認することができるため、有用です。</p>

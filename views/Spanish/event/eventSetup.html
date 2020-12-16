@@ -19,7 +19,7 @@
                     <ul>
                         <li><strong class="UI">FTP</strong>: Para capturar y enviar una pantalla de imagen a un servidor FTP, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[FTP]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</li>
                         <li><strong class="UI">E-mail</strong>: Para capturar y enviar una pantalla de imagen por correo electr&oacute;nico, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[E-mail]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</li>
-                        <li ng-if="Recording"><strong class="UI">Grabar</strong>: Para grabar una imagen, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[Grabar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</li>
+                        <li ng-if="Recording" class="sptRecording"><strong class="UI">Grabar</strong>: Para grabar una imagen, seleccione la casilla de verificaci&oacute;n en la columna <strong class="UI">[Grabar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong> &gt; <a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</li>
 
 
 
@@ -28,8 +28,8 @@
 
 
 
-                        <li ng-if="PresetAction"><strong class="UI">Ir a preajuste.</strong>: Se mueve a la posici&oacute;n predefinida PTZ designada por la c&aacute;mara.</li>
-                        <li ng-if="AudioClipCountRange"><strong class="UI">Clip de audio</strong>: Seleccione un clip de audio para reproducir cuando ocurra un evento. Puede definir una programaci&oacute;n distinta para cada tipo de evento. Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong> &gt; <strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</li>
+                        <li ng-if="PresetAction" class="sptPresetAction"><strong class="UI">Ir a preajuste.</strong>: Se mueve a la posici&oacute;n predefinida PTZ designada por la c&aacute;mara.</li>
+                        <li ng-if="AudioClipCountRange" class="sptAudioClip"><strong class="UI">Clip de audio</strong>: Seleccione un clip de audio para reproducir cuando ocurra un evento. Puede definir una programaci&oacute;n distinta para cada tipo de evento. Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong> &gt; <strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</li>
                     </ul>
             </ul>
         </div>
@@ -52,8 +52,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>Seleccionar canal</h2> 
     </div>
@@ -62,9 +62,9 @@
                 
             <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede gestionar y definir la Configuraci&oacute;n de acciones de evento para cada canal en <strong class="UI">[Lista de eventos del canal]</strong>.</p> 
 
-            <p ng-if="objectDetectionSupport">El canal 1 muestra im&aacute;genes en directo y el canal 2, v&iacute;deo PTZ digital. [Configuraci&oacute;n de eventos] solo puede configurarse en el canal 1.</p>
-            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como «PTZ».</p>
-            <p ng-if="HybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">El canal 1 muestra im&aacute;genes en directo y el canal 2, v&iacute;deo PTZ digital. [Configuraci&oacute;n de eventos] solo puede configurarse en el canal 1.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como «PTZ».</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
             <p>Los ajustes definidos en <strong class="UI">[Lista de eventos comunes]</strong> se aplicar&aacute; a todos los dem&aacute;s canales.</p><!-- <p ng-if="SupportChannelExpansionFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">
                     <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
@@ -75,7 +75,7 @@
                     <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
                     <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                     <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
-            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment">El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en directo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment">Haga clic en el bot&oacute;n <strong class="UI">[Informaci&oacute;n del producto]</strong> para ver un resumen general de cada canal.</p><!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
+            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment" class="sptHandOverCalAndAutoImgAlign">El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en directo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment" class="sptDetailInfoByChannel">Haga clic en el bot&oacute;n <strong class="UI">[Informaci&oacute;n del producto]</strong> para ver un resumen general de cada canal.</p><!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
     </div>
 </div>
 

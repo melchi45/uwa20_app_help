@@ -4,19 +4,19 @@
 	<p>스마트 코덱은 사용자가 원하는 부분을 관심 영역으로 설정하고 관심 영역의 화질은 사용자가 설정한 대로 유지하되 그 외 영역은 일반 화질로 관리하여 영상 데이터 크기를 줄이는 기술입니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
 		
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>채널 선택</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>카메라 채널을 선택한 후 채널별로 스마트 코덱 관련 세부 항목을 설정할 수 있습니다. 라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
-			<p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [스마트 코덱]은 채널 1에서만 설정할 수 있습니다. </p>
-            <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
-            <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
-			<p ng-if="SupportAutoImageAlignment">'스마트 코덱'은 채널 1번~5번에서만 설정할 수 있습니다.</p> 
-			<p ng-if="HybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. [스마트 코덱]은 채널 1에서만 설정할 수 있습니다.</p>
+			<p ng-if="objectDetectionSupport" class="sptObjectDetection">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [스마트 코덱]은 채널 1에서만 설정할 수 있습니다. </p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
+			<p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">'스마트 코덱'은 채널 1번~5번에서만 설정할 수 있습니다.</p> 
+			<p ng-if="HybridThermal" class="sptHybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. [스마트 코덱]은 채널 1에서만 설정할 수 있습니다.</p>
             <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
 	</div>
@@ -31,7 +31,7 @@
 		<div class="wn5-setup-section-article-content">
 			<p>사용자가 직접 카메라 영상 화면에서 관심 영역을 설정할 수 있습니다. 화면에 마우스로 클릭하고 드래그하면 네모 모양으로 관심 영역이 생성됩니다. 관심 영역은 최대 5개까지 가능하며, 영역끼리 겹쳐서는 설정되지 않습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭하면 설정한 관심 영역이 모두 삭제됩니다.</p>
 		</div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>PTZ 조정하기</h4>
             <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. <strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택하면 PTZ 조그 패널이 나타납니다.</p>
             <ul>
@@ -46,7 +46,7 @@
             <ul>
 				
                 <li>스마트 코덱은 비디오 프로파일 별로 사용 여부를 설정할 수 있습니다. <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>에서 <a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[비트 레이트 제어 방식]</strong></a>을 <strong class="UI">[CBR]</strong>로 설정한 후, <a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong class="UI">[스마트 코덱]</strong></a>에서 [사용 안 함]을 선택하면, 해당 프로파일에서는 스마트 코덱 기능이 작동하지 않습니다. </li>
-                <li ng-if="SupportChannelExpansionFeature">피쉬아이 카메라에서 스마트 코덱 기능은 피쉬아이 뷰 모드 일 때만 동작합니다. 피쉬아이 뷰는 채널 1에서만 지원하며, 따라서 채널 2부터 채널 8까지의 영상은 모두 스마트 코덱이 적용되지 않습니다. 또한 채널 1에서 피쉬아이 뷰로 설정된 프로파일에만 스마트 코덱이 적용됩니다. 예를 들어 채널 1의 프로파일 중 'profile 1'은 [피쉬아이 뷰]로 설정하고, 'profile 2'는 왜곡 보정 옵션 중 하나인 [더블 파노라마]로 설정한 경우, 'profile 1'로 영상이 전송될 때만 스마트 코덱이 적용됩니다. 피쉬아이 뷰 모드는 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 설정할 수 있습니다.</li>
+                <li ng-if="SupportChannelExpansionFeature" class="sptChannelExpansionFeature">피쉬아이 카메라에서 스마트 코덱 기능은 피쉬아이 뷰 모드 일 때만 동작합니다. 피쉬아이 뷰는 채널 1에서만 지원하며, 따라서 채널 2부터 채널 8까지의 영상은 모두 스마트 코덱이 적용되지 않습니다. 또한 채널 1에서 피쉬아이 뷰로 설정된 프로파일에만 스마트 코덱이 적용됩니다. 예를 들어 채널 1의 프로파일 중 'profile 1'은 [피쉬아이 뷰]로 설정하고, 'profile 2'는 왜곡 보정 옵션 중 하나인 [더블 파노라마]로 설정한 경우, 'profile 1'로 영상이 전송될 때만 스마트 코덱이 적용됩니다. 피쉬아이 뷰 모드는 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[피쉬아이 뷰 타입]</strong>에서 설정할 수 있습니다.</li>
             </ul>
 		</div>
 	</div>

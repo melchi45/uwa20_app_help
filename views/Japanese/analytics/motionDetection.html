@@ -4,21 +4,21 @@
     <p>モーション検知イベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[モーション検知]</strong>に同じく適用されます。</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel">チャンネル選択</a></h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラチャンネルを選択した後、チャンネル別にモーション検知の詳細を設定することができます。</p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
-            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[モーション検知]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
-            <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
-            <p ng-if="SupportAutoImageAlignment">「モーション検知」はチャンネル1でしか設定できません。</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment" class="sptHandOverCalAndAutoImgAlign">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[モーション検知]は、チャンネル1でのみ設定できます。</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">「モーション検知」はチャンネル1でしか設定できません。</p>
             <p ng-if="MultiImager">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2とチャンネル3はデジタルPTZ映像を表示するチャンネルです。[モーション検知]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
             <!-- <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。「モーション検知」はチャンネル1でのみ設定できます。</p>
             <ul ng-if="SupportChannelExpansionFeature">
                 <li>チャンネル1：魚眼カメラの映像をそのまま補正なしで見せます。</li>
@@ -47,13 +47,13 @@
             <p>モーション検知イベントを有効にするためには、<strong class="UI">[モーション検知を有効にする]</strong>を選択します。</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+        <div class="wn5-setup-section-article-content sptRealPTZModel" ng-if="PTZModel">
             <h3>タイプ</h3>
             <p>すべてのプリセットに同じモーション検知を設定するには、<strong class="UI">[グローバル]</strong>を選択します。PTZプリセット別にそれぞれのモーション検知を設定するには、<strong class="UI">[プリセット]</strong>を選択します。</p>
             <p><a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">プリセット設定</a>ページでプリセットを設定した場合のみ、<strong class="UI">[プリセット]</strong>オプションが有効になります。<strong class="UI">[プリセット]</strong>を選択してプリセット別にモーション検知設定を指定する場合、詳細設定項目中の一部機能は設定することができません。</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[タイプ]オプションを設定することができます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[タイプ]オプションを設定することができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>タイプ</h3>
             <p>すべてのプリセットに同じモーション検知を設定するには、<strong class="UI">[グローバル]</strong>を選択します。パン/チルトプリセット別にそれぞれのモーション検知を設定するには、<strong class="UI">[プリセット]</strong>を選択します。<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT設定</a>ページでプリセットを設定した場合のみ、<strong class="UI">[プリセット]</strong>オプションが有効になります。<strong class="UI">[プリセット]</strong>を選択してプリセット別にモーション検知設定を指定する場合、詳細設定項目中の一部機能は設定することができません。</p>
         </div>
@@ -105,10 +105,10 @@
             <h4>エリア削除</h4>
 			<p>エリアを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
         </div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>PTZ調整</h4>
             <!-- <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p> -->
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
                 <li>ズーム棒で<strong class="UI">[+]</strong>ボタンをクリックして画面をズームインしたり、<strong class="UI">[-]</strong>ボタンをクリックして画面をズームアウトして映像倍率を選択します。</li>
@@ -136,7 +136,7 @@
             <p>最短期間(秒)：検知した後、イベントを発生させるための最短時間を設定します。設定した時間より長くモーションが持続されるとき、イベントを発生させます</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+        <div class="wn5-setup-section-article-content sptHandoverCalibration" ng-if="HandoverCalibration">
             <h3>ハンドオーバ</h3>
             <p>ハンドオーバは、固定カメラでモーション検知イベントが発生すると、PTZカメラが該当画面領域や既に設定したプリセット位置に移動する機能です。</p>
             <ul>
@@ -145,12 +145,12 @@
                 <li><strong class="UI">ハンドオーバNo.</strong>：仮想領域でモーション検知イベントが発生すると、PTZカメラがプリセット位置に移動します。プリセット情報のあるハンドオーバNo.をリストで選択します。リストは<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>メニューで追加したり、変更できます。</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+        <div class="wn5-online-help-info sptHandoverCalibration" ng-if="HandoverCalibration">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 
                 <li>仮想領域別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想領域を先に設定してから使用できます。</li>
-                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
             </ul>
         </div>
 
@@ -249,8 +249,8 @@
 
 
 
-            <hr class="wn5-setup-hr" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
-            <div class="wn5-setup-section" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
+            <hr class="wn5-setup-hr sptHandoverV2CalibrationAutoImageAlignment" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
+            <div class="wn5-setup-section sptHandoverV2CalibrationAutoImageAlignment" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
                 <div class="wn5-setup-section-heading">
                     <h2>ハンドオーバ</h2>
                 </div>
@@ -270,8 +270,8 @@
 					
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="MotionDetectionOverlay">
-<div class="wn5-setup-section" ng-if="MotionDetectionOverlay">
+<hr class="wn5-setup-hr sptMotionDetectionOverlay" ng-if="MotionDetectionOverlay">
+<div class="wn5-setup-section sptMotionDetectionOverlay" ng-if="MotionDetectionOverlay">
     <div class="wn5-setup-section-heading">
         <h2>オーバーレイ</h2>
     </div>
@@ -297,24 +297,24 @@
             <h3>E-mail</h3>
             <p>モーション検知イベントが発生した時、映像の画像をE-mailに伝送するには<strong class="UI">[有効]</strong>を選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Recording">
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
             <h3>録画</h3>
-            <p ng-if="NAS">アラーム入力イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
-            <p ng-if="!NAS">アラーム入力イベントが発生した時、SDカードに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+            <p ng-if="NAS" class="sptRecordingSDNas">アラーム入力イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+            <p ng-if="!NAS" class="sptRecordingSD">アラーム入力イベントが発生した時、SDカードに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
             <h3>アラーム出力</h3>
             <p>モーション検知イベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。</p>
             <p>アラーム出力設定によって<strong class="UI">[アラーム出力]</strong>オプションの表示が異なります。アラーム出力がない場合、<strong class="UI">[アラーム出力]</strong>オプションは表示されません。アラーム出力が複数の場合、<strong class="UI">[アラーム出力1]</strong>、<strong class="UI">[アラーム出力2]</strong>のように表示されます。アラーム入・出力は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で設定できます。</p>
         </div>
-         <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+         <div class="wn5-setup-section-article-content sptExtPtzPreset1" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>プリセットに移動</h3>
                     <p>モーション検知イベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
 
-                    <p ng-if="GlobalPTZMode && MaxChannel > 1"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択解除した場合、[プリセット移動]オプションが表示されません。</p>
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択解除した場合、[プリセット移動]オプションが表示されません。</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+        <div class="wn5-setup-section-article-content sptZoomOnly" ng-if="PresetSetupPage">
             <h3>プリセットに移動</h3>
                     <p>モーション検知イベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[プリセット設定]</strong></a>の<strong class="UI">[プリセット設定]</strong>エリアで設定することができます。</p>
         </div>
@@ -322,13 +322,13 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>プリセットに移動</h3>
                     <p>モーション検知イベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
-                    <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[プリセットに移動]オプションが表示されます。</p>
+                    <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_motionDetection#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[プリセットに移動]オプションが表示されます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>プリセットに移動</h3>
                     <p>モーション検知イベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[PT設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
         </div>       
-        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
             <h3>オーディオクリップ</h3>
             <p>モーション検知イベントが発生した時、特定のオーディオクリップが再生されるように設定することができます。オーディオクリップリストでファイルを選択すると、イベントが発生する時に該当のクリップが再生されます。イベントが発生してもオーディオクリップが再生されないように設定するためには、<strong class="UI">[Off]</strong>を選択します。再生ボタン(<span class="tui tui-wn5-toolbar-play"></span>)をクリックすると、該当オーディオファイルを再生してプレビューを聞くことができます。</p>
             <p>オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</p>

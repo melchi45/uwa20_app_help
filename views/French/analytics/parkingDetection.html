@@ -1,0 +1,302 @@
+﻿<h1 class="wn5-setup-main-title">D&eacute;tection de stationnement</h1>
+<div class="wn5-setup-section">
+    <p>D&eacute;tecte si la zone de stationnement que vous avez d&eacute;finie est occup&eacute;e et d&eacute;clenche un
+        &eacute;v&eacute;nement si c&rsquo;est le cas. Le parking est consid&eacute;r&eacute; plein lorsque le nombre de
+        v&eacute;hicules gar&eacute;s dans cette zone atteint le nombre maximum de v&eacute;hicules pouvant se garer que
+        vous avez d&eacute;fini.</p>
+    <p>Les v&eacute;hicules comprennent les automobiles, les v&eacute;los et les motos.</p>
+    <p>Apr&egrave;s avoir termin&eacute; la configuration, cliquez sur le bouton <strong class="UI">[Appliquer]</strong>
+        en bas de la page. Cette configuration de l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement
+        s&apos;applique &eacute;galement &agrave; la <strong class="UI">[D&eacute;tection de stationnement]</strong>
+        sous <strong class="UI">[&Eacute;v&egrave;nement]</strong>&gt;<a class="wn5-online-help-link"
+            href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Config.
+                &eacute;v&eacute;n.]</strong></a>.</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Vous pouvez d&eacute;finir plus de d&eacute;tails concernant la d&eacute;tection de stationnement pour
+                chaque canal en s&eacute;lectionnant un canal de cam&eacute;ra.</p>
+            <p>Le canal 1 montre le flux complet de la cam&eacute;ra. Les canaux 2 &agrave; 5 montrent la vue quadruple
+                de l&apos;ensemble du flux. Le canal 2 montre la partie sup&eacute;rieure gauche du flux&nbsp;; le canal
+                3, la partie sup&eacute;rieure droite du flux&nbsp;; le canal 4, la partie inf&eacute;rieure gauche du
+                flux&nbsp;; et le canal 5, la partie inf&eacute;rieure droite du flux. Le menu [D&eacute;tection de
+                stationnement] ne peut &ecirc;tre r&eacute;gl&eacute; que sur les canaux 2 &agrave; 5.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>D&eacute;tection de stationnement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Activer la d&eacute;tection de stationnement</h3>
+            <p>Pour activer les &eacute;v&eacute;nements de d&eacute;tection de stationnement, s&eacute;lectionnez
+                <strong class="UI">[Activer la d&eacute;tection de stationnement]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Zone</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Permet de d&eacute;finir plus de d&eacute;tails concernant la zone de d&eacute;tection du stationnement.
+            </p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Zone de stationnement</h3>
+            <p>D&eacute;finit la zone d&rsquo;int&eacute;r&ecirc;t o&ugrave; les v&eacute;hicules stationn&eacute;s
+                seront d&eacute;tect&eacute;s et la zone exclue o&ugrave; les v&eacute;hicules stationn&eacute;s ne
+                seront pas d&eacute;tect&eacute;s.</p>
+            <p>De plus, vous pouvez d&eacute;finir le nombre maximum de v&eacute;hicules pouvant stationner sous <STRONG
+                    class="UI">[Max. vehicles]</STRONG>. Une fois ce nombre maximum de v&eacute;hicules
+                d&eacute;tect&eacute;s, le parking est consid&eacute;r&eacute; plein. Cela signifie que le parking
+                n&apos;est consid&eacute;r&eacute; comme plein que lorsque le nombre de v&eacute;hicules
+                stationn&eacute;s dans la zone de d&eacute;tection atteint le nombre fix&eacute; sous [Max. vehicles].
+            </p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>D&eacute;finire la zone d&rsquo;int&eacute;r&ecirc;t et la zone exclue</h4>
+            <p>Les zones exclues 1 et 2 sont d&eacute;finies l&rsquo;une apr&egrave;s l&rsquo;autre une fois la zone
+                d&rsquo;int&eacute;r&ecirc;t d&eacute;finie. Apr&egrave;s configuration de la zone
+                d&rsquo;int&eacute;r&ecirc;t ou de la zone exclue, la couleur des boutons num&eacute;riques change.</p>
+            <ul>
+                <li>La zone peut &ecirc;tre d&eacute;finie en s&eacute;lectionnant quatre points sur l&apos;&eacute;cran
+                    vid&eacute;o de la cam&eacute;ra ou en faisant glisser le curseur pour dessiner un carr&eacute;.
+                </li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Modifier la zone d&apos;int&eacute;r&ecirc;t et de la zone exclue</h4>
+            <ul>
+                <li>Vous pouvez redimensionner la zone en d&eacute;pla&ccedil;ant les points d&eacute;finissant la zone.
+                </li>
+                <li>Si vous cliquez sur la ligne &agrave; l&apos;int&eacute;rieur de la zone avec votre curseur, une
+                    marque + appara&icirc;t. Cliquez sur la marque + pour ajouter un point. Vous pouvez cr&eacute;er une
+                    forme polygonale en s&eacute;lectionnant jusqu&apos;&agrave; 4&nbsp;points.</li>
+                <li>Pour d&eacute;placer la zone, s&eacute;lectionnez-la et faites-la glisser jusqu&apos;&agrave;
+                    l&apos;endroit souhait&eacute;.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Supprimer une zone d&rsquo;int&eacute;r&ecirc;t et une zone exclue</h4>
+            <ul>
+                <li>Pour supprimer une zone d&rsquo;int&eacute;r&ecirc;t ou une zone exclue, cliquez avec le bouton
+                    droit de la souris sur la zone &agrave; supprimer.&nbsp;La fen&ecirc;tre «&nbsp;Confirmer la
+                    suppression&nbsp;» appara&icirc;t. Cliquez sur <STRONG class="UI">[OK]</STRONG>.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Commun</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Permet de d&eacute;finir la sensibilit&eacute; pour la d&eacute;tection de stationnement ainsi que la
+                taille minimale et maximale des v&eacute;hicules &agrave; d&eacute;tecter. Ce param&egrave;tre augmente
+                la pr&eacute;cision de la d&eacute;tection et permet de r&eacute;duire le nombre de fausses
+                d&eacute;tections.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensibilit&eacute;</h3>
+            <p>R&egrave;gle la sensibilit&eacute; pour la d&eacute;tection de stationnement. Si vous enregistrez
+                beaucoup de fausses d&eacute;tections du status «&nbsp;plein&nbsp;» dans un certain environnement,
+                r&eacute;glez la sensibilit&eacute; &agrave; un niveau bas. Si vous enregistrez beaucoup de fausses
+                d&eacute;tections du status «&nbsp;vide&nbsp;», r&eacute;glez-la &agrave; un niveau &eacute;lev&eacute;.
+            </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Taille</h3>
+            <p>Permet de d&eacute;finir la taille minimale et maximale des v&eacute;hicules &agrave; d&eacute;tecter.
+            </p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+            <ul>
+                <li>La cam&eacute;ra ne d&eacute;tecte pas les v&eacute;hicules de taille inf&eacute;rieure &agrave; la
+                    taille minimale ou sup&eacute;rieure &agrave; la taille maximale. Pour &eacute;viter les fausses
+                    d&eacute;tections dues aux bruits, nous vous recommendons de d&eacute;finir manuellement la taille
+                    minimale et maximale des v&eacute;hicules &agrave; d&eacute;tecter dans l&apos;environnement
+                    r&eacute;el. Veuillez noter que la cam&eacute;ra peut faire une erreur lors de la d&eacute;tection
+                    de la taille d&apos;un v&eacute;hicule, m&ecirc;me si le v&eacute;hicule effectue le m&ecirc;me
+                    mouvement au m&ecirc;me endroit. Tenez-en compte lorsque vous fixez la restriction de taille
+                    minimale/maximale.</li>
+                <li>Une fausse d&eacute;tection peut se produire si&nbsp;:</li>
+                <ul>
+                    <li>la couleur ou la luminosit&eacute; du v&eacute;hicule est similaire &agrave; celle de
+                        l&apos;arri&egrave;re-plan</li>
+                    <li>un certain nombre de mouvements sont d&eacute;tect&eacute;s de mani&egrave;re al&eacute;atoire
+                        en raison d&apos;un panoramique de la cam&eacute;ra ou pour d&rsquo;autres raisons</li>
+                    <li>un objet fixe effectue constamment un mouvement sur place</li>
+                    <li>des objets al&eacute;atoires bloquent la vue sur diff&eacute;rents objets</li>
+                    <li>plusieurs objets fusionnent en un seul ou qu&apos;un objet se divise en plusieurs objets</li>
+                    <li>les param&egrave;tres du menu OSD de la cam&eacute;ra ont &eacute;t&eacute; modifi&eacute;</li>
+                    <li>un objet se d&eacute;place trop rapidement</li>
+                    <li>une r&eacute;flexion/le flou/l&apos;ombre est d&eacute;tect&eacute;e qui se produit &agrave;
+                        cause d&apos;une source de lumi&egrave;re intense telle que la lumi&egrave;re directe du soleil,
+                        un &eacute;clairage et les phares</li>
+                    <li>il pleut ou neige abondamment, si le vent souffle fort, &agrave; l&apos;aube ou au
+                        cr&eacute;puscule</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Config. action évén.</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>Pour enregistrer une image sur un serveur FTP lorsqu&apos;un l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement est
+                cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages
+                d&eacute;taill&eacute;s pour le FTP peuvent &ecirc;tre effectu&eacute;s depuis <strong
+                    class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link"
+                    href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong
+                        class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Pour envoyer une image par e-mail lorsqu&apos;un l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement se produit,
+                s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s
+                pour l&apos;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong
+                    class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link"
+                    href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong
+                        class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
+            <h3>Enregistrer</h3>
+            <p ng-if="NAS" class="sptRecordingSDNas">Pour enregistrer une image sur une carte SD ou un NAS
+                lorsqu&apos;un l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement est cr&eacute;&eacute;, s&eacute;lectionnez <strong
+                    class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent
+                &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a
+                    class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong
+                        class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">Pour enregistrer une image sur une carte SD lorsqu&apos;un
+                l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement est cr&eacute;&eacute;, s&eacute;lectionnez <strong
+                    class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent
+                &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a
+                    class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong
+                        class="UI">[Stockage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
+            <h3>&Eacute;mission d&apos;alerte</h3>
+            <p>Il est possible de d&eacute;finir le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte pour une alarme
+                pr&eacute;cise lorsqu&apos;un l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement est cr&eacute;&eacute;.&nbsp;Apr&egrave;s
+                avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte,
+                s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas
+                d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez
+                &eacute;mettre une alarme. Vous pouvez d&eacute;finir une alarme continue jusqu&apos;&agrave; ce
+                qu&apos;elle soit d&eacute;sactiv&eacute;e par l&apos;utilisateur en s&eacute;lectionnant <strong
+                    class="UI">[Toujours]</strong>, ou r&eacute;gler l&apos;alarme pour 5, 10 ou 15&nbsp;secondes. </p>
+            <p>Les options <strong class="UI">[&Eacute;mission d&rsquo;alerte]</strong> peuvent para&icirc;tre
+                diff&eacute;rentes selon la configuration d&rsquo;&eacute;mission d&rsquo;alerte. En cas
+                d&rsquo;&eacute;mission d&rsquo;alerte, les options, <strong class="UI">[&Eacute;mission
+                    d&rsquo;alerte]</strong> ne s&rsquo;affichent pas. Si plusieurs alertes sont &eacute;mises, elles
+                s&rsquo;affichent sous <strong class="UI">« émission d’alerte 1 »</strong>, <strong class="UI">«
+                    émission d’alerte 2 »</strong>, etc. S&eacute;lectionnez <strong
+                    class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[E/S de
+                    l&rsquo;alarme]</strong> pour d&eacute;finir l&rsquo;E/S de l&rsquo;alarme.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content sptExtPtzPreset1"
+            ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+            <h3>Al à Prérég</h3>
+            <p>Vous pouvez r&eacute;gler la position de vue de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; un
+                nombre pr&eacute;d&eacute;fini lorsqu&apos;un l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement est cr&eacute;&eacute;. Le
+                pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong
+                    class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html"
+                    ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou
+                <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a
+                        class="wn5-online-help-link" href="../ptz/externalPTZ.html"
+                        ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
+
+            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">Si l&rsquo;option <strong
+                    class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong
+                    class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link"
+                        href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ
+                        externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se
+                s&rsquo;affiche pas.</p>
+
+        </div>
+
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
+            <h3>Clip audio</h3>
+            <p>Cela permet la lecture d&apos;un clip audio sp&eacute;cifique lorsqu&apos;un l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement
+                survient. Une fois que vous avez s&eacute;lectionn&eacute; un fichier dans votre liste de clips audio,
+                la lecture du clip commence lorsque l&apos;&eacute;v&eacute;nement se produit. Pour d&eacute;sactiver la
+                lecture du clip audio lorsqu&apos;un &eacute;v&eacute;nement se produit, s&eacute;lectionner <strong
+                    class="UI">[D&eacute;sactiv&eacute;]</strong>. Cliquer sur le bouton Lecture (<span
+                    class="tui tui-wn5-toolbar-play"></span>) pour lire et pr&eacute;visualiser un fichier audio.</p>
+            <p>Aller &agrave; <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a
+                        class="wn5-online-help-link" href="../video&audio/audio.html"
+                        ng-href="#/help/videoAudio_audioSetup">[Audio configuration]</a></strong>&gt;<strong
+                    class="UI">[Clip audio]</strong> pour enregistrer un clip audio.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Temps d&apos;activation d&apos;&eacute;v&egrave;nement</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Cela d&eacute;finit le temps de fonctionnement de la configurations des actions de
+                l&apos;l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement. D&eacute;finit la configuration des actions de
+                l&apos;&eacute;v&eacute;nement dans <strong class="UI">[<a class="wn5-online-help-link" href="#action"
+                        ng-href="#/help/analytics_parkingDetection?#action">Config. action évén.</a>]</strong> afin qu&rsquo;elle
+                fonctionne constamment, ou uniquement &agrave; l&apos;heure d&eacute;finie.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Toujours</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement est toujours ex&eacute;cut&eacute;e
+                lorsqu&apos;un l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement est cr&eacute;&eacute;.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Heure programm&eacute;e uniquement</h3>
+            <p>La configuration des actions de l&apos;&eacute;v&eacute;nement est ex&eacute;cut&eacute;e lorsqu&apos;un
+                l&apos;&eacute;v&eacute;nement de d&eacute;tection de stationnement est cr&eacute;&eacute; pendant l&apos;heure d&eacute;finie. La date, allant
+                du dimanche au samedi en fonction de l&apos;horaire actuel de la cam&eacute;ra, est affich&eacute;e sur
+                le calendrier visible lorsque l&rsquo;option <strong class="UI">[Heure programm&eacute;e
+                    uniquement]</strong> est s&eacute;lectionn&eacute;e. Vous pouvez d&eacute;finir l&apos;heure de
+                configuration des actions de l&apos;&eacute;v&eacute;nement en cliquant ou en faisant glisser la souris
+                sur le calendrier. L&apos;heure d&apos;activation de l&apos;&eacute;v&eacute;nement d&eacute;finie est
+                r&eacute;alis&eacute;e plusieurs fois le jour de la semaine et &agrave; l&apos;heure concern&eacute;s.
+            </p>
+            <p>Vous pouvez changer l&apos;unit&eacute; d&apos;affichage de l&apos;heure en cliquant sur les boutons
+                <strong class="UI">[1&nbsp;min]</strong>, <strong class="UI">[30&nbsp;min]</strong> ou <strong
+                    class="UI">[1&nbsp;h]</strong>. Lorsque vous cliquez sur le bouton <strong
+                    class="UI">[R&eacute;initialiser]</strong>, toutes les heures d&apos;activation des
+                &eacute;v&eacute;nements d&eacute;finies seront supprim&eacute;es. Pour confirmer ou modifier
+                l&apos;heure de la cam&eacute;ra, reportez-vous &agrave; la section <strong
+                    class="UI">[Basic]</strong>&gt;<strong class="UI">[Date et heure]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

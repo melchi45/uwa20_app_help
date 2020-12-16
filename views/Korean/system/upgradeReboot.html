@@ -17,29 +17,29 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>소프트웨어</h3>
             <p>사용하고 있는 제품의 소프트웨어 버전입니다. 소프트웨어 버전은 확인만 가능하고 변경할 수 없습니다. </p>
-            <p ng-if="!SupportAutoImageAlignment"><strong class="UI">[상세정보]</strong> 버튼을 클릭하면 소프트웨어에 적용된 ISP 버전이나 SUNAPI 버전 등을 포함하여 소프트웨어 상세 정보를 확인할 수 있습니다.</p>
+            <p ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment"><strong class="UI">[상세정보]</strong> 버튼을 클릭하면 소프트웨어에 적용된 ISP 버전이나 SUNAPI 버전 등을 포함하여 소프트웨어 상세 정보를 확인할 수 있습니다.</p>
 		</div>
- 		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
+ 		<div class="wn5-setup-section-article-content sptHandOverCalAndAutoImgAlign" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
 		    <h3>ISP 버전  </h3>
 		    <p>사용하고 있는 제품의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
 	   	</div>  
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
+		<div class="wn5-setup-section-article-content sptHandOverCalAndNotAutoImgAlign" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>고정 채널 ISP 버전  </h3>
 		    <p>장착된 고정 카메라의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
+		<div class="wn5-setup-section-article-content sptHandOverCalAndNotAutoImgAlign" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>PTZ 채널 ISP 버전  </h3>
 		    <p>장착된 PTZ 카메라의 ISP 버전입니다. ISP 버전은 확인만 가능하고 변경할 수 없습니다.</p>
 	   	</div>
-	 	<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+	 	<div class="wn5-setup-section-article-content sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 		    <h3>SUNAPI 버전  </h3>
 		    <p>사용하고 있는 제품에서 지원하는 SUNAPI 버전입니다. SUNAPI는 한화테크윈 자체 API입니다.</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+		<div class="wn5-setup-section-article-content sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 		    <h3>UWA 버전  </h3>
 		    <p>사용하고 있는 카메라의 웹뷰어 버전입니다. </p>
 	   	</div> 
-				<div class="wn5-setup-section-article-content" ng-if="OpenSSLVersion">
+		<div class="wn5-setup-section-article-content" ng-if="OpenSSLVersion">
 		    <h3>OpenSSL 버전  </h3>
             <p>보안이 강화된 통신을 위해 사용하고 있는 OpenSSL 버전입니다.</p>
 	   	</div>
@@ -68,19 +68,22 @@
 			<p>시스템 설정을 제품을 구입했을 당시의 설정으로 초기화할 수 있습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭한 후 확인창에서 <strong class="UI">[확인]</strong> 버튼을 클릭하면 공장 초기화가 진행됩니다. (단, 로그는 초기화되지 않습니다 .)</p>
 		</div>
 	<!-- 	4/15일 김선미 책임님 코드에 따라 !CamSpecialModel 을 OpenSDKSupport로 변경 -->
-				<div class="wn5-setup-section-article-content" ng-if="OpenSDKSupport"> 
+				<div class="wn5-setup-section-article-content sptOpenSDKSupport" ng-if="OpenSDKSupport"> 
 			<p>공장 초기화를 진행할 때 네트워크 설정 및 설치된 오픈 플랫폼 설정을 제외하고 다른 설정만 공장 초기화하려면 <strong class="UI">[네트워크 설정 및 오픈 플랫폼 설정 제외]</strong>를 선택합니다. 공장 초기화 진행 시 카메라와 접속이 끊깁니다. 웹뷰어 처음 접속 시 비밀번호를 다시 설정해야 합니다. </p>
 		</div>
 
 		<!--  4/15일 김선미 책임님 코드에 따라 CamSpecialModel을 !OpenSDKSupport로 변경 --> 
-				<div class="wn5-setup-section-article-content" ng-if="!OpenSDKSupport"> 
+		<div class="wn5-setup-section-article-content nsptOpenSDKSupport" ng-if="!OpenSDKSupport">
 			<p>공장 초기화를 진행할 때 네트워크 설정을 제외하고 다른 설정만 공장 초기화하려면 <strong class="UI">[네트워크 설정 제외]</strong>를 선택합니다. 공장 초기화 진행 시 카메라와 접속이 끊깁니다. 웹뷰어 처음 접속 시 비밀번호를 다시 설정해야 합니다. </p>
 		</div>
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<!-- SPM-4210 IO BOX 모델에서 hide하기 위한 코드 -->
+<!-- <hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
+<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'"> -->
+    <hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>설정 백업/복원</h2>
 	</div>

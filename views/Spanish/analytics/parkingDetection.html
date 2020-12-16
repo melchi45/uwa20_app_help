@@ -1,0 +1,277 @@
+﻿<h1 class="wn5-setup-main-title">Detecci&oacute;n de aparcamiento</h1>
+<div class="wn5-setup-section">
+    <p>Detecta si el &aacute;rea de aparcamiento que usted ha establecido est&aacute; ocupada y si lo est&aacute;, se
+        acciona un evento. Se considera completo cuando el n&uacute;mero de veh&iacute;culos estacionados en esa
+        &aacute;rea alcanza el n&uacute;mero m&aacute;ximo de veh&iacute;culos estacionados que usted ha establecido.
+    </p>
+    <p>El t&eacute;rmino &quot;veh&iacute;culos&quot; incluye autom&oacute;viles, bicicletas y motocicletas.</p>
+    <p>Una vez completada la configuraci&oacute;n, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en
+        la parte inferior de la p&aacute;gina. La configuraci&oacute;n del evento de detecci&oacute;n de aparcamiento se
+        aplica a <strong class="UI">[Detecci&oacute;n de aparcamiento]</strong> en la p&aacute;gina de <strong
+            class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html"
+            ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a>.</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Se pueden configurar m&aacute;s detalles de la detecci&oacute;n de aparcamiento para cada canal
+                despu&eacute;s de seleccionar un canal de c&aacute;mara.</p>
+            <p>El canal 1 muestra la transmisi&oacute;n completa desde la c&aacute;mara. Los canales 2 a 5 muestran la
+                vista de cuadrante de todo la transmisi&oacute;n. El canal 2 muestra la secci&oacute;n superior
+                izquierda de la transmisi&oacute;n; el canal 3, la superior derecha de la transmisi&oacute;n; el canal
+                4, la parte inferior izquierda de la transmisi&oacute;n; y el canal 5, la secci&oacute;n inferior
+                derecha de la transmisi&oacute;n. El men&uacute; [Detecci&oacute;n de aparcamiento] solo se puede
+                configurar en los canales 2 a 5.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Detecci&oacute;n de aparcamiento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Habilitar detecci&oacute;n de aparcamiento</h3>
+            <p>Para habilitar los eventos de detecci&oacute;n de aparcamiento, seleccione <strong class="UI">[Habilitar
+                    detecci&oacute;n de aparcamiento]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>&Aacute;rea</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Configura los detalles para el &aacute;rea de detecci&oacute;n de aparcamiento.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>&Aacute;rea de aparcamiento</h3>
+            <p>Establece el &aacute;rea de ROI donde se detectar&aacute;n los veh&iacute;culos aparcados y el
+                &aacute;rea de Exclusi&oacute;n donde no se detectar&aacute;n los veh&iacute;culos aparcados.</p>
+            <p>Adem&aacute;s, el n&uacute;mero m&aacute;ximo de veh&iacute;culos necesarios para considerar que el
+                aparcamiento est&aacute; completo puede establecerse en <STRONG class="UI">[Cant. m&aacute;x. de
+                    veh&iacute;culos]</STRONG> En otras palabras, el aparcamiento se considerar&aacute; lleno solo
+                cuando el n&uacute;mero de veh&iacute;culos aparcados dentro del &aacute;rea de detecci&oacute;n alcance
+                el n&uacute;mero establecido en [Cant. m&aacute;x. de veh&iacute;culos].</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Configuraci&oacute;n del &aacute;rea de ROI y del &Aacute;rea de exclusi&oacute;n</h4>
+            <p>Las &aacute;reas de exclusi&oacute;n 1 y 2 se configuran en orden, despu&eacute;s de configurar el
+                &aacute;rea de ROI. Cuando se configura el &aacute;rea de ROI o el &aacute;rea de exclusi&oacute;n, el
+                color de los botones num&eacute;ricos cambia.</p>
+            <ul>
+                <li>El &aacute;rea se puede configurar seleccionando cuatro puntos en la pantalla de v&iacute;deo de la
+                    c&aacute;mara o arrastrando el cursor para dibujar un cuadrado.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Modificaci&oacute;n del &aacute;rea de ROI y del &Aacute;rea de exclusi&oacute;n</h4>
+            <ul>
+                <li>El &aacute;rea puede ser redimensionada desplazando los puntos del &aacute;rea especificada.</li>
+                <li>Coloque la l&iacute;nea dentro del &aacute;rea con el cursor del rat&oacute;n y aparecer&aacute; una
+                    marca &quot;+&quot;. Haga clic en la marca &quot;+&quot; para a&ntilde;adir un punto. Se puede crear
+                    una forma poligonal seleccionando hasta 4 puntos.</li>
+                <li>Para reubicar el &aacute;rea, seleccione el &aacute;rea y arr&aacute;strela a la ubicaci&oacute;n
+                    deseada.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Eliminaci&oacute;n del &aacute;rea de ROI y del &Aacute;rea de exclusi&oacute;n</h4>
+            <ul>
+                <li>Para eliminar un &aacute;rea de ROI o un &aacute;rea de exclusi&oacute;n, haga clic con el
+                    bot&oacute;n derecho sobre el &aacute;rea que desea eliminar.&nbsp;Haga clic en el bot&oacute;n
+                    <STRONG class="UI">[Aceptar]</STRONG> en la ventana de confirmaci&oacute;n de eliminaci&oacute;n.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Com&uacute;n</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Establece la sensibilidad para la detecci&oacute;n de aparcamiento y el tama&ntilde;o m&iacute;nimo y
+                m&aacute;ximo de los veh&iacute;culos a detectar. Esta configuraci&oacute;n se utiliza para aumentar la
+                precisi&oacute;n de la detecci&oacute;n y minimizar la detecci&oacute;n falsa en el entorno.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensibilidad</h3>
+            <p>Establece la sensibilidad para la detecci&oacute;n de aparcamiento. Establezca sensibilidad baja en un
+                entorno en el que la falsa detecci&oacute;n del estado completo ocurre a menudo, y establezca
+                sensibilidad alta en un entorno en el que la falsa detecci&oacute;n del estado libre ocurre a menudo.
+            </p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Tama&ntilde;o</h3>
+            <p>Establece el tama&ntilde;o m&iacute;nimo y m&aacute;ximo de los veh&iacute;culos a detectar.</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>Los veh&iacute;culos m&aacute;s peque&ntilde;os que el tama&ntilde;o m&iacute;nimo o m&aacute;s
+                    grandes que el tama&ntilde;o m&aacute;ximo no ser&aacute;n detectados. Para evitar falsas
+                    detecciones causadas por ruidos, se recomienda configurar manualmente el tama&ntilde;o m&iacute;nimo
+                    y m&aacute;ximo de los veh&iacute;culos que ser&aacute;n detectados en el entorno de la
+                    instalaci&oacute;n correspondiente. Tenga en cuenta que podr&iacute;a haber alguna variaci&oacute;n
+                    en el tama&ntilde;o detectado de un veh&iacute;culo, incluso si dicho movimiento fue realizado por
+                    el veh&iacute;culo en el mismo lugar. Tenga esto en cuenta al configurar la restricci&oacute;n del
+                    tama&ntilde;o m&iacute;nimo/m&aacute;ximo.</li>
+                <li>Puede producirse una detecci&oacute;n falsa en las siguientes condiciones:</li>
+                <ul>
+                    <li>Cuando el color o el brillo del veh&iacute;culo son similares a los del fondo</li>
+                    <li>Cuando un n&uacute;mero de movimientos contin&uacute;an siendo detectados aleatoriamente debido
+                        al giro de la c&aacute;mara u otras causas</li>
+                    <li>Cuando un objeto fijo hace constantemente un movimiento en el lugar</li>
+                    <li>Cuando objetos aleatorios bloquean diversos objetos</li>
+                    <li>Cuando varios objetos se combinan en uno o cuando un objeto se divide en varios objetos</li>
+                    <li>Cuando se ajusta el men&uacute; OSD de la c&aacute;mara</li>
+                    <li>Cuando un objeto se mueve demasiado r&aacute;pido</li>
+                    <li>Cuando se produce reflejo/desenfoque/sombra debido a una fuerte fuente de luz tales como la luz
+                        solar directa, la iluminaci&oacute;n o las luces delanteras</li>
+                    <li>Cuando llueve o nieva mucho, el viento sopla con fuerza, o cuando amanece u oscurece.</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Conf. de acciones de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>Para guardar una imagen en un servidor FTP cuando se crea un evento de detecci&oacute;n de aparcamiento, seleccione <strong
+                    class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para FTP desde <strong
+                    class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp"
+                    ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>Para enviar una imagen por e-mail cuando se produce un evento de detecci&oacute;n de aparcamiento, seleccione <strong
+                    class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong
+                    class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email"
+                    ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
+            <h3>Grabar</h3>
+            <p ng-if="NAS" class="sptRecordingSDNas">Para guardar una imagen en una tarjeta SD o NAS cuando se crea un
+                evento de detecci&oacute;n de aparcamiento, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para
+                almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link"
+                    href="../event/storage.html" ng-href="#/help/event_storage"><strong
+                        class="UI">[Almacenamiento]</strong></a>.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">Para guardar una imagen en una tarjeta SD cuando se crea un evento
+                IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para
+                almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link"
+                    href="../event/storage.html" ng-href="#/help/event_storage"><strong
+                        class="UI">[Almacenamiento]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
+            <h3>Salida de alarma</h3>
+            <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se
+                crea un evento de detecci&oacute;n de aparcamiento.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione
+                <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea
+                emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante
+                la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15
+                segundos. </p>
+            <p>Dependiendo de la configuraci&oacute;n de la salida de alarma, las opciones de <strong class="UI">[Salida
+                    de alarma]</strong> pueden variar. Si no hay una salida de alarma, las opciones de <strong
+                    class="UI">[Salida de alarma]</strong> no se visualizar&aacute;n. Si hay m&aacute;s de una salida de
+                alarma, se visualizar&aacute;n como <strong class="UI">«Salida de alarma 1»</strong>, <strong
+                    class="UI">«Salida de alarma 2»</strong>, y as&iacute; sucesivamente. Seleccione <strong
+                    class="UI">[Evento]</strong> &gt; <strong class="UI">[Alarma E/S]</strong> para ajustar la E/S de la
+                alarma.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content sptExtPtzPreset1"
+            ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+            <h3>Ir a preajuste.</h3>
+            <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero
+                predefinido cuando se cree un evento de detecci&oacute;n de aparcamiento. El valor predefinido de c&aacute;mara puede definirse en
+                <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a
+                    class="wn5-online-help-link" href="../ptz/dptzSetup.html"
+                    ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong
+                    class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html"
+                        ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
+
+            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">Si la opci&oacute;n <strong
+                    class="UI">[Usar PTZ externo]</strong> no est&aacute; seleccionada en <strong
+                    class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link"
+                        href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ
+                        externo]</a></strong>, no se mostrar&aacute; la opci&oacute;n [Ir a preajuste.].</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
+            <h3>Clip de audio</h3>
+            <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento de detecci&oacute;n de aparcamiento.
+                Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse
+                cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong
+                    class="UI">[Apagado]</strong>. Pulsar el bot&oacute;n Reproducir (<span
+                    class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de
+                audio.</p>
+            <p>Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI"><a
+                        class="wn5-online-help-link" href="../video&audio/audio.html"
+                        ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong>&gt;<strong
+                    class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>
+        </div>
+
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Tiempo de activaci&oacute;n de evento</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Esto establece el tiempo de funcionamiento de las configuraciones de acci&oacute;n de eventos IVA.
+                Establezca la configuraci&oacute;n de acciones de eventos desde <strong class="UI">[<a
+                        class="wn5-online-help-link" href="#action"
+                        ng-href="#/help/analytics_parkingDetection?#action">Conf. de acciones de evento</a>]</strong>
+                para funcionar siempre o s&oacute;lo a la hora programada.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Siempre</h3>
+            <p>Los valores de acciones evento siempre se ejecutan cuando se crea un evento de detecci&oacute;n de aparcamiento.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>S&oacute;lo tiempo programado</h3>
+            <p>Los ajustes de acciones de eventos se ejecutan solo cuando se crea un evento de detecci&oacute;n de aparcamiento durante el tiempo
+                establecido. La fecha de domingo a s&aacute;bado, a partir de la hora actual de la c&aacute;mara, se
+                muestra en la tabla de tiempos que aparece cuando <strong class="UI">[Sólo tiempo programado]</strong>
+                se selecciona. Puede establecer el tiempo de configuraci&oacute;n de las acciones de eventos haciendo
+                clic o arrastrando en la tabla de tiempos con el rat&oacute;n. El tiempo de activaci&oacute;n del evento
+                configurado se ejecuta varias veces durante el d&iacute;a de la semana y la hora correspondiente.</p>
+            <p>Puede cambiar la unidad de vista de tiempo haciendo clic en el bot&oacute;n de <strong class="UI">[1
+                    min]</strong>, <strong class="UI">[30 min]</strong> o <strong class="UI">[1 h]</strong>. Al hacer
+                clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong>, se eliminar&aacute;n todos los
+                tiempos de activaci&oacute;n de eventos configurados. Para confirmar o cambiar la hora de la
+                c&aacute;mara, consulte <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Fecha y
+                    hora]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

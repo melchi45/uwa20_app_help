@@ -4,8 +4,8 @@
 <div class="wn5-setup-section">
 	<p>Smart codecは、ユーザーが好む部分をROI領域に設定してROI領域の画質はユーザが設定したどおりに維持するが、その他のエリアは標準画質で管理して映像データサイズを減らす技術です。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>チャンネル選択</h2>
     </div>
@@ -13,12 +13,12 @@
         <div class="wn5-setup-section-article-content">
 			<p>カメラチャンネルを選択した後、チャンネル別にスマートコーデック関連の詳細を設定することができます。ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
 			
-			<p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[スマートコーデック]は、チャンネル1でのみ設定できます。</p>
+			<p ng-if="objectDetectionSupport" class="sptObjectDetection">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[スマートコーデック]は、チャンネル1でのみ設定できます。</p>
 
-            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
-            <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
-			<p ng-if="SupportAutoImageAlignment">「スマートコーデック」はチャンネル1～5でしか設定できません。</p>
-			<p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。[スマートコーデック]は、チャンネル1でのみ設定できます。</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
+			<p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">「スマートコーデック」はチャンネル1～5でしか設定できません。</p>
+			<p ng-if="HybridThermal" class="sptHybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。[スマートコーデック]は、チャンネル1でのみ設定できます。</p>
             <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p>
         </div>
 	</div>
@@ -33,7 +33,7 @@
 		<div class="wn5-setup-section-article-content">
 			<p>ユーザーが直接カメラの映像画面でROI領域を設定することができます。画面にマウスをクリックしてドラッグすると、四角の形でROI領域が生成されます。ROI領域は最大5つまでで、エリアが重なると設定できません。<strong class="UI">[初期化]</strong>ボタンをクリックすると、設定したROI領域がすべて削除されます。</p>
 		</div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>PTZ調整</h4>
             <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
             <ul>

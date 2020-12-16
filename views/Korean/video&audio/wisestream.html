@@ -3,8 +3,8 @@
 <div class="wn5-setup-section">
     <p>와이즈스트림은 영상의 복잡도를 분석하여 화질은 유지하면서 데이터의 크기는 효과적으로 줄일 수 있는 기능입니다. 카메라가 촬영 중인 영상에 움직임이 많이 발생하지 않으면 압축율을 높여서 영상의 크기를 줄이고 대역폭을 절약합니다. 움직임이 다시 발생하면 원래의 상태로 복귀시켜 영상 정보가 손실되지 않도록 합니다. 움직임이 많은 환경에서는 사용하기 부적합하며 화면이 깨질 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2>채널 선택</h2>
     </div>
@@ -12,7 +12,7 @@
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선택한 후 채널별로 와이즈스트림 관련 세부 항목을 설정할 수 있습니다. 라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
             <p ng-if="objectDetectionSupport && GlobalPTZMode  && MaxChannel > 1">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [와이즈스트림]은 채널 1에서만 설정할 수 있습니다. </p>
-            <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">채널별 뷰 모드는 다음과 같습니다.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -25,7 +25,7 @@
                 <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                 <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
             </ul> -->
-            <p ng-if="HybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. </p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. </p>
 
             <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p>
         </div>
@@ -51,8 +51,8 @@
 		 <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
-                <li ng-if="DynamicGOVSupport">와이즈스트림 성능을 최적화하려면, <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[비디오 프로파일]</strong> 메뉴에서 <strong class="UI">[다이내믹 GOV]</strong>와 <strong class="UI">[다이내믹 FPS]</strong>을 <strong class="UI">[사용]</strong>으로 설정하십시오. <strong class="UI">[다이내믹 GOV]</strong>와 <strong class="UI">[다이내믹 FPS]</strong> 기능을 사용하면 영상 화질과 초당 프레임 수를 같이 확보할 수 있습니다.</li>
-                <li ng-if="!DynamicGOVSupport">와이즈스트림 성능을 최적화하려면, <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[비디오 프로파일]</strong> 메뉴에서 <strong class="UI">[다이내믹 FPS]</strong>을 <strong class="UI">[사용]</strong>으로 설정하십시오.</li>
+                <li ng-if="DynamicGOVSupport" class="sptDynamicGov">와이즈스트림 성능을 최적화하려면, <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[비디오 프로파일]</strong> 메뉴에서 <strong class="UI">[다이내믹 GOV]</strong>와 <strong class="UI">[다이내믹 FPS]</strong>을 <strong class="UI">[사용]</strong>으로 설정하십시오. <strong class="UI">[다이내믹 GOV]</strong>와 <strong class="UI">[다이내믹 FPS]</strong> 기능을 사용하면 영상 화질과 초당 프레임 수를 같이 확보할 수 있습니다.</li>
+                <li ng-if="!DynamicGOVSupport" class="nsptDynamicGov">와이즈스트림 성능을 최적화하려면, <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[비디오 프로파일]</strong> 메뉴에서 <strong class="UI">[다이내믹 FPS]</strong>을 <strong class="UI">[사용]</strong>으로 설정하십시오.</li>
                 <li>다음과 같은 경우 와이즈 스트림 기능이 제대로 작동하지 않을 수 있습니다.</li>
                 <ul>
                     <li>급격한 화면 전환 시 화면이 깨질 수 있습니다.</li>

@@ -1,0 +1,181 @@
+﻿<h1 class="wn5-setup-main-title">주차 감지</h1>
+<div class="wn5-setup-section">
+    <p>설정한 주차 영역의 만차 및 공차 여부를 감지하고 이벤트를 발생시킵니다. 설정된 영역 안에 감지된 차량의 수가 사용자가 설정한 최대 주차 수이면 만차로 감지합니다.</p>
+    <p>차량의 범위에는 자동차를 비롯하여 자전거와 오토바이를 포함합니다. </p>
+    <p>설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오. 주차 감지 이벤트에 대한 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[이벤트 설정]</strong></a> 페이지의 <strong class="UI">[주차 감지]</strong>에 동일하게 적용됩니다.</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>채널 선택</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>카메라 채널을 선택한 후 채널별로 주차 감지 세부 항목을 설정할 수 있습니다.  </p>
+            <p>채널 1은 카메라 전체 영상을 보여 주는 채널입니다. 채널 2~5는 전체 영상을 4분할하여 각 영상을 보여줍니다. 채널 2는 영상의 왼쪽 상단, 채널 3은 오른쪽 상단, 채널 4는 왼쪽 하단, 채널 5는 오른쪽 하단 영상을 각각 보여줍니다. [주차 감지] 메뉴는 채널 2~5에서만 설정할 수 있습니다.</p>
+        </div>
+    </div>
+</div>	
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>주차 감지</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>주차 감지 사용</h3>
+            <p>주차 감지 이벤트를 사용하려면 <strong class="UI">[주차 감지 사용]</strong>을 선택합니다. </p>
+        </div>		        
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+            <h2>영역</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>주차 감지 영역에 대한 세부 설정을 지정할 수 있습니다. </p>
+        </div>
+ 
+        <div class="wn5-setup-section-article-content">
+            <h3>주차 영역</h3>
+            <p>주차를 감지할 관심 영역과 주차를 감지하지 않을 제외 영역을 설정할 수 있습니다. </p>
+            <p>또한 만차로 감지할 주차 차량 수를 <strong class="UI">[최대 주차 가능 수]</strong>에서 설정할 수 있습니다. 즉  감지 영역 안에 [최대 주차 가능 수]에서 설정한 수의 차량이 주차한 경우 만차로 감지합니다.</p>
+        </div>
+		 <div class="wn5-online-help-action">
+            <h4>관심 영역 및 제외 영역 설정하기</h4>
+            <p>관심 영역이 설정된 후 제외 영역 1번과 2번이 순서대로 설정됩니다. 관심 영역이나 제외 영역이 설정되면 숫자 버튼 색상이 변경됩니다.</p>
+            <ul>
+                <li>카메라 영상 화면에서 마우스로 꼭지점 4개를 선택하거나 마우스로 드래그하여 사각형을 그리면 영역이 설정됩니다.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>관심 영역 및 제외 영역 변경하기</h4>
+            <ul>
+                <li>설정한 영역의 꼭지점을 움직여 영역의 크기를 변경할 수 있습니다.</li>
+                <li>영역의 선 위에 마우스를 올려놓으면 + 기호가 나타나며 + 기호를 클릭하여 꼭지점을 추가합니다. 최대 4개의 점을 추가하여 원하는 다각형을 만들 수 있습니다.</li>
+                <li>영역의 위치를 변경하려면 영역을 선택한 후 원하는 위치로 드래그합니다. </li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>관심 영역 및 제외 영역 삭제하기</h4>
+            <ul>
+                <li>관심 영역이나 제외 영역을 삭제하려면 원하는 영역에서 마우스 오른쪽 버튼을 클릭합니다. 삭제 확인 창에서 <strong class="UI">[확인]</strong> 버튼을 클릭합니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+            <h2>공통 설정</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>주차 감지 민감도와 감지할 차량의 최소 및 최대 크기를 설정합니다. 사용 환경에 따라 감지 정확도를 높이고 오감지를 최소화 하기 위해 적용할 수 있는 설정입니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>민감도 </h3>
+            <p>주차 감지 민감도를 설정합니다. 만차 오감지가 자주 발생하는 환경에서는 민감도를 낮게 설정하고, 공차 오감지가 자주 발생하는 환경에서는 민감도를 높게 설정합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>크기</h3>
+            <p>감지할 차량의 최소 크기와 최대 크기를 설정합니다. </p>
+        </div>
+        
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+            <ul>
+                <li>사용자가 지정한 최소 크기보다 작은 차량이나 최대 크기보다 큰 차량은 감지하지 않습니다. 크고 작은 노이즈에 의한 오감지를 피하기 위하여 설치 환경에 적합한 최소/최대 감지 크기를 설정하십시오. 단, 동일한 위치에서의 동일한 움직임이라도 감지되는 크기는 다소 차이가 있을 수 있기 때문에 편차를 고려하여 여유를 포함하여 최소/최대 크기 제한을 설정하십시오.</li>
+                <li>다음과 같은 경우, 주차 감지 시 오감지가 발생할 수 있습니다. </li>
+                <ul>
+                    <li>물체가 화면의 배경과 유사한 밝기 혹은 색상인 경우</li>
+                    <li>장면 전환 등의 요인으로 다수의 움직임이 랜덤하게 지속 발생할 경우</li>
+                    <li>고정되어 있는 물체가 동일 위치에서 지속적으로 움직임이 발생 경우</li>
+                    <li>임의의 물체들이 서로 다른 물체를 가리는 경우</li>
+                    <li>2개 이상의 물체가 합쳐지거나, 1개의 물체가 다수 개로 나누어지는 경우</li>
+                    <li>카메라의 OSD 메뉴를 조작하는 경우</li>
+                    <li>물체의 움직임이 너무 빠른 경우  </li>
+                    <li>직사광선, 조명, 자동차 전조등 등의 강한 빛에 의한 반사/번짐/그림자가 발생하는 경우</li>
+                    <li>눈, 비, 바람 등이 심하거나, 일몰/일출 등의 경우</li>
+                    <li>움직이는 물체가 카메라에 근접하는 경우</li>
+                    <li>실내 주차장이 아닌 경우</li>
+                    <li>권장 설치 높이가 아닌 경우</li>
+                    <li>렌즈에 먼지, 서리 등으로 입력 영상이 훼손될 경우</li>
+                    <li>설정 영역 안에 차량이 측면으로 주차되어 있을 경우</li>
+                    <li>설정 영역 안에 차량이 걸쳐 있을 경우</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div> 
+
+
+
+           
+		
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>이벤트 동작</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>주차 감지 이벤트가 발생했을 때 영상 이미지를 FTP 서버에 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. FTP에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>이메일</h3>
+            <p>주차 감지 이벤트가 발생했을 때 영상 이미지를 이메일로 전송하려면 <strong class="UI">[사용]</strong>을 선택합니다. 이메일에 대한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/이메일]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
+            <h3>저장</h3>
+            <p ng-if="NAS" class="sptRecordingSDNas">주차 감지 이벤트가 발생했을 때 (micro)SD 카드 또는 NAS에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">주차 감지 이벤트가 발생했을 때 (micro)SD 카드에 영상을 저장하려면 <strong class="UI">[사용]</strong>을 선택합니다. 저장에 관한 상세 설정은 <strong class="UI">[이벤트]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[저장]</strong></a>에서 할 수 있습니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
+            <h3>알람 출력</h3>
+            <p>주차 감지 이벤트가 발생했을 때 특정 알람 번호로 알람이 출력되도록 설정할 수 있습니다. 알람 출력 번호를 선택한 후, 알람을 출력하지 않으려면 <strong class="UI">[사용 안 함]</strong>을 선택하고 알람을 출력하려면 출력 시간을 선택합니다. <strong class="UI">[항상 동작]</strong>을 선택하여 사용자가 알람을 멈추기 전까지 계속 출력되도록 하거나 5, 10, 15초까지 출력하도록 설정할 수 있습니다. </p>
+            <p>알람 출력 설정에 따라 <strong class="UI">[알람 출력]</strong> 옵션이 다르게 표시됩니다. 알람 출력이 없는 경우 [알람 출력] 옵션이 보이지 않으며, 알람 출력이 여러 개인 경우  <strong class="UI">[알람 출력 1]</strong>, <strong class="UI">[알람 출력 2]</strong>와 같이 표시됩니다. 알람 입출력은 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 입출력]</strong>에서 설정할 수 있습니다. </p>
+           </div>
+		   
+         <div class="wn5-setup-section-article-content sptExtPtzPreset1" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+            <h3>프리셋 이동</h3>
+            <p>주차 감지 이벤트가 발생했을 때 카메라 뷰 위치를 미리 설정해 둔 프리셋 번호로 이동하도록 설정할 수 있습니다. 카메라 위치 프리셋은 <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[디지털 PTZ]</strong></a>나 <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>의 <strong class="UI">[프리셋]</strong>에서 설정할 수 있습니다. </p>
+            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[외부 PTZ]</a></strong>에서 <strong class="UI">[외부 PTZ 사용]</strong> 옵션을 선택한 경우, [프리셋 이동] 옵션이 보이지 않습니다. </p>
+        </div>
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
+            <h3>오디오 클립</h3>
+            <p>주차 감지 이벤트가 발생했을 때 특정 오디오 클립이 재생되도록 설정할 수 있습니다. 오디오 클립 목록에서 원하는 파일을 선택하면 이벤트가 발생할 때 해당 클립이 재생됩니다. 이벤트가 발생해도 오디오 클립이 재생되지 않도록 하려면 <strong class="UI">[사용 안 함]</strong>을 선택합니다. 재생 버튼(<span class="tui tui-wn5-toolbar-play"></span>)을 클릭하면 해당 오디오 파일을 재생하여 미리듣기할 수 있습니다.</p>
+            <p>오디오 클립은 <strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[오디오 설정]</a></strong>&gt;<strong class="UI">[오디오 클립]</strong>에서 등록할 수 있습니다.</p>
+        </div>			   
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>이벤트 동작 스케줄</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>주차 감지 이벤트 동작의 작동 시간을 설정합니다. <strong class="UI">[<a class="wn5-online-help-link" href="#action" ng-href="#/help/analytics_parkingDetection?#action">이벤트 동작</a>]</strong>에서 설정한 이벤트 동작이 항상 동작하도록 하거나 설정한 시간에만 동작하도록 설정합니다.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>항상 동작</h3>
+            <p>주차 감지 이벤트가 발생했을 때 설정한 이벤트 동작을 항상 실행합니다.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>설정한 시간에만 동작</h3>
+            <p>설정한 시간에 주차 감지 이벤트가 발생했을 때 설정한 이벤트 동작을 실행합니다. <strong class="UI">[설정한 시간에만 동작]</strong>을 선택하여 나타나는 시간표에는 현재 카메라 시간을 기준으로 한 일요일부터 토요일까지의 날짜가 표시됩니다. 시간표에서 마우스를 클릭하거나 드래그하여 이벤트 동작 시간을 설정할 수 있습니다. 설정된 이벤트 동작 스케줄은 해당 요일과 시간에 반복적으로 실행됩니다.</p>
+			<p><strong class="UI">[1분]</strong>, <strong class="UI">[30분]</strong>, <strong class="UI">[1시]</strong> 버튼을 클릭하여 시간 보기 단위를 변경할 수 있습니다. <strong class="UI">[초기화]</strong> 버튼을 클릭하면 설정된 이벤트 동작 스케줄이 모두 삭제됩니다. 카메라 시간을 확인하거나 변경하려면 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[날짜 및 시간]</strong>을 참고하십시오.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">

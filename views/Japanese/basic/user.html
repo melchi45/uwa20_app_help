@@ -8,18 +8,18 @@
 
 <div class="wn5-setup-section">
 		<div class="wn5-setup-section-heading">
-			<h2 ng-if="AdminIDChange == undefined || AdminIDChange">管理者の情報変更</h2>
-			<h2 ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'">Admin Password変更</h2>
+			<h2 ng-if="AdminIDChange == undefined || AdminIDChange" class="sptAdminIDChange">管理者の情報変更</h2>
+			<h2 ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'" class="nsptAdminIDChange">Admin Password変更</h2>
 		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="AdminIDChange == undefined || AdminIDChange">マネージャアカウントのIDとパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
-			<p ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'">マネージャのパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
+			<p ng-if="AdminIDChange == undefined || AdminIDChange" class="sptAdminIDChange">マネージャアカウントのIDとパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
+			<p ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'" class="nsptAdminIDChange">マネージャのパスワードを変更することができます。保安を強化するためにローマ字の大文字&amp;小文字、数字、特殊文字などを様々に組み合わせてパスワードを生成してください。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="AdminIDChange == undefined || AdminIDChange">
+		<div class="wn5-setup-section-article-content sptAdminIDChange" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h3>ID</h3>
 	        <p>現在、使用中のマネージャIDを確認したり変更することができます。</p>
 	    </div>
-		<div class="wn5-online-help-info" ng-if="AdminIDChange == undefined || AdminIDChange">
+		<div class="wn5-online-help-info sptAdminIDChange" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>マネージャIDは、英数字のみ入力することができます。また、最大8文字まで入力できます。</li>
@@ -56,9 +56,13 @@
 	        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>保安強化のために特殊文字、数字、ローマ字の大文字、小文字を組み合わせてパスワードを設定することをお勧めします。</li>
-                <li>パスワードは3カ月周期で変更することをお勧めします。</li>
-                <li>パスワード長さ&amp;上限は下記のどおりです。</li>
-                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
+				<li>パスワードは3カ月周期で変更することをお勧めします。</li>
+				<li>パスワードの制限は次のとおりです。</li>
+				<!-- <li>パスワード長さ&amp;上限は下記のどおりです。</li> -->		
+				<ul>
+					<!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 -->
+					
+					<!-- <li ng-if="PasswordRule1">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
 					<li ng-if="PasswordRule1">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">8桁以上9桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で3種類以上を組み合わせて使用します。</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">10桁以上15桁以下のパスワードの場合、ローマ字の大文字、小文字、数字、特殊文字の中で2種類以上を組み合わせて使用します。</li>
@@ -68,7 +72,7 @@
                     <li>同じ文字を4回以上、繰り返して使用できません。(例：!!!!、1111、aaaa)</li>
 					<li ng-if="PasswordRule1">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">特殊文字は~`!@#$%^*()_-+=|{}[].?/のみ使用することができます。</li>
-					<li ng-if="PasswordRule2">特殊文字は~`!@#$%^&amp;*()_-+=|{}[].?/のみ使用することができます。</li>
+					<li ng-if="PasswordRule2">特殊文字は~`!@#$%^&amp;*()_-+=|{}[].?/のみ使用することができます。</li> -->
                     <li>出荷条件初期化後、マネージャ&amp;ユーザーのパスワードはすべて初期化されるため、パスワードを再設定する必要があります。</li>
                     <li>カメラ・ウェブビューアーに初アクセスしたり初期化後にアクセスする場合、パスワード設定メニューに移動します。</li>
                     <li>パスワード変更メニューで新しいパスワードを設定し、変更されたパスワードでウェブビューアーに再ログインしてからウェブビューアーメニューを使用することができます。</li>
@@ -82,8 +86,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
-<div class="wn5-setup-section" ng-if="AdminFilterSupport">
+<hr class="wn5-setup-hr sptAdminFilter" ng-if="AdminFilterSupport">
+<div class="wn5-setup-section sptAdminFilter" ng-if="AdminFilterSupport">
 		<div class="wn5-setup-section-heading">
 				<h2>マネージャログイン許可IP</h2>
 		</div>
@@ -113,8 +117,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="AdminTimeout">
-<div class="wn5-setup-section" ng-if="AdminTimeout">
+<hr class="wn5-setup-hr sptAdminTimeout" ng-if="AdminTimeout">
+<div class="wn5-setup-section sptAdminTimeout" ng-if="AdminTimeout">
 	<div class="wn5-setup-section-heading">
 			<h2>マネージャログイン自動解除</h2>
 	</div>
@@ -126,8 +130,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>ゲスト設定</h2>
 	</div>
@@ -138,8 +142,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
     <div class="wn5-setup-section-heading">
 		<h2>RTSP設定</h2>
 	</div>
@@ -150,8 +154,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>認証設定</h2>
 	</div>
@@ -162,8 +166,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
-<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+<hr class="wn5-setup-hr sptOnvifDigest" ng-if="OnvifTTADigestOptions">
+<div class="wn5-setup-section sptOnvifDigest" ng-if="OnvifTTADigestOptions">
 	<div class="wn5-setup-section-heading">
 		<h2>ダイジェスト認証</h2>
 	</div>
@@ -175,8 +179,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
-<div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
+<hr class="wn5-setup-hr sptDeviceManager" ng-if="IPInstallerSettingEnable">
+<div class="wn5-setup-section sptDeviceManager" ng-if="IPInstallerSettingEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>デバイスマネージャ</h2>
 	</div>
@@ -189,8 +193,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
     <div class="wn5-setup-section-heading">
 		<h2>TTA設定</h2>
 	</div>
@@ -201,8 +205,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
 	<div class="wn5-setup-section-heading">
 		<h2>パスワード検索</h2>
 	</div>
@@ -213,8 +217,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
 	<div class="wn5-setup-section-heading">
 		<h2>パスワード変更周期</h2>
 	</div>
@@ -225,16 +229,18 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>現在のユーザー</h2>
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、プロファイルなどの使用権限を設定することができます。</p>
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">マネージャの他にユーザーアカウントのアクセス情報を設定して、プロファイルなどの使用権限を設定することができます。</p>				
-			<p>登録したユーザーがログインした時、ユーザーごとに設定された機能のみ有効になります。初期値に10つの現在のユーザーアカウントが設定されており、アカウントを追加したり削除することができます。現在のユーザーアカウントは最大10つまで使用することができます。</p>
+
+			<!-- <p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、プロファイルなどの使用権限を設定することができます。</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">マネージャの他にユーザーアカウントのアクセス情報を設定して、プロファイルなどの使用権限を設定することができます。</p>		-->	
+			<p>マネージャの他にユーザーアカウントのアクセス情報を設定して音声入力、音声出力、アラーム出力、プロファイルなどの使用権限を設定することができます。</p>	
+			<p>登録したユーザーがログインした時、ユーザーごとに設定された機能のみ有効になります。初期値に10つの現在のユーザーアカウントが設定されており、アカウントを追加したり削除することができます。現在のユーザーアカウントは最大10つまで使用することができます。</p> 
 		</div>
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
@@ -254,23 +260,23 @@
 			<h3>Password</h3>
 			<p>パスワードを入力します。パスワード設定規則は、マネージャパスワードの設定規則と同一です。</p>
 		</div>
-				<div class="wn5-setup-section-article-content" ng-if="AdminAccess">
+				<div class="wn5-setup-section-article-content sptAdminAccess" ng-if="AdminAccess">
 			<h3>管理者権限</h3>
             <p>選択したユーザーに管理者権限を与えます。一般ユーザーは、管理者が許可した機能のみ有効になるが、管理者はすべての機能を使用して設定する権限があります。但し、ユーザーが管理者権限を与えられても管理者IDとパスワードを変更することはできません。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
+		<div class="wn5-setup-section-article-content sptAudioInput" ng-if="MaxAudioInput>0">
 			<h3>音声入力</h3>
 			<p>入力されたオーディオにアクセスできる権限を設定します。音声入力を選択すると、該当アカウントにアクセスしたユーザーは映像で画面と音声を同時に聞くことができ、音声入力を選択しないと映像の画面のみ確認できます。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput>0">
+		<div class="wn5-setup-section-article-content sptAudioOutput" ng-if="MaxAudioOutput>0">
 			<h3>音声出力</h3>
 			<p>音声出力の権限を設定します。音声出力を選択すると、該当アカウントにアクセスしたユーザーはマイクなどで音声を出すことができます。</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+		<div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
 			<h3>アラーム出力</h3>
 			<p>アラーム出力の権限を設定します。アラームが設定された場合、該当アカウントでアクセスしたユーザーはアラームを出すことができます。</p>
 		</div>
-				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
+		<div class="wn5-setup-section-article-content suppportPTZAccess" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
             <p><strong class="UI">[ライブ]</strong>モードでPTZを制御できる権限を設定します。</p>
 		</div>

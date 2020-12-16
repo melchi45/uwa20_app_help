@@ -2,16 +2,16 @@
 <div class="wn5-setup-section">
     <p>A defocus detection event can be created when defocus of the camera lens is detected. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. The setting on the defocus detection event applies to <strong class="UI">[Defocus detection]</strong> on <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> page equally.</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>Select channel</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>After selecting your camera channel, you can set the details of Defocus detection for each channel. </p>
-            <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Defocus detection] can only be configured on channel 1.</p>
-            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Defocus detection] can only be configured on channel 1.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">The fixed camera channel is displayed as a number.</p>
             <p ng-if="MultiImager">Channel 1 is a live feed channel whereas Channels 2 and 3 are channels that show a digital PTZ video. [Defocus detection] can only be configured on channel 1.</p>
             <!-- <p ng-if="SupportChannelExpansionFeature">The view mode for each channel is described below.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -64,7 +64,7 @@
                 <li>In order to receive an alarm indicating defocus detection after it has occurred previously, the status must return to the stable status at least once. Instances of returning to the stable status are as follows.
 					<ul>
 					<li>When <strong class="UI">[Enable defocus detection]</strong> is deselected</li>
-					<li ng-if="DefocusDetectSimpleFocus">When simple focus operates so that an image can be distinguishable</li>
+					<li ng-if="DefocusDetectSimpleFocus" class="sptDefocusDetectSimpleFocus">When simple focus operates so that an image can be distinguishable</li>
 					<li>When an object in the image moves to a defocus position so that it can be distinguishable</li></ul>
 					<li>In any of the following cases, the defocus detection performance may deteriorate, or a malfunction may occur.
 					<ul>
@@ -92,25 +92,25 @@
             <h3>E-mail</h3>
             <p>To send an image by e-mail when a defocus detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Recording">
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
             <h3>Record</h3>
-            <p ng-if="NAS">To save an image on an SD card or NAS when a defocus detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
-            <p ng-if="!NAS">To save an image on an SD card when a defocus detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="NAS" class="sptRecordingSDNas">To save an image on an SD card or NAS when a defocus detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">To save an image on an SD card when a defocus detection event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
             <h3>Alarm output</h3>
             <p>It is possible to set the alarm output number for a specific alarm when a defocus detection event is created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. </p>
             <p>Depending on the alarm output setup, <strong class="UI">[Alarm output]</strong> options may look different. If there is no alarm output, <strong class="UI">[Alarm output]</strong> options are not displayed. If there is more than one alarm output, they are displayed as <strong class="UI">[Alarm output 1]</strong>, <strong class="UI">[Alarm output 2]</strong>, and so on. Select <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong> to set the alarm I/O.</p>
         </div>
 		
-       <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+       <div class="wn5-setup-section-article-content sptExtPtzPreset1" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>Goto preset</h3>
                     <p>You can set the position of camera view to move to a preset number when a defocus detection event is created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>.</p>
 
-                    <p ng-if="GlobalPTZMode && MaxChannel > 1">If <strong class="UI">[Enable external PTZ]</strong> option is deselected in <strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>, [Goto preset] option is not displayed.</p>
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">If <strong class="UI">[Enable external PTZ]</strong> option is deselected in <strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>, [Goto preset] option is not displayed.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+        <div class="wn5-setup-section-article-content sptZoomOnly" ng-if="PresetSetupPage">
             <h3>Goto preset</h3>
                 <p>You can set the position of camera view to move to a preset position when a defocus detection event is created. The camera preset can be set in <strong class="UI">[Preset setup]</strong> section of &nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Preset setup]</strong></a>.</p>
         </div>
@@ -118,17 +118,17 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Goto preset</h3>
                 <p>You can set the position of camera to move to a preset position when a defocus detection event is created. The camera preset can be set in <strong class="UI">[Preset]</strong> tab of&nbsp;<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ setup]</strong></a>.</p>
-                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Goto preset] displays only when you select <strong class="UI">[PTZ]</strong> in the <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_defocusDetection#channel">[Select channel]</a> menu. </p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">[Goto preset] displays only when you select <strong class="UI">[PTZ]</strong> in the <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_defocusDetection#channel">[Select channel]</a> menu. </p>
 
         </div>
         
-        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
             <h3>Audio clip</h3>
             <p>This enables playback of a specific audio clip when a defocus detection event occurs. Once you select a file from your audio clip list, the clip will start to play when the event occurs. To disable the audio clip from playing when an event occurs, select <strong class="UI">[Off]</strong>. Clicking the Play button (<span class="tui tui-wn5-toolbar-play"></span>) allows you to play and preview an audio file.</p>
             <p>Go to <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Audio setup]</a></strong>&gt;<strong class="UI">[Audio clip]</strong> to register an audio clip.</p>
         </div>	
 
-		<div class="wn5-setup-section-article-content" ng-if="DefocusDetectSimpleFocus">
+		<div class="wn5-setup-section-article-content sptDefocusDetectSimpleFocus" ng-if="DefocusDetectSimpleFocus">
             <h3>Simple Focus</h3>
             <p>Simple focus is executed to adjust the focus automatically when a defocus detection event is created. Simple focus is executed only once when an event is created.</p>
         </div>

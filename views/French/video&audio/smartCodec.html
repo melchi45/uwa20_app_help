@@ -5,19 +5,19 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails de Smart codec pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
-			<p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Codec Smart] que sur le canal 1.</p>
-            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
-            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
-			<p ng-if="SupportAutoImageAlignment">« Smart codec » peut seulement &ecirc;tre d&eacute;fini sur CAN1 &agrave; CAN5.</p>
-			<p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique. Vous ne pouvez configurer [Codec Smart] que sur le canal 1.</p>
+			<p ng-if="objectDetectionSupport" class="sptObjectDetection">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Codec Smart] que sur le canal 1.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+			<p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">« Smart codec » peut seulement &ecirc;tre d&eacute;fini sur CAN1 &agrave; CAN5.</p>
+			<p ng-if="HybridThermal" class="sptHybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique. Vous ne pouvez configurer [Codec Smart] que sur le canal 1.</p>
             <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
         </div>
 	</div>
@@ -32,7 +32,7 @@
 		<div class="wn5-setup-section-article-content">
 			<p>L&apos;utilisateur peut d&eacute;finir la zone sur l&apos;&eacute;cran de la cam&eacute;ra. Lorsque vous cliquez et faites glisser sur l&apos;&eacute;cran avec la souris, une zone en forme de carr&eacute; sera cr&eacute;&eacute;e. 5 zones peuvent &ecirc;tre d&eacute;finies, mais le chevauchement n&apos;est pas autoris&eacute;. Lorsque vous cliquez sur le bouton <strong class="UI">[Supprimer]</strong>, toutes les zones d&eacute;finies seront supprim&eacute;es.</p>
 		</div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>R&eacute;glage du PTZ</h4>
             <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
             <ul>
@@ -47,7 +47,7 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 			<ul>
 				<li>Un Codec Smart peut &ecirc;tre d&eacute;fini pour chaque profil vid&eacute;o. Si vous d&eacute;finissez <strong class="UI">[CBR]</strong> pour le <a class="wn5-online-help-link" href="../basic/profile.html#bitrate" ng-href="#/help/basic_videoProfile?#bitrate"><strong class="UI">[Contr&ocirc;le du d&eacute;bit binaire]</strong></a> dans <strong class="UI">[Basique]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong> et que vous r&eacute;glez [D&eacute;sactiver] dans <a class="wn5-online-help-link" href="../basic/profile.html#smartcodec" ng-href="#/help/basic_videoProfile?#smartcodec"><strong class="UI">[Smart codec]</strong></a>, la fonction smart codec ne fonctionnera pas dans le profil.</li>
-				<li ng-if="SupportChannelExpansionFeature">La fonction Codec Smart de la cam&eacute;ra Fisheye ne fonctionne que pour le mode d&rsquo;affichage Fisheye. Seul le canal&nbsp;1 prend en charge l&rsquo;affichage fisheye, ce qui signifie que Codec Smart ne fonctionne pas pour les canaux de 2 &agrave; 8. De plus, Codec Smart n&rsquo;est appliqu&eacute; qu&rsquo;au profil d&eacute;fini pour l&rsquo;affichage Fisheye sur le canal&nbsp;1. Par exemple, si, parmi les profils du canal&nbsp;1, le «&nbsp;profil&nbsp;1&nbsp;» est r&eacute;gl&eacute; sur [Affichage Fisheye] et le «&nbsp;profil&nbsp;2&nbsp;» sur [Double panorama], qui est l&rsquo;une des options de correction de perspective, alors Codec Smart ne sera appliqu&eacute; que lors du transfert de la vid&eacute;o vers le «&nbsp;profil&nbsp;1&nbsp;». Vous pouvez aller &agrave; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong> &gt; <strong class="UI">[Type d&rsquo;affichage Fisheye]</strong> pour d&eacute;finir le mode d&rsquo;affichage Fisheye.</li>
+				<li ng-if="SupportChannelExpansionFeature" class="sptChannelExpansionFeature">La fonction Codec Smart de la cam&eacute;ra Fisheye ne fonctionne que pour le mode d&rsquo;affichage Fisheye. Seul le canal&nbsp;1 prend en charge l&rsquo;affichage fisheye, ce qui signifie que Codec Smart ne fonctionne pas pour les canaux de 2 &agrave; 8. De plus, Codec Smart n&rsquo;est appliqu&eacute; qu&rsquo;au profil d&eacute;fini pour l&rsquo;affichage Fisheye sur le canal&nbsp;1. Par exemple, si, parmi les profils du canal&nbsp;1, le «&nbsp;profil&nbsp;1&nbsp;» est r&eacute;gl&eacute; sur [Affichage Fisheye] et le «&nbsp;profil&nbsp;2&nbsp;» sur [Double panorama], qui est l&rsquo;une des options de correction de perspective, alors Codec Smart ne sera appliqu&eacute; que lors du transfert de la vid&eacute;o vers le «&nbsp;profil&nbsp;1&nbsp;». Vous pouvez aller &agrave; <strong class="UI">[Basic]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong> &gt; <strong class="UI">[Type d&rsquo;affichage Fisheye]</strong> pour d&eacute;finir le mode d&rsquo;affichage Fisheye.</li>
 			</ul>
 		</div>
 	</div>

@@ -4,8 +4,8 @@
     <p>WiseStream es una funci&oacute;n que, mediante el an&aacute;lisis de la complejidad de una imagen, puede reducir efectivamente el tama&ntilde;o de bit de datos, manteniendo la calidad. Reduce el tama&ntilde;o de la imagen y ahorra ancho de banda mediante el aumento de la tasa de compresi&oacute;n, siempre que no se creen muchos movimientos en la imagen a ser capturada por la c&aacute;mara. Si aumenta el movimiento, la imagen vuelve a su estado anterior, evitando la p&eacute;rdida de informaci&oacute;n de la imagen. Esta funci&oacute;n no es adecuada en un entorno con mucho movimiento, ya que la pantalla podr&iacute;a funcionar de manera incorrecta. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2>Seleccionar canal</h2>
     </div>
@@ -13,7 +13,7 @@
         <div class="wn5-setup-section-article-content">
             <p>Después de seleccionar su canal de cámara, puede definir los detalles de WiseStream para cada canal.</p>
             <p ng-if="objectDetectionSupport && GlobalPTZMode  && MaxChannel > 1">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [WiseStream] solo puede configurarse en el canal 1.</p>
-            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -26,7 +26,7 @@
                 <li>Canal 7: Muestra el v&iacute;deo inferior izquierdo desde la vista de cuadrante del canal 4.</li>
                 <li>Canal 8: Muestra el v&iacute;deo superior derecho desde la vista de cuadrante del canal 4.</li>
             </ul> -->
-            <p ng-if="HybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
             <p>Si selecciona otro canal sin aplicar los cambios en la configuración, aparecerá un mensaje de alarma.</p>
         </div>
 	</div>
@@ -56,8 +56,8 @@
   <div class="wn5-online-help-info">
        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
        <ul>
-               <li ng-if="DynamicGOVSupport">Para optimizar el rendimiento del WiseStream, ajuste <strong class="UI">[GOV Dinámico]</strong> y <strong class="UI">[FPS Dinámico]</strong> en <strong class="UI">[Activar]</strong> en el menú <strong class="UI">[Básico]</strong> > <strong class="UI">[Perfil de vídeo]</strong>. Con las funciones <strong class="UI">[GOV Dinámico]</strong> y <strong class="UI">[FPS Dinámico]</strong>, puede obtener tanto la calidad de vídeo como el número de fotogramas por segundo.</li>
-               <li ng-if="!DynamicGOVSupport">Para optimizar el rendimiento del WiseStream, ajuste <strong class="UI">[FPS Dinámico]</strong> en <strong class="UI">[Activar]</strong> en el menú <strong class="UI">[Básico]</strong> > <strong class="UI">[Perfil de vídeo]</strong>. </li>
+               <li ng-if="DynamicGOVSupport" class="sptDynamicGov">Para optimizar el rendimiento del WiseStream, ajuste <strong class="UI">[GOV Dinámico]</strong> y <strong class="UI">[FPS Dinámico]</strong> en <strong class="UI">[Activar]</strong> en el menú <strong class="UI">[Básico]</strong> > <strong class="UI">[Perfil de vídeo]</strong>. Con las funciones <strong class="UI">[GOV Dinámico]</strong> y <strong class="UI">[FPS Dinámico]</strong>, puede obtener tanto la calidad de vídeo como el número de fotogramas por segundo.</li>
+               <li ng-if="!DynamicGOVSupport" class="nsptDynamicGov">Para optimizar el rendimiento del WiseStream, ajuste <strong class="UI">[FPS Dinámico]</strong> en <strong class="UI">[Activar]</strong> en el menú <strong class="UI">[Básico]</strong> > <strong class="UI">[Perfil de vídeo]</strong>. </li>
                <li>En cualquiera de los casos siguientes, la funci&oacute;n WiseStream podr&iacute;a no funcionar correctamente:</li>
                <ul>
                    <li>Si cambia repentinamente la pantalla, la visualizaci&oacute;n en pantalla puede que no funcione correctamente.</li>

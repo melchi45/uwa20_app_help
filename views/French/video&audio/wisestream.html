@@ -5,8 +5,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
     </div>
@@ -14,7 +14,7 @@
         <div class="wn5-setup-section-article-content">
             <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails WiseStream pour chaque canal. Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
             <p ng-if="objectDetectionSupport && GlobalPTZMode  && MaxChannel > 1">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [WiseStream] que sur le canal 1.</p>
-            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -27,7 +27,7 @@
                 <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
                 <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
             </ul> -->
-            <p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
             <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p>
         </div>
     </div>
@@ -56,8 +56,8 @@
 <div class="wn5-online-help-info">
      <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
      <ul>
-             <li ng-if="DynamicGOVSupport">Pour optimiser les performances de WiseStream, r&eacute;glez <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong> sur <strong class="UI">[Activer]</strong> dans le menu <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>. Avec les fonctions <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong>, vous pouvez obtenir &agrave; la fois la qualit&eacute; vid&eacute;o et le nombre d&apos;images par seconde.</li>
-             <li ng-if="!DynamicGOVSupport">Pour optimiser les performances de WiseStream, r&eacute;glez <strong class="UI">[FPS dynamique]</strong> sur <strong class="UI">[Activer]</strong> dans le menu <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>. </li>
+             <li ng-if="DynamicGOVSupport" class="sptDynamicGov">Pour optimiser les performances de WiseStream, r&eacute;glez <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong> sur <strong class="UI">[Activer]</strong> dans le menu <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>. Avec les fonctions <strong class="UI">[GOV dynamique]</strong> et <strong class="UI">[FPS dynamique]</strong>, vous pouvez obtenir &agrave; la fois la qualit&eacute; vid&eacute;o et le nombre d&apos;images par seconde.</li>
+             <li ng-if="!DynamicGOVSupport" class="nsptDynamicGov">Pour optimiser les performances de WiseStream, r&eacute;glez <strong class="UI">[FPS dynamique]</strong> sur <strong class="UI">[Activer]</strong> dans le menu <strong class="UI">[Base]</strong> &gt; <strong class="UI">[Profil vid&eacute;o]</strong>. </li>
              <li>Dans les cas suivants, la fonction WiseStream peut ne pas fonctionner correctement&nbsp;:</li>
              <ul>
                  <li>Si vous changez soudainement d&rsquo;&eacute;cran, il se peut que l&rsquo;affichage de l&rsquo;&eacute;cran ne fonctionne pas correctement.</li>

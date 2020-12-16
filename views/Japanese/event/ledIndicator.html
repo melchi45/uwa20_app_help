@@ -1,0 +1,67 @@
+﻿<h1 class="wn5-setup-main-title">LEDインジケーター</h1>
+<div class="wn5-setup-section">
+    <p>カメラに搭載されたLEDインジケーターの動作について設定します。</p>
+    <p>駐車誘導カメラの駐車検知機能やLEDインジケーター機能は連携して使用できます。駐車検知機能は<strong class="UI">[アナリティクス]</strong>&gt;<strong class="UI">[駐車検知]</strong>メニューで設定することができます。</p>
+    <p>設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>LED制御</h2>
+        <p>LEDタイプを選択して各タイプ別の動作について設定できます。</p>
+    </div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		    <h3>LEDタイプ</h3>
+            <p>駐車誘導カメラに搭載されたLEDインジケーターが左/右に分離されて満車や空車の状態を共に表示する場合、<strong class="UI">[取り外し型]</strong>を選択し、LEDインジケーターが満車や空車の中で状態一つだけを表示する場合、<strong class="UI">[一体型]</strong>を選択します。</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>LED 1/LED 2</h3>
+            <p><strong class="UI">[LEDタイプ]</strong>で<strong class="UI">[取り外し型]</strong>を選択した場合、<strong class="UI">[LED 1]</strong>と<strong class="UI">[LED 2]</strong>を設定できます。</p>
+            <p>[LED 1]と[LED 2]の上部フィールドにはイベントが発生する際に表示するテキストやカラーを設定します。下部フィールドにはイベントが発生しない場合に表示するテキストやカラーを設定します。例えば、[LED 1]の上部入力フィールドに「満車」を入力して赤色を設定し、[LED 2]の上部入力フィールドに「満車」を入力してオレンジ色を設定すると、駐車検知イベントが発生した場合、LED左/右ランプに同じく「満車」メッセージが表示され、片方は赤色が表示されて他の片方はオレンジ色が表示されます。</p>
+        </div>
+		
+		        <div class="wn5-setup-section-article-content">
+		    <h3>イベント発生/イベント未発生</h3>
+            <p><strong class="UI">[LEDタイプ]</strong>で<strong class="UI">[一体型]</strong>を選択した場合、<strong class="UI">[イベント発生]</strong>と<strong class="UI">[イベント未発生]</strong>オプションが表示されます。</p>
+            <p>イベントが発生した場合と発生しない場合に表示されるテキストやLEDカラーを[イベント発生]と[イベント未発生]オプションにそれぞれ設定します。例えば、[イベント発生]オプションで入力フィールドに「満車」を入力して赤色を選択した場合、駐車検知イベントが発生した場合「満車」メッセージが表示され、LEDランプが赤色に表示されます。</p>
+        </div>		
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>インジケーターデータ伝送</h2>
+	</div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p><strong class="UI">[LEDタイプ]</strong>で<strong class="UI">[一体型]</strong>を選択した場合、<strong class="UI">[インジケーターデータ伝送]</strong>オプションが表示されます。</p>
+            <p>LEDインジケーターを搭載した二台のカメラが相互データを送受信するように設定します。つまり、カメラ1が分析したデータがカメラ2に搭載されたLEDインジケーターを制御できます。</p>
+        </div>
+		
+        <div class="wn5-online-help-action">
+            <h4>レシーバカメラを使用する</h4>
+            <ol>
+                <li><strong class="UI">[レシーバカメラ]</strong>で<strong class="UI">[使用]</strong>をクリックします。</li>
+                <li>レシーバカメラの情報を入力します。</li>
+                <ul>
+                    <li><strong class="UI">IPタイプ</strong>：IPv4とIPv6の中でIPアドレスタイプを設定します。</li>
+                    <li><strong class="UI">HTTP/HTTPS</strong>：HTTPとHTTPSの中で使用する通信タイプを選択します。</li>
+                    <li><strong class="UI">IPアドレス</strong>：レシーバカメラのIPアドレスを入力します。</li>
+                    <li><strong class="UI">ポート</strong>：レシーバカメラのポートNo.を入力します。</li>
+                    <li><strong class="UI">ID</strong>：レシーバカメラに接続するための接続IDを入力します。</li>
+                    <li><strong class="UI">パスワード</strong>：レシーバカメラに接続するためのパスワードを入力します。</li>
+                </ul>
+                <li><strong class="UI">[適用]</strong>をクリックします。</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<hr class="wn5-setup-hr">

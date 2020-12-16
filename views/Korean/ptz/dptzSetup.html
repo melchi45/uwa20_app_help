@@ -1,34 +1,44 @@
 ﻿<h1 class="wn5-setup-main-title">디지털 PTZ 설정</h1>
 <div class="wn5-setup-section">
-    <p>카메라를 물리적으로 상하로 이동하거나(틸트) 좌우로 이동하여(팬) 뷰를 변경하는 것이 아니라 디지털 줌을 실행한 뒤 카메라의 뷰를 이동하도록 설정할 수 있습니다. 프리셋을 설정하거나, 프리셋을 그룹으로 설정하여 카메라 뷰를 변경할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
-    <div class="wn5-online-help-info" ng-if="!objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
-            <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
+    <p>카메라를 물리적으로 상하로 이동하거나(틸트) 좌우로 이동하여(팬) 뷰를 변경하는 것이 아니라 디지털 줌을 실행한 뒤 카메라의 뷰를 이동하도록 설정할 수 있습니다. 프리셋을 설정하거나, 프리셋을 그룹으로
+        설정하여 카메라 뷰를 변경할 수 있습니다. 설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭하십시오.</p>
+    <div class="wn5-online-help-info sptDigitalPTZ"
+        ng-if="!objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment && !ParkingDetectionSupport">
+        <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
         <ul>
-            <li>디지털 PTZ를 설정하려면, <strong class="UI">[비디오 프로파일]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[프로파일 타입]</strong></a>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택해야 합니다.  </li>
+            <li>디지털 PTZ를 설정하려면, <strong class="UI">[비디오 프로파일]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[프로파일 타입]</strong></a>에서 <strong class="UI">[디지털 PTZ 프로파일]</strong>을 선택해야 합니다. </li>
             <!-- <li>3M Live view 화각은 미리 보기 화면에서 맞춘 화각 보다 좀 더 넓은 화각을 보여줍니다.</li> -->
-		
-     <!--   <li>Internet Explorer로 웹뷰어에 접속한 경우, 플러그인을 설치해야 디지털 PTZ 기능을 사용할 수 있습니다. 플러그인을 설치하려면 <strong class="UI">[라이브]</strong> 페이지나 <strong class="UI">[재생]</strong> 페이지에서 오른쪽 상단의 플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li>
+
+            <!--   <li>Internet Explorer로 웹뷰어에 접속한 경우, 플러그인을 설치해야 디지털 PTZ 기능을 사용할 수 있습니다. 플러그인을 설치하려면 <strong class="UI">[라이브]</strong> 페이지나 <strong class="UI">[재생]</strong> 페이지에서 오른쪽 상단의 플러그인<span class="tui tui-wn5-download"></span> 버튼을 클릭하십시오.</li>
 		<li>플러그인 설치 후, 웹 브라우저의 해상도가 1024 이상이어야 디지털 PTZ 기능을 정상적으로 사용할 수 있습니다.</li>  -->
         </ul>
-</div>
+    </div>
 </div>
 
 <!-- PNM-9030V에서 컨텐츠 보여야 하므로 TW 자체 수정. MaxChannel > 1 && objectDetectionSupport && SupportAutoImageAlignment -> MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment) 2020-01-16 -->
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
-            <div class="wn5-setup-section-heading">
-                <h2>채널 선택</h2>
-            </div>
-            <div class="wn5-setup-section-article">
+<hr class="wn5-setup-hr sptChannelSelector"
+    ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
+<div class="wn5-setup-section sptChannelSelector"
+    ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
+    <div class="wn5-setup-section-heading">
+        <h2>채널 선택</h2>
+    </div>
+    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선택한 후 채널별로 PTZ 관련 세부 항목을 설정할 수 있습니다. </p>
-            <p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [디지털 PTZ 설정]은 채널 2에서만 설정할 수 있습니다. </p>
-            <p ng-if="SupportAutoImageAlignment">카메라 채널을 선택한 후 채널별로 PTZ 관련 세부 항목을 설정할 수 있습니다. </p>
-            <p ng-if="SupportAutoImageAlignment">디지털 PTZ메뉴에서 설정된 프리셋은 라이브화면에서 확인할 수 있습니다.</p>
-            <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
-            <p ng-if="SupportAutoImageAlignment">'디지털 PTZ 설정'은 채널 6번과 7번에만 설정할 수 있습니다.</p>
-            <p ng-if="MultiImager">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2와 채널 3은 디지털 PTZ 영상을 보여 주는 채널입니다. [디지털 PTZ 설정]은 채널 2와 채널 3에서만 설정할 수 있습니다. </p>
-
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여
+                주는 채널입니다. [디지털 PTZ 설정]은 채널 2에서만 설정할 수 있습니다. </p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">카메라 채널을 선택한 후 채널별로 PTZ 관련 세부 항목을 설정할 수
+                있습니다. </p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">디지털 PTZ메뉴에서 설정된 프리셋은 라이브화면에서 확인할 수 있습니다.
+            </p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의
+                카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">'디지털 PTZ 설정'은 채널 6번과 7번에만 설정할 수 있습니다.</p>
+            <p ng-if="MultiImager">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2와 채널 3은 디지털 PTZ 영상을 보여 주는 채널입니다. [디지털 PTZ 설정]은 채널 2와 채널
+                3에서만 설정할 수 있습니다. </p>
+            <!-- <p ng-if="ParkingDetectionSupport">채널 1은 카메라 전체 영상을 보여 주는 채널입니다. 채널 2~5는 전체 영상을 4분할하여 각 영상을 보여줍니다. 채널 2는 영상의
+                왼쪽 상단, 채널 3은 오른쪽 상단, 채널 4는 왼쪽 하단, 채널 5는 오른쪽 하단 영상을 각각 보여줍니다. [디저털 PTZ] 메뉴는 채널 2~5에서만 설정할 수 있습니다. </p> -->
             <!-- <p ng-if="SupportChannelExpansionFeature">카메라 채널을 선택한 후 채널별로 PTZ 관련 세부 항목을 설정할 수 있습니다. </p>
             <p ng-if="SupportChannelExpansionFeature">채널별 뷰 모드는 다음과 같습니다. 채널 4~8번만 설정할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -56,22 +66,30 @@
         <div class="wn5-setup-section-article-content">
             <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
         </div>
-			
+
         <div class="wn5-online-help-action">
-    	   <h4><a name="ptzcontrol"></a>PTZ 조정하기</h4>
+            <h4><a name="ptzcontrol"></a>PTZ 조정하기</h4>
             <ul>
-                <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
-                <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span>아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span>아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
-                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel"><span class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
+                <li><span class="tui tui-wn5-ptz-handle"></span>아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다. </li>
+                <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span>아이콘을 클릭하여 화면을 확대하거나 <span
+                        class="tui tui-wn5-ptz-minus"></span>아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel" class="sptFocus"><span
+                        class="tui tui-wn5-ptz-near"></span>아이콘을 클릭하여 포커스를 가까이(near)이동하거나<span
+                        class="tui tui-wn5-ptz-far"></span> 아이콘을 클릭하여 포커스를 멀리(far)이동합니다.</li>
             </ul>
+            <p>카메라 영상 화면에서 PTZ를 조정할 수도 있습니다. <span class="tui tui-ptz_cross"></span> 아이콘 위에 마우스를 올린 후 방향 표시를 클릭하여 카메라의
+                팬/틸트를 미세하게 조정하거나, <span class="tui tui-ptz_cross"></span> 아이콘을 클릭한 후 마우스를 드래그하여 카메라 팬/틸트를 빠르게 조정할 수
+                있습니다. 또한 마우스를 위로 스크롤하면 영상이 확대되고, 마우스를 아래로 스크롤하면 영상이 축소됩니다. </p>
         </div>
-        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+        <div class="wn5-online-help-action sptObjectDetection" ng-if="objectDetectionSupport">
             <h4>자동 추적 기능 사용하기</h4>
             <p>자동 추적은 객체를 감지한 경우 자동으로 객체의 움직임을 추적하는 기능입니다. AI 카메라에서는 지정한 객체만 감지하여 자동 추적하도록 설정할 수 있습니다. </p>
             <ol>
                 <li>움직임을 추적할 객체의 종류를 <strong class="UI">[객체]</strong> 컬럼에서 선택합니다. </li>
-                <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 카메라가 <strong class="UI">[객체]</strong>에서 설정한 객체 타입을 감지하면 객체의 움직임을 자동으로 추적합니다. </li>
-                <li>자동 추적을 중지하려면 자동 추적 아이콘 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>을 한 번 더 클릭합니다. </li>
+                <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 카메라가 <strong
+                        class="UI">[객체]</strong>에서 설정한 객체 타입을 감지하면 객체의 움직임을 자동으로 추적합니다. </li>
+                <li>자동 추적을 중지하려면 자동 추적 아이콘 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>을 한 번 더
+                    클릭합니다. </li>
             </ol>
         </div>
     </div>
@@ -88,82 +106,104 @@
             <p>프리셋은 카메라의 뷰를 설정해 두는 것을 의미합니다. 128개의 프리셋을 설정할 수 있습니다. </p>
         </div>
         <div class="wn5-online-help-action">
-    	   <h4>프리셋 설정하기</h4>
+            <h4>프리셋 설정하기</h4>
             <ol>
-                <li ng-if="!SupportAutoImageAlignment">PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 카메라 영상을 확대한 후</li>
-                <li ng-if="SupportAutoImageAlignment">PTZ 제어 화면에서</li>
+                <li ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">PTZ 제어 화면에서 <span
+                        class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 카메라 영상을 확대한 후</li>
+                <li ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">PTZ 제어 화면에서</li>
                 <ul>
                     <li><span class="tui tui-wn5-ptz-handle"></span> 아이콘을 클릭하고 드래그하여 카메라 뷰를 조정합니다.</li>
-                    <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은<span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
+                    <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은<span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 화면을 확대하거나 <span
+                            class="tui tui-wn5-ptz-minus"></span> 아이콘을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.</li>
                 </ul>
-                <li> <strong class="UI">[번호]</strong>에서 원하는 프리셋 번호를 선택합니다.                </li>
+                <li> <strong class="UI">[번호]</strong>에서 원하는 프리셋 번호를 선택합니다. </li>
                 <li><strong class="UI">[이름]</strong>에 해당 프리셋의 이름을 입력합니다.</li>
                 <li><strong class="UI">[추가]</strong> 버튼을 클릭합니다.</li>
             </ol>
-        <p></p>
+            <p></p>
 
-        <!-- (PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport ->DigitalAutoTracking로 수정. 정인혜 선임님. XNO-L6085R.  2019-12-16 -->
-            <p ng-if="DigitalAutoTracking"><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</p>
-    	</div>
+            <!-- (PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport ->DigitalAutoTracking로 수정. 정인혜 선임님. XNO-L6085R.  2019-12-16 -->
+            <p ng-if="DigitalAutoTracking" class="sptDigitalAutoTracking"><span
+                    class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적합니다. 아이콘을 다시 한
+                번 더 클릭하면 자동 추적이 중지됩니다.</p>
+        </div>
         <div class="wn5-online-help-action">
-    	   <h4>프리셋으로 이동하기</h4>
-    		<ol>
+            <h4>프리셋으로 이동하기</h4>
+            <ol>
 
                 <li><strong class="UI">[번호]</strong>에서 원하는 프리셋 번호를 선택합니다.</li>
-    			<li><strong class="UI">[이동]</strong> 버튼을 클릭하면 설정해 둔 위치로 카메라의 뷰가 이동합니다.</li>
-    			
-    		</ol>
-    	</div>
-        <div class="wn5-online-help-action">
-    	   <h4>프리셋 삭제하기</h4>
-    		<ol>
+                <li><strong class="UI">[이동]</strong> 버튼을 클릭하면 설정해 둔 위치로 카메라의 뷰가 이동합니다.</li>
 
-    			<li><strong class="UI">[번호]</strong>에서 삭제할 프리셋 번호를 선택합니다.</li>
-                <li><strong class="UI">[삭제]</strong> 버튼을 클릭하면 프리셋이 삭제됩니다.</li>
-    		</ol>
+            </ol>
         </div>
-		        <div class="wn5-online-help-action" ng-if="FisheyeLens">
-    	   <h4>홈 위치 설정하기</h4>
+        <div class="wn5-online-help-action">
+            <h4>프리셋 삭제하기</h4>
             <ol>
-                <li>PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 카메라 영상을 확대한 후 아래와 같이 PTZ를 조정하여 카메라 뷰를 조정합니다.</li>
+
+                <li><strong class="UI">[번호]</strong>에서 삭제할 프리셋 번호를 선택합니다.</li>
+                <li><strong class="UI">[삭제]</strong> 버튼을 클릭하면 프리셋이 삭제됩니다.</li>
+            </ol>
+        </div>
+        <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
+            <h4>홈 위치 설정하기</h4>
+            <ol>
+                <li>PTZ 제어 화면에서 <span class="tui tui-wn5-ptz-plus"></span> 아이콘을 클릭하여 카메라 영상을 확대한 후 아래와 같이 PTZ를 조정하여 카메라
+                    뷰를 조정합니다.</li>
                 <ul>
-                    <li><span class="tui tui-wn5-ptz-handle"></span> 아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다.  </li>
-                    <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 버튼을 클릭하여 화면을 확대하거나 <span class="tui tui-wn5-ptz-minus"></span> 버튼을 클릭하여 화면을 축소하여 영상 배율을 선택합니다.  </li>
-                    <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel"><span class="tui tui-wn5-ptz-near"></span>버튼이나 <span class="tui tui-wn5-ptz-far"></span>버튼을 클릭하여 카메라 초점을 조절합니다.</li>
-                    <!-- <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li> -->
+                    <li><span class="tui tui-wn5-ptz-handle"></span> 아이콘을 마우스로 드래그하면 카메라가 팬과 틸트로 이동합니다. </li>
+                    <li>줌 막대를 조절하여 영상 배율을 조정합니다. 혹은 <span class="tui tui-wn5-ptz-plus"></span> 버튼을 클릭하여 화면을 확대하거나 <span
+                            class="tui tui-wn5-ptz-minus"></span> 버튼을 클릭하여 화면을 축소하여 영상 배율을 선택합니다. </li>
+                    <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel" class="sptFocus"><span
+                            class="tui tui-wn5-ptz-near"></span>버튼이나 <span class="tui tui-wn5-ptz-far"></span>버튼을 클릭하여
+                        카메라 초점을 조절합니다.</li>
+                    <!-- <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel" class="sptFocus">Move the focus near by clicking the <span class="tui tui-wn5-ptz-near"></span> icon or move the focus far by clicking the <span class="tui tui-wn5-ptz-far"></span> icon.</li> -->
                 </ul>
                 <!-- <li>홈 포지션 설정 아이콘 <span class="tui tui-wn5-top-setup"></span>클릭합니다.</li> -->
                 <li><strong class="UI">[홈 설정]</strong> 버튼을 클릭합니다.</li>
             </ol>
         </div>
-				        <div class="wn5-online-help-action" ng-if="FisheyeLens">
-		    	   <h4>홈 위치로 이동하기</h4>
+        <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
+            <h4>홈 위치로 이동하기</h4>
             <ol>
                 <!-- <li>홈으로 이동하기 아이콘 <span class="tui tui-wn5-ptz-home"></span>을을 클릭합니다.</li> -->
                 <li><strong class="UI">[홈 이동]</strong> 버튼을 클릭합니다.</li>
             </ol>
         </div>
-		
 
-		<div class="wn5-online-help-action" ng-if="FisheyeLens">
-		    	   <h4>분할 화면 선택하기</h4>
+
+        <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
+            <h4>다이렉트 포인트 활용하기</h4>
+            <p>[다이렉트 포인트] 기능을 이용하면 전체 영상에서 분할 영상의 뷰 위치를 한 눈에 확인할 수 있으며, 원하는 뷰 위치로 쉽고 빠르게 이동할 수 있습니다. </p>
+            <p>전체 영상에서 분할 영상의 뷰 위치는 Q1, Q2, Q3, Q4로 표시되며 Q1은 왼쪽 상단, Q2는 오늘쪽 상단, Q3은 왼쪽 하단, Q4는 오른쪽 하단 영상의 뷰 위치입니다. </p>
+            <p>왼쪽 상단 영상(Q1)의 뷰 위치를 변경하려면</p>
             <ol>
-                <li><strong class="UI">[분할 화면 선택]</strong>에서 4분할 뷰의 개별 영상 번호를 선택합니다. 1은 4분할 뷰의 왼쪽 상단, 2는 오른쪽 상단, 3은 왼쪽 하단, 4는 오른쪽 하단의 영상 뷰입니다.</li>
+                <li><strong class="UI">[다이렉트 포인트]</strong> 버튼을 클릭합니다. 전체 영상 화면이 나타나며, 전체 영상 화면에서 4분할 영상 각각의 현재 뷰 위치가
+                    아이콘으로 표시됩니다. </li>
+                <li>전체 영상 화면에서 Q1 아이콘을 선택한 후 원하는 위치로 이동합니다. 뷰 위치를 변경하면 왼쪽 상단의 영상의 뷰가 변경됩니다. </li>
+            </ol>
+            <p>분할 화면 영상은 상하로 반전되어 나타납니다. </p>
+            <p>다이렉트 포인트 기능 사용 시 정밀한 조정은 불가능합니다. </p>
+        </div>
+
+
+        <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
+            <h4>분할 화면 선택하기</h4>
+            <ol>
+                <li><strong class="UI">[분할 화면 선택]</strong>에서 4분할 뷰의 개별 영상 번호를 선택합니다. 1은 4분할 뷰의 왼쪽 상단, 2는 오른쪽 상단, 3은 왼쪽
+                    하단, 4는 오른쪽 하단의 영상 뷰입니다.</li>
             </ol>
         </div>
 
-        
 
-		
-		 <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
+        <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
             <h4>자동 추적 기능 사용하기</h4>
             <p>자동 추적은 화면에서 움직임을 감지하는 경우 자동으로 움직임을 추적하는 기능입니다.</p>
             <ol>
                 <li><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적하며, 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</li>
             </ol>
         </div> -->
-		       
-		
+
+
     </div>
 </div>
 
@@ -181,9 +221,11 @@
             <h4>그룹 설정하기</h4>
             <ol>
                 <li><strong class="UI">[그룹 번호]</strong>에서 그룹 번호를 선택합니다.</li>
-                <li><strong class="UI">[프리셋 목록]</strong>에서 <strong class="UI">[추가]</strong> 버튼을 클릭한 후 프리셋 목록이 나타나면 <strong class="UI">[프리셋 번호]</strong>에서 프리셋 번호를 선택하고 <strong class="UI">[전환 간격]</strong>에 해당 프리셋에서 머물 전환 간격을 초 단위로 입력합니다.</li>
+                <li><strong class="UI">[프리셋 목록]</strong>에서 <strong class="UI">[추가]</strong> 버튼을 클릭한 후 프리셋 목록이 나타나면
+                    <strong class="UI">[프리셋 번호]</strong>에서 프리셋 번호를 선택하고 <strong class="UI">[전환 간격]</strong>에 해당 프리셋에서 머물
+                    전환 간격을 초 단위로 입력합니다.</li>
                 <li>2번 과정을 반복하여 프리셋 번호를 2개 이상 입력합니다.</li>
-				<li>설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</li>
+                <li>설정을 완료하면 페이지 아래의 <strong class="UI">[적용]</strong> 버튼을 클릭합니다.</li>
             </ol>
         </div>
         <div class="wn5-online-help-action">
@@ -191,7 +233,7 @@
             <ol>
                 <li><strong class="UI">[그룹 번호]</strong>에서 작동할 그룹을 선택합니다.</li>
                 <li><strong class="UI">[시작]</strong> 버튼을 클릭하면 해당 그룹에 설정된 프리셋이 전환 간격에 맞춰 변경됩니다.</li>
-				<li><strong class="UI">[중지]</strong> 버튼을 클릭하면 그룹으로 작동 중인 프리셋이 멈춥니다.</li>
+                <li><strong class="UI">[중지]</strong> 버튼을 클릭하면 그룹으로 작동 중인 프리셋이 멈춥니다.</li>
             </ol>
         </div>
         <div class="wn5-online-help-action">
@@ -201,7 +243,7 @@
                 <li><strong class="UI">[삭제]</strong> 버튼을 클릭하면 그룹이 삭제됩니다.</li>
             </ol>
         </div>
-   <!--      <div class="wn5-setup-section-article-content" ng-if="PTZModel || isDigitalPTZ">
+        <!--      <div class="wn5-setup-section-article-content" ng-if="PTZModel || isDigitalPTZ">
             <h3>자동 추적</h3>
             <p><span class="tui tui-ch-live-ptz-tracking-auto-off"></span> 아이콘을 클릭하면 화면에서 이동하는 물체를 자동으로 추적하며, 아이콘이 <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>로 변경됩니다. 아이콘을 다시 한 번 더 클릭하면 자동 추적이 중지됩니다.</p>   
         </div> -->

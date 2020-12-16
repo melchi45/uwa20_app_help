@@ -4,19 +4,19 @@
 	<p>Smart codec es una tecnolog&iacute;a que reduce el tama&ntilde;o de los bit de datos de imagen mediante el establecimiento de un &aacute;rea deseada por el usuario como un &aacute;rea de calidad espec&iacute;fica, mientras que la gesti&oacute;n de otras &aacute;reas es de una calidad normal. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>Seleccionar canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede establecer los detalles de Smart codec para cada canal. El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
-			<p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Smart códec] solo puede configurarse en el canal 1.</p>
-            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
-            <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
-            <p ng-if="SupportAutoImageAlignment">El “Smart c&oacute;dec” solo se puede configurar en Canal1 a Canal5.</p>
-			<p ng-if="HybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico. [Smart códec] solo puede configurarse en el canal 1.</p>
+			<p ng-if="objectDetectionSupport" class="sptObjectDetection">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [Smart códec] solo puede configurarse en el canal 1.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">El “Smart c&oacute;dec” solo se puede configurar en Canal1 a Canal5.</p>
+			<p ng-if="HybridThermal" class="sptHybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico. [Smart códec] solo puede configurarse en el canal 1.</p>
 			<p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>
 	</div>
@@ -32,7 +32,7 @@
 		<div class="wn5-setup-section-article-content">
 			<p>El usuario puede configurar la zona en la pantalla de imagen de la c&aacute;mara. Al hacer clic y arrastrar en la pantalla con el rat&oacute;n, se crear&aacute; una zona de forma cuadrada. Se pueden establecer 5 &aacute;reas, pero no se permite la superposici&oacute;n. Al hacer clic en el bot&oacute;n <strong class="UI">[Borrar]</strong>, se eliminar&aacute;n todas las &aacute;reas establecidas.</p>
 		</div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>Ajuste del PTZ</h4>
             <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p>
             <ul>

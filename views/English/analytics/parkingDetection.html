@@ -1,0 +1,252 @@
+﻿<h1 class="wn5-setup-main-title">Parking detection</h1>
+<div class="wn5-setup-section">
+    <p>Detects if the parking area you set is occupied and if it is, an event is triggered. It considers full when the
+        number of vehicles parked in that area reaches the maximum number of parked vehicles you set.</p>
+    <p>Vehicles include automobiles, bicycles, and motor cycles.</p>
+    <p>Once the setup is complete, click the <strong class="UI">[Apply]</strong> button at the bottom of the page. This
+        parking detection event setup also applies to <strong class="UI">[Parking detection]</strong> in <strong
+            class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html"
+            ng-href="#/help/event_eventSetup"><strong class="UI">[Event setup]</strong></a> page.</p>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a name="channel"></a>Select channel</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>More parking detection details can be set for each channel after a camera channel is selected.</p>
+            <p>Channel 1 shows the whole feed from the camera. Channels 2 through 5 show the quad view of the whole
+                feed. Channel 2 shows the top left section of the feed; Channel 3, the top right of the feed; Channel 4,
+                the bottom left of the feed; and Channel 5, bottom right of the feed. The [Parking detection] menu can
+                only be set in Channels 2 to 5.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Parking detection</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>Enable parking detection</h3>
+            <p>To enable parking detection events, select <strong class="UI">[Enable parking detection]</strong>.</p>
+        </div>
+    </div>
+</div>
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Area</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Sets the details for the parking detection area.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Parking area</h3>
+            <p>Sets the ROI area where parked vehicles will be detected and the exclude area where parked vehicles
+                won&apos;t be detected.</p>
+            <p>Also, the maximum number of vehicles needed to consider the parking lot as full can be set in <STRONG
+                    class="UI">[Max. vehicles]</STRONG>. In other words, the parking lot is considered full only when
+                the number of parked vehicles inside the detection area reaches the number set in [Max. vehicles].</p>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Setting ROI area and exclude area</h4>
+            <p>exclude areas 1 and 2 are set in order after the ROI area is set. When either the ROI area or the Exclude
+                area is configured, the color of the number buttons change.</p>
+            <ul>
+                <li>The area can be set by selecting four points on the camera video screen or drag the cursor to draw a
+                    square.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Changing ROI area and exclude area</h4>
+            <ul>
+                <li>The area can be resized by moving the points of the specified area.</li>
+                <li>Point the line inside the area with the mouse cursor and a + mark appears. Click the + mark to add a
+                    point. A polygonal shape can be created by selecting up to 4 points.</li>
+                <li>To relocate the area, select the area and drag it to a desired location.</li>
+            </ul>
+        </div>
+        <div class="wn5-online-help-action">
+            <h4>Deleting ROI area and exclude area</h4>
+            <ul>
+                <li>To delete an ROI area or an exclude area, right-click on the area to delete.&nbsp;Click the <STRONG
+                        class="UI">[OK]</STRONG> button from the Confirm Deletion window.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Common</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>Sets the sensitivity for parking detection and the minimum and maximum size of vehicles to detect. This
+                setting is used to increase the detection accuracy and minimize false detection in the environment.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Sensitivity</h3>
+            <p>Sets the sensitivity for parking detection. Set the sensitivity low in an environment where false
+                detection of full status happens a lot, and set it high in an environment where false detection of
+                vacant status happens a lot.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Size</h3>
+            <p>Sets the minimum and maximum size of vehicles to detect.</p>
+        </div>
+
+        <div class="wn5-online-help-info">
+            <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+            <ul>
+                <li>Vehicles smaller than the minimum size or bigger than the maximum size are not detected. To avoid
+                    false detection caused by noises, it&apos;s recommended to manually set the minimum and maximum size
+                    of vehicles to be detected in the actual installation environment. Please note that there could be
+                    some deviation in the detected size of a vehicle even if the same movement was made by the vehicle
+                    in the same place. Consider this when setting the minimum/maximum size restriction.</li>
+                <li>False detection may occur in the following conditions:</li>
+                <ul>
+                    <li>When the color or brightness of vehicle is similar to those of the background</li>
+                    <li>When a number of motions are kept being detected randomly due to camera panning or other causes
+                    </li>
+                    <li>When a fixed object constantly makes a movement on the spot</li>
+                    <li>When random objects block different objects</li>
+                    <li>When multiple objects merge into one or an object splits into multiple objects</li>
+                    <li>When OSD menu of the camera is adjusted</li>
+                    <li>When an object moves too fast</li>
+                    <li>When reflection/blur/shadow occurs due to a strong light source such as direct sunlight,
+                        illumination, and head lights</li>
+                    <li>When it rains or snows heavily, the wind blows hard, or it&apos;s dawn or dusk</li>
+                    <li>If a moving object is approaching the camera</li>
+                    <li>If it is not an indoor parking lot</li>
+                    <li>If it is not a recommended installation height</li>
+                    <li>If input video is unclear due to dirt or frost on lens</li>
+                    <li>If a vehicle is parked sideways within the set area</li>
+                    <li>If a vehicle is parked partially within the set area</li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2><a class="wn5-online-help-link" name="action"></a>Event action settings</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <h3>FTP</h3>
+            <p>To save an image on an FTP server when a parking detection event is created, select <strong
+                    class="UI">[Enable]</strong>. Detailed settings for FTP can be done from <strong
+                    class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#ftp"
+                    ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>E-mail</h3>
+            <p>To send an image by e-mail when a parking detection event occurs, select <strong
+                    class="UI">[Enable]</strong>. Detailed settings for e-mail can be done from <strong
+                    class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email"
+                    ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
+            <h3>Record</h3>
+            <p ng-if="NAS" class="sptRecordingSDNas">To save an image on an SD card or NAS when a parking detection
+                event is created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done
+                from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html"
+                    ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">To save an image on an SD card when a parking detection event is
+                created, select <strong class="UI">[Enable]</strong>. Detailed settings for storage can be done from
+                <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html"
+                    ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</p>
+        </div>
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
+            <h3>Alarm output</h3>
+            <p>It is possible to set the alarm output number for a specific alarm when a parking detection event is
+                created.&nbsp;After selecting an alarm output number, select <strong class="UI">[Off]</strong> if you
+                wish no alarm, or select the output time if you wish to output an alarm. You can set a continuous alarm
+                until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5,
+                10 or 15 seconds. </p>
+            <p>Depending on the alarm output setup, <strong class="UI">[Alarm output]</strong> options may look
+                different. If there is no alarm output, <strong class="UI">[Alarm output]</strong> options are not
+                displayed. If there is more than one alarm output, they are displayed as <strong class="UI">[Alarm
+                    output 1]</strong>, <strong class="UI">[Alarm output 2]</strong>, and so on. Select <strong
+                    class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong> to set the alarm I/O.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content sptExtPtzPreset1"
+            ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+            <h3>Goto preset</h3>
+            <p>You can set the position of camera view to move to a preset number when a parking detection event is
+                created. The camera preset can be set in <strong class="UI">[PTZ]</strong>&gt;<a
+                    class="wn5-online-help-link" href="../ptz/dptzSetup.html"
+                    ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[Digital PTZ]</strong></a> or <strong
+                    class="UI">[Preset]</strong> of <strong class="UI"><a class="wn5-online-help-link"
+                        href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[External
+                        PTZ]</a></strong>.</p>
+
+            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">If <strong class="UI">[Enable
+                    external PTZ]</strong> option is deselected in <strong class="UI">[PTZ]</strong>&gt;<strong
+                    class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html"
+                        ng-href="#/help/ptzSetup_externalPtzSetup">[External PTZ]</a></strong>, [Goto preset] option is
+                not displayed.</p>
+        </div>
+
+
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
+            <h3>Audio clip</h3>
+            <p>This enables playback of a specific audio clip when a parking detection event occurs. Once you select a
+                file from your audio clip list, the clip will start to play when the event occurs. To disable the audio
+                clip from playing when an event occurs, select <strong class="UI">[Off]</strong>. Clicking the Play
+                button (<span class="tui tui-wn5-toolbar-play"></span>) allows you to play and preview an audio file.
+            </p>
+            <p>Go to <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a
+                        class="wn5-online-help-link" href="../video&audio/audio.html"
+                        ng-href="#/help/videoAudio_audioSetup">[Audio setup]</a></strong>&gt;<strong class="UI">[Audio
+                    clip]</strong> to register an audio clip.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Event activation time</h2>
+    </div>
+    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>This sets the operation time of the parking detection event action settings. Set the event action
+                settings from <strong class="UI">[<a class="wn5-online-help-link" href="#action"
+                        ng-href="#/help/analytics_parkingDetection?#action">Event action settings</a>]</strong> to
+                always operate, or only at the set time.</p>
+        </div>
+
+        <div class="wn5-setup-section-article-content">
+            <h3>Always</h3>
+            <p>The event action settings are always executed when a parking detection event is created.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+            <h3>Only scheduled time</h3>
+            <p>The event action settings are executed only when a parking detection event is created during the set
+                time. The date from Sunday to Saturday, based on the current camera time, is displayed on the time table
+                shown when <strong class="UI">[Only scheduled time]</strong> is selected. You can set the time for event
+                action settings by clicking or dragging on the time table with the mouse. The set event activation time
+                is executed repeatedly on the relevant weekday and time.</p>
+            <p>You can change the time view unit by clicking the <strong class="UI">[1 min]</strong>, <strong
+                    class="UI">[30 min]</strong> or <strong class="UI">[1 h]</strong> button. When you click the <strong
+                    class="UI">[Reset]</strong> button, all set event activation times will be deleted. To confirm or
+                change the camera time, refer to <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Date &amp;
+                    Time]</strong>.</p>
+        </div>
+    </div>
+</div>
+<hr class="wn5-setup-hr">

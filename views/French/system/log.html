@@ -56,8 +56,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
     <div class="wn5-setup-section-heading">
         <h2>&Eacute;v&eacute;nement journal </h2>
     </div>
@@ -65,10 +65,10 @@
         <div class="wn5-setup-section-article-content">
             <p>Vous pouvez v&eacute;rifier la date et l&apos;heure ainsi que les informations d&eacute;taill&eacute;es relatives &agrave; un &eacute;v&eacute;nement survenu dans le syst&egrave;me.</p>
         </div>
-        <div class="wn5-setup-section-article-content"  ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
+        <div class="wn5-setup-section-article-content sptEventLogChannel" ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
             <h3>S&eacute;lectionner un canal</h3>
             <p>Vous pouvez consultez le journal &eacute;v&eacute;nements de chaque canal en s&eacute;lectionnant le num&eacute;ro du canal.</p>
-            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Seul le journal du canal 1 peut être consulté.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Seul le journal du canal 1 peut être consulté.</p>
             <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. Seules les informations du journal du canal 1 peuvent être vérifiées.</p>
             <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction. </li>

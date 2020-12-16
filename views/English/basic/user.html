@@ -8,18 +8,18 @@
 
 <div class="wn5-setup-section">
 		<div class="wn5-setup-section-heading">
-			<h2 ng-if="AdminIDChange == undefined || AdminIDChange">Change administrator info</h2>
-			<h2 ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'">Change administrator password</h2>
+			<h2 ng-if="AdminIDChange == undefined || AdminIDChange" class="sptAdminIDChange">Change administrator info</h2>
+			<h2 ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'" class="nsptAdminIDChange">Change administrator password</h2>
 		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="AdminIDChange == undefined || AdminIDChange">You can change the administrator account ID and password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
-			<p ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'">You can change the administrator password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
+			<p ng-if="AdminIDChange == undefined || AdminIDChange" class="sptAdminIDChange">You can change the administrator account ID and password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
+			<p ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'" class="nsptAdminIDChange">You can change the administrator password. To reinforce security, create a password by combining random English uppercase and lowercase letters, numbers and special characters.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="AdminIDChange == undefined || AdminIDChange">
+		<div class="wn5-setup-section-article-content sptAdminIDChange" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h3>ID</h3>
 	        <p>You can view or change the administrator ID that is currently used.</p>
 	    </div>
-		<div class="wn5-online-help-info" ng-if="AdminIDChange == undefined || AdminIDChange">
+		<div class="wn5-online-help-info sptAdminIDChange" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
             <ul>
                 <li>Administrator ID must contain only alphanumeric characters with a maximum length of 8 characters.</li>
@@ -57,8 +57,11 @@
             <ul>
                 <li>To reinforce security, it is recommended to create a password by combining special characters, numbers, and uppercase and lowercase letters.</li>
                 <li>It is recommended to change the password every three months.</li>
-                <li>The password length and restrictions are as follows:</li>
-                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
+				<li>The password restrictions are as follows:</li>
+				<!-- <li>The password length and restrictions are as follows:</li> -->
+				<ul>
+					<!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 -->
+					<!-- <li ng-if="PasswordRule1">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 8 to 9 digits, you need to combine at least three different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">For password of 10 to 15 digits, you need to combine at least two different types of the following: uppercase and lowercase alphabets, numbers, and special characters.</li>
@@ -68,7 +71,7 @@
                     <li>You cannot use the same character four or more times in a row (e.g. !!!!, 1111, aaaa).</li>
 					<li ng-if="PasswordRule1">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Only ~`!@#$%^*()_-+=|{}[].?/ are allowed for special characters.</li>
-					<li ng-if="PasswordRule2">Only ~`!@#$%^&amp;*()_-+=|{}[].?/ are allowed for special characters.</li>
+					<li ng-if="PasswordRule2">Only ~`!@#$%^&amp;*()_-+=|{}[].?/ are allowed for special characters.</li> -->
                     <li>After the factory reset, both the admin and user passwords will reset, and you need to create them again.</li>
                     <li>When you access the camera web viewer for the first time, or access it after the initialization, you will be moved to the password setting menu.</li>
                     <li>To use the web viewer menu, you need to set the new password in the password change menu and log in to the web viewer again with the changed password.</li>
@@ -82,8 +85,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
-<div class="wn5-setup-section" ng-if="AdminFilterSupport">
+<hr class="wn5-setup-hr sptAdminFilter" ng-if="AdminFilterSupport">
+<div class="wn5-setup-section sptAdminFilter" ng-if="AdminFilterSupport">
 		<div class="wn5-setup-section-heading">
 				<h2>IP address to allow admin login</h2>
 		</div>
@@ -113,8 +116,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="AdminTimeout">
-<div class="wn5-setup-section" ng-if="AdminTimeout">
+<hr class="wn5-setup-hr sptAdminTimeout" ng-if="AdminTimeout">
+<div class="wn5-setup-section sptAdminTimeout" ng-if="AdminTimeout">
 	<div class="wn5-setup-section-heading">
 			<h2>Administrator login automatic disconnect</h2>
 	</div>
@@ -126,8 +129,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Guest settings</h2>
 	</div>
@@ -138,8 +141,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
     <div class="wn5-setup-section-heading">
 		<h2>RTSP settings</h2>
 	</div>
@@ -151,8 +154,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Authentication setup</h2>
 	</div>
@@ -163,8 +166,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
-<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+<hr class="wn5-setup-hr sptOnvifDigest" ng-if="OnvifTTADigestOptions">
+<div class="wn5-setup-section sptOnvifDigest" ng-if="OnvifTTADigestOptions">
 	<div class="wn5-setup-section-heading">
 		<h2>Digest authentication</h2>
 	</div>
@@ -176,8 +179,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
-<div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
+<hr class="wn5-setup-hr sptDeviceManager" ng-if="IPInstallerSettingEnable">
+<div class="wn5-setup-section sptDeviceManager" ng-if="IPInstallerSettingEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Device Manager</h2>
 	</div>
@@ -190,8 +193,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
     <div class="wn5-setup-section-heading">
 		<h2>TTA settings</h2>
 	</div>
@@ -202,8 +205,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
 	<div class="wn5-setup-section-heading">
 		<h2>Finding your password</h2>
 	</div>
@@ -214,8 +217,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
 	<div class="wn5-setup-section-heading">
 		<h2>Password change cycle</h2>
 	</div>
@@ -226,16 +229,18 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Current users</h2>
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile.</p>
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">You can set the connection information for user accounts other than the administrator, and set use permissions.</p>				
-			<p>When a registered user logs in, only the functions set for that user are enabled. 10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p>
+
+			<!-- <p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile.</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">You can set the connection information for user accounts other than the administrator, and set use permissions.</p>		-->	
+			<p>You can set the connection information for user accounts other than the administrator, and set use permissions including audio in, audio out, alarm output and profile.</p>	
+			<p>When a registered user logs in, only the functions set for that user are enabled. 10 current user accounts are set by default; you can add or delete an account. Up to 10 current IP user accounts can be used.</p> 
 		</div>
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
@@ -255,23 +260,23 @@
 			<h3>Password</h3>
 			<p>Enter the password. The password setting rule is same as the administrator password setting rule.</p>
 		</div>
-				<div class="wn5-setup-section-article-content" ng-if="AdminAccess">
+				<div class="wn5-setup-section-article-content sptAdminAccess" ng-if="AdminAccess">
 			<h3>Admin privilege</h3>
             <p>Authorize the selected users with admin privileges. Normal users can use only functions that their administrator allowed, but administrators can access and set any functions they want. However, even if admin privileges are given to users, they cannot change their admin ID or password.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
+		<div class="wn5-setup-section-article-content sptAudioInput" ng-if="MaxAudioInput>0">
 			<h3>Audio in</h3>
 			<p>Set the permission for accessing the inputted audio. If audio in is selected, a user who connects to the relevant account can watch the screen and listen to audio at the same time; if audio in is not selected, the user can watch only the image screen.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput>0">
+		<div class="wn5-setup-section-article-content sptAudioOutput" ng-if="MaxAudioOutput>0">
 			<h3>Audio out</h3>
 			<p>Set audio out permissions. When audio out is selected, a user who connects to a relevant account can send audio through the microphone.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+		<div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
 			<h3>Alarm output</h3>
 			<p>Set alarm output permissions. When an alarm has been set, a user who connects to a relevant account can output the alarm.</p>
 		</div>
-				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
+		<div class="wn5-setup-section-article-content suppportPTZAccess" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
             <p>Sets the permission to control the PTZ in <strong class="UI">[Live]</strong> mode.</p>
 		</div>

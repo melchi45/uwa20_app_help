@@ -56,8 +56,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
     <div class="wn5-setup-section-heading">
         <h2>Evento Registro de eventos</h2>
     </div>
@@ -65,10 +65,10 @@
         <div class="wn5-setup-section-article-content">
             <p>Puede comprobar la fecha y hora e informaci&oacute;n detallada sobre un evento que se ha producido en el sistema.</p>
         </div>
-        <div class="wn5-setup-section-article-content"  ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
+        <div class="wn5-setup-section-article-content sptEventLogChannel" ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
             <h3>Seleccionar canal</h3>
             <p>Puede comprobar el registro de eventos de cada canal seleccionando el n&uacute;mero del canal.</p>
-            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. Solo se comprobará el registro de eventos del canal 1</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. Solo se comprobará el registro de eventos del canal 1</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. La información de registro se puede verificar solo en el canal 1.</p>
             <ul ng-if="SupportChannelExpansionFeature">

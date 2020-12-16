@@ -17,17 +17,17 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>Logiciel</h3>
 			<p>La version du logiciel que vous utilisez est affich&eacute;e. Les modifications ne peuvent pas &ecirc;tre apport&eacute;es &agrave; la version du logiciel.</p>
-			<p ng-if="!SupportAutoImageAlignment">Pour afficher les détails relatifs au logiciel, y compris la version ISP et la version SUNAPI, cliquez sur le bouton <strong class="UI">[Info]</strong>.</p>
+			<p ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">Pour afficher les détails relatifs au logiciel, y compris la version ISP et la version SUNAPI, cliquez sur le bouton <strong class="UI">[Info]</strong>.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
+		<div class="wn5-setup-section-article-content sptHandOverCalAndAutoImgAlign" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
 		    <h3>Version ISP</h3>
 		    <p>La version ISP du produit que vous utilisez est affich&eacute;e. Les modifications ne peuvent pas &ecirc;tre apport&eacute;es &agrave; la version du fournisseur de services Internet.</p>
 	   	</div>
-	   			<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+	   			<div class="wn5-setup-section-article-content sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 		    <h3>Version SUNAPI</h3>
 		    <p>La version de SUNAPI prise en charge par le produit est affich&eacute;e. SUNAPI est la propre API de Hanwha Techwin.</p>
 	   	</div>
-	   			<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+	   			<div class="wn5-setup-section-article-content sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 			<h3>Version UWA</h3>
 	 	 <p>La version de l&rsquo;&eacute;cran Web de la cam&eacute;ra utilis&eacute;e.</p>
 	  </div> 
@@ -55,17 +55,17 @@
 		<div class="wn5-setup-section-article-content">
 			<p>R&eacute;initialise la configuration du syst&egrave;me &agrave; ce qu&apos;elle &eacute;tait au moment de l&apos;achat du produit. Lorsque vous cliquez sur le bouton <strong class="UI">[R&eacute;initialiser]</strong>, puis sur le bouton <strong class="UI">[OK]</strong> dans la fen&ecirc;tre de confirmation, la r&eacute;initialisation des param&egrave;tres par d&eacute;faut sera effectu&eacute;e. (Les journaux ne seront toutefois pas réinitialisés.)</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="OpenSDKSupport">
+		<div class="wn5-setup-section-article-content sptOpenSDKSupport" ng-if="OpenSDKSupport">
 			<p>Si vous souhaitez r&eacute;initialiser la configuration du syst&egrave;me (&agrave; l&apos;exception de la configuration r&eacute;seau et de la configuration de plate-forme ouverte install&eacute;e) aux param&egrave;tres par d&eacute;faut, s&eacute;lectionnez <strong class="UI">[Hormis les paramètres réseau et la plateforme ouverte]</strong>. Lorsqu&apos;une r&eacute;initialisation aux param&egrave;tres par d&eacute;faut est effectu&eacute;e, la connexion avec la cam&eacute;ra est termin&eacute;e. Lorsque vous vous reconnectez &agrave; l&rsquo;&eacute;cran Web pour la premi&egrave;re fois, vous devrez saisir &agrave; nouveau le mot de passe.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!OpenSDKSupport">
+		<div class="wn5-setup-section-article-content nsptOpenSDKSupport" ng-if="!OpenSDKSupport">
 			<p>Si vous souhaitez r&eacute;initialiser la configuration du syst&egrave;me (&agrave; l&apos;exception de la configuration r&eacute;seau) aux param&egrave;tres par d&eacute;faut, s&eacute;lectionnez <strong class="UI">[Hormis les paramètres réseau]</strong>. Lorsqu&apos;une r&eacute;initialisation aux param&egrave;tres par d&eacute;faut est effectu&eacute;e, la connexion avec la cam&eacute;ra est termin&eacute;e. Lorsque vous vous reconnectez &agrave; l&rsquo;&eacute;cran Web pour la premi&egrave;re fois, vous devrez saisir &agrave; nouveau le mot de passe.</p>
 		</div>
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Configuration sauvegarde et restauration</h2>
 	</div>

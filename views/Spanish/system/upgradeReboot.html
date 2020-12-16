@@ -17,24 +17,24 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>Software  </h3>
 			<p>Se muestra la versi&oacute;n de software del producto que se est&aacute; utilizando. No se pueden hacer cambios en la versi&oacute;n del software. </p>
-			<p ng-if="!SupportAutoImageAlignment">Puede ver los detalles del software, incluyendo la versi&oacute;n de ISP aplicada a la versi&oacute;n de SUNAPI y software, al hacer clic en el bot&oacute;n <strong class="UI">[Información del producto]</strong>.</p>
+			<p ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">Puede ver los detalles del software, incluyendo la versi&oacute;n de ISP aplicada a la versi&oacute;n de SUNAPI y software, al hacer clic en el bot&oacute;n <strong class="UI">[Información del producto]</strong>.</p>
 <p>&nbsp;</p>
 		</div>
-	  	<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
+	  	<div class="wn5-setup-section-article-content sptHandOverCalAndAutoImgAlign" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
 		    <h3>Versi&oacute;n de ISP actual  </h3>
 		    <p>Se muestra la versi&oacute;n de ISP actual del producto que est&aacute; utilizando. No se pueden hacer cambios en la versi&oacute;n de ISP actual.</p>
 		</div>  
 
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
+		<div class="wn5-setup-section-article-content sptHandOverCalAndNotAutoImgAlign" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>Versi&oacute;n de ISP del canal fijo</h3>
 		    <p>La versi&oacute;n de ISP de la c&aacute;mara fija montada. La versi&oacute;n de ISP solo es de lectura, no se permite ninguna modificaci&oacute;n.</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
+		<div class="wn5-setup-section-article-content sptHandOverCalAndNotAutoImgAlign" ng-if="HandoverCalibration && !SupportAutoImageAlignment">
 		    <h3>Versi&oacute;n de ISP del canal PTZ</h3>
 		    <p>La versi&oacute;n de ISP de la c&aacute;mara PTZ montada. La versi&oacute;n de ISP solo es de lectura, no se permite ninguna modificaci&oacute;n.</p>
 	   	</div>
 
-	   	<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+	   	<div class="wn5-setup-section-article-content sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 			<h3>Versión UWA </h3>
 	 	 <p>Versión del visor web de la cámara en uso.</p>
 	   </div>   
@@ -63,17 +63,17 @@
 		<div class="wn5-setup-section-article-content">
 			<p>Restablece la configuraci&oacute;n del sistema a la que era en el momento de la compra del producto. Cuando haga clic en el bot&oacute;n <strong class="UI">[Reinicializar]</strong> y despu&eacute;s de hacer clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n, la reinicializaci&oacute;n de valores predeterminados de f&aacute;brica se llevar&aacute; a cabo. (Sin embargo, los registros no se restablecerán.)</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="OpenSDKSupport">
+		<div class="wn5-setup-section-article-content sptOpenSDKSupport" ng-if="OpenSDKSupport">
 			<p>Si desea restablecer la configuraci&oacute;n del sistema (a excepci&oacute;n de la configuraci&oacute;n de la red y la configuraci&oacute;n de la plataforma abierta instalada) a los valores de f&aacute;brica, seleccione <strong class="UI">[Excepto el parámetro de red y la plataforma abierta]</strong>. Cuando una reinicializaci&oacute;n de los valores predeterminados de f&aacute;brica se lleva a cabo, finalizar&aacute; la conexi&oacute;n con la c&aacute;mara. Cuando se vuelva a conectar al visor web por primera vez, tendr&aacute; que introducir la contrase&ntilde;a de nuevo. </p>
 		</div>
-		<div class="wn5-setup-section-article-content"  ng-if="!OpenSDKSupport">
+		<div class="wn5-setup-section-article-content nsptOpenSDKSupport" ng-if="!OpenSDKSupport">
 			<p>Si desea restablecer la configuraci&oacute;n del sistema (a excepci&oacute;n de la configuraci&oacute;n de la red) a los valores de f&aacute;brica, seleccione <strong class="UI">[Excepto par&aacute;metro de red]</strong>. Cuando una reinicializaci&oacute;n de los valores predeterminados de f&aacute;brica se lleva a cabo, finalizar&aacute; la conexi&oacute;n con la c&aacute;mara. Cuando se vuelva a conectar al visor web por primera vez, tendr&aacute; que introducir la contrase&ntilde;a de nuevo. </p>
 		</div>
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Copia seguridad y restauraci&oacute;n de configuraci&oacute;n</h2>
 	</div>

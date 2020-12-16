@@ -8,19 +8,19 @@
     <p>Une fois le r&eacute;glage termin&eacute;, cliquez sur le bouton <strong class="UI">[Appliquer]</strong> en bas de la page.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="SupportAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s, tels que la rotation vid&eacute;o, la sortie analogique, etc.</p> 
-            <p ng-if="!SupportAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s.</p> 
-            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1.</p> 
-            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
-            <p ng-if="SupportAutoImageAlignment">Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
-            <p ng-if="SupportAutoImageAlignment">Du fait qu&rsquo;une zone de confidentialit&eacute; est d&eacute;finie individuellement pour chaque canal, une zone de confidentialit&eacute; d&eacute;finie sur CAN1 sera seulement appliqu&eacute;e &agrave; CAN1 m&ecirc;me si la m&ecirc;me zone de confidentialit&eacute; existe sur CAN2.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s, tels que la rotation vid&eacute;o, la sortie analogique, etc.</p> 
+            <p ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">Apr&egrave;s avoir s&eacute;lectionn&eacute; un canal de cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute; pour chaque canal ou d&eacute;finir les param&egrave;tres vid&eacute;o d&eacute;taill&eacute;s.</p> 
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1.</p> 
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1. CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Du fait qu&rsquo;une zone de confidentialit&eacute; est d&eacute;finie individuellement pour chaque canal, une zone de confidentialit&eacute; d&eacute;finie sur CAN1 sera seulement appliqu&eacute;e &agrave; CAN1 m&ecirc;me si la m&ecirc;me zone de confidentialit&eacute; existe sur CAN2.</p>
             <p ng-if="MultiImager">Le canal 1 est un canal de diffusion en direct alors que les canaux 2 et 3 sont des canaux de diffusion des vidéos PTZ numériques.  Vous ne pouvez accéder à [Configuration de la vidéo] que sur le canal 1.</p> 
             <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;Configuration de la vidéo&nbsp;” peut être activé sur le canal 1 uniquement.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -33,22 +33,22 @@
                 <li>Canal&nbsp;7&nbsp;: Affiche la vid&eacute;o en bas &agrave; gauche de la vue Quad du canal&nbsp;4.</li>
                 <li>Canal&nbsp;8&nbsp;: Affiche la vid&eacute;o en bas &agrave; droite de la vue Quad du canal&nbsp;4.</li>
             </ul> -->
-            <p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
-            <p ng-if="panoramicSupport || !ThermalModeOptions">Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher le r&eacute;sum&eacute; global de chaque canal.</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
+            <p ng-if="panoramicSupport || !ThermalModeOptions" class="sptUseInfo">Cliquez sur le bouton <strong class="UI">[Info]</strong> pour afficher le r&eacute;sum&eacute; global de chaque canal.</p>
             <!-- <p>Si vous s&eacute;lectionnez un autre canal sans appliquer les modifications apport&eacute;es au r&eacute;glage, un message d&rsquo;alarme s&rsquo;affiche.</p> -->
         </div>
 	</div>
 </div> 
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>Ajuster le PTZ</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Vous pouvez ajuster les actions de panoramique, de mosa&iuml;que et de zoom de la cam&eacute;ra.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -63,8 +63,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="PrivacyMaskSupport">
-<div class="wn5-setup-section" ng-if="PrivacyMaskSupport">
+<hr class="wn5-setup-hr sptPrivacyMask" ng-if="PrivacyMaskSupport">
+<div class="wn5-setup-section sptPrivacyMask" ng-if="PrivacyMaskSupport">
 	<div class="wn5-setup-section-heading">
 		<h2>Zone de confidentialit&eacute;</h2>
 	</div>
@@ -72,24 +72,24 @@
 		<div class="wn5-setup-section-article-content">
 		    <p>Pour &eacute;viter toute possibilit&eacute; d&rsquo;atteinte &agrave; la vie priv&eacute;e dans l&rsquo;image de la cam&eacute;ra, vous pouvez d&eacute;finir une zone de confidentialit&eacute;. Apr&egrave;s avoir s&eacute;lectionn&eacute; <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong>. Pour d&eacute;sactiver une zone de confidentialit&eacute;, d&eacute;s&eacute;lectionnez <strong class="UI">[Activer la zone de confidentialit&eacute;]</strong>. Vous pouvez v&eacute;rifier l&rsquo;image compl&egrave;te de la cam&eacute;ra sans rien cacher pour des raisons de confidentialit&eacute;. Les zones de confidentialit&eacute; d&eacute;finies ne sont pas supprim&eacute;es et peuvent &ecirc;tre v&eacute;rifi&eacute;es dans la liste des zones de confidentialit&eacute;.</p>
         </div>
-        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+        <div class="wn5-online-help-info sptLDCIncompatible" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 			<ul>				
 				<li>Lorsque <strong class="UI">[Activer la zone de confidentialité]</strong> est sélectionné, la fonction LDC de l'appareil photo est désactivée. Vous pouvez vérifier la fonction LDC dans <strong class="UI">[Video & Audio]</strong>&gt;<strong class="UI">[<a class="wn5-online-help-link" href="cameraSetup.html" ng-href="#/help/videoAudio_cameraSetup">Réglage caméra</a>]</strong>&gt;<strong class="UI">[Spécial]</strong>.
 				 </li>
 			</ul>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="PrivacyMaskPattern">
+		<div class="wn5-setup-section-article-content sptPrivacyMaskPattern" ng-if="PrivacyMaskPattern">
 			<h3>Mod&egrave;le</h3>
             <p>S&eacute;lectionnez le mod&egrave;le de mosa&iuml;que &agrave; appliquer &agrave; une zone de confidentialit&eacute;. S&eacute;lectionnez <strong class="UI">[</strong><strong>Solid</strong><strong class="UI">]</strong> pour appliquer le jeu de couleurs dans la fen&ecirc;tre de la zone de confidentialit&eacute;. Si vous s&eacute;lectionnez le mod&egrave;le, il sera appliqu&eacute; &agrave; toutes les zones.</p>
 		</div>
-		<div class="wn5-online-help-info" ng-if="GlobalMaskPatternSupport">
+		<div class="wn5-online-help-info sptGlobalMaskPattern" ng-if="GlobalMaskPatternSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 			<ul>				
 				<li>Toute modification apportée à l’option Modèle sera appliquée à tous les canaux simultanément.</li>
 			</ul>
 		</div> 
-	        <div class="wn5-online-help-action" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+	        <div class="wn5-online-help-action sptPTZPrivacy" ng-if="PTZModel && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (cam&eacute;ra PTZ)</h4>
             <ol>
 				
@@ -106,7 +106,7 @@
                 <li>Une nouvelle zone de confidentialit&eacute; est ajout&eacute;e &agrave; la liste des zones de confidentialit&eacute;. La zone de confidentialit&eacute; &agrave; laquelle le seuil de zoom est appliqu&eacute; sera marqu&eacute;e comme «&nbsp;[Zoom]&nbsp;» dans la liste des zones de confidentialit&eacute;. La couleur d&eacute;finie dans l&rsquo;&eacute;cran d&rsquo;image de l&rsquo;appareil photo est utilis&eacute;e pour afficher la zone de confidentialit&eacute;.</li>
             </ol><!-- <p>'줌 표시 제한'은 설정한 줌 배율보다 영상 화면을 더 축소하면 영상에서&nbsp;프라이버시 영역이 일시적으로 제거되는 기능입니다. 줌을 확대하면 프라이버시 영역이 영상에 다시 나타납니다. 기준이 되는 줌 배율은 [줌 배율 표시 제한 설정] 창에서 설정할 수 있습니다. &nbsp;</p> --></div>
 		
-        <div class="wn5-online-help-action" ng-if="Zoom && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+        <div class="wn5-online-help-action sptZoomPrivacy" ng-if="Zoom && PrivacyMaskRectangle && !PrivacyMasGlobalColor">
             <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (cam&eacute;ra avec zoom)</h4>
             <ol>
 				
@@ -123,7 +123,7 @@
             </ol>
         </div>
 
-        <div class="wn5-online-help-action" ng-if="!PrivacyMaskRectangle && !PrivacyMasGlobalColor">
+        <div class="wn5-online-help-action sptOtherModelPrivacy" ng-if="!PrivacyMaskRectangle && !PrivacyMasGlobalColor">
                 <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute; (sauf pour un zoom ou une cam&eacute;ra PTZ)</h4>
                 <ol>
                     
@@ -138,7 +138,7 @@
                 </ol>
             </div>
  
-            <div class="wn5-online-help-action" ng-if="PrivacyMasGlobalColor">
+            <div class="wn5-online-help-action sptPrivacyMaskGlobalColor" ng-if="PrivacyMasGlobalColor">
                     <h4>D&eacute;finition d&rsquo;une zone de confidentialit&eacute;</h4>
                     <ol>
                         
@@ -168,9 +168,9 @@
 				<li>Cliquez sur le bouton <strong class="UI">[Effacer]</strong>. La zone s&eacute;lectionn&eacute;e est alors effac&eacute;e.</li>
 			</ol>
 		</div>
-		       <!-- <div class="wn5-online-help-action" ng-if="PTZModel">
+		       <!-- <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>R&eacute;glage du PTZ</h4>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">Dans <strong class="UI"><a href="#channel">[S&eacute;lection d&rsquo;un canal]</a></strong>, s&eacute;lectionnez le canal <strong class="UI">[PTZ]</strong>. Le panneau de secousses du PTZ s&rsquo;affiche alors.</p>
             <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p>
             <ul>
                 <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
@@ -182,18 +182,18 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="FlipMirrorSupport">
+<hr class="wn5-setup-hr sptFlipMirror" ng-if="FlipMirrorSupport">
 
-<div class="wn5-setup-section" ng-if="FlipMirrorSupport">
+<div class="wn5-setup-section sptFlipMirror" ng-if="FlipMirrorSupport">
 	<div class="wn5-setup-section-heading">
 		<h2>Rotation vidéo</h2>
 	</div>
 	<div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Si l&rsquo;&eacute;cran est affich&eacute; &agrave; l&rsquo;envers apr&egrave;s l&rsquo;installation de la cam&eacute;ra, vous pouvez le corriger en utilisant les fonctions du mode flip et du mode miroir.</p>
-            <p ng-if="HallwayView">La fonction <strong class="UI">[Affichage Hallway]</strong> offre une longue vue verticale de l&rsquo;&eacute;cran, ce qui permet &agrave; l&rsquo;utilisateur d&rsquo;utiliser la zone de surveillance plus efficacement dans un couloir ou une ruelle.</p>
+            <p ng-if="HallwayView" class="sptHallwayView">La fonction <strong class="UI">[Affichage Hallway]</strong> offre une longue vue verticale de l&rsquo;&eacute;cran, ce qui permet &agrave; l&rsquo;utilisateur d&rsquo;utiliser la zone de surveillance plus efficacement dans un couloir ou une ruelle.</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="Statistics">
+		<div class="wn5-online-help-info sptStatistics" ng-if="Statistics">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
                     <ul>
                         <li>Si vous modifiez le param&egrave;tre de rotation vid&eacute;o, la vid&eacute;o sera retourn&eacute;e dans quatre directions ou chang&eacute;e. Pour vous aider &agrave; analyser la vid&eacute;o modifi&eacute;e et &agrave; collecter les statistiques, modifiez les param&egrave;tres d&rsquo;analyse et de statistiques. Les r&eacute;glages peuvent &ecirc;tre modifi&eacute;s dans les menus [Analytique] et [Statistiques].</li>
@@ -205,32 +205,32 @@
                         <li>Si vous modifiez les param&egrave;tres de rotation vid&eacute;o, l&rsquo;&eacute;cran vid&eacute;o sera retourn&eacute; dans quatre directions ou modifi&eacute;. Pour vous aider &agrave; analyser la vid&eacute;o modifi&eacute;e, modifiez les param&egrave;tres d&rsquo;analyse dans le menu[Analytics].</li>
                     </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
+		<div class="wn5-setup-section-article-content sptMirror" ng-if="!PTZModel && !PTRZModel">
 			
 			<h3>Retourner</h3>
 			<p>Vous pouvez retourner l&rsquo;image de la cam&eacute;ra &agrave; l&rsquo;envers. Pour retourner l&rsquo;image de la cam&eacute;ra, s&eacute;lectionnez <strong class="UI">[Activé]</strong>.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="!PTZModel && !PTRZModel">
+		<div class="wn5-setup-section-article-content sptMirror" ng-if="!PTZModel && !PTRZModel">
 			<h3>Miroir</h3>
 			<p>Vous pouvez faire un miroir de l&rsquo;image de la cam&eacute;ra. Pour refl&eacute;ter l&rsquo;image de la cam&eacute;ra, s&eacute;lectionnez <strong class="UI">[Activé]</strong>.</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel || PTRZModel">
+		<div class="wn5-setup-section-article-content sptMirrorAll" ng-if="PTZModel || PTRZModel">
 			<h3>Retourner/Miroir</h3>
 			<p>S&eacute;lectionnez <strong class="UI">[Activé]</strong> pour inverser la sortie de la cam&eacute;ra horizontalement ou verticalement.</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel && AutoFlip">
+		<div class="wn5-setup-section-article-content sptDigitalMirror" ng-if="PTZModel && AutoFlip">
 			<h3>Retournement num&eacute;rique</h3>
             <p>Lorsque vous changez l&rsquo;emplacement de la cam&eacute;ra en utilisant les fonctions PTZ, l&rsquo;image de la cam&eacute;ra peut &ecirc;tre retourn&eacute;e dans quatre directions. Maintenant, si vous voulez inverser l&rsquo;image automatiquement, de sorte que vous puissiez voir l&rsquo;image naturelle, s&eacute;lectionnez&nbsp;<strong class="UI">[Activé]</strong>.</p>
 		</div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="HallwayView">
+        <div class="wn5-setup-section-article-content sptHallwayView" ng-if="HallwayView">
             <h3>Affichage Hallway</h3>
             <p>En faisant tourner l&rsquo;image de la cam&eacute;ra dans un environnement o&ugrave; une cam&eacute;ra g&eacute;n&eacute;rale ne peut pas surveiller correctement les all&eacute;es &eacute;troites ou les couloirs, vous pouvez agrandir les zones de surveillance verticale. Vous pouvez la faire pivoter de 90 degr&eacute;s (sens horaire) ou 270 degr&eacute;s (sens horaire) ou la r&eacute;gler &agrave; 0 degr&eacute; pour revenir &agrave; l&rsquo;image originale.</p>
-			<p ng-if="MaxChannel > 1 && HandoverCalibration">Seulement si vous s&eacute;lectionnez un canal de cam&eacute;ra fixe dans <strong class="UI"><a href="#channel">[S&eacute;lectionner un canal]</a></strong>, vous pouvez r&eacute;gler la fonction «&nbsp;Affichage Hallway&nbsp;».</p>
+			<p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">Seulement si vous s&eacute;lectionnez un canal de cam&eacute;ra fixe dans <strong class="UI"><a href="#channel">[S&eacute;lectionner un canal]</a></strong>, vous pouvez r&eacute;gler la fonction «&nbsp;Affichage Hallway&nbsp;».</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="HallwayView">
+		<div class="wn5-online-help-info sptHallwayView" ng-if="HallwayView">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 				<ul>
 					
@@ -239,11 +239,11 @@
 				</ul>
 		</div>
 		
-						<div class="wn5-setup-section-article-content" ng-if="FisheyeLens">
+						<div class="wn5-setup-section-article-content sptFisheyeLens" ng-if="FisheyeLens">
 			<h3>Mode de montage de la cam&eacute;ra</h3>
             <p>S&eacute;lectionnez le mode de montage de la cam&eacute;ra. S&eacute;lectionnez <strong class="UI">[Mur]</strong> lorsque la cam&eacute;ra est install&eacute;e au mur, ou <strong class="UI">[Plafond]</strong> lorsqu&rsquo;elle est mont&eacute;e au plafond.</p>
 		</div>
-        <div class="wn5-online-help-info" ng-if="FisheyeLens">
+        <div class="wn5-online-help-info sptFisheyeLens" ng-if="FisheyeLens">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
             <ul>
                 <li ng-if="Statistics">Si vous changez le mode de montage de la cam&eacute;ra, tous les r&eacute;glages du profil dans&nbsp;<strong class="UI">[Vid&eacute;o profil]</strong> sont r&eacute;initialis&eacute;s et la cam&eacute;ra est red&eacute;marr&eacute;e. En outre, lorsque l&rsquo;&eacute;cran est modifi&eacute;, vous devez modifier les param&egrave;tres d&rsquo;analyse vid&eacute;o et de statistiques en cons&eacute;quence. Le r&eacute;glage peut &ecirc;tre modifi&eacute; dans <strong class="UI">[Analyse]</strong> et <strong class="UI">[Statistiques]</strong>.</li>
@@ -257,8 +257,8 @@
 
 <!-- 변경점 이 후 분기 코드 수정 --> 
 <!-- 삭제 -->
-<!-- <hr class="wn5-setup-hr" ng-if="SupportAutoImageAlignment">
-<div class="wn5-setup-section" ng-if="SupportAutoImageAlignment">
+<!-- <hr class="wn5-setup-hr sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
+<div class="wn5-setup-section sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 	<div class="wn5-setup-section-heading">
 		<h2>Vid&eacute;o analogique</h2>
 	</div>
@@ -389,7 +389,7 @@
 		<div class="wn5-setup-section-article-content">
             <p>Sélectionne la méthode d’affichage de la sortie vidéo de la caméra. </p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="UsbConfigEnable">
+		<div class="wn5-setup-section-article-content sptUsbConfigEnable" ng-if="UsbConfigEnable">
             <h3>USB</h3>
             <p>Pour afficher une vidéo de caméra à l’aide d’un USB, cliquez sur <strong class="UI">[Activer]</strong>.</p>
             <p>En utilisant le dongle Wi-Fi et l’application pour smartphone de Hanwha Techwin, vous pouvez accéder à votre caméra via Wi-Fi. C’est utile lorsque vous essayez d’installer une caméra réseau pour la première fois ou de modifier le champ de vision angulaire ou la position de votre caméra, car vous pouvez voir l’écran de la caméra sur votre smartphone sans avoir à vous procurer un moniteur supplémentaire pour vérifier l’installation.</p>

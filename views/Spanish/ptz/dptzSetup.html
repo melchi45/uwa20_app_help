@@ -1,35 +1,59 @@
 ﻿<h1 class="wn5-setup-main-title">Configuraci&oacute;n DPTZ</h1>
 
 <div class="wn5-setup-section">
-	<p>Puede configurar las vistas de c&aacute;mara para moverse despu&eacute;s de que se ejecute el zoom digital, en lugar de hacer que cambie la vista de la c&aacute;mara f&iacute;sicamente moviendo la c&aacute;mara hacia arriba y hacia abajo (inclinaci&oacute;n) o hacia la izquierda y la derecha (panor&aacute;mica). Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.  </p>
-    <div class="wn5-online-help-info" ng-if="!objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment">
-    <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
-    <ul>
-        
-		<li>Se debe seleccionar <strong class="UI">[Perfil PTZ Digital]</strong> desde <strong class="UI">[Perfil de v&iacute;deo]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype" ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Tipo de perfil]</strong></a> con el fin de establecer PTZ digital. </li>
-		<!-- <li>El campo de visi&oacute;n angular de Vista en vivo 3M es m&aacute;s amplio que el modificado en la pantalla de vista previa.</li> -->
-       <!--  <li ng-if="FixedProfileCodecChange">Si est&aacute; conectado al visor web a trav&eacute;s de Internet Explorer, la funci&oacute;n PTZ digital, s&oacute;lo se puede utilizar despu&eacute;s de la instalaci&oacute;n de un plugin. Para instalar el plugin, haga clic en el bot&oacute;n de plugin en la parte superior derecha de la pantalla <strong class="UI">[En vivo]</strong> o en la pantalla <strong class="UI">[Grabar reproducci&oacute;n]</strong>. </li>
+    <p>Puede configurar las vistas de c&aacute;mara para moverse despu&eacute;s de que se ejecute el zoom digital, en
+        lugar de hacer que cambie la vista de la c&aacute;mara f&iacute;sicamente moviendo la c&aacute;mara hacia arriba
+        y hacia abajo (inclinaci&oacute;n) o hacia la izquierda y la derecha (panor&aacute;mica). Cuando haya completado
+        el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la
+        p&aacute;gina. </p>
+    <div class="wn5-online-help-info sptDigitalPTZ"
+        ng-if="!objectDetectionSupport && !SupportChannelExpansionFeature && !SupportAutoImageAlignment && !ParkingDetectionSupport">
+        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+        <ul>
+
+            <li>Se debe seleccionar <strong class="UI">[Perfil PTZ Digital]</strong> desde <strong class="UI">[Perfil de
+                    v&iacute;deo]</strong>&gt;<a class="wn5-online-help-link" href="../basic/profile.html#profiletype"
+                    ng-href="#/basic/profile.html#profiletype"><strong class="UI">[Tipo de perfil]</strong></a> con el
+                fin de establecer PTZ digital. </li>
+            <!-- <li>El campo de visi&oacute;n angular de Vista en vivo 3M es m&aacute;s amplio que el modificado en la pantalla de vista previa.</li> -->
+            <!--  <li ng-if="FixedProfileCodecChange">Si est&aacute; conectado al visor web a trav&eacute;s de Internet Explorer, la funci&oacute;n PTZ digital, s&oacute;lo se puede utilizar despu&eacute;s de la instalaci&oacute;n de un plugin. Para instalar el plugin, haga clic en el bot&oacute;n de plugin en la parte superior derecha de la pantalla <strong class="UI">[En vivo]</strong> o en la pantalla <strong class="UI">[Grabar reproducci&oacute;n]</strong>. </li>
 		<li ng-if="FixedProfileCodecChange">Despu&eacute;s de la instalaci&oacute;n del plugin, se puede utilizar la funci&oacute;n PTZ digital sin restricci&oacute;n s&oacute;lo cuando la resoluci&oacute;n del navegador web sea 1024 o superior.</li> -->
-    </ul>
-	
-</div>
+        </ul>
+
+    </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
-            <div class="wn5-setup-section-heading">
-                <h2>Seleccionar canal</h2>
-            </div>
-            <div class="wn5-setup-section-article">
+<hr class="wn5-setup-hr sptChannelSelector"
+    ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
+<div class="wn5-setup-section sptChannelSelector"
+    ng-if="MaxChannel > 1 && (objectDetectionSupport || SupportAutoImageAlignment)">
+    <div class="wn5-setup-section-heading">
+        <h2>Seleccionar canal</h2>
+    </div>
+    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-                <p>Tras seleccionar su canal de cámara, puede definir la configuración detallada de PTZ para cada canal.</p>
-                <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [PTZ digital] solo puede configurarse en el canal 2.</p>
-            <p ng-if="SupportAutoImageAlignment">Después de seleccionar su canal de cámara, puede configurar los detalles de PTZ para cada canal. </p>
-            <p ng-if="SupportAutoImageAlignment">Las configuraciones de preajuste establecidas en el men&uacute; PTZ digital se pueden ver en la pantalla directo.</p>
-            <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
-            <p ng-if="SupportAutoImageAlignment">La “Configuración DPTZ” solo se puede configurar en Canal6 y Canal7.</p>
-            <p ng-if="MultiImager">El Canal 1 es un canal de transmisión en directo, mientras que los Canales 2 y 3 son canales que muestran un vídeo PTZ digital. [PTZ digital] puede ser definida solamente en los canales 2 y 3.</p>
-
+            <p>Tras seleccionar su canal de cámara, puede definir la configuración detallada de PTZ para cada canal.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">El canal 1 muestra imágenes en directo y el
+                canal 2, vídeo PTZ digital. [PTZ digital] solo puede configurarse en el canal 2.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Después de seleccionar su canal de
+                cámara, puede configurar los detalles de PTZ para cada canal. </p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Las configuraciones de preajuste
+                establecidas en el men&uacute; PTZ digital se pueden ver en la pantalla directo.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Canal2 a Canal5 son videos de
+                c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias
+                pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos
+                de v&iacute;deo Canal1 con PTZ digital aplicado.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">La “Configuración DPTZ” solo se puede
+                configurar en Canal6 y Canal7.</p>
+            <p ng-if="MultiImager">El Canal 1 es un canal de transmisión en directo, mientras que los Canales 2 y 3 son
+                canales que muestran un vídeo PTZ digital. [PTZ digital] puede ser definida solamente en los canales 2 y
+                3.</p>
+            <p ng-if="ParkingDetectionSupport">El canal 1 muestra la transmisi&oacute;n completa desde la c&aacute;mara.
+                Los canales 2 a 5 muestran la vista de cuadrante de todo la transmisi&oacute;n. El canal 2 muestra la
+                secci&oacute;n superior izquierda de la transmisi&oacute;n; el canal 3, la superior derecha de la
+                transmisi&oacute;n; el canal 4, la parte inferior izquierda de la transmisi&oacute;n; y el canal 5, la
+                secci&oacute;n inferior derecha de la transmisi&oacute;n. El men&uacute; [PTZ digital] solo se puede
+                configurar en los canales 2 a 5.</p>
             <!-- <p ng-if="SupportChannelExpansionFeature">Después de seleccionar su canal de cámara, puede configurar los detalles de PTZ para cada canal.</p>
             <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. Solo se pueden configurar los canales 4 a 8.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -47,7 +71,7 @@
 </div>
 
 <hr class="wn5-setup-hr">
-<div class="wn5-setup-section"> 
+<div class="wn5-setup-section">
     <div class="wn5-setup-section-heading">
         <h2>Ajuste del PTZ</h2>
     </div>
@@ -55,22 +79,33 @@
         <div class="wn5-setup-section-article-content">
             <p>Puede ajustar las acciones de panor&aacute;mica, mosaico y zoom de la c&aacute;mara.</p>
         </div>
-			
+
         <div class="wn5-online-help-action">
-    	   <h4><a name="ptzcontrol"></a>Ajuste del PTZ</h4>
+            <h4><a name="ptzcontrol"></a>Ajuste del PTZ</h4>
             <ul>
-                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el rat&oacute;n, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
-                <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
-                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel">Mueva el enfoque cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+                <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el rat&oacute;n, la
+                    c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
+                <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span
+                        class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span
+                        class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel" class="sptFocus">Mueva el enfoque cercano
+                    haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo
+                    clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
             </ul>
         </div>
-        <div class="wn5-online-help-action" ng-if="objectDetectionSupport">
+        <div class="wn5-online-help-action sptObjectDetection" ng-if="objectDetectionSupport">
             <h4>Activar seguimiento automático</h4>
-            <p>La función de seguimiento automático se utiliza para el seguimiento automático del movimiento de los objetos detectados. Puede configurar las cámaras AI para que detecten y rastreen automáticamente solo los objetos especificados.</p>
+            <p>La función de seguimiento automático se utiliza para el seguimiento automático del movimiento de los
+                objetos detectados. Puede configurar las cámaras AI para que detecten y rastreen automáticamente solo
+                los objetos especificados.</p>
             <ol>
-                <li>Seleccione el tipo de objeto del que quiere hacer un seguimiento en la columna <strong class="UI">[Objeto]</strong>.</li>
-                <li>Haga clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> para que la cámara siga automáticamente los objetos del tipo indicado en <strong class="UI">[Objeto]</strong> cuando los detecte.</li>
-                <li>Para detener el seguimiento automático, vuelva a hacer clic en el icono de seguimiento automático <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>.</li>
+                <li>Seleccione el tipo de objeto del que quiere hacer un seguimiento en la columna <strong
+                        class="UI">[Objeto]</strong>.</li>
+                <li>Haga clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span> para que la cámara
+                    siga automáticamente los objetos del tipo indicado en <strong class="UI">[Objeto]</strong> cuando
+                    los detecte.</li>
+                <li>Para detener el seguimiento automático, vuelva a hacer clic en el icono de seguimiento automático
+                    <span class="tui tui-ch-live-ptz-tracking-auto-on active"></span>.</li>
             </ol>
         </div>
     </div>
@@ -84,64 +119,105 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Preajuste hace referencia al ajuste de las vistas de c&aacute;mara. Se pueden ajustar 128 memorias. Si utiliza Internet Explorer como navegador, puede utilizar la funci&oacute;n DPTZ s&oacute;lo despu&eacute;s de instalar un plug-in de c&aacute;mara.</p>
+            <p>Preajuste hace referencia al ajuste de las vistas de c&aacute;mara. Se pueden ajustar 128 memorias. Si
+                utiliza Internet Explorer como navegador, puede utilizar la funci&oacute;n DPTZ s&oacute;lo
+                despu&eacute;s de instalar un plug-in de c&aacute;mara.</p>
         </div>
         <div class="wn5-online-help-action">
-    	   <h4>Configuraci&oacute;n de un preajuste</h4>
-    		<ol>
-                <li ng-if="!SupportAutoImageAlignment">Ampl&iacute;e la imagen de la c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ,</li>
-                <li ng-if="SupportAutoImageAlignment">En la pantalla de control PTZ, </li>
+            <h4>Configuraci&oacute;n de un preajuste</h4>
+            <ol>
+                <li ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">Ampl&iacute;e la imagen de la
+                    c&aacute;mara haciendo clic en el bot&oacute;n <span class="tui tui-wn5-ptz-plus"></span> en la
+                    pantalla de control PTZ,</li>
+                <li ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">En la pantalla de control PTZ, </li>
                 <ul>
-                    <li>Ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n<span class="tui tui-wn5-ptz-handle"></span>.</li>
-                    <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                    <li>Ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el rat&oacute;n<span
+                            class="tui tui-wn5-ptz-handle"></span>.</li>
+                    <li>Seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span
+                            class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla o haga clic en el icono <span
+                            class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
                 </ul>
-    			<li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
-    			<li>Introduzca el nombre preajuste relevante en <strong class="UI">[Nombre]</strong>.</li>
+                <li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
+                <li>Introduzca el nombre preajuste relevante en <strong class="UI">[Nombre]</strong>.</li>
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong>.</li>
             </ol>
-            <p ng-if="DigitalAutoTracking">Al hacer clic en el icono <span class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo, el seguimiento autom&aacute;tico se detendr&aacute;.</p>
-    	</div>
+            <p ng-if="DigitalAutoTracking" class="sptDigitalAutoTracking">Al hacer clic en el icono <span
+                    class="tui tui-ch-live-ptz-tracking-auto-off"></span>, se realizar&aacute; un seguimiento de un
+                objeto en movimiento en la pantalla autom&aacute;ticamente. Al hacer clic en el bot&oacute;n de nuevo,
+                el seguimiento autom&aacute;tico se detendr&aacute;.</p>
+        </div>
         <div class="wn5-online-help-action">
-    	   <h4>Ir a un predefinido</h4>
-    		<ol>
+            <h4>Ir a un predefinido</h4>
+            <ol>
                 <li>Seleccione un n&uacute;mero de preajuste de <strong class="UI">[N&uacute;mero]</strong>.</li>
-    			<li>Al hacer clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, las vistas de c&aacute;mara se mover&aacute;n a la ubicaci&oacute;n configurada.</li>
-    		</ol>
-    	</div>
+                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Ir]</strong>, las vistas de c&aacute;mara se
+                    mover&aacute;n a la ubicaci&oacute;n configurada.</li>
+            </ol>
+        </div>
         <div class="wn5-online-help-action">
-    	   <h4>Eliminaci&oacute;n de un preajuste</h4>
-    		<ol><li>Seleccione el n&uacute;mero de preajuste que desea borrar de <strong class="UI">[N&uacute;mero]</strong>.</li>
-                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>, se borrar&aacute; el preajuste.</li>
-    		</ol>
+            <h4>Eliminaci&oacute;n de un preajuste</h4>
+            <ol>
+                <li>Seleccione el n&uacute;mero de preajuste que desea borrar de <strong
+                        class="UI">[N&uacute;mero]</strong>.</li>
+                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>, se borrar&aacute; el
+                    preajuste.</li>
+            </ol>
         </div>
 
-        <div class="wn5-online-help-action" ng-if="FisheyeLens">
-                <h4>Ajuste de la posici&oacute;n de inicio</h4>
-                <ol>
-                    <li>Expanda la imagen de la c&aacute;mara haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ:</li>
-                    <ul>
-                        <li>ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el icono <span class="tui tui-wn5-ptz-handle"></span>.</li>
-                        <li>seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla, o en el icono <span class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
-                    </ul>
-                    <li>Haga clic en el bot&oacute;n <strong class="UI">[Establecer inicio]</strong>.</li>
-                </ol>
-            </div>
+        <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
+            <h4>Ajuste de la posici&oacute;n de inicio</h4>
+            <ol>
+                <li>Expanda la imagen de la c&aacute;mara haciendo clic en el icono <span
+                        class="tui tui-wn5-ptz-plus"></span> en la pantalla de control PTZ:</li>
+                <ul>
+                    <li>ajuste las vistas de la c&aacute;mara haciendo clic y arrastrando el icono <span
+                            class="tui tui-wn5-ptz-handle"></span>.</li>
+                    <li>seleccione una ampliaci&oacute;n de la imagen haciendo clic en el icono <span
+                            class="tui tui-wn5-ptz-plus"></span> para ampliar la pantalla, o en el icono <span
+                            class="tui tui-wn5-ptz-minus"></span> para alejar la pantalla desde la barra de zoom.</li>
+                    <li ng-if="(PanTiltOnlyModel && ContinousFocus) || PTZModel" class="sptFocus">Mueva el enfoque
+                        cercano haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco
+                        lejano haciendo clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
+                </ul>
+                <li>Haga clic en el bot&oacute;n <strong class="UI">[Establecer inicio]</strong>.</li>
+            </ol>
+        </div>
 
-            <div class="wn5-online-help-action" ng-if="FisheyeLens">
-                    <h4>Navegaci&oacute;n a la posici&oacute;n de inicio</h4>
-                    <ol>
-                        <li>Haga clic en el bot&oacute;n <strong class="UI">[Ir a Inicio]</strong>.</li>
-                    </ol>
-                </div>
+        <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
+            <h4>Navegaci&oacute;n a la posici&oacute;n de inicio</h4>
+            <ol>
+                <li>Haga clic en el bot&oacute;n <strong class="UI">[Ir a Inicio]</strong>.</li>
+            </ol>
+        </div>
+        <div class="wn5-online-help-action" ng-if="isDigitalRTZ">
+            <h4>Uso de Punto directo</h4>
+            <p>Use la funci&oacute;n [Punto directo] para encontrar la ubicaci&oacute;n de las vistas divididas en toda
+                la transmisi&oacute;n de un solo vistazo y moverse r&aacute;pida y f&aacute;cilmente a la vista deseada.
+            </p>
+            <p>Las ubicaciones de las vistas divididas se muestran como Q1, Q2, Q3 y Q4 en toda la transmisi&oacute;n.
+                Q1 representa la secci&oacute;n superior izquierda; Q2, la superior derecha; Q3, la inferior izquierda;
+                y Q4,la inferior derecha.</p>
+            <p>Para reubicar la vista de la transmisi&oacute;n superior izquierdo (Q1),</p>
+            <ol>
+                <li>haga clic en el bot&oacute;n <strong class="UI">[Punto directo]</strong>. Al hacerlo, se
+                    mostrar&aacute; la transmisi&oacute;n completa y los iconos que representan la ubicaci&oacute;n
+                    actual de cada vista en la vista cu&aacute;druple.</li>
+                <li>Seleccione el icono Q1 de la pantalla de transmisi&oacute;n completa y mu&eacute;valo a la
+                    ubicaci&oacute;n deseada. La posici&oacute;n de la vista superior izquierda cambiar&aacute; en
+                    consecuencia.&nbsp;</li>
+            </ol>
+            <p>Las vistas divididas est&aacute;n invertidas verticalmente.</p>
+        </div>
+        <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
+            <h4>Selecci&oacute;n de una pantalla dividida</h4>
+            <ol>
+                <li>Seleccione un n&uacute;mero en el <strong class="UI">[Cuadrante]</strong>. 1 es la parte superior
+                    izquierda de la vista dividida en 4, 2 es la parte superior derecha, 3 es la parte inferior
+                    izquierda y 4 la parte inferior derecha.</li>
+            </ol>
+        </div>
 
-                <div class="wn5-online-help-action" ng-if="FisheyeLens">
-                        <h4>Selecci&oacute;n de una pantalla dividida</h4>
-                        <ol>
-                            <li>Seleccione un n&uacute;mero en el <strong class="UI">[Cuadrante]</strong>. 1 es la parte superior izquierda de la vista dividida en 4, 2 es la parte superior derecha, 3 es la parte inferior izquierda y 4 la parte inferior derecha.</li>
-                        </ol>
-                    </div>
-            
-            <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
+        <!-- <div class="wn5-online-help-action" ng-if="(PTZModel || isDigitalPTZ) && !FisheyeLens && !SupportAutoImageAlignment && !objectDetectionSupport">
                     <h4>Activar seguimiento automático</h4>
                     <p>La función de seguimiento automático se utiliza para el seguimiento automático de objetos detectados en la pantalla.</p>
                     <ol>
@@ -159,30 +235,38 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p>Puede agrupar un n&uacute;mero de predefinidos y acceder a predefinidos colocados en un grupo secuencialmente.</p>
+            <p>Puede agrupar un n&uacute;mero de predefinidos y acceder a predefinidos colocados en un grupo
+                secuencialmente.</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>Ajustando un grupo</h4>
             <ol>
                 <li>Seleccione un n&uacute;mero de grupo de <strong class="UI">[N&deg; de grupo.]</strong>.</li>
-                <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong> en <strong class="UI">[Lista de preajustes]</strong>. Cuando se muestre la lista de predefinidos, seleccione un <strong class="UI">[N&deg; de predef.]</strong> e introduzca la cantidad de tiempo (en segundos) para permanecer en el preajuste relevante en <strong class="UI">[Tiempo de permanencia]</strong>.</li>
+                <li>Haga clic en el bot&oacute;n <strong class="UI">[Agregar]</strong> en <strong class="UI">[Lista de
+                        preajustes]</strong>. Cuando se muestre la lista de predefinidos, seleccione un <strong
+                        class="UI">[N&deg; de predef.]</strong> e introduzca la cantidad de tiempo (en segundos) para
+                    permanecer en el preajuste relevante en <strong class="UI">[Tiempo de permanencia]</strong>.</li>
                 <li>Introduzca dos o m&aacute;s n&uacute;meros de predefinidos repitiendo el paso n&uacute;mero 2.</li>
-				<li>Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte inferior de la p&aacute;gina.</li>
+                <li>Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong>
+                    en la parte inferior de la p&aacute;gina.</li>
             </ol>
         </div>
         <div class="wn5-online-help-action">
             <h4>Ejecutando un grupo</h4>
             <ol>
                 <li>Seleccione el grupo que desee ejecutar desde <strong class="UI">[N&deg; de grupo]</strong>.</li>
-                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Iniciar]</strong>, los predefinidos para el grupo correspondiente cambiar&aacute;n de acuerdo con el tiempo de permanencia.</li>
-				<li>Al hacer clic en el bot&oacute;n <strong class="UI">[Detener]</strong>, los predefinidos ejecut&aacute;ndose como grupo se detendr&aacute;n.</li>
+                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Iniciar]</strong>, los predefinidos para el
+                    grupo correspondiente cambiar&aacute;n de acuerdo con el tiempo de permanencia.</li>
+                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Detener]</strong>, los predefinidos
+                    ejecut&aacute;ndose como grupo se detendr&aacute;n.</li>
             </ol>
         </div>
         <div class="wn5-online-help-action">
             <h4>Eliminaci&oacute;n de un grupo</h4>
             <ol>
                 <li>Seleccione el grupo que desee eliminar desde <strong class="UI">[N&deg; de grupo]</strong>.</li>
-                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>, se borrar&aacute; el grupo.</li>
+                <li>Al hacer clic en el bot&oacute;n <strong class="UI">[Eliminar]</strong>, se borrar&aacute; el grupo.
+                </li>
             </ol>
         </div>
     </div>

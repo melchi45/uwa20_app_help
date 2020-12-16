@@ -49,8 +49,8 @@
                 <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 입력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
                 <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 입력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람으로 인식하고 알람 입력 이벤트를 발생시킵니다.</li>
             </ul> --><ul>
-                <li ng-if="AlarmInputNormalOpen"><strong class="UI">N.O. (Ouverture normale)</strong>&nbsp;: Le capteur d&rsquo;entr&eacute;e d&rsquo;alerte est ouvert par d&eacute;faut&nbsp;; lorsqu&rsquo;il est ferm&eacute;, un &eacute;v&eacute;nement d&rsquo;entr&eacute;e d&rsquo;alerte est cr&eacute;&eacute;.</li>
-                <li ng-if="AlarmInputNormalClose"><strong class="UI">N.C. (Fermeture normale)</strong>&nbsp;: Le capteur d&apos;entr&eacute;e d&apos;alerte est ferm&eacute; par d&eacute;faut et lorsqu&apos;il est ouvert, un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;.</li>
+                <li ng-if="AlarmInputNormalOpen" class="sptAlarmOutNO"><strong class="UI">N.O. (Ouverture normale)</strong>&nbsp;: Le capteur d&rsquo;entr&eacute;e d&rsquo;alerte est ouvert par d&eacute;faut&nbsp;; lorsqu&rsquo;il est ferm&eacute;, un &eacute;v&eacute;nement d&rsquo;entr&eacute;e d&rsquo;alerte est cr&eacute;&eacute;.</li>
+                <li ng-if="AlarmInputNormalClose" class="sptAlarmOutNC"><strong class="UI">N.C. (Fermeture normale)</strong>&nbsp;: Le capteur d&apos;entr&eacute;e d&apos;alerte est ferm&eacute; par d&eacute;faut et lorsqu&apos;il est ouvert, un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;.</li>
             </ul>
         </div>
     </div>
@@ -76,25 +76,25 @@
             <h3>E-mail</h3>
             <p>Pour envoyer une image par e-mail lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour l&apos;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Recording">
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
             <h3>Enregistrer</h3>
-            <p ng-if="NAS">Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
-            <p ng-if="!NAS">Pour enregistrer une image sur une carte SD lorsqu&rsquo;un &eacute;v&eacute;nement d&rsquo;entr&eacute;e d&rsquo;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="NAS" class="sptRecordingSDNas">Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">Pour enregistrer une image sur une carte SD lorsqu&rsquo;un &eacute;v&eacute;nement d&rsquo;entr&eacute;e d&rsquo;alerte est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
             <h3>&Eacute;mission d&apos;alerte</h3>
             <p>Vous pouvez r&eacute;gler l&rsquo;&eacute;mission d&rsquo;alerte sur un num&eacute;ro d&apos;alarme sp&eacute;cifique lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre une alarme. Vous pouvez d&eacute;finir une alarme continue jusqu&rsquo;&agrave; ce qu&rsquo;elle soit d&eacute;sactiv&eacute;e par l&rsquo;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong>, ou r&eacute;gler l&rsquo;alarme pour 5, 10 ou 15&nbsp;secondes.</p>
             <p>En fonction du nombre d&rsquo;&eacute;missions d&rsquo;alerte prises en charge par votre cam&eacute;ra, l&rsquo;affichage de l&rsquo;option d&rsquo;&eacute;mission d&rsquo;alerte variera. Par exemple, s&rsquo;il y a 2 &eacute;missions d&rsquo;alerte, l&rsquo;option affichera « &eacute;mission d&rsquo;alerte 1 » et « &eacute;mission d&rsquo;alerte 2 ».</p>
         </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+        <div class="wn5-setup-section-article-content sptExtPtzPreset1" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
                     <p>Vous pouvez r&eacute;gler la position de la vue cam&eacute;ra afin qu&rsquo;elle passe &agrave; un nombre pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI">[PTZ num&eacute;rique]</strong> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ externe]</strong>.</p>
 
-                    <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se s&rsquo;affiche pas.</p>
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">Si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se s&rsquo;affiche pas.</p>
         </div>
     
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+        <div class="wn5-setup-section-article-content sptZoomOnly" ng-if="PresetSetupPage">
             <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
                     <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la section <strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong> dans <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong></a>.</p>
         </div>
@@ -103,11 +103,11 @@
             <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
                     <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+		<div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>Al &agrave; Pr&eacute;r&eacute;g</h3>
                     <p>Vous pouvez r&eacute;gler la position de la cam&eacute;ra afin qu&rsquo;elle passe &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong> &gt; <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">[Configuration PTZ]</a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
         <h3>Clip audio</h3>
         <p>Cela permet la lecture d&rsquo;un clip audio sp&eacute;cifique lorsqu&rsquo;un &eacute;v&eacute;nement d&apos;entr&eacute;e d&apos;alerte. Une fois que vous avez s&eacute;lectionn&eacute; un fichier dans votre liste de clips audio, la lecture du clip commence lorsque l&apos;&eacute;v&eacute;nement se produit. Pour d&eacute;sactiver la lecture du clip audio lorsqu&apos;un &eacute;v&eacute;nement se produit, s&eacute;lectionner <strong class="UI">[D&eacute;sactiv&eacute;]</strong>. Cliquer sur le bouton Lecture (<span class="tui tui-wn5-toolbar-play"></span>) pour lire et pr&eacute;visualiser un fichier audio.</p>
         <p>Aller &agrave; <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Audio configuration]</a></strong>&gt;<strong class="UI">[Clip audio]</strong> pour enregistrer un clip audio.</p>
@@ -155,8 +155,8 @@
                 <li><strong class="UI">N.O. (Normal Open)</strong>: 알람 출력 센서가 기본적으로 열린 상태이며, 닫힘 상태가 되면 알람을 출력합니다.  </li>
                 <li><strong class="UI">N.C. (Normal Close)</strong>: 알람 출력 센서가 기본적으로 닫힘 상태이며, 열림 상태가 되면 알람을 출력합니다.</li>
             </ul> --><ul>
-                <li ng-if="AlarmOutputNormalOpen"><strong class="UI">N.O. (Ouverture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ouvert par d&eacute;faut et lorsqu&apos;il est ferm&eacute;, une alarme est &eacute;mise.</li>
-                <li ng-if="AlarmOutputNormalClose"><strong class="UI">N.C. (Fermeture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ferm&eacute; par d&eacute;faut et lorsqu&apos;il est ouvert, une alarme est &eacute;mise.</li>
+                <li ng-if="AlarmOutputNormalOpen" class="sptAlarmOutNO"><strong class="UI">N.O. (Ouverture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ouvert par d&eacute;faut et lorsqu&apos;il est ferm&eacute;, une alarme est &eacute;mise.</li>
+                <li ng-if="AlarmOutputNormalClose" class="sptAlarmOutNC"><strong class="UI">N.C. (Fermeture normale)</strong>&nbsp;: Le capteur d&rsquo;&eacute;mission d&apos;alerte est ferm&eacute; par d&eacute;faut et lorsqu&apos;il est ouvert, une alarme est &eacute;mise.</li>
             </ul>
         </div>
         <div class="wn5-setup-section-article-content">

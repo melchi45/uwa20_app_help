@@ -1,0 +1,68 @@
+﻿<h1 class="wn5-setup-main-title">LED indicator</h1>
+<div class="wn5-setup-section">
+    <p>Sets the action of the LED indicator on the camera.</p>
+    <p>The parking guide camera&apos;s parking detection feature and the LED indicator feature can work together. The parking detection feature can be set in the <strong class="UI">[Analytics]</strong>&gt;<strong class="UI">[Parking detection]</strong> menu.</p>
+    <p>Once the setup is complete, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
+</div>
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Controlling LED</h2>
+        <p>Select an LED type to set the motion for each type of LED.</p>
+    </div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+		    <h3>LED Type</h3>
+            <p>Select <strong class="UI">[Separated]</strong> when the LED indicator on the parking detection camera is separated to left/right and displays both full status and empty status simultaneously. Select <strong class="UI">[Integrated]</strong> when it shows either the occupied status or the empty status.</p>
+        </div>
+        <div class="wn5-setup-section-article-content">
+		    <h3>LED 1/LED 2</h3>
+            <p>When <strong class="UI">[Separated]</strong> is selected in <strong class="UI">[LED type]</strong>, <strong class="UI">[LED 1]</strong> and <strong class="UI">[LED 2]</strong> can be set.</p>
+            <p>The upper fields of [LED 1] and [LED 2] are used to determine the color of the text displayed when the event occurs. Sets the color of the text to be displayed when no events are occurred in the lower field. For example, if you enter &apos;occupied&apos; in the upper field of [LED 1] and set its color as red and enter &lsquo;occupied&rsquo; in the upper field of [LED 2] and set its color as orange, then both LEDs display the same &apos;full&apos; status&mdash;one in red and one in orange&mdash;when a parking detection event occurs.</p>
+        </div>
+		
+		        <div class="wn5-setup-section-article-content">
+		    <h3>On event/Not on event</h3>
+            <p>If <strong class="UI">[Integrated]</strong> is selected in <strong class="UI">[LED type]</strong>, <strong class="UI">[On event]</strong> and <strong class="UI">[Not on event]</strong> options are displayed.</p>
+            <p>Set the texts and LED colors to display when an event occurs and when no event occurs using the [On event] and [Not on event] options, respectively. For example, if you entered &apos;occupied&apos; in the [On event] option and selected red, when a parking detection event occurs, it will display the &apos;full&apos; text and the LED indicator will turn red.</p>
+        </div>		
+    </div>
+</div>
+
+<hr class="wn5-setup-hr">
+
+<div class="wn5-setup-section">
+    <div class="wn5-setup-section-heading">
+        <h2>Transferring indicator data</h2>
+	</div>
+	    <div class="wn5-setup-section-article">
+        <div class="wn5-setup-section-article-content">
+            <p>When <strong class="UI">[Integrated]</strong> is selected in <strong class="UI">[LED Type]</strong>, the <strong class="UI">[Transfer indicator data]</strong> option is displayed.</p>
+            <p>Set the two cameras with LED indicators to send/receive data from each other. In other words, the data analyzed by camera 1 can be used to control the LED indicator on camera 2.</p>
+        </div>
+		
+        <div class="wn5-online-help-action">
+            <h4>Using receiver camera</h4>
+            <ol>
+                <li>Click <strong class="UI">[Enable]</strong> in <strong class="UI">[Receiver camera]</strong>.</li>
+                <li>Enter the information for the receiver camera.</li>
+                <ul>
+                    <li><strong class="UI">IP type</strong>: Select the IP address type between IPv4 and IPv6.</li>
+                    <li><strong class="UI">HTTP/HTTPS</strong>: Select the mode of communication between HTTP and HTTPS.</li>
+                    <li><strong class="UI">IP Address</strong>: Enter the IP address of the receiver camera.</li>
+                    <li><strong class="UI">Port</strong>: Enter the port for the receiver camera.</li>
+                    <li><strong class="UI">ID</strong>: Enter the access ID used to access the receiver camera.</li>
+                    <li><strong class="UI">Password</strong>: Enter the password used to access the receiver camera.</li>
+                </ul>
+                <li>Click <strong class="UI">[Apply]</strong>.</li>
+            </ol>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<hr class="wn5-setup-hr">

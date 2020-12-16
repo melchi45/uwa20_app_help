@@ -19,17 +19,17 @@
                     <ul>
                         <li><strong class="UI">FTP</strong>: To capture and send an image screen to an FTP server, select the check box in the <strong class="UI">[FTP]</strong> column. Detailed settings for FTP can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/E-mail]</strong></a>.</li>
                         <li><strong class="UI">E-mail</strong>: To capture and send an image screen by e-mail, select the check box in the <strong class="UI">[E-mail]</strong> column. Detailed settings for e-mail can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</li>
-                        <li ng-if="Recording"><strong class="UI">Record</strong>: To record an image, select the check box in the <strong class="UI">[Record]</strong> column. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</li>
+                        <li ng-if="Recording" class="sptRecording"><strong class="UI">Record</strong>: To record an image, select the check box in the <strong class="UI">[Record]</strong> column. Detailed settings for storage can be done from <strong class="UI">[Event]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[Storage]</strong></a>.</li>
 
 
                         <li ng-if="MaxAlarmOutput>0 && RememberLastPosition"><strong class="UI">Alarm output</strong>: Select <strong class="UI">[Off]</strong> if you wish no alarm when an event is created; select the appropriate time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm I/O]</strong>.</li>
                         <li ng-if="MaxAlarmOutput>0 && !RememberLastPosition"><strong class="UI">Alarm output</strong>: Select <strong class="UI">[Off]</strong> if you wish no alarm when an event is created; select the appropriate time if you wish to output an alarm. You can set a continuous alarm until turned off by the user by selecting <strong class="UI">[Always]</strong> or set the alarm for 5, 10 or 15 seconds. Detailed settings for alarm output can be done from <strong class="UI">[Event]</strong>&gt;<strong class="UI">[Alarm output]</strong>.</li>
 
 
-                        <li ng-if="PresetAction"><strong class="UI">Goto preset</strong>: Moves to the PTZ preset location designated by the camera.</li>
+                        <li ng-if="PresetAction" class="sptPresetAction"><strong class="UI">Goto preset</strong>: Moves to the PTZ preset location designated by the camera.</li>
 
 
-                        <li ng-if="AudioClipCountRange"><strong class="UI">Audio clip</strong>: Select an audio clip to play when an event occurs. You can set a different audio clip for each event type. Go to <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Audio setup]</a></strong>&gt;<strong class="UI">[Audio clip]</strong> to register an audio clip.</li>
+                        <li ng-if="AudioClipCountRange" class="sptAudioClip"><strong class="UI">Audio clip</strong>: Select an audio clip to play when an event occurs. You can set a different audio clip for each event type. Go to <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Audio setup]</a></strong>&gt;<strong class="UI">[Audio clip]</strong> to register an audio clip.</li>
                     </ul>
             </ul>
         </div>
@@ -50,8 +50,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>Select channel</h2> 
     </div>
@@ -60,9 +60,10 @@
                 
             <p>After selecting your camera channel, you can manage and set the Event action settings for each channel in <strong class="UI">[Channel event list]</strong>.</p> 
 
-            <p ng-if="objectDetectionSupport">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Event setup] can only be configured on channel 1.</p>
-            <p ng-if="HandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
-            <p ng-if="HybridThermal">Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">Channel 1 displays live feed and channel 2 displays Digital PTZ video. [Event setup] can only be configured on channel 1.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">The fixed camera channel is displayed as a number and the PTZ channel is displayed as &apos;PTZ&apos;.</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel.</p>
+            <p ng-if="ParkingDetectionSupport">Channel 1 shows the whole feed from the camera. Channels 2 through 5 show the quad view of the whole feed. Channel 2 shows the top left section of the feed; Channel 3, the top right of the feed; Channel 4, the bottom left of the feed; and Channel 5, bottom right of the feed.</p>
             <p>What you have set in <strong class="UI">[Common event list]</strong> will be applied to all other channels.</p><!-- <p ng-if="SupportChannelExpansionFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">
                     <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
@@ -73,7 +74,9 @@
                     <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
                     <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                     <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
-            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment">On the live page or play page, the last selected channel number is automatically displayed.</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment">Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition.</p><!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
+            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment" class="sptHandOverCalAndAutoImgAlign">On the live page or play page, the last selected channel number is automatically displayed.</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment" class="sptDetailInfoByChannel">Click the <strong class="UI">[Info]</strong> button to see a summary of the channel condition.</p>
+            
+            <!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
     </div>
 </div>
 

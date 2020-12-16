@@ -55,9 +55,11 @@
     </div>
 </div>
 
-
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<!-- SPM-4210 IO BOX 모델에서 hide하기 위한 코드 -->
+<!-- <hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
+<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'"> -->
+    <hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
     <div class="wn5-setup-section-heading">
         <h2>이벤트 로그</h2>
     </div>
@@ -68,11 +70,11 @@
 
             
             <!-- pnm-9000QB 김주희 선임님께 신규 코드 받음. 2020-08-25 메일. EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue -->
-            <div class="wn5-setup-section-article-content" ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
+            <div class="wn5-setup-section-article-content sptEventLogChannel" ng-if="EventLogChannel.minValue !== undefiend && EventLogChannel.minValue  == EventLogChannel.maxValue">
             <h3>채널 선택</h3>
             <p>카메라 채널을 선택하면 채널별로 이벤트 로그를 확인할 수 있습니다.</p>
 
-            <p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. 채널 1의 로그 정보만 확인할 수 있습니다.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. 채널 1의 로그 정보만 확인할 수 있습니다.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">채널별 뷰 모드는 다음과 같습니다. 채널 1의 로그 정보만 확인할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">

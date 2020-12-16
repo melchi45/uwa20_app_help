@@ -5,21 +5,21 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>S&eacute;lectionner un canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Apr&egrave;s avoir s&eacute;lectionn&eacute; le canal de votre cam&eacute;ra, vous pouvez d&eacute;finir les d&eacute;tails de D&eacute;tection de sabotage pour chaque canal. </p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
-            <p ng-if="objectDetectionSupport">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Détection de sabotage] que sur le canal 1.</p>
-            <p ng-if="HandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
-            <p ng-if="SupportAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
-            <p ng-if="SupportAutoImageAlignment">« D&eacute;tection de sabotage » peut seulement &ecirc;tre configur&eacute; sur CAN1.</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment" class="sptHandOverCalAndAutoImgAlign">Le dernier num&eacute;ro de canal s&eacute;lectionn&eacute; sur la page Direct ou Lecture est automatiquement s&eacute;lectionn&eacute;.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">La transmission Live (direct) s'affiche sur le canal 1 tandis que la vidéo PTZ numérique s'affiche sur le canal 2. Vous ne pouvez configurer [Détection de sabotage] que sur le canal 1.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme « PTZ ».</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">CAN2 &agrave; CAN5 correspondent aux vid&eacute;os des cam&eacute;ras install&eacute;es ind&eacute;pendamment. CAN1 correspond &agrave; une vue panoramique sur plusieurs &eacute;crans de cam&eacute;ra de CAN2 &agrave; CAN5 dispos&eacute;s en rang&eacute;e. CAN6 et CAN7 correspondent aux vid&eacute;os de la vid&eacute;o CAN1 &agrave; laquelle le PTZ num&eacute;rique est appliqu&eacute;.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">« D&eacute;tection de sabotage » peut seulement &ecirc;tre configur&eacute; sur CAN1.</p>
             <p ng-if="MultiImager">Le canal 1 est un canal de diffusion en direct alors que les canaux 2 et 3 sont des canaux de diffusion des vidéos PTZ numériques.   Vous ne pouvez configurer [Détection de sabotage] que sur le canal 1.</p>
-            <p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique. </p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique. </p>
             <!-- <p ng-if="SupportChannelExpansionFeature">Le mode d&rsquo;affichage de chaque canal est d&eacute;crit ci-dessous. “&nbsp;D&eacute;tection de sabotage&nbsp;” peut être configuré sur le canal 1 uniquement.</p>
             <ul ng-if="SupportChannelExpansionFeature">
                 <li>Canal&nbsp;1&nbsp;: Affiche une vid&eacute;o de la cam&eacute;ra fisheye telle quelle, sans correction.</li>
@@ -49,9 +49,9 @@
             <p>Pour utiliser l&apos;&eacute;v&eacute;nement de d&eacute;tection de sabotage, s&eacute;lectionnez <strong class="UI">[Activer la d&eacute;tection de sabotage]</strong>.</p>
         </div>
 
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>R&eacute;glage du PTZ</h4>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Lorsque vous cliquez sur <strong class="UI">[PTZ]</strong> dans le menu <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_tamperDetection#channel">[S&eacute;lectionner un canal]</a>, le panneau de jog PTZ s'affiche pour le réglage PTZ de la caméra.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">Lorsque vous cliquez sur <strong class="UI">[PTZ]</strong> dans le menu <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_tamperDetection#channel">[S&eacute;lectionner un canal]</a>, le panneau de jog PTZ s'affiche pour le réglage PTZ de la caméra.</p>
             <!-- <p>Vous pouvez r&eacute;gler les actions de pan, inclinaison et de zoom de la cam&eacute;ra.</p> -->
             <ul>
                 <li>Lorsque vous faites glisser l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-handle"></span> avec la souris, la cam&eacute;ra effectue un panoramique et s&rsquo;incline en cons&eacute;quence.</li>
@@ -80,7 +80,7 @@
             <h3>Sauf l&apos;obscurit&eacute;</h3>
             <p>Pour exclure une diminution soudaine de la luminosit&eacute; sur l&apos;&eacute;cran, comme une baisse soudaine de la lumi&egrave;re d&eacute;tect&eacute;e par l&apos;&eacute;v&eacute;nement de d&eacute;tection de sabotage, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+        <div class="wn5-setup-section-article-content sptHandoverCalibration" ng-if="HandoverCalibration">
             <h3>Transfert</h3>
             <p>La fonction Transfert est une fonction qui d&eacute;place le focus de la cam&eacute;ra PTZ vers la zone d&eacute;sign&eacute;e &agrave; l&rsquo;&eacute;cran ou vers une zone pr&eacute;r&eacute;gl&eacute;e lors de la survenue d&rsquo;un &eacute;v&eacute;nement de détection de mouvement dans la cam&eacute;ra fixe.</p>
             <ul>
@@ -102,8 +102,8 @@
     </div>
 </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
-            <div class="wn5-setup-section" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
+<hr class="wn5-setup-hr sptHandoverV2CalibrationAutoImageAlignment" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
+            <div class="wn5-setup-section sptHandoverV2CalibrationAutoImageAlignment" ng-if="HandoverV2 || (HandoverCalibration && !SupportAutoImageAlignment)">
                 <div class="wn5-setup-section-heading">
                     <h2>Transfert</h2>
                 </div>
@@ -132,27 +132,27 @@
             <h3>E-mail</h3>
             <p>Pour envoyer une image par e-mail lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de sabotage est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour l&apos;e-mail peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Recording">
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
             <h3>Enregistrer</h3>
-            <p ng-if="NAS">Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de sabotage est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
-            <p ng-if="!NAS">Pour enregistrer une image sur une carte SD lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de sabotage est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="NAS" class="sptRecordingSDNas">Pour enregistrer une image sur une carte SD ou un NAS lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de sabotage est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">Pour enregistrer une image sur une carte SD lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de sabotage est cr&eacute;&eacute;, s&eacute;lectionnez <strong class="UI">[Activer]</strong>. Les r&eacute;glages d&eacute;taill&eacute;s pour le stockage peuvent &ecirc;tre effectu&eacute;s depuis <strong class="UI">[&Eacute;v&eacute;nement]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Stockage]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
             <h3>&Eacute;mission d&apos;alerte</h3>
             <p>Il est possible de d&eacute;finir le num&eacute;ro d&rsquo;&eacute;mission d&rsquo;alerte pour une alarme sp&eacute;cifique lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection de sabotage est cr&eacute;&eacute;.&nbsp;Apr&egrave;s avoir s&eacute;lectionn&eacute; un num&eacute;ro d&rsquo;&eacute;mission d&apos;alerte, s&eacute;lectionnez <strong class="UI">[D&eacute;sactiv&eacute;]</strong> si vous ne souhaitez pas d&apos;alerte, ou s&eacute;lectionnez l&apos;heure d&rsquo;&eacute;mission si vous souhaitez &eacute;mettre une alarme. Vous pouvez d&eacute;finir une alarme continue jusqu&apos;&agrave; ce qu&apos;elle soit d&eacute;sactiv&eacute;e par l&apos;utilisateur en s&eacute;lectionnant <strong class="UI">[Toujours]</strong>, ou r&eacute;gler l&apos;alarme pour 5, 10 ou 15&nbsp;secondes. </p>
             <p>Les options <strong class="UI">[&Eacute;mission d&rsquo;alerte]</strong> peuvent para&icirc;tre diff&eacute;rentes selon la configuration d&rsquo;&eacute;mission d&rsquo;alerte. En cas d&rsquo;&eacute;mission d&rsquo;alerte, les options, <strong class="UI">[&Eacute;mission d&rsquo;alerte]</strong> ne s&rsquo;affichent pas. Si plusieurs alertes sont &eacute;mises, elles s&rsquo;affichent sous <strong class="UI">« émission d’alerte 1 »</strong>, <strong class="UI">« émission d’alerte 2 »</strong>, etc. S&eacute;lectionnez <strong class="UI">[&Eacute;v&eacute;nement]</strong> &gt; <strong class="UI">[E/S de l&rsquo;alarme]</strong> pour d&eacute;finir l&rsquo;E/S de l&rsquo;alarme.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+        <div class="wn5-setup-section-article-content sptExtPtzPreset1" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>Al à Prérég</h3>
                     <p>Vous pouvez d&eacute;finir la position de vue de la cam&eacute;ra pour passer &agrave; un num&eacute;ro pr&eacute;d&eacute;fini lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection d&apos;alt&eacute;ration est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ num&eacute;rique]</strong></a> ou <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>.</p>
 
                                 
-            <p ng-if="GlobalPTZMode && MaxChannel > 1">Si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se s&rsquo;affiche pas.</p>
+            <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">Si l&rsquo;option <strong class="UI">[Utiliser PTZ externe]</strong> est d&eacute;s&eacute;lectionn&eacute;e dans <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externe]</a></strong>, l&rsquo;option [Aller &agrave; pr&eacute;r&eacute;glage] se s&rsquo;affiche pas.</p>
         </div>
 
 
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+        <div class="wn5-setup-section-article-content sptZoomOnly" ng-if="PresetSetupPage">
             <h3>Al à Prérég</h3>
                 <p>Vous pouvez d&eacute;finir la position de vue de la cam&eacute;ra pour passer &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection d&apos;alt&eacute;ration est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la section <strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuration pr&eacute;r&eacute;gl&eacute;e]</strong></a>.</p>
         </div>
@@ -160,13 +160,13 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Al à Prérég</h3>
                 <p>Vous pouvez d&eacute;finir la position de la cam&eacute;ra pour passer &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de gestion de file d&apos;attente est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuration PTZ]</strong></a>.</p>
-                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Al à Prérég] s'affiche uniquement lorsque vous sélectionnez <strong class="UI"> [PTZ]</strong> dans <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_tamperDetection#channel">[S&eacute;lectionner un canal]</a>.</p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">[Al à Prérég] s'affiche uniquement lorsque vous sélectionnez <strong class="UI"> [PTZ]</strong> dans <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_tamperDetection#channel">[S&eacute;lectionner un canal]</a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>Al à Prérég</h3>
                 <p>Vous pouvez d&eacute;finir la position de la cam&eacute;ra pour passer &agrave; une position pr&eacute;d&eacute;finie lorsqu&apos;un &eacute;v&eacute;nement de gestion de file d&apos;attente est cr&eacute;&eacute;. Le pr&eacute;r&eacute;glage de la cam&eacute;ra peut &ecirc;tre d&eacute;fini dans la partie <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> dans <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[Configuration PT]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
             <h3>Clip audio</h3>
             <p>Cela permet la lecture d&apos;un clip audio sp&eacute;cifique lorsqu&apos;un &eacute;v&eacute;nement de d&eacute;tection sabotage survient. Une fois que vous avez s&eacute;lectionn&eacute; un fichier dans votre liste de clips audio, la lecture du clip commence lorsque l&apos;&eacute;v&eacute;nement se produit. Pour d&eacute;sactiver la lecture du clip audio lorsqu&apos;un &eacute;v&eacute;nement se produit, s&eacute;lectionner <strong class="UI">[D&eacute;sactiv&eacute;]</strong>. Cliquer sur le bouton Lecture (<span class="tui tui-wn5-toolbar-play"></span>) pour lire et pr&eacute;visualiser un fichier audio.</p>
             <p>Aller &agrave; <strong class="UI">[Video &amp; Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Audio configuration]</a></strong>&gt;<strong class="UI">[Clip audio]</strong> pour enregistrer un clip audio.</p>

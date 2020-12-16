@@ -19,7 +19,7 @@
                     <ul>
                         <li><strong class="UI">FTP</strong>：映像画面をキャプチャーしてFTPサーバーに伝送するには、<strong class="UI">[FTP]</strong>カラムのチェックボックスを選択します。FTPに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#ftp" ng-href="#/help/event_ftpemail?#ftp"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</li>
                         <li><strong class="UI">E-mail</strong>：映像画面をキャプチャーしてE-mailに伝送するには、<strong class="UI">[E-mail]</strong>カラムのチェックボックスを選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</li>
-                        <li ng-if="Recording"><strong class="UI">録画</strong>：映像を保存するには、<strong class="UI">[録画]</strong>カラムのチェックボックスを選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</li>
+                        <li ng-if="Recording" class="sptRecording"><strong class="UI">録画</strong>：映像を保存するには、<strong class="UI">[録画]</strong>カラムのチェックボックスを選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="storage.html" ng-href="#/help/event_storage"><strong class="UI">[録画]</strong></a>で行うことができます。</li>
 
 
                         <li ng-if="MaxAlarmOutput>0 && RememberLastPosition"><strong class="UI">アラーム出力</strong>：イベントが発生した時、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。アラーム出力に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で行うことができます。</li>
@@ -27,8 +27,8 @@
                         
                         
 
-                        <li ng-if="PresetAction"><strong class="UI">プリセットに移動</strong>：カメラが指定したPTZプリセット位置に移動します。</li>
-                        <li ng-if="AudioClipCountRange"><strong class="UI">オーディオクリップ</strong>：イベントが発生する時、再生するオーディオクリップを選択します。イベントタイプ別にオーディオクリップをそれぞれ設定することができます。オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</li>
+                        <li ng-if="PresetAction" class="sptPresetAction"><strong class="UI">プリセットに移動</strong>：カメラが指定したPTZプリセット位置に移動します。</li>
+                        <li ng-if="AudioClipCountRange" class="sptAudioClip"><strong class="UI">オーディオクリップ</strong>：イベントが発生する時、再生するオーディオクリップを選択します。イベントタイプ別にオーディオクリップをそれぞれ設定することができます。オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</li>
                     </ul>
             </ul>
         </div>
@@ -53,8 +53,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2> 
     </div>
@@ -63,9 +63,10 @@
                 
             <p>カメラチャンネルを選択した後、<strong class="UI">[チャンネルイベントリスト]</strong>でチャンネル別にイベントアクションを管理して設定することができます。</p> 
 
-            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[イベント設定]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
-            <p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[イベント設定]は、チャンネル1でのみ設定できます。</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
+            <p ng-if="ParkingDetectionSupport">チャンネル1はカメラの全体映像を表示するチャンネルです。チャンネル2~5は、全体映像を4分割して各映像を表示します。チャンネル2は映像の左上、チャンネル3は右上、チャンネル4は左下、チャンネル5は右下の映像をそれぞれ表示します。</p>
             <p><strong class="UI">[共通イベントリスト]</strong>で設定した内容は全チャンネルに同じく適用されます。</p><!-- <p ng-if="SupportChannelExpansionFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">
                     <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>
@@ -76,7 +77,7 @@
                     <li>채널 6: 채널 4의 4분할 화면에서 오른쪽 상단의 영상을 보여줍니다.</li>
                     <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                     <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
-            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p><!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
+            </ul> --><p ng-if="HandoverCalibration && SupportAutoImageAlignment" class="sptHandOverCalAndAutoImgAlign">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p><!-- PNM-9030V에서 보이지 않아야 하므로 TW 자체 수정. !objectDetectionSupport ->  !objectDetectionSupport && !SupportAutoImageAlignment  2020-01-16  --><p ng-if="!objectDetectionSupport && !SupportAutoImageAlignment" class="sptDetailInfoByChannel"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、チャンネルの全体状況をチャンネル別に要約して表示します。</p><!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> --></div>
     </div>
 </div>
 

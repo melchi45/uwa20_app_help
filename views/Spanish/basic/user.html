@@ -8,18 +8,18 @@
 
 <div class="wn5-setup-section">
 		<div class="wn5-setup-section-heading">
-			<h2 ng-if="AdminIDChange == undefined || AdminIDChange">Cambiar la información del administrador</h2>
-			<h2 ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'">Cambiar contraseña de administrador</h2>
+			<h2 ng-if="AdminIDChange == undefined || AdminIDChange" class="sptAdminIDChange">Cambiar la información del administrador</h2>
+			<h2 ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'" class="nsptAdminIDChange">Cambiar contraseña de administrador</h2>
 		</div><!--PNM-9084 이슈 수정 중 admin id가 hide되도록 MaxChannel==0 추가(별도 분기가 없고 하드코딩돼 있다고 하여) 김선미 책임님과 논의 후 진행. 2019-09-27 --> <!-- 김선미 책임님과 논의 후 ng-if="AdminID == undefined || AdminID" 적용. 2019-10-14 --><div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="AdminIDChange == undefined || AdminIDChange">Puede cambiar el ID de la cuenta de administrador y la contrase&ntilde;a. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
-			<p ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'">Puede cambiar la contrase&ntilde;a de administrador. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
+			<p ng-if="AdminIDChange == undefined || AdminIDChange" class="sptAdminIDChange">Puede cambiar el ID de la cuenta de administrador y la contrase&ntilde;a. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
+			<p ng-if="(AdminIDChange == undefined || !AdminIDChange) && DeviceType === 'IOBox'" class="nsptAdminIDChange">Puede cambiar la contrase&ntilde;a de administrador. Para reforzar la seguridad, cree una contrase&ntilde;a aleatoria mediante la combinaci&oacute;n de may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="AdminIDChange == undefined || AdminIDChange">
+		<div class="wn5-setup-section-article-content sptAdminIDChange" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h3>ID</h3>
 	        <p>Puede ver o cambiar el ID de administrador que se est&eacute; utilizando actualmente.</p>
 	    </div>
-		<div class="wn5-online-help-info" ng-if="AdminIDChange == undefined || AdminIDChange">
+		<div class="wn5-online-help-info sptAdminIDChange" ng-if="AdminIDChange == undefined || AdminIDChange">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>El ID de administrador solo debe contener caracteres alfanum&eacute;ricos, con una longitud m&aacute;xima total de 8 caracteres.</li>
@@ -57,8 +57,10 @@
             <ul>
                 <li>Para una mayor seguridad, se recomienda crear una contrase&ntilde;a que combine caracteres especiales, n&uacute;meros y letras may&uacute;sculas y min&uacute;sculas.</li>
                 <li>Se recomienda cambiar la contrase&ntilde;a cada tres meses.</li>
-                <li>La longitud y restricciones de la contrase&ntilde;a son las siguientes:</li>
-                <ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 --><li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
+				<li>Las restricciones de la contrase&ntilde;a son las siguientes:</li>
+				<!-- <li>La longitud y restricciones de la contrase&ntilde;a son las siguientes:</li> -->
+				<ul><!-- TTA(XNO-6085RG) 사양으로 신규 분기 코드 PasswordRule1, PasswordRule2추가. 김선미 책임님. 2019-10-16. PasswordRule1은 WN5 일반적인 비밀번호 규칙. PasswordRule2는 TTA 규칙(3종류를 조합해야 함). 특수 문자 중 tta에서는 &를 사용할 수 있음 -->
+					<!-- <li ng-if="PasswordRule1">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
 					<li ng-if="PasswordRule1">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 8 a 9 d&iacute;gitos, necesita combinar al menos tres tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Para contrase&ntilde;as de 10 a 15 d&iacute;gitos, necesita combinar al menos dos tipos diferentes de los siguientes: letras may&uacute;sculas y min&uacute;sculas, n&uacute;meros y caracteres especiales.</li>
@@ -68,7 +70,7 @@
                     <li>No se puede usar los mismos cuatro caracteres o m&aacute;s veces seguidas. (Por ejemplo: !!!!, 1111, aaaa).</li>
 					<li ng-if="PasswordRule1">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
 					<li ng-if="PasswordRule1 == undefined || PasswordRule2 == undefined">Solo ~`!@#$%^*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
-					<li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li>
+					<li ng-if="PasswordRule2">Solo ~`!@#$%^&amp;*()_-+=|{}[].?/ est&aacute;n permitidos como caracteres especiales.</li> -->
                     <li>Despu&eacute;s del restablecimiento de f&aacute;brica, se restablecer&aacute;n las contrase&ntilde;as de administrador y de usuario y deber&aacute; crearlas nuevamente.</li>
                     <li>Cuando acceda al visor web de la c&aacute;mara por primera vez o acceda a &eacute;l despu&eacute;s de la inicializaci&oacute;n, se lo llevar&aacute; al men&uacute; de configuraci&oacute;n de la contrase&ntilde;a.</li>
                     <li>Para utilizar el men&uacute; del visor web, se debe configurar la nueva contrase&ntilde;a en el men&uacute; de cambio de contrase&ntilde;a e iniciar sesi&oacute;n nuevamente en el visor web con la nueva contrase&ntilde;a.</li>
@@ -82,8 +84,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="AdminFilterSupport">
-<div class="wn5-setup-section" ng-if="AdminFilterSupport">
+<hr class="wn5-setup-hr sptAdminFilter" ng-if="AdminFilterSupport">
+<div class="wn5-setup-section sptAdminFilter" ng-if="AdminFilterSupport">
 		<div class="wn5-setup-section-heading">
 				<h2>Direcci&oacute;n IP para permitir el inicio de sesi&oacute;n de administrador</h2>
 		</div>
@@ -113,8 +115,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="AdminTimeout">
-<div class="wn5-setup-section" ng-if="AdminTimeout">
+<hr class="wn5-setup-hr sptAdminTimeout" ng-if="AdminTimeout">
+<div class="wn5-setup-section sptAdminTimeout" ng-if="AdminTimeout">
 	<div class="wn5-setup-section-heading">
 			<h2>Desconexi&oacute;n autom&aacute;tica de inicio de sesi&oacute;n del administrador</h2>
 	</div>
@@ -126,8 +128,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Configurar invitado</h2>
 	</div>
@@ -138,8 +140,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
     <div class="wn5-setup-section-heading">
 		<h2>Ajustes del RTSP</h2>
 	</div>
@@ -150,8 +152,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Configurar autenticación</h2>
 	</div>
@@ -162,8 +164,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="OnvifTTADigestOptions">
-<div class="wn5-setup-section" ng-if="OnvifTTADigestOptions">
+<hr class="wn5-setup-hr sptOnvifDigest" ng-if="OnvifTTADigestOptions">
+<div class="wn5-setup-section sptOnvifDigest" ng-if="OnvifTTADigestOptions">
 	<div class="wn5-setup-section-heading">
 		<h2>Autenticaci&oacute;n Digest</h2>
 	</div>
@@ -175,8 +177,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="IPInstallerSettingEnable">
-<div class="wn5-setup-section" ng-if="IPInstallerSettingEnable">
+<hr class="wn5-setup-hr sptDeviceManager" ng-if="IPInstallerSettingEnable">
+<div class="wn5-setup-section sptDeviceManager" ng-if="IPInstallerSettingEnable">
 	<div class="wn5-setup-section-heading">
 		<h2>Device Manager</h2>
 	</div>
@@ -189,8 +191,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
     <div class="wn5-setup-section-heading">
 		<h2>Ajustes del TTA</h2>
 	</div>
@@ -201,8 +203,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
 	<div class="wn5-setup-section-heading">
 		<h2>B&uacute;squeda de su contrase&ntilde;a</h2>
 	</div>
@@ -213,8 +215,8 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="CamSpecialModel">
-<div class="wn5-setup-section" ng-if="CamSpecialModel">
+<hr class="wn5-setup-hr sptSpecialModel" ng-if="CamSpecialModel">
+<div class="wn5-setup-section sptSpecialModel" ng-if="CamSpecialModel">
 	<div class="wn5-setup-section-heading">
 		<h2>Ciclo de cambio de contrase&ntilde;a</h2>
 	</div>
@@ -225,16 +227,18 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>Usuario actual</h2>
 	</div>
 	<div class="wn5-setup-section-article">
 		<div class="wn5-setup-section-article-content">
-			<p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso, incluyendo audio, salida de audio, salida de alarma y el perfil.</p>
-			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso.</p>				
-			<p>Cuando un usuario registrado inicie la sesi&oacute;n, s&oacute;lo las funciones establecidas para ese usuario est&aacute;n habilitadas. 10 cuentas de usuario actuales se establecen de forma predeterminada; se puede a&ntilde;adir o eliminar una cuenta. Hasta 10 cuentas de usuario actuales IP se pueden utilizar.</p>
+
+			<!-- <p ng-if="MaxAudioInput>0 && MaxAudioOutput>0 && MaxAlarmOutput>0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso, incluyendo audio, salida de audio, salida de alarma y el perfil.</p>
+			<p ng-if="MaxAudioInput==0 && MaxAudioOutput==0 && MaxAlarmOutput==0">Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso.</p>	-->	
+			<p>Puede configurar la informaci&oacute;n de conexi&oacute;n para las cuentas de usuario que no sean la de administrador, y configurar los permisos de uso, incluyendo audio, salida de audio, salida de alarma y el perfil.</p>		
+			<p>Cuando un usuario registrado inicie la sesi&oacute;n, s&oacute;lo las funciones establecidas para ese usuario est&aacute;n habilitadas. 10 cuentas de usuario actuales se establecen de forma predeterminada; se puede a&ntilde;adir o eliminar una cuenta. Hasta 10 cuentas de usuario actuales IP se pueden utilizar.</p> 
 		</div>
 		<div class="wn5-online-help-info">
 	        <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
@@ -254,23 +258,23 @@
 			<h3>Contrase&ntilde;a</h3>
 			<p>Introduzca la contrase&ntilde;a. La regla de ajuste de la contrase&ntilde;a es la misma que la regla de ajuste de la contrase&ntilde;a de administrador.</p>
 		</div>
-				<div class="wn5-setup-section-article-content" ng-if="AdminAccess">
+				<div class="wn5-setup-section-article-content sptAdminAccess" ng-if="AdminAccess">
 			<h3>Privilegio de administrador</h3>
             <p>Autorizar a los usuarios seleccionados con privilegios de administrador. Los usuarios normales solo pueden utilizar las funciones que su administrador les ha permitido, pero los administradores pueden acceder y definir las funciones que deseen. Sin embargo, incluso si se conceden privilegios de administrador a los usuarios, &eacute;stos no pueden cambiar su ID o la contrase&ntilde;a de administrador.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioInput>0">
+		<div class="wn5-setup-section-article-content sptAudioInput" ng-if="MaxAudioInput>0">
 			<h3>Entrada de audio</h3>
 			<p>Establezca el permiso para acceder al audio introducido. Si se selecciona en audio, un usuario que se conecta con la cuenta principal puede ver la pantalla y escuchar el audio al mismo tiempo; si la entrada de audio no est&aacute; seleccionada, el usuario podr&aacute; ver solamente la pantalla de imagen.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAudioOutput>0">
+		<div class="wn5-setup-section-article-content sptAudioOutput" ng-if="MaxAudioOutput>0">
 			<h3>Salida de audio</h3>
 			<p>Establezca los permisos de salida de audio. Cuando se selecciona la salida de audio, un usuario que se conecta a una cuenta correspondiente puede enviar audio a trav&eacute;s del micr&oacute;fono.</p>
 		</div>
-		<div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+		<div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
 			<h3>Salida de alarma</h3>
 			<p>Establecimiento de permisos de salida de alarma. Cuando una alarma se ha fijado, un usuario que se conecta a una cuenta relevante puede emitir la alarma.</p>
 		</div>
-				<div class="wn5-setup-section-article-content" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
+		<div class="wn5-setup-section-article-content suppportPTZAccess" ng-if="PTZModel || ExternalPTZModel || FisheyeLens">
 			<h3>PTZ</h3>
             <p>Establece el permiso para controlar la PTZ en el modo <strong class="UI">[En vivo]</strong>.</p>
 		</div>

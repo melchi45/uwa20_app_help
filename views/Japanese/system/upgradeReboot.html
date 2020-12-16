@@ -17,21 +17,21 @@
 		<div class="wn5-setup-section-article-content">
 			<h3>ソフトウェア</h3>
 		    <p>使用している製品のソフトウェアバージョンです。ソフトウェアバージョンは確認だけ可能で変更することはできません。</p>
-			<p ng-if="!SupportAutoImageAlignment"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、ソフトウェアに適用されたISPバージョンやSUNAPIバージョンを含めたソフトウェア詳細情報を確認することができます。</p>
+			<p ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment"><strong class="UI">[詳細情報]</strong>ボタンをクリックすると、ソフトウェアに適用されたISPバージョンやSUNAPIバージョンを含めたソフトウェア詳細情報を確認することができます。</p>
 		</div>
-	<div class="wn5-setup-section-article-content" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
+	<div class="wn5-setup-section-article-content sptHandOverCalAndAutoImgAlign" ng-if="!HandoverCalibration && SupportAutoImageAlignment">
 		    <h3>ISPバージョン</h3>
 		    <p>使用している製品のISPバージョンです。ISPバージョンは確認だけ可能で変更することはできません。</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment"> 
+		<div class="wn5-setup-section-article-content sptAutoImageAlignment" ng-if="SupportAutoImageAlignment"> 
 		    <h3>SUNAPIバージョン</h3>
 		    <p>使用している製品に対応するSUNAPIバージョンです。SUNAPIは、ハンファテックウィン独自のAPIです。</p>
 	   	</div>
-		<div class="wn5-setup-section-article-content" ng-if="SupportAutoImageAlignment">
+		<div class="wn5-setup-section-article-content sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
 		    <h3>UWAバージョン</h3>
 		    <p>使用しているカメラのウェブビューアーバージョンです。</p>
 	   	</div>
-				<div class="wn5-setup-section-article-content" ng-if="OpenSSLVersion">
+		<div class="wn5-setup-section-article-content" ng-if="OpenSSLVersion">
 		    <h3>OpenSSLバージョン</h3>
             <p>保安が強化された通信のために使用しているOpenSSLバージョンです。</p>
 	   	</div>
@@ -59,18 +59,18 @@
 		<div class="wn5-setup-section-article-content">
 			<p>システム設定を製品を購入した当時の設定に初期化することができます。<strong class="UI">[初期化]</strong>ボタンをクリックいした後、確認ポップアップで<strong class="UI">[OK]</strong>ボタンをクリックすると出荷条件初期化を行います。(但し、ログは初期化されません。)</p>
 		</div>
-        <div class="wn5-setup-section-article-content" ng-if="OpenSDKSupport">
+        <div class="wn5-setup-section-article-content sptOpenSDKSupport" ng-if="OpenSDKSupport">
             <p>出荷条件初期化を行うとき、ネットワーク設定を除外して他の設定だけを出荷条件初期化するためには、<strong class="UI">[ネットワーク設定&amp;オープンプラットフォーム設定維持]</strong>を選択します。出荷条件初期化を進行すると、カメラとのアクセスが切断されます。ウェブビューアーに初回アクセスする時にパスワードを再設定する必要があります。</p>
             <!-- <p><strong class="UI">[ネットワーク設定&amp;オープンプラットフォーム設定維持]</strong>を選択せずにカメラを出荷条件初期化すると、IP接続タイプがDHCPに設定されます。この時、DHCPサーバーを見つけないとカメラのIPアドレスは192.168.1.100に自動変更されます。</p> -->
         </div>
-		<div class="wn5-setup-section-article-content"  ng-if="!OpenSDKSupport">
+		<div class="wn5-setup-section-article-content nsptOpenSDKSupport" ng-if="!OpenSDKSupport">
 			<p>出荷条件初期化を行うとき、ネットワーク設定を除外して他の設定だけを出荷条件初期化するためには、<strong class="UI">[ネットワーク設定 除外]</strong>を選択します。出荷条件初期化を進行すると、カメラとのアクセスが切断されます。ウェブビューアーに初回アクセスする時にパスワードを再設定する必要があります。</p>
 		</div>
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DeviceType === 'IOBox'">
-<div class="wn5-setup-section" ng-if="DeviceType === 'IOBox'">
+<hr class="wn5-setup-hr" >
+<div class="wn5-setup-section" >
 	<div class="wn5-setup-section-heading">
 		<h2>設定バックアップ＆リストア</h2>
 	</div>

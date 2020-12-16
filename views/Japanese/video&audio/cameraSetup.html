@@ -3,8 +3,8 @@
     <p>カメラが設置された環境で最適の映像を撮影するようにカメラの設定を変更することができます。様々な環境に適合した画像プリセットを基本的に提供し、ユーザーが直接にカメラの設定値を指定することもできます。カメラのプレビュー画面で設定した値によって、カメラの映像がどう表示されるか確認することができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。設定を変更した後、<strong class="UI">[適用]</strong>ボタンをクリックせずにTime out時間(240秒)が経過すると、設定値が変更前に戻ります。</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="WDRControlModeOptions">
-<div class="wn5-setup-section" ng-if="WDRControlModeOptions">
+<hr class="wn5-setup-hr sptWDRControlModeOptions" ng-if="WDRControlModeOptions">
+<div class="wn5-setup-section sptWDRControlModeOptions" ng-if="WDRControlModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>比較ビュー</h2>
     </div>
@@ -18,19 +18,19 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>チャンネル選択</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラチャンネルを選択した後、チャンネル別に詳細を設定することができます。</p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment && HybridThermal">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
-            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[カメラ設定]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
-            <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
-            <p ng-if="SupportAutoImageAlignment">「カメラ設定」はチャンネル1でしか設定できません。</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment && HybridThermal" class="sptHandOverCalAndAutoImgAlign">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[カメラ設定]は、チャンネル1でのみ設定できます。</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">「カメラ設定」はチャンネル1でしか設定できません。</p>
 			<p ng-if="MultiImager">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2とチャンネル3はデジタルPTZ映像を表示するチャンネルです。[カメラ設定]は、チャンネル1でのみ設定できます。</p>             
             <!-- <p ng-if="SupportChannelExpansionFeature">??? ? ??? ??? ????. '??? ??'? ?? 1?? ??????.  </p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -43,20 +43,20 @@
                 <li>?? 7: ?? 4? 4?? ???? ?? ??? ??? ?????.</li>
                 <li>?? 8: ?? 4? 4?? ???? ??? ??? ??? ?????.</li>
             </ul> --> <!-- <p>??? ??? ? ???? ?? ?? ??? ??? ?? ?? ???? ?????. </p> -->
-            <p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
         </div>
 	</div>
 </div> 
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>PTZ調整</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合のみ、PTZジョグパネルが表示されます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合のみ、PTZジョグパネルが表示されます。</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -73,8 +73,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="FocusPresetSupport">
-<div class="wn5-setup-section" ng-if="FocusPresetSupport">
+<hr class="wn5-setup-hr sptFocusPreset" ng-if="FocusPresetSupport">
+<div class="wn5-setup-section sptFocusPreset" ng-if="FocusPresetSupport">
     <div class="wn5-setup-section-heading">
         <h2>フォーカス保存</h2>
     </div>
@@ -106,20 +106,20 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>タイプ</h2>
 	</div>	
 	    <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>すべてのプリセットに同じカメラ設定するには、<strong class="UI">[グローバル]</strong>を選択します。PTZプリセット別にそれぞれのIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[プリセット]</strong>を選択します。<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">プリセット設定</a>ページでプリセットを設定した場合のみ、<strong class="UI">[プリセット]</strong>オプションが有効になります。<strong class="UI">[プリセット]</strong>を選択してプリセット別にカメラ設定を指定する場合、詳細カメラ設定項目中の一部項目は設定することができません。</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合のみ、「タイプ」機能を設定することができます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a href="#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合のみ、「タイプ」機能を設定することができます。</p>
         </div>
 </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
-<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<hr class="wn5-setup-hr sptPantiltOnly" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section sptPantiltOnly" ng-if="PanTiltOnlyModel">
     <div class="wn5-setup-section-heading">
         <h2>タイプ</h2>
 	</div>	
@@ -133,8 +133,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="Sensor">
-<div class="wn5-setup-section" ng-if="Sensor">
+<hr class="wn5-setup-hr sptSensorCaptureFrameRate" ng-if="Sensor">
+<div class="wn5-setup-section sptSensorCaptureFrameRate" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="sensor"></a>センサーモード</h2>
     </div>
@@ -144,10 +144,10 @@
         </div>
        <div class="wn5-online-help-info">
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
-                <ul><!-- PNM-9030V??? ?? ??? ???? ??? ?? ?? ????? ???? ?? ??. TW ??. ?? ????? ??? ???? (?? ??) ??? ?? ??. 2020-01-16.  --><li ng-if="!SupportAutoImageAlignment">センサーモードのオプションを変更すると、[カメラ設定]で設定したすべての値が初期化されます。</li>
+                <ul><!-- PNM-9030V??? ?? ??? ???? ??? ?? ?? ????? ???? ?? ??. TW ??. ?? ????? ??? ???? (?? ??) ??? ?? ??. 2020-01-16.  --><li ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">センサーモードのオプションを変更すると、[カメラ設定]で設定したすべての値が初期化されます。</li>
                     <li>センサーモード値は、画像プリセットごとにそれぞれ異なる設定ができません。フレームレートは、すべての画像プリセットに等しく適用されます。</li>
                     <li>センサーモードで設定したフレーム数に応じて、<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[ビデオprofile]</strong>&gt;<strong class="UI">[フレームレート]</strong>の最大値が異なります。.</li>
-                    <li ng-if="GlobalSensorModeSupport">センサーモードのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+                    <li ng-if="GlobalSensorModeSupport" class="sptGlobalSensorMode">センサーモードのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
                 </ul>
             </div>  
     </div>
@@ -177,14 +177,14 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>画像プリセットモードを選択してからホワイトバランス、デイ・ナイトモードなどのようにカメラ画像の詳細設定を変更して<strong class="UI">[適用]</strong>をクリックすると、変更した値が該当の画像プリセット値で保存されます。初期値に戻すためには、<strong class="UI">[初期化]</strong>ボタンをクリックします。</li>
-                <li ng-if="HybridThermal">チャンネル1(実画像ビデオ)を選択した場合、SSDRモード、SSDRレベル、最小シャッター、最大シャッター、AGC、SSNR、SSNRレベル、カラーレベルをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、<b>屋内モードや屋外モード</b>をサポートし、モード別にSSDR、LCE、明るさ、SSNR、DIS、シャープネス、コントラストをサポートします。</li>
+                <li ng-if="HybridThermal" class="sptHybridThermal">チャンネル1(実画像ビデオ)を選択した場合、SSDRモード、SSDRレベル、最小シャッター、最大シャッター、AGC、SSNR、SSNRレベル、カラーレベルをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、<b>屋内モードや屋外モード</b>をサポートし、モード別にSSDR、LCE、明るさ、SSNR、DIS、シャープネス、コントラストをサポートします。</li>
             </ul>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ImagePresetIndoor">
-<div class="wn5-setup-section" ng-if="ImagePresetIndoor">
+<hr class="wn5-setup-hr sptImagePresetIndoor" ng-if="ImagePresetIndoor">
+<div class="wn5-setup-section sptImagePresetIndoor" ng-if="ImagePresetIndoor">
     <div class="wn5-setup-section-heading">
         <h2>画像プリセットモード</h2>
     </div>
@@ -201,7 +201,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>画像プリセットモードを選択してからSSDR、?出補正などのようにカメラ画像の詳細設定を変更して<strong class="UI">[適用]</strong>をクリックすると、変更した値が該当の画像プリセット値で保存されます。初期値に戻すためには、<strong class="UI">[初期化]</strong>ボタンをクリックします。</li>
-                <li ng-if="HybridThermal">チャンネル2(熱画像ビデオ)を選択した場合、[屋内]モードや[屋外]モードをサポートし、モード別にSSDR、LCE、明るさ、SSNR、シャープネス、コントラストをサポートします。</li>
+                <li ng-if="HybridThermal" class="sptHybridThermal">チャンネル2(熱画像ビデオ)を選択した場合、[屋内]モードや[屋外]モードをサポートし、モード別にSSDR、LCE、明るさ、SSNR、シャープネス、コントラストをサポートします。</li>
             </ul>
         </div>
     </div>
@@ -231,8 +231,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
-<div class="wn5-setup-section" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
+<hr class="wn5-setup-hr sptLCE" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
+<div class="wn5-setup-section sptLCE" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'">
     <div class="wn5-setup-section-heading">
         <h2>LCE (Local Contrast Enhancement)</h2>
     </div>
@@ -255,8 +255,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="WhiteBalance">
-<div class="wn5-setup-section" ng-if="WhiteBalance">
+<hr class="wn5-setup-hr sptWhiteBalance" ng-if="WhiteBalance">
+<div class="wn5-setup-section sptWhiteBalance" ng-if="WhiteBalance">
     <div class="wn5-setup-section-heading">
         <h2>ホワイトバランス</h2>
     </div>
@@ -302,15 +302,15 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="BackLight">
-<div class="wn5-setup-section" ng-if="BackLight">
+<hr class="wn5-setup-hr sptBackLight" ng-if="BackLight">
+<div class="wn5-setup-section sptBackLight" ng-if="BackLight">
     <div class="wn5-setup-section-heading">
         <h2>バックライト</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="HLC">逆光で撮影された映像を補正することができます。<strong class="UI">[モード]</strong>で無効、BLC、HLC、WDRの中から選択することができます。選択したバックライトモードによって詳細設定を変更することができます。</p>
-            <p ng-if="!HLC">逆光で撮影された映像を補正することができます。<strong class="UI">[モード]</strong>で無効、BLC、WDRの中から選択することができます。選択したバックライトモードによって詳細設定を変更することができます。</p>
+            <p ng-if="HLC" class="sptHLC">逆光で撮影された映像を補正することができます。<strong class="UI">[モード]</strong>で無効、BLC、HLC、WDRの中から選択することができます。選択したバックライトモードによって詳細設定を変更することができます。</p>
+            <p ng-if="!HLC" class="nsptHLC">逆光で撮影された映像を補正することができます。<strong class="UI">[モード]</strong>で無効、BLC、WDRの中から選択することができます。選択したバックライトモードによって詳細設定を変更することができます。</p>
         </div><!-- <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>????</h4>
             <ul>
@@ -319,17 +319,17 @@
         </div>  --><div class="wn5-setup-section-article-content">
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Back Light Compensation)モードは、逆光で暗く撮影された映像にユーザーが特定エリアを設定して選択エリアの対象物がよく表示されるように補正します。</p>
-            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">BLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined" class="sptBackLightPtz">BLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content nsptNormalizedBLCLevel" ng-if="!NormalizedBLCLevel">
             <h5>BLCレベル</h5>
             <p>低、中、高の中から選択することができます。レベルが高いと、設定したエリアの明るさがより明るくなります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content sptNormalizedBLCLevel" ng-if="NormalizedBLCLevel">
             <h5>BLCレベル</h5>
             <p>スライドバーを調整してBLCレベルを設定します。レベルが高いと、設定したエリアの明るさがより明るくなります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content nsptNormalizedBLCLevel" ng-if="!NormalizedBLCLevel">
             <h5>エリア設定</h5>
             <ul>
                 <li><strong class="UI">上</strong>：画面の上側から上面がどれだけ離れているかを設定します。</li>
@@ -338,24 +338,24 @@
                 <li><strong class="UI">右</strong>：画面の左側から右面がどれだけ離れているかを設定します。</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="!NormalizedBLCLevel">
+        <div class="wn5-online-help-info nsptNormalizedBLCLevel" ng-if="!NormalizedBLCLevel">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>BLC設定時、15秒ぐらい緑ボックスが画面に表示されます。</li>
                 <li>BLC設定時、誤動作を防ぐためにBLCエリアの上下間隔は最大60/最小40、左右間隔は最大60/最小30に制限されます。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation)モードは街灯や車のヘッドライトのように強い照明を効果的に遮断して強い照明の飽和によって車のナンバープレートなどの周囲にある物事が識別できないことを防止します。</p>
-            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">HLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined" class="sptHLCPtz">HLCモードを選択すると、カメラ映像画面に初期値選択エリアが表示されます。<strong class="UI">[Box調整]</strong>で矢印をクリックして、選択範囲のサイズを調整することができます。<strong class="UI">[Box手順]</strong>で高い数設定収録方向の矢印を選択すると、領域のサイズが大幅に変更されます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>HLCレベル</h5>
             <p>露出レベルを設定してハイライトエリアを調整します。</p>
             <p>レベルが高いほど、補正に優れていてハイライトエリアを遮断するエリアに差があります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>マスク</h5>
             <p>マスクの適用有無を選択します。</p>
             <ul>
@@ -365,15 +365,15 @@
                 <li><strong class="UI">夜間のみ</strong>：とても暗くなる前まで遮断エリアが生成されます。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>マスクカラー</h5>
             <p>遮断エリアカラーを設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>MASK TONE</h5>
             <p>遮断エリアトーンを設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>調光</h5>
             <p>画面の強い光エリアを検知して明るさを調整しながら、飽和エリアを減少させます。</p>
         </div>
@@ -388,7 +388,7 @@
                 <li><strong class="UI">右</strong>：画面の左側から右面がどれだけ離れているかを設定します。</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="HLC">
+        <div class="wn5-online-help-info sptHLC" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>夜間に動作する時には、暗い環境で一定面積以上ハイライトが入射される場合のみ動作します。</li>
@@ -427,15 +427,15 @@
                     <li><strong class="UI">IRオフ</strong>：B/Wモードが動作した時にWDRモードを自動にオフします。</li>
                 </ul>
             </div>
-        <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
+        <div class="wn5-setup-section-article-content sptWDRSeamlessTransitionOptions" ng-if="WDRSeamlessTransitionOptions">
             <h5>自動</h5>
             <p><strong class="UI">[有効]</strong>を選択すると、映像を分析してバックライトが必要な場合、自動にWDRモードを有効にします。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="WDRLowLightOptions">
+        <div class="wn5-setup-section-article-content sptWDRLowLightOptions" ng-if="WDRLowLightOptions">
             <h5>ローライトオフ</h5>
             <p><strong class="UI">[有効]</strong>を選択すると、低照度環境でWDRモードを自動にオフします。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="WDRIRLEDEnableOptions">
+        <div class="wn5-setup-section-article-content sptWDRIRLEDEnableOptions" ng-if="WDRIRLEDEnableOptions">
             <h5>IRオフ</h5>
             <p><strong class="UI">[有効]</strong>を選択すると、B/Wモードが動作した時にWDRモードを自動にオフします。</p>
         </div>
@@ -475,52 +475,52 @@
             <h3>明るさ</h3>
             <p>画面の明るさを調整することができます。数字が大きいほど画面が明るくなります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MinShutterOptions">
+        <div class="wn5-setup-section-article-content sptMinShutterOptions" ng-if="MinShutterOptions">
             <h3>最小シャッター</h3>
             <p>シャッターは環境によって露出を自動に設定することができます。最小シャッター～最大シャッターの範囲まで電子シャッターが動作します。最小シャッターは低速露出時間可能範囲の最小値を意味して長い露出時間の上限を設定します。</p>
             <p>選択した最小シャッターの値が<strong class="UI"><a href="#sensor">[センサー]</a></strong>モードのfps値より小さい場合、暗い状況でフレームレートが短縮されることがあります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxShutterOptions">
+        <div class="wn5-setup-section-article-content sptMaxShutterOptions" ng-if="MaxShutterOptions">
             <h3>最大シャッター</h3>
             <p>最大シャッターは高速露出時間可能範囲の最大値を意味して短い露出時間の上限を設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PreferShutterOptions">
+        <div class="wn5-setup-section-article-content sptPreferShutterOptions" ng-if="PreferShutterOptions">
             <h3>シャッター優先</h3>
             <p>露出時間の範囲内で優先的に動作する適正露出時間を設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="AFLKModeOptions">
+        <div class="wn5-setup-section-article-content sptAFLKModeOptions" ng-if="AFLKModeOptions">
             <h3>アンチフリッカー</h3>
             <p>撮影環境にある照明と周波数の不一致で発生する画面の揺れ現象を防止します。</p>
         </div>
-            <div class="wn5-setup-section-article-content" ng-if="ExposureControlSpeed">
+            <div class="wn5-setup-section-article-content sptExposureControlSpeed" ng-if="ExposureControlSpeed">
                 <h3>速度制御</h3>
                 <p>トンネル進入や進出のように照度が急激に変化する時、画面露出を素早く適用するためには<strong class="UI">[早い]</strong>を選択します。照度変化に敏感に反応して画面の明るさが変化し続ける場合、<strong class="UI">[普通]</strong>に設定することをお勧めします。</p>
             </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="SSNRModeOptions">
+        <div class="wn5-setup-section-article-content sptSSNRModeOptions" ng-if="SSNRModeOptions">
             <h3>SSNR</h3>
             <p>映像のノイズを除去します。</p>
             <ul>
                 <li><strong class="UI">On/Off</strong>：SSNR機能の使用有無を設定します。<strong class="UI">[On]</strong>を選択すると、SSNRレベルを調整することができます。</li>
                 <li><strong class="UI">WISE NR</strong>：映像内に動く対象物があると、自動にノイズ削減レベルを調整して対象物の識別力を向上させます。</li><!-- <li ng-if="SSNR2DLevel && SSNR3DLevel"><strong class="UI">??? NR</strong>: ?? ?? ???? ??? ??? ???? ??? ?? ??? ???? ??? ???? ??????.  </li> --></ul>
         </div>
-        <div class="wn5-setup-section-article-content"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
+        <div class="wn5-setup-section-article-content sptSSNRModeOptions"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
             <h3>SSNR レベル</h3>
             <p>SSNR レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]</strong>に選択した場合、設定することができます。</p>
             <p>レベルを上げるほど、ノイズは低減するが映像がぼやけることがあります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
+        <div class="wn5-setup-section-article-content sptSSNR2DLevel" ng-if="SSNR2DLevel">
             <h3>SSNR 2D レベル</h3>
             <p>SSNR 2Dは、一つのフレームで隣接したピクセルを使用して映像のノイズを低下させます。SSNR 2D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
             <p>レベルを上げるほど、ノイズは低減するが映像がぼやけることがあります。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
+        <div class="wn5-setup-section-article-content sptSSNR3DLevel" ng-if="SSNR3DLevel">
             <h3>SSNR 3D レベル</h3>
             <p>SSNR 3Dは、複数フレームのピクセルを使用して映像のノイズを低下させます。SSNR 3D レベル値を設定します。<strong class="UI">[SSNR]</strong>を<strong class="UI">[On]</strong>や<strong class="UI">[WISE NR]</strong>に選択した場合、設定することができます。</p>
             <p>レベルを上げるほど、ノイズは低減するが映像に残像が発生することがあります。</p>
         </div>
 
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>レンズ</h3>
                 <p>レンズタイプが表示されます。選択したレンズによってアイリス値が異なります。</p>
             </div><!-- IrisModeOptions->IrisSupport? ??. ??? ???. PNO-A9081. 2019-10-11 --> <!--  IrisSupport -> IrisModeOptions? ??. QNB-8002 ?? ????? ?? ??. TW. 2019-11-27 
@@ -537,15 +537,15 @@
         </div>
            
 
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>絞り位置</h3>
                 <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[手動]</strong>の場合、有効になってアイリス位置値を設定します。</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>最大絞り</h3>
                 <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[自動]</strong>の場合、有効になって自動で最大に開放されるアイリスの位置値を設定します。暗い低照度環境で開放されます。</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>絞り優先。</h3>
                 <p><strong class="UI">[アイリス]</strong>モードが<strong class="UI">[自動]</strong>の場合、有効になって一般的な照度条件でアイリス優先の位置値を設定します。値の範囲は、<strong class="UI">[アイリス最大位置]</strong>で選択した値より低い値で自動に設定されます。</p>
             </div><!-- !EFLensSupport  ???. ??? ???. TNB-9000. 2019-11-15 --> <!-- Lens -> IrisFnoOptions (PNO-A9081. ??? ???. 2019-10-11) -> Lens? ???. TW. TNB-9000? QNB-8002 ?? ??. 2019-11-27--><div class="wn5-setup-section-article-content" ng-if="Lens && !EFLensSupport">
@@ -558,11 +558,11 @@
             </ul>
             </div>
         
-            <div class="wn5-setup-section-article-content" ng-if="PIrisModeOptions">
+            <div class="wn5-setup-section-article-content sptPIrisModeOptions" ng-if="PIrisModeOptions">
                 <h3>Pアイリス</h3>
                 <p><strong class="UI">[レンズ]</strong>からPアイリスを選択すると有効になります。<strong class="UI">[自動]</strong>を選択すると、明るさによってアイリスが自動に調整されます。<strong class="UI">[マニュアル]</strong>を選択すると、ユーザーが直接にアイリスの位置を設定します。</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="PIrisPosition">
+            <div class="wn5-setup-section-article-content sptPIrisPosition" ng-if="PIrisPosition">
                 <h3>Pアイリス位置</h3>
                 <p><strong class="UI">[Pアイリス]</strong>を<strong class="UI">[マニュアル]</strong>に選択すると有効になります。Pアイリス位置を調整することができます。</p>
             </div>
@@ -579,12 +579,12 @@
                     <li><strong class="UI">最大ゲイン</strong>：周りの明るさによってゲインが自動に制御される最大ゲインを設定します。</li>
                 </ul>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
+            <div class="wn5-setup-section-article-content sptAGCLevel" ng-if="AGCLevel">
                 <h3>レベル(マニュアル)</h3>
                 <p>AGCのレベル値を手動で設定します。レベル値を高く設定するほど、ゲイン値が増加して暗い環境でも画面が明るくなります。</p>
                 <p>[AGC]で[マニュアル]を選択すると、[レベル(マニュアル)]が有効になります。</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
+            <div class="wn5-setup-section-article-content sptAGCMaxGainLevel" ng-if="AGCMaxGainLevel">
             <h3>レベル(最大ゲイン)</h3>
                 <p>最大ゲイン値を設定します。周りの明るさによって設定された最大ゲインまで自動に制御されます。レベル値を高く設定するほど、最大ゲインが高く設定されます。</p>
                 <p>[AGC]で[最大ゲイン]を選択すると、[レベル(最大ゲイン)]が有効になります。</p>
@@ -592,15 +592,15 @@
             <div class="wn5-online-help-info" ng-if="MinShutterOptions || SSNR2DLevel || AGCModeOptions">
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
-                    <li ng-if="MinShutterOptions">最小シャッター、最大シャッターの設定範囲によって画面の露出を飽和することができます。</li>
-                    <li ng-if="SSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)モード設定後、適用/解除されるまでは一定時間がかかります。</li>
-                    <li ng-if="SSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)モード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
-                    <li ng-if="SSNR2DLevel">明るくてノイズが少ない環境では、あまりWISE NR(SSNR 2DとSSNR 3D)の効果がないです。</li>
-                    <li ng-if="SSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
+                    <li ng-if="MinShutterOptions" class="sptMinShutterOptions">最小シャッター、最大シャッターの設定範囲によって画面の露出を飽和することができます。</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)モード設定後、適用/解除されるまでは一定時間がかかります。</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)モード適用時、映像の識別力が向上される代わりにノイズが増加することがあります。</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">明るくてノイズが少ない環境では、あまりWISE NR(SSNR 2DとSSNR 3D)の効果がないです。</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">WISE NR(SSNR 2DとSSNR 3D)設定時、映像のモーション検知は内部的にモーション検知機能を使用するためにモーション検知イベントの動作条件に従います。モーション検知の詳細設定は<strong class="UI">[分析]</strong> &gt; <strong class="UI">[モーション検知]</strong>で確認することができます。</li>
                     <li ng-if="AGCModeOptions && SSNR2DLevel">AGC利用が多い場合、SSNRのSSNR 3D値が増加するため、映像が引かれることがあります。</li>
-                    <li ng-if="AGCModeOptions">AGC動作時、画面にノイズが増加します。</li>
+                    <li ng-if="AGCModeOptions" class="sptAGCModeOptions">AGC動作時、画面にノイズが増加します。</li>
                     <li ng-if="AGCModeOptions && AGCMaxGainLevel">AGCモードのオプションを[Off]や[手動]で設定したり、[最大ゲイン]値を30 db未満に設定した場合、[デイ/ナイト]の[自動]オプションは設定できません。</li>
-                    <li ng-if="HybridThermal">チャンネル1(実画像ビデオ)を選択した場合、明るさ、SSNR、SSNR 2Dレベル、SSNR 3Dレベル、最小シャッター、最大シャッター、シャッター優先、アンチフリッカー、AGC、レベル(マニュアル)、レベル(最大ゲイン)をサポートします。チャンネル2(熱画像ビデオ)を選択した場合、明るさ、SSNR、SSNR 2Dレベル、SSNR 3Dレベルのみサポートします。</li>
+                    <li ng-if="HybridThermal" class="sptHybridThermal">チャンネル1(実画像ビデオ)を選択した場合、明るさ、SSNR、SSNR 2Dレベル、SSNR 3Dレベル、最小シャッター、最大シャッター、シャッター優先、アンチフリッカー、AGC、レベル(マニュアル)、レベル(最大ゲイン)をサポートします。チャンネル2(熱画像ビデオ)を選択した場合、明るさ、SSNR、SSNR 2Dレベル、SSNR 3Dレベルのみサポートします。</li>
                 </ul><!-- <ul>
                 <li>?? ??, ?? ??? ?? ??? ?? ??? ?? ??? ? ????.</li>
                 <li ng-if="SSNR2DLevel && SSNR3DLevel">??? NR ??(SSNR 2D ? SSNR 3D) ?? ? ??? ??/?? ????? ?? ??? ?? ? ????.</li>
@@ -611,8 +611,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DayNight">
-<div class="wn5-setup-section" ng-if="DayNight">
+<hr class="wn5-setup-hr sptDayNight" ng-if="DayNight">
+<div class="wn5-setup-section sptDayNight" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
         <h2><a name="daynight"></a>デイ/ナイト</h2>
     </div>
@@ -627,8 +627,8 @@
                 <li><strong class="UI">色</strong>：映像を常時カラーに出力します。</li>
                 <li><strong class="UI">B/W</strong>：映像を常時B/Wに出力します。</li>
                 <li><strong class="UI">自動</strong>：昼間にはカラーモード、夜間や低照度の場合にはB/Wに切り替えします。</li>
-                    <li style="list-style-type: none;" ng-if="!AGCMaxGainLevel">但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>、[デイ/ナイト]を[自動]に設定できません。</li>
-                    <li style="list-style-type: none;" ng-if="AGCMaxGainLevel">但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>や<strong class="UI">[手動]</strong>で設定したり、<strong class="UI">[最大ゲイン]</strong>を「30 dB未満」に設定する場合、[デイ/ナイト]を[自動]に設定できません。</li>
+                    <li style="list-style-type: none;" ng-if="!AGCMaxGainLevel" class="nsptAGCMaxGainLevel">但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>、[デイ/ナイト]を[自動]に設定できません。</li>
+                    <li style="list-style-type: none;" ng-if="AGCMaxGainLevel" class="sptAGCMaxGainLevel">但し、<strong class="UI">露出補正</strong>の<strong class="UI">[AGC]</strong>を<strong class="UI">[Off]</strong>や<strong class="UI">[手動]</strong>で設定したり、<strong class="UI">[最大ゲイン]</strong>を「30 dB未満」に設定する場合、[デイ/ナイト]を[自動]に設定できません。</li>
                 <li><strong class="UI">外部</strong>：アラーム入力ポートを外部デバイスと同期した場合、映像のカラーとB/Wを制御することできます。</li><!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">?? ??</strong>: ?? ?? ??? ?? ??? ???? ??? ??? ??? ??? ??? ? ????.
                 </li> --><li><strong class="UI">スケジュール</strong>：<strong class="UI">[動作時間(カラー)]</strong>で設定したスケジュールにデイ/ナイトが変更されます。</li><!-- <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ??? ?????.</li>
                 <li ng-if="DayNightSchedule"><strong class="UI">???(??)</strong>: <strong class="UI">[?? ???]</strong>?? ??? ???? ?? ??? ??? ???? ?????.</li>  --></ul>
@@ -654,7 +654,7 @@
             <p>アラームセンサーの開/閉状況によって映像をカラーやB/Wに設定することができます。
                 <!-- <strong class="UI">[デイ/ナイト]</strong>の<strong class="UI">[モード]</strong>を<strong class="UI">[外部]</strong>に設定すると、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入力]</strong>機能が無効になり設定ページが表示されません。 -->
             </p>
-        </div><!-- ?? ?? DefocusDetectSimpleFocus?? ExternalPTZModel? ???. Q???. ??? ?? 4/15? ?? ?? --> <!-- ExternalPTZModel -> SimpleFocusAfterDayNight? ???. ??? ???. ?? 11/22? ??.  --><div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+        </div><!-- ?? ?? DefocusDetectSimpleFocus?? ExternalPTZModel? ???. Q???. ??? ?? 4/15? ?? ?? --> <!-- ExternalPTZModel -> SimpleFocusAfterDayNight? ???. ??? ???. ?? 11/22? ??.  --><div class="wn5-setup-section-article-content sptSimpleFocusAfterDayNight" ng-if="SimpleFocusAfterDayNight">
             <h3>デイ/ナイト切替後の単一フォーカス</h3>
             <p>デイ/ナイト切替後、映像のフォーカスを自動に合わせます。</p>
         </div>
@@ -683,7 +683,7 @@
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content"><!-- <p>??? ??? ????? ??, ???, ?? ?? ?? ? ? ????.</p>  --><p>映像のシャープを調整したりコントラスト、カラー調整などを設定することができます。</p>
         </div>
-		<div class="wn5-online-help-info" ng-if="HybridThermal">
+		<div class="wn5-online-help-info sptHybridThermal" ng-if="HybridThermal">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
                     <li>チャンネル1(実画像ビデオ)を選択した場合、DIS、シャープネス、シャープネスレベル、ガンマ制御、ガンマ、コントラスト、ローカル・コントラスト、カラーレベル、曇り除去、LDCをサポートします。チャンネル2(熱画像ビデオ)を選択した場合、DIS、コントラスト、シャープネス、シャープネスレベルのみサポートします。</li>
@@ -701,7 +701,7 @@
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="DIS">
+        <div class="wn5-setup-section-article-content sptDIS" ng-if="DIS">
             <h3>DIS</h3>
             <p>DIS (Digital Image Stabilization)は風のような外部的な要因でカメラに振動が発生する場合、映像を自動に補正して安定的に画面を出力します。</p>
         </div>
@@ -717,66 +717,66 @@
             <ul>
                 <li>DIS設定を変更すると、映像画面がズームアウトされたりズームインされることがあります。変更された映像に合わせて映像を分析できるように<strong class="UI">[分析]</strong>メニューで分析設定を変更してください。</li>
             </ul>
-        </div><!--???? ?? ????, ???? ??? ??? ??? ? ??? DIS ??? ??? ???? ???? ??? ???? ??? ?? ??? ??(Manual)? ???? ???. ??? ??--> <!--??? ???? ?? ? DISFocalLength ?? ??. PNB-A9000. 2019-12-26 --><div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
+        </div><!--???? ?? ????, ???? ??? ??? ??? ? ??? DIS ??? ??? ???? ???? ??? ???? ??? ?? ??? ??(Manual)? ???? ???. ??? ??--> <!--??? ???? ?? ? DISFocalLength ?? ??. PNB-A9000. 2019-12-26 --><div class="wn5-setup-section-article-content sptDISFocalLength" ng-if="DISFocalLength">
             <h3>フォーカス距離</h3>
             <p>DIS機能が正常に動作するようにレンズのフォーカス距離を設定します。<strong class="UI">[DIS]</strong>オプションを[有効]に設定した場合のみ、[フォーカス距離]値を変更できます。</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
+        <div class="wn5-setup-section-article-content sptSharpnessLevel" ng-if="SharpnessLevel">
             <h3>シャープネス</h3>
             <p>映像の全判的なシャープを調整します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
+        <div class="wn5-setup-section-article-content sptSharpnessLevel" ng-if="SharpnessLevel">
             <h3>シャープネスレベル</h3>
             <p>映像の全判的なシャープを調整します。<strong class="UI">[シャープネス]</strong>を<strong class="UI">[on]</strong>に設定すると、シャープネスレベルを設定することができます。</p>
             <p>シャープネスレベルが高いほど、映像のシャープが強くて鮮明になります。</p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="GammaControl">
+		<div class="wn5-setup-section-article-content sptGammaControl" ng-if="GammaControl">
             <h3>ガンマ制御</h3>
                 <p><strong class="UI">[On]</strong>に設定すると、映像の明るさ分布を分析して明るさのレベルを調整します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Gamma">
+        <div class="wn5-setup-section-article-content sptGamma" ng-if="Gamma">
             <h3>ガンマ</h3>
             <p>映像のコントラストを調整します。映像で最も明るい部分と最も暗い部分の格差を意味します。ガンマの数字が高いほど、明るさの差が確かに表れます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Contrast">
+        <div class="wn5-setup-section-article-content sptContrast" ng-if="Contrast">
             <h3>コントラスト</h3>
             <p>映像の影コントラストを調整します。</p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="XCELevel">
+		<div class="wn5-setup-section-article-content sptXCELevel" ng-if="XCELevel">
             <h3>ローカル・コントラスト</h3>
                 <p>ローカル・コントラストは、映像の微細な明るさの差を明らかに表示する機能です。</p>
         </div>
-            <div class="wn5-setup-section-article-content" ng-if="XCELevel">
+            <div class="wn5-setup-section-article-content sptXCELevel" ng-if="XCELevel">
                 <h3>ローカルコントラストレベル</h3>
                 <p>[ローカル・コントラスト]で[On]を選択すると有効になります。レベル値が増加するほど、映像の明るさの差が大きくなり鮮明な効果を確認できます。しかし映像にノイズやアウトラインの周りに歪んだ形の二重像がひどくなります。</p>
             </div>
-        <div class="wn5-setup-section-article-content" ng-if="Saturation">
+        <div class="wn5-setup-section-article-content sptSaturation" ng-if="Saturation">
             <h3>カラーレベル</h3>
             <p>映像でカラーの強弱を調整します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
+        <div class="wn5-setup-section-article-content sptDefogModeOptions" ng-if="DefogModeOptions">
             <h3>曇り除去</h3>
             <p>霧がかかったり天気が曇った時、映像を補正します。<strong class="UI">[自動]</strong>に設定すると、周囲環境を検知して自動に映像を補正します。<strong class="UI">[マニュアル]</strong>に設定すると、ユーザーが周囲環境を見て直接補正量を設定することができます。</p>
             <p>初期値は<strong class="UI">[off]</strong>に設定されています。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
+        <div class="wn5-setup-section-article-content sptDefogLevel" ng-if="DefogLevel">
             <h3>曇り除去レベル</h3>
             <p>曇り除去が<strong class="UI">[マニュアル]</strong>の場合、有効になって曇り除去レベルを調整します。曇り除去レベルが高いと、映像がより鮮やかに表示されます。曇りレベルが低くて曇り除去レベルが高いと、画面が暗く表示されることがあります。</p>
         </div>
 		
-		<div class="wn5-online-help-info" ng-if="DefogModeOptions">
+		<div class="wn5-online-help-info sptDefogModeOptions" ng-if="DefogModeOptions">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>曇り除去モードを<strong class="UI">[自動]</strong>に設定した場合、曇り量が減少すると曇り除去機能も共に減少します。曇り量が減少しても設定したレベルだけの機能を実行するには、曇り除去モードを<strong class="UI">[マニュアル]</strong>に設定してください。</li>
                 <li>曇りレベルが低くて手動曇りレベルが高い場合、画面が真っ暗に表示されることがあります。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
+        <div class="wn5-online-help-info sptDefogModeOptions" ng-if="DefogModeOptions">
             <h3>光学曇り除去フィルター</h3>
             <p>カメラ映像に光学式曇り補正の使用有無を選択します。<strong class="UI">[曇り除去]</strong>を<strong class="UI">[マニュアル]</strong>に設定した場合のみ、光学曇り除去フィルターを使用するように設定することができます。</p>
         </div>		
-        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
+        <div class="wn5-setup-section-article-content sptLDCLevel" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p>LDC (Lens Distortion Correction)は広角レンズの角部分の映像歪み現象を補正します。</p>
             <ul>
@@ -790,17 +790,17 @@
 
                     <!-- <li ng-if="LDCAuto"><strong class="UI">??</strong>: ???? ?? ??? ?????.  </li> --></ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+        <div class="wn5-online-help-info sptLDCIncompatible" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
                     <li><strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[ビデオ設定]</a></strong>の <strong class="UI">[プライバシーエリアを有効にする]</strong>を選択した場合、<strong class="UI">[LDC]</strong>と <strong class="UI">[LDC レベル] </strong>オプションが無効になります。カメラLDC機能を使用するには、<strong class="UI">[プライバシーエリアを有効にする]</strong>を選択解除する必要があります。</li>
                     <!-- 
                     <li>[?? ??]? [WDR], [???]? [DIS]? [LDC] ??? ??? ??? ????. ? ? ?? ? ??? ??? ? ????.</li>  -->
-                    <li ng-if="GlobalLDCModeSupport">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
+                    <li ng-if="GlobalLDCModeSupport" class="sptGlobalLDCMode">LDCのオプションを変更すると、すべてのチャンネルに変更値が同じく適用されます。</li>
                     <li ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">選択したレンズタイプによって[LDC]オプションが表示されない場合があります。レンズタイプは<strong class="UI">[レンズ]</strong>で選択することができます。</li>
                 </ul>
         </div>  
-        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
+        <div class="wn5-setup-section-article-content sptLDCLevel" ng-if="LDCLevel">
             <h3>LDCレベル</h3>
                 <p>歪み補正率レベルを調整します。<strong class="UI">[LDC]</strong>を<strong class="UI">[自動]</strong>や<strong class="UI">[手動]</strong>に<strong class="UI">[手動]</strong>で設定すると、有効になります。レベル値が高いほど、角部分の歪みが平らに補正され、低いほど歪みがそのまま維持されます。</p>
         </div>
@@ -814,8 +814,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="!spotTemperatureSupport">カメラタイトルまたは日付と時間を映像に表示することができます。</p> 
-            <p ng-if="spotTemperatureSupport">文字の位置、サイズ、カラー、透明度などを設定することもできます。</p> 
+            <p ng-if="!spotTemperatureSupport" class="nsptSpotTemperature">カメラタイトルまたは日付と時間を映像に表示することができます。</p> 
+            <p ng-if="spotTemperatureSupport" class="sptSpotTemperature">文字の位置、サイズ、カラー、透明度などを設定することもできます。</p> 
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -832,7 +832,7 @@
             <h3>日付＆時間</h3>
             <p>日付と時間を画面に表示するには、<strong class="UI">[有効]</strong>を選択します。日付表記タイプを選択した後、カーソルを動かして日付と時間表示位置を設定します。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="FontSizeOptions">
+        <div class="wn5-setup-section-article-content sptFontSizeOptions" ng-if="FontSizeOptions">
             <h3>サイズ</h3>
             <p>OSDのサイズを調整します。</p>
         </div>
@@ -850,10 +850,10 @@
             <ul>
                 <li><strong class="UI">PTZ位置</strong>：画面にPTZ位置表示有無を設定します。</li>
                 <li><strong class="UI">プリセット名</strong>：画面にプリセット名の表示有無を設定します。</li>
-                <li ng-if="CameraIDEnable"><strong class="UI">カメラID</strong>：画面にカメラIDの番号表示有無を設定します。</li><!-- <li ng-if="RS485Support"><strong class="UI">??? ID</strong>: ??? ??? ID ?? ?? ??? ?????.</li> --><li><strong class="UI">アジマス</strong>：現在、画面上で見ているエリアのアジマスを表示する機能です。機能設定時、E(東)/W(西)/S(南)/N(北)/NE(北東)/NW(北西)/SE(南東)/SW(南西)の8方向に表示して画面の右下に表示されます。</li>
+                <li ng-if="CameraIDEnable" class="sptCameraIDEnable"><strong class="UI">カメラID</strong>：画面にカメラIDの番号表示有無を設定します。</li><!-- <li ng-if="RS485Support"><strong class="UI">??? ID</strong>: ??? ??? ID ?? ?? ??? ?????.</li> --><li><strong class="UI">アジマス</strong>：現在、画面上で見ているエリアのアジマスを表示する機能です。機能設定時、E(東)/W(西)/S(南)/N(北)/NE(北東)/NW(北西)/SE(南東)/SW(南西)の8方向に表示して画面の右下に表示されます。</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="ZoomOnlyModel">
+        <div class="wn5-setup-section-article-content sptZoomOnlyModel" ng-if="ZoomOnlyModel">
             <h3>オーバーレイ</h3>
             <p>ズーム倍率やカメラ名など、カメラ映像画面に表示するデータを選択します。</p>
         </div>
@@ -865,12 +865,12 @@
         </div>
         <div class="wn5-setup-section-article-content" ng-if="MultiImageIndex > 0">
             <h3>画像のアップロード</h3>
-            <p><strong class="UI">[…]</strong>ボタンをクリックしてビットマップタイプのファイルを検索します。<strong class="UI">[アップロード]</strong>ボタンをクリックして画像ファイルをアップロードします。画面に適用した画像ファイルを削除するには、<strong class="UI">[削除]</strong>ボタンをクリックします。
+            <p><strong class="UI">[…]</strong>ボタンをクリックしてビットマップタイプのファイルを検索します。<strong class="UI">[アップロード]</strong>ボタンをクリックして画像ファイルをアップロードします。画面に適用した画像ファイルを削除するには、<strong class="UI">[削除]</strong>ボタンをクリックします。</p>
 
                 <!-- 適用できる画像の仕様は、16ビット(RGB565未対応)または24ビットのビットマップファイルで、サイズは横/縦200ピクセル固定サイズ、ファイルサイズは52 KB以下である必要があります。 -->
             
-                適用できる画像の仕様は、16ビット(RGB565未対応)24ビットまたは32ビットのビットマップファイルで、サイズは横/縦200ピクセル固定サイズ、ファイルサイズは200 KB以下である必要があります。
-            </p>
+                <p>画像ファイルは16ビット(RGB565対応しない)または24ビット、32ビットのビットマップファイルである必要があります。サイズは最大横/縦の200ピクセルまで対応し、ファイルサイズは200KB以下である必要があります。</p>
+            
         </div>
 		
 		
@@ -878,13 +878,13 @@
 			<h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>位置調整ができる項目(カメラタイトル、日付＆時間)の場合、固定された他のOSD項目と重なる場合には正しく画面に表示されないことがあります。</li>
-                <li ng-if="(PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable">「オーバーレイ」の「カメラID」は画面の左上、「PTZ位置」は画面の左下に表示され位置は変更できません。</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
+                <li ng-if="CameraIDEnable" class="sptCameraIDEnable">「オーバーレイ」の「カメラID」は画面の左上、「PTZ位置」は画面の左下に表示され位置は変更できません。</li><!-- <li>??, ??, ??, ??? ??? ? ????. </li> --></ul>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
-<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal"  class="nsptBoxTempDetectAndPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal"  class="nsptBoxTempDetectAndPalette">
     <div class="wn5-setup-section-heading">
         <h2>カラーパレット</h2>
     </div>
@@ -930,7 +930,7 @@
                 <li>ワンショットAF：ユーザーイベント(オートフォーカスもしくはズーム動作)が発生する時、自動にフォーカスが一回調整されます。</li>
             </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="globalAutoFocusRange">
+		<div class="wn5-setup-section-article-content sptGlobalAutoFocusRange" ng-if="globalAutoFocusRange">
             <h3>範囲</h3>
             <p>カメラフォーカスを自動に調整するときに適用する範囲を設定します。</p>
             <p>カメラで対応する全体範囲を考えてフォーカスを自動に調整するには、<strong class="UI">[広い]</strong>を選択します。現在位置で一部範囲だけを考えてフォーカスを調整するには、<strong class="UI">[狭い]</strong>を選択します。</p>
@@ -982,8 +982,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Heater">
-<div class="wn5-setup-section" ng-if="Heater">
+<hr class="wn5-setup-hr sptHeater" ng-if="Heater">
+<div class="wn5-setup-section sptHeater" ng-if="Heater">
     <div class="wn5-setup-section-heading">
         <h2>ヒーター</h2>
     </div>
@@ -1000,8 +1000,8 @@
         </div> --></div>
 </div>
 
- <hr class="wn5-setup-hr" ng-if="Fan">
-<div class="wn5-setup-section" ng-if="Fan">
+<hr class="wn5-setup-hr sptFan" ng-if="Fan">
+<div class="wn5-setup-section sptFan" ng-if="Fan">
     <div class="wn5-setup-section-heading">
    <h2>パン</h2>
     </div>
@@ -1044,13 +1044,13 @@
                 <li ng-if="IRModeOptionAuto2"><strong class="UI">?? 2</strong>: ?? ??? ? ???? ?? ???? ??? ?? ???? IR? ??? ?????.</li>
                 <li ng-if="IRModeOptionManual"><strong class="UI">??</strong>: ???? IR? ??? ?????.</li>
             </ul> --></div>
-        <div class="wn5-setup-section-article-content" ng-if="!IRledZoneLevel">
+        <div class="wn5-setup-section-article-content nsptIRledZoneLevel" ng-if="!IRledZoneLevel">
             <h3>レベル</h3>
             <p>IRレベルを設定します。</p>
             <p>IRレベルは<strong class="UI">[モード]</strong>で<strong class="UI">[手動]</strong>を選択すると、有効になります。</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="IRledZoneLevel">
+        <div class="wn5-setup-section-article-content sptIRledZoneLevel" ng-if="IRledZoneLevel">
             <h3>エリア1レベル</h3>
                 <p>IRレベルをエリア別に適用することができます。IRレベル値を高く設定するとIR明るさが明るくなり、IRレベル値を低く設定するとIR明るさが暗くなります。</p>
                 <p>IRレベルは<strong class="UI">[モード]</strong>で<strong class="UI">[マニュアル]</strong>を選択すると、有効になります。</p>
@@ -1117,8 +1117,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ActivationTime">
-<div class="wn5-setup-section" ng-if="ActivationTime">
+<hr class="wn5-setup-hr sptActivationTime" ng-if="ActivationTime">
+<div class="wn5-setup-section sptActivationTime" ng-if="ActivationTime">
     <div class="wn5-setup-section-heading">
         <h2>動作時間</h2>
     </div>

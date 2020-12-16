@@ -4,8 +4,8 @@
 전으로 돌아갑니다.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="WDRControlModeOptions">
-<div class="wn5-setup-section" ng-if="WDRControlModeOptions">
+<hr class="wn5-setup-hr sptWDRControlModeOptions" ng-if="WDRControlModeOptions">
+<div class="wn5-setup-section sptWDRControlModeOptions" ng-if="WDRControlModeOptions">
     <div class="wn5-setup-section-heading">
         <h2>비교 뷰</h2>
     </div>
@@ -19,19 +19,19 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>채널 선택</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라 채널을 선택한 후 채널별로 세부 항목을 설정할 수 있습니다. </p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment && HybridThermal">라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
-            <p ng-if="objectDetectionSupport">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [카메라 설정]은 채널 1에서만 설정할 수 있습니다. </p>
-            <p ng-if="HandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
-            <p ng-if="SupportAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
-            <p ng-if="SupportAutoImageAlignment">카메라 설정'은 채널 1에만 설정할 수 있습니다.</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment && HybridThermal" class="sptHandOverCalAndAutoImgAlign">라이브 페이지나 재생 페이지에서 가장 최근에 선택한 채널 번호가 자동으로 선택되어 있습니다. </p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2는 디지털 PTZ 영상을 보여 주는 채널입니다. [카메라 설정]은 채널 1에서만 설정할 수 있습니다. </p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">고정 카메라의 채널은 번호로 표기되고, PTZ 채널은 'PTZ'로 표기됩니다.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">채널 2~5번은 장착된 개별 카메라 영상이고, 채널 1은 2~5번 채널의 카메라 영상을 하나로 연결하여 파노라마 형식으로 보여주는 영상입니다. 채널 6번과 7번은 채널 1 영상에 대해 디지털 PTZ가 적용된 영상입니다. </p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">카메라 설정'은 채널 1에만 설정할 수 있습니다.</p>
 
             <!-- <p ng-if="SupportChannelExpansionFeature">채널별 뷰 모드는 다음과 같습니다. '카메라 설정'은 채널 1번만 활성화됩니다.  </p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -44,22 +44,22 @@
                 <li>채널 7: 채널 4의 4분할 화면에서 왼쪽 하단의 영상을 보여줍니다.</li>
                 <li>채널 8: 채널 4의 4분할 화면에서 오른쪽 하단의 영상을 보여줍니다.</li>
             </ul> -->
-            <p ng-if="HybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. </p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">채널 1은 실화상 카메라 영상 채널이며, 채널 2는 열화상 영상 채널입니다. </p>
             <p ng-if="MultiImager">채널 1은 라이브 영상을 보여 주는 채널이며, 채널 2와 3은 디지털 PTZ 영상을 보여 주는 채널입니다. [카메라 설정]은 채널 1에서만 설정할 수 있습니다. </p> 
             <!-- <p>설정을 변경한 뒤 저장하지 않고 다른 채널을 선택할 경우 알림 메시지가 나타납니다. </p> -->
         </div>
 	</div>
 </div> 
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>PTZ 조정하기</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>카메라의 팬, 틸트, 및 줌 동작을 조정할 수 있습니다. </p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 PTZ 조그 패널이 나타납니다.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 PTZ 조그 패널이 나타납니다.</p>
         </div>
 			
         <div class="wn5-online-help-action">
@@ -79,8 +79,8 @@
     <!-- PNM-9000QB에서 컨텐츠가 show되어 hide되도록 수정. FocusPresetSupportByChannel !== undefined에 FocusModeOptions !== undefined를 추가함. 김주희 선임님 메일 2020-08-25.   -->
 
 
-    <hr class="wn5-setup-hr" ng-if="FocusPresetSupport">
-<div class="wn5-setup-section" ng-if="FocusPresetSupport">
+    <hr class="wn5-setup-hr sptFocusPreset" ng-if="FocusPresetSupport">
+<div class="wn5-setup-section sptFocusPreset" ng-if="FocusPresetSupport">
     <div class="wn5-setup-section-heading">
         <h2>포커스 저장</h2>
     </div>
@@ -118,8 +118,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="PTZModel">
-<div class="wn5-setup-section" ng-if="PTZModel">
+<hr class="wn5-setup-hr sptRealPTZModel" ng-if="PTZModel">
+<div class="wn5-setup-section sptRealPTZModel" ng-if="PTZModel">
     <div class="wn5-setup-section-heading">
         <h2>타입</h2>
 	</div>	
@@ -127,12 +127,12 @@
         <div class="wn5-setup-section-article-content">
             <p>모든 프리셋에 동일한 카메라 설정을 지정하려면 <strong class="UI">[전역]</strong>을 선택합니다. PTZ 프리셋 별로 각각 다르게 설정하려면 <strong class="UI">[프리셋]</strong>을 선택합니다. <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">프리셋 설정</a> 페이지에서 프리셋을 설정한 경우에만 <strong class="UI">[프리셋]</strong> 옵션이 활성화됩니다. <strong class="UI">[프리셋]</strong>을 선택하여 프리셋 별로 카메라 설정을 지정하는 경우, 세부 카메라
 설정 항목 중 일부 항목은 설정할 수 없습니다.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 '타입' 기능을 설정할 수 있습니다.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a href="#channel">[채널 선택]</a></strong>에서 <strong class="UI">[PTZ]</strong> 채널을 선택한 경우에만 '타입' 기능을 설정할 수 있습니다.</p>
         </div>
 </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="PanTiltOnlyModel">
-<div class="wn5-setup-section" ng-if="PanTiltOnlyModel">
+<hr class="wn5-setup-hr sptPantiltOnly" ng-if="PanTiltOnlyModel">
+<div class="wn5-setup-section sptPantiltOnly" ng-if="PanTiltOnlyModel">
     <div class="wn5-setup-section-heading">
         <h2>타입</h2>
 	</div>	
@@ -146,8 +146,8 @@
 
 
 
-<hr class="wn5-setup-hr" ng-if="Sensor">
-<div class="wn5-setup-section" ng-if="Sensor">
+<hr class="wn5-setup-hr sptSensorCaptureFrameRate" ng-if="Sensor">
+<div class="wn5-setup-section sptSensorCaptureFrameRate" ng-if="Sensor">
     <div class="wn5-setup-section-heading">
         <h2><a class="wn5-online-help-link" name="sensor"></a>센서 모드</h2>
     </div>
@@ -159,10 +159,10 @@
                 <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
                     <!-- PNM-9030V에서는 센서 모드를 변경해도 카메라 설정 값이 초기화되지 않으므로 분기 처리. TW 자체. 일분 초기화되는 모델이 있으므로 (예전 모델) 컨텐츠 분기 처리. 2020-01-16.  -->
-                    <li ng-if="!SupportAutoImageAlignment">센서 모드 옵션을 변경하면 [카메라 설정]에서 설정한 모든 값이 초기화됩니다.</li>
+                    <li ng-if="!SupportAutoImageAlignment" class="nsptAutoImageAlignment">센서 모드 옵션을 변경하면 [카메라 설정]에서 설정한 모든 값이 초기화됩니다.</li>
                     <li>센서 모드 값은 이미지 프리셋 별로 각각 다르게 설정할 수 없습니다. 프레임 레이트는 모든 이미지 프리셋에 동일하게 적용됩니다. </li>
                     <li>센서 모드에서 설정한 프레임 수에 따라 <strong class="UI">[Basic]</strong>&gt;<strong class="UI">[비디오 프로파일]</strong>&gt;<strong class="UI">[프레임 레이트]</strong>의 최댓값이 달라집니다.</li>
-                    <li ng-if="GlobalSensorModeSupport">센서 모드 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
+                    <li ng-if="GlobalSensorModeSupport" class="sptGlobalSensorMode">센서 모드 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
                 </ul>
             </div>  
     </div>
@@ -192,14 +192,14 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>이미지 프리셋 모드를 선택한 후 화이트밸런스, 주야간모드 등과 같은 카메라 이미지 세부 설정을 변경하고 <strong class="UI">[적용]</strong>을 클릭하면, 변경한 값이 해당 이미지 프리셋 값으로 저장됩니다. 초깃값으로 되돌리려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다. </li>
-                <li ng-if="HybridThermal">채널 1(실화상 영상)을 선택한 경우 활성화되며, SSDR 모드, SSDR 레벨, 최소 셔터, 최대 셔터, AGC, SSNR, SSNR 레벨, 컬러 레벨을 지원합니다. </li>
+                <li ng-if="HybridThermal" class="sptHybridThermal">채널 1(실화상 영상)을 선택한 경우 활성화되며, SSDR 모드, SSDR 레벨, 최소 셔터, 최대 셔터, AGC, SSNR, SSNR 레벨, 컬러 레벨을 지원합니다. </li>
             </ul>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ImagePresetIndoor">
-<div class="wn5-setup-section" ng-if="ImagePresetIndoor">
+<hr class="wn5-setup-hr sptImagePresetIndoor" ng-if="ImagePresetIndoor">
+<div class="wn5-setup-section sptImagePresetIndoor" ng-if="ImagePresetIndoor">
     <div class="wn5-setup-section-heading">
         <h2>이미지 프리셋 모드</h2>
     </div>
@@ -216,7 +216,7 @@
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>이미지 프리셋 모드를 선택한 후 SSDR, 노출 보정 등과 같은 카메라 이미지 세부 설정을 변경하고 <strong class="UI">[적용]</strong>을 클릭하면, 변경한 값이 해당 이미지 프리셋 값으로 저장됩니다. 초깃값으로 되돌리려면 <strong class="UI">[초기화]</strong> 버튼을 클릭합니다.</li>
-                <li ng-if="HybridThermal">채널 2(열화상 영상)을 선택한 경우, [실내] 모드와 [실외] 모드를 지원하며, 모드별로 SSDR, LCE, 밝기, SSNR, DIS, 윤곽 조정, 대비를 지원합니다.</li>
+                <li ng-if="HybridThermal" class="sptHybridThermal">채널 2(열화상 영상)을 선택한 경우, [실내] 모드와 [실외] 모드를 지원하며, 모드별로 SSDR, LCE, 밝기, SSNR, DIS, 윤곽 조정, 대비를 지원합니다.</li>
             </ul>
         </div>
     </div>
@@ -248,8 +248,8 @@
 
 <!-- 열상 카메라 TNM-3620TDY. 이재준 수석님.typeof mAttr.thermalModelbyChannel !== 'undefined' ? mAttr.thermalModelbyChannel[currentChannel] : false; 가이드 받음. thermalModelbyChannel !== undefined 추가함. 2020-10-19 메일 -->
 <!-- XNP-9300R. 김영호 책임님. 2020-11-11 메일. -->
-<hr class="wn5-setup-hr" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
-<div class="wn5-setup-section" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
+<hr class="wn5-setup-hr sptLCE" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'" >
+<div class="wn5-setup-section sptLCE" ng-if="typeof BoxTemperatureDetection !== 'undefined' && typeof thermalModelbyChannel !== 'undefined'">
     <div class="wn5-setup-section-heading">
         <h2>LCE (Local Contrast Enhancement)  </h2>
     </div>
@@ -273,8 +273,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="WhiteBalance">
-<div class="wn5-setup-section" ng-if="WhiteBalance">
+<hr class="wn5-setup-hr sptWhiteBalance" ng-if="WhiteBalance">
+<div class="wn5-setup-section sptWhiteBalance" ng-if="WhiteBalance">
     <div class="wn5-setup-section-heading">
         <h2>화이트 밸런스</h2>
     </div>
@@ -328,15 +328,15 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="BackLight">
-<div class="wn5-setup-section" ng-if="BackLight">
+<hr class="wn5-setup-hr sptBackLight" ng-if="BackLight">
+<div class="wn5-setup-section sptBackLight" ng-if="BackLight">
     <div class="wn5-setup-section-heading">
         <h2>역광 보정</h2>
     </div>
     <dㄴiv class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="HLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, HLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
-            <p ng-if="!HLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
+            <p ng-if="HLC" class="sptHLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, HLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
+            <p ng-if="!HLC" class="nsptHLC">역광으로 촬영된 영상을 보정할 수 있습니다. <strong class="UI">[모드]</strong>에서 사용 안 함, BLC, WDR 중에 선택할 수 있으며, 선택한 역광 보정 모드에 따라 상세 설정을 변경할 수 있습니다. </p>
         </div>
    <!-- <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
@@ -348,17 +348,17 @@
             <h3><a class="wn5-online-help-link" name="BLC"></a>BLC</h3>
             <p>BLC (Back Light Compensation) 모드는 역광으로 어둡게 촬영된 영상 중 사용자가 특정 영역을 설정하여 선택 영역의 물체가 더욱 잘 보이도록 보정합니다. </p>
             <!-- xnp-9300rw에서 hide돼야 해서 수정. 김영호 책임님. PTZModel => PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined. 2020-07-02 -->
-            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">BLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined" class="sptBackLightPtz">BLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content nsptNormalizedBLCLevel" ng-if="!NormalizedBLCLevel">
             <h5>BLC 레벨</h5>
             <p>낮음, 중간, 높음 중에 선택할 수 있습니다. 레벨이 높으면 설정한 영역의 밝기가 더 밝아집니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content sptNormalizedBLCLevel" ng-if="NormalizedBLCLevel">
             <h5>BLC 레벨 </h5>
             <p>슬라이드 막대를 조정하여 BLC 레벨을 설정합니다. 레벨이 높으면 설정한 영역의 밝기가 더 밝아집니다.  </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!NormalizedBLCLevel">
+        <div class="wn5-setup-section-article-content nsptNormalizedBLCLevel" ng-if="!NormalizedBLCLevel">
             <h5>영역 설정 </h5>
             <ul>
                 <li><strong class="UI">상</strong>: 화면의 위쪽에서부터 윗면이 얼마나 떨어져 있는지 설정합니다.  </li>
@@ -367,24 +367,24 @@
                 <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다.  </li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="!NormalizedBLCLevel">
+        <div class="wn5-online-help-info nsptNormalizedBLCLevel" ng-if="!NormalizedBLCLevel">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>BLC 설정 시 밝기 조정에 가중치를 두는 영역을 표시하는 녹색 박스가 15초 정도 표시되었다가 사라집니다.  </li>
                 <li>BLC 설정 시 오작동 방지를 위해 BLC 영역의 상하간격은 최대 60, 최소 40으로, 좌우간격은 최대 60, 최소 30으로 제한됩니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h3><a class="wn5-online-help-link" name="HLC"></a>HLC</h3>
             <p>HLC (High Light Compensation) 모드는 가로등이나 자동차 헤드라이트와 같은 강한 조명을 효과적으로 차단하여, 강한 조명의 포화로 인해 차량 번호판 등의 주변 사물이 식별이 안 되는 것을 방지합니다. </p>
-            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined">HLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
+            <p ng-if="PTZModel && NormalizedBLCLevel === undefined && NormalizedHLCLevel === undefined" class="sptHLCPtz">HLC모드를 선택하면 카메라 영상 화면에 기본 선택 영역이 나타납니다. <strong class="UI">[Box 조정]</strong>에서 방향 화살표를 클릭하여 선택 영역의 크기를 조정할 수 있습니다. <strong class="UI">[Box 단계]</strong>에서 높은 수로 설정할 수록 방향 화살표를 선택할 때 영역 크기가 큰 폭으로 변경됩니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>HLC 레벨 </h5>
             <p>노출 정도를 설정하여 하이라이트 영역을 조정합니다. </p>
             <p>레벨이 높을수록 보정이 뛰어나고 하이라이트 영역을 차단하는 영역에 차이가 납니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>마스크</h5>
             <p>마스크를 적용할 지 여부를 선택합니다.</p>
             <ul>
@@ -394,15 +394,15 @@
                 <li> <strong class="UI">야간</strong>: 매우 어두워지기 전까지 차단 영역이 생깁니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>마스크 컬러    </h5>
             <p>차단 영역 색상을 설정합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>마스크 톤 </h5>
             <p>차단 영역 톤을 설정합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HLC">
+        <div class="wn5-setup-section-article-content sptHLC" ng-if="HLC">
             <h5>디밍 </h5>
             <p>화면의 강한 빛 영역을 감지하여 밝기를 조절하면서 포화 영역을 감소시켜줍니다.</p>
         </div>
@@ -418,7 +418,7 @@
                 <li><strong class="UI">우</strong>: 화면의 왼쪽에서부터 오른쪽면이 얼마나 떨어져 있는지 설정합니다.</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="HLC">
+        <div class="wn5-online-help-info sptHLC" ng-if="HLC">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>야간 작동시에는 어두운 환경에서 일정 면적 이상 하이라이트가 입사될 경우에만 작동합니다.</li>
@@ -449,7 +449,7 @@
             <p>역광 보정의 세기를 조절합니다.</p>
         </div>
         <!-- WN7 basic XNV-9082R. 개발팀에서 받은 attributes와 동일하게 TW가 생성하여 적용함. 2020-04-27 -->
-            <div class="wn5-setup-section-article-content" ng-if="WDRControlModeOptions">
+            <div class="wn5-setup-section-article-content sptWDRControlModeOptions" ng-if="WDRControlModeOptions">
             <h5>WDR 제어 </h5>
                 <p> WDR 동작 옵션을 설정합니다.</p>
                 <ul>
@@ -459,15 +459,15 @@
                     <li> <strong class="UI">B/W 제외</strong>: B/W 모드가 작동했을 때 WDR 모드를 자동으로 끕니다. </li>
                 </ul>
             </div>
-        <div class="wn5-setup-section-article-content" ng-if="WDRSeamlessTransitionOptions">
+        <div class="wn5-setup-section-article-content sptWDRSeamlessTransitionOptions" ng-if="WDRSeamlessTransitionOptions">
             <h5>자동</h5>
             <p><strong class="UI">[사용]</strong>을 선택하면 영상을 분석하여 역광 보정이 필요한 경우 WDR 모드를 자동으로 활성화합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="WDRLowLightOptions">
+        <div class="wn5-setup-section-article-content sptWDRLowLightOptions" ng-if="WDRLowLightOptions">
             <h5>저조도 제외 </h5>
             <p><strong class="UI">[사용]</strong>을 선택하면 저조도 환경에서 WDR 모드를 자동으로 끕니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="WDRIRLEDEnableOptions">
+        <div class="wn5-setup-section-article-content sptWDRIRLEDEnableOptions" ng-if="WDRIRLEDEnableOptions">
             <h5>B/W 제외</h5>
             <p><strong class="UI">[사용]</strong>을 선택하면 B/W 모드가 작동했을 때 WDR 모드를 자동으로 끕니다. </p>
         </div>
@@ -507,29 +507,29 @@
             <h3>밝기  </h3>
             <p>화면의 밝기를 조절할 수 있습니다. 숫자가 클수록 화면이 밝아집니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MinShutterOptions">
+        <div class="wn5-setup-section-article-content sptMinShutterOptions" ng-if="MinShutterOptions">
             <h3>최소 셔터  </h3>
             <p>셔터는 환경에 따라 센서의 노출을 자동으로 설정할 수 있으며, 최소 셔터~최대 셔터 범위까지 전자 셔터가 작동합니다. 최소 셔터는 저속 노출 시간 가능 범위의 최솟값을 말하며 긴 노출 시간의 한계를 설정합니다.</p>
             <p>선택한 최소 셔터 값이 <strong class="UI"><a href="#sensor">[센서]</a></strong> 모드의 fps값보다 작은 경우를 어두운 상황에서 프레임레이트가 감소할 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxShutterOptions">
+        <div class="wn5-setup-section-article-content sptMaxShutterOptions" ng-if="MaxShutterOptions">
             <h3>최대 셔터  </h3>
             <p>최대 셔터는 고속 노출 시간 가능 범위의 최댓값을 말하며 짧은 노출 시간의 한계를 설정합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PreferShutterOptions">
+        <div class="wn5-setup-section-article-content sptPreferShutterOptions" ng-if="PreferShutterOptions">
             <h3>사용자 선호 셔터  </h3>
             <p>노출시간 범위 내에서 우선적으로 동작하는 적정 노출 시간을 설정합니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="AFLKModeOptions">
+        <div class="wn5-setup-section-article-content sptAFLKModeOptions" ng-if="AFLKModeOptions">
             <h3>플리커 방지  </h3>
             <p>촬영 환경에 있는 조명과 주파수 불일치로 발생하는 화면의 떨림 현상을 방지합니다. </p>
         </div>
-            <div class="wn5-setup-section-article-content" ng-if="ExposureControlSpeed">
+            <div class="wn5-setup-section-article-content sptExposureControlSpeed" ng-if="ExposureControlSpeed">
                 <h3>제어 속도 </h3>
                 <p>터널 집입이나 진출 시와 같이 조도가 급격히 변화할 때 화면 노출을 빠르게 적용하려면 <strong class="UI">[빠름]</strong>를 선택합니다. 조도 변화에 너무 민감하게 반응하여 화면 밝기가 지속적으로 변화하는 경우 <strong class="UI">[보통]</strong>으로 설정하는 것을 권장합니다.</p>
             </div>
 		
-        <div class="wn5-setup-section-article-content" ng-if="SSNRModeOptions">
+        <div class="wn5-setup-section-article-content sptSSNRModeOptions" ng-if="SSNRModeOptions">
             <h3>SSNR</h3>
             <p>영상의 노이즈를 제거합니다.</p>
             <ul>
@@ -541,23 +541,23 @@
         </div>
 
         <!-- xnp-9300rw에서 hide돼야 하므로 코드 수정. SSNRLevel => SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined. 김영호 책임님. 2020-07-02. -->
-        <div class="wn5-setup-section-article-content"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
+        <div class="wn5-setup-section-article-content sptSSNRModeOptions"  ng-if="SSNRLevelOptions !== undefined && SSNR2DLevel === undefined && SSNR3DLevel === undefined">
             <h3>SSNR 레벨 </h3>
             <p>SSNR 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>으로 선택한 경우 설정할 수 있습니다.</p>
             <p>레벨을 높일수록 노이즈가 저감되나 영상에 끌림이 발생되고 흐려질 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNR2DLevel">
+        <div class="wn5-setup-section-article-content sptSSNR2DLevel" ng-if="SSNR2DLevel">
             <h3>SSNR 2D 레벨 </h3>
             <p>SSNR 2D는 한 프레임에서 인접한 픽셀을 사용하여 영상의 노이즈를 줄입니다. SSNR 2D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
             <p>레벨을 높일수록 노이즈가 저감되나 영상에 끌림이 발생되고 흐려질 수 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SSNR3DLevel">
+        <div class="wn5-setup-section-article-content sptSSNR3DLevel" ng-if="SSNR3DLevel">
             <h3>SSNR 3D 레벨 </h3>
             <p>SSNR 3D는 여러 프레임의 픽셀을 이용하여 영상의 노이즈를 줄입니다. SSNR 3D 레벨값을 설정합니다. <strong class="UI">[SSNR]</strong>을 <strong class="UI">[사용함]</strong>이나 <strong class="UI">[지능형 NR]</strong>로 선택한 경우 설정할 수 있습니다.</p>
             <p>레벨을 높일수록 노이즈가 저감되나 영상 끌림이 발생될 수 있습니다.</p>
         </div>
         <!-- TNB-9000. 이재준 수석님. 2019-11-13  -->
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>렌즈 </h3>
                 <p>렌즈 종류가 표시됩니다. 선택한 렌즈에 따라 조리개 값이 달라집니다.</p>
             </div>
@@ -586,15 +586,15 @@
         </div>
            
 
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>조리개 위치  </h3>
                 <p><strong class="UI">[조리개]</strong> 모드가 <strong class="UI">[수동]</strong>일 때 활성화되며, 조리개 위치 값을 설정합니다.</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>최대 조리개 위치  </h3>
                 <p><strong class="UI">[조리개]</strong> 모드가 <strong class="UI">[자동]</strong>일 때 활성화되며, 자동으로 최대로 개방되는 조리개의 위치 값을 설정합니다. 어두운 저조도 환경에서 개방됩니다.</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="EFLensSupport">
+            <div class="wn5-setup-section-article-content sptEFLensSupport" ng-if="EFLensSupport">
                 <h3>사용자 선호 조리개 위치 </h3>
                 <p><strong class="UI">[조리개]</strong> 모드가 <strong class="UI">[자동]</strong>일 때 활성화되며, 일반적인 조도 조건에서 선호하는 조리개 위치 값을 설정합니다. 값의 범위는 <strong class="UI">[조리개 최대 위치]</strong>에서 선택한 값보다 낮은 값으로 자동으로 설정됩니다. </p>
             </div>
@@ -612,11 +612,11 @@
             </ul>
             </div>
         
-            <div class="wn5-setup-section-article-content" ng-if="PIrisModeOptions">
+            <div class="wn5-setup-section-article-content sptPIrisModeOptions" ng-if="PIrisModeOptions">
                 <h3>P-조리개 </h3>
                 <p> <strong class="UI">[렌즈]</strong>에서 P-조리개를 선택하면 활성화됩니다. <strong class="UI">[자동]</strong>을 선택하면 밝기에 따라 조리개가 자동으로 조절됩니다. <strong class="UI">[수동]</strong>을 선택하면 사용자가 직접 조리개의 위치를 설정합니다. </p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="PIrisPosition">
+            <div class="wn5-setup-section-article-content sptPIrisPosition" ng-if="PIrisPosition">
                 <h3>P-조리개 위치  </h3>
                 <p><strong class="UI">[P-조리개]</strong>를 <strong class="UI">[수동]</strong>으로 선택하면 활성화됩니다. P-조리개의 위치를 조절할 수 있습니다. </p>
             </div>
@@ -641,14 +641,14 @@
             </div>
 
              <!-- XNV-9082R WN7 Basic에서 attrtibute 받음. 박종찬 선임. 2020-03-25 -->
-            <div class="wn5-setup-section-article-content" ng-if="AGCLevel">
+            <div class="wn5-setup-section-article-content sptAGCLevel" ng-if="AGCLevel">
                 <h3>레벨(수동)</h3>
                 <p>AGC 레벨 값을 원하는대로 수동으로 설정합니다. 레벨 값을 높게 설정할수록 게인 값이 증가하여 어두운 환경에서도 화면이 밝게 됩니다. </p>
                 <p>[AGC]에서 [수동]을 선택하면 [레벨(수동)]이 활성화됩니다. </p>
             </div>
 
             <!-- XNV-9082R WN7 Basic에서 attrtibute 받음. 박종찬 선임. 2020-03-25 -->
-            <div class="wn5-setup-section-article-content" ng-if="AGCMaxGainLevel">
+            <div class="wn5-setup-section-article-content sptAGCMaxGainLevel" ng-if="AGCMaxGainLevel">
             <h3>레벨(최대 게인)</h3>
                 <p>최대 게인 값을 설정합니다. 주변 밝기에 따라서 설정된 최대 게인까지 자동으로 제어됩니다. 레벨 값을 높게 설정할수록 최대 게인이 높게 설정됩니다. </p>
                 <p>[AGC]에서 [최대 게인]을 선택하면 레벨(최대 게인)]이 활성화됩니다.  </p>
@@ -657,16 +657,16 @@
             <div class="wn5-online-help-info" ng-if="MinShutterOptions || SSNR2DLevel || AGCModeOptions">
                 <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
-                    <li ng-if="MinShutterOptions">최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
-                    <li ng-if="SSNR2DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
-                    <li ng-if="SSNR2DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
-                    <li ng-if="SSNR2DLevel">노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
-                    <li ng-if="SSNR2DLevel">지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다.    </li>
+                    <li ng-if="MinShutterOptions" class="sptMinShutterOptions">최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 설정 후 효과가 적용/해제 될때까지는 일정 시간이 걸릴 수 있습니다.</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">지능형 NR 모드(SSNR 2D 및 SSNR 3D) 적용시 영상의 식별력이 향상되는 대신 노이즈가 증가할 수 있습니다.</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">노이즈가 적은 밝은 환경에서는 지능형 NR(SSNR 2D 및 SSNR 3D)의 효과가 크지 않을 수 있습니다.</li>
+                     <li ng-if="SSNR2DLevel" class="sptSSNR2DLevel">지능형 NR 설정(SSNR 2D 및 SSNR 3D) 시 영상의 움직임 감지는 내부적으로 움직임 감지 기능을 사용하므로 움직임 감지 이벤트의 작동 조건을 따릅니다. 움직임 감지 세부 설정은 <strong class="UI">[분석]</strong> &gt; <strong class="UI">[움직임 감지]</strong>에서 확인할 수 있습니다.    </li>
                     <li ng-if="AGCModeOptions && SSNR2DLevel">AGC 사용량이 많은 경우 SSNR의 SSNR 3D의 값이 증가하므로 영상에 끌림이 발생할 수 있습니다.</li>
-                    <li ng-if="AGCModeOptions">AGC 동작 시 화면 노이즈가 증가합니다. </li>
+                    <li ng-if="AGCModeOptions" class="sptAGCModeOptions">AGC 동작 시 화면 노이즈가 증가합니다. </li>
                      <!-- TNU-6321에서 TW가 && AGCMaxGainLevel 추가. -->
                     <li ng-if="AGCModeOptions && AGCMaxGainLevel">AGC 모드 옵션을 [사용 안 함]이나 [수동]으로 설정하거나, [최대 게인] 값을 30 db 미만으로 설정한 경우, [주야간 모드]의 [자동] 옵션은 설정할 수 없습니다.</li>
-                    <li ng-if="HybridThermal">채널 1(실화상 영상)을 선택한 경우, 밝기, SSNR, SSNR 2D 레벨, SSNR 3D 레벨, 최소 셔터, 최대 셔터, 사용자 선호 셔터, 플리커 방지, AGC, 레벨(수동), 레벨(최대 게인)을 지원합니다. 채널 2(열화상 영상)을 선택한 경우, 밝기, SSNR, SSNR 2D 레벨, SSNR 3D 레벨만 지원합니다. </li>
+                    <li ng-if="HybridThermal" class="sptHybridThermal">채널 1(실화상 영상)을 선택한 경우, 밝기, SSNR, SSNR 2D 레벨, SSNR 3D 레벨, 최소 셔터, 최대 셔터, 사용자 선호 셔터, 플리커 방지, AGC, 레벨(수동), 레벨(최대 게인)을 지원합니다. 채널 2(열화상 영상)을 선택한 경우, 밝기, SSNR, SSNR 2D 레벨, SSNR 3D 레벨만 지원합니다. </li>
                 </ul>
                 <!-- <ul>
                 <li>최소 셔터, 최대 셔터의 설정 범위에 따라 화면이 노출 포화할 수 있습니다.</li>
@@ -679,8 +679,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="DayNight">
-<div class="wn5-setup-section" ng-if="DayNight">
+<hr class="wn5-setup-hr sptDayNight" ng-if="DayNight">
+<div class="wn5-setup-section sptDayNight" ng-if="DayNight">
     <div class="wn5-setup-section-heading">
         <h2><a name="daynight"></a>주야간 모드</h2>
     </div>
@@ -697,8 +697,8 @@
                 <li><strong class="UI">흑백</strong>: 영상을 항상 흑백으로 출력합니다.
                 </li>
                 <li><strong class="UI">자동</strong>: 주간에는 컬러 모드로, 야간이나 저조도시에는 흑백으로 전환합니다.  </li>
-                <li style="list-style-type: none;" ng-if="!AGCMaxGainLevel">단 <strong class="UI">[노출 보정]</strong>의 <strong class="UI">[AGC]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정하면, [주야간 모드]를 [자동]으로 설정할 수 없습니다. </li>                
-                <li style="list-style-type: none;" ng-if="AGCMaxGainLevel">단 <strong class="UI">[노출 보정]</strong>의 <strong class="UI">[AGC]</strong>를 <strong class="UI">[사용 안 함]</strong>이나 <strong class="UI">[수동]</strong>으로 설정하거나 <strong class="UI">[최대 게인]</strong>을 &quot;30 dB 미만&quot;으로 설정하면, [주야간 모드]를 [자동]으로 설정할 수 없습니다. </li>
+                <li style="list-style-type: none;" ng-if="!AGCMaxGainLevel" class="nsptAGCMaxGainLevel">단 <strong class="UI">[노출 보정]</strong>의 <strong class="UI">[AGC]</strong>를 <strong class="UI">[사용 안 함]</strong>으로 설정하면, [주야간 모드]를 [자동]으로 설정할 수 없습니다. </li>                
+                <li style="list-style-type: none;" ng-if="AGCMaxGainLevel" class="sptAGCMaxGainLevel">단 <strong class="UI">[노출 보정]</strong>의 <strong class="UI">[AGC]</strong>를 <strong class="UI">[사용 안 함]</strong>이나 <strong class="UI">[수동]</strong>으로 설정하거나 <strong class="UI">[최대 게인]</strong>을 &quot;30 dB 미만&quot;으로 설정하면, [주야간 모드]를 [자동]으로 설정할 수 없습니다. </li>
                 <li><strong class="UI">외부 입력</strong>: 알람 입력 단자를 외부 기기와 연동했을 경우에 영상의 컬러와 흑백을 제어할 수 있습니다.
                 </li>
                 <!-- <li ng-if="DayNightMode_ExternalBW"><strong class="UI">외부 입력</strong>: 알람 입력 단자를 외부 기기와 연동했을 경우에 영상의 컬러와 흑백을 제어할 수 있습니다.
@@ -732,7 +732,7 @@
         </div>
         <!-- 분기 코드 DefocusDetectSimpleFocus에서 ExternalPTZModel로 변경함. Q시리즈. 박종찬 선임 4/15일 메일 참조 -->
         <!-- ExternalPTZModel -> SimpleFocusAfterDayNight로 변경함. 김영호 책임님. 메일 11/22일 참고.  --> 
-        <div class="wn5-setup-section-article-content" ng-if="SimpleFocusAfterDayNight">
+        <div class="wn5-setup-section-article-content sptSimpleFocusAfterDayNight" ng-if="SimpleFocusAfterDayNight">
             <h3>주야간 모드 전환 후 심플 포커스</h3>
             <p>주야간 모드 전환 후 영상의 포커스를 자동으로 맞춰줍니다.</p>
         </div>
@@ -765,7 +765,7 @@
             <!-- <p>영상의 윤곽을 조절하거나 대비, 색조절, 안개 제거 등을 할 수 있습니다.</p>  -->
             <p>영상의 윤곽을 조절하거나 대비, 색조절 등을 할 수 있습니다.</p>
         </div>
-        <div class="wn5-online-help-info" ng-if="HybridThermal">
+        <div class="wn5-online-help-info sptHybridThermal" ng-if="HybridThermal">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
                     <li>채널 1(실화상 영상)을&nbsp;선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨, 감마 제어, 감마, 대비, 로컬 대비, 컬러 레벨, 안개 제거, LDC을 지원합니다. 채널 2(열화상 영상)을 선택한 경우, DIS, 윤곽 조정, 윤곽 조정 레벨, 대비만 지원합니다.  </li>
@@ -787,7 +787,7 @@
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="DIS">
+        <div class="wn5-setup-section-article-content sptDIS" ng-if="DIS">
             <h3>DIS </h3>
             <p>DIS (Digital Image Stabilization)는 바람과 같은 외부적인 요인으로 카메라에 진동이 발생하는 경우 영상을 자동으로 보정하여 안정적으로 화면을 출력합니다. </p>
         </div>
@@ -808,66 +808,66 @@
 
         <!--박스에만 있는 기능이며, 박스에는 다양한 렌즈가 장착될 수 있는데 DIS 성능이 나오기 위해서는 사용자가 본인이 사용하는 렌즈의 초점 거리를 수동(Manual)로 설정해야 합니다. 개발자 설명--> 
         <!--고용수 책임님과 논의 후 DISFocalLength 코드 사용. PNB-A9000. 2019-12-26 -->         
-        <div class="wn5-setup-section-article-content" ng-if="DISFocalLength">
+        <div class="wn5-setup-section-article-content sptDISFocalLength" ng-if="DISFocalLength">
             <h3>초점 거리</h3>
             <p>DIS기능이 정상적으로 작동하도록 렌즈 초점 거리를 설정합니다. <strong class="UI">[DIS]</strong> 옵션을 [사용함]으로 설정한 경우에만 [초점 거리] 값을 변경할 수 있습니다.  </p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
+        <div class="wn5-setup-section-article-content sptSharpnessLevel" ng-if="SharpnessLevel">
             <h3>윤곽 조정</h3>
             <p>영상의 전반적인 윤곽을 조절합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="SharpnessLevel">
+        <div class="wn5-setup-section-article-content sptSharpnessLevel" ng-if="SharpnessLevel">
             <h3>윤곽 레벨</h3>
             <p>영상의 전반적인 윤곽을 조절합니다. <strong class="UI">[윤곽 조정]</strong>을<strong class="UI">[사용함]</strong>으로 설정하면 윤곽 레벨을 설정할 수 있습니다.</p>
             <p>윤곽 레벨이 높을수록 영상의 윤곽이 강하고 뚜렷해집니다.</p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="GammaControl">
+		<div class="wn5-setup-section-article-content sptGammaControl" ng-if="GammaControl">
             <h3>감마 제어</h3>
                 <p><strong class="UI">[사용함]</strong>으로 설정하면 영상의 밝기 분포를 분석하여 밝기 레벨을 조정합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Gamma">
+        <div class="wn5-setup-section-article-content sptGamma" ng-if="Gamma">
             <h3>감마</h3>
             <p>영상의 대비를 조절합니다. 영상에서 가장 밝은 부분과 가장 어두운 부분의 격차를 말하며, 감마의 숫자가 높을수록 밝기의 차이가 확실히 드러납니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Contrast">
+        <div class="wn5-setup-section-article-content sptContrast" ng-if="Contrast">
             <h3>대비 </h3>
             <p>영상의 음영 대비를 조절합니다. </p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="XCELevel">
+		<div class="wn5-setup-section-article-content sptXCELevel" ng-if="XCELevel">
             <h3>로컬 대비</h3>
                 <p>로컬 대비는 영상의 미세한 밝기 차이를 분명하게 나타내는 기능입니다. </p>
         </div>
-            <div class="wn5-setup-section-article-content" ng-if="XCELevel"> 
+            <div class="wn5-setup-section-article-content sptXCELevel" ng-if="XCELevel"> 
                 <h3>로컬 대비 레벨</h3>
                 <p>[로컬 대비]에서 [사용함]을 선택하면 활성화됩니다. 레벨 값이 증가할수록 영상의 밝기 차의 크기가 커져 선명한 효과가 나타나지만 영상에 노이즈가 심해지고, 윤곽선 주변에 왜곡된 형태의 이중상이 심해질 수 있습니다. </p>
             </div>
-        <div class="wn5-setup-section-article-content" ng-if="Saturation">
+        <div class="wn5-setup-section-article-content sptSaturation" ng-if="Saturation">
             <h3>컬러 레벨 </h3>
             <p>영상에서 색의 강약을 조절합니다. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefogModeOptions">
+        <div class="wn5-setup-section-article-content sptDefogModeOptions" ng-if="DefogModeOptions">
             <h3>안개 제거</h3>
             <p>안개가 끼거나 날씨가 흐릴 때 영상을 보정합니다. <strong class="UI">[자동]</strong>으로 설정하면 주변 환경을 감지하여 자동으로 영상을 보정합니다. <strong class="UI">[수동]</strong>으로 설정하면 사용자가 주변 환경을 보고 직접 보정량을 설정할 수 있습니다. </p>
             <p>초깃값은 <strong class="UI">[사용 안 함]</strong>으로 설정되어 있습니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefogLevel">
+        <div class="wn5-setup-section-article-content sptDefogLevel" ng-if="DefogLevel">
             <h3>안개 제거 레벨</h3>
             <p><strong class="UI">[안개 제거]</strong>가 <strong class="UI">[수동]</strong>인 경우 활성화되며 안개 제거 레벨을 조절합니다. 안개 제거 레벨이 높으면 영상이 더 선명하게 보입니다. 안개가 낀 정도가 약하면서 안개 제거 레벨이 높으면 화면이 어두워 보일 수 있습니다. </p>
         </div>
 		
-		<div class="wn5-online-help-info" ng-if="DefogModeOptions">
+		<div class="wn5-online-help-info sptDefogModeOptions" ng-if="DefogModeOptions">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
                 <li>안개 제거 모드를 <strong class="UI">[자동]</strong>으로 설정한 경우 안개량이 감소하면 안개 제거 기능도 같이 감소합니다. 안개량이 감소하여도 설정한 레벨만큼 기능을 실행하려면 안개제거 모드를 <strong class="UI">[수동]</strong>으로 설정하십시오.  </li>
                 <li>안개 낀 정도가 약하면서 수동 안개 레벨이 높은 경우 화면이 컴컴해 보일 수 있습니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="DefogFilterOptions">
+        <div class="wn5-online-help-info sptDefogModeOptions" ng-if="DefogModeOptions">
             <h3>광학 안개 제거 필터</h3>
             <p> 카메라 영상에 광학식 안개 보정을 사용할지 여부를 선택합니다. <strong class="UI">[안개 제거]</strong>를 <strong class="UI">[수동]</strong>으로 설정한 경우에만 광학 안개 제거 필터를 사용하도록 설정할 수 있습니다.</p>
         </div>		
-        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
+        <div class="wn5-setup-section-article-content sptLDCLevel" ng-if="LDCLevel">
             <h3>LDC</h3>
             <p> LDC (Lens Distortion Correction)는 광각 렌즈의 모서리 부분의 영상 왜곡 현상을 보정해줍니다.</p>
             <ul>
@@ -881,11 +881,11 @@
                 <!-- <li ng-if="LDCAuto"><strong class="UI">자동</strong>: 자동으로 영상 왜곡을 조절합니다.  </li> -->
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="LDCIncompatibleSupport">
+        <div class="wn5-online-help-info sptLDCIncompatible" ng-if="LDCIncompatibleSupport">
 			<h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
                 <ul>
                     <li><strong class="UI">[비디오 및 오디오]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="video.html" ng-href="#/help/videoAudio_videoSetup">[비디오 설정]</a></strong>에서 <strong class="UI">[프라이버시 영역 사용]</strong>을 선택한 경우, <strong class="UI">[LDC]</strong>와 <strong class="UI">[LDC 레벨] </strong>옵션이 모두 비활성화됩니다. 카메라 LDC 기능을 사용하려면, <strong class="UI">[프라이버시 영역 사용]</strong>을 선택 해제해야 합니다. </li>
-                    <li ng-if="GlobalLDCModeSupport">LDC 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
+                    <li ng-if="GlobalLDCModeSupport" class="sptGlobalLDCMode">LDC 옵션을 변경하면 모든 채널에 변경 값이 동일하게 적용됩니다.</li>
 <!-- TNV-8010C. !!LensModelViewOptions || !!LensModelOptions. 고용수 책임님. 2020-09-10 메일 -->        
 <!-- PNM-9322VQP. LensModelOptions : undefined. 김주희 선임님. 2020-10-16 메일 -->
                     <li ng-if="(!!LensModelViewOptions || !!LensModelOptions) && LensModelOptions == undefined">선택한 렌즈 종류에 따라 [LDC] 옵션이 보이지 않을 수 있습니다. 렌즈 종류는 <strong class="UI">[렌즈]</strong>에서 선택할 수 있습니다.  </li>
@@ -893,7 +893,7 @@
                 <!-- <li>[역광 보정]의 [WDR], [스페셜]의 [DIS]나 [LDC] 기능은 동시에 사용할 없습니다. 즉 세 기능 중 하나만 사용할 수 있습니다.</li>  -->
                 </ul>
         </div>  
-        <div class="wn5-setup-section-article-content" ng-if="LDCLevel">
+        <div class="wn5-setup-section-article-content sptLDCLevel" ng-if="LDCLevel">
             <h3>LDC 레벨</h3>
                 <p>왜곡 보정률 레벨을 조절합니다. <strong class="UI">[LDC]</strong>를 <strong class="UI">[수동]</strong>이나, <strong class="UI">[수동]</strong>으로<strong class="UI">[수동]</strong>으로  설정하면 활성화됩니다. 레벨 값이 높을수록 모서리 부분의 굴곡이 평평하게 보정되고, 낮을수록 굴곡이 그대로 유지됩니다. </p>
         </div>
@@ -907,8 +907,8 @@
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
-            <p ng-if="!spotTemperatureSupport">카메라 타이틀 또는 날짜와 시간을 영상에 표시할 수 있으며 글자의 위치, 크기, 컬러, 투명도 등을 설정할 수 있습니다.</p> 
-            <p ng-if="spotTemperatureSupport">카메라 타이틀 또는 날짜와 시간을 영상에 표시할 수 있으며 글자의 위치, 컬러, 투명도 등을 설정할 수 있습니다.</p> 
+            <p ng-if="!spotTemperatureSupport" class="nsptSpotTemperature">카메라 타이틀 또는 날짜와 시간을 영상에 표시할 수 있으며 글자의 위치, 크기, 컬러, 투명도 등을 설정할 수 있습니다.</p> 
+            <p ng-if="spotTemperatureSupport" class="sptSpotTemperature">카메라 타이틀 또는 날짜와 시간을 영상에 표시할 수 있으며 글자의 위치, 컬러, 투명도 등을 설정할 수 있습니다.</p> 
         </div>
 
         <div class="wn5-setup-section-article-content">
@@ -925,7 +925,7 @@
             <h3>날짜 및 시간 </h3>
             <p>날짜와 시간을 화면에 표시하려면 <strong class="UI">[사용]</strong>을 선택합니다. 날짜 표기 방식을 선택한 후 커서를 움직여 날짜와 시간 표시 위치를 설정합니다.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="FontSizeOptions">
+        <div class="wn5-setup-section-article-content sptFontSizeOptions" ng-if="FontSizeOptions">
             <h3>크기 </h3>
             <p>OSD의 크기를 조절합니다.</p>
         </div>
@@ -944,12 +944,12 @@
                 <li><strong class="UI">PTZ 좌표</strong>: 화면에 PTZ 위치 표시 여부를 설정합니다.</li>
                 <li><strong class="UI">프리셋 이름</strong>: 화면에 프리셋 이름 표시 여부를 설정합니다.</li>
             <!-- xnp-9300rw에서 hide돼야 해서 추가. 김영호 책임님. CameraIDEnable. 2020-06-17 메일.  -->
-                <li ng-if="CameraIDEnable"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
+                <li ng-if="CameraIDEnable" class="sptCameraIDEnable"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li>
                 <!-- <li ng-if="RS485Support"><strong class="UI">카메라 ID</strong>: 화면에 카메라 ID 번호 표시 여부를 설정합니다.</li> -->
                 <li><strong class="UI">방위각</strong>: 현재 화면 상으로 보고있는 영역의 방위각을 표시하는 기능입니다. 기능 설정 시 E(동)/W(서)/S(남)/N(북)/NE(북동)/NW(북서)/SE(남동)/SW(남서)의 8방향으로 표시하며, 화면 우측 하단에 나타나게 됩니다.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="ZoomOnlyModel">
+        <div class="wn5-setup-section-article-content sptZoomOnlyModel" ng-if="ZoomOnlyModel">
             <h3>오버레이</h3>
             <p>줌 배율이나 카메라 이름 등 카메라 영상 화면에 나타낼 데이터를 선택합니다.</p>
         </div>
@@ -973,8 +973,8 @@
                  <!-- PNM-9022 SRS 참고 후 주석 처리 후 수정
                      적용 가능한 이미지의 사양은 16  비트(RGB565 지원 안 함) 또는 24 비트 비트맵 파일이며, 사이즈는 가로/세로 200 픽셀 고정 사이즈여야 하며, 파일 크기 52 KB 이하여야 합니다. -->
 
-                 <p>이미지 파일은 16 비트(RGB565 지원 안 함) 또는 24 비트, 32 비트 비트맵 파일이어야 합니다. 사이즈는 최대 가로/세로 200 픽셀까지 지원하며 파일 크기는 200 KB 이하여야 합니다.</p>
-            </p>
+                     <p>이미지 파일은 16 비트(RGB565 지원 안 함) 또는 24 비트, 32 비트 비트맵 파일이어야 합니다. 사이즈는 최대 가로/세로 200 픽셀까지 지원하며 파일 크기는 200 KB 이하여야 합니다.</p>
+            
         </div>
 		
 		
@@ -984,15 +984,15 @@
                 <li>위치 조정이 가능한 항목(카메라 타이틀, 날짜 및 시간)의 경우, 고정된 다른 OSD 항목과 겹칠 경우 정상적으로 화면에 표시되지 않을 수 있습니다.</li>
                 <!-- xnp-9300rw에서 hide돼야 해서 변경. tw자체.  김영호 책임님이 알려준 코드 CameraIDEnable 추가. 2020-06-17 메일.
                 PTZModel || PanTiltOnlyModel || ZoomOnlyModel  => (PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable -->
-                <li ng-if="(PTZModel || PanTiltOnlyModel || ZoomOnlyModel) && CameraIDEnable">[오버레이]의 '카메라 ID'는 화면 좌측 상단, 'PTZ 좌표'는 화면 좌측 하단에 표시되며 위치를 변경할 수 없습니다.</li>
+                <li ng-if="CameraIDEnable" class="sptCameraIDEnable">[오버레이]의 '카메라 ID'는 화면 좌측 상단, 'PTZ 좌표'는 화면 좌측 하단에 표시되며 위치를 변경할 수 없습니다.</li>
                 <!-- <li>한글, 영어, 숫자, 기호만 사용할 수 있습니다. </li> -->
             </ul>
         </div>
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
-<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal">
+<hr class="wn5-setup-hr" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal"  class="nsptBoxTempDetectAndPalette">
+<div class="wn5-setup-section" ng-if="ColorPalette && !BoxTemperatureDetection && !HybridThermal"  class="nsptBoxTempDetectAndPalette">
     <div class="wn5-setup-section-heading">
         <h2>컬러 팔레트</h2>
     </div>
@@ -1038,7 +1038,7 @@
                 <li>포커스 조정: 사용자 이벤트(자동 포커스 혹은 줌 동작) 발생 시 자동으로 초점이 한 번 조정됩니다.</li>
             </ul>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="globalAutoFocusRange">
+		<div class="wn5-setup-section-article-content sptGlobalAutoFocusRange" ng-if="globalAutoFocusRange">
             <h3>범위</h3>
             <p>카메라 초점을 자동으로 조정할 때 적용할 범위를 설정합니다.</p>
             <p>카메라에서 지원하는 전체 범위를 고려하여 초점을 자동으로 조정하려면 <strong class="UI">[넓음]</strong>을 선택합니다. 현재 위치에서 일부 범위만 고려하여 초점을 조정하려면 <strong class="UI">[좁음]</strong>을 선택합니다. </p>
@@ -1090,8 +1090,8 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="Heater">
-<div class="wn5-setup-section" ng-if="Heater">
+<hr class="wn5-setup-hr sptHeater" ng-if="Heater">
+<div class="wn5-setup-section sptHeater" ng-if="Heater">
     <div class="wn5-setup-section-heading">
         <h2>히터</h2>
     </div>
@@ -1111,8 +1111,8 @@
     </div>
 </div>
 
- <hr class="wn5-setup-hr" ng-if="Fan">
-<div class="wn5-setup-section" ng-if="Fan">
+<hr class="wn5-setup-hr sptFan" ng-if="Fan">
+<div class="wn5-setup-section sptFan" ng-if="Fan">
     <div class="wn5-setup-section-heading">
    <h2>팬</h2>
     </div>
@@ -1157,7 +1157,7 @@
                 <li ng-if="IRModeOptionManual"><strong class="UI">수동</strong>: 수동으로 IR의 밝기를 조절합니다.</li>
             </ul> -->
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="!IRledZoneLevel">
+        <div class="wn5-setup-section-article-content nsptIRledZoneLevel" ng-if="!IRledZoneLevel">
             <h3>레벨</h3>
             <p>IR 레벨을 설정합니다.</p>
             <p>IR 레벨은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[수동]</strong>을 선택하면 활성화됩니다.</p>
@@ -1168,7 +1168,7 @@
             <p>IR 레벨은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[수동]</strong>을 선택하면 활성화됩니다.</p>
         </div> -->
 		
-		<div class="wn5-setup-section-article-content" ng-if="IRledZoneLevel">
+		<div class="wn5-setup-section-article-content sptIRledZoneLevel" ng-if="IRledZoneLevel">
             <h3>영역 1 레벨</h3>
                 <p>IR 레벨을 영역별로 다르게 적용할 수 있습니다.&nbsp;IR 레벨 값을 높게 설정하면 IR 밝기가 밝아지며, IR 레벨 값을 낮게 설정하면, IR 밝기가 어두어집니다. </p>
                 <p>IR 레벨은 <strong class="UI">[모드]</strong>에서 <strong class="UI">[수동]</strong>을 선택하면 활성화됩니다.</p>
@@ -1233,8 +1233,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="ActivationTime">
-<div class="wn5-setup-section" ng-if="ActivationTime">
+<hr class="wn5-setup-hr sptActivationTime" ng-if="ActivationTime">
+<div class="wn5-setup-section sptActivationTime" ng-if="ActivationTime">
     <div class="wn5-setup-section-heading">
         <h2>동작 스케줄</h2>
     </div>

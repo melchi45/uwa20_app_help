@@ -3,8 +3,8 @@
 <div class="wn5-setup-section">
     <p>ワイズストリームは、映像の複雑度を分析して画質は維持しながらデータのサイズを効果的に減らせる機能です。カメラが撮影中の映像にモーションが多く発生しない場合、圧縮率を上げ映像のサイズを減らして帯域幅を節約します。再度モーションが発生すると、元の状況に戻して映像情報が損失されないようにします。モーションが多い環境では、不適合で画面が割れることがあります。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。</p>
 </div>
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature && !ParkingDetectionSupport">>
     <div class="wn5-setup-section-heading">
         <h2>チャンネル選択</h2>
     </div>
@@ -12,7 +12,7 @@
         <div class="wn5-setup-section-article-content">
             <p>カメラチャンネルを選択した後、チャンネル別にワイズストリーム関連の詳細を設定することができます。</p>
             <p ng-if="objectDetectionSupport && GlobalPTZMode  && MaxChannel > 1">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[ワイズストリーム]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
 <!-- 
             <p ng-if="SupportChannelExpansionFeature">チャンネル別のビューモードは、下記のどおりです。</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -25,7 +25,7 @@
                 <li>チャンネル7：チャンネル4の4分割画面で左下の映像を見せます。</li>
                 <li>チャンネル8：チャンネル4の4分割画面で右下の映像を見せます。</li>
             </ul> -->
-            <p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
             <p>プロファイル設定を変更した後、保存しないまま他のチャンネルを選択する場合、通知メッセージが表示されます。</p>
         </div>
 	</div>
@@ -50,8 +50,8 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                <li ng-if="DynamicGOVSupport">ワイズストリームの性能を最適化するには、<strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[ビデオprofile]</strong>メニューで<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>を<strong class="UI">[有効]</strong>に設定してください。<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>機能を有効にすると、映像画質と1秒当たりのフレーム数を両方とも確保することができます。</li>
-                <li ng-if="!DynamicGOVSupport">ワイズストリームの性能を最適化するには、<strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[ビデオprofile]</strong>メニューで<strong class="UI">[ダイナミックFPS]</strong>を<strong class="UI">[有効]</strong>に設定してください。</li>
+                <li ng-if="DynamicGOVSupport" class="sptDynamicGov">ワイズストリームの性能を最適化するには、<strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[ビデオprofile]</strong>メニューで<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>を<strong class="UI">[有効]</strong>に設定してください。<strong class="UI">[ダイナミックGOV]</strong>と<strong class="UI">[ダイナミックFPS]</strong>機能を有効にすると、映像画質と1秒当たりのフレーム数を両方とも確保することができます。</li>
+                <li ng-if="!DynamicGOVSupport" class="nsptDynamicGov">ワイズストリームの性能を最適化するには、<strong class="UI">[Basic]</strong> &gt;&nbsp;<strong class="UI">[ビデオprofile]</strong>メニューで<strong class="UI">[ダイナミックFPS]</strong>を<strong class="UI">[有効]</strong>に設定してください。</li>
                 <li>下記の場合には、ワイズストリーム機能が正しく動作しないことがあります。</li>
                 <ul>
                     <li>急激に画面を切り替えると画面割れの恐れがあります。</li>
