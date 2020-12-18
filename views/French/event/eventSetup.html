@@ -60,6 +60,11 @@
             <p ng-if="objectDetectionSupport" class="sptObjectDetection">La transmission Direct s&rsquo;affiche sur le canal 1 tandis que la vid&eacute;o PTZ num&eacute;rique s&rsquo;affiche sur le canal&nbsp;2. Vous ne pouvez acc&eacute;der &agrave; [Config. &eacute;v&eacute;n.] que sur le canal&nbsp;1.</p>
             <p ng-if="HandoverCalibration" class="sptHandoverCalibration">Le canal de cam&eacute;ra fixe est affich&eacute; sous la forme d&rsquo;un num&eacute;ro et le canal PTZ est affich&eacute; sous la forme «&nbsp;PTZ&nbsp;».</p>
             <p ng-if="HybridThermal" class="sptHybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
+            <p ng-if="ParkingDetectionSupport">Le canal 1 montre l&apos;int&eacute;gralit&eacute; du flux de la
+                cam&eacute;ra. Les canaux 2 &agrave; 5 montrent la vue quadruple de l&apos;ensemble du flux. Le canal 2
+                montre la partie sup&eacute;rieure gauche du flux&nbsp;; le canal 3, la partie sup&eacute;rieure droite
+                du flux&nbsp;; le canal 4, la partie inf&eacute;rieure gauche du flux&nbsp;; et le canal 5, la partie
+                inf&eacute;rieure droite du flux. </p>
             <p>Les param&egrave;tres d&eacute;finis dans la <strong class="UI">[Liste des &eacute;v&eacute;nements communs]</strong> s&rsquo;appliqueront &agrave; tous les autres canaux.</p><!-- <p ng-if="SupportChannelExpansionFeature"> 채널별 뷰 모드는 다음과 같습니다. 이벤트 동작은 채널 1에서만 설정할 수 있습니다. </p>
             <ul ng-if="SupportChannelExpansionFeature">
                     <li>채널 1: 피쉬아이 카메라의 영상을 보정 없이 그대로 보여줍니다.</li>

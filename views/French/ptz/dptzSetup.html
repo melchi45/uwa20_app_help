@@ -51,12 +51,12 @@
             <p ng-if="MultiImager">Le canal 1 est un canal de diffusion en direct alors que les canaux 2 et 3 sont des
                 canaux de diffusion des vidéos PTZ numériques. Vous ne pouvez configurer [PTZ numérique] peut seulement
                 être réglé sur les canaux 2 et 3.</p>
-            <p ng-if="ParkingDetectionSupport">Le canal 1 montre l&apos;int&eacute;gralit&eacute; du flux de la
+            <!-- <p ng-if="ParkingDetectionSupport">Le canal 1 montre l&apos;int&eacute;gralit&eacute; du flux de la
                 cam&eacute;ra. Les canaux 2 &agrave; 5 montrent la vue quadruple de l&apos;ensemble du flux. Le canal 2
                 montre la partie sup&eacute;rieure gauche du flux&nbsp;; le canal 3, la partie sup&eacute;rieure droite
                 du flux&nbsp;; le canal 4, la partie inf&eacute;rieure gauche du flux&nbsp;; et le canal 5, la partie
                 inf&eacute;rieure droite du flux. Le menu [PTZ num&eacute;rique] ne peut &ecirc;tre r&eacute;gl&eacute;
-                que sur les canaux 2 &agrave; 5.</p>
+                que sur les canaux 2 &agrave; 5.</p> -->
             <!-- <p ng-if="SupportChannelExpansionFeature">Après avoir sélectionné le canal de la caméra, vous pouvez définir les détails PTZ pour chaque canal.</p>
             <p ng-if="SupportChannelExpansionFeature">Le mode d’affichage de chaque canal est décrit ci-dessous. Seuls les canaux de 4 à 8 peuvent être configurés.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -98,6 +98,7 @@
                     en cliquant sur l&apos;ic&ocirc;ne <span class="tui tui-wn5-ptz-near"></span> ou &eacute;loignez le
                     focus en cliquant sur l&rsquo;ic&ocirc;ne <span class="tui tui-wn5-ptz-far"></span>.</li>
             </ul>
+            <p>Vous pouvez &eacute;galement r&eacute;gler le PTZ sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Passez la souris sur l&rsquo;ic&ocirc;ne <span class="tui tui-ptz_cross"></span> et cliquez sur l&rsquo;indicateur pour r&eacute;gler avec pr&eacute;cision la position pan/inclinaison de la cam&eacute;ra, ou cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-ptz_cross"></span> et faites glisser la souris pour ajuster la position pan/inclinaison de la cam&eacute;ra rapidement. Vous pouvez zoomer la vid&eacute;o en faisant d&eacute;filer vers le haut. Si vous faites d&eacute;filer vers le bas, la vid&eacute;o d&eacute;zoome.</p>
         </div>
         <div class="wn5-online-help-action sptObjectDetection" ng-if="objectDetectionSupport">
             <h4>Activer le suivi automatique</h4>
@@ -224,6 +225,7 @@
                     gauche changera en cons&eacute;quence.&nbsp;</li>
             </ol>
             <p>Les vues fractionn&eacute;es sont invers&eacute;es verticalement.</p>
+            <p>La fonction de point direct ne permet pas un réglage précis.</p>
         </div>
         <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
             <h4>S&eacute;lection d&rsquo;un &eacute;cran divis&eacute;</h4>

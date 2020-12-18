@@ -48,12 +48,12 @@
             <p ng-if="MultiImager">El Canal 1 es un canal de transmisión en directo, mientras que los Canales 2 y 3 son
                 canales que muestran un vídeo PTZ digital. [PTZ digital] puede ser definida solamente en los canales 2 y
                 3.</p>
-            <p ng-if="ParkingDetectionSupport">El canal 1 muestra la transmisi&oacute;n completa desde la c&aacute;mara.
+            <!-- <p ng-if="ParkingDetectionSupport">El canal 1 muestra la transmisi&oacute;n completa desde la c&aacute;mara.
                 Los canales 2 a 5 muestran la vista de cuadrante de todo la transmisi&oacute;n. El canal 2 muestra la
                 secci&oacute;n superior izquierda de la transmisi&oacute;n; el canal 3, la superior derecha de la
                 transmisi&oacute;n; el canal 4, la parte inferior izquierda de la transmisi&oacute;n; y el canal 5, la
                 secci&oacute;n inferior derecha de la transmisi&oacute;n. El men&uacute; [PTZ digital] solo se puede
-                configurar en los canales 2 a 5.</p>
+                configurar en los canales 2 a 5.</p> -->
             <!-- <p ng-if="SupportChannelExpansionFeature">Después de seleccionar su canal de cámara, puede configurar los detalles de PTZ para cada canal.</p>
             <p ng-if="SupportChannelExpansionFeature">El modo de visualizaci&oacute;n para cada canal se describe a continuaci&oacute;n. Solo se pueden configurar los canales 4 a 8.</p>
             <ul ng-if="SupportChannelExpansionFeature">
@@ -92,6 +92,7 @@
                     haciendo clic en el icono <span class="tui tui-wn5-ptz-near"></span> o mueva el foco lejano haciendo
                     clic en el icono <span class="tui tui-wn5-ptz-far"></span>.</li>
             </ul>
+            <p>Tambi&eacute;n puede ajustar PTZ en la pantalla de v&iacute;deo de la c&aacute;mara. Coloque el rat&oacute;n sobre el icono <span class="tui tui-ptz_cross"></span> y haga clic en el indicador para ajustar la posici&oacute;n panor&aacute;mica/inclinaci&oacute;n de la c&aacute;mara, o haga clic en el icono <span class="tui tui-ptz_cross"></span> y arrastre el rat&oacute;n para ajustar r&aacute;pidamente la posici&oacute;n panor&aacute;mica/inclinaci&oacute;n de la c&aacute;mara. Si se desplaza la rueda del rat&oacute;n hacia arriba, el v&iacute;deo se ampliar&aacute;. Si se desplaza hacia abajo, el v&iacute;deo se reducir&aacute;.</p>
         </div>
         <div class="wn5-online-help-action sptObjectDetection" ng-if="objectDetectionSupport">
             <h4>Activar seguimiento automático</h4>
@@ -207,6 +208,7 @@
                     consecuencia.&nbsp;</li>
             </ol>
             <p>Las vistas divididas est&aacute;n invertidas verticalmente.</p>
+            <p>No es posible realizar un ajuste preciso cuando se usa la función Punto directo.</p>
         </div>
         <div class="wn5-online-help-action sptFisheyeLens" ng-if="FisheyeLens">
             <h4>Selecci&oacute;n de una pantalla dividida</h4>

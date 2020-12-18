@@ -25,6 +25,12 @@
             </ul>
             <p ng-if="SupportChannelExpansionFeature">특정 뷰 모드만 사용하려면 채널 번호를 선택한 후 <strong class="UI">[채널 활성화]</strong>를 선택합니다. 예를 들어 채널 2번과 3번만 활성화하면 카메라 영상을 벽면형 파노라마 형식으로 보거나 상항 분할 화면으로만 볼 수 있으며, 그 외 영상 화면은 지원하지 않습니다. </p> -->
             <p ng-if="HybridThermal" class="sptHybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
+            <p ng-if="ParkingDetectionSupport">El canal 1 muestra la transmisi&oacute;n completa desde la c&aacute;mara.
+                Los canales 2 a 5 muestran la vista de cuadrante de todo la transmisi&oacute;n. El canal 2 muestra la
+                secci&oacute;n superior izquierda de la transmisi&oacute;n; el canal 3, la superior derecha de la
+                transmisi&oacute;n; el canal 4, la parte inferior izquierda de la transmisi&oacute;n; y el canal 5, la
+                secci&oacute;n inferior derecha de la transmisi&oacute;n. </p>
+                <p ng-if="ParkingDetectionSupport">Si se selecciona un canal entre los canales 2 y 5, se desactiva [Smart codec], [GOV din&aacute;mica] y [FPS din&aacute;mica].</p>    
             <p>El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en directo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente. Haga clic en el bot&oacute;n <strong class="UI">[Informaci&oacute;n del producto]</strong> para ver un resumen general de cada canal.</p>
             <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p>
         </div>

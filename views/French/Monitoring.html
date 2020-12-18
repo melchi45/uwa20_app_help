@@ -364,6 +364,7 @@
                         </td>
                         <td width="235">
                             <p>Utilisez la fonction microphone. </p>
+                            <p>La fonction du microphone n&rsquo;est accessible qu&rsquo;en mode HTTPS.</p>
                             <!-- <p>Pour utiliser la fonction microphone, la fonction <strong class="UI">[Entr&eacute;e audio]</strong> doit &ecirc;tre activ&eacute;e pour le profil concern&eacute;. Pour activer la fonction d&apos;entr&eacute;e vid&eacute;o, s&eacute;lectionnez <strong class="UI">[Activer]</strong> dans <strong class="UI">[Configuration]</strong>&gt;<strong class="UI">[Basic]</strong>&gt;<strong class="UI">[Profil vid&eacute;o]</strong>&gt;<strong class="UI">[Entr&eacute;e audio]</strong>.</p> -->
                             <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">La fonction de microphone est disponible seulement si vous avez sélectionné CAN 1. </p>
                             <p>&nbsp;</p>
@@ -409,7 +410,7 @@
         <div class="wn5-online-help-action" ng-if="(MaxChannel > 1 || !IsAdmin) && !SupportChannelExpansionFeature" class="sptChannelSelector">
             <h4>Pour changer de canal</h4>
                 <ul>
-                    <li>S&eacute;lectionnez le num&eacute;ro de canal souhait&eacute;. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
+                    <li>S&eacute;lectionnez un canal au choix. La vid&eacute;o du canal appara&icirc;tra dans le visualisateur.</li>
                     <p ng-if="!HandoverCalibration && !SupportAutoImageAlignment && !objectDetectionSupport &&!SupportChannelExpansionFeature && !ParkingDetectionSupport">Cliquez sur l’icône Multi-vues pour afficher toutes les vidéos des canaux de la caméra sur un même écran.</li>
                     <li>Pour revenir &agrave; la vue simple, cliquez sur le num&eacute;ro de canal.</li>
                 </ul>
@@ -721,6 +722,7 @@ type]</strong>. Digital PTZ can be applied only to profiles that use H.264 and H
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Vous pouvez contr&ocirc;ler les fonctions panoramique/inclinaison/zoom de la cam&eacute;ra, ou passer &agrave; une position PTZ pr&eacute;r&eacute;gl&eacute;e et contr&ocirc;ler le mouvement collectif.</p>
+            <p>Vous pouvez &eacute;galement r&eacute;gler le PTZ sur l&rsquo;&eacute;cran vid&eacute;o de la cam&eacute;ra. Passez la souris sur l&rsquo;ic&ocirc;ne <span class="tui tui-ptz_cross"></span> et cliquez sur l&rsquo;indicateur pour r&eacute;gler avec pr&eacute;cision la position pan/inclinaison de la cam&eacute;ra, ou cliquez sur l&rsquo;ic&ocirc;ne <span class="tui tui-ptz_cross"></span> et faites glisser la souris pour ajuster la position pan/inclinaison de la cam&eacute;ra rapidement. Vous pouvez zoomer la vid&eacute;o en faisant d&eacute;filer vers le haut. Si vous faites d&eacute;filer vers le bas, la vid&eacute;o d&eacute;zoome.</p>
         </div>
    <!--   <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
