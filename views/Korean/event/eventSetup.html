@@ -33,7 +33,7 @@
         </div>
 
 <!-- TNU-6321에서 알람 입출력이 아닌 알람 출력으로 노출돼야하므로 코드 수정. TW -->
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition && ParkingDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
             
@@ -41,7 +41,7 @@
             </ul>
         </div>
 
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition && !ParkingDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
             

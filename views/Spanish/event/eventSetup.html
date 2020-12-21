@@ -33,14 +33,14 @@
                     </ul>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition && ParkingDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
             
                 <li>Dependiendo de la configuraci&oacute;n de la salida de alarma, las columnas de <strong class="UI">[Salida de alarma]</strong> pueden variar. Si no hay una salida de alarma, las columnas de [salida de alarma] no se visualizar&aacute;n. Si hay m&aacute;s de una salida de alarma, las columnas se visualizar&aacute;n como [Salida de alarma 1], [Salida de alarma 2], y as&iacute; sucesivamente. Seleccione <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Alarma E/S]</strong> para ajustar la E/S de la alarma.</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition && !ParkingDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
             

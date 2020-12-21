@@ -35,13 +35,13 @@
 
 
 
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition && ParkingDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>          
                 <li>アラーム出力設定によって<strong class="UI">[アラーム出力]</strong>カラムの表示が異なります。アラーム出力がない場合、[アラーム出力]カラムは表示されません。アラーム出力が複数の場合、[アラーム出力1]、[アラーム出力2]のようにカラムが表示されます。アラーム入・出力は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で設定できます。</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition">
+        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition && !ParkingDetectionSupport">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>    
                 <li>アラーム出力設定によって<strong class="UI">[アラーム出力]</strong>カラムの表示が異なります。アラーム出力がない場合、[アラーム出力]カラムは表示されません。アラーム出力が複数の場合、[アラーム出力1]、[アラーム出力2]のようにカラムが表示されます。アラーム出力は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム出力]</strong>で設定できます。</li>
