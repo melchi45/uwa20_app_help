@@ -5,15 +5,15 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxAudioInputCount > 1">
-<div class="wn5-setup-section" ng-if="MaxAudioInputCount > 1">
+<hr class="wn5-setup-hr sptMultiAudioChannel" ng-if="MaxAudioInputCount > 1">
+<div class="wn5-setup-section sptMultiAudioChannel" ng-if="MaxAudioInputCount > 1">
     <div class="wn5-setup-section-heading">
         <h2>S&eacute;lectionner un canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>Après avoir sélectionné un canal de caméra, vous pouvez définir les détails audio pour chaque canal.</p>
-            <p ng-if="HybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">Le canal&nbsp;1 est un canal vid&eacute;o &agrave; cam&eacute;ra visible et le canal&nbsp;2 est un canal vid&eacute;o thermique.</p>
         </div>
 	</div>
 </div> 
@@ -66,7 +66,7 @@
 			<p>D&eacute;finit la valeur d&apos;amplification de l&apos;entr&eacute;e audio. Si le son d&apos;entr&eacute;e est trop faible, vous pouvez augmenter la valeur de gain pour amplifier le signal audio d&apos;entr&eacute;e. La plage de valeur de gain va de 1 &agrave; 10, plus la valeur est grande, plus l&rsquo;amplification est &eacute;lev&eacute;e.</p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+		<div class="wn5-setup-section-article-content sptAudioInNoiseReduction" ng-if="AudioInNoiseReduction">
 			<h3>R&eacute;duction de bruit</h3>
             <p>S&eacute;lectionnez R&eacute;duction de bruit si le bruit environnant est trop fort pour entendre le son pr&eacute;sentant un int&eacute;r&ecirc;t.</p>
 			<p>Il est possible que la r&eacute;duction de bruit ne fonctionne pas correctement si le bruit est impossible &agrave; distinguer des voix p&eacute;riph&eacute;riques, ou si la pression acoustique est &eacute;lev&eacute;e.</p>
@@ -77,9 +77,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxAudioOutput>0">
+<hr class="wn5-setup-hr sptAudioOut" ng-if="MaxAudioOutput>0">
 
-<div class="wn5-setup-section" ng-if="MaxAudioOutput>0">
+<div class="wn5-setup-section sptAudioOut" ng-if="MaxAudioOutput>0">
 	<div class="wn5-setup-section-heading">
 		<h2>Sortie audio</h2>
 	</div>
@@ -105,9 +105,9 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="AudioClipCountRange">
+<hr class="wn5-setup-hr sptAudioClip" ng-if="AudioClipCountRange">
 
-<div class="wn5-setup-section" ng-if="AudioClipCountRange">
+<div class="wn5-setup-section sptAudioClip" ng-if="AudioClipCountRange">
 	<div class="wn5-setup-section-heading">
 		<h2>Clip audio</h2>
 	</div>
@@ -149,11 +149,20 @@
 				<li>Dans la bo&icirc;te de dialogue <strong class="UI">[Enregistrer]</strong>, cliquer sur le bouton <strong class="UI">[OK]</strong>.</li>
 				</ol>
 			</div>
-		<div class="wn5-online-help-info">
+		<!-- <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
 				<ul>
 					<li>Cette fonction d&apos;enregistrement audio est seulement disponible pour les navigateurs qui prennent en charge l&apos;enregistrement audio.</li>
 					<li>Si vous voyez ce message : «&nbsp;Le mode HTTP ne prend pas en charge l&apos;enregistrement audio. Veuillez passer en mode d&apos;acc&egrave;s s&eacute;curis&eacute; HTTPS.&nbsp;», vous devez acc&eacute;der au Web Viewer de la cam&eacute;ra &agrave; l&apos;aide du mode s&eacute;curis&eacute; HTTPS. Pour acc&eacute;der au mode s&eacute;curis&eacute;, s&eacute;lectionner <strong class="UI">[HTTPS (Mode de connex. s&eacute;curis&eacute;e avec certificat unique)]</strong> ou <strong class="UI">[HTTPS (Mode connexion s&eacute;curis&eacute; &agrave; l&apos;aide du certificat public)]</strong> dans le <strong class="UI">[R&eacute;seau]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Syst. de connexion s&eacute;cu.]</strong>, puis r&eacute;essayer d&apos;acc&eacute;der au Web Viewer.</li>
+				</ul>
+		</div> -->
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
+				<p>Si la fonction d'enregistrement audio ne fonctionne pas,</p>
+				<ul>
+					<li>Vérifiez si le visualiseur Web de la caméra est connecté en mode de sécurité HTTPS. Pour acc&eacute;der au mode s&eacute;curis&eacute;, s&eacute;lectionner <strong class="UI">[HTTPS (Mode de connex. s&eacute;curis&eacute;e avec certificat unique)]</strong> ou <strong class="UI">[HTTPS (Mode connexion s&eacute;curis&eacute; &agrave; l&apos;aide du certificat public)]</strong> dans le <strong class="UI">[R&eacute;seau]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Syst. de connexion s&eacute;cu.]</strong>, puis r&eacute;essayer d&apos;acc&eacute;der au Web Viewer.</li>
+					<li>Vérifiez si la fonction microphone fonctionne correctement sur votre PC.</li>
+					<li>Assurez-vous que votre navigateur autorise l'accès à votre microphone.</li>
 				</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">

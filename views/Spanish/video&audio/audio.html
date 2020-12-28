@@ -5,15 +5,15 @@
 </div>
 
 
-<hr class="wn5-setup-hr" ng-if="MaxAudioInputCount > 1">
-<div class="wn5-setup-section" ng-if="MaxAudioInputCount > 1">
+<hr class="wn5-setup-hr sptMultiAudioChannel" ng-if="MaxAudioInputCount > 1">
+<div class="wn5-setup-section sptMultiAudioChannel" ng-if="MaxAudioInputCount > 1">
     <div class="wn5-setup-section-heading">
         <h2>Seleccionar canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>Despu&eacute;s de seleccionar un canal de c&aacute;mara, podr&aacute; definir los detalles de audio por canal.</p>
-			<p ng-if="HybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
+			<p ng-if="HybridThermal" class="sptHybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
         </div>
 	</div>
 </div> 
@@ -64,7 +64,7 @@
 			<h3><a class="wn5-online-help-link" name="gain"></a>Ganancia</h3>
 			<p>Establece el valor de amplificaci&oacute;n de entrada de audio. Si el sonido de entrada es demasiado bajo, puede aumentar el valor de ganancia para amplificar la se&ntilde;al de audio de entrada. El rango de valor de ganancia es de 1 a 10; un valor m&aacute;s grande implica una mayor amplificaci&oacute;n. </p>
 		</div>
-     	<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+     	<div class="wn5-setup-section-article-content sptAudioInNoiseReduction" ng-if="AudioInNoiseReduction">
 			<h3>Reducción de ruido</h3>
             <p>Seleccione Reducción de ruido si el ruido alrededor es demasiado fuerte para escuchar el sonido de interés.</p>
 			<p>La reducción de ruido puede no funcionar correctamente si el ruido no se puede distinguir del sonido de la voz circundante o si la presión del sonido es alta.</p>
@@ -76,9 +76,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxAudioOutput>0">
+<hr class="wn5-setup-hr sptAudioOut" ng-if="MaxAudioOutput>0">
 
-<div class="wn5-setup-section" ng-if="MaxAudioOutput>0">
+<div class="wn5-setup-section sptAudioOut" ng-if="MaxAudioOutput>0">
 	<div class="wn5-setup-section-heading">
 		<h2>Salida de audio</h2>
 	</div>
@@ -101,8 +101,8 @@
 		</div>
 	</div>
 </div>
-<hr class="wn5-setup-hr" ng-if="AudioClipCountRange">
-<div class="wn5-setup-section" ng-if="AudioClipCountRange">
+<hr class="wn5-setup-hr sptAudioClip" ng-if="AudioClipCountRange">
+<div class="wn5-setup-section sptAudioClip" ng-if="AudioClipCountRange">
 	<div class="wn5-setup-section-heading">
 		<h2>Clip de audio</h2>
 	</div>
@@ -144,11 +144,20 @@
 				<li>En el cuadro de di&aacute;logo <strong class="UI">[Grabar]</strong>, pulse el bot&oacute;n <strong class="UI">[Aceptar]</strong>.</li>
 				</ol>
 			</div>
-		<div class="wn5-online-help-info">
+		<!-- <div class="wn5-online-help-info">
 			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 				<ul>
 					<li>Esta funci&oacute;n de grabaci&oacute;n de audio solo est&aacute; disponible para buscadores que cuenten con grabaci&oacute;n de audio.</li>
 					<li>Si ve el mensaje «El modo HTTP no soporta la grabaci&oacute;n de audio. Cambie al modo de acceso seguro HTTPS.», tendr&aacute; que acceder al Web Viewer de la c&aacute;mara utilizando el modo seguro HTTPS. Para acceder en el modo seguro, seleccione <strong class="UI">[HTTPS (Modo de conexión segura con certificado único)]</strong> o <strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado p&uacute;blico)]</strong> en <strong class="UI">[Red]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Sistema de conexi&oacute;n segura]</strong>, y luego reintente acceder al Web Viewer.</li>
+				</ul>
+		</div> -->
+		<div class="wn5-online-help-info">
+			<h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+				<p>Si la función de grabación de audio no funciona,</p>
+				<ul>
+					<li>Compruebe si el visor web de la cámara está conectado en modo de seguridad HTTPS. Para acceder en el modo seguro, seleccione <strong class="UI">[HTTPS (Modo de conexión segura con certificado único)]</strong> o <strong class="UI">[HTTPS (Modo de conexi&oacute;n segura con certificado p&uacute;blico)]</strong> en <strong class="UI">[Red]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Sistema de conexi&oacute;n segura]</strong>, y luego reintente acceder al Web Viewer.</li>
+					<li>Compruebe si la función del micrófono funciona correctamente en su PC.</li>
+					<li>Asegúrese de que su navegador permita el acceso a su micrófono.</li>
 				</ul>
 		</div>
 		<div class="wn5-setup-section-article-content">

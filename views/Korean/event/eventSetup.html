@@ -33,21 +33,22 @@
         </div>
 
 <!-- TNU-6321에서 알람 입출력이 아닌 알람 출력으로 노출돼야하므로 코드 수정. TW -->
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition && ParkingDetectionSupport">
+        <!-- <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && RememberLastPosition"> -->
+            <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
             
-                <li>알람 출력 설정에 따라 <strong class="UI">[알람 출력]</strong> 컬럼이 다르게 표시됩니다. 알람 출력이 없는 경우 [알람 출력] 컬럼이 보이지 않으며, 알람 출력이 여러 개인 경우  [알람 출력 1], [알람 출력 2]와 같이 컬럼이 표시됩니다. 알람 입출력은 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 입출력]</strong>에서 설정할 수 있습니다. </li>
+                <li>알람 출력 설정에 따라 <strong class="UI">[알람 출력]</strong> 컬럼이 다르게 표시됩니다. 알람 출력이 없는 경우 [알람 출력] 컬럼이 보이지 않으며, 알람 출력이 여러 개인 경우  [알람 출력 1], [알람 출력 2]와 같이 컬럼이 표시됩니다. 알람 입출력은 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 입출력]</strong>에서 설정할 수 있습니다. (일부 카메라에서는 메뉴명이 [이벤트]>[알람 출력]으로 나타납니다.)</li>
             </ul>
         </div>
 
-        <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition && !ParkingDetectionSupport">
+        <!-- <div class="wn5-online-help-info" ng-if="MaxAlarmOutput>0 && !RememberLastPosition">
             <h4><span class="tui tui-wn5-help-warning"></span>알아두기</h4>
             <ul>
             
                 <li>알람 출력 설정에 따라 <strong class="UI">[알람 출력]</strong> 컬럼이 다르게 표시됩니다. 알람 출력이 없는 경우 [알람 출력] 컬럼이 보이지 않으며, 알람 출력이 여러 개인 경우  [알람 출력 1], [알람 출력 2]와 같이 컬럼이 표시됩니다. 알람 출력은 <strong class="UI">[이벤트]</strong>&gt;<strong class="UI">[알람 출력]</strong>에서 설정할 수 있습니다. </li>
             </ul>
-        </div>
+        </div> -->
 
     </div>
 </div>

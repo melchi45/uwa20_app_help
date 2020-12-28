@@ -4,15 +4,15 @@
 	<p>You can connect a microphone and speaker to a network camera and listen to the sound at a remote location where the camera is installed, or output audio from the camera to the location. When you complete the setting, click the <strong class="UI">[Apply]</strong> button at the bottom of the page.</p>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxAudioInputCount > 1">
-<div class="wn5-setup-section" ng-if="MaxAudioInputCount > 1">
+<hr class="wn5-setup-hr sptMultiAudioChannel" ng-if="MaxAudioInputCount > 1">
+<div class="wn5-setup-section sptMultiAudioChannel" ng-if="MaxAudioInputCount > 1">
     <div class="wn5-setup-section-heading">
         <h2>Select channel</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
 			<p>After selecting a camera channel, you can set the details for audio per channel.</p>
-            <p ng-if="HybridThermal">Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel.</p>
+            <p ng-if="HybridThermal" class="sptHybridThermal">Channel 1 is a visible camera video channel, and Channel 2 is a thermal video channel.</p>
         </div>
 	</div>
 </div> 
@@ -71,7 +71,7 @@
 			<p>Sets the amplification value of audio in. If the input sound is too low, you can increase the gain value to amplify the input audio signal. The range of gain value is from 1 to 10; a larger value means higher amplification. </p>
 		</div>
 
-		<div class="wn5-setup-section-article-content" ng-if="AudioInNoiseReduction">
+		<div class="wn5-setup-section-article-content sptAudioInNoiseReduction" ng-if="AudioInNoiseReduction">
 			<h3>Noise reduction</h3>
             <p>Select Noise Reduction if the surrounding noise is too strong to hear the sound of interest.</p>
 			<p>Noise reduction may not work properly if noise is indistinguishable from the surrounding voice sound, or if the sound pressure is high.</p>
@@ -82,9 +82,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxAudioOutput>0">
+<hr class="wn5-setup-hr sptAudioOut" ng-if="MaxAudioOutput>0">
 
-<div class="wn5-setup-section" ng-if="MaxAudioOutput>0">
+<div class="wn5-setup-section sptAudioOut" ng-if="MaxAudioOutput>0">
 	<div class="wn5-setup-section-heading">
 		<h2>Audio out</h2>
 	</div>
@@ -108,9 +108,9 @@
 	</div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="AudioClipCountRange">
+<hr class="wn5-setup-hr sptAudioClip" ng-if="AudioClipCountRange">
 
-<div class="wn5-setup-section" ng-if="AudioClipCountRange">
+<div class="wn5-setup-section sptAudioClip" ng-if="AudioClipCountRange">
     <div class="wn5-setup-section-heading">
             <h2>Audio clip</h2>
     </div>
@@ -151,13 +151,24 @@
                     <li>In the <strong class="UI">[Record]</strong> dialog box, click the <strong class="UI">[OK]</strong> button.</li>
                 </ol>
         </div>
-        <div class="wn5-online-help-info">
+        <!-- <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
                 <ul>
                     <li>This audio recording function is only available for browsers that support audio recording.</li>
                     <li>If you see this message&mdash;&quot;HTTP mode does not support audio recording. Please change to the HTTPS secure access mode.&quot;, then you have to access the camera web viewer using the HTTPS secure mode. To access in the secure mode, select <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> or <strong class="UI">[HTTPS(Secure connection mode using the public certificate)]</strong> in the <strong class="UI">[Network]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Secure connection system]</strong>, and then retry accessing the web viewer.</li>
                     </ul>
+            </div> -->
+
+            <div class="wn5-online-help-info">
+                <h4><span class="tui tui-wn5-help-warning"></span>Note</h4>
+                    <p>If the audio recording function does not work,</p>
+                    <ul>
+                        <li>Check if the camera web viewer is connected in HTTPS security mode. To access in the secure mode, select <strong class="UI">[HTTPS (Secure connection mode using a unique certificate)]</strong> or <strong class="UI">[HTTPS(Secure connection mode using the public certificate)]</strong> in the <strong class="UI">[Network]</strong>&gt;<strong class="UI">[HTTPS]</strong>&gt;<strong class="UI">[Secure connection system]</strong>, and then retry accessing the web viewer.</li>
+                        <li>Check if the microphone function is working properly in the your PC.</li>
+                        <li>Make sure your browser allows access to your microphone.</li>
+                    </ul>
             </div>
+
             <div class="wn5-setup-section-article-content">
                 <h3>Delete</h3>
                 <p>After selecting the radio button of a clip to delete in the audio clip list, click the <strong class="UI">[Delete]</strong> button to delete the selected audio clip. &nbsp;</p>
