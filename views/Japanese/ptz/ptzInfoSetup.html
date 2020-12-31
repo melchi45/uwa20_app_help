@@ -55,12 +55,28 @@
                 <li><strong class="UI">[ホームを設定する]</strong>ボタンをクリックします。</li>
             </ol>
         </div>
- <div class="wn5-online-help-info" ng-if="RememberLastPosition">
+        <div class="wn5-online-help-info sptRememberLastPosition" ng-if="RememberLastPosition">
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 <li>ホーム位置を設定した後、カメラが再起動されるとホームポジションに位置します。(他のシーケンス動作中の場合、該当シーケンスが動作します。)</li>
             </ul>
-            </div>
+        </div>
+
+        <div class="wn5-online-help-action sptWasher" ng-if="WasherWiperOn">
+            <h4>ウォッシャーを実行する</h4>
+            <ul>
+                <li><strong class="UI">[ウォッシャー実行]</strong>ボタンをクリックします。</li>
+            </ul>
+            <p>外部に付着されたウォッシャーが動作してカメラレンズを洗い流します。ウォッシャーを実行するには、ウォッシャー位置をまず設定する必要があります。ウォッシャー位置を設定するには、<strong class="UI">[ウォッシャー位置設定]</strong>をクリックしてください。 </p>
+        </div>
+        <div class="wn5-online-help-action sptWasher" ng-if="WasherWiperOn">
+            <h4>ウォッシャー位置を設定する</h4>
+            <ul>
+                <li><strong class="UI">[ウォッシャー位置設定]</strong>ボタンをクリックします。</li>
+            </ul>
+            <p>ウォッシャー位置がプリセット88番に設定されます。<strong class="UI">[プリセット設定]</strong>リストにウォッシャー位置が追加されたことを確認できます。 </p>
+        </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>プリセット設定</h3>
             <p>プリセットリストを確認して各プリセット別に詳細設定を修正したり削除することができます。</p>
@@ -111,16 +127,16 @@
  
             </ul>
             </div>  --> 
-        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+        <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h3>最終ポジション</h3>
             <p>カメラの電源をオフにしてからオンすると、保存された最終ポジションに移動するように設定することができます。カメラ最終ポジションの保存有無を選択して保存間隔を選択します。</p>
         </div>
-            <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+            <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h5>最終ポジション保存</h5>
                 <p>最終ポジションを保存するには、<strong class="UI">[有効]</strong>を選択します。</p>
 			
         </div> 
-<div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+<div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h5>時間</h5>
        
                 <p>現在位置を最終ポジションに保存する保存間隔を設定します。単位は「秒」です。保存間隔をフィールドに入力した後、<strong class="UI">[適用]</strong>をクリックしてください。</p>
@@ -320,8 +336,8 @@
                         </div>
     </div>
 </div>
-<hr class="wn5-setup-hr" ng-if="TraceSupportbyChannel">
-<div class="wn5-setup-section" ng-if="TraceSupportbyChannel">
+<hr class="wn5-setup-hr sptTrace" ng-if="TraceSupportbyChannel">
+<div class="wn5-setup-section sptTrace" ng-if="TraceSupportbyChannel">
     <div class="wn5-setup-section-heading">
         <h2><a name="trace"></a>トレース</h2>
     </div>

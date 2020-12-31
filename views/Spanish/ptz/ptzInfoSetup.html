@@ -54,12 +54,28 @@
                 <li>Haga clic en el bot&oacute;n <strong class="UI">[Establecer inicio] </strong>.</li>
             </ol>
     	</div>
-        <div class="wn5-online-help-info" ng-if="RememberLastPosition">
+        <div class="wn5-online-help-info sptRememberLastPosition" ng-if="RememberLastPosition">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
         <ul>
             <li>Cuando la cámara se reinicia después de configurar la posición inicial, la pantalla se coloca en la posición inicial. Si se está ejecutando otra secuencia (Preajuste, Oscilación, Grupo, Tour, Trazo), la secuencia que estaba activa se ejecutará sin moverse a la posición inicial cuando la cámara se reinicie.</li>
         </ul>
-    </div>
+        </div>
+
+        <div class="wn5-online-help-action sptWasher" ng-if="WasherWiperOn">            
+            <h4>Ejecución del limpiador</h4>
+            <ul>
+                <li>Haga clic en el botón <strong class="UI">[Ejecutar el limpiador]</strong>.</li>
+            </ul>
+            <p>El limpiador situado en la superficie exterior se separa y enjuaga la lente de la cámara. Para poder ejecutar el limpiador, la posición del limpiador debe ser definida primero. Para definir la posición del limpiador, haga clic en el botón <strong class="UI">[Definir la posición del limpiador]</strong>. </p>
+        </div>
+        <div class="wn5-online-help-action sptWasher" ng-if="WasherWiperOn">           
+            <h4>Configuración de la posición del limpiador</h4>
+        <ul>
+            <li>Haga clic en el botón <strong class="UI">[Definir la posición del limpiador]</strong>.</li>
+        </ul>
+        <p>La posición del limpiador está fijada hasta el nº 88 de preajuste. Puede ver la posición del limpiador añadido en la lista <strong class="UI">[Configuración de preajustes]</strong>. </p>         
+        </div>
+
         <div class="wn5-setup-section-article-content">
             <h3>Establecer ajuste predeterminado</h3>
             <p>Puede comprobar la lista de preajustes y modificar o eliminar la configuraci&oacute;n detallada de cada preajuste.</p>
@@ -101,15 +117,15 @@
                 <li><strong class="UI">IVA</strong>: Navegue hasta la p&aacute;gina de <strong class="UI">[Anal&iacute;tica] </strong>&gt; <strong class="UI">[IVA]</strong>. Cuando se selecciona <strong class="UI">[Preajuste]</strong> entre las opciones de <strong class="UI">[Tipo]</strong> de la p&aacute;gina de IVA, puede definir un evento de IVA (An&aacute;lisis inteligente de v&iacute;deo) diferente para cada preajuste.</li>
             </ul>
     </div>
-        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+        <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h3>&Uacute;ltima posici&oacute;n</h3>
             <p>Puede configurar la c&aacute;mara para que se mueva a la &uacute;ltima posici&oacute;n al encender y apagar la c&aacute;mara. Seleccione si guarda o no la &uacute;ltima posici&oacute;n de la c&aacute;mara y seleccione el intervalo para guardar.</p>
         </div>
-            <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+            <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h5>Guardar última posición</h5>
                 <p>Para guardar la &uacute;ltima posici&oacute;n, seleccione <strong class="UI">[Activar]</strong>.</p>
 			</div>
-        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+        <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h5>Hora</h5>
        
                 <p>Defina el intervalo para guardar la posici&oacute;n actual como la &uacute;ltima posici&oacute;n. La unidad usada para medir el intervalo es segundos. Introduzca el intervalo para guardar en el campo y haga clic en <strong class="UI">[Aplicar]</strong>.</p>
@@ -316,8 +332,8 @@
     </div>
 </div>
 
-<hr class="wn5-setup-hr"  ng-if="TraceSupportbyChannel">
-<div class="wn5-setup-section"  ng-if="TraceSupportbyChannel">
+<hr class="wn5-setup-hr sptTrace" ng-if="TraceSupportbyChannel">
+<div class="wn5-setup-section sptTrace" ng-if="TraceSupportbyChannel">
     <div class="wn5-setup-section-heading">
         <h2><a name="trace"></a>Trazo</h2>
     </div>

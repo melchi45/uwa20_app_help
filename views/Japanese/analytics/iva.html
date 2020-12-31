@@ -2,28 +2,28 @@
 <div class="wn5-setup-section">
     <p>ビデオ映像分析に対する規則を設定して、イベント規則条件を満足するモーションを検知すると、IVA(Intelligent Video Analytics、インテリジェントビデオ解析)イベントを発生させることができます。設定を完了すると、ページの下にある<strong class="UI">[適用]</strong>ボタンをクリックしてください。IVAイベントに対する設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[イベント設定]</strong></a>ページの<strong class="UI">[IVA]</strong>に同じく適用されます。</p>
 </div>
-<div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+<div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
         <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
 <ul>
     <li><strong class="UI">[対象物]</strong>オプションで特定対象物を選択した場合、カメラ映像で選択した対象物だけを検知し、該当対象物がIVAイベントルールを満たす場合、IVAイベントが発生します。反面、<strong class="UI">[対象物]</strong>でオプションを何も選択しない場合、動く対象物を検知します。</li>
 </ul>
     </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>チャンネル選択</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>カメラチャンネルを選択した後、チャンネル別にIVAの詳細を設定することができます。</p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
-            <p ng-if="objectDetectionSupport">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[IVA]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="HandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
-            <p ng-if="SupportAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。[IVA]は、チャンネル1でのみ設定できます。</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment" class="sptHandOverCalAndAutoImgAlign">ライブページや再生ページで最も最近に選択したチャンネル番号が自動に選択されています。</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2はデジタルPTZ映像を表示するチャンネルです。[IVA]は、チャンネル1でのみ設定できます。</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">固定カメラのチャンネルは番号で表記され、PTZチャンネルは「PTZ」に表記されます。</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">チャンネル2～5番は装着された個別カメラの映像であり、チャンネル1は2～5番チャンネルのカメラ映像を一つに接続させてパノラマタイプに表示する映像です。チャンネル6番と7番は、チャンネル1の映像に対してデジタルPTZが適用された映像です。[IVA]は、チャンネル1でのみ設定できます。</p>
             <p ng-if="MultiImager">チャンネル1は、ライブ映像を表示するチャンネルであり、チャンネル2とチャンネル3はデジタルPTZ映像を表示するチャンネルです。[IVA]は、チャンネル1でのみ設定できます。</p>
-            <p ng-if="HybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
-            <!-- <p ng-if="SupportAutoImageAlignment">「IVA」はチャンネル1でしか設定できません。</p> -->
+            <p ng-if="HybridThermal" class="sptHybridThermal">チャンネル1は実画像カメラビデオチャンネルであり、チャンネル2は熱画像ビデオチャンネルです。</p>
+            <!-- <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">「IVA」はチャンネル1でしか設定できません。</p> -->
             <!-- <p>設定を変更した後、保存せずに他のチャンネルを選択する場合には通知メッセージが表示されます。</p> -->
         </div>
     </div>
@@ -40,16 +40,21 @@
             <h3>IVAを有効にする</h3>
             <p>IVAイベントを有効にするためには、<strong class="UI">[IVAを有効にする]</strong>を選択します。</p>
         </div>
-		<div class="wn5-setup-section-article-content" ng-if="PTZModel">
+		<div class="wn5-setup-section-article-content sptRealPTZModel" ng-if="PTZModel">
             <h3>タイプ</h3>
             <p>すべてのプリセットに同じIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[グローバル]</strong>を選択します。PTZプリセット別にそれぞれのIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[プリセット]</strong>を選択します。<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">プリセット設定</a>ページでプリセットを設定した場合のみ、<strong class="UI">[プリセット]</strong>オプションが有効になります。</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[タイプ]オプションを設定することができます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[タイプ]オプションを設定することができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>タイプ</h3>
             <p>すべてのプリセットに同じIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[グローバル]</strong>を選択します。パン/チルトプリセット別にそれぞれのIVA(インテリジェントビデオ解析)を設定するには、<strong class="UI">[プリセット]</strong>を選択します。<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">PT設定</a>ページでプリセットを設定した場合のみ、<strong class="UI">[プリセット]</strong>オプションが有効になります。<strong class="UI">[プリセット]</strong>を選択してプリセット別にIVA設定を指定する場合、詳細設定項目中の一部機能は設定することができません。</p>
         </div>
- 
+        <div class="wn5-online-help-info sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
+            <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
+            <ul>
+                <li>カメラ映像が重なる重複エリアでモーションが発生する場合、IVAイベント性能が低下されたり誤動作することがあります。</li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="wn5-setup-section">
@@ -65,7 +70,7 @@
         <div class="wn5-online-help-action">  
             <h4>バーチャルライン設定</h4>
             <p>カメラ映像画面の設定したい位置でラインの開始点と端点をクリックすると、バーチャルラインが設定され<strong class="UI">[ライン入力]</strong>の数字ボタン色が変更されます。</p>
-                <p ng-if="objectDetectionSupport">バーチャルラインを設定した後、<strong class="UI">[名前]</strong>フィールドに設定したバーチャルライン名を入力できます。</p>               
+                <p ng-if="objectDetectionSupport" class="sptObjectDetection">バーチャルラインを設定した後、<strong class="UI">[名前]</strong>フィールドに設定したバーチャルライン名を入力できます。</p>               
                 <p>バーチャルラインの真ん中にある矢印をクリックすると、方向をAからB、BからA、両方向に変更したり<strong class="UI">[カテゴリー]</strong>の<strong class="UI">[方向]</strong>でお望みの方向を選択することもできます。バーチャルラインは最大8つまで設定することができます。</p>
         </div>
         <div class="wn5-online-help-action">  
@@ -76,9 +81,9 @@
             <h4>バーチャルライン削除</h4>
 			<p>バーチャルラインを削除するには、該当エリアにマウス右側ボタンをクリックしてから削除確認で<strong class="UI">[OK]</strong>ボタンをクリックします。</p>
         </div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>PTZ調整</h4>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>メニューの<strong class="UI">[PTZ]</strong>をクリックすると、カメラのPTZ調整用のPTZジョグパネルが表示されます。</p>
             <!-- <p>カメラのパン、チルト&amp;ズーム動作を調整することができます。</p> -->
             <ul>
                 <li><span class="tui tui-wn5-ptz-handle"></span>アイコンをマウスでドラッグすると、カメラがパンとチルトに移動します。</li>
@@ -92,16 +97,16 @@
             <p>バーチャルラインが追加されると、順番に<strong class="UI">[ライン入力]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当のバーチャルラインはプレビュー画面に表示されません。もう一度、数字ボタンをクリックするとバーチャルラインが再度表示されます。</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+        <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>名前</h3>
                 <p><strong class="UI">[ライン]</strong>で選択したバーチャルライン名を確認したり、変更できます。</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>対象物</h3>
                 <p>IVAイベントを発生するための対象物タイプを選択します。</p>
                 <p>例えば、対象物タイプで「人」を選択した場合、人がバーチャルラインを通るとIVAイベントが発生します。イベント発生時、<a href="#handover">ハンドオーバ</a>を動作させたり、<a href="#action">イベント動作</a>が実行するように設定できます。</p>
             </div>
-            <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
                     <li>対象物を選択した場合、カメラ映像で選択した対象物だけを検知します。対象物を選択しない場合、カメラ映像でモーションを検知します。例えば、<strong class="UI">[対象物]</strong>でオプションを選択しなかった場合、IVAイベントルール条件を満たす動く対象物を検知すると、IVAイベントが発生します。</li>
@@ -116,7 +121,7 @@
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+        <div class="wn5-setup-section-article-content sptHandoverCalibration" ng-if="HandoverCalibration">
             <h3>ハンドオーバ</h3>
             <p>ハンドオーバは、固定カメラで仮想線を基準に動く対象物を検知すると、PTZカメラが既に設定した位置に移動する機能です。</p>
             <ul>
@@ -125,12 +130,12 @@
                 <li><strong class="UI">ハンドオーバNo.</strong>：仮想線を通過する対象物を検知すると、PTZカメラがプリセット位置に移動します。プリセット情報のあるハンドオーバNo.をリストで選択します。リストは<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>で追加したり、変更できます。</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+        <div class="wn5-online-help-info sptHandoverCalibration" ng-if="HandoverCalibration">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 
                 <li>仮想線別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想線を先に設定してから使用できます。</li>
-                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
             </ul>
         </div>
 
@@ -152,7 +157,7 @@
             <h4>バーチャルエリア設定</h4>
             <p>プレビュー画面からマウスで頂点4つを選択するか、マウスでドラッグして四角を描くとエリアが設定されます。</p>
             <p>バーチャルエリアは最大8つまで設定することができ、エリア別にビデオ映像分析の規則を設定することができます。</p>
-            <p ng-if="objectDetectionSupport">ユーザーが希望する場合、バーチャルエリアを設定した後、<strong class="UI">[名前]</strong>フィールドに設定したバーチャルエリアに対して名前を入力できます。</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">ユーザーが希望する場合、バーチャルエリアを設定した後、<strong class="UI">[名前]</strong>フィールドに設定したバーチャルエリアに対して名前を入力できます。</p>
         </div>
         <div class="wn5-online-help-action">
             <h4>バーチャルエリア変更</h4>
@@ -169,16 +174,16 @@
             <p>バーチャルエリアが追加されると、順番に<strong class="UI">[エリア]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当のバーチャルエリアはプレビュー画面に表示されません。もう一度、数字ボタンをクリックするとバーチャルエリアが再度表示されます。</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+        <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>名前</h3>
                 <p><strong class="UI">[領域]</strong>で選択したバーチャルエリア名を確認したり、変更できます。</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>対象物</h3>
                 <p>IVAイベントを発生するための対象物タイプを選択します。</p>
                 <p>例えば、「人」を選択した場合、バーチャルエリアで人を検知した場合のみ、IVAイベントが発生します。イベント発生時、<a href="iva.html#handover">ハンドオーバ</a>を動作させたり、<a href="iva.html#action">イベント動作</a>が実行するように設定できます。</p>
             </div>	
-                    <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+                    <div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
                 <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
                 <ul>
                     <li>対象物を選択した場合、カメラ映像で選択した対象物だけを検知します。対象物を選択しない場合、カメラ映像でモーションを検知します。例えば、<strong class="UI">[対象物]</strong>でオプションを選択しなかった場合、IVAイベントルール条件を満たす動く対象物を検知すると、IVAイベントが発生します。</li>
@@ -207,10 +212,10 @@
                 </ul>
                 <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">うろつく</strong>：設定した検知エリア内でうろつくモーションを検知すると、イベントを発生させます。</li>
                 <li ng-if="IvaLoitering && objectDetectionSupport"><strong class="UI">うろつく</strong>：設定したバーチャルエリア内で<strong class="UI">[対象物]</strong>で選択した対象物がうろつくことを検知すると、イベントを発生させます。</li>
-                <ul ng-if="IvaLoitering && !objectDetectionSupport">
+                <!-- <ul ng-if="IvaLoitering && !objectDetectionSupport">
                     <li><strong class="UI">最短期間(秒)</strong>：うろつく対象物を検知してイベントを発生させるための最短時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
-                </ul>
-                <ul ng-if="IvaLoitering && objectDetectionSupport">
+                </ul> -->
+                <ul ng-if="IvaLoitering">
                         <li><strong class="UI">最短期間(秒)</strong>：うろつく対象物を検知してイベントを発生するための最小時間を設定します。設定した時間より長くうろつく対象物を検知すると、イベントを発生させます。</li>
                     </ul>
             </ul>
@@ -228,7 +233,7 @@
             </ul>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+        <div class="wn5-setup-section-article-content sptHandoverCalibration" ng-if="HandoverCalibration">
             <h3>ハンドオーバ</h3>
             <p>ハンドオーバは、固定カメラでIVAイベントが発生すると、PTZカメラが該当画面領域や既に設定したプリセット位置に移動する機能です。</p>
             <ul>
@@ -237,12 +242,12 @@
                 <li><strong class="UI">ハンドオーバNo.</strong>：仮想領域でIVAイベントが発生すると、PTZカメラがプリセット位置に移動します。プリセット情報のあるハンドオーバNo.をリストで選択します。リストは<strong class="UI">[イベント]</strong> &gt; <strong class="UI">[ハンドオーバ]</strong>メニューで追加したり、変更できます。</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+        <div class="wn5-online-help-info sptHandoverCalibration" ng-if="HandoverCalibration">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
                 
                 <li>仮想領域別にハンドオーバ機能を設定できます。ハンドオーバ機能は、仮想領域を先に設定してから使用できます。</li>
-                <li ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で固定カメラチャンネルを選択した場合のみ、「ハンドオーバ」メニューが表示されます。PTZチャンネルを選択すると、該当メニューは表示されません。</li>
             </ul>
         </div>
     </div>
@@ -277,7 +282,7 @@
             <h3>エリア</h3>
             <p>除外エリアが追加されると、順番に<strong class="UI">[エリア]</strong>の数字ボタン色が変更されます。数字ボタンをクリックして無効にすると、該当の除外エリアはプレビュー画面に選択されます。</p>
  </div>
- <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+ <div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
         <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
         <ul>
             <li><strong class="UI">[IVA]</strong>の<strong class="UI">[除外エリア] </strong>タブで設定した値は、<strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">対象物検知</a>]</strong>&gt;<strong class="UI">[除外エリア]</strong>値と同期します。つまり、<strong class="UI">[IVA]</strong>の<strong class="UI">[除外エリア]</strong>タブで除外エリアを設定すると、<strong class="UI">[対象物検知]</strong>&gt;<strong class="UI">[除外エリア]</strong>にも同じく除外エリアが作成されます。</li>
@@ -304,7 +309,7 @@
             <p>バーチャルラインとバーチャルエリアでモーションを検知する対象物の最小、最大サイズを設定します。頂点をクリックした後、マウスをドラッグしてサイズを変更することができます。サイズを変更すると、<strong class="UI">[サイズ]</strong>の<strong class="UI">[最小サイズ]</strong>値と<strong class="UI">[最大サイズ]</strong>値も変更されます。</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+        <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>除外エリア</h3>
                 <p>AIカメラは、各対象物別に詳細を分析したデータをカメラと同期するプログラムなどで活用するように転送します。この場合、除外エリアに設定された領域で検知した対象物の情報は、基本的に転送しません。除外エリアで検知した対象物の情報と各対象物の詳細を転送するには、<strong class="UI">[検知除外領域の対象物データ使用]</strong>を選択します。 &nbsp;</p>
                 <p>カメラが転送する対象物別の詳細情報は「AI Camera Metadata Specification」ドキュメントをご参照ください。</p>
@@ -313,11 +318,11 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>参考事項</h4>
             <ul>
-                    <li ng-if="objectDetectionSupport"><strong class="UI">[IVA]</strong>の<strong class="UI">[一般]</strong>タブで設定した値は、<strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">対象物検知</a>]</strong>&gt;<strong class="UI">[一般]</strong>値と同期します。つまり、<strong class="UI">[IVA]</strong>の<strong
+                    <li ng-if="objectDetectionSupport" class="sptObjectDetection"><strong class="UI">[IVA]</strong>の<strong class="UI">[一般]</strong>タブで設定した値は、<strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">対象物検知</a>]</strong>&gt;<strong class="UI">[一般]</strong>値と同期します。つまり、<strong class="UI">[IVA]</strong>の<strong
                         class="UI">[一般]</strong>タブで値を変更すると、<strong class="UI">[対象物検知]</strong>&gt;<strong class="UI">[一般]</strong>値も同じく変更されます。</li>
                 <li>エリアと除外エリアが同一か重なる場合、除外エリアの方が優先されます。</li>
-                <li ng-if="!objectDetectionSupport">ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
-                <li ng-if="objectDetectionSupport">ユーザーが指定した最小サイズより小さい対象物や最大サイズより大きい対象物は、検知しません。大小のノイズによる誤検知を避けるために、インストール環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。</li>
+                <li ng-if="!objectDetectionSupport" class="nsptObjectDetection">ユーザーが指定した最小サイズより小さいモーションと最大サイズより大きいモーションは検知しません。大小のノイズによる誤検知を避けるために設置環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。 </li>
+                <li ng-if="objectDetectionSupport" class="sptObjectDetection">ユーザーが指定した最小サイズより小さい対象物や最大サイズより大きい対象物は、検知しません。大小のノイズによる誤検知を避けるために、インストール環境に適する最小/最大検知サイズを設定してください。但し、同じ位置での同じモーションでも検知されるサイズは、多少差があるため偏差を考えて余裕を含み最小/最大サイズの上限を設定してください。</li>
             </ul>
         </div>
     </div>
@@ -344,8 +349,8 @@
        </div>
     </div>	
     
-<hr class="wn5-setup-hr" ng-if="VaDetectionResultOverlay">
-<div class="wn5-setup-section" ng-if="VaDetectionResultOverlay">
+<hr class="wn5-setup-hr sptVaDetectionResultOverlay" ng-if="VaDetectionResultOverlay">
+<div class="wn5-setup-section sptVaDetectionResultOverlay" ng-if="VaDetectionResultOverlay">
     <div class="wn5-setup-section-heading">
         <h2>オーバーレイ</h2>
     </div>
@@ -370,25 +375,25 @@
             <h3>E-mail</h3>
             <p>IVAイベントが発生した時、映像の画像をE-mailに伝送するには<strong class="UI">[有効]</strong>を選択します。E-mailに対する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/Eメール]</strong></a>で行うことができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Recording">
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
             <h3>録画</h3>
-            <p ng-if="NAS">アラーム入力イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
-            <p ng-if="!NAS">アラーム入力イベントが発生した時、SDカードに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+            <p ng-if="NAS" class="sptRecordingSDNas">アラーム入力イベントが発生した時、SDカードまたはNASに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
+            <p ng-if="!NAS" class="sptRecordingSD">アラーム入力イベントが発生した時、SDカードに映像を保存するには<strong class="UI">[有効]</strong>を選択します。保存に関する詳細設定は、<strong class="UI">[イベント]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[ストレージ]</strong></a>で行うことができます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
             <h3>アラーム出力</h3>
             <p>IVAイベントが発生した時、特定のアラームNo.でアラーム出力されるように設定することができます。アラーム出力No.を選択した後、アラームを出力したくない場合、<strong class="UI">[off]</strong>を選択してアラームを出力したい場合、出力時間を選択します。<strong class="UI">[常時動作]</strong>を選択してユーザーがアラームを止めるまで出力し続けるようにしたり5、10、15秒まで出力するように設定することができます。</p>
             <p>アラーム出力設定によって<strong class="UI">[アラーム出力]</strong>オプションの表示が異なります。アラーム出力がない場合、<strong class="UI">[アラーム出力]</strong>オプションは表示されません。アラーム出力が複数の場合、<strong class="UI">[アラーム出力1]</strong>、<strong class="UI">[アラーム出力2]</strong>のように表示されます。アラーム入・出力は、<strong class="UI">[イベント]</strong>&gt;<strong class="UI">[アラーム入・出力]</strong>で設定できます。</p>   
         </div>
-          <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+          <div class="wn5-setup-section-article-content sptExtPtzPreset1" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>プリセットに移動</h3>
                     <p>IVAイベントが発生した時、カメラビュー位置をすでに設定しておいたプリセットNo.に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[デジタルPTZ]</strong></a>や<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>の<strong class="UI">[プリセット]</strong>で設定することができます。</p>
 
-                    <p ng-if="GlobalPTZMode && MaxChannel > 1"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択解除した場合、[プリセット移動]オプションが表示されません。</p>
+                    <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ"><strong class="UI">[PTZ]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[外部PTZ]</a></strong>から<strong class="UI">[外部PTZ有効化]</strong>オプションを選択解除した場合、[プリセット移動]オプションが表示されません。</p>
 
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+        <div class="wn5-setup-section-article-content sptZoomOnly" ng-if="PresetSetupPage">
             <h3>プリセットに移動</h3>
                     <p>IVAイベントが発生した時、カメラビュー位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[プリセット設定]</strong></a>の<strong class="UI">[プリセット設定]</strong>エリアで設定することができます。</p>
         </div>
@@ -396,13 +401,13 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>プリセットに移動</h3>
                     <p>IVAイベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[PTZ設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
-                    <p ng-if="MaxChannel > 1 && HandoverCalibration"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[プリセットに移動]オプションが表示されます。</p>
+                    <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel"><strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[チャンネル選択]</a></strong>で<strong class="UI">[PTZ]</strong>チャンネルを選択した場合にのみ、[プリセットに移動]オプションが表示されます。</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>プリセットに移動</h3>
                     <p>IVAイベントが発生した時、カメラ位置をすでに設定しておいた位置に移動するように設定することができます。カメラ位置プリセットは、<strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[PT設定]</strong></a>の<strong class="UI">[プリセット]</strong>タブで設定することができます。</p>
         </div>        
-        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
             <h3>オーディオクリップ</h3>
             <p>IVAイベントが発生した時、特定のオーディオクリップが再生されるように設定することができます。オーディオクリップリストでファイルを選択すると、イベントが発生する時に該当のクリップが再生されます。イベントが発生してもオーディオクリップが再生されないように設定するためには、<strong class="UI">[Off]</strong>を選択します。再生ボタン(<span class="tui tui-wn5-toolbar-play"></span>)をクリックすると、該当オーディオファイルを再生してプレビューを聞くことができます。</p>
             <p>オーディオクリップは、<strong class="UI">[映像&amp;音声]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[音声設定]</a></strong>&gt;<strong class="UI">[オーディオクリップ]</strong>で登録することができます。</p>

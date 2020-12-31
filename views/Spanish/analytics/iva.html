@@ -3,28 +3,28 @@
     <p>Un evento IVA puede ser creado cuando se establece la regla para la anal&iacute;tica de v&iacute;deo y se detecta un movimiento que satisface la condici&oacute;n de regla del evento. Cuando haya completado el ajuste, haga clic en el bot&oacute;n <strong class="UI">[Aplicar]</strong> en la parte de abajo de la p&aacute;gina. El ajuste del evento IVA se aplica a <strong class="UI">[IVA]</strong> en la p&aacute;gina <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/eventSetup.html" ng-href="#/help/event_eventSetup"><strong class="UI">[Configuraci&oacute;n de eventos]</strong></a></p>
 </div>
 
-<div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+<div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
         <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
 <ul>
     <li>Si se selecciona un cierto tipo de objeto en el campo&nbsp;<strong class="UI">[Objeto]</strong>, la cámara detectará únicamente ese tipo de objeto y activará eventos IVA cuando dicho tipo de objeto cumpla las condiciones de reglas de eventos IVA. Si no selecciona ninguna opción en el campo [Objeto], la cámara detectará cualquier tipo de objeto móvil. </li>
 </ul>
     </div>
 
-<hr class="wn5-setup-hr" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
-<div class="wn5-setup-section" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<hr class="wn5-setup-hr sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
+<div class="wn5-setup-section sptChannelSelector" ng-if="MaxChannel > 1 && !SupportChannelExpansionFeature">
     <div class="wn5-setup-section-heading">
         <h2><a name="channel"></a>Seleccionar canal</h2>
     </div>
     <div class="wn5-setup-section-article">
         <div class="wn5-setup-section-article-content">
             <p>Despu&eacute;s de seleccionar su canal de c&aacute;mara, puede definir los detalles de IVA para cada canal. </p>
-            <p ng-if="HandoverCalibration && SupportAutoImageAlignment"> El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
-            <p ng-if="objectDetectionSupport">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [IVA] solo puede configurarse en el canal 1.</p>
-            <p ng-if="HandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
-            <p ng-if="SupportAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado. [IVA] solo puede configurarse en el canal 1.</p>
+            <p ng-if="HandoverCalibration && SupportAutoImageAlignment" class="sptHandOverCalAndAutoImgAlign"> El n&uacute;mero de canal seleccionado por &uacute;ltima vez en la p&aacute;gina en vivo o en la p&aacute;gina de reproducci&oacute;n se selecciona autom&aacute;ticamente.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">El canal 1 muestra imágenes en directo y el canal 2, vídeo PTZ digital. [IVA] solo puede configurarse en el canal 1.</p>
+            <p ng-if="HandoverCalibration" class="sptHandoverCalibration">El canal de la c&aacute;mara fija se muestra como un n&uacute;mero y el canal PTZ se muestra como “PTZ”.</p>
+            <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">Canal2 a Canal5 son videos de c&aacute;maras que han sido instaladas individualmente. Canal1 es una vista panor&aacute;mica en varias pantallas de c&aacute;mara de Canal2 a Canal5 ordenadas en una fila. Canal6 y Canal7 son v&iacute;deos de v&iacute;deo Canal1 con PTZ digital aplicado. [IVA] solo puede configurarse en el canal 1.</p>
             <p ng-if="MultiImager">El Canal 1 es un canal de transmisión en directo, mientras que los Canales 2 y 3 son canales que muestran un vídeo PTZ digital. [IVA] solo puede configurarse en el canal 1.</p>
-            <p ng-if="HybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
-            <!-- <p ng-if="SupportAutoImageAlignment">El “IVA” solo se puede configurar en Canal1.</p> -->
+            <p ng-if="HybridThermal" class="sptHybridThermal">El Canal 1 es un canal de v&iacute;deo visible de c&aacute;mara, y el Canal 2 es un canal de v&iacute;deo t&eacute;rmico.</p>
+            <!-- <p ng-if="SupportAutoImageAlignment" class="sptAutoImageAlignment">El “IVA” solo se puede configurar en Canal1.</p> -->
             <!-- <p>Si selecciona otro canal sin aplicar los cambios en la configuraci&oacute;n, aparecer&aacute; un mensaje de alarma.</p> -->
         </div>
     </div>
@@ -42,14 +42,20 @@
             <p>Para utilizar el evento IVA, seleccione <strong class="UI">[Activar IVA]</strong>.</p>
  </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PTZModel">
+        <div class="wn5-setup-section-article-content sptRealPTZModel" ng-if="PTZModel">
             <h3>Tipo</h3>
             <p>Para definir el mismo IVA (An&aacute;lisis inteligente de v&iacute;deo) para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir un IVA (An&aacute;lisis inteligente de v&iacute;deo) diferente para todos los preajustes de PTZ, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup">Configuraci&oacute;n de preajustes</a>.</p>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">La opción [Tipo] sólo se puede configurar cuando se selecciona <strong class="UI">[PTZ]</strong> en <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a></strong>.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">La opción [Tipo] sólo se puede configurar cuando se selecciona <strong class="UI">[PTZ]</strong> en <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a></strong>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>Tipo</h3>
             <p>Para definir el mismo IVA (An&aacute;lisis inteligente de v&iacute;deo) para todos los preajustes, seleccione <strong class="UI">[Global]</strong>. Para definir un IVA (An&aacute;lisis inteligente de v&iacute;deo) diferente para todos los preajustes de panorámica/inclinación, seleccione <strong class="UI">[Preajuste]</strong>. La opci&oacute;n <strong class="UI">[Preajuste]</strong> estar&aacute; activada solo cuando un preajuste se defina desde la p&aacute;gina <a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup">Configuraci&oacute;n de PT</a>.Si selecciona <strong class="UI">[Preajuste]</strong> y configura IVA para cada preajuste, quizá no pueda ver alguna de las características en los ajustes detallados.</p>
+        </div>
+        <div class="wn5-online-help-info sptAutoImageAlignment" ng-if="SupportAutoImageAlignment">
+            <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
+            <ul>
+                <li>Si se detecta movimiento en la sección en la que los vídeos de la cámara se superponen, el rendimiento del evento IVA podría degradarse o funcionar mal.</li>
+            </ul>
         </div>
     </div>
 </div>
@@ -68,7 +74,7 @@
         <div class="wn5-online-help-action">
             <h4>Configuraci&oacute;n de una l&iacute;nea virtual</h4>
             <p>Al hacer clic en el punto inicial y el punto final de la l&iacute;nea en cada posici&oacute;n deseada de la pantalla de imagen de la c&aacute;mara, la l&iacute;nea virtual se define y el color del bot&oacute;n num&eacute;rico en <strong class="UI">[L&iacute;nea]</strong> cambiar&aacute;. </p>
-            <p ng-if="objectDetectionSupport">Puede introducir el nombre de la línea virtual en el campo <strong class="UI">[Nombre]</strong> tras configurar esta.</p>     
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">Puede introducir el nombre de la línea virtual en el campo <strong class="UI">[Nombre]</strong> tras configurar esta.</p>     
             <p>Puede cambiar la direcci&oacute;n de A a B, B a A o ambas direcciones haciendo clic en la flecha del medio de la l&iacute;nea virtual, o puede seleccionar la direcci&oacute;n que desee desde <strong class="UI">[Dirección]</strong> en <strong class="UI">[Categor&iacute;as]</strong>. Se pueden configurar hasta 8 l&iacute;neas virtuales.</p>
         </div>
         <div class="wn5-online-help-action">
@@ -79,9 +85,9 @@
             <h4>Eliminaci&oacute;n de una l&iacute;nea virtual</h4>
 			<p>Para eliminar una l&iacute;nea virtual, haga clic en el bot&oacute;n derecho del rat&oacute;n en el &aacute;rea correspondiente de la pantalla y haga clic en el bot&oacute;n <strong class="UI">[Aceptar]</strong> de la ventana de confirmaci&oacute;n de eliminaci&oacute;n.</p>
         </div>
-        <div class="wn5-online-help-action" ng-if="PTZModel">
+        <div class="wn5-online-help-action sptRealPTZModel" ng-if="PTZModel">
             <h4>Ajuste del PTZ</h4>
-            <p ng-if="MaxChannel > 1 && HandoverCalibration">Cuando hace clic en <strong class="UI">[PTZ]</strong> en el menú <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a>, se muestra el panel de desplazamiento PTZ para el ajuste de PTZ de la cámara.</p>
+            <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">Cuando hace clic en <strong class="UI">[PTZ]</strong> en el menú <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a>, se muestra el panel de desplazamiento PTZ para el ajuste de PTZ de la cámara.</p>
             <!-- <p>Puede configurar la panor&aacute;mica, la inclinaci&oacute;n, y el zoom de la c&aacute;mara.</p> -->
             <ul>
                 <li>Al arrastrar el icono <span class="tui tui-wn5-ptz-handle"></span> con el mouse, la c&aacute;mara se mueve siguiendo las acciones de panor&aacute;mica e inclinaci&oacute;n.</li>
@@ -97,16 +103,16 @@
             <p>Cuando se a&ntilde;ade una l&iacute;nea virtual, el color de los botones num&eacute;ricos en <strong class="UI">[L&iacute;nea]</strong> cambiar&aacute;. Al desactivar una l&iacute;nea virtual haciendo clic en los botones num&eacute;ricos, la l&iacute;nea virtual de referencia no se mostrar&aacute; en la pantalla de vista previa. Al hacer clic en los botones num&eacute;ricos de nuevo, la l&iacute;nea virtual volver&aacute; a aparecer.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+        <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>Nombre</h3>
                 <p>Permite consultar o cambiar el nombre de la línea virtual seleccionada en <strong class="UI">[Línea]</strong>.</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>Objeto</h3>
                 <p>Permite seleccionar el tipo de objeto que activará eventos IVA.</p>
                 <p>Así, por ejemplo, si elige la opción Persona como tipo de objeto, se activará un evento IVA si una persona cruza la línea virtual. Puede configurar los eventos para que activen un <a href="#handover">Traspaso</a> o para que ejecuten las acciones definidas en <a href="#action">Configuración de acciones de evento</a> cuando se produzcan.</p>
             </div>
-            <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+            <div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
                     <li>Si selecciona un objeto, la cámara detectará únicamente ese tipo de objetos. Si no se selecciona ninguno, la cámara detectará cualquier tipo de&nbsp;movimiento. Así, por ejemplo, si no selecciona ninguna opción en <strong class="UI">[Objeto]</strong>, se activará un evento IVA cuando cualquier objeto en movimiento cumpla las condiciones de reglas de eventos IVA.</li>
@@ -120,7 +126,7 @@
                 <li><strong class="UI">Dirección</strong>: Establece la dirección del objeto al atravesar la línea virtual.</li>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+        <div class="wn5-setup-section-article-content sptHandoverCalibration" ng-if="HandoverCalibration">
             <h3>Traspaso</h3>
             <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea predefinida cuando un objeto es detectado cruzando una l&iacute;nea virtual en la c&aacute;mara fija.</p>
             <ul>
@@ -130,12 +136,12 @@
                 <li><strong class="UI">Nº de traspaso</strong>: cuando un objeto es detectado cruzando una l&iacute;nea virtual, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea predefinida. Seleccione un Nº de traspaso que contenga datos predefinidos de la lista. Vaya a <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> para a&ntilde;adir o modificar a lista.</li>
             </ul>
         </div>
-        <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+        <div class="wn5-online-help-info sptHandoverCalibration" ng-if="HandoverCalibration">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 
                 <li>Puede definir el traspaso para cada l&iacute;nea virtual. La funci&oacute;n de Traspaso se puede utilizar despu&eacute;s de definir la l&iacute;nea virtual.</li>
-                <li ng-if="MaxChannel > 1 && HandoverCalibration">El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
+                <li ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
             </ul>
         </div>
     </div>
@@ -156,7 +162,7 @@
         <div class="wn5-online-help-action">
 			<h4>Configuraci&oacute;n de una zona virtual</h4>
             <p>En la pantalla vista previa, use su mouse para seleccionar 4 esquinas y arrastrar para dibujar una forma cuadril&aacute;tera que luego ser&aacute; su &aacute;rea de ROI. Hasta 8 zonas virtuales se pueden configurar y una regla de an&aacute;lisis de im&aacute;genes se pueden establecer para cada &aacute;rea.</p>
-            <p ng-if="objectDetectionSupport">Si lo desea, puede definir un área virtual y configurar el nombre de esta en el campo <strong class="UI">[Nombre]</strong>.</p>
+            <p ng-if="objectDetectionSupport" class="sptObjectDetection">Si lo desea, puede definir un área virtual y configurar el nombre de esta en el campo <strong class="UI">[Nombre]</strong>.</p>
         </div>
         <div class="wn5-online-help-action">
 			<h4>Cambio de una zona virtual</h4>
@@ -174,16 +180,16 @@
             <p>Cuando se a&ntilde;ade una zona virtual, el color de los botones num&eacute;ricos en <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Cuando se desactiva una zona virtual haciendo clic en los botones num&eacute;ricos, la zona virtual de referencia no se mostrar&aacute; en la pantalla de vista previa. Al hacer clic en los botones num&eacute;ricos de nuevo, la zona virtual volver&aacute; a aparecer.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+        <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>Nombre</h3>
                 <p>Permite consultar o cambiar el nombre del área virtual seleccionada en <strong class="UI">[Área]</strong>.</p>
             </div>
-            <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+            <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>Objeto</h3>
                 <p>Permite seleccionar el tipo de objeto que activará eventos IVA.</p>
                 <p>Así, por ejemplo, si elige la opción Persona, se activará un evento IVA únicamente si se detectan personas en el área virtual. Puede configurar los eventos para que activen un <a href="iva.html#handover">Traspaso</a> o para que ejecuten las acciones definidas en <a href="iva.html#action">Configuración de acciones de evento</a> cuando se produzcan.</p>
             </div>	
-                    <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+                    <div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                 <ul>
                     <li>Si selecciona un objeto, la cámara detectará únicamente ese tipo de objetos. Si no se selecciona ninguno, la cámara detectará cualquier tipo de&nbsp;movimiento. Así, por ejemplo, si no selecciona ninguna opción en <strong class="UI">[Objeto]</strong>, se activará un evento IVA cuando cualquier objeto en movimiento cumpla las condiciones de reglas de eventos IVA.</li>
@@ -211,10 +217,10 @@
                 </ul>
                 <li ng-if="IvaLoitering && !objectDetectionSupport"><strong class="UI">Merodeo</strong>: Cuando se detecta un objeto merodeando en el &aacute;rea de detecci&oacute;n establecida, se crear&aacute; un evento.</li>
                 <li ng-if="IvaLoitering && objectDetectionSupport"><strong class="UI">Merodeo</strong>: Este evento se activa cuando la cámara detecta que el objeto seleccionado en <strong class="UI">[Objeto]</strong> merodea dentro del área virtual definida.</li>
-                <ul ng-if="IvaLoitering && !objectDetectionSupport"> 
+                <!-- <ul ng-if="IvaLoitering && !objectDetectionSupport"> 
                     <li><strong class="UI">Duraci&oacute;n m&iacute;nima (s)</strong>: Esto establece el per&iacute;odo de tiempo m&iacute;nimo para un objeto que merodea sea detectado y se cree un evento. Cuando se detecta un objeto que merodea por m&aacute;s tiempo que el establecido, se crear&aacute; un evento.</li>
-                </ul>
-                <ul ng-if="IvaLoitering && objectDetectionSupport">
+                </ul> -->
+                <ul ng-if="IvaLoiteringt">
                         <li><strong class="UI">Duración mínima (s)</strong>: Establece la cantidad mínima de tiempo desde que la cámara detecta un objeto con movimiento de merodeo hasta que activa el evento. Cuando un objeto realice un movimiento de merodeo durante un tiempo superior a este umbral, se activará un evento.</li>
                     </ul>  
             </ul>
@@ -232,7 +238,7 @@
                 </ul>
             </ul>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="HandoverCalibration">
+        <div class="wn5-setup-section-article-content sptHandoverCalibration" ng-if="HandoverCalibration">
             <h3>Traspaso</h3>
             <p>Traspaso es una funci&oacute;n que mueve el enfoque de la c&aacute;mara PTZ hacia el &aacute;rea designada en la pantalla o hacia un &aacute;rea predefinida cuando ocurre un evento de IVA en la c&aacute;mara fija.</p>
             <ul>
@@ -241,12 +247,12 @@
                 <li><strong class="UI">Nº de traspaso</strong>: Cuando se produce un evento IVA en el &aacute;rea ROI, el enfoque de la c&aacute;mara PTZ se mueve hacia el &aacute;rea predefinida. Seleccione un Nº de traspaso que contenga datos predefinidos de la lista. Vaya a <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Traspaso]</strong> para a&ntilde;adir o modificar la lista.</li>
             </ul>
         </div>
-                <div class="wn5-online-help-info" ng-if="HandoverCalibration">
+                <div class="wn5-online-help-info sptHandoverCalibration" ng-if="HandoverCalibration">
                     <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
                     <ul>
                         
                         <li>Puede definir el traspaso para cada &aacute;rea ROI. La funci&oacute;n de Traspaso se puede utilizar despu&eacute;s de definir el &aacute;rea ROI.</li>
-                        <li>El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
+                        <li ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">El men&uacute; &apos;Traspaso&apos; aparece solo cuando se ha seleccionado el canal de la c&aacute;mara fija en el men&uacute; <strong class="UI"><a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a></strong>. El men&uacute; no aparecer&aacute; si se selecciona el canal PTZ.</li>
                     </ul>
                 </div>
         
@@ -283,7 +289,7 @@
             <h3>&Aacute;rea</h3>
             <p>Cuando se a&ntilde;ade un &aacute;rea excluida, el color de los botones num&eacute;ricos en el <strong class="UI">[&Aacute;rea]</strong> cambiar&aacute;. Si hace clic en los botones num&eacute;ricos para desactivarlos, entonces el &aacute;rea excluida se seleccionar&aacute; en la pantalla de vista previa.</p>
         </div>
-        <div class="wn5-online-help-info" ng-if="objectDetectionSupport">
+        <div class="wn5-online-help-info sptObjectDetection" ng-if="objectDetectionSupport">
                 <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
                 <li>El valor configurado en la pestaña <strong class="UI">[Área excluida]</strong> de <strong class="UI">[IVA]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Detección de objetos</a>]</strong>&gt;<strong class="UI">[Área excluida]</strong>. Así, cuando se defina un área excluida en la pestaña <strong class="UI">[Área excluida] </strong>de <strong class="UI">[IVA]</strong>, se creará un área excluida idéntica en <strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[Área excluida]</strong>.</li>
@@ -313,7 +319,7 @@
             <p>Esto establece el tama&ntilde;o m&iacute;nimo y m&aacute;ximo de un objeto a detectar que se aplicar&aacute; tanto a la l&iacute;nea virtual como la zona virtual. Se puede cambiar el tama&ntilde;o haciendo clic y arrastrando una esquina con el rat&oacute;n. Cuando se cambia el tama&ntilde;o, <strong class="UI">[Tama&ntilde;o m&iacute;nimo]</strong> y <strong class="UI">[Tama&ntilde;o m&aacute;ximo]</strong> en <strong class="UI">[Tama&ntilde;o]</strong> tambi&eacute;n cambian.</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="objectDetectionSupport">
+        <div class="wn5-setup-section-article-content sptObjectDetection" ng-if="objectDetectionSupport">
                 <h3>Área excluida</h3>
                 <p>La cámara de AI transfiere los datos de analítica de cada objeto a los programas vinculados a la cámara para que estos los utilicen. Los datos de objetos detectados en el área excluida no se transferirán. Seleccione <strong class="UI">[Habilitar datos del objeto desde el área excluida]</strong> para transferir los datos. &nbsp;</p>
                 <p>Consulte el documento «Especificación de los metadatos de la cámara de AI» para más detalles acerca de la información de objeto transmitida por la cámara.</p>
@@ -323,10 +329,10 @@
         <div class="wn5-online-help-info">
             <h4><span class="tui tui-wn5-help-warning"></span>Nota</h4>
             <ul>
-                    <li ng-if="objectDetectionSupport">El valor configurado en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[IVA]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Detección de objetos</a>]</strong>&gt;<strong class="UI">[Común]</strong>. Así, cuando se cambie el valor en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[IVA]</strong>, el valor en <strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[Común]</strong> también cambiará.</li>
+                    <li ng-if="objectDetectionSupport" class="sptObjectDetection">El valor configurado en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[IVA]</strong> está vinculado al valor en <strong class="UI">[<a class="wn5-online-help-link" href="objectDetection.html" ng-href="#/help/analytics_objectDetection">Detección de objetos</a>]</strong>&gt;<strong class="UI">[Común]</strong>. Así, cuando se cambie el valor en la pestaña <strong class="UI">[Común]</strong> de <strong class="UI">[IVA]</strong>, el valor en <strong class="UI">[Detección de objetos]</strong>&gt;<strong class="UI">[Común]</strong> también cambiará.</li>
                 <li>Si el &aacute;rea de detecci&oacute;n y el &aacute;rea excluida son id&eacute;nticos o se solapan, el &aacute;rea excluida tiene prioridad.</li>
-                <li ng-if="!objectDetectionSupport">Cualquier movimiento menor que el tama&ntilde;o m&iacute;nimo especificado o mayor que el tama&ntilde;o m&aacute;ximo especificado no se detectar&aacute;. Determine los mejores valores para los tama&ntilde;os de detecci&oacute;n m&aacute;ximos/m&iacute;nimos que sean apropiados para el entorno de instalaci&oacute;n para evitar que cualquier detecci&oacute;n falsa surja de sonidos grandes o peque&ntilde;os. Recuerde que el mismo movimiento en el mismo lugar no siempre genera el mismo tama&ntilde;o de detecci&oacute;n. por lo tanto, se recomienda permitir habitaciones lo suficientemente grandes/peque&ntilde;as para sus l&iacute;mites de tama&ntilde;o m&aacute;ximo/m&iacute;nimo considerando la desviaci&oacute;n en los tama&ntilde;os detectados.</li>
-                <li ng-if="objectDetectionSupport">La cámara no detecta objetos menores que el tamaño mínimo o mayores que el tamaño máximo. Para evitar falsos positivos por ruido de tamaño mayor o menor, defina los valores de detección de tamaño mínimo y máximo óptimos para el entorno de instalación. Sin embargo, tenga en cuenta que estos valores deben establecerse con cierta tolerancia, dado que a veces incluso un mismo movimiento detectado en una misma área puede tener tamaños diferentes.</li>
+                <li ng-if="!objectDetectionSupport" class="nsptObjectDetection">Cualquier movimiento menor que el tama&ntilde;o m&iacute;nimo especificado o mayor que el tama&ntilde;o m&aacute;ximo especificado no se detectar&aacute;. Determine los mejores valores para los tama&ntilde;os de detecci&oacute;n m&aacute;ximos/m&iacute;nimos que sean apropiados para el entorno de instalaci&oacute;n para evitar que cualquier detecci&oacute;n falsa surja de sonidos grandes o peque&ntilde;os. Recuerde que el mismo movimiento en el mismo lugar no siempre genera el mismo tama&ntilde;o de detecci&oacute;n. por lo tanto, se recomienda permitir habitaciones lo suficientemente grandes/peque&ntilde;as para sus l&iacute;mites de tama&ntilde;o m&aacute;ximo/m&iacute;nimo considerando la desviaci&oacute;n en los tama&ntilde;os detectados.</li>
+                <li ng-if="objectDetectionSupport" class="sptObjectDetection">La cámara no detecta objetos menores que el tamaño mínimo o mayores que el tamaño máximo. Para evitar falsos positivos por ruido de tamaño mayor o menor, defina los valores de detección de tamaño mínimo y máximo óptimos para el entorno de instalación. Sin embargo, tenga en cuenta que estos valores deben establecerse con cierta tolerancia, dado que a veces incluso un mismo movimiento detectado en una misma área puede tener tamaños diferentes.</li>
               </ul>
           </div>
       </div>
@@ -352,8 +358,8 @@
 </div>
 </div>
 
-<hr class="wn5-setup-hr" ng-if="VaDetectionResultOverlay">
-    <div class="wn5-setup-section" ng-if="VaDetectionResultOverlay">
+<hr class="wn5-setup-hr sptVaDetectionResultOverlay" ng-if="VaDetectionResultOverlay">
+    <div class="wn5-setup-section sptVaDetectionResultOverlay" ng-if="VaDetectionResultOverlay">
         <div class="wn5-setup-section-heading">
             <h2>Superposici&oacute;n</h2>
        </div>
@@ -379,25 +385,25 @@
             <h3>E-mail</h3>
             <p>Para enviar una imagen por e-mail cuando se produce un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para e-mail desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/ftpemail.html#email" ng-href="#/help/event_ftpemail?#email"><strong class="UI">[FTP/E-mail]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="Recording">
+        <div class="wn5-setup-section-article-content sptRecording" ng-if="Recording">
             <h3>Grabar</h3>
-            <p ng-if="NAS">Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
-            <p ng-if="!NAS">Para guardar una imagen en una tarjeta SD cuando se crea un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+            <p ng-if="NAS" class="sptRecordingSDNas">Para guardar una imagen en una tarjeta SD o NAS cuando se crea un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
+            <p ng-if="!NAS" class="sptRecordingSD">Para guardar una imagen en una tarjeta SD cuando se crea un evento IVA, seleccione <strong class="UI">[Activar]</strong>. Se pueden hacer ajustes detallados para almacenamiento desde <strong class="UI">[Evento]</strong>&gt;<a class="wn5-online-help-link" href="../event/storage.html" ng-href="#/help/event_storage"><strong class="UI">[Almacenamiento]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="MaxAlarmOutput>0">
+        <div class="wn5-setup-section-article-content sptAlarmOutput" ng-if="MaxAlarmOutput>0">
             <h3>Salida de alarma</h3>
             <p>Es posible establecer el n&uacute;mero de salida de alarma para una alarma espec&iacute;fica cuando se crea un evento IVA.&nbsp;Despu&eacute;s de seleccionar un n&uacute;mero de salidas de alarma, seleccione <strong class="UI">[Des]</strong> si no desea ninguna alarma, o seleccione la hora de salida si desea emitir una alarma. Se puede establecer una alarma continua hasta que sea apagada por el usuario mediante la selecci&oacute;n de <strong class="UI">[Siempre]</strong> o estableciendo la alarma en 5, 10 o 15 segundos. </p>
             <p>Dependiendo de la configuraci&oacute;n de la salida de alarma, las opciones de <strong class="UI">[Salida de alarma]</strong> pueden variar. Si no hay una salida de alarma, las opciones de <strong class="UI">[Salida de alarma]</strong> no se visualizar&aacute;n. Si hay m&aacute;s de una salida de alarma, se visualizar&aacute;n como <strong class="UI">«Salida de alarma 1»</strong>, <strong class="UI">«Salida de alarma 2»</strong>, y as&iacute; sucesivamente. Seleccione <strong class="UI">[Evento]</strong> &gt; <strong class="UI">[Alarma E/S]</strong> para ajustar la E/S de la alarma.</p>
         </div>
 
-    <div class="wn5-setup-section-article-content" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
+    <div class="wn5-setup-section-article-content sptExtPtzPreset1" ng-if="(DPTZSetupPage || ExternalPTZPage) && PresetSupport && !ZoomOnlyModel && PresetAction">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en <strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ] </strong>&gt;<a class="wn5-online-help-link" href="../ptz/dptzSetup.html" ng-href="#/help/ptzSetup_dptzSetup"><strong class="UI">[PTZ digital]</strong></a> o <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externa]</a></strong>.</p>
 
-                <p ng-if="GlobalPTZMode && MaxChannel > 1">Si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; seleccionada en <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externo]</a></strong>, no se mostrar&aacute; la opci&oacute;n [Ir a preajuste.].</p>
+                <p ng-if="GlobalPTZMode && MaxChannel > 1" class="sptMultiChannelExternalPTZ">Si la opci&oacute;n <strong class="UI">[Usar PTZ externo]</strong> no est&aacute; seleccionada en <strong class="UI">[PTZ]</strong> &gt; <strong class="UI"><a class="wn5-online-help-link" href="../ptz/externalPTZ.html" ng-href="#/help/ptzSetup_externalPtzSetup">[PTZ externo]</a></strong>, no se mostrar&aacute; la opci&oacute;n [Ir a preajuste.].</p>
         </div>
 
-        <div class="wn5-setup-section-article-content" ng-if="PresetSetupPage">
+        <div class="wn5-setup-section-article-content sptZoomOnly" ng-if="PresetSetupPage">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Configuración de preajustes]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/presetZoom.html" ng-href="#/help/ptzSetup_presetZoom"><strong class="UI">[Configuración de preajustes]</strong></a>.</p>
         </div>
@@ -405,13 +411,13 @@
         <div class="wn5-setup-section-article-content" ng-if="PTZSetupPage">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptzInfoSetup.html" ng-href="#/help/ptzSetup_ptzInfoSetup"><strong class="UI">[Configuraci&oacute;n PTZ]</strong></a>.</p>
-                <p ng-if="MaxChannel > 1 && HandoverCalibration">[Ir a preajuste.] aparece solo cuando selecciona <strong class="UI">[PTZ]</strong> en el menú <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a>. </p>
+                <p ng-if="MaxChannel > 1 && HandoverCalibration" class="sptPTZMultiChannel">[Ir a preajuste.] aparece solo cuando selecciona <strong class="UI">[PTZ]</strong> en el menú <a class="wn5-online-help-link" href="#channel" ng-href="#/help/analytics_iva#channel">[Seleccionar canal]</a>. </p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="PanTiltOnlyModel">
+        <div class="wn5-setup-section-article-content sptPantiltOnly" ng-if="PanTiltOnlyModel">
             <h3>Ir a preajuste.</h3>
                 <p>Puede definir la posici&oacute;n de la vista de la c&aacute;mara para que se mueva a un n&uacute;mero predefinido cuando se cree un evento IVA. El valor predefinido de c&aacute;mara puede definirse en&nbsp;<strong class="UI">[Preajuste]</strong> de <strong class="UI">[PTZ]</strong>&gt;<a class="wn5-online-help-link" href="../ptz/ptSetup.html" ng-href="#/help/ptzSetup_ptSetup"><strong class="UI">[Configuraci&oacute;n PT]</strong></a>.</p>
         </div>
-        <div class="wn5-setup-section-article-content" ng-if="AudioClipCountRange">
+        <div class="wn5-setup-section-article-content sptAudioClip" ng-if="AudioClipCountRange">
             <h3>Clip de audio</h3>
             <p>Esto habilita la reproducci&oacute;n de un clip de audio espec&iacute;fico cuando ocurre un evento IVA. Una vez que selecciona un archivo de la lista de clips de audio, el clip comenzar&aacute; a reproducirse cuando ocurra el evento. Para desactivar el clip de audio cuando ocurre un evento, seleccione <strong class="UI">[Apagado]</strong>. Pulsar el bot&oacute;n Reproducir (<span class="tui tui-wn5-toolbar-play"></span>) le permite reproducir y hacer vista previa del archivo de audio.</p>
             <p>Vaya a <strong class="UI">[V&iacute;deo y Audio]</strong>&gt;<strong class="UI"><a class="wn5-online-help-link" href="../video&audio/audio.html" ng-href="#/help/videoAudio_audioSetup">[Configuraci&oacute;n de audio]</a></strong>&gt;<strong class="UI">[Clip de audio]</strong> para registrar un clip de audio.</p>

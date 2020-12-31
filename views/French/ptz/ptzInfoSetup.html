@@ -54,12 +54,29 @@
                 <li>Cliquez sur le bouton <strong class="UI">[D&eacute;finir l&rsquo;accueil]</strong>.</li>
             </ol>
     	</div>
-        <div class="wn5-online-help-info" ng-if="RememberLastPosition">
+        <div class="wn5-online-help-info sptRememberLastPosition" ng-if="RememberLastPosition">
             <h4><span class="tui tui-wn5-help-warning"></span>Remarque</h4>
         <ul>
             <li>Lorsque la caméra est redémarrée après avoir défini la position d'origine, l'écran est positionné à la position d'origine. Si une autre séquence (Préréglage, Plage de relèvement, Groupe, Tour, Piste) est en cours d'exécution, la séquence qui était active sera exécutée sans être déplacée vers la position de base lorsque la caméra est réinitialisée.</li>
         </ul>
-    </div>
+        </div>
+
+        <div class="wn5-online-help-action sptWasher" ng-if="WasherWiperOn">
+            <h4>Lancement du laveur</h4>
+            <ul>
+                 <li>Cliquez sur le bouton <strong class="UI">[Lancez le laveur]</strong>.</li>
+            </ul>
+            <p>Le laveur situé sur la surface extérieure de l’appareil pulvérise et rince l’objectif de la caméra. Pour pouvoir lancer le laveur, il convient de régler d’abord sa position. Pour régler la position du laveur, cliquez sur le bouton <strong class="UI">[Réglez la position du laveur]</strong>. </p> 
+        </div>
+        <div class="wn5-online-help-action sptWasher" ng-if="WasherWiperOn">
+            <h4>Réglage de la position du laveur</h4>
+            <ul>
+                 <li>Cliquez sur le bouton <strong class="UI">[Réglez la position du laveur]</strong>.</li>
+            </ul>
+            <p>La position du laveur est réglée sur le préréglage n° 88. Vous pouvez voir la position du laveur ajoutée dans la liste <strong class="UI">[Configuration préréglée]</strong>. </p>
+        </div>
+
+
         <div class="wn5-setup-section-article-content">
             <h3>Configuration pr&eacute;r&eacute;gl&eacute;e</h3>
             <p>Vous pouvez afficher la liste des pr&eacute;r&eacute;glages et modifier ou supprimer les param&egrave;tres d&eacute;taill&eacute;s de chaque pr&eacute;r&eacute;glage.</p>
@@ -101,15 +118,15 @@
                 <li><strong class="UI">IVA</strong>: Allez &agrave; la page <strong class="UI">[Analyse] </strong>&gt; <strong class="UI">[IVA]</strong>. Lorsque <strong class="UI">[Pr&eacute;r&eacute;glage]</strong> est s&eacute;lectionn&eacute; parmi les options <strong class="UI">[Type]</strong> de la page IVA, vous pouvez d&eacute;finir un &eacute;v&eacute;nement IVA (analyse vid&eacute;o intelligente) diff&eacute;rent pour chaque pr&eacute;r&eacute;glage.</li>
             </ul>
     </div>
-        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+        <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h3>Derni&egrave;re position</h3>
             <p>Vous pouvez r&eacute;gler la cam&eacute;ra pour passer &agrave; la derni&egrave;re position lorsque vous allumez et &eacute;teignez la cam&eacute;ra. S&eacute;lectionnez si vous souhaitez enregistrer la derni&egrave;re position de la cam&eacute;ra et s&eacute;lectionnez l&apos;intervalle d&apos;enregistrement.</p>
         </div>
-            <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+            <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h5>Enregistrer la dernière position</h5>
                 <p>Pour enregistrer la derni&egrave;re position, s&eacute;lectionnez <strong class="UI">[Activer]</strong>.</p>
         </div> 
-        <div class="wn5-setup-section-article-content" ng-if="RememberLastPosition">
+        <div class="wn5-setup-section-article-content sptRememberLastPosition" ng-if="RememberLastPosition">
             <h5>Heure</h5>
        
             <p>D&eacute;finissez l&apos;intervalle d&apos;enregistrement pendant lequel enregistrer la position actuelle comme derni&egrave;re position. L&apos;unit&eacute; utilis&eacute;e pour mesurer l&apos;intervalle est la seconde. Saisissez l&apos;intervalle d&apos;enregistrement dans le champ et cliquez sur <strong class="UI">[Appliquer]</strong>.</p>
@@ -309,8 +326,8 @@
                         </div>
                     </div>
     </div>
-<hr class="wn5-setup-hr" ng-if="TraceSupportbyChannel">
-<div class="wn5-setup-section" ng-if="TraceSupportbyChannel">
+<hr class="wn5-setup-hr sptTrace" ng-if="TraceSupportbyChannel">
+<div class="wn5-setup-section sptTrace" ng-if="TraceSupportbyChannel">
     <div class="wn5-setup-section-heading">
         <h2><a name="trace"></a>Piste</h2>
     </div>
